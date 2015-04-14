@@ -4,3 +4,10 @@ See this [blog post](http://blogs.msdn.com/b/chuckw/archive/2012/03/02/directxtk
 
 # CodePlex
 DirectXTK is hosted on [CodePlex](http://go.microsoft.com/fwlink/?LinkId=248929). See that website for documentation, issues tracking, and discussions.
+
+# NuGet
+DirectXTK is also available on NuGet
+* [Windows desktop apps using VS 2013](https://www.nuget.org/packages/directxtk_desktop_2013)
+* [Windows 8.1 Store](https://www.nuget.org/packages/directxtk_windowsstore_8_1)
+* [Windows phone 8](https://www.nuget.org/packages/directxtk_windowsphone_8)
+* [Windows phone 8.1](https://www.nuget.org/packages/directxtk_windowsphone_8_1)
