@@ -12,6 +12,7 @@
 * Xbox One
 
 # For Development
+* Visual Studio 2015
 * Visual Studio 2013
 * Visual Studio 2012
 * VS 2012/2013 with the Windows Phone SDK 8.0
