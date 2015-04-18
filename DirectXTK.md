@@ -79,6 +79,16 @@ In your application's project settings, on the "C++ / General" page set Configur
 When using VS 2010 with the Windows 8.x SDK, or when using VS 2012 with the Windows 8.1 SDK, you'll need to apply the [correct .props files](http://blogs.msdn.com/b/vcblog/archive/2012/11/23/using-the-windows-8-sdk-with-visual-studio-2010-configuring-multiple-projects.aspx
 ) to your projects as well as use the correct DirectXTK project.
 
-See [[Audio]] for additional information when setting up Win32 desktop projects to use _DirectXTK for Audio_.
+See [[DirectXTK for Audio|Audio]] for additional information when setting up Windows desktop projects to use _DirectXTK for Audio_.
 
 See also the [Visual C+ Team Blog](http://blogs.msdn.com/b/vcblog/archive/2010/05/03/flexible-project-to-project-references.aspx)
+
+## Using NuGet package manager
+Alternatively you can use NuGet to install one of the DirectX Tool Kit packages. Use *Project / Manage NuGet Packages...* then select "Online" and search for "DirectX Tool Kit".
+
+* Use Id: [directxtk_desktop_2013](https://www.nuget.org/packages/directxtk_desktop_2013/) for Windows desktop C++ applications building with the VS 2013 Express for Desktop, VS 2013 Community, VS 2013 Professional or higher
+* Use Id: [directxtk_windowsstore_8_1](https://www.nuget.org/packages/directxtk_windowsstore_8_1/) for Windows Store C++ apps building with VS 2013 targeting Windows 8.1 / RT 8.1
+* Use Id: [directxtk_windowsphone_8_1](https://www.nuget.org/packages/directxtk_windowsphone_8_1/) for Windows phone 8.1 C++ apps or Windows phone Silverlight 8.1 C++ apps building with VS 2013 Update 2 or later.
+* Use Id: [directxtk_windowsphone_8](https://www.nuget.org/packages/directxtk_windowsphone_8/) for Windows phone 8 C++ apps building with VS 2012 or VS 2013 and the Windows Phone 8.0 SDK.
+
+You should use the NuGet interface to check for updates if you have an older version installed.
