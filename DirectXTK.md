@@ -7,7 +7,7 @@ All the functions in the library are in the **DirectX** C++ namespace.
 _Note: The Xbox One exclusive application XBoxDDSTextureLoader functions are in the Xbox C++ namespace_
 
 # Modules
-* [[Audio|Audio]] - low-level audio API using XAudio2 
+* [[Audio]] - low-level audio API using XAudio2 
 * CommonStates - factory providing commonly used D3D state objects 
 * DDSTextureLoader - light-weight DDS file texture loader 
 * DirectXHelpers - misc C++ helpers for D3D programming 
