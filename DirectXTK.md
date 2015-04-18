@@ -7,7 +7,7 @@ All the functions in the library are in the **DirectX** C++ namespace.
 _Note: The Xbox One exclusive application XBoxDDSTextureLoader functions are in the Xbox C++ namespace_
 
 # Modules
-* Audio - low-level audio API using XAudio2 
+* [Audio] - low-level audio API using XAudio2 
 * CommonStates - factory providing commonly used D3D state objects 
 * DDSTextureLoader - light-weight DDS file texture loader 
 * DirectXHelpers - misc C++ helpers for D3D programming 
@@ -79,7 +79,7 @@ In your application's project settings, on the "C++ / General" page set Configur
 When using VS 2010 with the Windows 8.x SDK, or when using VS 2012 with the Windows 8.1 SDK, you'll need to apply the [correct .props files](http://blogs.msdn.com/b/vcblog/archive/2012/11/23/using-the-windows-8-sdk-with-visual-studio-2010-configuring-multiple-projects.aspx
 ) to your projects as well as use the correct DirectXTK project.
 
-See Audio for additional information when setting up Windows desktop projects to use _DirectXTK for Audio_.
+See [Audio] for additional information when setting up Windows desktop projects to use _DirectXTK for Audio_.
 
 See also the [Visual C+ Team Blog](http://blogs.msdn.com/b/vcblog/archive/2010/05/03/flexible-project-to-project-references.aspx)
 
