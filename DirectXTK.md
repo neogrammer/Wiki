@@ -40,7 +40,7 @@ Open a Developer [Command Prompt](http://windows.microsoft.com/en-us/windows/com
 
 Enter the following command-line after changing to the appropriate directory:
 
-`CompileShaders`
+    CompileShaders
 
 Then rebuild the DirectXTK library to update with the latest version of the shaders.
 
@@ -51,7 +51,7 @@ Open a Xbox One XDK [Command Prompt](http://windows.microsoft.com/en-us/windows/
 
 Enter the following command-line after changing to the appropriate directory:
 
-`CompileShaders xbox`
+    CompileShaders xbox
 
 Then build the Xbox One XDK version of the DirectXTK library.
 
