@@ -3,6 +3,7 @@
 * Windows 8.1 Store apps
 * Windows 8 Store apps
 * Windows desktop apps
+* Windows 8.x
 * Windows 7
 * Windows Vista Service Pack 2 with KB971644 
 * Windows Server 2012 / 2012 R2
