@@ -54,3 +54,31 @@ Enter the following command-line after changing to the appropriate directory:
 `CompileShaders xbox`
 
 Then build the Xbox One XDK version of the DirectXTK library.
+
+# Adding to a VS solution
+## Using project-to-project references
+In your application's solution, right-click on the Solution and use "Add \ Existing Project..." to add the appropriate .vcxproj file to your solution.
+
+* _DirectXTK_Windows10_ is for universal Windows apps building with VS 2015 targeting Windows 10
+* _DirectXTK_Windows81_ is for Windows Store C++ apps building with VS 2013 targeting Windows 8.1 / RT 8.1 
+* _DirectXTK_Windows8_ is for Windows Store C++ apps building with VS 2012 targeting Windows 8 / RT 
+* _DirectXTK_WindowsPhone81_ is for Windows phone 8.1 C++ apps building with VS 2013 Update 2 or later. 
+* _DirectXTK_XAMLSilverlight_WindowsPhone81_ is for Windows phone Silverlight 8.1 C++ apps building with VS 2013 Update 2 or later. 
+* _DirectXTK_WindowsPhone8_ is for Windows phone 8 C++ apps building with VS 2012 or VS 2013 and the Windows Phone 8.0 SDK 
+* _DirectXTK_Desktop_2015_ is for Windows desktop C++ applications building with VS 2015 
+* _DirectXTK_Desktop_2013_ is for Windows desktop C++ applications building with the VS 2013 Express for Desktop, VS 2013 Community, VS 2013 Professional or higher 
+* _DirectXTK_Desktop_2012_ is for Windows desktop C++ applications building with VS 2012 Express for Desktop, VS 2012 Professional or higher 
+* _DirectXTK_Desktop_2010_ is for Windows desktop C++ applications building with VS 2010 using the Windows 8.1 SDK 
+* _DirectXTK_XboxOneXDK_ is for Xbox One exclusive C++ applications building with VS 2012 using the Xbox One XDK 
+* _DirectXTK_XboxOneADK_ is for Xbox One hub apps C++ building with VS 2012 using the Xbox One ADK
+
+In your application's project, right-click on the Project and use "References...", then "Add New Reference...", and then check the DirectXTK project name and click OK. For a Windows Store app, Windows phone, or Xbox One solution, you need to set Reference Assembly Output to false since DirectXTK is a static C++ library and not a WinRT component.
+
+In your application's project settings, on the "C++ / General" page set Configuration to "All Configurations", set Platform to "All Platforms", and then add the relative path to `DirectXTK\inc;`--assuming you have the DirectXTK folder in the same directory as your sln file, it should be `$(SolutionDir)\DirectXTK\inc;`--to the Additional Include Directories properties. Click Apply.
+
+When using VS 2010 with the Windows 8.x SDK, or when using VS 2012 with the Windows 8.1 SDK, you'll need to apply the [correct .props files](http://blogs.msdn.com/b/vcblog/archive/2012/11/23/using-the-windows-8-sdk-with-visual-studio-2010-configuring-multiple-projects.aspx
+) to your projects as well as use the correct DirectXTK project.
+
+See [[Audio]] for additional information when setting up Win32 desktop projects to use _DirectXTK for Audio_.
+
+See also the [Visual C+ Team Blog](http://blogs.msdn.com/b/vcblog/archive/2010/05/03/flexible-project-to-project-references.aspx)
