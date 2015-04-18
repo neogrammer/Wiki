@@ -11,3 +11,6 @@ DirectXTK is also available on NuGet
 * [Windows 8.1 Store](https://www.nuget.org/packages/directxtk_windowsstore_8_1)
 * [Windows phone 8](https://www.nuget.org/packages/directxtk_windowsphone_8)
 * [Windows phone 8.1](https://www.nuget.org/packages/directxtk_windowsphone_8_1)
+
+# Porting from D3DX
+See [this post](http://blogs.msdn.com/b/chuckw/archive/2013/08/21/living-without-d3dx.aspx) for a complete listing of D3DX equivalents.
