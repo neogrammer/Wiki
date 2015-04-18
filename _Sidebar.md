@@ -6,9 +6,6 @@
 * Windows 8.x
 * Windows 7
 * Windows Vista Service Pack 2 with KB971644 
-* Windows Server 2012 / 2012 R2
-* Windows Server 2008 R2
-* Windows Server 2008 SP2 with KB971644
 * Windows phone 8.x
 * Xbox One
 
