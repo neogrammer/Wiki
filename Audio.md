@@ -11,12 +11,12 @@ _Note: DirectXTK for Audio uses XAudio 2.8 or XAudio 2.7. It does not make use o
 
 # Platform support
 Windows 8.x, Windows 10, Windows phone 8.x, and Xbox One all include XAudio 2.8 or later. Therefore, the standard DirectXTK.lib includes DirectXTK for Audio for all these platforms:
-* _DirectXTK_Windows10_ 
-* _DirectXTK_Windows81 _
-* _DirectXTK_Windows8 _
-* _DirectXTK_WindowsPhone81 _
+* _DirectXTK_Windows10_
+* _DirectXTK_Windows81_
+* _DirectXTK_Windows8_
+* _DirectXTK_WindowsPhone81_
 * _DirectXTK_XAMLSilverlight_WindowsPhone81_ 
-* _DirectXTK_WindowsPhone8 _
+* _DirectXTK_WindowsPhone8_
 * _DirectXTK_XboxOneXDK_ 
 * _DirectXTK_XboxOneADK_
 
