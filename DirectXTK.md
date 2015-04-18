@@ -92,3 +92,51 @@ Alternatively you can use NuGet to install one of the DirectX Tool Kit packages.
 * Use Id: [directxtk_windowsphone_8](https://www.nuget.org/packages/directxtk_windowsphone_8/) for Windows phone 8 C++ apps building with VS 2012 or VS 2013 and the Windows Phone 8.0 SDK.
 
 You should use the NuGet interface to check for updates if you have an older version installed.
+
+# Content pipeline
+To use the Visual Studio 2012 or later graphics assets tools in the build system, be sure to [add them to your project](http://msdn.microsoft.com/en-us/library/hh972446.aspx). 
+
+_The graphics assets tools are not present in the Express editions of Visual Studio 2012. They are present in the Visual Studio 2013 Express for Windows and Community editions, but not in VS 2013 Express for Windows Desktop._
+
+**Note:** When adding .spritefont, .sdkmesh, or .xwb files to your Windows Store app or Windows phone app project, you need to manually set the file properties to "Content: Yes" for all configurations to have these files included in your AppX package. .dds files and other image file formats are automatically detected as a media file and are included as content by default.
+
+# Error handling
+DirectXTK makes use of C++ exception handling which should be enabled by the application via the `/EHsc` compiler switch. In Visual Studio, this is set in the project settings under "C++ / Code Generation" with Enable C++ Exceptions set to "Yes (/EHsc)" for all configurations.
+
+* [C++ Exception Handling](http://msdn.microsoft.com/en-us/library/4t3saedz.aspx)
+* [How to: Break When an Exception is Thrown](http://msdn.microsoft.com/en-us/library/d14azbfh.aspx)
+* [Dual-use Coding Techniques for Games](http://blogs.msdn.com/b/chuckw/archive/2012/09/17/dual-use-coding-techniques-for-games.aspx)
+* [Resource Acquisition Is Initialization](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization)
+
+# Smart-pointers and reference counting
+DirectXTK encourages and makes use of a number of smart-pointers to simplify resource lifetime tracking.
+* std::unique_ptr - A smart-pointer that has exactly one 'owner' of the memory 
+* std::shared_ptr - A smart-pointer that tracks memory use with reference counting 
+* Microsoft::WRL::ComPtr - A COM smart-pointer for reference count management very similar to ATL's CComPtr
+
+* [Smart Pointers (Modern C++)](http://msdn.microsoft.com/en-us/library/hh279674.aspx)
+* [Managing the Lifetime of an Object](http://msdn.microsoft.com/en-us/library/windows/desktop/ff485846.aspx)
+* [COM Coding Practices](http://msdn.microsoft.com/en-us/library/windows/desktop/ff485839.aspx#smartptr)
+* [Reference Counting (Direct3D 10)](http://msdn.microsoft.com/en-us/library/windows/desktop/bb205070.aspx)
+
+# Implementation notes
+DirectXTK's implementation makes extensive use of the [pImpl idiom](http://en.wikipedia.org/wiki/Opaque_pointer). This keeps the public headers slim and minimizes inter-module dependencies.
+
+    // SpriteBatch.h public header
+    class SpriteBatch
+    {
+    public:
+        ...
+    
+    private:
+        // Private implementation.
+        class Impl;
+    
+        std::unique_ptr<Impl> pImpl;
+    
+        // Prevent copying.
+        SpriteBatch(SpriteBatch const&);
+        SpriteBatch& operator= (SpriteBatch const&);
+    };
+
+This also allows use to allocate the pImpl class internally using _aligned_malloc(x,16); so that we can use the DIrectXMath aligned XMVECTOR and XMMATRIX types directly in the implementation.
