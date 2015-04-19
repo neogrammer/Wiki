@@ -34,9 +34,9 @@
 
 [CodePlex VS 2013 Refresh](http://blogs.msdn.com/b/chuckw/archive/2013/10/29/codeplex-vs-2013-refresh.aspx)
 
-[Visual Studio 2013 and Windows 8.1 SDK RTM are now available(http://blogs.msdn.com/b/chuckw/archive/2013/10/18/visual-studio-2013-and-windows-8-1-sdk-rtm-are-now-available.aspx)
+[Visual Studio 2013 and Windows 8.1 SDK RTM are now available](http://blogs.msdn.com/b/chuckw/archive/2013/10/18/visual-studio-2013-and-windows-8-1-sdk-rtm-are-now-available.aspx)
 
-[Where is the DirectX SDK (2013 Edition)?(http://blogs.msdn.com/b/chuckw/archive/2013/07/01/where-is-the-directx-sdk-2013-edition.aspx)
+[Where is the DirectX SDK (2013 Edition)?](http://blogs.msdn.com/b/chuckw/archive/2013/07/01/where-is-the-directx-sdk-2013-edition.aspx)
 
 [DirectX 11.1 and Windows 7 Update](http://blogs.msdn.com/b/chuckw/archive/2013/02/26/directx-11-1-and-windows-7-update.aspx)
 
@@ -46,22 +46,22 @@
 
 [Windows Imaging Component and Windows 8](http://blogs.msdn.com/b/chuckw/archive/2012/11/19/windows-imaging-component-and-windows-8.aspx)
 
-[DirectX 11.1 and Windows 7](ttp://blogs.msdn.com/b/chuckw/archive/2012/11/14/directx-11-1-and-windows-7.aspx)
+[DirectX 11.1 and Windows 7](http://blogs.msdn.com/b/chuckw/archive/2012/11/14/directx-11-1-and-windows-7.aspx)
 
-http://blogs.msdn.com/b/chuckw/archive/2012/09/17/dual-use-coding-techniques-for-games.aspx
+[Dual-use Coding Techniques for Games](http://blogs.msdn.com/b/chuckw/archive/2012/09/17/dual-use-coding-techniques-for-games.aspx)
 
-http://blogs.msdn.com/b/chuckw/archive/2012/08/15/visual-studio-2012-and-windows-8-0-sdk-rtm-are-now-available.aspx
+[Visual Studio 2012 and Windows 8.0 SDK RTM are now available](http://blogs.msdn.com/b/chuckw/archive/2012/08/15/visual-studio-2012-and-windows-8-0-sdk-rtm-are-now-available.aspx)
 
-http://blogs.msdn.com/b/chuckw/archive/2012/06/20/direct3d-feature-levels.aspx
+[Direct3D Feature Levels](http://blogs.msdn.com/b/chuckw/archive/2012/06/20/direct3d-feature-levels.aspx)
 
-http://blogs.msdn.com/b/chuckw/archive/2012/05/07/hlsl-fxc-and-d3dcompile.aspx
+[HLSL, FXC, and D3DCompile](http://blogs.msdn.com/b/chuckw/archive/2012/05/07/hlsl-fxc-and-d3dcompile.aspx)
 
-http://blogs.msdn.com/b/chuckw/archive/2012/03/02/directxtk.aspx
+[DirectXTK](http://blogs.msdn.com/b/chuckw/archive/2012/03/02/directxtk.aspx)
 
-http://blogs.msdn.com/b/chuckw/archive/2011/10/28/directxtex.aspx
+[DirectXTex](http://blogs.msdn.com/b/chuckw/archive/2011/10/28/directxtex.aspx)
 
-http://blogs.msdn.com/b/chuckw/archive/2012/03/22/where-is-the-directx-sdk.aspx
+[Where is the DirectX SDK?](http://blogs.msdn.com/b/chuckw/archive/2012/03/22/where-is-the-directx-sdk.aspx)
 
-http://blogs.msdn.com/b/chuckw/archive/2012/05/04/direct3d-11-textures-and-block-compression.aspx
+[Direct3D 11 Textures and Block Compression](http://blogs.msdn.com/b/chuckw/archive/2012/05/04/direct3d-11-textures-and-block-compression.aspx)
 
-http://blogs.msdn.com/b/chuckw/archive/2010/02/05/the-dds-file-format-lives.aspx
+[The DDS File Format Lives](http://blogs.msdn.com/b/chuckw/archive/2010/02/05/the-dds-file-format-lives.aspx)
