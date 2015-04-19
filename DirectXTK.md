@@ -74,7 +74,11 @@ In your application's solution, right-click on the Solution and use "Add \ Exist
 
 In your application's project, right-click on the Project and use "References...", then "Add New Reference...", and then check the DirectXTK project name and click OK. For a Windows Store app, Windows phone, or Xbox One solution, you need to set Reference Assembly Output to false since DirectXTK is a static C++ library and not a WinRT component.
 
+![Settings dialog](https://github.com/Microsoft/DirectXTK/wiki/images/settingsROA.PNG)
+
 In your application's project settings, on the "C++ / General" page set Configuration to "All Configurations", set Platform to "All Platforms", and then add the relative path to `DirectXTK\inc;`--assuming you have the DirectXTK folder in the same directory as your sln file, it should be `$(SolutionDir)\DirectXTK\inc;`--to the Additional Include Directories properties. Click Apply.
+
+![Settings dialog](https://github.com/Microsoft/DirectXTK/wiki/images/settingsAID.PNG)
 
 When using VS 2010 with the Windows 8.x SDK, or when using VS 2012 with the Windows 8.1 SDK, you'll need to apply the [correct .props files](http://blogs.msdn.com/b/vcblog/archive/2012/11/23/using-the-windows-8-sdk-with-visual-studio-2010-configuring-multiple-projects.aspx
 ) to your projects as well as use the correct DirectXTK project.
