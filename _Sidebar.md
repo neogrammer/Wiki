@@ -21,3 +21,5 @@
 [DirectXMesh](https://github.com/Microsoft/DirectXMesh)
 
 [DirectXTex](https://github.com/Microsoft/DirectXTex)
+
+[Content Exporter](https://github.com/walbourn/contentexporter)
