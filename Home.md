@@ -9,7 +9,7 @@ See this [blog post](http://blogs.msdn.com/b/chuckw/archive/2012/03/02/directxtk
 [[Resources]]
 
 # CodePlex
-DirectXTK is hosted on [CodePlex](http://go.microsoft.com/fwlink/?LinkId=248929). See that website for documentation, issues tracking, and discussions.
+DirectXTK is hosted on [CodePlex](https://directxtk.codeplex.com/). See that website for documentation, issues tracking, and discussions.
 
 # NuGet
 DirectXTK is also available on NuGet
