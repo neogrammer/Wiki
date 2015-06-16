@@ -1,11 +1,11 @@
 The _DirectXTK for Audio_ components implement a low-level audio API similar to XNA Game Studio's Microsoft.Xna.Framework.Audio. This consists of the following classes all declared in the Audio.h header (in the Inc folder of the distribution):
 
-* AudioEngine - This class represents an XAudio2 audio graph, device, and mastering voice. 
-* SoundEffect - A container class for sound resources which can be loaded from .wav files. 
-* SoundEffectInstance - Provides a single playing, paused, or stopped instance of a sound 
-* DynamicSoundEffectInstance - SoundEffectInstance where the application provides the audio data on demand 
-* WaveBank - A container class for sound resources packaged into an XACT-style .xwb wave bank. 
-* AudioListener,  AudioEmitter - Utility classes used with SoundEffectInstance::Apply3D.
+* **AudioEngine** - This class represents an XAudio2 audio graph, device, and mastering voice. 
+* **SoundEffect** - A container class for sound resources which can be loaded from .wav files. 
+* **SoundEffectInstance** - Provides a single playing, paused, or stopped instance of a sound 
+* **DynamicSoundEffectInstance** - SoundEffectInstance where the application provides the audio data on demand 
+* **WaveBank** - A container class for sound resources packaged into an XACT-style .xwb wave bank. 
+* **AudioListener**,  **AudioEmitter** - Utility classes used with SoundEffectInstance::Apply3D.
 
 _Note: DirectXTK for Audio uses XAudio 2.8 or XAudio 2.7. It does not make use of the legacy XACT Engine, XACT Cue, or XACT SoundBank._
 
