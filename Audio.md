@@ -37,7 +37,9 @@ When targeting Windows Vista, Windows 7, or Windows 8.x:
 **VS 2010 Note:** We only support DirectXTK for Audio with the legacy DirectX SDK due to some issues with using the VS 2010 toolset and with Windows 8.x SDK WinRT headers.
 
 [XAudio2 Versions](http://msdn.microsoft.com/en-us/library/windows/desktop/ee415802.aspx)
+
 [KB2728613](http://support.microsoft.com/kb/2728613)
+
 [Where is the DirectX SDK?](http://msdn.microsoft.com/en-us/library/windows/desktop/ee663275.aspx)
 
 DirectXTK makes use of the latest Direct3D 11.1 headers available in the Windows 8.x SDK, and there are a number of file conflicts between the Windows 8.x SDK and the legacy DirectX SDK. Therefore, when building for down-level support with XAudio 2.7, Audio.h explicitly includes the DirectX SDK version of XAudio2 headers with a full path name. These reflect the default install locations, and if you have installed it elsewhere you will need to update this header. The *_DXSDK.vcxproj files use the DXSDK_DIR environment variable, so only the Audio.h references need updating for an alternative location.
