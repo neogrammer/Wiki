@@ -7,28 +7,28 @@ All the functions in the library are in the **DirectX** C++ namespace.
 _Note: The Xbox One exclusive application XBoxDDSTextureLoader functions are in the Xbox C++ namespace_
 
 # Modules
-* Audio - low-level audio API using XAudio2 
-* CommonStates - factory providing commonly used D3D state objects 
-* DDSTextureLoader - light-weight DDS file texture loader 
-* DirectXHelpers - misc C++ helpers for D3D programming 
-* Effects - set of built-in shaders for common rendering tasks 
-* GamePad - gamepad controller helper using XInput 
-* GeometricPrimitive - draws basic shapes such as cubes and spheres 
-* Keyboard - keyboard state tracking helper
-* Model - draws simple meshes loaded from .CMO, .SDKMESH, or .VBO files 
-* Mouse - mouse helper
-* PrimitiveBatch - simple and efficient way to draw user primitives 
-* ScreenGrab - light-weight screen shot saver 
-* SimpleMath - simplified C++ wrapper for DirectXMath 
-* SpriteBatch - simple & efficient 2D sprite rendering 
-* SpriteFont - bitmap based text rendering 
-* VertexTypes - structures for commonly used vertex data formats 
-* WICTextureLoader - WIC-based image file texture loader 
-* XboxDDSTextureLoader - DDSTextureLoader variant for Xbox One exclusive app developers
+* **Audio** - low-level audio API using XAudio2 
+* **CommonStates** - factory providing commonly used D3D state objects 
+* **DDSTextureLoader** - light-weight DDS file texture loader 
+* **DirectXHelpers** - misc C++ helpers for D3D programming 
+* **Effects** - set of built-in shaders for common rendering tasks 
+* **GamePad** - gamepad controller helper using XInput 
+* **GeometricPrimitive** - draws basic shapes such as cubes and spheres 
+* **Keyboard** - keyboard state tracking helper
+* **Model** - draws simple meshes loaded from .CMO, .SDKMESH, or .VBO files 
+* **Mouse** - mouse helper
+* **PrimitiveBatch** - simple and efficient way to draw user primitives 
+* **ScreenGrab** - light-weight screen shot saver 
+* **SimpleMath** - simplified C++ wrapper for DirectXMath 
+* **SpriteBatch** - simple & efficient 2D sprite rendering 
+* **SpriteFont** - bitmap based text rendering 
+* **VertexTypes** - structures for commonly used vertex data formats 
+* **WICTextureLoader** - WIC-based image file texture loader 
+* **XboxDDSTextureLoader** - DDSTextureLoader variant for Xbox One exclusive app developers
 
 # Tools
-* MakeSpriteFont - builds .spritefont data files for use with SpriteFont class
-* XWBTool - builds .xwb XACT-style wave banks for use with WaveBank class
+* **MakeSpriteFont** - builds .spritefont data files for use with SpriteFont class
+* **XWBTool** - builds .xwb XACT-style wave banks for use with WaveBank class
 
 # Building
 This code is designed to build with Visual Studio 2010 or later. It requires the Windows 8.x SDK for functionality such as the DirectXMath library and the DXGI 1.2 headers. Visual Studio 2012 or later already include the Windows 8.x SDK, but Visual Studio 2010 users must install the [standalone Windows 8.1 SDK](http://go.microsoft.com/fwlink/?LinkID=323507). Details on using the Windows 8.1 SDK with VS 2010 are described on the [Visual C++ Team Blog](http://blogs.msdn.com/b/vcblog/archive/2012/11/23/using-the-windows-8-sdk-with-visual-studio-2010-configuring-multiple-projects.aspx) and the required .props files are included in the DirectX Tool Kit package.
