@@ -1,0 +1,1 @@
+All content and source code for this package are subject to the terms of the [MIT License](http://opensource.org/licenses/MIT).
