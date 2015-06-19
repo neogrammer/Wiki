@@ -29,37 +29,41 @@ We will be using a Win32 desktop application project template in order to suppor
 
 # Tutorials
 
-[[The basic game loop]]
-[[Adding the DirectX Tool Kit]]
+* [[The basic game loop]]
+* [[Adding the DirectX Tool Kit]]
 
 ## Graphics
-[[Sprites and textures]]
-[[More tricks with sprites]]
-[[Drawing text]]
-[[Simple rendering]]
-[[3D shapes]]
-[[Rendering a model]]
-[[Using skinned models]]
-[[Using advanced shaders]]
-[[Applying lightmaps]]
-[[Creating custom shaders with DGSL]]
-[[Writing custom shaders]]
+
+* [[Sprites and textures]]
+* [[More tricks with sprites]]
+* [[Drawing text]]
+* [[Simple rendering]]
+* [[3D shapes]]
+* [[Rendering a model]]
+* [[Using skinned models]]
+* [[Using advanced shaders]]
+* [[Applying lightmaps]]
+* [[Creating custom shaders with DGSL]]
+* [[Writing custom shaders]]
 
 ## Input
-[[Game controller input]]
+
+* [[Game controller input]]
 
 ## Math
-[[Using the SimpleMath library]]
-[[Basic game math]]
-[[Collision detection]]
-[[Picking]]
-[[Mixing SimpleMath and DirectXMath]]
+
+* [[Using the SimpleMath library]]
+* [[Basic game math]]
+* [[Collision detection]]
+* [[Picking]]
+* [[Mixing SimpleMath and DirectXMath]]
 
 ## Audio
-[[Adding the DirectX Tool Kit for Audio]]
-[[Adding audio to your project]]
-[[Creating and playing sounds]]
-[[Using positional audio]]
+
+* [[Adding the DirectX Tool Kit for Audio]]
+* [[Adding audio to your project]]
+* [[Creating and playing sounds]]
+* [[Using positional audio]]
 
 # Resources
 
