@@ -11,7 +11,7 @@ See this [blog post](http://blogs.msdn.com/b/chuckw/archive/2012/03/02/directxtk
 [[Resources]]
 
 # CodePlex
-DirectXTK is hosted on [CodePlex](https://directxtk.codeplex.com/). See that website for documentation, issues tracking, and discussions.
+DirectX Tool Kit was formerly hosted on [CodePlex](https://directxtk.codeplex.com/).
 
 # NuGet
 DirectXTK is also available on NuGet
