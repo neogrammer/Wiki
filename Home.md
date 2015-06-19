@@ -4,6 +4,8 @@ http://go.microsoft.com/fwlink/?LinkId=248929
 
 See this [blog post](http://blogs.msdn.com/b/chuckw/archive/2012/03/02/directxtk.aspx).
 
+[[Getting Started]]
+
 [[DirectXTK]] library
 
 [[Samples]]
