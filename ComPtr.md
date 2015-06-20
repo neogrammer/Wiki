@@ -71,7 +71,8 @@ ComPtr provides a much simpler syntax for doing ``QueryInterface`` calls on COM 
     hr = device.As( &device1 );
     if (SUCCEEDED(hr))
     {
-        // was able to obtain the ID3DDevice1 interface (we are on a DIrectX 11.1+ system)
+        // was able to obtain the ID3DDevice1 interface
+        // (we are on a DirectX 11.1+ system)
         device1->...
     }
     
