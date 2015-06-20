@@ -51,7 +51,7 @@ The XACT3 GUI and/or the XACTBLD command-line tool in the legacy DirectX SDK (Di
 
 [Known Issue: DirectX SDK (June 2010) Setup and the S1023 Error](http://blogs.msdn.com/b/chuckw/archive/2011/12/09/known-issue-directx-sdk-june-2010-setup-and-the-s1023-error.aspx)
 
-[KB2728613](http://support.microsoft.com/kb/2728613)
+[KB2728613](https://support.microsoft.com/en-us/kb/2728613)
 
 [Where is the DirectX SDK?](http://msdn.microsoft.com/en-us/library/windows/desktop/ee663275.aspx)
 
