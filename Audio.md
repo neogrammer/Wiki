@@ -1,10 +1,10 @@
 The _DirectXTK for Audio_ components implement a low-level audio API similar to XNA Game Studio's Microsoft.Xna.Framework.Audio. This consists of the following classes all declared in the Audio.h header (in the _Inc_ folder of the distribution):
 
 * [[AudioEngine]] - This class represents an XAudio2 audio graph, device, and mastering voice. 
-* [[SoundEffect]] - A container class for sound resources which can be loaded from .wav files. 
+* [[SoundEffect]] - A container class for sound resources which can be loaded from ``.wav`` files. 
 * [[SoundEffectInstance]] - Provides a single playing, paused, or stopped instance of a sound 
 * [[DynamicSoundEffectInstance]] - SoundEffectInstance where the application provides the audio data on demand 
-* [[WaveBank]] - A container class for sound resources packaged into an XACT-style .xwb wave bank. 
+* [[WaveBank]] - A container class for sound resources packaged into an XACT-style ``.xwb`` wave bank. 
 * [[AudioListener]],  [[AudioEmitter]] - Utility classes used with SoundEffectInstance::Apply3D.
 
 _Note: DirectXTK for Audio uses XAudio 2.8 or XAudio 2.7. It does not make use of the legacy XACT Engine, XACT Cue, or XACT SoundBank._
@@ -100,7 +100,7 @@ DirectXTK for Audio supports positional 3D audio with optional environmental rev
 **Note:** A C++ exception is thrown if you call Apply3D for a SoundEffectInstance that was not created with SoundEffectInstance_Use3D
 
 # Using wave banks
-Rather than loading individual .wav files, a more efficient method is to package them into a  "wave bank". This allows for more efficient loading and memory organization. DirectXTK for Audio's WaveBank class can be used to play one-shots or to create SoundEffectInstances from 'in-memory' wave banks.
+Rather than loading individual ``.wav`` files, a more efficient method is to package them into a  "wave bank". This allows for more efficient loading and memory organization. DirectXTK for Audio's WaveBank class can be used to play one-shots or to create SoundEffectInstances from 'in-memory' wave banks.
 
     std::unique_ptr<WaveBank> wb( new WaveBank( audEngine.get(),
         L"wavebank.xwb" ) );
@@ -120,7 +120,7 @@ One-shot sounds can also be played directly from the wave bank.
     wb->Play( 2 );
     wb->Play( 6 );
 
-XACT3-style "wave banks" can be created by using the [[XWBTool]] command-line tool, or they can be authored using XACT3 in the DirectX SDK. Note that the XWBTool will not perform any format conversions or compression, so more full-featured options are better handled with the XACT3 GUI or XACTBLD, or it can be used on .wav files already compressed by ``adpcmencode.exe``, ``xwmaencode.exe``, ``xma2encode.exe``, etc.
+XACT3-style "wave banks" can be created by using the [[XWBTool]] command-line tool, or they can be authored using XACT3 in the DirectX SDK. Note that the XWBTool will not perform any format conversions or compression, so more full-featured options are better handled with the XACT3 GUI or XACTBLD, or it can be used on ``.wav`` files already compressed by ``adpcmencode.exe``, ``xwmaencode.exe``, ``xma2encode.exe``, etc.
 
     xwbtool -o wavebank.xwb Sound.wav Explosion.wav Music.wav
 
@@ -175,7 +175,7 @@ DirectXTK makes use of the latest Direct3D 11.1 headers available in the Windows
     #include <C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\x3daudio.h>
 
 # Content Pipeline
-**Note:** When adding .xwb files to your Windows Store app or Windows phone app project, you need to manually set the file properties to "Content: Yes" for all configurations to have these files included in your AppX package. .wav files are automatically detected as a media file and are included as content by default.
+**Note:** When adding ``.xwb`` files to your Windows Store app or Windows phone app project, you need to manually set the file properties to "Content: Yes" for all configurations to have these files included in your AppX package. ``.wav`` files are automatically detected as a media file and are included as content by default.
 
 # Threading model
 The DirectXTK for Audio methods assume it is always called from a single thread. This is generally either the main thread or a worker thread dedicated to audio processing.  The XAudio2 engine itself makes use of lock-free mechanism to make it 'thread-safe'.
