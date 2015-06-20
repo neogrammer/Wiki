@@ -23,3 +23,5 @@
 [DirectXTex](https://github.com/Microsoft/DirectXTex)
 
 [Content Exporter](https://github.com/walbourn/contentexporter)
+
+[Win2D](https://github.com/Microsoft/Win2D)
