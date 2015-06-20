@@ -119,7 +119,8 @@ This example creates a shader resource view on the Direct3D 11 device which can 
     using namespace Microsoft::WRL;
 
     ComPtr<ID3D11ShaderResourceView> srv;
-    HRESULT hr = CreateDDSTextureFromFile(d3dDevice.Get(), L"SEAFLOOR.DDS", nullptr, srv.GetAddressOf());
+    HRESULT hr = CreateDDSTextureFromFile(d3dDevice.Get(), L"SEAFLOOR.DDS",
+        nullptr, srv.GetAddressOf());
     DX::ThrowIfFailed(hr);
 
 # Feature Level Notes
