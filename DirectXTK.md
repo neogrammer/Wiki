@@ -146,4 +146,4 @@ DirectXTK's implementation makes extensive use of the [pImpl idiom](http://en.wi
         SpriteBatch& operator= (SpriteBatch const&);
     };
 
-This also allows use to allocate the pImpl class internally using _aligned_malloc(x,16); so that we can use the DIrectXMath aligned XMVECTOR and XMMATRIX types directly in the implementation.
+This also allows use to allocate the pImpl class internally using ``_aligned_malloc(x,16);`` so that we can use the DIrectXMath aligned XMVECTOR and XMMATRIX types directly in the implementation.
