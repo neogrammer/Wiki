@@ -116,9 +116,10 @@ DirectXTK makes use of C++ exception handling which should be enabled by the app
 
 # Smart-pointers and reference counting
 DirectXTK encourages and makes use of a number of smart-pointers to simplify resource lifetime tracking.
-* std::unique_ptr - A smart-pointer that has exactly one 'owner' of the memory
-* std::shared_ptr - A smart-pointer that tracks memory use with reference counting
-* Microsoft::WRL::[[ComPtr]] - A COM smart-pointer for reference count management very similar to ATL's CComPtr
+
+* ``std::unique_ptr`` - A smart-pointer that has exactly one 'owner' of the memory
+* ``std::shared_ptr`` - A smart-pointer that tracks memory use with reference counting
+* ``Microsoft::WRL::ComPtr`` - A [[COM smart-pointer|ComPtr]] for reference count management very similar to ATL's CComPtr
 
 * [Smart Pointers (Modern C++)](http://msdn.microsoft.com/en-us/library/hh279674.aspx)
 * [Managing the Lifetime of an Object](http://msdn.microsoft.com/en-us/library/windows/desktop/ff485846.aspx)
