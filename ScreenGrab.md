@@ -4,7 +4,7 @@ These writers do not support array textures, 1D textures, 3D volume textures, or
 
 MSAA textures are resolved before being written.
 
-Also part of the [DirectXTex](http://go.microsoft.com/fwlink/?LinkId=248926) distribution.
+Also part of the [DirectXTex](http://go.microsoft.com/fwlink/?LinkId=248926) package.
 
 _The module assumes that the client code will have already called ``CoInitialize``, ``CoInitializeEx``, or ``Windows::Foundation::Initialize`` as needed by the application before calling the WIC save routines_
 
@@ -21,12 +21,12 @@ Saves a texture to a ``DDS`` file on disk. It performs no format conversions, bu
 ## SaveWICTextureToFile
 Saves a texture to a WIC-supported bitmap file on disk. The caller provides the desired WIC container format via _guidContainerFormat_ and can optionally specify a desired WIC pixel format via _targetFormat_ (which will result in ``E_FAIL`` if the requested pixel format is not supported by the WIC codec). If no WIC pixel format GUID is provided as the _targetFormat_ parameter, it will default to a non-alpha format since 'screenshots' usually ignore the alpha channel in render targets.
 
-    HRESULT SaveWICTextureToFile( _In_ ID3D11DeviceContext* pContext,
-        _In_ ID3D11Resource* pSource,
-        _In_ REFGUID guidContainerFormat, 
-        _In_z_ LPCWSTR fileName,
-        _In_opt_ const GUID* targetFormat = nullptr,
-        _In_opt_ std::function<void(IPropertyBag2*)> setCustomProps = nullptr );
+    HRESULT SaveWICTextureToFile( ID3D11DeviceContext* pContext,
+        ID3D11Resource* pSource,
+        REFGUID guidContainerFormat, 
+        LPCWSTR fileName,
+        const GUID* targetFormat = nullptr,
+        std::function<void(IPropertyBag2*)> setCustomProps = nullptr );
 
 **Note:** _SaveWICTextureToFile is not supported on Windows Phone 8.0, because WIC is not available on that platform_
 
@@ -94,7 +94,7 @@ When writing WIC files, you can also provide a callback for setting specific enc
     DX::ThrowIfFailed(hr);
 
 # Release Notes
-* If built with #define ``DXGI_1_2_FORMATS`` the DDS writer supports BGRA 4:4:4:4 files.
+* If built with ``#define DXGI_1_2_FORMATS`` the DDS writer supports BGRA 4:4:4:4 files.
 
 * JPEG-XR / HD Photo supports nearly all WIC pixel formats including floating-point for both encoding and decoding.
 
@@ -106,6 +106,8 @@ When writing WIC files, you can also provide a callback for setting specific enc
 WIC2 is available on Windows 8 and on Windows 7 Service Pack 1 with [KB 2670838](http://support.microsoft.com/kb/2670838) installed.
 
 * If WIC2 is supported, then this function can make use of the new WIC pixel format ``GUID_WICPixelFormat96bppRGBFloat``.
+
+See [Windows Imaging Component and Windows 8](http://blogs.msdn.com/b/chuckw/archive/2012/11/19/windows-imaging-component-and-windows-8.aspx)
 
 # Windows Store apps
 For _Save*TextureToFile_ to succeed, the application must have write access to the destination path. For Windows Store apps, the file access permissions are rather restricted so you'll need to make sure you use a fully qualified path to a valid write folder. A good location to use is the app data folder:
@@ -148,5 +150,5 @@ For _Save*TextureToFile_ to succeed, the application must have write access to t
         }
     });
 
-https://msdn.microsoft.com/en-us/library/windows/apps/hh967755.aspx
-http://msdn.microsoft.com/en-us/library/windows/apps/xaml/windows.storage.applicationdata.temporaryfolder.aspx
+See [File access and permissions (Windows Runtime apps)](https://msdn.microsoft.com/en-us/library/windows/apps/hh967755.aspx), 
+[ApplicationData.TemporaryFolder property](http://msdn.microsoft.com/en-us/library/windows/apps/xaml/windows.storage.applicationdata.temporaryfolder.aspx)
