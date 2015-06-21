@@ -102,6 +102,8 @@ All common states work with all feature levels. Anisotropic*() uses a MaxAnisotr
 
 These common states are equivalent to using the following descriptors:
 
+## Blend states
+
     CD3D11_DEFAULT default;
 
     // Opaque
@@ -125,6 +127,8 @@ These common states are equivalent to using the following descriptors:
     desc.RenderTarget[0].SrcBlend = desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_SRC_ALPHA;
     desc.RenderTarget[0].DestBlend = desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_INV_SRC_ALPHA;
 
+## Depth/Stencil states
+
     CD3D11_DEFAULT default;
 
     // DepthNone
@@ -142,6 +146,8 @@ These common states are equivalent to using the following descriptors:
     desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
     desc.DepthFunc = D3D11_COMPARISON_LESS_EQUAL;
 
+## Rasterizer states
+
     // CullNone
     CD3D11_RASTERIZER_DESC desc(D3D11_FILL_SOLID, D3D11_CULL_NONE, FALSE, 0, 0.f, 0.f, TRUE, FALSE, TRUE, FALSE);
 
@@ -152,6 +158,8 @@ These common states are equivalent to using the following descriptors:
     CD3D11_RASTERIZER_DESC desc(D3D11_FILL_SOLID, D3D11_CULL_BACK, FALSE, 0, 0.f, 0.f, TRUE, FALSE, TRUE, FALSE);
 
     CD3D11_RASTERIZER_DESC desc(D3D11_FILL_WIREFRAME, D3D11_CULL_BACK, FALSE, 0, 0.f, 0.f, TRUE, FALSE, TRUE, FALSE);
+
+## Sampler states
 
     const float border[4] = { 0.f, 0.f, 0.f, 0.f };
     float maxAnisotropy = (device->GetFeatureLevel() > D3D_FEATURE_LEVEL_9_1) ? 16 : 2;
