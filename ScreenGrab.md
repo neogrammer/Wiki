@@ -4,7 +4,7 @@ These writers do not support array textures, 1D textures, 3D volume textures, or
 
 MSAA textures are resolved before being written.
 
-Also part of [DirectXTex](url:http://go.microsoft.com/fwlink/?LinkId=248926)
+Also part of [DirectXTex](http://go.microsoft.com/fwlink/?LinkId=248926)
 
 _The module assumes that the client code will have already called ``CoInitialize``, ``CoInitializeEx``, or ``Windows::Foundation::Initialize`` as needed by the application before calling the WIC save routines_
 
