@@ -11,7 +11,7 @@ _To load traditional or FourCC "DX10" variant DDS files, use [[DDSTextureLoader]
 These are in the **Xbox** namespace rather than **DirectX**
 
 ## CreateDDSTextureFromMemory, CreateDDSTextureFromFile
-These are equivalent to the same functions in _DDSTextureLoader_, but require a _ID3D11DeviceX_ interface and return a pointer to the video memory via _grfxMemory_ which the caller is responsible for releasing with *D3DFreeGraphicsMemory*
+These are equivalent to the same functions in _DDSTextureLoader_.
 
     HRESULT CreateDDSTextureFromMemory( ID3D11DeviceX* d3dDevice,
         const uint8_t* ddsData, size_t ddsDataSize,
@@ -28,6 +28,8 @@ These are equivalent to the same functions in _DDSTextureLoader_, but require a 
 
 # Parameters
 Either _texture_ or _textureView_ can be nullptr, but not both.
+
+The _grfxMemory_ is returned as a pointer to the video memory which the caller is responsible for releasing with *D3DFreeGraphicsMemory*
 
 # Example
 
