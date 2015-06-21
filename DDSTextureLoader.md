@@ -52,8 +52,8 @@ There is also a _forceSRGB_ option for working around gamma issues with content 
 Note that the _maxsize_ parameter is not at the end of the parameter list like it is in the non-Ex version.
 
     HRESULT CreateDDSTextureFromMemoryEx(ID3D11Device* d3dDevice,
-        const uint8_t* ddsData, size_t ddsDataSize, size_t maxsize,
-        D3D11_USAGE usage, unsigned int bindFlags,
+        const uint8_t* ddsData, size_t ddsDataSize,
+        size_t maxsize, D3D11_USAGE usage, unsigned int bindFlags,
         unsigned int cpuAccessFlags, unsigned int miscFlags,
         bool forceSRGB,
         ID3D11Resource** texture, ID3D11ShaderResourceView** textureView,
@@ -61,16 +61,16 @@ Note that the _maxsize_ parameter is not at the end of the parameter list like i
 
     HRESULT CreateDDSTextureFromMemoryEx(ID3D11Device* d3dDevice,
         ID3D11DeviceContext* d3dContext,
-        const uint8_t* ddsData, size_t ddsDataSize, size_t maxsize,
-        D3D11_USAGE usage, unsigned int bindFlags,
+        const uint8_t* ddsData, size_t ddsDataSize,
+        size_t maxsize, D3D11_USAGE usage, unsigned int bindFlags,
         unsigned int cpuAccessFlags, unsigned int miscFlags,
         bool forceSRGB,
         ID3D11Resource** texture, ID3D11ShaderResourceView** textureView,
         DDS_ALPHA_MODE* alphaMode = nullptr);
 
     HRESULT CreateDDSTextureFromFileEx(_In_ ID3D11Device* d3dDevice,
-        const wchar_t* szFileName, _In_ size_t maxsize,
-        D3D11_USAGE usage, unsigned int bindFlags,
+        const wchar_t* szFileName,
+        size_t maxsize, D3D11_USAGE usage, unsigned int bindFlags,
         unsigned int cpuAccessFlags, unsigned int miscFlags,
         bool forceSRGB,
         ID3D11Resource** texture, ID3D11ShaderResourceView** textureView,
@@ -78,8 +78,8 @@ Note that the _maxsize_ parameter is not at the end of the parameter list like i
 
     HRESULT CreateDDSTextureFromFileEx(_In_ ID3D11Device* d3dDevice,
         ID3D11DeviceContext* d3dContext,
-        const wchar_t* szFileName, _In_ size_t maxsize,
-        D3D11_USAGE usage, unsigned int bindFlags,
+        const wchar_t* szFileName,
+        size_t maxsize, D3D11_USAGE usage, unsigned int bindFlags,
         unsigned int cpuAccessFlags, unsigned int miscFlags,
         bool forceSRGB,
         ID3D11Resource** texture, ID3D11ShaderResourceView** textureView,
