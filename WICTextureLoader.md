@@ -1,16 +1,16 @@
 A Direct3D 11 2D texture loader that uses WIC to load a bitmap (``BMP``, ``JPEG``, ``PNG``, ``TIFF``, ``GIF``, HD Photo, or other WIC supported file container), resize if needed based on the current feature level (or by explicit parameter), format convert to a standard DXGI format if required, and then create a 2D texture. Furthermore, if a Direct3D 11 device context is provided and the current device supports it for the given pixel format, it will auto-generate mipmaps.
 
-This loader does not support array textures, 1D textures, 3D volume textures, or cubemaps. For these scenarios, use the .DDS file format and [[DDSTextureLoader]] instead.
+This loader does not support array textures, 1D textures, 3D volume textures, or cubemaps. For these scenarios, use the ``.DDS`` file format and [[DDSTextureLoader]] instead.
 
 **Note:** _WICTextureLoader is not supported on Windows Phone 8.0, because WIC is not available on that platform_
 
 [[DDSTextureLoader]] is recommended for fully "precooked" textures for maximum performance and image quality, but this loader can be useful for creating simple 2D texture from standard image files at runtime.
 
-Also part of the [DirectXTex](url:http://go.microsoft.com/fwlink/?LinkId=248926) package.
+Also part of the [DirectXTex](http://go.microsoft.com/fwlink/?LinkId=248926) package.
 
 _The module assumes that the client code will have already called ``CoInitialize``, ``CoInitializeEx``, or ``Windows::Foundation::Initialize`` as needed by the application before calling the WIC loader routines_
 
-*Related tutorial:* [[Sprites and textures]]
+**Related tutorial:** [[Sprites and textures]]
 
 # Header
     #include <WICTextureLoader.h>
@@ -46,44 +46,43 @@ Loads a WIC-supported bitmap file from disk, creates a Direct3D 11 resource from
        size_t maxsize = 0 );
 
 ## CreateWICTextureFromMemoryEx, *CreateWICTextureFromFileEx*
-These versions provide explicit control over the created resource's usage, binding flags, CPU access flags, and miscellaneous flags for advanced / expert scenarios. The standard routines default to {"D3D11_USAGE_DEFAULT"}, {"D3D11_BIND_SHADER_RESOURCE"}, 0, and 0 respectively. For auto-gen mipmaps, the default binding flags are {"D3D11_BIND_SHADER_RESOURCE"} | {"D3D11_BIND_RENDER_TARGET"} and miscellaneous flags is set to {"D3D11_RESOURCE_MISC_GENERATE_MIPS"}. There is also a 'forceSRGB' option for working around gamma issues with content that is in the sRGB or similar color space but is not encoded explicitly as an SRGB format.
+These versions provide explicit control over the created resource's usage, binding flags, CPU access flags, and miscellaneous flags for advanced / expert scenarios.
 
-    HRESULT CreateWICTextureFromMemoryEx( _In_ ID3D11Device* d3dDevice,
-       _In_reads_bytes_(wicDataSize) const uint8_t* wicData, _In_ size_t wicDataSize,
-       _In_ size_t maxsize,
-       _In_ D3D11_USAGE usage, _In_ unsigned int bindFlags,
-       _In_ unsigned int cpuAccessFlags, _In_ unsigned int miscFlags,
-       _In_ bool forceSRGB,
-       _Out_opt_ ID3D11Resource** texture,
-       _Out_opt_ ID3D11ShaderResourceView** textureView );
+The standard routines default to ``D3D11_USAGE_DEFAULT``, ``D3D11_BIND_SHADER_RESOURCE``, 0, and 0 respectively.
 
-    HRESULT CreateWICTextureFromMemoryEx( _In_ ID3D11Device* d3dDevice,
-       _In_opt_ ID3D11DeviceContext* d3dContext,
-       _In_reads_bytes_(wicDataSize) const uint8_t* wicData, _In_ size_t wicDataSize,
-       _In_ size_t maxsize,
-       _In_ D3D11_USAGE usage, _In_ unsigned int bindFlags,
-       _In_ unsigned int cpuAccessFlags, _In_ unsigned int miscFlags,
-       _In_ bool forceSRGB,
-       _Out_opt_ ID3D11Resource** texture,
-       _Out_opt_ ID3D11ShaderResourceView** textureView );
+For auto-gen mipmaps, the default binding flags are ``D3D11_BIND_SHADER_RESOURCE`` | ``D3D11_BIND_RENDER_TARGET`` and miscellaneous flags is set to ``D3D11_RESOURCE_MISC_GENERATE_MIPS``.
 
-    HRESULT CreateWICTextureFromFileEx( _In_ ID3D11Device* d3dDevice,
-       _In_z_ const wchar_t* szFileName,
-       _In_ size_t maxsize,
-       _In_ D3D11_USAGE usage, _In_ unsigned int bindFlags,
-       _In_ unsigned int cpuAccessFlags, _In_ unsigned int miscFlags,
-       _In_ bool forceSRGB,
-       _Out_opt_ ID3D11Resource** texture, _Out_opt_ ID3D11ShaderResourceView** textureView );
+There is also a _forceSRGB_ option for working around gamma issues with content that is in the sRGB or similar color space but is not encoded explicitly as an SRGB format.
 
-    HRESULT CreateWICTextureFromFileEx( _In_ ID3D11Device* d3dDevice,
-       _In_opt_ ID3D11DeviceContext* d3dContext,
-       _In_z_ const wchar_t* szFileName,
-       _In_ size_t maxsize,
-       _In_ D3D11_USAGE usage, _In_ unsigned int bindFlags,
-       _In_ unsigned int cpuAccessFlags, _In_ unsigned int miscFlags,
-       _In_ bool forceSRGB,
-       _Out_opt_ ID3D11Resource** texture,
-       _Out_opt_ ID3D11ShaderResourceView** textureView );
+    HRESULT CreateWICTextureFromMemoryEx( ID3D11Device* d3dDevice,
+       const uint8_t* wicData, size_t wicDataSize,
+       size_t maxsize, D3D11_USAGE usage, unsigned int bindFlags,
+       unsigned int cpuAccessFlags, unsigned int miscFlags,
+       bool forceSRGB,
+       ID3D11Resource** texture, ID3D11ShaderResourceView** textureView );
+
+    HRESULT CreateWICTextureFromMemoryEx( ID3D11Device* d3dDevice,
+       ID3D11DeviceContext* d3dContext,
+       const uint8_t* wicData, size_t wicDataSize,
+       size_t maxsize, D3D11_USAGE usage, unsigned int bindFlags,
+       unsigned int cpuAccessFlags, unsigned int miscFlags,
+       bool forceSRGB,
+       ID3D11Resource** texture, ID3D11ShaderResourceView** textureView );
+
+    HRESULT CreateWICTextureFromFileEx( ID3D11Device* d3dDevice,
+       const wchar_t* szFileName,
+       size_t maxsize, D3D11_USAGE usage, unsigned int bindFlags,
+       unsigned int cpuAccessFlags, unsigned int miscFlags,
+       bool forceSRGB,
+       ID3D11Resource** texture, ID3D11ShaderResourceView** textureView );
+
+    HRESULT CreateWICTextureFromFileEx( ID3D11Device* d3dDevice,
+       ID3D11DeviceContext* d3dContext,
+       const wchar_t* szFileName,
+       size_t maxsize, D3D11_USAGE usage, unsigned int bindFlags,
+       unsigned int cpuAccessFlags, unsigned int miscFlags,
+       bool forceSRGB,
+       ID3D11Resource** texture, ID3D11ShaderResourceView** textureView );
 
 # Parameters
 Either _texture_ or _textureView_ can be nullptr, but not both.
@@ -94,7 +93,7 @@ If a _d3dContext_ is given to these functions, they will attempt to use the auto
 
 # Example
 
-This example creates a shader resource view on the {"ID3D11Device"} {"d3dDevice"} which can be used for rendering. It also makes use of the immediate {"ID3D11DeviceContext"} {"immContext"} to auto-gen mipmaps if supported.
+This example creates a shader resource view on the ``ID3D11Device`` ``d3dDevice`` which can be used for rendering. It also makes use of the immediate ``ID3D11DeviceContext`` ``immContext`` to auto-gen mipmaps if supported.
 
     using namespace DirectX;
     using namespace Microsoft::WRL;
@@ -109,23 +108,23 @@ This example creates a shader resource view on the {"ID3D11Device"} {"d3dDevice"
 
 * WICTextureLoader cannot load .TGA files unless the system has a 3rd party WIC codec installed. You must use the DirectXTex library for TGA file format support without relying on an add-on WIC codec.
 
-* While there is no explicit 'sRGB' pixel format defined for WIC, the load function will check for known metadata tags and may return {"DXGI_FORMAT_*_SRGB"} formats if there are equivalents of the same size and channel configuration available.
+* While there is no explicit 'sRGB' pixel format defined for WIC, the load function will check for known metadata tags and may return ``DXGI_FORMAT_*_SRGB`` formats if there are equivalents of the same size and channel configuration available.
 
 # Implementation Details
-* The conversion tables are designed so that they prefer to convert to RGB if a conversion is required as a general preferance for DXGI 1.0 supporting formats supported by WDDM 1.0 drivers. The majority of Direct3D 11 devices actually support BGR DXGI 1.1 formats so we use them when they are the best match. For example, {"GUID_WICPixelFormat32bppBGRA"} loads directly as {"DXGI_FORMAT_B8G8R8A8_UNORM"}, but {"GUID_WICPixelFormat32bppPBGRA"} converts to {"DXGI_FORMAT_R8G8B8A8_UNORM"}.
+* The conversion tables are designed so that they prefer to convert to RGB if a conversion is required as a general preferance for DXGI 1.0 supporting formats supported by WDDM 1.0 drivers. The majority of Direct3D 11 devices actually support BGR DXGI 1.1 formats so we use them when they are the best match. For example, ``GUID_WICPixelFormat32bppBGRA`` loads directly as ``DXGI_FORMAT_B8G8R8A8_UNORM``, but ``GUID_WICPixelFormat32bppPBGRA`` converts to ``DXGI_FORMAT_R8G8B8A8_UNORM``.
 
-* {"GUID_WICPixelFormatBlackWhite"} is always converted to a greyscale {"DXGI_FORMAT_R8_UNORM"} since {"DXGI_FORMAT_R1_UNORM"} is not supported by Direct3D 10.x/11.x.
+* ``GUID_WICPixelFormatBlackWhite`` is always converted to a greyscale ``DXGI_FORMAT_R8_UNORM`` since ``DXGI_FORMAT_R1_UNORM`` is not supported by Direct3D 10.x/11.x.
 
-* {"GUID_WICPixelFormat32bppRGBE"} is an 8:8:8:8 format, which does not match {"DXGI_FORMAT_R9G9B9E5_SHAREDEXP"}. This WIC pixel format is therefore converted to {"GUID_WICPixelFormat128bppRGBAFloat"} and returns as {"DXGI_FORMAT_R32G32B32A32_FLOAT"}.
+* ``GUID_WICPixelFormat32bppRGBE`` is an 8:8:8:8 format, which does not match ``DXGI_FORMAT_R9G9B9E5_SHAREDEXP``. This WIC pixel format is therefore converted to ``GUID_WICPixelFormat128bppRGBAFloat`` and returns as ``DXGI_FORMAT_R32G32B32A32_FLOAT``.
 
 # WIC2
 WIC2 is available on Windows 8 and on Windows 7 Service Pack 1 with KB 2670838 installed.
 
-* If WIC2 is supported, then it will load the new WIC pixel format {"GUID_WICPixelFormat96bppRGBFloat"} directly as {"DXGI_FORMAT_R32G32B32_FLOAT"}. Otherwise the module converts this to {"DXGI_FORMAT_R32G32B32A32_FLOAT"}.
+* If WIC2 is supported, then it will load the new WIC pixel format ``GUID_WICPixelFormat96bppRGBFloat`` directly as ``DXGI_FORMAT_R32G32B32_FLOAT``. Otherwise the module converts this to ``DXGI_FORMAT_R32G32B32A32_FLOAT``.
 
-* If WIC2 is supported, then it will include conversions cases for the new WIC pixel formats {"GUID_WICPixelFormat32bppRGB"}, {"GUID_WICPixelFormat64bppRGB"}, and {"GUID_WICPixelFormat64bppPRGBAHalf"}.
+* If WIC2 is supported, then it will include conversions cases for the new WIC pixel formats ``GUID_WICPixelFormat32bppRGB``, ``GUID_WICPixelFormat64bppRGB``, and ``GUID_WICPixelFormat64bppPRGBAHalf``.
 
-* If WIC2 is supported, then it will convert the WIC pixel format {"GUID_WICPixelFormat96bppRGBFixedPoint"} to {"DXGI_FORMAT_R32G32B32_FLOAT"}. There is special-case handling so that if auto-gen mips fails for this format (this is optional support for Feature Level 10.0 or later devices), it will use {"DXGI_FORMAT_R32G32B32A32_FLOAT"} instead (which has required support for Feature Level 10.0 or later devices).
+* If WIC2 is supported, then it will convert the WIC pixel format ``GUID_WICPixelFormat96bppRGBFixedPoint`` to ``DXGI_FORMAT_R32G32B32_FLOAT``. There is special-case handling so that if auto-gen mips fails for this format (this is optional support for Feature Level 10.0 or later devices), it will use ``DXGI_FORMAT_R32G32B32A32_FLOAT`` instead (which has required support for Feature Level 10.0 or later devices).
 [url:http://support.microsoft.com/kb/2670838]
 
 # Windows Store apps
