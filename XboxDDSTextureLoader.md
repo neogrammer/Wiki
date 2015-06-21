@@ -64,4 +64,4 @@ This function expects the DDS file to contain a pixel format with FourCC "XBOX" 
 
 Other ``DDS`` loaders and viewers will fail to recognize this pixel format, and other ``DDS`` creation tools do not support creating it. See the **xtexconv** sample for more information on creating this variant form of DDS files.
 
-[DDS on MSDN](http://msdn.microsoft.com/en-us/library/windows/desktop/bb943990.aspx])
+[DDS on MSDN](http://msdn.microsoft.com/en-us/library/windows/desktop/bb943990.aspx)
