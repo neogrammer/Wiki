@@ -176,6 +176,7 @@ These common states are equivalent to using the following descriptors:
 
 # Further reading
 
-http://blogs.msdn.com/b/shawnhar/archive/2010/04/02/state-objects-in-xna-game-studio-4-0.aspx
-http://www.shawnhargreaves.com/blogindex.html#premultipliedalpha
+[State objects in XNA Game Studio 4.0](http://blogs.msdn.com/b/shawnhar/archive/2010/04/02/state-objects-in-xna-game-studio-4-0.aspx)
+
+[Premultiplied Alpha](http://www.shawnhargreaves.com/blogindex.html#premultipliedalpha)
 
