@@ -152,7 +152,7 @@ The texture loader function is typically used to load texture files from the app
             });
         });
     
-https://msdn.microsoft.com/en-us/library/windows/apps/hh967755.aspx
+[File access and permissions (Windows Runtime apps)](https://msdn.microsoft.com/en-us/library/windows/apps/hh967755.aspx)
 
 # Further reading
 
