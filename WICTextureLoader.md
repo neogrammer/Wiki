@@ -106,7 +106,7 @@ This example creates a shader resource view on the Direct3D device which can be 
 # Release Notes
 * On a system with the DirectX 11.0 Runtime or lacking WDDM 1.2 drivers, 16bpp pixel formats will be converted to a RGBA 32-bit format.
 
-* WICTextureLoader cannot load .TGA files unless the system has a 3rd party WIC codec installed. You must use the DirectXTex library for TGA file format support without relying on an add-on WIC codec.
+* WICTextureLoader cannot load ``.TGA`` files unless the system has a 3rd party WIC codec installed. You must use the [DirectXTex library](http://go.microsoft.com/fwlink/?LinkId=248926) for ``TGA`` file format support without relying on an add-on WIC codec.
 
 * While there is no explicit 'sRGB' pixel format defined for WIC, the load function will check for known metadata tags and may return ``DXGI_FORMAT_*_SRGB`` formats if there are equivalents of the same size and channel configuration available.
 
