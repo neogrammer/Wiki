@@ -99,8 +99,8 @@ This example creates a shader resource view on the ``ID3D11Device`` ``d3dDevice`
     using namespace Microsoft::WRL;
 
     ComPtr<ID3D11ShaderResourceView> srv;
-    HRESULT hr = CreateWICTextureFromFile( d3dDevice.Get(), immContext.Get(), L"LOGO.BMP",
-         nullptr, srv.GetAddressOf() );
+    HRESULT hr = CreateWICTextureFromFile( d3dDevice.Get(), immContext.Get(),
+         L"LOGO.BMP", nullptr, srv.GetAddressOf() );
     DX::ThrowIfFailed(hr);
 
 # Release Notes
