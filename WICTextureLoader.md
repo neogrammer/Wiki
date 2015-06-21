@@ -45,7 +45,7 @@ Loads a WIC-supported bitmap file from disk, creates a Direct3D 11 resource from
        ID3D11Resource** texture, ID3D11ShaderResourceView** textureView,
        size_t maxsize = 0 );
 
-## CreateWICTextureFromMemoryEx, *CreateWICTextureFromFileEx*
+## CreateWICTextureFromMemoryEx, CreateWICTextureFromFileEx
 These versions provide explicit control over the created resource's usage, binding flags, CPU access flags, and miscellaneous flags for advanced / expert scenarios.
 
 The standard routines default to ``D3D11_USAGE_DEFAULT``, ``D3D11_BIND_SHADER_RESOURCE``, 0, and 0 respectively.
