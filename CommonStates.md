@@ -23,9 +23,11 @@ For exception safety, it is recommended you make use of the C++ RAII pattern and
     deviceContext->PSSetSamplers(0, 1, &samplerState);
 
 # Blending State
-http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.blendstate_fields.aspx
-http://msdn.microsoft.com/en-us/library/windows/desktop/ff476087.aspx
-http://msdn.microsoft.com/en-us/library/windows/desktop/hh404435.aspx
+[XNA Game Studio](http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.blendstate_fields.aspx)
+
+[D3D11_BLEND_DESC](http://msdn.microsoft.com/en-us/library/windows/desktop/ff476087.aspx)
+
+[D3D11_BLEND_DESC](http://msdn.microsoft.com/en-us/library/windows/desktop/hh404435.aspx)
 
 * ID3D11BlendState* Opaque();
 * ID3D11BlendState* AlphaBlend();
@@ -42,8 +44,9 @@ NonPremultiplied() if using 'straight' alpha.
 For multipass rendering, you'd typically use Additive().
 
 # Depth/Stencil State
-http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.depthstencilstate_fields.aspx
-http://msdn.microsoft.com/en-us/library/windows/desktop/ff476110.aspx
+[XNA Game Studio](http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.depthstencilstate_fields.aspx)
+
+[D3D11_DEPTH_STENCIL_DESC](http://msdn.microsoft.com/en-us/library/windows/desktop/ff476110.aspx)
 
 * ID3D11DepthStencilState* DepthNone();
 * ID3D11DepthStencilState* DepthDefault();
@@ -58,9 +61,11 @@ For drawing alpha blended objects (which is typically done after all opaque obje
 For drawing objects without any depth-sort at all, use DepthNone().
 
 # Rasterizer State
-http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.rasterizerstate_fields.aspx
-http://msdn.microsoft.com/en-us/library/windows/desktop/ff476198.aspx
-http://msdn.microsoft.com/en-us/library/windows/desktop/hh404489.aspx
+[XNA Game Studio](http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.rasterizerstate_fields.aspx)
+
+[D3D11_RASTERIZER_DESC](http://msdn.microsoft.com/en-us/library/windows/desktop/ff476198.aspx)
+
+[D3D11_RASTERIZER_DESC1](http://msdn.microsoft.com/en-us/library/windows/desktop/hh404489.aspx)
 
 * ID3D11RasterizerState* CullNone();
 * ID3D11RasterizerState* CullClockwise();
@@ -76,8 +81,9 @@ For "double-sided" geometry, use CullNone(). Keep in mind this is a potentially 
 Wireframe() is self-explanatory.
 
 # Sampler State
-http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.samplerstate_fields.aspx
-http://msdn.microsoft.com/en-us/library/windows/desktop/ff476207.aspx
+[XNA Game Studio](http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.samplerstate_fields.aspx)
+
+[D3D11_SAMPLER_DESC](http://msdn.microsoft.com/en-us/library/windows/desktop/ff476207.aspx)
 
 * ID3D11SamplerState* PointWrap();
 * ID3D11SamplerState* PointClamp();
@@ -96,7 +102,7 @@ Remember that ??SetSamplers() actually takes an _array_ of sampler state objects
 
 All common states work with all feature levels. Anisotropic*() uses a MaxAnisotropy of 2 on Feature Level 9.1.
 
-http://msdn.microsoft.com/en-us/library/windows/desktop/ff476876.aspx
+[Direct3D feature levels](http://msdn.microsoft.com/en-us/library/windows/desktop/ff476876.aspx)
 
 # Remarks
 
