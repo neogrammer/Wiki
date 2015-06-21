@@ -93,7 +93,7 @@ If a _d3dContext_ is given to these functions, they will attempt to use the auto
 
 # Example
 
-This example creates a shader resource view on the ``ID3D11Device`` ``d3dDevice`` which can be used for rendering. It also makes use of the immediate ``ID3D11DeviceContext`` ``immContext`` to auto-gen mipmaps if supported.
+This example creates a shader resource view on the Direct3D device which can be used for rendering. It also makes use of the immediate device context to auto-gen mipmaps if supported.
 
     using namespace DirectX;
     using namespace Microsoft::WRL;
@@ -125,7 +125,8 @@ WIC2 is available on Windows 8 and on Windows 7 Service Pack 1 with KB 2670838 i
 * If WIC2 is supported, then it will include conversions cases for the new WIC pixel formats ``GUID_WICPixelFormat32bppRGB``, ``GUID_WICPixelFormat64bppRGB``, and ``GUID_WICPixelFormat64bppPRGBAHalf``.
 
 * If WIC2 is supported, then it will convert the WIC pixel format ``GUID_WICPixelFormat96bppRGBFixedPoint`` to ``DXGI_FORMAT_R32G32B32_FLOAT``. There is special-case handling so that if auto-gen mips fails for this format (this is optional support for Feature Level 10.0 or later devices), it will use ``DXGI_FORMAT_R32G32B32A32_FLOAT`` instead (which has required support for Feature Level 10.0 or later devices).
-[url:http://support.microsoft.com/kb/2670838]
+
+See [KB 2670838](http://support.microsoft.com/kb/2670838)
 
 # Windows Store apps
 The texture loader function is typically used to load texture files from the application's install folder as they were included with the AppX package. If you wish to create a texture from a file that is specified by the user from a WinRT picker, you will need to copy the file locally to a temporary location before you can use WICTextureLoader on it. This is because you either won't have file access rights to the user's file location, or the StorageFile is actually not a local file system path (i.e. it's a URL).
@@ -155,6 +156,8 @@ https://msdn.microsoft.com/en-us/library/windows/apps/hh967755.aspx
 
 # Further reading
 
-http://filmicgames.com/archives/299
-http://http.developer.nvidia.com/GPUGems3/gpugems3_ch24.html
+[Linear-Space Lighting (i.e. Gamma)](http://filmicgames.com/archives/299)
+
+[Chapter 24. The Importance of Being Linear](http://http.developer.nvidia.com/GPUGems3/gpugems3_ch24.html), GPU Gems 3
+
 
