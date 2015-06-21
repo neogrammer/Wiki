@@ -13,7 +13,7 @@ _To load FourCC "XBOX" variant ``.DDS`` files, use [[XboxDDSTextureLoader]]_.
 ## CreateDDSTextureFromMemory
 Loads a ``.DDS`` file assuming the image of the file is located in a memory buffer. Creates a Direct3D 11 resource and optionally a Direct3D 11 shader resource view.
 
-    HRESULT CreateDDSTextureFromMemory(_In_ ID3D11Device* d3dDevice,
+    HRESULT CreateDDSTextureFromMemory(ID3D11Device* d3dDevice,
         const uint8_t* ddsData, size_t ddsDataSize,
         ID3D11Resource** texture, ID3D11ShaderResourceView** textureView,
         size_t maxsize = 0, DDS_ALPHA_MODE* alphaMode = nullptr);
@@ -68,7 +68,7 @@ Note that the _maxsize_ parameter is not at the end of the parameter list like i
         ID3D11Resource** texture, ID3D11ShaderResourceView** textureView,
         DDS_ALPHA_MODE* alphaMode = nullptr);
 
-    HRESULT CreateDDSTextureFromFileEx(_In_ ID3D11Device* d3dDevice,
+    HRESULT CreateDDSTextureFromFileEx(ID3D11Device* d3dDevice,
         const wchar_t* szFileName,
         size_t maxsize, D3D11_USAGE usage, unsigned int bindFlags,
         unsigned int cpuAccessFlags, unsigned int miscFlags,
@@ -76,7 +76,7 @@ Note that the _maxsize_ parameter is not at the end of the parameter list like i
         ID3D11Resource** texture, ID3D11ShaderResourceView** textureView,
         DDS_ALPHA_MODE* alphaMode = nullptr);
 
-    HRESULT CreateDDSTextureFromFileEx(_In_ ID3D11Device* d3dDevice,
+    HRESULT CreateDDSTextureFromFileEx(ID3D11Device* d3dDevice,
         ID3D11DeviceContext* d3dContext,
         const wchar_t* szFileName,
         size_t maxsize, D3D11_USAGE usage, unsigned int bindFlags,
