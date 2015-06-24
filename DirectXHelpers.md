@@ -1,4 +1,4 @@
-Contains various C++ utilities that simply Direct3D 11 programming.
+Contains various C++ utilities that simplify Direct3D 11 programming.
 
 # Header
     #include <DirectXHelpers.h>
