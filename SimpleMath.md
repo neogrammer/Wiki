@@ -130,7 +130,7 @@ Using ``XMVECTOR`` or ``XMMATRIX`` as local variables on the stack or as a globa
 
 As such, DirectXMath includes a number of memory analogs for ``XMVECTOR`` and ``XMMATRIX``, and explicit load & store operations for moving the data into and out of them. This is actually quite efficient, particularly if you are able to move them from memory into an ``XMVECTOR`` or ``XMMATRIX``, then perform a long chain of operations on that data before storing the result back to memory.
 
-One of SimpleMath's primary functions is to _hide_ the existence of ``XMVECTOR`` and ``XMMATRIX``. Instead, you can use Vector3 or Matrix without any alignment requirements, and the C++ compiler will automatically call the required load and store functions. This makes working with DirectXMath much more forgiving, at the potential cost of extra load and stores taking place 'invisible' to the programmer.
+One of SimpleMath's primary functions is to _hide_ the existence of ``XMVECTOR`` and ``XMMATRIX``. Instead, you can use ``Vector3`` or ``Matrix`` without any alignment requirements, and the C++ compiler will automatically call the required load and store functions. This makes working with DirectXMath much more forgiving, at the potential cost of extra load and stores taking place 'invisible' to the programmer.
 
 Since this is implemented using C++ conversion operators, you can at any point use a SimpleMath type directly with a DirectXMath function that takes ``XMVECTOR`` and/or ``XMMATRIX``. They are also completely equivalent to a standard memory type in the DirectXMath library:
 
