@@ -37,7 +37,8 @@ The ``std::function`` is used for callbacks as a general pattern so that client 
 When declaring these parameters, we use the macro:
 
     HRESULT __cdecl SaveWICTextureToFile( /*...*/,
-        std::function<void DIRECTX_STD_CALLCONV(IPropertyBag2*)> setCustomProps = nullptr );
+        std::function<void DIRECTX_STD_CALLCONV(IPropertyBag2*)> setCustomProps
+            = nullptr );
 
 _Note: ``std::function`` doesn't support using ``__vectorcall`` until VS 2015, so use of ``/Gv`` is difficult in VS 2013 or earlier._
 
