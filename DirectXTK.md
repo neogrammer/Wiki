@@ -104,7 +104,7 @@ To use the Visual Studio 2012 or later graphics assets tools in the build system
 
 _The graphics assets tools are not present in the Express editions of Visual Studio 2012. They are present in the Visual Studio 2013 Express for Windows and Community editions, but not in VS 2013 Express for Windows Desktop._
 
-**Note:** When adding .spritefont, .sdkmesh, or .xwb files to your Windows Store app or Windows phone app project, you need to manually set the file properties to "Content: Yes" for all configurations to have these files included in your AppX package. .dds files and other image file formats are automatically detected as a media file and are included as content by default.
+**Note:** When adding ``.spritefont``, ``.sdkmesh``, or ``.xwb`` files to your Windows Store app or Windows phone app project, you need to manually set the file properties to "Content: Yes" for all configurations to have these files included in your AppX package. ``.dds`` files, other image file formats, and ``.wav`` files are automatically detected as a media file and are included as content by default.
 
 # Error handling
 DirectXTK makes use of C++ exception handling which should be enabled by the application via the `/EHsc` compiler switch. In Visual Studio, this is set in the project settings under "C++ / Code Generation" with Enable C++ Exceptions set to "Yes (/EHsc)" for all configurations.
@@ -113,6 +113,8 @@ DirectXTK makes use of C++ exception handling which should be enabled by the app
 * [How to: Break When an Exception is Thrown](http://msdn.microsoft.com/en-us/library/d14azbfh.aspx)
 * [Dual-use Coding Techniques for Games](http://blogs.msdn.com/b/chuckw/archive/2012/09/17/dual-use-coding-techniques-for-games.aspx)
 * [Resource Acquisition Is Initialization](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization)
+
+_Visual Studio Express editions have limited exception handling debugging support, so consider using VS 2013 Community or Pro+ instead._
 
 # Smart-pointers and reference counting
 DirectXTK encourages and makes use of a number of smart-pointers to simplify resource lifetime tracking.
