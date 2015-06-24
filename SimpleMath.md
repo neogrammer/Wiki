@@ -53,6 +53,7 @@ This includes:
 * [BoundingOrientedBox](https://msdn.microsoft.com/en-us/library/windows/desktop/microsoft.directx_sdk.directxmath.boundingorientedbox.aspx) class
 * [BoundingFrustum](https://msdn.microsoft.com/en-us/library/windows/desktop/microsoft.directx_sdk.directxmath.boundingfrustum.aspx) class
 * [TriangleTests](https://msdn.microsoft.com/en-us/library/windows/desktop/hh855857.aspx) namespace
+
 These were designed to already be similar to the XNA Game Studio math API bounding types.
 
 _Note: Currently the BoundingFrustum class is not compatible with Right-Handed coordinates._
