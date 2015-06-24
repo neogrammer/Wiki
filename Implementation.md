@@ -60,5 +60,19 @@ For example, to prevent copying we use:
 
 _Note that use of ``=default`` and ``=delete`` can improve codegen for derived types._
 
+# DirectXMath Parameter Conventions
+The library uses the [DirectXMath](https://msdn.microsoft.com/en-us/library/windows/desktop/ee418728.aspx#Call_Conventions) calling convention types to improve parameter passing of ``XMVECTOR`` and ``XMMATRIX`` types.
+
+To support VS 2012 building with the Windows 8.0 SDK which has DirectXMath 3.03, we have the following adapters in headers that require them:
+
+    namespace DirectX
+    {
+        #if (DIRECTX_MATH_VERSION < 305) && !defined(XM_CALLCONV)
+        #define XM_CALLCONV __fastcall
+        typedef const XMVECTOR& HXMVECTOR;
+        typedef const XMMATRIX& FXMMATRIX;
+        #endif
+    ...
+
 # Further Reading
 [Dual-use Coding Techniques for Games](http://blogs.msdn.com/b/chuckw/archive/2012/09/17/dual-use-coding-techniques-for-games.aspx)
