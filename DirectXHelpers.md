@@ -36,8 +36,8 @@ Modern C++ development strongly encourages use of the [RAII](http://en.wikipedia
     class MapGuard : public D3D11_MAPPED_SUBRESOURCE
     {
     public:
-        MapGuard( _In_ ID3D11DeviceContext* context, _In_ ID3D11Resource *resource,
-             _In_ UINT subresource, _In_ D3D11_MAP mapType, _In_ UINT mapFlags );
+        MapGuard( ID3D11DeviceContext* context, ID3D11Resource *resource,
+                  UINT subresource, D3D11_MAP mapType, UINT mapFlags );
         ~MapGuard();
         uint8_t* get() const;
         uint8_t* get(size_t slice) const;
@@ -48,8 +48,7 @@ Modern C++ development strongly encourages use of the [RAII](http://en.wikipedia
 # Debug object naming
 To help track down resource leaks, the Direct3D 11 debug layer allows you to provide ASCII debug names to Direct3D 11 objects. This is done with a specific GUID and the ``SetPrivateData`` method. Since you typically want to exclude this for release builds, it can get somewhat messy to add these to code. The ``SetDebugObjectName`` template greatly simplifies this for static debug name strings.
 
-    SetDebugObjectName(_In_ ID3D11DeviceChild* resource,
-        _In_z_ const char (&name)[TNameLength])
+    SetDebugObjectName(ID3D11DeviceChild* resource, const char (&name)[TNameLength]);
 
 For more information on the Direct3D 11 debug layer, see these blog posts:
 
