@@ -86,9 +86,11 @@ With the methods ``Matrix::CreateBillboard`` and ``Matrix::CreateConstrainedBill
 
     Vector3 objectPosition, cameraPosition, rotateAxis;
 
-    Matrix mView = Matrix::CreateBillboard( objectPosition, cameraPosition, Vector3::Up, Vector3::Backward );
+    Matrix mView = Matrix::CreateBillboard( objectPosition,
+        cameraPosition, Vector3::Up, Vector3::Backward );
 
-    Matrix mView = Matrix::CreateConstrainedBillboard( objectPosition, cameraPosition, rotateAxis, Vector3::Backward, Vector3::Backward );
+    Matrix mView = Matrix::CreateConstrainedBillboard( objectPosition,
+        cameraPosition, rotateAxis, Vector3::Backward, Vector3::Backward );
 
 # Windows Store apps
 A number of Windows Store samples include a ``BasicMath.h`` header that includes some very simplistic math types:
