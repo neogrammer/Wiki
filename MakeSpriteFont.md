@@ -4,6 +4,8 @@ See [[SpriteFont]]
 
 **Note:** The command-line tools in the DirectXTK package are only built by the _DirectXTK_Desktop_201x_ solutions since they are Win32 desktop applications.
 
+**Related tutorial:** [[Drawing text]]
+
 # TrueType
 Open a [Command Prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq), and change to the directory containing ``MakeSpriteFont.exe`` (i.e. ``...\DirectXTK\MakeSpriteFont\bin\Release``)
 
