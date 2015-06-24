@@ -1,5 +1,7 @@
 Here is a list of various samples and articles for making use of DirectXTK.
 
+See [DirectXTK Samples on GitHub](https://github.com/walbourn/directxtk-samples).
+
 # Windows Store apps
 [Simple Sample for Windows 8](http://code.msdn.microsoft.com/DirectXTK-Simple-Sample-608bc274)
 
