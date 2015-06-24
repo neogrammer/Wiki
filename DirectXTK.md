@@ -128,24 +128,7 @@ DirectXTK encourages and makes use of a number of smart-pointers to simplify res
 * [COM Coding Practices](http://msdn.microsoft.com/en-us/library/windows/desktop/ff485839.aspx#smartptr)
 * [Reference Counting (Direct3D 10)](http://msdn.microsoft.com/en-us/library/windows/desktop/bb205070.aspx)
 
-# Implementation notes
-DirectXTK's implementation makes extensive use of the [pImpl idiom](http://en.wikipedia.org/wiki/Opaque_pointer). This keeps the public headers slim and minimizes inter-module dependencies.
+# Additional information
+[[Implementation]]
 
-    // SpriteBatch.h public header
-    class SpriteBatch
-    {
-    public:
-        ...
-    
-    private:
-        // Private implementation.
-        class Impl;
-    
-        std::unique_ptr<Impl> pImpl;
-    
-        // Prevent copying.
-        SpriteBatch(SpriteBatch const&);
-        SpriteBatch& operator= (SpriteBatch const&);
-    };
 
-This also allows use to allocate the pImpl class internally using ``_aligned_malloc(x,16);`` so that we can use the DIrectXMath aligned XMVECTOR and XMMATRIX types directly in the implementation.
