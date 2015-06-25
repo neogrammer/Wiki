@@ -70,7 +70,7 @@ PrimitiveBatch provides five drawing methods:
 
 For best performance, draw as much as possible inside the fewest separate Begin/End blocks. This will reduce overhead and maximize potential for batching.
 
-Ideally submit draws of the same topology to avoid flushing, and preferably use ``D3D11_PRIMITIVE_TOPOLOGY_POINTLIST``, ``D3D11_PRIMITIVE_TOPOLOGY_LINELIST``, or ``D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST``.
+Ideally submit draws of the same topology to avoid flushing, and preferably use ``D3D_PRIMITIVE_TOPOLOGY_POINTLIST``, ``D3D_PRIMITIVE_TOPOLOGY_LINELIST``, or ``D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST``.
 
 The PrimitiveBatch constructor allows you to specify what size index and vertex buffers to allocate. You may want to tweak these values to fit your workload, or if you only intend to draw non-indexed geometry, specify maxIndices = 0 to entirely skip creating the index buffer.
 
