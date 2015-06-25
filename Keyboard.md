@@ -100,7 +100,7 @@ Due to some quirks of the platform, If you press both Left & Right Shift keys at
 # International layouts
 Keep in mind when designing the keyboard controls for your game the different layouts of standard keyboards.  In particularly, note the red keys which are in different locations for international keyboards than the traditional English QWERTY keyboard.
 
-image:KeyboardInternational.png
+![International Keyboard Layout](https://github.com/Microsoft/DirectXTK/wiki/images/KeyboardInternational.png)
 
 The Keyboard class makes use of virtual keys and not scancodes so your code has to be aware of these layout differences.
 
