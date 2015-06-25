@@ -60,15 +60,17 @@ Setting up a suitable BasicEffect and input layout:
 
 PrimitiveBatch provides five drawing methods:
 
-* ``DrawLine(v1, v2)``
-* ``DrawTriangle(v1, v2, v3)``
-* ``DrawQuad(v1, v2, v3, v4)``
-* ``Draw(topology, vertices, vertexCount)``
-* ``DrawIndexed(topology, indices, indexCount, vertices, vertexCount)``
+* **DrawLine**(v1, 2): Draws a single-pixel line between two vertices
+* **DrawTriangle**(v1, v2, v3): Draws a triangle between three vertices
+* **DrawQuad**(v1, v2, v3, v4): draws a quad from four corner vertices (_submitted as two triangles_)
+* **Draw**(topology, vertices, vertexCount): Draws an array of vertices with the given topology
+* **DrawIndexed**(topology, indices, indexCount, vertices, vertexCount): Draws an indexed array of vertices with a given topology.
 
 # Optimization
 
 For best performance, draw as much as possible inside the fewest separate Begin/End blocks. This will reduce overhead and maximize potential for batching.
+
+Ideally submit draws of the same topology to avoid flushing, and preferably use ``D3D11_PRIMITIVE_TOPOLOGY_POINTLIST``, ``D3D11_PRIMITIVE_TOPOLOGY_LINELIST``, or ``D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST``.
 
 The PrimitiveBatch constructor allows you to specify what size index and vertex buffers to allocate. You may want to tweak these values to fit your workload, or if you only intend to draw non-indexed geometry, specify maxIndices = 0 to entirely skip creating the index buffer.
 
