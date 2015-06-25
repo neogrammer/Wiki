@@ -1,0 +1,1 @@
+This is a class hierarchy for drawing simple meshes with support for loading models from Visual Studio 3D Starter Kit .CMO files, legacy DirectX SDK .SDKMESH files, and .VBO files. It is an implementation of a mesh renderer similar to the XNA Game Studio Model, [[ModelMesh]], [[ModelMeshPart]] design.
