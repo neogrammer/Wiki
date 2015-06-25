@@ -63,7 +63,8 @@ For universal Windows apps or Windows Store apps, you need to call **SetWindow**
 
 A common pattern is to trigger an action when a mouse button is pressed or released, but you don't want to trigger the action every single frame if the button is held down for more than a single frame. This helper class simplifies this.
 
-    std::unique_ptr<Mouse::ButtonStateTracker> tracker( new Mouse::ButtonStateTracker );
+    std::unique_ptr<Mouse::ButtonStateTracker> tracker(
+        new Mouse::ButtonStateTracker );
 
     ...
 
