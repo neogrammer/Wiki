@@ -16,7 +16,7 @@ Each [[ModelMeshPart]] references an index buffer, a vertex buffer, an input lay
 # Initialization
 Model instances can be loaded from either ``.CMO``, ``.SDKMESH``, or ``.VBO`` files, or from custom file formats. The Model loaders take an [[EffectFactory]] instance to facilitate the sharing of [[Effects]] and textures between models. The default EffectFactory always returns built-in BasicEffect instances. The DGSLEffectFactory can be used with ``.CMO`` files to load Visual Studio Shader Designer (DGSL) shaders through DGLSEffect instances.
 
-Visual Studio 2012 or later include a built-in content pipeline that can generate ``.CMO`` files from an Autodesk ``.FBX``, as well as ``.DDS`` texture files from various bitmap image formats, as part of the build process. See the Visual Studio 3D Starter Kit for details ([Windows 8.1](http://aka.ms/vs3dkitwin), [Windows 8.0](http://aka.ms/vs3dkitwin80])).
+Visual Studio 2012 or later include a built-in content pipeline that can generate ``.CMO`` files from an Autodesk ``.FBX``, as well as ``.DDS`` texture files from various bitmap image formats, as part of the build process. See the Visual Studio 3D Starter Kit for details ([Windows 8.1](http://aka.ms/vs3dkitwin), [Windows 8.0](http://aka.ms/vs3dkitwin80)).
 
     DGSLEffectFactory fx( device );
     // Can also use EffectFactory, but will ignore pixel shader material settings
