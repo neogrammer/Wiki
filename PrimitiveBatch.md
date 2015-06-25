@@ -1,0 +1,90 @@
+This is a helper for easily and efficiently drawing dynamically generated geometry using Direct3D 11 such as lines or trianges. It fills the same role as the legacy Direct3D 9 APIs ``DrawPrimitiveUP`` and `DrawIndexedPrimitiveUP``. Dynamic submission is a highly effective pattern for drawing procedural geometry, and convenient for debug rendering, but is not nearly as efficient as static buffers which is more suited to traditional meshes where the VBs and IBs do not change every frame. Excessive dynamic submission is a common source of performance problems in apps. Therefore, you should prefer to use [[Model]], [[GeometricPrimitive]], or your own VB/IB over PrimitiveBatch unless you really need the flexibility to regenerate the topology every frame.
+
+PrimitiveBatch manages the vertex and index buffers for you, using _DISCARD_ and _NO_OVERWRITE_ hints to avoid stalling the GPU pipeline. It automatically merges adjacent draw requests, so if you call DrawLine 100 times in a row, only a single GPU draw call will be generated.
+
+PrimitiveBatch is responsible for setting the vertex buffer, index buffer, and primitive topology, then issuing the final draw call. Unlike the higher level SpriteBatch helper, it does not provide shaders, set the input layout, or set any state objects. PrimitiveBatch is often used in conjunction with BasicEffect and the structures from [[VertexTypes]], but it can work with any other shader or vertex formats of your own.
+
+**Related tutorial:** [[Simple rendering]]
+
+# Header
+    #include <PrimitiveBatch.h>
+
+# Initialization
+
+Initialize a PrimitiveBatch for drawing ``VertexPositionColor`` data
+
+    std::unique_ptr<PrimitiveBatch<VertexPositionColor>> primitiveBatch(
+        new PrimitiveBatch<VertexPositionColor>(deviceContext));
+
+The default values assume that your maximum batch size is 2048 vertices arranged in triangles. If you want to use larger batches, you need to provide the additional constructor parameters (be sure to review the Feature Level limitations below).
+
+    PrimitiveBatch<T>( ID3D11DeviceContext* deviceContext,
+        size_t maxIndices = DefaultBatchSize * 3,
+        size_t maxVertices = DefaultBatchSize)
+
+# Effect and Input Layout
+
+Setting up a suitable BasicEffect and input layout:
+
+    std::unique_ptr<BasicEffect> basicEffect(new BasicEffect(device));
+
+    basicEffect->SetProjection(XMMatrixOrthographicOffCenterRH(0, screenHeight, screenWidth, 0, 0, 1));
+    basicEffect->SetVertexColorEnabled(true);
+
+    void const* shaderByteCode;
+    size_t byteCodeLength;
+
+    basicEffect->GetVertexShaderBytecode(&shaderByteCode, &byteCodeLength);
+
+    ComPtr<ID3D11InputLayout> inputLayout;
+
+    device->CreateInputLayout(VertexPositionColor::InputElements,
+                              VertexPositionColor::InputElementCount,
+                              shaderByteCode, byteCodeLength,
+                              inputLayout.GetAddressOf() );
+
+# Drawing
+
+    CommonStates states( device );
+    deviceContext->OMSetBlendState( states.Opaque(), nullptr, 0xFFFFFFFF );
+    deviceContext->OMSetDepthStencilState( states.DepthNone(), 0 );
+    deviceContext->RSSetState( states.CullCounterClockwise() );
+
+    basicEffect->Apply(deviceContext);
+    deviceContext->IASetInputLayout(inputLayout.Get());
+
+    primitiveBatch->Begin();
+    primitiveBatch->DrawLine(VertexPositionColor(...), VertexPositionColor(...));
+    primitiveBatch->End();
+
+PrimitiveBatch provides five drawing methods:
+
+* ``DrawLine(v1, v2)``
+* ``DrawTriangle(v1, v2, v3)``
+* ``DrawQuad(v1, v2, v3, v4)``
+* ``Draw(topology, vertices, vertexCount)``
+* ``DrawIndexed(topology, indices, indexCount, vertices, vertexCount)``
+
+# Optimization
+
+For best performance, draw as much as possible inside the fewest separate Begin/End blocks. This will reduce overhead and maximize potential for batching.
+
+The PrimitiveBatch constructor allows you to specify what size index and vertex buffers to allocate. You may want to tweak these values to fit your workload, or if you only intend to draw non-indexed geometry, specify maxIndices = 0 to entirely skip creating the index buffer.
+
+# Feature Level Notes
+
+In order to support [all feature levels](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476876.aspx), PrimitiveBatch only supports 16-bit indices (``DXGI_FORMAT_R16_UINT``) which limits to a maximum of 65535 addressable vertices. This does not apply to non-indexed drawing when the PrimitiveBatch constructor is called with a maxIndices of 0. 
+
+Keep in mind there is a feature-level based limit on the maximum number of primitives in a single draw call, so the overall batch size needs to be under this limit. To support all feature levels, this should be 65535 or less lines or triangles in a single 'draw batch'.
+
+[Direct3D Feature Levels](http://blogs.msdn.com/b/chuckw/archive/2012/06/20/direct3d-feature-levels.aspx)
+
+# Threading model
+
+Each PrimitiveBatch instance only supports drawing from one thread at a time, but you can simultaneously submit primitives on multiple threads if you create a separate PrimitiveBatch instance per Direct3D 11 deferred context.
+[url:http://msdn.microsoft.com/en-us/library/windows/desktop/ff476892.aspx]
+
+# Further Reading
+[DirectXTK PrimitiveBatch helper makes it easy to draw user primitives with D3D11](http://blogs.msdn.com/b/shawnhar/archive/2012/10/12/directxtk-primitivebatch-helper-makes-it-easy-to-draw-user-primitives-with-d3d11.aspx)  
+[How to: Use dynamic resources](http://msdn.microsoft.com/en-us/library/windows/desktop/dn508285.aspx)  
+
