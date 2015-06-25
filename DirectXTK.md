@@ -7,15 +7,18 @@ All the functions in the library are in the **DirectX** C++ namespace.
 _Note: The Xbox One exclusive application XBoxDDSTextureLoader functions are in the **Xbox** C++ namespace_
 
 # Modules
-* [[Audio]] - low-level audio API using XAudio2 
+* [[Audio]] - low-level audio API using XAudio2
+ * [[AudioEngine]], [[SoundEffect]], [[SoundEffectInstance]], [[DynamicSoundEffectInstance]], [[WaveBank]], [[AudioListener]], [[AudioEmitter]]
 * [[CommonStates]] - factory providing commonly used D3D state objects 
 * [[DDSTextureLoader]] - light-weight DDS file texture loader 
 * [[DirectXHelpers]] - misc C++ helpers for D3D programming 
 * [[Effects]] - set of built-in shaders for common rendering tasks 
+ * [[EffectFactory]]
 * [[GamePad]] - gamepad controller helper using XInput 
 * [[GeometricPrimitive]] - draws basic shapes such as cubes and spheres 
 * [[Keyboard]] - keyboard state tracking helper
 * [[Model]] - draws simple meshes loaded from .CMO, .SDKMESH, or .VBO files 
+ * [[ModelMesh]], [[ModelMeshPart]]
 * [[Mouse]] - mouse helper
 * [[PrimitiveBatch]] - simple and efficient way to draw user primitives 
 * [[ScreenGrab]] - light-weight screen shot saver 
