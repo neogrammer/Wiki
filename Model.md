@@ -14,7 +14,7 @@ Each [[ModelMeshPart]] references an index buffer, a vertex buffer, an input lay
     #include <Model.h>
 
 # Initialization
-Model instances can be loaded from either ``.CMO``, ``.SDKMESH``, or ``.VBO`` files, or from custom file formats. The Model loaders take an [[EffectFactory]] instance to facilitate the sharing of [[Effects]] and textures between models. The default EffectFactory always returns built-in BasicEffect instances. The DGSLEffectFactory can be used with .CMO files to load Visual Studio Shader Designer (DGSL) shaders through DGLSEffect instances.
+Model instances can be loaded from either ``.CMO``, ``.SDKMESH``, or ``.VBO`` files, or from custom file formats. The Model loaders take an [[EffectFactory]] instance to facilitate the sharing of [[Effects]] and textures between models. The default EffectFactory always returns built-in BasicEffect instances. The DGSLEffectFactory can be used with ``.CMO`` files to load Visual Studio Shader Designer (DGSL) shaders through DGLSEffect instances.
 
 Visual Studio 2012 or later include a built-in content pipeline that can generate ``.CMO`` files from an Autodesk ``.FBX``, as well as ``.DDS`` texture files from various bitmap image formats, as part of the build process. See the Visual Studio 3D Starter Kit for details ([Windows 8.1](http://aka.ms/vs3dkitwin), [Windows 8.0](http://aka.ms/vs3dkitwin80])).
 
@@ -98,7 +98,7 @@ All the various Draw method provide a ``setCustomState`` callback which can be u
 # Coordinate systems
 Meshes are authored in a specific winding order, typically using the standard counter-clockwise winding common in graphics. The choice of viewing handedness (right-handed vs. left-handed coordinates) is largely a matter of preference and convenience, but it impacts how the models are built and/or exported.
 
-The Visual Studio 3D Starter Kit’s .CMO files assume the developer is using right-handed coordinates. DirectXTK’s default parameters assume you are using right-handed coordinates as well, so the ccw_ parameter defaults to true. If using a ``.CMO`` with left-handed coordinates, you should pass false for the _ccw_ parameter which will use clockwise winding instead. This makes the geometry visible, but could make textures on the model appear ‘flipped’ in U.
+The Visual Studio 3D Starter Kit’s ``.CMO`` files assume the developer is using right-handed coordinates. DirectXTK’s default parameters assume you are using right-handed coordinates as well, so the ccw_ parameter defaults to true. If using a ``.CMO`` with left-handed coordinates, you should pass false for the _ccw_ parameter which will use clockwise winding instead. This makes the geometry visible, but could make textures on the model appear ‘flipped’ in U.
 
     // When using LH coordinates
     auto teapot = Model::CreateFromCMO( device, L"teapot.cmo", fx, false );
