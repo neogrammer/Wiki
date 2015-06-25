@@ -71,8 +71,9 @@ A common pattern is to trigger an action when a mouse button is pressed or relea
     tracker->Update( state );
 
     if ( tracker->rightButton == Mouse::ButtonStateTracker::PRESSED )
-        // Take an action when Right mouse button is first pressed, but don't do it again until
-        // the button is released and then pressed again
+        // Take an action when Right mouse button is first pressed,
+        // but don't do it again until the button is released and
+        // then pressed again
 
 _When resuming from a pause or suspend, be sure to call **Reset** on the tracker object to clear the state history._
 
