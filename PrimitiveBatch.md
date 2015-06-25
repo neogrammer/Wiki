@@ -2,7 +2,7 @@ This is a helper for easily and efficiently drawing dynamically generated geomet
 
 PrimitiveBatch manages the vertex and index buffers for you, using _DISCARD_ and _NO_OVERWRITE_ hints to avoid stalling the GPU pipeline. It automatically merges adjacent draw requests, so if you call DrawLine 100 times in a row, only a single GPU draw call will be generated.
 
-PrimitiveBatch is responsible for setting the vertex buffer, index buffer, and primitive topology, then issuing the final draw call. Unlike the higher level SpriteBatch helper, it does not provide shaders, set the input layout, or set any state objects. PrimitiveBatch is often used in conjunction with BasicEffect and the structures from [[VertexTypes]], but it can work with any other shader or vertex formats of your own.
+PrimitiveBatch is responsible for setting the vertex buffer, index buffer, and primitive topology, then issuing the final draw call. Unlike the higher level [[SpriteBatch]] helper, it does not provide shaders, set the input layout, or set any state objects. PrimitiveBatch is often used in conjunction with BasicEffect and the structures from [[VertexTypes]], but it can work with any other shader or vertex formats of your own.
 
 **Related tutorial:** [[Simple rendering]]
 
