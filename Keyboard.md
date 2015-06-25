@@ -1,0 +1,111 @@
+This is a helper for simplified keyboard state tracking modeled after the XNA C# Keyboard class.
+
+# Header 
+    #include <Keyboard.h>
+
+# Initialization
+Keyboard is a singleton.
+
+    std::unique_ptr<Keyboard> keyboard( new Keyboard );
+
+For exception safety, it is recommended you make use of the C++ RAII pattern and use a ``std::unique_ptr``.
+
+# Integration
+For Windows desktop applications, the application needs to make the appropriate calls during the main **WndProc** message processing:
+
+    LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+    {
+        switch (message)
+        {
+        case WM_ACTIVATEAPP:
+            Keyboard::ProcessMessage(message, wParam, lParam);
+            break;
+
+        case WM_KEYDOWN:
+        case WM_SYSKEYDOWN:
+        case WM_KEYUP:
+        case WM_SYSKEYUP:
+            Keyboard::ProcessMessage(message, wParam, lParam);
+            break;
+        }
+
+        return DefWindowProc(hWnd, message, wParam, lParam);
+    }
+
+For universal Windows apps or Windows Store apps, you need to call **SetWindow** in the appropriate place.
+
+    void App::SetWindow(CoreWindow^ window)
+    {
+        keyboard->SetWindow(window);
+    }
+
+# Basic use
+
+**GetState** queries the current state of the keyboard.
+
+    auto kb = keyboard->GetState();
+
+    if (kb.Back)
+        // Backspace key is down
+
+    if (kb.W)
+        // W key is down
+
+    if (kb.A)
+        // A key is down
+
+    if (kb.S)
+        // S key is down
+
+    if (kb.D)
+        // D key is down
+
+    if (kb.LeftShift)
+        // Left shift key is down
+
+    if (kb.RightShift)
+        // Right shift key is down
+
+    if ( kb.IsKeyDown( VK_RETURN ) )
+        // Return key is down
+
+# Keyboard state tracker
+
+A common pattern is to trigger an action when a key is pressed or released, but you don't want to trigger the action every single frame if the key is held down for more than a single frame. This helper class simplifies this.
+
+    std::unique_ptr<Keyboard::KeyboardStateTracker> tracker(
+        new Keyboard::KeyboardStateTracker );
+
+    ...
+
+    auto state = keyboard->GetState();
+    tracker->Update( state );
+
+    if ( tracker.pressed.Space )
+        // Space was just pressed down
+
+    if ( tracker.IsKeyReleased( VK_F1 ) )
+        // F1 key was just released
+
+_When resuming from a pause or suspend, be sure to call **Reset** on the tracker object to clear the state history._
+
+# Threading model
+The Keyboard class should be thread-safe with the exception of the **ProcessMessage** which should only be called in your windows message loop.
+
+# Remarks
+This helper is intended for game controls tied to the keyboard. For chat input and editable text, you should use the platform-specific methods for text input.
+
+Due to some quirks of the platform, If you press both Left & Right Shift keys at the same time, they will both appear down until both are released.
+
+# International layouts
+Keep in mind when designing the keyboard controls for your game the different layouts of standard keyboards.  In particularly, note the red keys which are in different locations for international keyboards than the traditional English QWERTY keyboard.
+
+image:KeyboardInternational.png
+
+The Keyboard class makes use of virtual keys and not scancodes so your code has to be aware of these layout differences.
+
+[QWERTY](https://en.wikipedia.org/wiki/QWERTY), [QWERTZ](https://en.wikipedia.org/wiki/QWERTZ), [AZERTY](https://en.wikipedia.org/wiki/AZERTY), [QZERTY](https://en.wikipedia.org/wiki/Keyboard_layout#QZERTY)
+
+# Platform notes
+
+For Windows phone and Xbox One, the Keyboard class exists in the library to avoid the need for conditional compilation, but there's no integration method for tying the input to the virtual keyboard as that makes little sense as a controller for games.
