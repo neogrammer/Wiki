@@ -6,7 +6,7 @@ A Model consists of one or more ModelMesh instances. The ModelMesh instances can
 
 Each ModelMeshPart references an index buffer, a vertex buffer, an input layout, an [[Effects]] instance, and includes various metadata for drawing the geometry. Each ModelMeshPart represents a single material to be drawn at the same time (i.e. a submesh).
 
-![Screenshot](https://github.com/Microsoft/DirectXTK/wiki/images/ModelExample.jpg)
+![Screenshot](https://github.com/Microsoft/DirectXTK/wiki/images/ModelExample.png)
 
 **Related tutorial:** [[Rendering a model]]
 
