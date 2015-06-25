@@ -134,7 +134,6 @@ The VS 2012 and 2013 ``.CMO`` exporter uses Autodesk FBX 2013.1. Recommended set
 * Units: Automatic
 * Axis conversion: Y-up
 * FBX File Format: Binary, FBX 2013
-[url:https://directxmesh.codeplex.com/wikipage?title=CMO]
 
 ## VBO
 A ``.VBO`` file does not contain any material or attribute information. The loader will create a default untextured BasicEffect when loading the model, or you can provide your own instance to use:
