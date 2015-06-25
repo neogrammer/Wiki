@@ -77,7 +77,7 @@ The Model loaders create an appropriate Effects instance for each ModelMeshPart 
 
 It is also possible to change the Effects instance used by a given part (such as when overriding the default effect put in place from a Model loader) by calling ModelMeshPart::ModifyEffect. This will regenerate the ModelMeshPart::inputLayout appropriately.
 
-Be sure to call Model::Modified on all Model instances that reference the impacted ModelMesh instance to ensure the cache used by UpdateEffects is correctly updated. Model::Modified should also be called whenever a Model::meshes or ModelMesh::meshParts collection is modified.
+Be sure to call **Model::Modified** on all Model instances that reference the impacted ModelMesh instance to ensure the cache used by UpdateEffects is correctly updated. Model::Modified should also be called whenever a Model::meshes or ModelMesh::meshParts collection is modified.
 
 As noted above, it is also possible to render part or all of a model using a custom effect as an override, rather than changing the effect referenced by the ModelMeshPart::effect directly. See [[ModelMeshPart]] for an example.
 
