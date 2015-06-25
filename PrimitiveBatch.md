@@ -85,7 +85,8 @@ Keep in mind there is a feature-level based limit on the maximum number of primi
 # Threading model
 
 Each PrimitiveBatch instance only supports drawing from one thread at a time, but you can simultaneously submit primitives on multiple threads if you create a separate PrimitiveBatch instance per Direct3D 11 deferred context.
-[url:http://msdn.microsoft.com/en-us/library/windows/desktop/ff476892.aspx]
+
+[Immediate and Deferred Rendering](http://msdn.microsoft.com/en-us/library/windows/desktop/ff476892.aspx)
 
 # Further Reading
 [DirectXTK PrimitiveBatch helper makes it easy to draw user primitives with D3D11](http://blogs.msdn.com/b/shawnhar/archive/2012/10/12/directxtk-primitivebatch-helper-makes-it-easy-to-draw-user-primitives-with-d3d11.aspx)  
