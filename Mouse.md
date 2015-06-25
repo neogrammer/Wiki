@@ -83,3 +83,7 @@ The mouse scroll wheel value is accumulated. To reset the value to 0, use **Rese
 # Threading model
 The Mouse class should be thread-safe with the exception of the **ProcessMessage** which should only be called in your windows message loop.
 
+# Platform notes
+The Xbox One platform doesn't support pointer or mouse input devices.
+
+For Windows Store, universal Windows apps, and Windows phone touch/pointer devices are captured as mouse movement.
