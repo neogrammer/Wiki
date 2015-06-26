@@ -2,9 +2,9 @@
 
 While the _DirectX Tool Kit_ design is heavily influenced by the XNA Game Studio framework C# object design, it uses C++ conventions consistent with modern Win32 APIs rather than the strict .NET use of [PascalCase](https://en.wikipedia.org/wiki/CamelCase) as enforced by FXCop.
 
-* PascalCase for class names, methods, and functions
-* camelCase for class member variables and struct members
-* UPPERCASE for enums and preprocessor defines
+* PascalCase for class names, methods, functions, and enums.
+* camelCase for class member variables, struct members
+* UPPERCASE for preprocessor defines (and nameless enums)
 
 The library does not generally make use of [Hungarian notation](https://en.wikipedia.org/wiki/Hungarian_notation) which as been deprecated for Win32 C++ APIs for many years, with the exception of a few uses of ``p`` for pointers and ``sz`` for strings.
 
