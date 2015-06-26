@@ -8,6 +8,9 @@ While the _DirectX Tool Kit_ design is heavily influenced by the XNA Game Studio
 
 The library does not generally make use of [Hungarian notation](https://en.wikipedia.org/wiki/Hungarian_notation) which as been deprecated for Win32 C++ APIs for many years, with the exception of a few uses of ``p`` for pointers and ``sz`` for strings.
 
+# SAL annotation
+The _DirectX Toolkit_ library makes extensive use of SAL2 annotations (``_In_``, ``_Outptr_opt_``, etc.) which greatly improves the accuracy of the Visual C++ static code analysis (also known as PREFAST). The standard Windows headers #define them all to empty strings if not building with ``/analyze``, so they have no effect on code-generation.
+
 # The pImpl idiom
 DirectXTK's implementation makes extensive use of the [pImpl idiom](http://en.wikipedia.org/wiki/Opaque_pointer). This keeps the public headers slim and minimizes inter-module dependencies.
 
