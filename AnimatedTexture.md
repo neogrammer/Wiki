@@ -128,7 +128,9 @@ This example uses a sprite sheet that has 4 frames of animation ([shipanimated.d
 
     // Create a texture using our sprite sheet
     Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> ship;
-    hr = CreateDDSTextureFromFile( device, L"shipanimated.dds", nullptr, ship.GetAddressOf() );
+    hr = CreateDDSTextureFromFile( device, L"shipanimated.dds", nullptr,
+        ship.GetAddressOf() );
+    DX::ThrowIfFailed(hr);
 
     ...
 
@@ -137,7 +139,8 @@ This example uses a sprite sheet that has 4 frames of animation ([shipanimated.d
 
     // Create an AnimatedTexture helper class instance and set it to use our texture
     // which is assumed to have 4 frames of animation with a FPS of 2 seconds
-    std::unique_ptr<AnimatedTexture> sprite( new AnimatedTexture( XMFLOAT2(0,0), 0.f, 2.f, 0.5f ) );
+    std::unique_ptr<AnimatedTexture> sprite(
+        new AnimatedTexture( XMFLOAT2(0,0), 0.f, 2.f, 0.5f ) );
     sprite->Load( ship.Get(), 4, 2 );
 
     ...
