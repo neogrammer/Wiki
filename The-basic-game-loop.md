@@ -45,7 +45,7 @@ Press F5 to build and run the application It displays the following window:
 _Troubleshooting:_ If the base template fails to start, there are a few possibilities. First, if your system doesn't have any Direct3D capable device of any feature level, it will fail. This is pretty unlikely on modern versions of Windows. Second if it runs fine in _Release_ but fails in _Debug_, then you likely do not have the [proper DirectX Debug Device](http://blogs.msdn.com/b/chuckw/archive/2012/11/30/direct3d-sdk-debug-layer-tricks.aspx) installed for your operating system.
 
 # Tour of the code
-For now, we'll focus on the content of Game.cpp (which is open by default).
+For now, we'll focus on the content of ``Game.cpp`` (which is open by default).
 
 When the application first starts, execution is passed to the **Initialize** method. The TODO here by default leaves the applications StepTimer in the 'variable length' mode. You uncomment the code if you want StepTimer in the 'fixed-step' mode. We'll explain this more once we get to Update.
 
