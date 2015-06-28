@@ -1,5 +1,7 @@
 This is an example of a C++ port of the C# [XNA Game Studio sample](http://msdn.microsoft.com/en-us/library/bb203866.aspx) class for drawing an animated 2D sprite using [[SpriteBatch]]. The sprite animation is assumed to be laid out horizontally.
 
+**Related tutorial**: [[More tricks with sprites]]
+
 [AnimatedTexture.h](https://github.com/Microsoft/DirectXTK/wiki/AnimatedTexture.h)
 
     class AnimatedTexture
