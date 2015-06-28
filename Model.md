@@ -48,11 +48,11 @@ The **Model::Draw** functions provides a high-level, easy to use method for draw
 There are optional parameters for rendering in wireframe and to provide a custom state override callback.
 
 # Advanced drawing
-Rather than using the standard Draw, the ModelMesh::Draw method can be used on each mesh in turn listed in the Model::meshes collection. ModelMesh::Draw can be used to draw all the opaque parts or the alpha parts individually. The ModelMesh::PrepareForRendering method can be used as a helper to setup common render state, or the developer can set up the state directly before calling ModelMesh::Draw. See [[ModelMesh]] for an example.
+Rather than using the standard Draw, the ``ModelMesh::Draw`` method can be used on each mesh in turn listed in the Model::meshes collection. ``ModelMesh::Draw`` can be used to draw all the opaque parts or the alpha parts individually. The ``ModelMesh::PrepareForRendering`` method can be used as a helper to setup common render state, or the developer can set up the state directly before calling ModelMesh::Draw. See [[ModelMesh]] for an example.
 
-_ModelMesh::PrepareForRendering sets the blend state, depth stencil state, raster state, and sets a pixel shader sampler._
+_``ModelMesh::PrepareForRendering`` sets the blend state, depth stencil state, raster state, and sets a pixel shader sampler._
 
-More detailed control over rendering can be had by skipping the use of Model::Draw and ModelMesh::Draw in favor of the ModelMeshPart::Draw method. Each Model::meshes collection can be scanned for each ModelMesh::meshParts collection to enumerate all ModelMeshPart instances. For this version of draw, the ModelMeshPart::effect and ModelMeshPart::inputLayout can be used, or a custom effect override can be used instead (be sure to create the appropriate matching input layout for the custom effect beforehand using ModelMeshPart::CreateInputLayout). See [[ModelMeshPart]] for an example.
+More detailed control over rendering can be had by skipping the use of ``Model::Draw`` and ``ModelMesh::Draw`` in favor of the ``ModelMeshPart::Draw`` method. Each Model::meshes collection can be scanned for each ModelMesh::meshParts collection to enumerate all ModelMeshPart instances. For this version of draw, the ModelMeshPart::effect and ModelMeshPart::inputLayout can be used, or a custom effect override can be used instead (be sure to create the appropriate matching input layout for the custom effect beforehand using ``ModelMeshPart::CreateInputLayout``). See [[ModelMeshPart]] for an example.
 
 # Effects control
 The Model loaders create an appropriate Effects instance for each ModelMeshPart in a mesh. Generally all effects in a mesh should use the same lighting and fog settings, which is facilitated by the **Model::UpdateEffects** method. This calls back for each unique effect in the ModelMesh once.
@@ -75,9 +75,9 @@ The Model loaders create an appropriate Effects instance for each ModelMeshPart 
         }
     });
 
-It is also possible to change the Effects instance used by a given part (such as when overriding the default effect put in place from a Model loader) by calling ModelMeshPart::ModifyEffect. This will regenerate the ModelMeshPart::inputLayout appropriately.
+It is also possible to change the Effects instance used by a given part (such as when overriding the default effect put in place from a Model loader) by calling ``ModelMeshPart::ModifyEffect``. This will regenerate the ModelMeshPart::inputLayout appropriately.
 
-Be sure to call **Model::Modified** on all Model instances that reference the impacted ModelMesh instance to ensure the cache used by UpdateEffects is correctly updated. Model::Modified should also be called whenever a Model::meshes or ModelMesh::meshParts collection is modified.
+Be sure to call **Model::Modified** on all Model instances that reference the impacted ModelMesh instance to ensure the cache used by ``UpdateEffects`` is correctly updated. ``Model::Modified`` should also be called whenever a Model::meshes or ModelMesh::meshParts collection is modified.
 
 As noted above, it is also possible to render part or all of a model using a custom effect as an override, rather than changing the effect referenced by the ModelMeshPart::effect directly. See [[ModelMeshPart]] for an example.
 
