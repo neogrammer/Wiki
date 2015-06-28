@@ -297,7 +297,7 @@ The default _Max size_ of 2048 x 2048 under _Layout_ is suitable for all feature
 
 ## DDS
 
-You can optionally convert the PNG to a DDS using DirectXTex's [texconv](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476876.aspx) tool or the Visual Studio texture content processor, ideally using BC2 or BC3 for runtime compression. This will result in a larger DDS file on disk than a PNG, but will use less video memory when loaded. You would use [[DDSTextureLoader]] instead of [[WICTextureLoader]] in this case. 
+You can optionally convert the PNG to a DDS using DirectXTex's [texconv](https://github.com/Microsoft/DirectXTex/wiki/Texconv) tool or the Visual Studio texture content processor, ideally using BC2 or BC3 for runtime compression. This will result in a larger DDS file on disk than a PNG, but will use less video memory when loaded. You would use [[DDSTextureLoader]] instead of [[WICTextureLoader]] in this case. 
 
 If using DDS rather than PNG and premultiplied alpha for your blending, you should leave the **TexturePacker** _Premultiply alpha_ option unchecked and add the *-pmalpha* option to DirectXTex's **texconv** to get the premultipled alpha conversion as part of creating the DDS.
 
