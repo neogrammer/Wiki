@@ -29,7 +29,8 @@ Note: [[GeometricPrimitive]] and [[Model]] set the various state settings to rea
     auto vertexBuffer = mVertexBuffer.Get();
     UINT vertexStride = sizeof(VertexType);
     UINT vertexOffset = 0;
-    deviceContext->IASetVertexBuffers(0, 1, &vertexBuffer, &vertexStride, &vertexOffset);
+    deviceContext->IASetVertexBuffers(0, 1, &vertexBuffer,
+        &vertexStride, &vertexOffset);
 
     deviceContext->IASetIndexBuffer(mIndexBuffer.Get(), DXGI_FORMAT_R16_UINT, 0);
 
