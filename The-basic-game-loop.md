@@ -149,7 +149,8 @@ Many Direct3D functions return an ``HRESULT`` which is the standard for COM APIs
 
 The Win32 game template makes use of the helper function ``ThrowIfFailed`` in the ``DX`` C++ namespace. This is the same helper that is used by the Windows Store and Windows phone VS templates. This helper throws a C++ exception if the standard ``FAILED`` macro returns true for a given ``HRESULT``.
 
-    DX::ThrowIfFailed(m_d3dDevice->CreateTexture2D(&depthStencilDesc, nullptr, &depthStencil));
+    DX::ThrowIfFailed(m_d3dDevice->CreateTexture2D(&depthStencilDesc,
+        nullptr, &depthStencil));
 
 **Next lesson**: [[Adding the DirectX Tool Kit]]
 
