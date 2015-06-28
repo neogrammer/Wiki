@@ -153,7 +153,7 @@ The full transformation depends on the orientation setting and/or the viewport s
 # Custom clipping
 If custom clipping of the sprites is desired (such as clipping font strings), you can achieve this by first creating a custom raster state with scissor rectangle culling enabled:
 
-    ID3D11RasterizerState* scissorState;
+    ID3D11RasterizerState* scissorState = nullptr;
     CD3D11_RASTERIZER_DESC rsDesc(D3D11_FILL_SOLID, D3D11_CULL_BACK, FALSE,
         0, 0.f, 0.f, TRUE, TRUE, TRUE, FALSE);
     if (FAILED(device->CreateRasterizerState(&rsDesc, &scissorState)))
@@ -161,7 +161,8 @@ If custom clipping of the sprites is desired (such as clipping font strings), yo
 
 Then when you call ``Begin`` provide a custom callback to set the scissor rectangle:
 
-    spriteBatch->Begin(SpriteSortMode_Deferred, nullptr, nullptr, nullptr, scissorState,
+    spriteBatch->Begin(SpriteSortMode_Deferred,
+        nullptr, nullptr, nullptr, scissorState,
         [&]()
         {
             CD3D11_RECT r( /* pixel rectangle coordinates here */);
