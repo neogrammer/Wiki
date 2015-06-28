@@ -283,7 +283,7 @@ And here is some example code to render using this sprite sheet:
 
 # TexturePacker notes
 
-If you are making use of CodeAndWeb's *TexturePacker* tool, you will be writing out the sprite sheet texture as a PNG which you will be using at runtime along with the 'data file' .txt that is defined as part of the "MonoGame" project. _Note that you will not be making use of the '.cs' file TexturePacker generates as part of the "MonoGame" project type._
+If you are making use of CodeAndWeb's **TexturePacker** tool, you will be writing out the sprite sheet texture as a PNG which you will be using at runtime along with the 'data file' .txt that is defined as part of the "MonoGame" project. _Note that you will not be making use of the '.cs' file TexturePacker generates as part of the "MonoGame" project type._
 
 If you are using premultiplied alpha for your blending (the default for SpriteBatch), you should under _Texture \ show advanced_ set the _Premultiply alpha_ check box option.
 
@@ -299,7 +299,7 @@ The default _Max size_ of 2048 x 2048 under _Layout_ is suitable for all feature
 
 You can optionally convert the ``PNG`` to a ``DDS`` using DirectXTex's [texconv](https://github.com/Microsoft/DirectXTex/wiki/Texconv) tool or the Visual Studio texture content processor, ideally using BC2 or BC3 for runtime compression. This will result in a larger ``DDS`` file on disk than a ``PNG``, but will use less video memory when loaded. You would use [[DDSTextureLoader]] instead of [[WICTextureLoader]] in this case. 
 
-If using DDS rather than PNG and premultiplied alpha for your blending, you should leave the **TexturePacker** _Premultiply alpha_ option unchecked and add the *-pmalpha* option to DirectXTex's **texconv** to get the premultipled alpha conversion as part of creating the ``DDS``.
+If using ``DDS`` rather than ``PNG`` and premultiplied alpha for your blending, you should leave the **TexturePacker** _Premultiply alpha_ option unchecked and add the *-pmalpha* option to DirectXTex's **texconv** to get the premultipled alpha conversion as part of creating the ``DDS``.
 
 In most cases you won't need mipmap levels generated so specify *-m 1* when converting the ``DDS``. If you do want mipmaps levels and want to support all feature levels (i.e. Feature Levesl 9.x), then in your **TexturePacker** project under _Layout / Size constraints_ set it to "POW (Power of 2)" and do not use *-m 1*.
 
