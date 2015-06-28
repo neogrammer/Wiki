@@ -69,7 +69,7 @@ When the application first starts, execution is passed to the **Initialize** met
         */
     }
 
-One of the two functions called by Initialize is the **CreateDevice** function which sets up a Direct3D 11.0 (and optionally Direct3D 11.1) device using the maximum [Direct3D Feature Level](http://blogs.msdn.com/b/chuckw/archive/2012/06/20/direct3d-feature-levels.aspx) supported by the system which could range from 9.1 to 11.1. For Debug builds, it enables the Direct3D "Debug device" which provides additional validation and diagnostic errors (seen in the "Output" window in Visual C++ when showing output from "Debug"). The TODO here is for adding the creation of objects that depend on the ``m_d3dDevice`` or ``m_d3dContext``, but do not care about the size of the rendering window.
+One of the two functions called by Initialize is the **CreateDevice** function which sets up a Direct3D 11.0 ([and optionally Direct3D 11.1](http://blogs.msdn.com/b/chuckw/archive/2014/02/05/anatomy-of-direct3d-11-create-device.aspx)) device using the maximum [Direct3D Feature Level](http://blogs.msdn.com/b/chuckw/archive/2012/06/20/direct3d-feature-levels.aspx) supported by the system which could range from 9.1 to 11.1. For Debug builds, it enables the Direct3D "Debug device" which provides additional validation and diagnostic errors (seen in the "Output" window in Visual C++ when showing output from "Debug"). The TODO here is for adding the creation of objects that depend on the ``m_d3dDevice`` or ``m_d3dContext``, but do not care about the size of the rendering window.
 
     // These are the resources that depend on the device.
     void Game::CreateDevice()
@@ -160,6 +160,5 @@ The Win32 game template makes use of the helper function ``ThrowIfFailed`` in th
 
 # Further reading
 [Direct3D Win32 Game Visual Studio template](http://blogs.msdn.com/b/chuckw/archive/2015/01/06/direct3d-win32-game-visual-studio-template.aspx)  
-[Anatomy of Direct3D 11 Create Device](http://blogs.msdn.com/b/chuckw/archive/2014/02/05/anatomy-of-direct3d-11-create-device.aspx)  
 [Manifest Madness](http://blogs.msdn.com/b/chuckw/archive/2013/09/10/manifest-madness.aspx)  
 [64-bit programming for Game Developers](http://msdn.microsoft.com/en-us/library/windows/desktop/ee418798.aspx)
