@@ -14,7 +14,8 @@ _SpriteFont is particularly useful for the Windows phone 8.0 and Xbox One XDK pl
 The SpriteFont class requires a [[SpriteBatch]] instance and a ``.spritefont`` bitmap file.
 
     std::unique_ptr<SpriteBatch> spriteBatch(new SpriteBatch(deviceContext));
-    std::unique_ptr<SpriteFont> spriteFont(new SpriteFont(device, L"myfile.spritefont"));
+    std::unique_ptr<SpriteFont> spriteFont(new SpriteFont(device,
+        L"myfile.spritefont"));
 
 For exception safety, it is recommended you make use of the C++ RAII pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
