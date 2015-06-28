@@ -240,6 +240,6 @@ _In ``Common\DeviceResources.h``, you need to make ``ComputeDisplayRotation`` a 
 
 # Further reading
 [ShawnHar's blog on SpriteBatch](http://www.shawnhargreaves.com/blogindex.html#spritebatch)  
-[ShawnHar's blog on Premultiplied Alpha](http://www.shawnhargreaves.com/blogindex.html#[ShawnHar's blog on SpriteBatch](url:http://www.shawnhargreaves.com/blogindex.html#spritebatch)  )  
+[ShawnHar's blog on Premultiplied Alpha](http://www.shawnhargreaves.com/blogindex.html#premultipliedalpha)  )  
 [SpriteBatch and renderstates in XNA Game Studio 4.0](http://blogs.msdn.com/b/shawnhar/archive/2010/06/18/spritebatch-and-renderstates-in-xna-game-studio-4-0.aspx)  
 
