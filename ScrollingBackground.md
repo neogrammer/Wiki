@@ -68,18 +68,21 @@ This is an example of a C++ port of the C# [XNA Game Studio sample](https://msdn
             if ( mScreenPos.y < mScreenHeight )
             {
                 batch->Draw( mTexture.Get(), screenPos, nullptr,
-                             Colors::White, 0.f, origin, g_XMOne, SpriteEffects_None, 0.f );
+                             Colors::White, 0.f, origin, g_XMOne,
+                             SpriteEffects_None, 0.f );
             }
 
             XMVECTOR textureSize = XMLoadFloat2( &mTextureSize );
 
             batch->Draw( mTexture.Get(), screenPos - textureSize, nullptr,
-                         Colors::White, 0.f, origin, g_XMOne, SpriteEffects_None, 0.f );
+                         Colors::White, 0.f, origin, g_XMOne,
+                         SpriteEffects_None, 0.f );
 
             if ( mTextureHeight < mScreenHeight )
             {
                 batch->Draw( mTexture.Get(), screenPos + textureSize, nullptr,
-                             Colors::White, 0.f, origin, g_XMOne, SpriteEffects_None, 0.f );
+                             Colors::White, 0.f, origin, g_XMOne,
+                             SpriteEffects_None, 0.f );
             }
         }
 
