@@ -79,7 +79,7 @@ One of the two functions called by Initialize is the **CreateDevice** function w
         // TODO: Initialize device dependent objects here (independent of window size)
     }
 
-The other function called by Initialize is the **CreateResources** function which sets up the swapchain (which defaults to a ``B8G8R8A8_UNORM`` format), depth buffer (which defaults to ``D24_UNORM_S8_UINT`` which works on all Direct3D feature levels), and rendering viewport. The TODO here is for adding the creation of objects that depend on the size of the rendering window. Note that this function could be creating these objects for the first time, it could be re-creating already existing objects due to a window-size change, or could be creating 'fresh' objects after a Direct3D device-removed or device-reset case.
+The other function called by Initialize is the **CreateResources** function which sets up the swapchain (which defaults to a ``B8G8R8A8_UNORM`` format), and depth buffer (which defaults to ``D24_UNORM_S8_UINT`` which works on all Direct3D feature levels). The TODO here is for adding the creation of objects that depend on the size of the rendering window. Note that this function could be creating these objects for the first time, it could be re-creating already existing objects due to a window-size change, or could be creating 'fresh' objects after a Direct3D device-removed or device-reset case.
 
     void Game::CreateResources()
     {
@@ -100,7 +100,7 @@ If in the Initialize method above you uncomment the TODO code, then each Update 
         elapsedTime;
     }
 
-The **Render** function which should render a single 'frame' of the scene, which ends with a Present of the rendered frame.
+The **Render** function which should render a single 'frame' of the scene, which starts by setting the rendering viewport and then ends with a Present of the rendered frame.
 
     void Game::Render()
     {
@@ -108,16 +108,18 @@ The **Render** function which should render a single 'frame' of the scene, which
         if (m_timer.GetFrameCount() == 0)
             return;
 
+        Clear();
+
         CD3D11_VIEWPORT viewPort(0.0f, 0.0f,
             static_cast<float>(m_outputWidth), static_cast<float>(m_outputHeight));
         m_d3dContext->RSSetViewports(1, &viewPort);
-
-        Clear();
 
         // TODO: Add your rendering code here
 
         Present();
     }
+
+_Note: In the older version of the template, the viewport was set in ``CreateResources`` and assumed to stay set for the remainder of the program execution or until the window was resized. This approach is outdated, however, as the viewport could be overwritten or cleared by ``ClearState``. When dealing with deferred contexts, Xbox One fast semantics, or the Direct3D 12 API, assumptions of device state persisting from frame-to-frame without being reset is a likely source of rendering bugs. Therefore, this template uses the best practice of resetting the viewport state at the start of each frame._
 
 The **Clear** function defaults to a background color of the classic "Cornflower blue".
 
