@@ -287,7 +287,7 @@ If you are making use of CodeAndWeb's *TexturePacker* tool, you will be writing 
 
 If you are using premultiplied alpha for your blending (the default for SpriteBatch), you should under _Texture \ show advanced_ set the _Premultiply alpha_ check box option.
 
-The default _Pixel format_ of RGBA8888 is suitable for all feature levels, and will be loaded at runtime as ``DXGI_FORMAT_B8G8R8A8_UNORM``. Due to limitations of the [built-in Windows PNG codec](http://msdn.microsoft.com/en-us/library/windows/desktop/ee719797.aspx#png__native_codec), using other pixel formats does not reduce video memory usage; only disk space usage. For more flexible control over pixel format at runtime, you should convert to a DDS  instead (see below).
+The default _Pixel format_ of RGBA8888 is suitable for all feature levels, and will be loaded at runtime as ``DXGI_FORMAT_B8G8R8A8_UNORM``. Due to limitations of the [built-in Windows PNG codec](http://msdn.microsoft.com/en-us/library/windows/desktop/ee719797.aspx#png__native_codec), using other pixel formats does not reduce video memory usage; only disk space usage. For more flexible control over pixel format at runtime, you should convert to a ``.DDS`` instead (see below).
 
 The default _Max size_ of 2048 x 2048 under _Layout_ is suitable for all feature levels. If your _minimum_ supported feature level is not 9.1 or 9.2, you can set it higher to make use of larger supported texture sizes for more efficient packing.
 * Feature Level 9.1, 9.2 -> 2048 x 2048
@@ -297,13 +297,13 @@ The default _Max size_ of 2048 x 2048 under _Layout_ is suitable for all feature
 
 ## DDS
 
-You can optionally convert the PNG to a DDS using DirectXTex's [texconv](https://github.com/Microsoft/DirectXTex/wiki/Texconv) tool or the Visual Studio texture content processor, ideally using BC2 or BC3 for runtime compression. This will result in a larger DDS file on disk than a PNG, but will use less video memory when loaded. You would use [[DDSTextureLoader]] instead of [[WICTextureLoader]] in this case. 
+You can optionally convert the ``PNG`` to a ``DDS`` using DirectXTex's [texconv](https://github.com/Microsoft/DirectXTex/wiki/Texconv) tool or the Visual Studio texture content processor, ideally using BC2 or BC3 for runtime compression. This will result in a larger ``DDS`` file on disk than a ``PNG``, but will use less video memory when loaded. You would use [[DDSTextureLoader]] instead of [[WICTextureLoader]] in this case. 
 
-If using DDS rather than PNG and premultiplied alpha for your blending, you should leave the **TexturePacker** _Premultiply alpha_ option unchecked and add the *-pmalpha* option to DirectXTex's **texconv** to get the premultipled alpha conversion as part of creating the DDS.
+If using DDS rather than PNG and premultiplied alpha for your blending, you should leave the **TexturePacker** _Premultiply alpha_ option unchecked and add the *-pmalpha* option to DirectXTex's **texconv** to get the premultipled alpha conversion as part of creating the ``DDS``.
 
-In most cases you won't need mipmap levels generated so specify *-m 1* when converting the DDS. If you do want mipmaps levels and want to support all feature levels (i.e. Feature Levesl 9.x), then in your **TexturePacker** project under _Layout / Size constraints_ set it to "POW (Power of 2)" and do not use *-m 1*.
+In most cases you won't need mipmap levels generated so specify *-m 1* when converting the ``DDS``. If you do want mipmaps levels and want to support all feature levels (i.e. Feature Levesl 9.x), then in your **TexturePacker** project under _Layout / Size constraints_ set it to "POW (Power of 2)" and do not use *-m 1*.
 
-Open a [Command Prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq), and change to the directory containing Texconv.exe (i.e. ...\DirectXTex\Texconv\Release)
+Open a [Command Prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq), and change to the directory containing Texconv.exe (i.e. ``...\DirectXTex\Texconv\Release``)
 
 Enter the following command-line after changing to the appropriate directory:
 
