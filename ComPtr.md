@@ -92,3 +92,8 @@ If you wish to release a reference from a particular ComPtr, you can use **Reset
     ...
     
     d3dDebug.Reset();
+
+# Platform notes
+The bulk of the Windows Runtime Template Library (WRL) is intended to make it easier to use the new WinRT style APIs introduced with Windows Store and the universal Windows app platform. It is a pure C++ template library and does not make use of the C++/CX language extensions. You can, however, mix usage of the two easily and most C++/CX programs will use at least ``Microsoft::WRL::ComPtr`` for managing COM objects for non-WinRT APIs such as Direct3D.
+
+Because WRL is a pure C++ template library, it has no particular platform support requirements beyond being in the Windows 8.x or Windows 10 SDKs. You can therefore freely use it in Windows desktop applications built for Windows Vista, Windows 7, Windows 8.x, or Windows 10 as well as in Windows Store, Windows phone, Xbox One, and universal Windows apps.
