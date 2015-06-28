@@ -48,7 +48,7 @@ The **Model::Draw** functions provides a high-level, easy to use method for draw
 There are optional parameters for rendering in wireframe and to provide a custom state override callback.
 
 # Advanced drawing
-Rather than using the standard Draw, the ``ModelMesh::Draw`` method can be used on each mesh in turn listed in the Model::meshes collection. ``ModelMesh::Draw`` can be used to draw all the opaque parts or the alpha parts individually. The ``ModelMesh::PrepareForRendering`` method can be used as a helper to setup common render state, or the developer can set up the state directly before calling ModelMesh::Draw. See [[ModelMesh]] for an example.
+Rather than using the standard Draw, the ``ModelMesh::Draw`` method can be used on each mesh in turn listed in the Model::meshes collection. ``ModelMesh::Draw`` can be used to draw all the opaque parts or the alpha parts individually. The ``ModelMesh::PrepareForRendering`` method can be used as a helper to setup common render state, or the developer can set up the state directly before calling ``ModelMesh::Draw``. See [[ModelMesh]] for an example.
 
 _``ModelMesh::PrepareForRendering`` sets the blend state, depth stencil state, raster state, and sets a pixel shader sampler._
 
