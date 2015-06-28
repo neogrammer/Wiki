@@ -109,7 +109,8 @@ Here's an example using [[Effects]].
 
     ...
 
-    spriteBatch->Begin(SpriteSortMode_Deferred, nullptr, nullptr, nullptr, nullptr, [=]
+    spriteBatch->Begin(SpriteSortMode_Deferred,
+        nullptr, nullptr, nullptr, nullptr, [=]
     {
         effect->Apply( deviceContext );
         deviceContext->IASetInputLayout( pInputLayout );
