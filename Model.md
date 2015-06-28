@@ -14,7 +14,7 @@ Each [[ModelMeshPart]] references an index buffer, a vertex buffer, an input lay
     #include <Model.h>
 
 # Initialization
-Model instances can be loaded from either ``.CMO``, ``.SDKMESH``, or ``.VBO`` files, or from custom file formats. The Model loaders take an [[IEffectFactory|EffectFactory]] instance to facilitate the sharing of [[Effects]] and textures between models. The default [[EffectFactory]] always returns built-in _BasicEffect_ instances. The [[DGSLEffectFactory|EffectFactory]] can be used with ``.CMO`` files to load Visual Studio Shader Designer (DGSL) shaders through _DGLSEffect_ instances.
+Model instances can be loaded from either ``.CMO``, ``.SDKMESH``, or ``.VBO`` files, or from custom file formats. The Model loaders take an [[IEffectFactory|EffectFactory]] instance to facilitate the sharing of Effects and textures between models. The default _EffectFactory_ always returns built-in _BasicEffect_, _SkinnedEffect_, or _DualTextureEffect_ instances. The _DGSLEffectFactory_ can be used with ``.CMO`` files to load Visual Studio Shader Designer (DGSL) shaders through _DGLSEffect_ instances.
 
 Visual Studio 2012 or later include a built-in content pipeline that can generate ``.CMO`` files from an Autodesk ``.FBX``, as well as ``.DDS`` texture files from various bitmap image formats, as part of the build process. See the Visual Studio 3D Starter Kit for details ([Windows 8.1](http://aka.ms/vs3dkitwin), [Windows 8.0](http://aka.ms/vs3dkitwin80)).
 
@@ -48,11 +48,11 @@ The **Model::Draw** functions provides a high-level, easy to use method for draw
 There are optional parameters for rendering in wireframe and to provide a custom state override callback.
 
 # Advanced drawing
-Rather than using the standard Draw, the ``ModelMesh::Draw`` method can be used on each mesh in turn listed in the Model::meshes collection. ``ModelMesh::Draw`` can be used to draw all the opaque parts or the alpha parts individually. The ``ModelMesh::PrepareForRendering`` method can be used as a helper to setup common render state, or the developer can set up the state directly before calling ``ModelMesh::Draw``. See [[ModelMesh]] for an example.
+Rather than using the standard Draw, the ``ModelMesh::Draw`` method can be used on each mesh in turn listed in the _Model::meshes_ collection. ``ModelMesh::Draw`` can be used to draw all the opaque parts or the alpha parts individually. The ``ModelMesh::PrepareForRendering`` method can be used as a helper to setup common render state, or the developer can set up the state directly before calling ``ModelMesh::Draw``. See [[ModelMesh]] for an example.
 
 _``ModelMesh::PrepareForRendering`` sets the blend state, depth stencil state, raster state, and sets a pixel shader sampler._
 
-More detailed control over rendering can be had by skipping the use of ``Model::Draw`` and ``ModelMesh::Draw`` in favor of the ``ModelMeshPart::Draw`` method. Each Model::meshes collection can be scanned for each ModelMesh::meshParts collection to enumerate all ModelMeshPart instances. For this version of draw, the ModelMeshPart::effect and ModelMeshPart::inputLayout can be used, or a custom effect override can be used instead (be sure to create the appropriate matching input layout for the custom effect beforehand using ``ModelMeshPart::CreateInputLayout``). See [[ModelMeshPart]] for an example.
+More detailed control over rendering can be had by skipping the use of ``Model::Draw`` and ``ModelMesh::Draw`` in favor of the ``ModelMeshPart::Draw`` method. Each _Model::meshes_ collection can be scanned for each _ModelMesh::meshParts_ collection to enumerate all ModelMeshPart instances. For this version of draw, the _ModelMeshPart::effect_ and _ModelMeshPart::inputLayout_ can be used, or a custom effect override can be used instead (be sure to create the appropriate matching input layout for the custom effect beforehand using ``ModelMeshPart::CreateInputLayout``). See [[ModelMeshPart]] for an example.
 
 # Effects control
 The Model loaders create an appropriate Effects instance for each ModelMeshPart in a mesh. Generally all effects in a mesh should use the same lighting and fog settings, which is facilitated by the **Model::UpdateEffects** method. This calls back for each unique effect in the ModelMesh once.
@@ -75,19 +75,19 @@ The Model loaders create an appropriate Effects instance for each ModelMeshPart 
         }
     });
 
-It is also possible to change the Effects instance used by a given part (such as when overriding the default effect put in place from a Model loader) by calling ``ModelMeshPart::ModifyEffect``. This will regenerate the ModelMeshPart::inputLayout appropriately.
+It is also possible to change the Effects instance used by a given part (such as when overriding the default effect put in place from a Model loader) by calling ``ModelMeshPart::ModifyEffect``. This will regenerate the _ModelMeshPart::inputLayout_ appropriately.
 
-Be sure to call **Model::Modified** on all Model instances that reference the impacted ModelMesh instance to ensure the cache used by ``UpdateEffects`` is correctly updated. ``Model::Modified`` should also be called whenever a Model::meshes or ModelMesh::meshParts collection is modified.
+Be sure to call **Model::Modified** on all Model instances that reference the impacted ModelMesh instance to ensure the cache used by ``UpdateEffects`` is correctly updated. ``Model::Modified`` should also be called whenever a Model::meshes or _ModelMesh::meshParts_ collection is modified.
 
-As noted above, it is also possible to render part or all of a model using a custom effect as an override, rather than changing the effect referenced by the ModelMeshPart::effect directly. See [[ModelMeshPart]] for an example.
+As noted above, it is also possible to render part or all of a model using a custom effect as an override, rather than changing the effect referenced by the _ModelMeshPart::effect_ directly. See [[ModelMeshPart]] for an example.
 
 # Alpha blending
-Proper drawing of alpha-blended models can be a complicated procedure. Each ModelMeshPart has a bool value to indicate if the associated part is fully opaque (``isAlpha`` is false), or has some level of alpha transparency (isAlpha is true). The Model::Draw routine handles some basic logic for the rendering, first rendering the opaque parts, then rendering the alpha parts.  More detailed control is provided by the ModelMesh::Draw method which can be used to draw all opaque parts of all meshes first, then go back and draw all alpha parts of all meshes second. See [[ModelMesh]] for an example.
+Proper drawing of alpha-blended models can be a complicated procedure. Each ModelMeshPart has a bool value to indicate if the associated part is fully opaque (_isAlpha_ is false), or has some level of alpha transparency (_isAlpha_ is true). The ``Model::Draw`` routine handles some basic logic for the rendering, first rendering the opaque parts, then rendering the alpha parts.  More detailed control is provided by the ``ModelMesh::Draw`` method which can be used to draw all opaque parts of all meshes first, then go back and draw all alpha parts of all meshes second. See [[ModelMesh]] for an example.
 
-To indicate the use of ‘straight’ alpha vs. ‘premultiplied’ alpha blending modes, ModelMesh::pmalpha is set by the various loaders functions controlled by a default parameter (which defaults false to indicate the texture files are using 'straight' alpha). If you make use of DirectXTex's texconv tool with the ``-pmalpha`` switch, you should use ``pmalpha=true`` instead.
+To indicate the use of ‘straight’ alpha vs. ‘premultiplied’ alpha blending modes, _ModelMesh::pmalpha_ is set by the various loaders functions controlled by a default parameter (which defaults false to indicate the texture files are using 'straight' alpha). If you make use of DirectXTex's [texconv](https://github.com/Microsoft/DirectXTex/wiki/Texconv) tool with the ``-pmalpha`` switch, you should use _pmalpha=true_ instead.
 
 # Custom render states
-All the various Draw method provide a ``setCustomState`` callback which can be used to change the state just before the geometry is drawn.
+All the various ``Draw`` method provide a _setCustomState_ callback which can be used to change the state just before the geometry is drawn.
 
     tiny->Draw( context, states, local, view, projection, false, [&]()
     {
@@ -98,7 +98,7 @@ All the various Draw method provide a ``setCustomState`` callback which can be u
 # Coordinate systems
 Meshes are authored in a specific winding order, typically using the standard counter-clockwise winding common in graphics. The choice of viewing handedness (right-handed vs. left-handed coordinates) is largely a matter of preference and convenience, but it impacts how the models are built and/or exported.
 
-The Visual Studio 3D Starter Kit’s ``.CMO`` files assume the developer is using right-handed coordinates. DirectXTK’s default parameters assume you are using right-handed coordinates as well, so the ccw_ parameter defaults to true. If using a ``.CMO`` with left-handed coordinates, you should pass false for the _ccw_ parameter which will use clockwise winding instead. This makes the geometry visible, but could make textures on the model appear ‘flipped’ in U.
+The Visual Studio 3D Starter Kit’s ``.CMO`` files assume the developer is using right-handed coordinates. DirectXTK’s default parameters assume you are using right-handed coordinates as well, so the _ccw_ parameter defaults to true. If using a ``.CMO`` with left-handed coordinates, you should pass false for the _ccw_ parameter which will use clockwise winding instead. This makes the geometry visible, but could make textures on the model appear ‘flipped’ in U.
 
     // When using LH coordinates
     auto teapot = Model::CreateFromCMO( device, L"teapot.cmo", fx, false );
