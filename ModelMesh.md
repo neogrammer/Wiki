@@ -9,7 +9,7 @@ Note that Model uses a collection of ``std::shared_ptr`` instances to ModelMesh 
 ModelMesh instances are typically created by a Model loader along with the ModelMeshPart instances that make up the mesh.
 
 # Simple drawing
-Use the ``Model::Draw`` function which will call **ModelMesh::Draw** on all the meshes it contains.
+Use the ``Model::Draw`` function which will call **ModelMesh::Draw** on all the meshes it contains. See [[Model]] for an example.
 
 # Advanced drawing
 The **ModelMesh::Draw** method draws the mesh in two passes. In the first pass, all 'opaque' ModelMeshPart instances are drawn (i.e. _ModelMeshPart::isAlpha_ is false), and in the second pass all 'alpha' instances are drawn (i.e. _ModelMeshPart::isAlpha_ is true).
