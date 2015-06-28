@@ -25,6 +25,7 @@ For learning purposes, these instructions are going to focus on the following se
 
 * Visual Studio 2013 Community, Professional, Premium, or Ultimate (Update 4)
 * Windows 7 or Windows 8.x
+
 We will be using a Win32 desktop application project template in order to support developers using Windows 7, but all these techniques and APIs apply to universal Windows apps, Windows Store apps, Windows phone 8.x, and Xbox One as well.
 
 # Tutorials
