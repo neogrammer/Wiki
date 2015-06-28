@@ -146,7 +146,7 @@ Since we are using [[ComPtr]], most cleanup is automatic when the Game class is 
     }
 
 # Smart-pointer
-We make use of the ``Microsoft::WRL::ComPtr`` smart-pointer for managing the lifetime of the Direct3D 11 COM objects, which is why we make use of ".Get()" in the code above. See [[ComPtr]] for more information and usage.
+We make use of the ``Microsoft::WRL::ComPtr`` smart-pointer for managing the lifetime of the Direct3D 11 COM objects, which is why we make use of ``.Get()`` in the code above. See [[ComPtr]] for more information and usage.
 
 # Error handling
 Many Direct3D functions return an ``HRESULT`` which is the standard for COM APIs. For robustness and easier debugging, it is important that you always check the result of every function that return an ``HRESULT``. If you really can safely assume there is no error condition for a particular function, the function itself will return ``void`` instead of ``HRESULT``.
