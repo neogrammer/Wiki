@@ -1,4 +1,4 @@
-AudioListener is a helper object derived from [X3DAUDIO_LISTENER](http://msdn.microsoft.com/en-us/library/windows/desktop/microsoft.directx_sdk.x3daudio.x3daudio_listener.aspx) used by [[SoundEffectInstance]]'s **Apply3D** method.
+AudioListener is a helper object derived from [X3DAUDIO_LISTENER](http://msdn.microsoft.com/en-us/library/windows/desktop/microsoft.directx_sdk.x3daudio.x3daudio_listener.aspx) used by [[SoundEffectInstance]]'s / [[DynamicSoundEffectInstance]] **Apply3D** method.
 
 See [[AudioEmitter]].
 
