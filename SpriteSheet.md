@@ -224,9 +224,9 @@ _You can change this code to work with other sprite sheet creation tools by modi
 
 This example uses a sprite sheet created from the content in the original C# XNA Game Studio [SpriteSheetSample](http://xbox.create.msdn.com/en-US/education/catalog/sample/sprite_sheet).
 
-The resulting sprite sheet is ``spritesheetsample.png``
+The resulting sprite sheet is [SpriteSheetSample.png]((https://github.com/Microsoft/DirectXTK/wiki/images/SpriteSheetSample.png)
 
-![Sprite Sheet](https://github.com/Microsoft/DirectXTK/wiki/images/spritesheetsample.png)
+![Sprite Sheet](https://github.com/Microsoft/DirectXTK/wiki/images/SpriteSheetSample.png)
 
 and the resulting metadata [SpriteSheetSample.txt](https://github.com/Microsoft/DirectXTK/wiki/SpriteSheetSample.txt)
 
@@ -257,7 +257,9 @@ And here is some example code to render using this sprite sheet:
 
     // Create a texture using our sprite sheet
     Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> texture;
-    hr = CreateWICTextureFromFile( device, L"SpriteSheetSample.png", nullptr, texture.GetAddressOf() );
+    hr = CreateWICTextureFromFile( device, L"SpriteSheetSample.png",
+        nullptr, texture.GetAddressOf() );
+    DX::ThrowIfFailed(hr);
 
     ...
 
