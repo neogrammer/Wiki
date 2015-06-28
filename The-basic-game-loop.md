@@ -47,7 +47,7 @@ _Troubleshooting:_ If the base template fails to start, there are a few possibil
 # Tour of the code
 For now, we'll focus on the content of ``Game.cpp`` (which is open by default).
 
-When the application first starts, execution is passed to the **Initialize** method. The TODO here by default leaves the applications StepTimer in the 'variable length' mode. You uncomment the code if you want StepTimer in the 'fixed-step' mode. We'll explain this more once we get to Update.
+When the application first starts, execution is passed to the **Initialize** method. The TODO here by default leaves the applications [StepTimer](http://blogs.msdn.com/b/chuckw/archive/2014/12/03/understanding-game-time-revisited.aspx) in the 'variable length' mode. You uncomment the code if you want StepTimer in the 'fixed-step' mode. We'll explain this more once we get to Update.
 
     // Initialize the Direct3D resources required to run.
     void Game::Initialize(HWND window, int width, int height)
@@ -162,7 +162,5 @@ The Win32 game template makes use of the helper function ``ThrowIfFailed`` in th
 [Direct3D Win32 Game Visual Studio template](http://blogs.msdn.com/b/chuckw/archive/2015/01/06/direct3d-win32-game-visual-studio-template.aspx)  
 [Anatomy of Direct3D 11 Create Device](http://blogs.msdn.com/b/chuckw/archive/2014/02/05/anatomy-of-direct3d-11-create-device.aspx)  
 [Direct3D Feature Levels](http://blogs.msdn.com/b/chuckw/archive/2012/06/20/direct3d-feature-levels.aspx)  
-[Understanding Game Time Revisited](http://blogs.msdn.com/b/chuckw/archive/2014/12/03/understanding-game-time-revisited.aspx)  
-[Direct3D SDK Debug Layer Tricks](http://blogs.msdn.com/b/chuckw/archive/2012/11/30/direct3d-sdk-debug-layer-tricks.aspx)  
 [Manifest Madness](http://blogs.msdn.com/b/chuckw/archive/2013/09/10/manifest-madness.aspx)  
 [64-bit programming for Game Developers](http://msdn.microsoft.com/en-us/library/windows/desktop/ee418798.aspx)
