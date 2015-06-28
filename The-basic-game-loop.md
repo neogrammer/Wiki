@@ -100,7 +100,7 @@ If in the Initialize method above you uncomment the TODO code, then each Update 
         elapsedTime;
     }
 
-The **Render** function which should render a single 'frame' of the scene, which starts by setting the rendering viewport and then ends with a Present of the rendered frame.
+The **Render** function which should render a single 'frame' of the scene, which starts by a Clear of the render targeting and setting the rendering viewport, then ends with a Present of the rendered frame.
 
     void Game::Render()
     {
@@ -133,6 +133,8 @@ The **Clear** function defaults to a background color of the classic "Cornflower
         m_d3dContext->OMSetRenderTargets(1, m_renderTargetView.GetAddressOf(),
             m_depthStencilView.Get());
     }
+
+_Note: For Xbox One fast semantics, it is important to set the render targets at the end of Clear because clearing the render target unbinds it from the render pipeline. So again, the template is demonstrating best practice._
 
 Since we are using [[ComPtr]], most cleanup is automatic when the Game class is destroyed. If Present encounters a device-removed or device-reset (most commonly the driver crashed or was updated), then the application needs to release all Direct3D objects and recreate the device, swapchain, and all Direct3D objects again. Therefore, the TODO in **OnDeviceLost** should be updated to release your application's Direct3D objects.
 
