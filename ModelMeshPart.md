@@ -98,10 +98,12 @@ If the effect instance is changed, the _inputLayout_ must be updated as well. Fu
 
     ModelMeshPart* part = ...
 
-    // This will regenerate the inputLayout and needs to indicate if newEffect is alpha-blended or not
+    // This will regenerate the inputLayout and needs to indicate
+    // if newEffect is alpha-blended or not
     part->ModifyEffect( device.Get(), newEffect, false );
 
-    // part comes from a Model instance 'model' and we assume it's not shared by another Model instance here
+    // part comes from a Model instance 'model' and we assume it's
+    // not shared by another Model instance here
     model->Modified();
 
 # Optimization
