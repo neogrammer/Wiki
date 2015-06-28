@@ -24,11 +24,12 @@ _You can change this code to work with other sprite sheet creation tools by modi
             if (szFileName)
             {
                 //
-                // This code parses the 'MonoGame' project txt file that is produced by
-                // CodeAndWeb's TexturePacker.
+                // This code parses the 'MonoGame' project txt file that is produced
+                // by CodeAndWeb's TexturePacker.
                 // https://www.codeandweb.com/texturepacker
                 //
-                // You can modify it to match whatever sprite-sheet tool you are using
+                // You can modify it to match whatever sprite-sheet tool you are
+                // using
                 //
 
                 std::wifstream inFile( szFileName );
@@ -164,14 +165,17 @@ _You can change this code to work with other sprite sheet creation tools by modi
             switch (effects)
             {
             case SpriteEffects_FlipHorizontally:
-                    origin.x = frame.sourceRect.right - frame.sourceRect.left - origin.x;
+                    origin.x = frame.sourceRect.right
+                        - frame.sourceRect.left - origin.x;
                     break;
             case SpriteEffects_FlipVertically:
-                    origin.y = frame.sourceRect.bottom - frame.sourceRect.top - origin.y;
+                    origin.y = frame.sourceRect.bottom
+                        - frame.sourceRect.top - origin.y;
                     break;
             }
 
-            batch->Draw(mTexture.Get(), position, &frame.sourceRect, color, rotation,
+            batch->Draw(mTexture.Get(), position, &frame.sourceRect,
+                    color, rotation,
                     origin, scale, effects, layerDepth );
         }
 
