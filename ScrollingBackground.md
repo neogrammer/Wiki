@@ -108,7 +108,9 @@ Displays a top-to-bottom scrolling background of a starfield ([starfield..dds](h
 
     // Create a texture for the background
     Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> space;
-    hr = CreateDDSTextureFromFile( device, L"starfield.dds", nullptr, space.GetAddressOf() );
+    hr = CreateDDSTextureFromFile( device, L"starfield.dds", nullptr,
+        space.GetAddressOf() );
+    DX::ThrowIfFailed(hr);
 
     ...
 
