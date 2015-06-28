@@ -58,6 +58,8 @@ There is no special handling for the bell character (``\a`` - ASCII character 7)
 
 This implementation supports sparse fonts, so if you are localizing into languages such as Chinese, Japanese, or Korean, you can build a ``.spritefont`` including only the specific characters needed by your program. This is usually a good idea for CJK languages, as a complete CJK character set is too large to fit in a Direct3D texture! If you need full CJK support, DrectWrite would be a better choice if available on your target platform. SpriteFont does not support combining characters or right-to-left (RTL) layout, so it will not work for languages with complex layout requirements such as Arabic or Thai.
 
+_Note: This XNA Game Studio article [How to: Create a Localized Game](https://msdn.microsoft.com/en-us/library/ff966426.aspx) describes how to use the C# content pipeline to scan the game's strings and create a font from it. You have to use a different solution for DirectX Tool Kit but the idea is the same._
+
 # ASCII
 The default character region for [[MakeSpriteFont]] from 32 to 127 covers the standard 7-bit [ASCII](http://ascii-table.com/ascii.php) range. For example, here is a C++ Unicode string for the printable characters (this would be an ASCII string if you remove the L prefix).
 
@@ -91,7 +93,7 @@ For example, here is a C++ Unicode string with the full extended ASCII IBM PC ch
     00B5\x03C4\x03A6\x0398\x03A9\x03B4\x221E\x03C6\x03B5\x2229\x2261\x00B1\x2265\x22
     64\x2320\x2321\x00F7\x2248\x00B0\x2219\x00B7\x221A\x207F\x00B2\x25A0\x00A0"
 
-_Xbox One exclusive apps MultiByteToWideChar does not support codepage 437._
+_The Xbox One exclusive apps version of MultiByteToWideChar does not support code page 437._
 
 # Feature Levels
 
