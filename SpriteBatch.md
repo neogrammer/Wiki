@@ -214,10 +214,18 @@ Using the DirectX starting template, you will want to add to your ``CreateWindow
     DXGI_MODE_ROTATION rotation = DXGI_MODE_ROTATION_UNSPECIFIED;
     switch (m_orientation)
     {
-    case DisplayOrientations::Landscape: rotation = DXGI_MODE_ROTATION_IDENTITY;  break;
-    case DisplayOrientations::Portrait: rotation = DXGI_MODE_ROTATION_ROTATE270; break;
-    case DisplayOrientations::LandscapeFlipped: rotation = DXGI_MODE_ROTATION_ROTATE180; break;
-    case DisplayOrientations::PortraitFlipped: rotation = DXGI_MODE_ROTATION_ROTATE90; break;
+    case DisplayOrientations::Landscape:
+        rotation = DXGI_MODE_ROTATION_IDENTITY;
+        break;
+    case DisplayOrientations::Portrait:
+        rotation = DXGI_MODE_ROTATION_ROTATE270;
+        break;
+    case DisplayOrientations::LandscapeFlipped:
+        rotation = DXGI_MODE_ROTATION_ROTATE180;
+        break;
+    case DisplayOrientations::PortraitFlipped:
+        rotation = DXGI_MODE_ROTATION_ROTATE90;
+        break;
     }
     spriteBatch->SetRotation( rotation );
 
@@ -227,10 +235,18 @@ For Windows phone 8.0 applications, you do something very similar to Windows Sto
     DXGI_MODE_ROTATION rotation = DXGI_MODE_ROTATION_UNSPECIFIED;
     switch (m_orientation)
     {
-    case DisplayOrientations::Portrait: rotation = DXGI_MODE_ROTATION_IDENTITY;  break;
-    case DisplayOrientations::Landscape: rotation = DXGI_MODE_ROTATION_ROTATE90; break;
-    case DisplayOrientations::PortraitFlipped: rotation = DXGI_MODE_ROTATION_ROTATE180; break;
-    case DisplayOrientations::LandscapeFlipped: rotation = DXGI_MODE_ROTATION_ROTATE270; break;
+    case DisplayOrientations::Portrait:
+        rotation = DXGI_MODE_ROTATION_IDENTITY;
+        break;
+    case DisplayOrientations::Landscape:
+        rotation = DXGI_MODE_ROTATION_ROTATE90;
+        break;
+    case DisplayOrientations::PortraitFlipped:
+        rotation = DXGI_MODE_ROTATION_ROTATE180;
+        break;
+    case DisplayOrientations::LandscapeFlipped:
+        rotation = DXGI_MODE_ROTATION_ROTATE270;
+        break;
     }
     spriteBatch->SetRotation( rotation );
 
