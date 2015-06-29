@@ -165,7 +165,7 @@ The _player_ index mapping is not correlated directly with a user as it is on Xb
 The GamePad object can be created and used on Windows Phone, but it will always report no devices connected. The original XNA 4 API would report the Windows Phone hardware back button as ``Buttons.Back``, but this implementation does not do this as the information about the hardware button is communicated through ``ICoreWindows`` messages.
 
 ## Universal Windows app Platform (UWP)
-When built for Windows 10, the GamePad class is implemented using a new WinRT GamePad class similar to the Xbox One API. Here are a few notes:
+When built for Windows 10, the GamePad class is implemented using a new WinRT ``Windows.Gaming.Input`` API similar to the Xbox One API. Here are a few notes:
 
 * Full support for ``leftTrigger`` and ``rightTrigger`` motors for the Xbox One controller on Windows.
 * ``MAX_PLAYER_COUNT`` is 8 rather than 4
