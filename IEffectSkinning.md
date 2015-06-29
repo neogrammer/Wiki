@@ -1,6 +1,6 @@
 This abstract interface controls skinning animation typically communicated to the shader via a dynamic constant buffer. Settings for this interface can influence the choice of shader permutation. This interface is implemented by _DGSLEffect_ and _SkinnedEffect_.
 
-Effects that implement this interface typically require BLENDINDICES and BLENDWEIGHT semantic data in the vertex input layout.
+Effects that implement this interface typically require ``BLENDINDICES`` and ``BLENDWEIGHT`` semantic data in the vertex input layout.
 
 # Obtaining the interface
 There are two methods used in _DirectX Tool Kit_. For simple cases, just maintain a reference directly to the desired effect class:
@@ -48,7 +48,7 @@ Note that the maximum bone count must be <= _MaxBones_ (72).
 
 You can call **ResetBoneTransforms** to reset all per-bone transforms to the identity, which is also the default when the effect is newly created.
 
-Finally, the **SetWeightsPerVertex** method is used as a way to optimize performance of the vertex shader. By default, it assumes that all 4 bones listed in the per-vertex BLENDINDICES0 and BLENDWEIGHT0 are used by the model. You can use this method to set the value to 1 or 2 which will choose a lighter-weight shader permutation that ignores the extra 3 or 2 bones influences per vertex, or back to the default of 4. The choice of this value is driven entirely by the content.
+Finally, the **SetWeightsPerVertex** method is used as a way to optimize performance of the vertex shader. By default, it assumes that all 4 bones listed in the per-vertex ``BLENDINDICES`` and ``BLENDWEIGHT`` are used by the model. You can use this method to set the value to 1 or 2 which will choose a lighter-weight shader permutation that ignores the extra 3 or 2 bones influences per vertex, or back to the default of 4. The choice of this value is driven entirely by the content.
 
 # Built-in Effect Notes
 
