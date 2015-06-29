@@ -1,13 +1,13 @@
 This is a native Direct3D 11 implementation of the five built-in effects from XNA Game Studio 4, providing identical functionality and API:
 
-* [BasicEffect](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.basiceffect.aspx) supports texture mapping, vertex coloring, directional lighting, and fog
-* [AlphaTestEffect](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.alphatesteffect.aspx) supports per-pixel alpha testing
-* [DualTextureEffect](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.dualtextureeffect.aspx) supports two layer multi-texturing (for light maps or detail textures)
-* [EnvironmentMapEffect](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.environmentmapeffect.aspx) supports cubic environment mapping
-* [SkinnedEffect](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.skinnedeffect.aspx) supports skinned animation with up to 72 bones and 1, 2, or 4 bone influences per vertex.
+* [[BasicEffect]] supports texture mapping, vertex coloring, directional lighting, and fog
+* [[AlphaTestEffect]] supports per-pixel alpha testing
+* [[DualTextureEffect]] supports two layer multi-texturing (for light maps or detail textures)
+* [[EnvironmentMapEffect]] supports cubic environment mapping
+* [[SkinnedEffect]] supports skinned animation with up to 72 bones and 1, 2, or 4 bone influences per vertex.
 
 DirectX Tool Kit also includes the following built-in effects:
-* **DGSLEffect** which supports the [Visual Studio Shader Designer](https://msdn.microsoft.com/en-us/library/hh315733.aspx) (DGSL) content pipeline both with and without skinned animation with up to 8 textures.
+* [[DGSLEffect]] which supports the [Visual Studio Shader Designer](https://msdn.microsoft.com/en-us/library/hh315733.aspx) (DGSL) content pipeline both with and without skinned animation with up to 8 textures.
 
 See also [[EffectFactory]]
 
@@ -51,11 +51,6 @@ The built-in effects default to a standard lighting and color set
 The **EnableDefaultLighting** method sets up a standard three light setup (key, fill, and back) with some ambient light and some soft specular highlights.
 
 *Note*: To disable specular highlights on a material with _BasicEffect_, _SkinnedEffect_ and _DGSLEffect_; **DisableSpecular** sets the specular color to black ``[0,0,0]`` and the specular power to 1. A specular power of 0 can result in strange rendering artifacts.
-
-* _EnvironmentMapEffect_ always uses vertex lighting, but does not support specular highlights or per-pixel lighting
-* _SkinnedEffect_ always uses vertex or per-pixel lighting
-* _DualTextureEffect_ does not support lighting as it is assumed to be 'baked' into one of the two textures.
-* _DGSLEffect_ always uses per-pixel lighting if lighting is supported by the effect. It also supports a UV Transform for the texture coordinates, viewport information, and a time variable which may or may not be used by a given DGSL pixel shader. Fog settings are not supported by this effect, but could be 'baked in' to a given DGSL pixel shader.
 
 # Draw using the effect
 
@@ -135,8 +130,4 @@ Creation is fully asynchronous, so you can instantiate multiple effect  instance
 
 [New built-in effects in XNA Game Studio 4.0](http://blogs.msdn.com/b/shawnhar/archive/2010/04/28/new-built-in-effects-in-xna-game-studio-4-0.aspx)  
 [Built-in effects, permutations, and performance](http://blogs.msdn.com/b/shawnhar/archive/2010/04/30/built-in-effects-permutations-and-performance.aspx)  
-[BasicEffect optimizations in XNA Game Studio 4.0](http://blogs.msdn.com/b/shawnhar/archive/2010/04/25/basiceffect-optimizations-in-xna-game-studio-4-0.aspx)  
-[BasicEffect: a misnomer?](http://blogs.msdn.com/b/shawnhar/archive/2008/08/22/basiceffect-a-misnomer.aspx)  
-[DualTextureEffect](http://blogs.msdn.com/b/shawnhar/archive/2010/08/04/dualtextureeffect.aspx)  
-[EnvironmentMapEffect](http://blogs.msdn.com/b/shawnhar/archive/2010/08/09/environmentmapeffect.aspx)  
 [HLSL, FXC, and D3DCompile](http://blogs.msdn.com/b/chuckw/archive/2012/05/07/hlsl-fxc-and-d3dcompile.aspx)
