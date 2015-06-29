@@ -1,5 +1,7 @@
 This is a native Direct3D 11 implementation of the built-in BasicEffect from [XNA Game Studio 4](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.basiceffect.aspx) which supports texture mapping, vertex coloring, directional lighting, and fog.
 
+See also [[Effects]]
+
 # Header
     #include <Effects.h>
 
