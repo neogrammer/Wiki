@@ -115,4 +115,4 @@ Each GeometricPrimitive instance only supports drawing from one thread at a time
 [Immediate and Deferred Rendering](http://msdn.microsoft.com/en-us/library/windows/desktop/ff476892.aspx)
 
 # Remark
-Tetrahedron, Cube/Hexahedron, Octahedron, Dodecahedron, and Icosahedron comprise the five "Platonic solids". The Utah Teapot is sometimes referred to as the "Sixth [Platonic solid](https://en.wikipedia.org/wiki/Platonic_solid)" due to its prevalence in rendering sample images.
+Tetrahedron, Cube/Hexahedron, Octahedron, Dodecahedron, and Icosahedron comprise the five [Platonic solid](https://en.wikipedia.org/wiki/Platonic_solid). The Utah Teapot is sometimes referred to as the "Sixth Platonic solid" due to its prevalence in rendering sample images.
