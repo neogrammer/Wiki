@@ -58,7 +58,7 @@ The **EnableDefaultLighting** method sets up a standard three light setup (key, 
 
     deviceContext->DrawIndexed(...);
 
-# Input Layout
+# Input layout
 
 To create an input layout matching the effect vertex shader input signature:
 
