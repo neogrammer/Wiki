@@ -1,4 +1,4 @@
-This is a helper for simplified keyboard state tracking modeled after the XNA C# Keyboard class.
+This is a helper for simplified keyboard state tracking modeled after the [XNA Game Studio](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.input.keyboard.aspx) Keyboard class.
 
 # Header 
     #include <Keyboard.h>
