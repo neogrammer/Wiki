@@ -5,7 +5,7 @@ The _DirectXTK for Audio_ components implement a low-level audio API similar to 
 * [[SoundEffectInstance]] - Provides a single playing, paused, or stopped instance of a sound 
 * [[DynamicSoundEffectInstance]] - SoundEffectInstance where the application provides the audio data on demand 
 * [[WaveBank]] - A container class for sound resources packaged into an XACT-style ``.xwb`` wave bank. 
-* [[AudioListener]],  [[AudioEmitter]] - Utility classes used with SoundEffectInstance::Apply3D.
+* [[AudioListener]],  [[AudioEmitter]] - Utility classes used with ``SoundEffectInstance::Apply3D``.
 
 _Note: DirectXTK for Audio uses XAudio 2.8 or XAudio 2.7. It does not make use of the legacy XACT Engine, XACT Cue, or XACT SoundBank._
 
@@ -30,7 +30,7 @@ The first step in using DirectXTK for Audio is to create the AudioEngine, which 
     std::unique_ptr<AudioEngine> audEngine( new AudioEngine( eflags ) );
 
 # Per-frame processing
-The application should call **Update** () every frame to allow for per-frame engine updates, such as one-shot voice management. This could also be done in a worker thread rather than on the main rendering thread.
+The application should call ``Update`` every frame to allow for per-frame engine updates, such as one-shot voice management. This could also be done in a worker thread rather than on the main rendering thread.
 
     if ( !audEngine->Update() )
     {
@@ -41,7 +41,7 @@ The application should call **Update** () every frame to allow for per-frame eng
         }    
     }
 
-Update() returns false if no audio is actually playing (either due to there being no audio device on the system at the time AudioEngine was created, or because XAudio2 encountered a Critical Error--typically due to speakers being unplugged). Calls to various DirectXTK for Audio methods can still be made in this state but no actual audio processing will take place. See [[AudioEngine]] for more information.
+``Update`` returns false if no audio is actually playing (either due to there being no audio device on the system at the time AudioEngine was created, or because XAudio2 encountered a Critical Error--typically due to speakers being unplugged). Calls to various DirectXTK for Audio methods can still be made in this state but no actual audio processing will take place. See [[AudioEngine]] for more information.
 
 # Loading and a playing a looping sound
 Creating SoundEffectInstances allows full control over the playback, and are provided with a  dedicated XAudio2 source voice. This allows control of playback, looping, volume control, panning,  and pitch-shifting.
@@ -55,7 +55,7 @@ Creating SoundEffectInstances allows full control over the playback, and are pro
     effect->Play( true );
 
 # Playing one-shots
-A common way to play sounds is to trigger them in a 'fire-and-forget' mode. This is done by calling SoundEffect::Play() rather than creating a SoundEffectInstance. These use XAudio2 source voices managed by AudioEngine, are cleaned up automatically when they finish playing, and can overlap in time. One-shot sounds cannot be looped or have positional 3D effects.
+A common way to play sounds is to trigger them in a 'fire-and-forget' mode. This is done by calling ``SoundEffect::Play`` rather than creating a SoundEffectInstance. These use XAudio2 source voices managed by AudioEngine, are cleaned up automatically when they finish playing, and can overlap in time. One-shot sounds cannot be looped or have positional 3D effects.
 
     std::unique_ptr<SoundEffect> soundEffect( new SoundEffect( audEngine.get(),
         L"Explosion.wav" ) );
@@ -132,7 +132,7 @@ Each instance of a SoundEffectInstance will allocate it's own source voice when 
 See [[AudioEngine]] for more information.
 
 # Platform support
-Windows 8.x, Windows 10, Windows phone 8.x, and Xbox One all include XAudio 2.8 or later. Therefore, the standard DirectXTK.lib includes DirectXTK for Audio for all these platforms:
+Windows 8.x, Windows 10, Windows phone 8.x, and Xbox One all include XAudio 2.8 or later. Therefore, the standard ``DirectXTK.lib`` includes _DirectXTK for Audio_ for all these platforms:
 * _DirectXTK_Windows10_
 * _DirectXTK_Windows81_
 * _DirectXTK_Windows8_
@@ -142,9 +142,9 @@ Windows 8.x, Windows 10, Windows phone 8.x, and Xbox One all include XAudio 2.8 
 * _DirectXTK_XboxOneXDK_ 
 * _DirectXTK_XboxOneADK_
 
-For Windows desktop applications targeting Windows 8.x or later, you can make use of XAudio 2.8. The DirectXTKAudioWin8.lib contains the XAudio 2.8 version of DirectXTK for Audio, while DirectXTK.lib for Windows desktop contains only the math/graphics components. To support Windows desktop applications on Windows 7 and Windows Vista, we must make use XAudio 2.7, the legacy DirectX SDK, and the legacy DirectX End-User Runtime Redistribution packages (aka DirectSetup). The DirectXTKAudioDX.lib is the XAudio 2.7 version of DirectXTK for Audio.
+For Windows desktop applications targeting Windows 8.x or later, you can make use of XAudio 2.8. The ``DirectXTKAudioWin8.lib`` contains the XAudio 2.8 version of DirectXTK for Audio, while ``DirectXTK.lib`` for Windows desktop contains only the math/graphics components. To support Windows desktop applications on Windows 7 and Windows Vista, we must make use XAudio 2.7, the legacy DirectX SDK, and the legacy DirectX End-User Runtime Redistribution packages (aka DirectSetup). The ``DirectXTKAudioDX.lib`` is the XAudio 2.7 version of DirectXTK for Audio.
 
-DirectXTK_Desktop_2015, DirectXTK_Desktop_2013, DirectXTK_Desktop_2012, and DirectXTK_Desktop_2010 do not include DirectXTK for Audio. To add DirectXTK for Audio support for a Win32 desktop application, you must also add one of the following projects from the **Audio** folder of the distribution to your solution and Add a Reference to it (see [[DirectXTK]] for more details).
+DirectXTK_Desktop_2015, DirectXTK_Desktop_2013, DirectXTK_Desktop_2012, and DirectXTK_Desktop_2010 do not include _DirectXTK for Audio_. To add _DirectXTK for Audio_ support for a Win32 desktop application, you must also add one of the following projects from the ``Audio`` folder of the distribution to your solution and **Add a Reference** to it (see [[DirectXTK]] for more details).
 
 When targeting Windows 8.x or later:
 * _DirectXTKAudio_Desktop_2012_Win8_ - DirectXTK for Audio using VS 2012 and XAudio 2.8 
@@ -164,7 +164,7 @@ When targeting Windows Vista, Windows 7, or Windows 8.x:
 
 [Where is the DirectX SDK?](http://msdn.microsoft.com/en-us/library/windows/desktop/ee663275.aspx)
 
-DirectXTK makes use of the latest Direct3D 11.1 headers available in the Windows 8.x SDK, and there are a number of file conflicts between the Windows 8.x SDK and the legacy DirectX SDK. Therefore, when building for down-level support with XAudio 2.7, Audio.h explicitly includes the DirectX SDK version of XAudio2 headers with a full path name. These reflect the default install locations, and if you have installed it elsewhere you will need to update this header. The *_DXSDK.vcxproj files use the DXSDK_DIR environment variable, so only the Audio.h references need updating for an alternative location.
+DirectXTK makes use of the latest Direct3D 11.1 headers available in the Windows 8.x SDK, and there are a number of file conflicts between the Windows 8.x SDK and the legacy DirectX SDK. Therefore, when building for down-level support with XAudio 2.7, ``Audio.h`` explicitly includes the DirectX SDK version of XAudio2 headers with a full path name. These reflect the default install locations, and if you have installed it elsewhere you will need to update this header. The ``*_DXSDK.vcxproj`` files use the ``DXSDK_DIR`` environment variable, so only the ``Audio.h`` references need updating for an alternative location.
 
     // Using XAudio 2.7 requires the DirectX SDK
     #include <C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\comdecl.h>
@@ -180,7 +180,7 @@ DirectXTK makes use of the latest Direct3D 11.1 headers available in the Windows
 # Threading model
 The DirectXTK for Audio methods assume it is always called from a single thread. This is generally either the main thread or a worker thread dedicated to audio processing.  The XAudio2 engine itself makes use of lock-free mechanism to make it 'thread-safe'.
     
-Note that IVoiceNotify::OnBufferEnd is called from XAudio2's thread, so the callback must be very fast and use thread-safe operations.
+Note that ``IVoiceNotify::OnBufferEnd`` is called from XAudio2's thread, so the callback must be very fast and use thread-safe operations.
 
 # Further reading
 
