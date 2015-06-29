@@ -137,7 +137,7 @@ Vibration settings for the trigger impulse motors (``leftTrigger``, ``rightTrigg
 On Xbox One, this class is implemented using the _Windows.Xbox.Input_ interfaces rather than XInput. It is abstracted to return the same structures. Here are a few notes:
 
 * state.packet is a timestamp in "Universal time" format.
-* ``MAX_PLAYER_COUNT`` is 8 (on other platforms it is 4)
+* ``MAX_PLAYER_COUNT`` is 8 rather than 4
 * Currently only the GAMEPAD type is reported for Xbox One controllers
 
 The _player_ index mapping is not correlated directly with a user as it is on Xbox 360 or Windows, and is assigned 'upon arrival'. To determine the actual user for a given gamepad, you should use the controller ID reported as part of the Capabilities.
@@ -168,7 +168,7 @@ The GamePad object can be created and used on Windows Phone, but it will always 
 When built for Windows 10, the GamePad class is implemented using a new WinRT GamePad class similar to the Xbox One API. Here are a few notes:
 
 * Full support for ``leftTrigger`` and ``rightTrigger`` motors for the Xbox One controller on Windows.
-* ``MAX_PLAYER_COUNT`` is 8 (on other platforms it is 4)
+* ``MAX_PLAYER_COUNT`` is 8 rather than 4
 * Currently only the GAMEPAD type is reported for Xbox One controllers, and ``caps.id`` is always 0.
 
 # Further reading
