@@ -73,7 +73,7 @@ This form of drawing makes use of a custom [[IEffect|Effects]] instance. The cal
 
 This takes an optional parameter for enabling alpha-blending, wireframe, and a callback function which can be used to override the default rendering state.
 
-The **Draw** operation will only set up a texture sampler in slot 0. If you are using an [Effects]] instance with more than a single texture, you need to set additional samplers manually (perhaps via ``setCustomState`` callbacks). For example, if using _EnvironmentMapEffect_:
+The **Draw** operation will only set up a texture sampler in slot 0. If you are using an [[IEffect|Effects]] instance with more than a single texture, you need to set additional samplers manually (perhaps via ``setCustomState`` callbacks). For example, if using _EnvironmentMapEffect_:
 
     shape->Draw( myeffect, inputLayout.Get(), false, false, [=]
     {
