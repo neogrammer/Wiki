@@ -31,7 +31,7 @@ For more general cases where a number of effect classes can be in use (such as [
     }
 
 # Controlling lights
-The IEffectLights interface supports 1, 2, or 3 directional lights (MaxDirectionalLights is 3) with an ambient light setting. The lights support both diffuse and specular color, and some effects support per-pixel lighting.
+The IEffectLights interface supports 1, 2, or 3 directional lights (_MaxDirectionalLights_ is 3) with an ambient light setting. The lights support both diffuse and specular color, and some effects support per-pixel lighting.
 
 The direction vector for the light is assumed to be normalized, and is pointing towards the objects it lights.
 
