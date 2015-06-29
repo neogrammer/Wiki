@@ -33,10 +33,10 @@ For exception safety, it is recommended you make use of the C++ RAII pattern and
 * **CreateCylinder**( deviceContext, float height = 1, float diameter = 1, size_t tessellation = 32): Creates a [cylinder](http://en.wikipedia.org/wiki/Cylinder_(geometry)) of given height, diameter, tessellation factor.
 * **CreateCone**( deviceContext, float diameter = 1, float height = 1, size_t tessellation = 32): Creates a [cone](http://en.wikipedia.org/wiki/Cone) of a given height, diameter, and tessellation factor.
 * **CreateTorus**( deviceContext, float diameter = 1, float thickness = 0.333f, size_t tessellation = 32): Creates a [torus](http://en.wikipedia.org/wiki/Torus) of given diameter, thickness, and tessellation factor.
-* **CreateTetrahedron**( deviceContext, float size = 1): Creates a [tetrahedron] of given size.(http://en.wikipedia.org/wiki/Tetrahedron).
-* **CreateOctahedron**( deviceContext, float size = 1): Creates a [octahedron] of a given size.(http://en.wikipedia.org/wiki/Octahedron).
-* **CreateDodecahedron**( deviceContext, float size = 1): Creates a [dodecahedron] of a given size.(http://en.wikipedia.org/wiki/Dodecahedron).
-* **CreateIcosahedron**( deviceContext, float size = 1): Creates a [icosahedron] of a given size.(http://en.wikipedia.org/wiki/Icosahedron).
+* **CreateTetrahedron**( deviceContext, float size = 1): Creates a [tetrahedron](http://en.wikipedia.org/wiki/Tetrahedron) of given size..
+* **CreateOctahedron**( deviceContext, float size = 1): Creates a [octahedron](http://en.wikipedia.org/wiki/Octahedron) of a given size..
+* **CreateDodecahedron**( deviceContext, float size = 1): Creates a [dodecahedron](http://en.wikipedia.org/wiki/Dodecahedron) of a given size..
+* **CreateIcosahedron**( deviceContext, float size = 1): Creates a [icosahedron](http://en.wikipedia.org/wiki/Icosahedron) of a given size..
 * **CreateTeapot**( deviceContext, float size = 1, size_t tessellation = 8): Creates the [Utah Teapot](http://en.wikipedia.org/wiki/Utah_teapot) of a given size and tessellation factor.
 
 # Simple drawing
