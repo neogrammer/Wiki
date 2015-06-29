@@ -16,6 +16,9 @@ For exception safety, it is recommended you make use of the C++ RAII pattern and
 
 BasicEffect supports [[IEffect]], [[IEffectMatrices]], [[IEffectLights]], and [[IEffectFog]]
 
+# Input layout
+This effect requires ``SV_Position``, ``NORMAL`` if lighting is enabled, ``COLOR`` if per-vertex colors are enabled, and  ``TEXCOORD0`` if texturing is enabled.
+
 # Properties
 
 * **SetDiffuseColor**: Sets the diffuse color of the effect. Defaults to white (1,1,1).
