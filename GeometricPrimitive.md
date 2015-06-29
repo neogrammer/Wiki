@@ -12,7 +12,7 @@ This is a helper for drawing simple geometric shapes including texture coordinat
 * Icosahedron
 * Teapot
 
-![GeometricPrimitive Example](https://github.com/Microsoft/DirectXTK/wiki/images/GeometricPrimitiveExample.png]
+![GeometricPrimitive Example](https://github.com/Microsoft/DirectXTK/wiki/images/GeometricPrimitiveExample.png)
 
 **Related tutorial:** [[3D shapes]]
 
@@ -23,21 +23,21 @@ This is a helper for drawing simple geometric shapes including texture coordinat
 The GeometryPrimitive class must be created from a factory method which takes the Direct3D 11 device context.
 
     std::unique_ptr<GeometricPrimitive> shape(
-    GeometricPrimitive::CreateTeapot(deviceContext) );
+        GeometricPrimitive::CreateTeapot(deviceContext) );
 
 For exception safety, it is recommended you make use of the C++ RAII pattern and use a ``std::unique_ptr``.
 
-* **CreateCube**( deviceContext, float size = 1)
-* **CreateSphere**( deviceContext, float diameter = 1, size_t tessellation = 16)
-* **CreateGeoSphere**( deviceContext, float diameter = 1, size_t tessellation = 3)
-* **CreateCylinder**( deviceContext, float height = 1, float diameter = 1, size_t tessellation = 32)
-* **CreateCone**( deviceContext, float diameter = 1, float height = 1, size_t tessellation = 32)
-* **CreateTorus**( deviceContext, float diameter = 1, float thickness = 0.333f, size_t tessellation = 32)
-* **CreateTetrahedron**( deviceContext, float size = 1)
-* **CreateOctahedron**( deviceContext, float size = 1)
-* **CreateDodecahedron**( deviceContext, float size = 1)
-* **CreateIcosahedron**( deviceContext, float size = 1)
-* **CreateTeapot**( deviceContext, float size = 1, size_t tessellation = 8)
+* **CreateCube**( deviceContext, float size = 1): Creates a [cube](http://en.wikipedia.org/wiki/Cube) (also known as a [hexahedron](http://en.wikipedia.org/wiki/Hexahedron)).
+* **CreateSphere**( deviceContext, float diameter = 1, size_t tessellation = 16): Creates a uv-[sphere](http://en.wikipedia.org/wiki/Sphere).
+* **CreateGeoSphere**( deviceContext, float diameter = 1, size_t tessellation = 3): Creates a geodesic [sphere](http://en.wikipedia.org/wiki/Sphere).
+* **CreateCylinder**( deviceContext, float height = 1, float diameter = 1, size_t tessellation = 32): Creates a [cylinder](http://en.wikipedia.org/wiki/Cylinder_(geometry)).
+* **CreateCone**( deviceContext, float diameter = 1, float height = 1, size_t tessellation = 32): Creates a [cone](http://en.wikipedia.org/wiki/Cone).
+* **CreateTorus**( deviceContext, float diameter = 1, float thickness = 0.333f, size_t tessellation = 32): Creates a [torus](http://en.wikipedia.org/wiki/Torus).
+* **CreateTetrahedron**( deviceContext, float size = 1): Creates a [tetrahedron](http://en.wikipedia.org/wiki/Tetrahedron).
+* **CreateOctahedron**( deviceContext, float size = 1): Creates a [octahedron](http://en.wikipedia.org/wiki/Octahedron).
+* **CreateDodecahedron**( deviceContext, float size = 1): Creates a [dodecahedron](http://en.wikipedia.org/wiki/Dodecahedron).
+* **CreateIcosahedron**( deviceContext, float size = 1): Creates a [icosahedron](http://en.wikipedia.org/wiki/Icosahedron).
+* **CreateTeapot**( deviceContext, float size = 1, size_t tessellation = 8): Creates the [Utah Teapot](http://en.wikipedia.org/wiki/Utah_teapot).
 
 # Simple drawing
 Simple solid shape drawing:
@@ -114,6 +114,4 @@ Each GeometricPrimitive instance only supports drawing from one thread at a time
 [Immediate and Deferred Rendering](http://msdn.microsoft.com/en-us/library/windows/desktop/ff476892.aspx)
 
 # Remark
-[Tetrahedron](http://en.wikipedia.org/wiki/Tetrahedron), [Cube](http://en.wikipedia.org/wiki/Cube)/[Hexahedron](http://en.wikipedia.org/wiki/Hexahedron), [Octahedron](http://en.wikipedia.org/wiki/Octahedron), [Dodecahedron](http://en.wikipedia.org/wiki/Dodecahedron), and [Icosahedron](http://en.wikipedia.org/wiki/Icosahedron) comprise the five "Platonic solids". The [Utah Teapot](http://en.wikipedia.org/wiki/Utah_teapot) is sometimes referred to as the "Sixth [Platonic solid](https://en.wikipedia.org/wiki/Platonic_solid)" due to its prevalence in rendering sample images.
-
-The [sphere](http://en.wikipedia.org/wiki/Sphere), [cylinder](http://en.wikipedia.org/wiki/Cylinder_(geometry)), [cone](http://en.wikipedia.org/wiki/Cone), and [torus](http://en.wikipedia.org/wiki/Torus) are very common 3D graphics objects as well.
+Tetrahedron, Cube/Hexahedron, Octahedron, Dodecahedron, and Icosahedron comprise the five "Platonic solids". The Utah Teapot is sometimes referred to as the "Sixth [Platonic solid](https://en.wikipedia.org/wiki/Platonic_solid)" due to its prevalence in rendering sample images.
