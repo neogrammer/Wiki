@@ -36,5 +36,5 @@ This effect requires ``NORMAL``, ``TEXCOORD0``, ``BLENDINDICES`` and ``BLENDWEIG
 * **SetTexture**: Associates a texture shader resource view with the effect. Can be set to nullptr to remove a reference.
 
 # Remarks
-The effect always performs either vertex or per-pixel lighting.
+The effect always performs either vertex or per-pixel lighting, and texturing.
 
