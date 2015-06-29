@@ -27,17 +27,17 @@ The GeometryPrimitive class must be created from a factory method which takes th
 
 For exception safety, it is recommended you make use of the C++ RAII pattern and use a ``std::unique_ptr``.
 
-* **CreateCube**( deviceContext, float size = 1): Creates a [cube](http://en.wikipedia.org/wiki/Cube) (also known as a [hexahedron](http://en.wikipedia.org/wiki/Hexahedron)).
-* **CreateSphere**( deviceContext, float diameter = 1, size_t tessellation = 16): Creates a uv-[sphere](http://en.wikipedia.org/wiki/Sphere).
-* **CreateGeoSphere**( deviceContext, float diameter = 1, size_t tessellation = 3): Creates a geodesic [sphere](http://en.wikipedia.org/wiki/Sphere).
-* **CreateCylinder**( deviceContext, float height = 1, float diameter = 1, size_t tessellation = 32): Creates a [cylinder](http://en.wikipedia.org/wiki/Cylinder_(geometry)).
-* **CreateCone**( deviceContext, float diameter = 1, float height = 1, size_t tessellation = 32): Creates a [cone](http://en.wikipedia.org/wiki/Cone).
-* **CreateTorus**( deviceContext, float diameter = 1, float thickness = 0.333f, size_t tessellation = 32): Creates a [torus](http://en.wikipedia.org/wiki/Torus).
-* **CreateTetrahedron**( deviceContext, float size = 1): Creates a [tetrahedron](http://en.wikipedia.org/wiki/Tetrahedron).
-* **CreateOctahedron**( deviceContext, float size = 1): Creates a [octahedron](http://en.wikipedia.org/wiki/Octahedron).
-* **CreateDodecahedron**( deviceContext, float size = 1): Creates a [dodecahedron](http://en.wikipedia.org/wiki/Dodecahedron).
-* **CreateIcosahedron**( deviceContext, float size = 1): Creates a [icosahedron](http://en.wikipedia.org/wiki/Icosahedron).
-* **CreateTeapot**( deviceContext, float size = 1, size_t tessellation = 8): Creates the [Utah Teapot](http://en.wikipedia.org/wiki/Utah_teapot).
+* **CreateCube**( deviceContext, float size = 1): Creates a [cube](http://en.wikipedia.org/wiki/Cube) (also known as a [hexahedron](http://en.wikipedia.org/wiki/Hexahedron)) of the given size.
+* **CreateSphere**( deviceContext, float diameter = 1, size_t tessellation = 16): Creates a uv-[sphere](http://en.wikipedia.org/wiki/Sphere) of given diameter with the given tessellation factor.
+* **CreateGeoSphere**( deviceContext, float diameter = 1, size_t tessellation = 3): Creates a geodesic [sphere](http://en.wikipedia.org/wiki/Sphere) with the given diameter and tessellation factor.
+* **CreateCylinder**( deviceContext, float height = 1, float diameter = 1, size_t tessellation = 32): Creates a [cylinder](http://en.wikipedia.org/wiki/Cylinder_(geometry)) of given height, diameter, tessellation factor.
+* **CreateCone**( deviceContext, float diameter = 1, float height = 1, size_t tessellation = 32): Creates a [cone](http://en.wikipedia.org/wiki/Cone) of a given height, diameter, and tessellation factor.
+* **CreateTorus**( deviceContext, float diameter = 1, float thickness = 0.333f, size_t tessellation = 32): Creates a [torus](http://en.wikipedia.org/wiki/Torus) of given diameter, thickness, and tessellation factor.
+* **CreateTetrahedron**( deviceContext, float size = 1): Creates a [tetrahedron] of given size.(http://en.wikipedia.org/wiki/Tetrahedron).
+* **CreateOctahedron**( deviceContext, float size = 1): Creates a [octahedron] of a given size.(http://en.wikipedia.org/wiki/Octahedron).
+* **CreateDodecahedron**( deviceContext, float size = 1): Creates a [dodecahedron] of a given size.(http://en.wikipedia.org/wiki/Dodecahedron).
+* **CreateIcosahedron**( deviceContext, float size = 1): Creates a [icosahedron] of a given size.(http://en.wikipedia.org/wiki/Icosahedron).
+* **CreateTeapot**( deviceContext, float size = 1, size_t tessellation = 8): Creates the [Utah Teapot](http://en.wikipedia.org/wiki/Utah_teapot) of a given size and tessellation factor.
 
 # Simple drawing
 Simple solid shape drawing:
