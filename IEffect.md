@@ -72,7 +72,7 @@ All built-in effects require the ``SV_Position`` semantic.
 This effect requires ``TEXCOORD0``.
 
 ## BasicEffect
-This effect requires ``NORMAL`` if lighting is enabled, COLOR if per-vertex colors are enabled, and TEXCOORD0 if texturing is enabled.
+This effect requires ``NORMAL`` if lighting is enabled, ``COLOR`` if per-vertex colors are enabled, and ``TEXCOORD0`` if texturing is enabled.
 
 ## DGSLEffect
 This effect requires ``NORMAL``, ``TANGENT``, and ``TEXCOORD0``. If _enableSkinning_ is true, it also requires ``BLENDINDICES`` and ``BLENDWEIGHT``.
