@@ -76,4 +76,6 @@ This method clears the sharing cache, which might not release all the instances 
     fxFactory->ReleaseCache();
 
 # Threading model
-Creation of resources is fully asynchronous, so you can create many effects and textures at the same time. **CreateEffect** and **CreateTexture** take an optional immediate device context for use when loading WIC-based textures to make use of auto-generated mipmaps. Since use of a device context is not ‘free threaded’, an internal lock is used to keep multiple instances of the WIC loader from being used at the same time, but the user must still take precautions to ensure other users of the immediate context or Present do not occur while loading WIC textures and setting up auto-gen mipmaps. This is yet another reason we recommend using DDS-based textures for all your assets.
+Creation of resources is fully asynchronous, so you can create many effects and textures at the same time. **CreateEffect** and **CreateTexture** take an optional immediate device context for use when loading WIC-based textures to make use of auto-generated mipmaps. Since use of a device context is not ‘free threaded’, an internal lock is used to keep multiple instances of the WIC loader from being used at the same time, but the user must still take precautions to ensure other users of the immediate context or Present do not occur while loading WIC textures and setting up auto-gen mipmaps.
+
+_Note: This is yet another reason we recommend using ``DDS`` textures for all your assets._
