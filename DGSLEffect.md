@@ -20,6 +20,11 @@ DGSLEffect supports [[IEffect]], [[IEffectMatrices]], [[IEffectLights]], [[IEffe
 
 Fog settings are not supported by this effect, but could be 'baked in' to a given DGSL pixel shader.
 
+# Input layout
+This effect requires ``SV_Position``, ``NORMAL`` , ``TANGENT`` , and ``TEXCOORD0``. If enableSkinning is true, it also requires ``BLENDINDICES`` and ``BLENDWEIGHT``
+
+DGSLEffect is typically used with ``VertexPositionNormalTangentColorTexture`` or ``VertexPositionNormalTangentColorTextureSkinning`` which match the vertex structures used by ``CMO`` files. See [[VertexTypes]]
+
 # Properties
 * **SetAmbientColor**: Sets the ambient color of the material. Defaults to black (0,0,0). _Note that other built-in effects do not make use of the ambient material color assuming they react equally to all ambient light in the scene._
 
@@ -59,8 +64,6 @@ Visual Studio Shader Designer (DGSL) ``.DGSL.CSO`` files support Feature Level 1
 The [[DGSLEffectFactory|EffectFactory]] automatically attempts to locate a suitably named standard ``.CSO`` on Feature Level 9.x which is a manually created fall-back shader. The method for creating these fall-back shaders is to use "Export to HLSL..." from the Visual Studio Shader Designer, then modify that ``.hlsl`` file so it will successfully compile with ``ps_4_0_level_9_1`` or ``ps_4_0_level_9_3`` (whichever is your minimum supported feature level).
 
 # Remarks
-
-DGSLEffect is typically used with ``VertexPositionNormalTangentColorTexture`` or ``VertexPositionNormalTangentColorTextureSkinning``. See [[VertexTypes]]
 
 DGSL shaders always use per-pixel lighting if lighting is supported by the effect.
 
