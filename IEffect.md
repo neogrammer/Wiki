@@ -69,7 +69,7 @@ For the built-in effects, the trigger for needing to create a new layout would b
 All built-in effects require the ``SV_Position`` semantic.
 
 ## AlphaTestEffect
-This effect requires ``TEXCOORD0``.
+This effect requires ``TEXCOORD0``, and ``COLOR`` if per-vertex colors are enabled. 
 
 ## BasicEffect
 This effect requires ``NORMAL`` if lighting is enabled, ``COLOR`` if per-vertex colors are enabled, and ``TEXCOORD0`` if texturing is enabled.
