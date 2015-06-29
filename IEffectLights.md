@@ -35,27 +35,28 @@ The IEffectLights interface supports 1, 2, or 3 directional lights (_MaxDirectio
 
 The direction vector for the light is assumed to be normalized, and is pointing towards the objects it lights.
 
-The default lighting set by *EnableDefaultLighting* consist of three lights:
+The default lighting set by **EnableDefaultLighting** consist of three lights:
 
 * Ambient: (0.05333332, 0.09882354, 0.1819608)
 * Light 0: Direction (-0.5265408, -0.5735765, -0.6275069), Diffuse (1, 0.9607844, 0.8078432), Specular (1, 0.9607844, 0.8078432)
 * Light 1: Direction (0.7198464,  0.3420201,  0.6040227), Diffuse (0.9647059, 0.7607844, 0.4078432), Specular (0, 0, 0)
 * Light 2: Direction (0.4545195, -0.7660444,  0.4545195), Diffuse (0.3231373, 0.3607844, 0.3937255), Specular (0.3231373, 0.3607844, 0.3937255).
-! Built-in Effect Notes
 
-*AlphaTestEffect, DualTextureEffect*
+# Built-in Effect Notes
+
+## AlphaTestEffect, DualTextureEffect
 These built-in effects do not support this interface.
 
-*BasicEffect*
+## BasicEffect 
 Supports up to 3 directional lights with vertex or per-pixel lighting, optionally using per-vertex colors. Materials definitions include diffuse color, specular color, specular power, and emissive color. Light definitions include ambient color, diffuse color, specular color, and specular power. Note that the standard lighting model does not include an ambient material color.
 
-*DGSLEffect*
-DGSL shaders always use per-pixel lighting, so the SetPerPixelLighting method is not supported for this effect. Any calls to SetPerPixelLighting  through the base interface are ignored. DGSL materials include ambient color, diffuse color, specular color, and specular power. DGSL light definitions include ambient color, diffuse color, specular color, and specular power.
+## DGSLEffect
+DGSL shaders always use per-pixel lighting, so the **SetPerPixelLighting** method is not supported for this effect. Any calls to **SetPerPixelLighting** through the base interface are ignored. DGSL materials include ambient color, diffuse color, specular color, and specular power. DGSL light definitions include ambient color, diffuse color, specular color, and specular power.
 
-The number of valid lights is determined by the implementation of the DGSL pixel shader, so calls to SetLightingEnabled may have no effect. DGSL defines up to 4 directional lights (``DGSLEffect::MaxDirectionalLights`` is 4). The built-in implementation of the default material "Lambert" supports up to 4 directional lights, while the built-in default material Phong supports only 3 directional lights in order to support Feature Level 9.1.
+The number of valid lights is determined by the implementation of the DGSL pixel shader, so calls to **SetLightingEnabled** may have no effect. DGSL defines up to 4 directional lights (``DGSLEffect::MaxDirectionalLights`` is 4). The built-in implementation of the default material "Lambert" supports up to 4 directional lights, while the built-in default material "Phong" supports only 3 directional lights in order to support Feature Level 9.1.
 
-*EnvironmentMapEffect*
-This effect always implements vertex lighting with no specular highlights and 3 directional lights, so the SetLightingEnabled, SetPerPixelLighting, and SetLightSpecularColor methods are not supported for this effect.  Calling SetLightingEnabled(false) through the base interface will generate an exception, and calls to SetPerPixelLighting and SetLightSpecularColor are ignored.
+## EnvironmentMapEffect
+This effect always implements vertex lighting with no specular highlights and 3 directional lights, so the **SetLightingEnabled**, **SetPerPixelLighting**, and **SetLightSpecularColor** methods are not supported for this effect.  Calling ``SetLightingEnabled(false)`` through the base interface will generate an exception, and calls to ``SetPerPixelLighting`` and ``SetLightSpecularColor`` are ignored.
 
-*SkinnedEffect*
+## SkinnedEffect
 This shader always implements lighting with 3 directional lights, so the SetLightingEnabled method is not supported for this effect. Calling SetLightingEnabled(false) through the base interface will generate an exception.
