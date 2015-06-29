@@ -29,7 +29,8 @@ The skinning interface is primarily used to set the per-bone transformation matr
     struct aligned_deleter { void operator()(void* p) { _aligned_free(p); } };
 
     std::unique_ptr<XMMATRIX[], aligned_deleter> bones(
-            reinterpret_cast<XMMATRIX*>( _aligned_malloc( sizeof(XMMATRIX) * boneCount, 16 ) ) );
+            reinterpret_cast<XMMATRIX*>( _aligned_malloc(
+                sizeof(XMMATRIX) * boneCount, 16 ) ) );
 
     ...
 
