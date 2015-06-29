@@ -39,3 +39,4 @@ BasicEffect supports [[IEffect]], [[IEffectMatrices]], [[IEffectLights]], and [[
 # Further reading
 
 [BasicEffect optimizations in XNA Game Studio 4.0](http://blogs.msdn.com/b/shawnhar/archive/2010/04/25/basiceffect-optimizations-in-xna-game-studio-4-0.aspx)  
+[BasicEffect: a misnomer?](http://blogs.msdn.com/b/shawnhar/archive/2008/08/22/basiceffect-a-misnomer.aspx)  
