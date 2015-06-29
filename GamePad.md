@@ -1,8 +1,8 @@
-This is a helper for simplified access to gamepad controllers modeled after the [XNA Game Studio](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.input.gamepad.aspx0) GamePad class.
+This is a helper for simplified access to gamepad controllers modeled after the [XNA Game Studio](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.input.gamepad.aspx) GamePad class.
 
 ![Xbox 360 Common Controller](https://github.com/Microsoft/DirectXTK/wiki/images/xbox360controller.png)
 
-**Related tutorial0:** [[Game controller input]]
+**Related tutorial:** [[Game controller input]]
 
 # Header 
     #include <GamePad.h>
@@ -48,7 +48,7 @@ For exception safety, it is recommended you make use of the C++ RAII pattern and
             // which is called 'View' on the Xbox One controller. 
     }
 
-The valid range for _player_ is 0 to ``GamePad::MAX_PLAYER_COUNT``. Outside that range, the state is always reported as disconnected.
+The valid range for _player_ is 0 to ``GamePad::MAX_PLAYER_COUNT - 1``. Outside that range, the state is always reported as disconnected.
 
 # Dead zones
 GamePad implements the same dead zone scheme as XNA.
@@ -56,6 +56,8 @@ GamePad implements the same dead zone scheme as XNA.
 * ``DEAD_ZONE_INDEPENDENT_AXES`` which is the default
 * ``DEAD_ZONE_CIRCULAR`` which provides a deadzone for the combined X/Y axes
 * ``DEAD_ZONE_NONE`` which provides 'raw' scaled information to allow the application to implement dead zones
+
+For example:
 
     auto state = gamePad->GetState( 0, GamePad::DEAD_ZONE_CIRCULAR );
 
