@@ -131,7 +131,7 @@ Note that subtype capabilities information is somewhat unreliable down-level dep
 
 XInput supports controllers compatible with the Xbox 360 Common Controller for Windows, the Xbox 360 Wireless Receiver for Windows, and the Xbox One Controller.
 
-Vibration settings for the trigger impulse motors on the [Xbox One Controller](http://support.xbox.com/en-US/xbox-one/accessories/controller-pc-compatibility) are not supported by XInput. The "View" button is reported as the "Back" button, and the "Menu" button is reported as the "Start" button.
+Vibration settings for the trigger impulse motors (``leftTrigger``, ``rightTrigger``) on the [Xbox One Controller](http://support.xbox.com/en-US/xbox-one/accessories/controller-pc-compatibility) are not supported by XInput. The "View" button is reported as the "Back" button, and the "Menu" button is reported as the "Start" button.
 
 ## Xbox One
 On Xbox One, this class is implemented using the _Windows.Xbox.Input_ interfaces rather than XInput. It is abstracted to return the same structures. Here are a few notes:
@@ -163,6 +163,13 @@ The _player_ index mapping is not correlated directly with a user as it is on Xb
 
 ## Windows Phone
 The GamePad object can be created and used on Windows Phone, but it will always report no devices connected. The original XNA 4 API would report the Windows Phone hardware back button as ``Buttons.Back``, but this implementation does not do this as the information about the hardware button is communicated through ``ICoreWindows`` messages.
+
+## Universal Windows app Platform (UWP)
+When built for Windows 10, the GamePad class is implemented using a new WinRT GamePad class similar to the Xbox One API. Here are a few notes:
+
+* Full support for ``leftTrigger`` and ``rightTrigger`` motors for the Xbox One controller on Windows.
+* ``MAX_PLAYER_COUNT`` is 8 (on other platforms it is 4)
+* Currently only the GAMEPAD type is reported for Xbox One controllers, and ``caps.id`` is always 0.
 
 # Further reading
 [DirectX Tool Kit: Now with GamePads](http://blogs.msdn.com/b/chuckw/archive/2014/09/05/directx-tool-kit-now-with-gamepads.aspx)  
