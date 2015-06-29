@@ -59,4 +59,4 @@ The number of valid lights is determined by the implementation of the DGSL pixel
 This effect always implements vertex lighting with no specular highlights and 3 directional lights, so the **SetLightingEnabled**, **SetPerPixelLighting**, and **SetLightSpecularColor** methods are not supported for this effect.  Calling ``SetLightingEnabled(false)`` through the base interface will generate an exception, and calls to ``SetPerPixelLighting`` and ``SetLightSpecularColor`` are ignored.
 
 ## SkinnedEffect
-This shader always implements lighting with 3 directional lights, so the SetLightingEnabled method is not supported for this effect. Calling SetLightingEnabled(false) through the base interface will generate an exception.
+This shader always implements lighting with 3 directional lights, so the **SetLightingEnabled** method is not supported for this effect. Calling ``SetLightingEnabled(false)`` through the base interface will generate an exception.
