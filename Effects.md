@@ -2,12 +2,12 @@ This is a native Direct3D 11 implementation of the five built-in effects from XN
 
 * [BasicEffect](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.basiceffect.aspx) supports texture mapping, vertex coloring, directional lighting, and fog
 * [AlphaTestEffect](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.alphatesteffect.aspx) supports per-pixel alpha testing
-* *[DualTextureEffect](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.dualtextureeffect.aspx) supports two layer multi-texturing (for light maps or detail textures)
+* [DualTextureEffect](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.dualtextureeffect.aspx) supports two layer multi-texturing (for light maps or detail textures)
 * [EnvironmentMapEffect](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.environmentmapeffect.aspx) supports cubic environment mapping
 * [SkinnedEffect](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.skinnedeffect.aspx) supports skinned animation with up to 72 bones and 1, 2, or 4 bone influences per vertex.
 
 DirectX Tool Kit also includes the following built-in effects:
-* **DGSLEffect** which supports the Visual Studio Shader Designer (DGSL) content pipeline both with and without skinned animation with up to 8 textures.
+* **DGSLEffect** which supports the [Visual Studio Shader Designer](https://msdn.microsoft.com/en-us/library/hh315733.aspx) (DGSL) content pipeline both with and without skinned animation with up to 8 textures.
 
 See also [[EffectFactory]]
 
