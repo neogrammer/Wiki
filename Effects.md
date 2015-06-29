@@ -25,10 +25,6 @@ The built-in effect constructors requires a Direct3D 11 device.
 
 For exception safety, it is recommended you make use of the C++ RAII pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
-The **DGSLEffect** constructor takes a pixelShader instance. If null, it uses one of the three built-in default materials: _Unlit_, _Lambert_, and _Phong_. This class assumes the pixel shader provided is signature compatible with the built-in DGSL vertex shader, and will work for the feature level of the device.
-
-    std::unique_ptr<DGSLEffect> effect(new DGSLEffect(device,pixelShader));
-
 # Set effect parameters
 
     effect->SetWorld(world);
@@ -50,8 +46,6 @@ The built-in effects default to a standard lighting and color set
 
 The **EnableDefaultLighting** method sets up a standard three light setup (key, fill, and back) with some ambient light and some soft specular highlights.
 
-*Note*: To disable specular highlights on a material with _BasicEffect_, _SkinnedEffect_ and _DGSLEffect_; **DisableSpecular** sets the specular color to black ``[0,0,0]`` and the specular power to 1. A specular power of 0 can result in strange rendering artifacts.
-
 # Draw using the effect
 
     effect->Apply(deviceContext);
@@ -63,10 +57,6 @@ The **EnableDefaultLighting** method sets up a standard three light setup (key, 
     deviceContext->PSSetSamplers(...);
 
     deviceContext->DrawIndexed(...);
-
-**DualTextureEffect** and **EnvironmentMapEffect** require a texture sampler in both slots 0 and 1. **DGSLEffect** can require up to 8 texture samplers. The other textured effects only require a texture sampler in slot 0. [[GeometricPrimitive]] and [[SpriteBatch]] only set a texture sampler in slot 0 by default, [[Model]] sets a sampler in slots 0 and 1.
-
-**DualTextureEffect** requires two sets of texture coordinates, while the other textured effects only require a single set. [[GeometricPrimitive]], [[Model]] loaded from ``VBO`` or ``CMO``, and [[SpriteBatch]] only define a single set of texture coordinates in their vertex buffers so they can't be used with _DualTextureEffect_.
 
 # Input Layout
 
@@ -97,8 +87,6 @@ For the built-in effects, the trigger for needing to create a new layout would b
 * Enabling or disabling textures (which requires vertex texture coordinates)
 * Changing effect class (BasicEffect <-> SkinnedEffect or DGSLEffect)
 
-_Note:_ DGSLEffect is typically used with VertexPositionNormalTangentColorTexture or VertexPositionNormalTangentColorTextureSkinning.
-
 # Interfaces
 
 The built-in effects support a number of different settings, some of which are organized into more 'generic' interfaces.
@@ -117,8 +105,6 @@ The built-in effects work equally well for both right-handed and left-handed coo
 The built-in shaders are compiled using the ``vs_4_0_level_9_1`` and ``ps_4_0_level_9_1`` profiles to support all feature levels.
 
 The compiled shaders are integrated into the DirectXTK library to avoid the need for runtime compilation, shader reflection, or deploying compiled shader binary files (``.cso``).
-
-The DGSLEffect includes built-in support for the three default materials: Unlit, Lambert, and Phong. These built-in DGSL materials support all feature levels, as does the built-in DGSL-compatible vertex shader. Visual Studio Shader Designer (DGSL) ``.DGSL.CSO`` files support Feature Level 10.0+. The [[DGSLEffectFactory|EffectFactory]] automatically attempts to locate a suitably named standard ``.CSO`` on Feature Level 9.x which is a manually created fall-back shader. The method for creating these fall-back shaders is to use "Export to HLSL..." from the Visual Studio Shader Designer, then modify that ``.hlsl`` file so it will successfully compile with ``ps_4_0_level_9_1`` or ``ps_4_0_level_9_3`` (whichever is your minimum supported feature level).
 
 # Threading model
 
