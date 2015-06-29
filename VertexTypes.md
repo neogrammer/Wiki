@@ -36,10 +36,10 @@ Each type also provides a ``D3D11_INPUT_ELEMENT_DESC`` array which can be used t
 See [DirectXMesh](https://github.com/Microsoft/DirectXMesh/wiki/Geometry-formats) for more information.
 
 ## Visual Studio content pipeline
-_VertexPositionNormalTangentColorTexture_ contains the vertex elements needed for using Visual Studio Shader Designer (DGSL) shaders via DGSLEffect (which requires position, normal, tangent, color, and texture coordinates) and is used when loading ``.CMO`` file models. It defines Color as a ``uint32_t`` (``DXGI_FORMAT_R8G8B8A8_UNORM``)
+_VertexPositionNormalTangentColorTexture_ contains the vertex elements needed for using Visual Studio Shader Designer (DGSL) shaders via [[DGSLEffect|Effects]] (which requires position, normal, tangent, color, and texture coordinates) and is used when loading ``.CMO`` file models. It defines Color as a ``uint32_t`` (``DXGI_FORMAT_R8G8B8A8_UNORM``)
 
 _VertexPositionNormalTangentColorTextureSkinning_ extends VertexPositionNormalTangentColorTexture  with blend weights and indices for skinning using Visual Studio Shader Designer (DGSL) shaders via DGSLEffect and is used when loading ``.CMO`` file skinned models. It defines the blend indices as  ``uint32_t`` (``DXGI_FORMAT_R8G8B8A8_UINT``) and the blend weights as  ``uint32_t`` (``DXGI_FORMAT_R8G8B8A8_UNORM``).
 
 ## DirectX SDK SDKMESH
-The SDKMESH format describes input layouts as Direct3D 9 style vertex decls. There is therefore no specific vertex structure for SDKMESH data and such input layouts are built on-the-fly.
+The ``.SDKMESH`` format describes input layouts as Direct3D 9 style vertex decls. There is therefore no specific vertex structure for ``.SDKMESH`` data and such input layouts are built on-the-fly. The [[Model]] loader attempts to create input layouts that match the needs of the standard [[Effects]], so it can end up ignoring some of the vertex layout content if the critical content is found first.
 
