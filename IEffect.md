@@ -68,20 +68,20 @@ For the built-in effects, the trigger for needing to create a new layout would b
 
 All built-in effects require the ``SV_Position`` semantic.
 
-**AlphaTestEffect**
-This effect requires TEXCOORD0.
+## AlphaTestEffect
+This effect requires ``TEXCOORD0``.
 
-**BasicEffect**
-This effect requires NORMAL if lighting is enabled, COLOR if per-vertex colors are enabled, and TEXCOORD0 if texturing is enabled.
+## BasicEffect
+This effect requires ``NORMAL`` if lighting is enabled, COLOR if per-vertex colors are enabled, and TEXCOORD0 if texturing is enabled.
 
-**DGSLEffect**
-This effect requires NORMAL, TANGENT, and TEXCOORD0. If enableSkinning is true, it also requires BLENDINDICES and BLENDWEIGHT.
+## DGSLEffect
+This effect requires ``NORMAL``, ``TANGENT``, and ``TEXCOORD0``. If _enableSkinning_ is true, it also requires ``BLENDINDICES`` and ``BLENDWEIGHT``.
 
-**DualTextureEffect**
-This effect requires TEXCOORD0 and TEXCOORD1.
+## DualTextureEffect
+This effect requires ``TEXCOORD0`` and ``TEXCOORD1``.
 
-**EnvironmentMapEffect**
-This effect requires NORMAL and TEXCOORD0.
+## EnvironmentMapEffect
+This effect requires ``NORMAL`` and ``TEXCOORD0``.
 
-**SkinnedEffect**
-This effect requires NORMAL, TEXCOORD0, BLENDINDICES and BLENDWEIGHT.
+## SkinnedEffect
+This effect requires ``NORMAL``, ``TEXCOORD0``, ``BLENDINDICES`` and ``BLENDWEIGHT``.
