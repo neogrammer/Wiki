@@ -77,7 +77,8 @@ The **Draw** operation will only set up a texture sampler in slot 0. If you are 
 
     shape->Draw( myeffect, inputLayout.Get(), false, false, [=]
     {
-        ID3D11SamplerState* samplerState[2] = { states.LinearClamp(), states.LinearWrap() };
+        ID3D11SamplerState* samplerState[2] = { states.LinearClamp(),
+            states.LinearWrap() };
         deviceContext->PSSetSamplers(0, 2, &samplerState);
     });
 
