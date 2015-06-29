@@ -7,7 +7,7 @@ The **Apply** method is used to set up a device context for drawing with the eff
 
 The caller is assumed to handle setting the appropriate input layout, vertex and index buffer, primitive topology, blend state, depth-stencil state, and rasterizer state. Texturing effects will also set the shader resources needed for the texturing modes it supports, but assumes the caller has set up the appropriate samplers.
 
-Note: [[GeometricPrimitive]] and [[Model]] set the various state settings to reasonable defaults as part of their prepare and/or drawing methods. [[PrimitiveBatch]] only sets vertex buffer, index buffer, primitive topology leaving the rest of the device state vector up to the caller.
+_Note:_ [[GeometricPrimitive]] and [[Model]] set the various state settings to reasonable defaults as part of their prepare and/or drawing methods. [[PrimitiveBatch]] only sets vertex buffer, index buffer, primitive topology leaving the rest of the device state vector up to the caller.
 
     CommonStates states(device);
 
