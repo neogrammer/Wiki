@@ -39,4 +39,4 @@ Most _BasicEffect_ shaders make no particular distinction between the _view_, an
 
 The _BasicEffect_ shaders require the _world_ matrix to be distinct from the _view_ and _projection_ matrices for doing proper transforms of normals into world coordinates.
 
-Some complex shaders such as _DGSLEffect_ where the HLSL shader is given access to both local->world and local->projected transforms could make a distinction between _view_ and _projection_ as well, which requires the three matrices to be set independently to get correct results.
+Some complex shaders such as [[DGSLEffect]] where the HLSL shader is given access to both local->world and local->projected transforms could make a distinction between _view_ and _projection_ as well, which requires the three matrices to be set independently to get correct results.
