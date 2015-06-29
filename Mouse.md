@@ -1,4 +1,4 @@
-This is a helper for simplified mouse tracking modeled after the XNA C# Mouse class.
+This is a helper for simplified mouse tracking modeled after the [XNA Game Studio](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.input.mouse.aspx) Mouse class.
 
 # Header 
     #include <Mouse.h>
