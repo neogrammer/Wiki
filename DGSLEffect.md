@@ -52,7 +52,11 @@ Fog settings are not supported by this effect, but could be 'baked in' to a give
 * **SetTexture2**: Associates a texture shader resource view with the effect. Can be set to nullptr to remove a reference. Equivalent to calling ``SetTexture(1, value);``
 
 # Feature Level Notes
-The DGSLEffect includes built-in support for the three default materials: _Unlit_, _Lambert_, and _Phong_. These built-in DGSL materials support all feature levels, as does the built-in DGSL-compatible vertex shader. Visual Studio Shader Designer (DGSL) ``.DGSL.CSO`` files support Feature Level 10.0+. The [[DGSLEffectFactory|EffectFactory]] automatically attempts to locate a suitably named standard ``.CSO`` on Feature Level 9.x which is a manually created fall-back shader. The method for creating these fall-back shaders is to use "Export to HLSL..." from the Visual Studio Shader Designer, then modify that ``.hlsl`` file so it will successfully compile with ``ps_4_0_level_9_1`` or ``ps_4_0_level_9_3`` (whichever is your minimum supported feature level).
+The DGSLEffect includes built-in support for the three default materials: _Unlit_, _Lambert_, and _Phong_. These built-in DGSL materials support all feature levels, as does the built-in DGSL-compatible vertex shader
+
+Visual Studio Shader Designer (DGSL) ``.DGSL.CSO`` files support Feature Level 10.0+.
+
+The [[DGSLEffectFactory|EffectFactory]] automatically attempts to locate a suitably named standard ``.CSO`` on Feature Level 9.x which is a manually created fall-back shader. The method for creating these fall-back shaders is to use "Export to HLSL..." from the Visual Studio Shader Designer, then modify that ``.hlsl`` file so it will successfully compile with ``ps_4_0_level_9_1`` or ``ps_4_0_level_9_3`` (whichever is your minimum supported feature level).
 
 # Remarks
 
