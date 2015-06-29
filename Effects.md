@@ -1,4 +1,4 @@
-This is a native Direct3D 11 implementation of the five built-in effects from XNA Game Studio, providing identical functionality and API:
+This is a native Direct3D 11 implementation of the five built-in effects from XNA Game Studio 4, providing identical functionality and API:
 
 * **BasicEffect** supports texture mapping, vertex coloring, directional lighting, and fog
 * **AlphaTestEffect** supports per-pixel alpha testing
@@ -50,10 +50,11 @@ The built-in effects default to a standard lighting and color set
 
 The **EnableDefaultLighting** method sets up a standard three light setup (key, fill, and back) with some ambient light and some soft specular highlights.
 
-*Note*: To disable specular highlights on a material with _BasicEffect_, _SkinnedEffect_ and DGSLEffect; **DisableSpecular** sets the specular color to black ``[0,0,0]`` and the specular power to 1. A specular power of 0 can result in strange rendering artifacts.
+*Note*: To disable specular highlights on a material with _BasicEffect_, _SkinnedEffect_ and _DGSLEffect_; **DisableSpecular** sets the specular color to black ``[0,0,0]`` and the specular power to 1. A specular power of 0 can result in strange rendering artifacts.
 
 * _EnvironmentMapEffect_ always uses vertex lighting, but does not support specular highlights or per-pixel lighting
 * _SkinnedEffect_ always uses vertex or per-pixel lighting
+* _DualTextureEffect_ does not support lighting as it is assumed to be 'baked' into one of the two textures.
 * _DGSLEffect_ always uses per-pixel lighting if lighting is supported by the effect. It also supports a UV Transform for the texture coordinates, viewport information, and a time variable which may or may not be used by a given DGSL pixel shader. Fog settings are not supported by this effect, but could be 'baked in' to a given DGSL pixel shader.
 
 # Draw using the effect
@@ -109,7 +110,7 @@ The built-in effects support a number of different settings, some of which are o
 
 * [[IEffect]] is the basic interface for all effects which includes applying it to the device context and obtaining the shader information needed to create a Direct3D 11 input layout with a signature that matches the effect's shader. Remember that a given Effect instance could return a different shader based on internal state.
 * [[IEffectMatrices]] is the interface for setting an effects' world, view, and projection matrices. All the built-in effects support this interface.
-* [[IEffectLights]] is the interface for controlling the effects' lighting computations and settings. This is supported by _BasicEffect_, _EnvironmentMapEffect_, _SkinningEffec_t, and _DGSLEffect_
+* [[IEffectLights]] is the interface for controlling the effects' lighting computations and settings. This is supported by _BasicEffect_, _EnvironmentMapEffect_, _SkinningEffect_, and _DGSLEffect_
 * [[IEffectFog]] is the interface to control the effects' fog settings. This is supported by _BasicEffect_, _AlphaTestEffect_, _DualTextureEffect_, _EnvironmentMapEffect_, and _SkinnedEffect_.
 * [[IEffectSkinning]] is the interface to control skinned animation settings. This is supported by _DGSLEffect_ and _SkinnedEffect_. This includes setting the bone transform matrices, and optimizing the number of bone influences per vertex to process (1, 2, or 4; defaults to 4).
 
@@ -120,9 +121,9 @@ The built-in effects work equally well for both right-handed and left-handed coo
 # Feature Level Notes
 The built-in shaders are compiled using the ``vs_4_0_level_9_1`` and ``ps_4_0_level_9_1`` profiles to support all feature levels.
 
-The compiled shaders are integrated into the DirectXTK library to avoid the need for runtime compilation, shader reflection, or deploying compiled shader binary files (.cso).
+The compiled shaders are integrated into the DirectXTK library to avoid the need for runtime compilation, shader reflection, or deploying compiled shader binary files (``.cso``).
 
-The DGSLEffect includes built-in support for the three default materials: Unlit, Lambert, and Phong. These built-in DGSL materials support all feature levels, as does the built-in DGSL-compatible vertex shader. Visual Studio Shader Designer (DGSL) .DGSL.CSO files support Feature Level 10.0+. The DGSL[EffectFactory] automatically attempts to locate a suitably named standard .CSO on Feature Level 9.x which is a manually created fall-back shader. The method for creating these fall-back shaders is to use "Export to HLSL..." from the Visual Studio Shader Designer, then modify that .hlsl file so it will successfully compile with ``ps_4_0_level_9_1`` or ``ps_4_0_level_9_3`` (whichever is your minimum supported feature level).
+The DGSLEffect includes built-in support for the three default materials: Unlit, Lambert, and Phong. These built-in DGSL materials support all feature levels, as does the built-in DGSL-compatible vertex shader. Visual Studio Shader Designer (DGSL) ``.DGSL.CSO`` files support Feature Level 10.0+. The [[DGSLEffectFactory|EffectFactory]] automatically attempts to locate a suitably named standard ``.CSO`` on Feature Level 9.x which is a manually created fall-back shader. The method for creating these fall-back shaders is to use "Export to HLSL..." from the Visual Studio Shader Designer, then modify that ``.hlsl`` file so it will successfully compile with ``ps_4_0_level_9_1`` or ``ps_4_0_level_9_3`` (whichever is your minimum supported feature level).
 
 # Threading model
 
