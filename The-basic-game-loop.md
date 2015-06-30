@@ -136,15 +136,15 @@ The **Clear** function defaults to a background color of the classic "Cornflower
         m_d3dContext->RSSetViewports(1, &viewPort);
     }
 
-> _Note: In the older version of the template, the viewport was set in ``CreateResources`` and assumed to stay
+> In the older version of the template, the viewport was set in ``CreateResources`` and assumed to stay
 > set for the remainder of the program execution or until the window was resized. This approach is outdated, 
 > however, as the viewport could be overwritten or cleared by ``ClearState``. When dealing with deferred
 > contexts, Xbox One fast semantics, or the Direct3D 12 API, assumptions of device state persisting from
 > frame-to-frame without being reset is a likely source of rendering bugs. Therefore, this template uses the
-> best practice of resetting the viewport state at the start of each frame._
+> best practice of resetting the viewport state at the start of each frame.
 
-> _Xbox One: For Xbox One fast semantics, it is important to set the render targets at the end of ``Clear``
-> because clearing the render target unbinds it from the render pipeline._
+> **Xbox One:** For Xbox One fast semantics, it is important to set the render targets at the end of ``Clear``
+> because clearing the render target unbinds it from the render pipeline.
 
 Since we are using [[ComPtr]], most cleanup is automatic when the Game class is destroyed. If ``Present`` encounters a device-removed or device-reset (most commonly the driver crashed or was updated), then the application needs to release all Direct3D objects and recreate the device, swapchain, and all Direct3D objects again. Therefore, the TODO in **OnDeviceLost** should be updated to release your application's Direct3D objects.
 
