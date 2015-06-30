@@ -46,7 +46,7 @@ _Note: The string size is computed from the origin to the rightmost pixel render
 
 * **FindGlyph** can be used to obtain size and other metadata for a character in the font. Note if the character is not defined in the font and there is no default character, this function will throw a C++ exception.
 
-* **GetSpriteSheet** Returns a reference to the texture used for the sprite font for custom rendering.
+* **GetSpriteSheet** returns a reference to the texture used for the sprite font for custom rendering.
 
 # Default character
 
