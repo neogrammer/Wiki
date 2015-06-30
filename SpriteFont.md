@@ -44,13 +44,17 @@ _Note: The string size is computed from the origin to the rightmost pixel render
 
 * **ContainsCharacter** tests to see if a given character is defined in the font
 
+* **FindGlyph** can be used to obtain size and other metadata for a character in the font. Note if the character is not defined in the font and there is no default character, this function will throw a C++ exception.
+
+* **GetSpriteSheet** Returns a reference to the texture used for the sprite font for custom rendering.
+
 # Default character
 
 If you try to ``DrawString`` or call ``MeasureString`` with a character that is not included in the font, by default you will get an exception. Use **SetDefaultCharacter** to specify some other character that will be automatically substituted in place of any that are missing. You can also use **GetDefaultCharacter** to obtain the current default which is also defined as part of the font.
 
 # Special characters
 
-SpriteFont will respect new line characters (``\n`` - ASCII character 10), and ignores carriage returns (``\r`` - ASCII character 13).
+SpriteFont will respect new line characters (``\n`` - ASCII character 10), and ignores carriage returns (``\r`` - ASCII character 13). The distance moved for a new line is defined in the font and can be accessed with **GetLineSpacing** / **SetLineSpacing**.
 
 There is no special handling for the bell character (``\a`` - ASCII character 7), backspace (``\b`` - ASCII character 8), horizontal tab (``\t`` - ASCII character 9), vertical tab (ASCII character 11), form feed (``\f`` - ASCII character 12), or escape (ASCII character 27). These are all treated as standard characters and if it is missing from the ``.spritefont``, they will all render as the default character or generate an exception if there is no default character defined.
 
