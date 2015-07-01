@@ -88,7 +88,8 @@ Unlike [[SoundEffectInstance]] which obtains the audio data from a [[SoundEffect
 
     ...
 
-    // The 'Buffer needed' event function is called during some later call to Update() as needed
+    // The 'Buffer needed' event function is called during some later call
+    // to Update() as needed
 
 The 'Buffer needed' callback function is invoked whenever there are <= 2 buffers pending or whenever a buffer completes playback. You should submit sufficient data to avoid starving the voice.
 
