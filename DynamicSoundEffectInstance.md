@@ -12,7 +12,8 @@ _You can use direct low-level XAudio2 interfaces to implement your own streaming
 This class supports integer PCM 8-bit or 16-bit data (defaults to 16-bit) with 1 - 8 interleaved channels.
 
     // PCM 44100 Hz, 16-bit, 1 channel
-    std::unique_ptr<DynamicSoundEffectInstance> effect( new DynamicSoundEffectInstance( audEngine.get(),
+    std::unique_ptr<DynamicSoundEffectInstance> effect(
+        new DynamicSoundEffectInstance( audEngine.get(),
         [](DynamicSoundEffectInstance*)
         {
             // 'Buffer needed' event handler
@@ -23,7 +24,8 @@ For exception safety, it is recommended you make use of the C++ [RAII](http://en
 
 It can optionally support 3D positional audio:
 
-    std::unique_ptr<DynamicSoundEffectInstance> effect( new DynamicSoundEffectInstance( audEngine.get(),
+    std::unique_ptr<DynamicSoundEffectInstance> effect(
+        new DynamicSoundEffectInstance( audEngine.get(),
         [](DynamicSoundEffectInstance*)
         {
             // 'Buffer needed' event handler
@@ -33,7 +35,8 @@ It can optionally support 3D positional audio:
 
 Or use 3D positional audio with reverb effects (if [[AudioEngine]] was created using ``AudioEngine_EnvironmentalReverb`` | ``AudioEngine_ReverbUseFilters``):
 
-    std::unique_ptr<DynamicSoundEffectInstance> effect( new DynamicSoundEffectInstance( audEngine.get(),
+    std::unique_ptr<DynamicSoundEffectInstance> effect(
+        new DynamicSoundEffectInstance( audEngine.get(),
         [](DynamicSoundEffectInstance*)
         {
             // 'Buffer needed' event handler
@@ -65,9 +68,11 @@ Unlike [[SoundEffectInstance]] which obtains the audio data from a [[SoundEffect
     std::vector<uint8_t> audioBytes;
     audioBytes.resize( 44100 * 2 );
 
-    GenerateSineWave( reinterpret_cast<int16_t*>( &audioBytes.front() ), 44100, 440 );
+    GenerateSineWave( reinterpret_cast<int16_t*>( &audioBytes.front() ),
+        44100, 440 );
         
-    std::unique_ptr<DynamicSoundEffectInstance> effect( new DynamicSoundEffectInstance( audEngine.get(),
+    std::unique_ptr<DynamicSoundEffectInstance> effect(
+        new DynamicSoundEffectInstance( audEngine.get(),
         [&audioBytes](DynamicSoundEffectInstance* effect)
         {
             int count = effect->PendingBufferCount();
@@ -89,7 +94,8 @@ The 'Buffer needed' callback function is invoked whenever there are <= 2 buffers
 
 This example uses a simple helper routine which fills a buffer with 1 second of a pure sine wave at a given frequency:
 
-    void GenerateSineWave( _Out_writes_(sampleRate) int16_t* data, int sampleRate, int frequency )
+    void GenerateSineWave( _Out_writes_(sampleRate) int16_t* data,
+        int sampleRate, int frequency )
     {
         const double timeStep = 1.0 / double(sampleRate);
         const double freq = double(frequency);
