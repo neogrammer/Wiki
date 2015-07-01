@@ -2,7 +2,7 @@ WaveBank is a container class for an XACT-style wave bank that contains individu
 
 See [[XWBTool]] for more information on building ``.xwb`` files.
 
-_Note: DirectXTK for Audio uses XAudio 2.8 or XAudio 2.7. It does not make use of the legacy XACT Engine, XACT Cue, or XACT SoundBank._
+_Note: DirectXTK for Audio uses XAudio2. It does not make use of the legacy XACT Engine, XACT Cue, or XACT SoundBank._
 
 # Header
     #include <Audio.h>
