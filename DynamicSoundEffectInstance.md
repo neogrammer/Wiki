@@ -134,7 +134,7 @@ This example uses a simple helper routine which fills a buffer with 1 second of 
 
 # Positional 3D audio
 
-DirectXTK for Audio uses X3DAudio for positional audio computations. To apply a 3D effect to a sound instance, you call **Apply3D** with the listener location (i.e. where the player/camera is located) and the emitter (i.e. where the sound source is located in 3D dimensions):
+DirectXTK for Audio uses [X3DAudio](http://msdn.microsoft.com/en-us/library/windows/desktop/ee415714.aspx)  for positional audio computations. To apply a 3D effect to a sound instance, you call **Apply3D** with the listener location (i.e. where the player/camera is located) and the emitter (i.e. where the sound source is located in 3D dimensions):
 
     AudioListener listener;
     listener.SetPosition( ... );
