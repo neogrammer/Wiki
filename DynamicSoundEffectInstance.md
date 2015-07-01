@@ -46,11 +46,15 @@ Or use 3D positional audio with reverb effects (if [[AudioEngine]] was created u
 
 # Instance flags
 
-This is a combination of ``SoundEffectInstance_Use3D`` and/or ``SoundEffectInstance_ReverbUseFilters``. It defaults to ``SoundEffectInstance_Default``.
+This is a combination of sound effect instance flags. It defaults to ``SoundEffectInstance_Default``.
 
-There is also a ``SoundEffectInstance_UseRedirectLFE`` which is used internally by the library.
+* ``SoundEffectInstance_Use3D`` - Required to use **Apply3D**
+* ``SoundEffectInstance_ReverbUseFilters`` - Enables additional effects if the audio engine was created with ``AudioEngine_EnvironmentalReverb`` and optionally ``AudioEngine_ReverbUseFilters``.
+* ``SoundEffectInstance_NoSetPitch`` - If set, this instance cannot use **SetPitch**. This is a useful optimization for XAudio2 if you are not making use of pitch-shifting.
+* There is also a ``SoundEffectInstance_UseRedirectLFE`` which is used internally by the library.
 
-Note: ``SOUND_EFFECT_INSTANCE_FLAGS`` is used as a typed flag enum. Only operator| is overloaded to combine them, so operations like |= are not available without additional ``static_cast<>`` statements.
+> ``SOUND_EFFECT_INSTANCE_FLAGS`` is used as a typed flag enum. Only operator| is overloaded to combine them, so
+> operations like |= are not available without additional ``static_cast<>`` statements.
 
 #  Playback control
 
