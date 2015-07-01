@@ -136,7 +136,7 @@ XACT-style wave banks support 8-bit and 16-bit PCM (i.e. not 32-bit IEEE float P
 
 # XWB File Format
 
-To aid in debugging, here is a [simple console program]((https://github.com/Microsoft/DirectXTK/wiki/xwbdump.cpp) for dumping out the content of a XWB in a human-readable form.
+To aid in debugging, here is a [simple console program](https://github.com/Microsoft/DirectXTK/wiki/xwbdump.cpp) for dumping out the content of a XWB in a human-readable form.
 
 # Further reading
 
