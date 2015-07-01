@@ -103,7 +103,8 @@ For Win32 desktop applications, you can be informed of new audio devices in your
     filter.dbcc_devicetype = DBT_DEVTYP_DEVICEINTERFACE;
     filter.dbcc_classguid = KSCATEGORY_AUDIO;
 
-    HDEVNOTIFY hNewAudio = RegisterDeviceNotification( hwnd, &filter, DEVICE_NOTIFY_WINDOW_HANDLE );
+    HDEVNOTIFY hNewAudio = RegisterDeviceNotification( hwnd, &filter,
+        DEVICE_NOTIFY_WINDOW_HANDLE );
 
     ...
 
