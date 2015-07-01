@@ -33,3 +33,8 @@ AudioEmitter defaults to an omnidirectional emitter. To create a sound-cone, set
 
 # Custom distance curves
 The AudioEmitter constructor sets pVolumeCurve, pLFECurve, pLPFDirectCurve, pLPFReverbCurve, and pReverbCurve to nullptr which uses XAudio2 default curves.  Any custom curve definitions must have a pointer to valid memory at the time Apply3D is called.
+
+# Further reading
+[X3DAudio](http://msdn.microsoft.com/en-us/library/windows/desktop/ee415714.aspx)  
+[X3DAudioCalculate](http://msdn.microsoft.com/en-us/library/windows/desktop/microsoft.directx_sdk.x3daudio.x3daudiocalculate.aspx)
+
