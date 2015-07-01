@@ -160,7 +160,3 @@ See [[AudioListener]], [[AudioEmitter]]
 
 * **GetSampleSizeInBytes** ( duration ): Returns size of a buffer for a duration given in milliseconds
 
-# Further reading
-
-[X3DAudio](http://msdn.microsoft.com/en-us/library/windows/desktop/ee415714.aspx)  
-[X3DAudioCalculate](http://msdn.microsoft.com/en-us/library/windows/desktop/microsoft.directx_sdk.x3daudio.x3daudiocalculate.aspx)
