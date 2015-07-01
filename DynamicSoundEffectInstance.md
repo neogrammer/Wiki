@@ -124,7 +124,7 @@ This example uses a simple helper routine which fills a buffer with 1 second of 
 
 * **SetPitch** ( float pitch ): Sets a pitch-shift factor. Ranges from -1 to ``+1``, playback defaults to 0 (which is no pitch-shifting).
 
-* **SetPan* ( float pan ): Sets a pan settings: -1 is fully left, ``+1`` is fully right, and 0 is balanced.
+* **SetPan** ( float pan ): Sets a pan settings: -1 is fully left, ``+1`` is fully right, and 0 is balanced.
 
 > Panning is only supported for mono and stereo sources, and will overwrite any ``Apply3D`` settings.
 
