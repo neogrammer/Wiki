@@ -53,8 +53,8 @@ This is a combination of sound effect instance flags. It defaults to ``SoundEffe
 * ``SoundEffectInstance_NoSetPitch`` - If set, this instance cannot use **SetPitch**. This is a useful optimization for XAudio2 if you are not making use of pitch-shifting.
 * There is also a ``SoundEffectInstance_UseRedirectLFE`` which is used internally by the library.
 
-> ``SOUND_EFFECT_INSTANCE_FLAGS`` is used as a typed flag enum. Only operator| is overloaded to combine them, so
-> operations like |= are not available without additional ``static_cast<>`` statements.
+> ``SOUND_EFFECT_INSTANCE_FLAGS`` is used as a typed flag enum. Only ``operator|`` is overloaded to combine them,
+> so operations like ``|=`` are not available without additional ``static_cast<>`` statements.
 
 #  Playback control
 
