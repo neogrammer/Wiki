@@ -23,6 +23,8 @@ Visual Studio 2012 or later include a built-in content pipeline that can generat
 
     auto teapot = Model::CreateFromCMO( device, L"teapot.cmo", fx );
 
+For exception safety, the loaders return a ``std::unique_ptr``.
+
 The [Samples Content Exporter](http://go.microsoft.com/fwlink/?LinkId=226208) will generate ``.SDKMESH`` files from an Autodesk ``.FBX``.
 
     EffectFactory fx( device );
