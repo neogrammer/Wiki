@@ -29,8 +29,8 @@ To play the sound in the bank as a 'fire and forget' sound with volume, a pitch-
     wb->Play( index, volume, pitch, pan );
 
 * _volume_ default is 1
-* _pitch_ ranges from -1 to ``+1``, playback defaults to 0 (which is no pitch-shifting)
-* _pan_ -1 is fully left, ``+1`` is fully right, and 0 is balanced.
+* _pitch_ ranges from -1 to +1, playback defaults to 0 (which is no pitch-shifting)
+* _pan_ -1 is fully left, +1 is fully right, and 0 is balanced.
 
 If the wave bank contains 'entry friendly names', you can also use them to trigger a one-shot:
 
