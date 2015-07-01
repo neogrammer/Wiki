@@ -85,7 +85,7 @@ AudioEngine provides a simple wrapper over the platform-specific audio device en
 # Silent mode
 If the initial device creation fails to find an audio device, by default AudioEngine creation will succeed and be in a 'silent' mode--if ``AudioEngine_ThrowOnNoAudioHW`` is given, then it will throw a C++ exception instead. This allows various DirectXTK for Audio objects to be created and methods called, but no audio processing will take place. This can be detected either by a 'false' return from **Update** or calling **IsAudioDevicePresent**.
 
-At some later point (typically after detecting a new audio device is available on the system), you can retry by calling **Reset**. If this returns 'true', then the AudioEngine is no longer in 'silent' mode. After that, future calls to SoundEffect or WaveBank's Play() will result in one-shots being fired. All SoundEffectInstances are in a stopped state, but can be started after the successful call to Reset().
+At some later point (typically after detecting a new audio device is available on the system), you can retry by calling **Reset**. If this returns 'true', then the AudioEngine is no longer in 'silent' mode. After that, future calls to SoundEffect or WaveBank's Play() will result in one-shots being fired. All SoundEffectInstances are in a stopped state, but can be started after the successful call to ``Reset``.
 
     bool Reset( const WAVEFORMATEX* wfx = nullptr, const wchar_t* deviceId = nullptr );
 
