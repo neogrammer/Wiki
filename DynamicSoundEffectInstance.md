@@ -50,7 +50,7 @@ This is a combination of sound effect instance flags. It defaults to ``SoundEffe
 
 * ``SoundEffectInstance_Use3D`` - Required to use **Apply3D**
 * ``SoundEffectInstance_ReverbUseFilters`` - Enables additional effects if the audio engine was created with ``AudioEngine_EnvironmentalReverb`` and optionally ``AudioEngine_ReverbUseFilters``.
-* ``SoundEffectInstance_NoSetPitch`` - If set, this instance cannot use **SetPitch**. This is a useful optimization for XAudio2 if you are not making use of pitch-shifting.
+* ``SoundEffectInstance_NoSetPitch`` - If set, this instance cannot use **SetPitch**. This is a useful optimization for XAudio2 if you are not making use of pitch-shifting. 
 * There is also a ``SoundEffectInstance_UseRedirectLFE`` which is used internally by the library.
 
 > ``SOUND_EFFECT_INSTANCE_FLAGS`` is used as a typed flag enum. Only ``operator|`` is overloaded to combine them,
@@ -126,7 +126,7 @@ This example uses a simple helper routine which fills a buffer with 1 second of 
 
 * **SetVolume** ( float volume ): Sets playback volume. Playback defaults to 1
 
-* **SetPitch** ( float pitch ): Sets a pitch-shift factor. Ranges from -1 to ``+1``, playback defaults to 0 (which is no pitch-shifting).
+* **SetPitch** ( float pitch ): Sets a pitch-shift factor. Ranges from -1 to ``+1``, playback defaults to 0 (which is no pitch-shifting). This will trigger a C++ exception if the object was created with ``SoundEffectInstance_NoSetPitch``.
 
 * **SetPan** ( float pan ): Sets a pan settings: -1 is fully left, ``+1`` is fully right, and 0 is balanced.
 
