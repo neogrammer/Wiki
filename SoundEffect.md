@@ -15,7 +15,8 @@ For exception safety, it is recommended you make use of the C++ C++ [RAII](http:
 The second takes ownership of a memory buffer containing the wave data. The _wfx_ and _startAudio_ pointers are assumed to point into the same memory buffer owned by _wavData_ since they must remain valid for the life of the SoundEffect object.
 
     size_t audioSize = 44100 * 2;
-    std::unique_ptr<uint8_t[]> wavData( new uint8_t[ audioSize + sizeof(WAVEFORMATEX) ] );
+    std::unique_ptr<uint8_t[]> wavData( new uint8_t[
+        audioSize + sizeof(WAVEFORMATEX) ] );
 
     auto startAudio = wavData.get() + sizeof(WAVEFORMATEX);
 
@@ -30,12 +31,13 @@ The second takes ownership of a memory buffer containing the wave data. The _wfx
     wfx->wBitsPerSample = 16;
     wfx->cbSize = 0;
 
-    std::unique_ptr<SoundEffect> effect( new SoundEffect( audEngine.get(), wavData,
-        wfx, startAudio, audioSize );
+    std::unique_ptr<SoundEffect> effect( new SoundEffect( audEngine.get(),
+        wavData, wfx, startAudio, audioSize );
 
 This example uses a simple helper routine which fills a buffer with 1 second of a pure sine wave at a given frequency:
 
-    void GenerateSineWave( _Out_writes_(sampleRate) int16_t* data, int sampleRate, int frequency )
+    void GenerateSineWave( _Out_writes_(sampleRate) int16_t* data,
+        int sampleRate, int frequency )
     {
         const double timeStep = 1.0 / double(sampleRate);
         const double freq = double(frequency);
