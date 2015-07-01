@@ -124,12 +124,13 @@ See [[SoundEffectInstance]].
 Care needs to be taken to ensure that any referenced WaveBank is not deleted while a source voice is actively playing back content from it or has pending buffers referencing it.
 
 # Content support
+XAudio 2.9 on Windows 10 supports PCM, ADPCM, and xWMA.
 
-XAudio 2.8 on Windows 8.x and Windows phone support PCM and ADPCM formats (a variant of MS-ADPCM created by ``adpcmencode.exe`` in the Windows 8.x SDK or the legacy DirectX SDK).
+XAudio 2.8 on Windows 8.x and Windows phone support PCM and ADPCM formats.
 
-XAudio 2.7 on Windows Vista or later via the legacy DirectX End-User Runtime Redistribution (aka DirectSetup) supports PCM, ADPCM, and xWMA (created by ``xwmaencode.exe`` in the legacy DirectX SDK).
+XAudio 2.7 on Windows Vista or later via the legacy DirectX End-User Runtime Redistribution (aka DirectSetup) supports PCM, ADPCM, and xWMA.
 
-XAudio on Xbox One supports PCM, ADPCM, and xWMA. Xbox One exclusive app developers can also make use of XMA2 (created by ``xma2encode.exe`` in the Xbox One XDK).
+XAudio on Xbox One supports PCM, ADPCM, and xWMA. Xbox One exclusive app developers can also make use of XMA2.
 
 XACT-style wave banks support 8-bit and 16-bit PCM (i.e. not 32-bit IEEE float PCM), ADPCM, xWMA, and XMA2 content.
 
