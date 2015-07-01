@@ -1,4 +1,4 @@
-This is a helper object primarily used by the [[Model]] loader implementations to provide sharing of material instances of [[Effects]] and textures. This can be used standalone as well, and allows access to any existing ‘materials’ definitions already created.
+﻿This is a helper object primarily used by the [[Model]] loader implementations to provide sharing of material instances of [[Effects]] and textures. This can be used standalone as well, and allows access to any existing ‘materials’ definitions already created.
 
 It uses a simple case-sensitive string-based (wide-character) map for finding effect and texture instances that have already been created by the factory, which avoid duplication of texture and effect resources in complex models and scenes.
 
@@ -14,7 +14,7 @@ The **EffectFactory** and **DGSLEffectFactory** constructor require a Direct3D 1
 
     std::unique_ptr<DGSLEffectFactory> fxFactory( new DGSLEffectFactory( device ) )
 
-For exception safety, it is recommended you make use of the C++ RAII pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
+For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
 # Creating effects
 Fill out the EffectInfo structure, then call **CreateEffect** to obtain an [[Effects]] instance. If the _info.name_ string is provided then any already created effect from the factory that has the same name will be returned as a shared instance rather than a new instance created. If there is a name match, then all the other parameters in the EffectInfo are ignored.  Otherwise a new effect is created from the provided EffectInfo parameters, and CreateTexture is called automatically if the _info.texture_ or  _info.texture2_ string is provided. Remember that the use of a texture or _info.perVertexColor_ will result in a varying the input layout requirements for the resulting Effect.

@@ -25,7 +25,7 @@ The GeometryPrimitive class must be created from a factory method which takes th
     std::unique_ptr<GeometricPrimitive> shape(
         GeometricPrimitive::CreateTeapot(deviceContext) );
 
-For exception safety, it is recommended you make use of the C++ RAII pattern and use a ``std::unique_ptr``.
+For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr``.
 
 * **CreateCube**( deviceContext, float size = 1): Creates a [cube](http://en.wikipedia.org/wiki/Cube) (also known as a [hexahedron](http://en.wikipedia.org/wiki/Hexahedron)) of the given size.
 * **CreateSphere**( deviceContext, float diameter = 1, size_t tessellation = 16): Creates a uv-[sphere](http://en.wikipedia.org/wiki/Sphere) of given diameter with the given tessellation factor.

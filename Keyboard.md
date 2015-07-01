@@ -8,7 +8,7 @@ Keyboard is a singleton.
 
     std::unique_ptr<Keyboard> keyboard( new Keyboard );
 
-For exception safety, it is recommended you make use of the C++ RAII pattern and use a ``std::unique_ptr``.
+For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr``.
 
 # Integration
 For Windows desktop applications, the application needs to make the appropriate calls during the main **WndProc** message processing:
