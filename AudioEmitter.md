@@ -14,14 +14,14 @@ CurveDistanceScaler and DopplerScaler are set to 1 by default. InnerRadius is se
 # Helpers
 In addition to setting the members of ``X3DAUDIO_EMITTER`` directly, these helper functions are provided:
 
-* **SetPosition** (FXVMECTOR) or (XMFLOAT3): Sets the Position of the emitter.
+* **SetPosition** (XMVECTOR) or (XMFLOAT3): Sets the Position of the emitter.
 
-* **SetVelocity** (FXMVECTOR) or (XMFLOAT3): Sets the Velocity of the emitter.
+* **SetVelocity** (XMVECTOR) or (XMFLOAT3): Sets the Velocity of the emitter.
 
-* **SetOrientation** (FXMVECTOR forward, FXVMECTOR up) or (XMFLOAT3 forward, XMFLOAT3 up)
-* **SetOrientationFromQuaternion** ( FXMVECTOR ): Sets the OrientFront/OrientTop of the emitter.
+* **SetOrientation** (XMVECTOR forward, XMVECTOR up) or (XMFLOAT3 forward, XMFLOAT3 up)
+* **SetOrientationFromQuaternion** (XMVECTOR): Sets the OrientFront/OrientTop of the emitter.
 
-* **Update** ( FXMVECTOR newPos, XMVECTOR upDir, float dt ): Computes a direction and velocity for the emitter based on the existing Position and the newPos, updating the OrientFront/OrientTop to match, and then setting the Position to the newPos. If dt is 0, the update is skipped.
+* **Update** (XMVECTOR newPos, XMVECTOR upDir, float dt): Computes a direction and velocity for the emitter based on the existing Position and the newPos, updating the OrientFront/OrientTop to match, and then setting the Position to the newPos. If dt is 0, the update is skipped.
 
 # Multi-channel 3D Audio
 X3DAudio does support multi-channel sound sources for 3D audio (i.e. stereo, quad, etc.). The default constructor for AudioEmitter sets the source up for mono (i.e. single-channel), so to use multi-channel sources, you should set the **ChannelCount** member to match the number of channels in your source, and adjust **ChannelRadius** and the **EmitterAzimuths** array as desired.
