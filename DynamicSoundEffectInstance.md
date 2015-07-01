@@ -144,7 +144,7 @@ DirectXTK for Audio uses [X3DAudio](http://msdn.microsoft.com/en-us/library/wind
 
     effect->Apply3D( listener, emitter );
 
-Note if the instance was created without ``SoundEffectInstance_Use3D``, then calls to **Apply3D** will result in a C++ exception being thrown. ``Apply3D`` will overwrite any ``SetPan`` settings.
+Note if the instance was created without ``SoundEffectInstance_Use3D``, then calls to **Apply3D** will result in a C++ exception being thrown. **Apply3D** will overwrite any ``SetPan`` settings.
 
 See [[AudioListener]], [[AudioEmitter]]
 
