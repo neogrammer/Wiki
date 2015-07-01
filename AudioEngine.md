@@ -185,7 +185,8 @@ See [FXMASTERINGLIMITER_PARAMETERS](http://msdn.microsoft.com/en-us/library/wind
 The **GetStatistics** function returns information on the number of playing sounds, allocated instances, audio bytes in loaded [[SoundEffect]] and [[WaveBank]] objects, and XAudio2 source voices allocated for various purposes. These values do not rely on debug faculties to be enabled.
 
     auto stats = engine->GetStatistics();
-    printf( "\nPlaying: %Iu / %Iu; Instances %Iu; Voices %Iu / %Iu / %Iu / %Iu; %Iu audio bytes\n",
+    printf( "\nPlaying: %Iu / %Iu; Instances %Iu; Voices %Iu / %Iu / %Iu / %Iu;"
+            "%Iu audio bytes\n",
         stats.playingOneShots, stats.playingInstances,
         stats.allocatedInstances, stats.allocatedVoices, stats.allocatedVoices3d,
         stats.allocatedVoicesOneShot, stats.allocatedVoicesIdle,
