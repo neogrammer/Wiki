@@ -1,5 +1,7 @@
 This is the _Getting Started_ tutorial for _DirectX Tool Kit_ which introduces the reader to programming Direct3D 11 in C++.
 
+> **UNDER CONSTRUCTION**: The content in this section is still being migrated from [CodePlex](https://directxtk.codeplex.com/wikipage?title=Getting%20Started)
+
 # Background
 This tutorial assumes the reader is familiar with the basics of C++ programming using Microsoft Visual C++, including writing code, building applications, and basic debugging. Coding conventions here will make use of C++11 language features such as _auto_, simple _lambdas_  (aka anonymous functions), and the standard smart-pointer ``std::unique_ptr``, but will generally be otherwise 'core' C++ (i.e. language features supported in Visual C++ 2010).
 
