@@ -68,14 +68,14 @@ Now that we have the _DirectX Tool Kit for Audio_ usable in your project, the ne
 If you are using XAudio 2.7 for Windows 7 and Windows Vista compatibility, we also need to add the DirectX SDK include and library paths to your project. First go to **Project** / **Properties** and select "VC++ Directories" on the left. Then set Configuration to "All Configurations" and Platform to "Win32" (note this is called "x86" in VS 2015). Add to the _end_ of these paths:
 * **Include Directories:** ``;$(DXSDK_DIR)Include``
 * **Library Directories:** ``;$(DXSDK_DIR)Lib\x86``
-Click "Apply".
+* Click "Apply".
 
 ![VC++ Directories (x86)](https://github.com/Microsoft/DirectXTK/wiki/images/settingsDXx86.png)
 
 Then set Configuration to "All Configurations" and Platform to "x64". Add to the _end_ of these paths:
 * **Include Directories:** ``;$(DXSDK_DIR)Include``
 * **Library Directories:** ``;$(DXSDK_DIR)Lib\x64``
-Click "Apply".
+* Click "Apply".
 
 ![VC++ Directories (x64)](https://github.com/Microsoft/DirectXTK/wiki/images/settingsDXx64.png)
 
