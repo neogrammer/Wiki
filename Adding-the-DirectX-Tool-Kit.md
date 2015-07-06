@@ -66,6 +66,8 @@ General advice for C++ projects is that you should only add the headers you actu
     #include "VertexTypes.h"
     #include "WICTextureLoader.h"
 
+> This does not include the _DirectX Tool Kit for Audio_ header ``Audio.h`` which is covered by another [[tutorial|Adding the DirectX Tool Kit for Audio]].
+
 Then finish off the setup by adding a C++ namespace using statement to your **Game.cpp** file to make it a bit easier to use the SimpleMath types:
 
     //
