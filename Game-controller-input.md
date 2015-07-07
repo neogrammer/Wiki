@@ -55,23 +55,23 @@ Build and run. The application exits when you press _View_ / _Back_.
 
 In **Game.cpp**, modify the TODO section of **Update**:
 
-{code:c++}
-auto state = m_gamePad->GetState(0);
+    auto state = m_gamePad->GetState(0);
 
-if (state.IsConnected())
-{
-    if (state.IsViewPressed())
+    if (state.IsConnected())
     {
-        PostQuitMessage(0);
-    }
-    else
-    {
-        float left = (state.IsAPressed()) ? 1.f : 0;
-        float right = (state.IsBPressed()) ? 1.f : 0;
+        if (state.IsViewPressed())
+        {
+            PostQuitMessage(0);
+        }
+        else
+        {
+            float left = (state.IsAPressed()) ? 1.f : 0;
+            float right = (state.IsBPressed()) ? 1.f : 0;
 
-        m_gamePad->SetVibration(0, left, right);
+            m_gamePad->SetVibration(0, left, right);
+        }
     }
-}
+
 
 Build and run. If you press and hold A or B, you get vibration motors of the controller to activate.
 
@@ -129,7 +129,7 @@ In **Game.cpp*, modify the TODO section of *Update*:
 
 # Further reading
 
-DirectX Tool Kit docs [[GamePad]]
+DirectX Tool Kit docs [[GamePad]]  
 [DirectX Tool Kit: Now with GamePads](http://blogs.msdn.com/b/chuckw/archive/2014/09/05/directx-tool-kit-now-with-gamepads.aspx)  
 [XInput and Windows 8](http://blogs.msdn.com/b/chuckw/archive/2012/04/26/xinput-and-windows-8-consumer-preview.aspx)
 
