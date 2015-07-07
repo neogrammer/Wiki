@@ -39,7 +39,8 @@ In **Game.cpp**, modify TODO of **CreateDevice** to be:
 
     ComPtr<ID3D11Resource> resource;
     DX::ThrowIfFailed(
-        CreateWICTextureFromFile(m_d3dDevice.Get(), L"cat.png", resource.GetAddressOf(),
+        CreateWICTextureFromFile(m_d3dDevice.Get(), L"cat.png",
+        resource.GetAddressOf(),
         m_texture.ReleaseAndGetAddressOf()));
 
     ComPtr<ID3D11Texture2D> cat;
@@ -73,7 +74,7 @@ Build and run, and you should get the following screen:
 ![Screenshot of cat sprite](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotSpriteCat.PNG)
 
 ## Alpha mode
-One thing you should notice is that the edges of the cat look strange with a bit of white outline. The problem here is that the cat.png file's alpha channel is _straight_  alpha (i.e. the pixels are of the form ``(R,G,B,A)``). The default behavior of SpriteBatch, however, is to assume you are using _premultiplied_ alpha (i.e. the pixels are of the form ``(R*A, G*A, B*A, A)``). There are many reasons why using premultiplied alpha is superior, but for now we can fix this mismatch by changing our use of SpriteBatch to use straight alpha blending instead by supplying our own ``ID3D11BlendState`` object. We'll make use of the CommonStates factory to provide one of the built-in blend state objects.
+One thing you should notice is that the edges of the cat look strange with a bit of white outline. The problem here is that the ``cat.png`` file's alpha channel is _straight_  alpha (i.e. the pixels are of the form ``(R,G,B,A)``). The default behavior of SpriteBatch, however, is to assume you are using _premultiplied_ alpha (i.e. the pixels are of the form ``(R*A, G*A, B*A, A)``). There are many reasons why using premultiplied alpha is superior, but for now we can fix this mismatch by changing our use of SpriteBatch to use straight alpha blending instead by supplying our own ``ID3D11BlendState`` object. We'll make use of the CommonStates factory to provide one of the built-in blend state objects.
 
 In the **Game.h** file, add the following variable to the bottom of the Game class's private declarations:
 
@@ -101,7 +102,7 @@ Build and run again, and you'll get a nice clean cat:
 
 # Using DDS files for textures
 
-Rather than use a PNG and the Windows Imaging Component (WIC) to load the texture, a more efficient thing for us to do is to make use of a ``DDS`` file instead. A ``DDS`` file is a container for all kinds of Direct3D resources including 1D and 2D textures, _cubemaps_, _volume maps_, arrays of 1D or 2D textures or cubemaps each optionally with _mipmaps_. It can contain a wide-array of pixel formats and hardware-supported 'block-compression' schemes to save on video memory usage at runtime.
+Rather than use a ``PNG`` and the Windows Imaging Component (WIC) to load the texture, a more efficient thing for us to do is to make use of a ``DDS`` file instead. A ``DDS`` file is a container for all kinds of Direct3D resources including 1D and 2D textures, _cubemaps_, _volume maps_, arrays of 1D or 2D textures or cubemaps each optionally with _mipmaps_. It can contain a wide-array of pixel formats and hardware-supported 'block-compression' schemes to save on video memory usage at runtime.
 
 Visual Studio has a built-in system for converting images to DDS as part of the build process, which you can read about [here](http://msdn.microsoft.com/en-us/library/hh972446.aspx).
 
@@ -109,11 +110,12 @@ For this tutorial, we will instead make of use of the [DirectXTex](http://go.mic
 
 1. Download the [Texconv.exe](https://github.com/Microsoft/DirectXTex/releases/download/jun2015/texconv.exe) from the _DirectXTex_ site save the EXE into your project's folder.
 1. Open a [command-prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq) and then change to your project's folder.
-1. Run the following command-line
+
+Then run the following command-line:
 
     texconv cat.png -pmalpha -m 1 -f BC3_UNORM
 
-Then from the top menu in Visual Studio select **Project** / **Add Existing Item...**. Select [cat.dds](https://github.com/Microsoft/DirectXTK/wiki/cat.dds)and click "OK".
+Then from the top menu in Visual Studio select **Project** / **Add Existing Item...**. Select [cat.dds](https://github.com/Microsoft/DirectXTK/wiki/cat.dds) and click "OK".
 
 Now will return to **Game.cpp** in the **CreateDevice** and change our use of ``CreateWICTextureFromFile`` to ``CreateDDSTextureFromFile``:
 
@@ -197,7 +199,7 @@ With the optional source-rectangle parameter, we can tile a sprite.
 
 In the **Game.h** file, add the following variable to the bottom of the Game class's private declarations:
 
-RECT m_tileRect;
+    RECT m_tileRect;
 
 In the **Game.cpp** file, modify in the TODO section of **CreateDevice**:
 
@@ -232,7 +234,7 @@ Build and run to see the sprite as an array of 4x4 cats.
 # Drawing a background image
 
 Our last exercise for this lesson is rendering a sprite as a full background image.  Start by saving 
-[sunset.png](https://github.com/Microsoft/DirectXTK/wiki/images/sunset.png) to your project directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "sunset.jpg" and click "OK".
+[sunset.jpg](https://github.com/Microsoft/DirectXTK/wiki/images/sunset.jpg) to your project directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "sunset.jpg" and click "OK".
 
 In the **Game.h** file, add  the following variables to the bottom of the Game class's private declarations:
 
