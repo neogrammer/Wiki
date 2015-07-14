@@ -47,6 +47,8 @@ Press F5 to build and run the application It displays the following window:
 > versions of Windows. Second if it runs fine in _Release_ but fails in _Debug_, then you likely do not have the 
 > [proper DirectX Debug Device](http://blogs.msdn.com/b/chuckw/archive/2012/11/30/direct3d-sdk-debug-layer-tricks.aspx) installed for your operating system.
 
+> On the **Xbox One**, the background color will be slightly oversaturated. This is because the basic Xbox One XDK template uses a backBufferFormat of ``DXGI_FORMAT_B8G8R8A8_UNORM_SRGB`` (i.e. the linear colorspace). The DirectXMath Colors values are defined using standard [sRGB](https://en.wikipedia.org/wiki/SRGB) colorspace which is slightly different. All the colors defines need to be adjusted slightly for the linear RGB colorspace (aka gamma correct rendering).
+
 # Tour of the code
 For now, we'll focus on the content of ``Game.cpp`` (which is open by default).
 
