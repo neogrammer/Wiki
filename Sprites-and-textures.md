@@ -75,7 +75,7 @@ Build and run, and you should get the following screen:
 ![Screenshot of cat sprite](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotSpriteCat.PNG)
 
 ## Alpha mode
-One thing you should notice is that the edges of the cat look strange with a bit of white outline. The problem here is that the ``cat.png`` file's alpha channel is _straight_  alpha (i.e. the pixels are of the form ``(R,G,B,A)``). The default behavior of SpriteBatch, however, is to assume you are using _premultiplied_ alpha (i.e. the pixels are of the form ``(R*A, G*A, B*A, A)``). There are many reasons why using premultiplied alpha is superior, but for now we can fix this mismatch by changing our use of SpriteBatch to use straight alpha blending instead by supplying our own ``ID3D11BlendState`` object. We'll make use of the CommonStates factory to provide one of the built-in blend state objects.
+One thing you should notice is that the edges of the cat look strange with a bit of white outline. The problem here is that the ``cat.png`` file's alpha channel is _straight_  alpha (i.e. the pixels are of the form ``(R,G,B,A)``). The default behavior of SpriteBatch, however, is to assume you are using _premultiplied_ alpha (i.e. the pixels are of the form ``(R*A, G*A, B*A, A)``). There are many reasons why using premultiplied alpha is superior, but for now we can fix this mismatch by changing our use of SpriteBatch to use straight alpha blending instead by supplying our own ``ID3D11BlendState`` object. We'll make use of the [[CommonStates]] factory to provide one of the built-in blend state objects.
 
 In the **Game.h** file, add the following variable to the bottom of the Game class's private declarations:
 
