@@ -65,7 +65,8 @@ In **Game.cpp**, add to the TODO of **Render**:
 
     m_spriteBatch->Begin();
 
-    m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr, Colors::White, 0.f, m_origin);
+    m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr, Colors::White,
+        0.f, m_origin);
 
     m_spriteBatch->End();
 
@@ -92,7 +93,8 @@ In **Game.cpp**, modify the TODO of **Render**:
 
     m_spriteBatch->Begin( SpriteSortMode_Deferred, m_states->NonPremultiplied() );
 
-    m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr, Colors::White, 0.f, m_origin);
+    m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr, Colors::White,
+        0.f, m_origin);
 
     m_spriteBatch->End();
 
@@ -120,7 +122,8 @@ Then from the top menu in Visual Studio select **Project** / **Add Existing Item
 Now will return to **Game.cpp** in the **CreateDevice** and change our use of ``CreateWICTextureFromFile`` to ``CreateDDSTextureFromFile``:
 
     DX::ThrowIfFailed(
-        CreateDDSTextureFromFile(m_d3dDevice.Get(), L"cat.dds", resource.GetAddressOf(),
+        CreateDDSTextureFromFile(m_d3dDevice.Get(), L"cat.dds",
+            resource.GetAddressOf(),
         m_texture.ReleaseAndGetAddressOf()));
 
 Note that since we used the option ``-pmalpha``, we should also make sure we change back to the default ``Begin`` in our **Render** because our "cat.dds" has premultiplied alpha in it.
@@ -129,7 +132,8 @@ In **Game.cpp**, modify the TODO of **Render**:
 
     m_spriteBatch->Begin();
 
-    m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr, Colors::White, 0.f, m_origin);
+    m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr, Colors::White,
+        0.f, m_origin);
 
     m_spriteBatch->End();
 
@@ -172,7 +176,8 @@ In **Game.cpp**, modify the TODO of **Render**:
 
     m_spriteBatch->Begin();
 
-    m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr, Colors::White, 0.f, m_origin,
+    m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr, Colors::White,
+        0.f, m_origin,
         cosf(time) + 2.f);
 
     m_spriteBatch->End();
@@ -187,7 +192,8 @@ In **Game.cpp**, modify the TODO of **Render**:
 
     m_spriteBatch->Begin();
 
-    m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr, Colors::Green, 0.f, m_origin);
+    m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr, Colors::Green,
+        0.f, m_origin);
 
     m_spriteBatch->End();
 
@@ -269,7 +275,8 @@ In **Game.cpp**, modify the TODO section of **Render** to be:
 
     m_spriteBatch->Draw(m_background.Get(), m_fullscreenRect);
 
-    m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr, Colors::White, 0.f, m_origin);
+    m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr, Colors::White,
+        0.f, m_origin);
 
     m_spriteBatch->End();
 
