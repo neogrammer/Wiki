@@ -114,17 +114,17 @@ Build and run to see our ship in space!
 
 These lessons on SpriteBatch only begin to show the many techniques you can implement. Here are some other ideas to consider:
 
-* SpriteBatch can perform sorting of the sprites in a number of different modes. We've used the default *sortMode* of ``SpriteSortMode_Deferred`` for Begin. If drawing with lots of different textures, you should try ``SpriteSortMode_Texture``. If you are making use of the *layerDepth* parameter to sort your sprites correctly, use ``SpriteSortMode_BackToFront`` or ``SpriteSortMode_FrontToBack``. For all these modes, the actual drawing does not happen until you call End--or you exceed the internal vertex buffer size. If you use ``SpriteSortMode_Immediate``, then the sprite is drawn as soon as you call Draw.
+* SpriteBatch can perform sorting of the sprites in a number of different modes. We've used the default *sortMode* of ``SpriteSortMode_Deferred`` for ``Begin``. If drawing with lots of different textures, you should try ``SpriteSortMode_Texture``. If you are making use of the *layerDepth* parameter to sort your sprites correctly, use ``SpriteSortMode_BackToFront`` or ``SpriteSortMode_FrontToBack``. For all these modes, the actual drawing does not happen until you call End--or you exceed the internal vertex buffer size. If you use ``SpriteSortMode_Immediate``, then the sprite is drawn as soon as you call ``Draw``.
 
-* SpriteBatch can 'flip' the texture image at runtime using ``SpriteEffects_FlipHorizontally``, ``SpriteEffects_FlipVertically``, or ``SpriteEffects_FlipBoth``. The default *effects* parameter for Draw is ``SpriteEffects_None``.
+* SpriteBatch can 'flip' the texture image at runtime using ``SpriteEffects_FlipHorizontally``, ``SpriteEffects_FlipVertically``, or ``SpriteEffects_FlipBoth``. The default *effects* parameter for ``Draw`` is ``SpriteEffects_None``.
 
-* When drawing lots of different sprites, having to load hundreds of individual texture files is inefficient and potentially wastes video memory.  One solution is to pack the sprite images into a single (or a few) textures and then render parts of them using *sourceRectangle* for Draw. For more on implementing this technique, see [[SpriteSheet]].
+* When drawing lots of different sprites, having to load hundreds of individual texture files is inefficient and potentially wastes video memory.  One solution is to pack the sprite images into a single (or a few) textures and then render parts of them using *sourceRectangle* for ``Draw``. For more on implementing this technique, see [[SpriteSheet]].
 
-* The SpriteBatch class has a 'rotation mode' setting which can be used to handle device orientation changes for Windows Store apps and Windows phone apps, or just for special effects. You call *SetRotation* with one of the ``DXGI_MODE_ROTATION`` settings which controls the final view transformation to flip the output an extra 90 degrees, 180 degrees, or 270 degrees. It defaults to no extra rotation with ``DXGI_MODE_ROTATION_IDENTITY``.
+* The SpriteBatch class has a 'rotation mode' setting which can be used to handle device orientation changes for Windows Store apps and Windows phone apps, or just for special effects. You call **SetRotation** with one of the ``DXGI_MODE_ROTATION`` settings which controls the final view transformation to flip the output an extra 90 degrees, 180 degrees, or 270 degrees. It defaults to no extra rotation with ``DXGI_MODE_ROTATION_IDENTITY``.
 
 * With the *setCustomShaders* parameter to Begin you can override the shader settings and other Direct3D state to implement things like post-processing and normal-map based effects with SpriteBatch.
 
-* The *transformationMatrix* parameter to Begin lets you provide a custom transformation for the sprite renderering. This is combined with the viewport-based final view transform, but if you use ``SetRotation( DXGI_MODE_ROTATION_UNSPECIFIED )`` this will be disabled. The default value for this parameter is the _identity matrix_.
+* The *transformationMatrix* parameter to ``Begin`` lets you provide a custom transformation for the sprite renderering. This is combined with the viewport-based final view transform, but if you use ``SetRotation( DXGI_MODE_ROTATION_UNSPECIFIED )`` this will be disabled. The default value for this parameter is the _identity matrix_.
 
 **Next lesson:** [[Drawing text]]
 
