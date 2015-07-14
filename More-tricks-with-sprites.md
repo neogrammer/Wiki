@@ -125,7 +125,8 @@ These lessons on SpriteBatch only begin to show the many techniques you can impl
 * With the *setCustomShaders* parameter to Begin you can override the shader settings and other Direct3D state to implement things like post-processing and normal-map based effects with SpriteBatch.
 
 * The *transformationMatrix* parameter to Begin lets you provide a custom transformation for the sprite renderering. This is combined with the viewport-based final view transform, but if you use ``SetRotation( DXGI_MODE_ROTATION_UNSPECIFIED )`` this will be disabled. The default value for this parameter is the _identity matrix_.
-*Next lesson:* [[Drawing text]]
+
+**Next lesson:** [[Drawing text]]
 
 # Further reading
 
