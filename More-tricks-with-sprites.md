@@ -57,7 +57,7 @@ In **Game.cpp**, add to the TODO of **Update**:
 
 Build and run to see our ship at the bottom with animated thrust.
 
-![Screenshot of Ship](https://raw.githubusercontent.com/wiki/Microsoft/DirectXTK/images/screenshotShip1.png)
+![Screenshot of Ship](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotShip1.png)
 
 # Creating a scrolling background
 
@@ -65,7 +65,7 @@ What really 'sells the shot' for a side-scroller style game is the moving backgr
 
 First, start saving the file [ScrollingBackground.h](https://github.com/Microsoft/DirectXTK/wiki/ScrollingBackground.h) to your new project's directory--see [[ScrollingBackground]] for more information. Then go to the top menu and select **Project** / **Add Existing Item...**. Select "ScrollingBackground.h" and click "OK".
 
-Next save [starfield.png](https://raw.githubusercontent.com/wiki/Microsoft/DirectXTK/images/starfield.png) into your new project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "starfield.png" and click "OK".
+Next save [starfield.png](https://github.com/Microsoft/DirectXTK/wiki/images/starfield.png) into your new project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "starfield.png" and click "OK".
 
 Add to the top of **Game.h** the following after the other ``#include`` statements:
 
@@ -108,7 +108,7 @@ In **Game.cpp**, add to the TODO of **Update**:
 
 Build and run to see our ship in space!
 
-![Screenshot of Ship in Space](https://raw.githubusercontent.com/wiki/Microsoft/DirectXTK/images/screenshotShip2.png)
+![Screenshot of Ship in Space](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotShip2.png)
 
 # More to explore
 
