@@ -13,7 +13,7 @@ In order to do a draw operation with Direct3D 11, we need to provide the followi
 * A compiled *vertex shader* program
 * A compiled *pixel shader* program
 
-For this lesson, the ``BasicEffect`` object will provide the vertex and pixel shader programs, ``VertexPositionColor`` will provide the input layout, and ``PrimitiveBatch`` will provide the vertex buffer and primitive topology.
+For this lesson, the [[BasicEffect]] object will provide the vertex and pixel shader programs, [[VertexPositionColor|VertexTypes]] will provide the input layout, and **PrimitiveBatch** will provide the vertex buffer and primitive topology.
 
 Note that since the _input layout_ is the bridge between the _vertex buffer_ data and the _vertex shader program_, this Direct3D object is created with information about both.
 
