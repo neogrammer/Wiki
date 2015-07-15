@@ -49,7 +49,6 @@ In **Game.cpp** modify in **CreateDevice**:
 
     static const D3D_FEATURE_LEVEL featureLevels [] =
     {
-        // TODO: Modify for supported Direct3D feature levels (see code below related to 11.1 fallback handling)
         D3D_FEATURE_LEVEL_11_1,
         D3D_FEATURE_LEVEL_11_0,
         D3D_FEATURE_LEVEL_10_1,
@@ -62,8 +61,8 @@ In **Game.cpp**, add to the TODO of **CreateDevice**:
 
     // Create DGSL Effect
     auto blob = DX::ReadData( L"MyDGSLShader.cso" );
-    DX::ThrowIfFailed(m_d3dDevice->CreatePixelShader(&blob.front(), blob.size(), nullptr,
-        m_pixelShader.ReleaseAndGetAddressOf()));
+    DX::ThrowIfFailed(m_d3dDevice->CreatePixelShader(&blob.front(), blob.size(),
+        nullptr, m_pixelShader.ReleaseAndGetAddressOf()));
 
     m_effect.reset(new DGSLEffect(m_d3dDevice.Get(), m_pixelShader.Get()));
     m_effect->SetTextureEnabled(true);
@@ -90,7 +89,8 @@ In **Game.cpp**, add to the TODO of **CreateDevice**:
     DX::ThrowIfFailed( m_d3dDevice->CreateInputLayout(
         VertexPositionNormalTangentColorTexture::InputElements, 
         VertexPositionNormalTangentColorTexture::InputElementCount,
-        shaderByteCode, byteCodeLength, m_inputLayout.ReleaseAndGetAddressOf()));
+        shaderByteCode, byteCodeLength,
+        m_inputLayout.ReleaseAndGetAddressOf()));
 
     // Create sphere geometry with DGSL vertex data
     {
@@ -123,7 +123,8 @@ In **Game.cpp**, add to the TODO of **CreateDevice**:
 
 In **Game.cpp**, add to the TODO of **CreateResources**:
 
-    m_view = Matrix::CreateLookAt(Vector3(2.f, 2.f, 2.f), Vector3::Zero, Vector3::UnitY);
+    m_view = Matrix::CreateLookAt(Vector3(2.f, 2.f, 2.f),
+        Vector3::Zero, Vector3::UnitY);
     m_proj = Matrix::CreatePerspectiveFieldOfView(XM_PI / 4.f,
         float(backBufferWidth) / float(backBufferHeight), 0.1f, 10.f);
 
