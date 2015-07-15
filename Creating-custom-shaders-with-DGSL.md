@@ -55,7 +55,7 @@ In **Game.cpp** modify in **CreateDevice**:
         D3D_FEATURE_LEVEL_10_0,
     };
 
-> **UWP:** The new list would also include ``D3D_FEATURE_LEVEL_12_0`` and ``D3D_FEATURE_LEVEL_12_1``.
+> **UWP:** The new list would also include ``D3D_FEATURE_LEVEL_12_0`` and ``D3D_FEATURE_LEVEL_12_1``. The change is to delete ``D3D_FEATURE_LEVEL_9_1``, ``D3D_FEATURE_LEVEL_9_2``, and ``D3D_FEATURE_LEVEL_9_3``.
 
 In **Game.cpp**, add to the TODO of **CreateDevice**:
 
