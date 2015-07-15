@@ -200,4 +200,4 @@ To support Windows phone, you need feature level 9.3, and to target Surface RT y
 DirectX Tool Kit docs [[Effects]]  
 [Using 3-D Assets in Your Game or App](http://msdn.microsoft.com/en-us/library/hh972446.aspx)  
 [Working with Shaders](http://msdn.microsoft.com/en-us/library/hh873117.aspx)  
-[Visual Studio 3D Starter Kit (Windows 8.](http://aka.ms/vs3dkitwin)
+[Visual Studio 3D Starter Kit (Windows 8.1)](http://aka.ms/vs3dkitwin)
