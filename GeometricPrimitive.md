@@ -83,7 +83,7 @@ The **Draw** operation will only set up a texture sampler in slot 0. If you are 
         deviceContext->PSSetSamplers(0, 2, &samplerState);
     });
 
-_Note that GeometricPrimitive shapes define a single set of texture coordinates, so you can't use them with _DualTextureEffect_. They also do not include tangents or bi-normals, so they don't work with _DGSLEffect_._
+> GeometricPrimitive shapes define a single set of texture coordinates, so you can't use them with [[DualTextureEffect]]. They also do not include tangents or bi-normals, so they don't work with [[DGSLEffect]].
 
 # Coordinate systems
 These geometric primitives (based on the XNA Game Studio conventions) use right-handed coordinates. They can be used with left-handed coordinates by setting the _rhcoords_ parameter on the factory methods to 'false' to reverse the winding ordering (the parameter defaults to 'true').
