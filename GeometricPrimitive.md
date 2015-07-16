@@ -28,6 +28,7 @@ The GeometryPrimitive class must be created from a factory method which takes th
 For exception safety, the factory functions return a ``std::unique_ptr``.
 
 * **CreateCube**( deviceContext, float size = 1): Creates a [cube](http://en.wikipedia.org/wiki/Cube) (also known as a [hexahedron](http://en.wikipedia.org/wiki/Hexahedron)) of the given size.
+* **CreateBox**( deviceContext, const XMFLOAT3& size): Creates a box with a non-uniform size.
 * **CreateSphere**( deviceContext, float diameter = 1, size_t tessellation = 16): Creates a uv-[sphere](http://en.wikipedia.org/wiki/Sphere) of given diameter with the given tessellation factor.
 * **CreateGeoSphere**( deviceContext, float diameter = 1, size_t tessellation = 3): Creates a geodesic [sphere](http://en.wikipedia.org/wiki/Sphere) with the given diameter and tessellation factor.
 * **CreateCylinder**( deviceContext, float height = 1, float diameter = 1, size_t tessellation = 32): Creates a [cylinder](http://en.wikipedia.org/wiki/Cylinder_(geometry)) of given height, diameter, tessellation factor.
@@ -84,13 +85,28 @@ The **Draw** operation will only set up a texture sampler in slot 0. If you are 
 
 _Note that GeometricPrimitive shapes define a single set of texture coordinates, so you can't use them with _DualTextureEffect_. They also do not include tangents or bi-normals, so they don't work with _DGSLEffect_._
 
-! Coordinate systems
+# Coordinate systems
 These geometric primitives (based on the XNA Game Studio conventions) use right-handed coordinates. They can be used with left-handed coordinates by setting the _rhcoords_ parameter on the factory methods to 'false' to reverse the winding ordering (the parameter defaults to 'true').
+
+For a left-handed view system: 
 
     std::unique_ptr<GeometricPrimitive> shape(
         GeometricPrimitive::CreateTeapot( deviceContext, 1.f, 8, false ) );
 
 _Note: Using the wrong value for rhcoords for your viewing setup will result in the objects looking 'inside out'._
+
+# Inside vs. Outside
+These geometric primitives are intended for view from the 'outside' for efficient back-face culling. However, both spheres and boxes are commonly used to form 'skyboxes' for backgrounds. To support this, you set the _rhcoords_ parameter backwards for your view coordinates, and then set _invertn_ to true.
+
+For a right-handed view system: 
+
+    std::unique_ptr<GeometricPrimitive> shape(
+        GeometricPrimitive::CreateBox( deviceContext, XMFLOAT3(10,10,10), false, true);
+
+For a left-handed view system: 
+
+    std::unique_ptr<GeometricPrimitive> shape(
+        GeometricPrimitive::CreateBox( deviceContext, XMFLOAT3(10,10,10), true, true);
 
 # Alpha blending
 Alpha blending defaults to using premultiplied alpha. To make use of 'straight' alpha textures, override the blending mode via the optional callback:
