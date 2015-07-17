@@ -46,7 +46,9 @@ XAudio 2.8 is built into Windows 8.0 or later, and everything needed is include 
 
 Complete the steps in **Adding the headers** below including the additional configuration for XAudio 2.8.
 
-_The other platform DirectX Tool Kit vcxproj files already include DirectX Tool Kit for Audio as they always make use of XAudio 2.8 or later which is built into Windows 8.0 or later, Windows phone 8.x, and Xbox One._
+> The other platform DirectX Tool Kit vcxproj files already include _DirectX Tool Kit for Audio_ as they always make use of XAudio 2.8 or later which is built into Windows 8.0 or later (``DirectXTK_Windows8``, ``DirectXTK_Windows81``), Windows phone 8.x (``DirectXTK_WindowsPhone8``, ``DirectXTK_WindowsPhone81``), and Xbox One (``DirectXTK_XboxOneXDK``, ``DirectXTK_XboxOneADK``).
+
+> The universal Windows platform with Windows 10 (``DirectXTK_Windows10``) includes XAudio 2.9, and the Windows desktop version for Windows 10 (``DirectXTK_Desktop_2015_Win10``) includes using XAudio 2.9 as well. Both require building with the Windows 10 SDK.
 
 # Adding the headers
 Now that we have the _DirectX Tool Kit for Audio_ usable in your project, the next step is to include the library header into your project.
@@ -95,10 +97,12 @@ If you are using XAudio 2.8, then your application should be built to require Wi
 
 > _Troubleshooting:_ If you get a compilation error indicating you are missing ``comdecl.h``, then you have incorrectly configured the ``_WIN32_WINNT`` variable. See [http://msdn.microsoft.com/en-us/library/windows/desktop/aa383745.aspx](http://msdn.microsoft.com/en-us/library/windows/desktop/aa383745.aspx).
 
+> XAudio 2.9 requires Windows 10 and ``_WIN32_WINNT`` being set to ``0x0A00``
+
 # Deployment
 If you are using XAudio 2.7, then your application has a dependency on the _DirectX End-User Runtime_. See [Not So DirectSetup](http://blogs.msdn.com/b/chuckw/archive/2010/09/08/not-so-direct-setup.aspx) for information on using this package.
 
-If you are using XAudio 2.8, then your application has a dependency on Windows 8.0 or later.
+If you are using XAudio 2.8, then your application has a dependency on Windows 8.0 or later. If using XAudio 2.9, your application will only run on Windows 10 devices.
 
 **Next lesson:** [[Adding audio to your project]]
 
