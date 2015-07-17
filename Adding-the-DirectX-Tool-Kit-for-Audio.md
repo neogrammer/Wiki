@@ -11,7 +11,7 @@ XAudio 2.7 requires the legacy DirectX SDK (June 2010). Due to some technical is
 
 Complete the steps in **Adding the headers** below including the additional configuration for XAudio 2.7.
 
-_The other platform NuGet packages do not require the legacy DirectX SDK as they always make use of XAudio 2.8 or later which is built into Windows 8.0 or later, Windows phone 8.x, and Xbox One._
+> The other platform NuGet packages do not require the legacy DirectX SDK as they always make use of XAudio 2.8 or later which is built into Windows 8.0 or later, Windows phone 8.x, and Xbox One.
 
 # Project-to-project references
 If you used project-to-project references when [[Adding the DirectX Tool Kit]], then you need to add an additional _DirectX Tool Kit for Audio_ project to your solution. There are two choices depending on your platform target.
@@ -95,7 +95,7 @@ If you are using XAudio 2.8, then your application should be built to require Wi
     #define _WIN32_WINNT 0x0602
     #include <SDKDDKVer.h>
 
-> _Troubleshooting:_ If you get a compilation error indicating you are missing ``comdecl.h``, then you have incorrectly configured the ``_WIN32_WINNT`` variable. See [http://msdn.microsoft.com/en-us/library/windows/desktop/aa383745.aspx](http://msdn.microsoft.com/en-us/library/windows/desktop/aa383745.aspx).
+> _Troubleshooting:_ If you get a compilation error indicating you are missing ``comdecl.h``, then you have incorrectly configured the ``_WIN32_WINNT`` variable. See [Using the Windows Headers](http://msdn.microsoft.com/en-us/library/windows/desktop/aa383745.aspx).
 
 > XAudio 2.9 requires Windows 10 and ``_WIN32_WINNT`` being set to ``0x0A00``
 
