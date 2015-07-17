@@ -1,7 +1,7 @@
 This lesson introduces the reader to the SimpleMath game and graphics math library.
 
 # Coordinate system
-Consistent with the original XNA Game Framework C# math library, SimpleMath assumes a right-handed coordinate system, with the positive z-axis pointing toward the observer when the positive x-axis is pointing to the right, and the positive y-axis is pointing up.
+Consistent with the original XNA Game Framework C# math library, SimpleMath assumes a [right-handed](https://en.wikipedia.org/wiki/Right-hand_rule) coordinate system, with the positive z-axis pointing toward the observer when the positive x-axis is pointing to the right, and the positive y-axis is pointing up.
 
 # Vectors
 SimpleMath provides the Vector2, Vector3, and Vector4 classes for representing and manipulating vectors. A vector typically is used to represent a direction and magnitude. 
