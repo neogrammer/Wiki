@@ -176,8 +176,8 @@ Lastly, in **Main.cpp**, add the following case to the switch statement in **Wnd
             {
                 if ( pDev->dbch_devicetype == DBT_DEVTYP_DEVICEINTERFACE )
                 {
-                    auto pInter = reinterpret_cast<const PDEV_BROADCAST_DEVICEINTERFACE>
-                        ( pDev );
+                    auto pInter = reinterpret_cast<
+                        const PDEV_BROADCAST_DEVICEINTERFACE>( pDev );
                     if ( pInter->dbcc_classguid == KSCATEGORY_AUDIO )
                     {
                         if (game)
