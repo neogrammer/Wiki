@@ -87,7 +87,7 @@ To support using custom effect instances, **ModelMeshPart::CreateInputLayout** p
          }
     }
 
-*Note:* The ``ModelMesh::PrepareForRendering`` helper will only set up a texture sampler in slots 0 and 1. If you are using an [[Effects]] instance with more two textures, you need to set additional samplers manually.
+> The ``ModelMesh::PrepareForRendering`` helper will only set up a texture sampler in slots 0 and 1. If you are using an [[Effects]] instance with more two textures, you need to set additional samplers manually.
 
 # Effects Control
 A Model loader is responsible for creating [[Effects]] instances via an [[IEffectFactory|EffectFactory]] so that the loaded Model is fully initialized. However, a developer may want to modify a Model's effect after it has been loaded. All the members of ModelMeshPart are public so this can be done directly, but must be done carefully.
