@@ -11,7 +11,9 @@ Mouse is a singleton.
 For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr``.
 
 # Integration
-For Windows desktop applications, the application needs to make the appropriate calls during the main **WndProc** message processing:
+
+## Windows desktop
+The application needs to make the appropriate calls during the main **WndProc** message processing:
 
     LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     {
@@ -34,7 +36,8 @@ For Windows desktop applications, the application needs to make the appropriate 
         return DefWindowProc(hWnd, message, wParam, lParam);
     }
 
-For universal Windows apps or Windows Store apps, you need to call **SetWindow** and **SetDpi** in the appropriate places.
+## Universal Windows apps, Windows Store apps
+You need to call **SetWindow** and **SetDpi** in the appropriate places.
 
     void App::SetWindow(CoreWindow^ window)
     {
