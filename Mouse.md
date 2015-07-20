@@ -91,4 +91,4 @@ The Mouse class should be thread-safe with the exception of the **ProcessMessage
 # Platform notes
 The Xbox One platform doesn't support pointer or mouse input devices.
 
-For Windows Store, universal Windows apps, and Windows phone touch/pointer devices are captured as mouse movement.
+For Windows Store, universal Windows apps, and Windows phone touch/pointer devices are captured as mouse movement. Touch/pointer devices do not, however, result in changes to button state.
