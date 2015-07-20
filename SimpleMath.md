@@ -97,7 +97,7 @@ SimpleMath as with DirectXMath uses [row-major ordering](https://en.wikipedia.or
 
 HLSL as noted on [MSDN](https://msdn.microsoft.com/en-us/library/windows/desktop/bb509634.aspx#Matrix_Ordering) defaults to using _column-major ordering_ as this makes for slightly more efficient shader matrix multiplies. Therefore, if a ``Matrix`` is going to be copied into a HLSL _constant buffer_, it is usually [transposed](https://en.wikipedia.org/wiki/Transpose) to flip the ordering to ``_11``, ``_21``, ``_31``, ``_41_``, ``_12``, ``_22``, etc. as part of updating the constant buffer.
 
-With the built-in [[Effects]] this is done internally, but if writing your own shaders and managing your own constant buffers, you will need to ensure you pass in your matrix data in the correct order for your HLSL shader settings. This means sticking with the HLSL default by transposing your matrices as you update the constant buffer, using `` #pragma pack_matrix(row_major)`` on your matrices, or compiling your shaders with ``D3DCOMPILE_PACK_MATRIX_ROW_MAJOR`` / ``/Zpr``
+With the built-in [[Effects]] this is done internally, but if writing your own shaders and managing your own constant buffers, you will need to ensure you pass in your matrix data in the correct order for your HLSL shader settings. This means sticking with the HLSL default by transposing your matrices as you update the constant buffer, using `` #pragma pack_matrix(row_major)`` on your matrices, or compiling your shaders with ``D3DCOMPILE_PACK_MATRIX_ROW_MAJOR`` / ``/Zpr``.
 
 # Windows Store apps
 A number of Windows Store samples include a ``BasicMath.h`` header that includes some very simplistic math types:
