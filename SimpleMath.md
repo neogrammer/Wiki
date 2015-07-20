@@ -92,6 +92,13 @@ With the methods ``Matrix::CreateBillboard`` and ``Matrix::CreateConstrainedBill
     Matrix mView = Matrix::CreateConstrainedBillboard( objectPosition,
         cameraPosition, rotateAxis, Vector3::Backward, Vector3::Backward );
 
+# Using with HLSL
+SimpleMath as with DirectXMath uses [row-major ordering](https://en.wikipedia.org/wiki/Row-major_order) for matrices. This means that elements are stored in memory in the following order:``_11``, ``_12``, ``_13``, ``_14``, ``_21`` etc.
+
+HLSL as noted on [MSDN](https://msdn.microsoft.com/en-us/library/windows/desktop/bb509634.aspx#Matrix_Ordering) defaults to using _column-major ordering_ as this makes for slightly more efficient shader matrix multiplies. Therefore, if a ``Matrix`` is going to be copied into a HLSL _constant buffer_, it is usually [transposed]() to flip the ordering to ``_11``, ``_21``, ``_31``, ``_41_``, ``_12``, etc.
+
+With the built-in [[Effects]] this is done internally, but if writing your own shaders and managing your own constant buffers, you will need to ensure you pass in your matrix data in the correct order for your HLSL shader settings.
+
 # Windows Store apps
 A number of Windows Store samples include a ``BasicMath.h`` header that includes some very simplistic math types:
 
