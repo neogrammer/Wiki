@@ -129,7 +129,7 @@ See [Geometry formats](https://github.com/Microsoft/DirectXMesh/wiki/Geometry-fo
 The ``.SDKMESH`` [Samples Content Exporter](http://go.microsoft.com/fwlink/?LinkId=226208) uses Autodesk FBX 2013.3.1 or later.
 
 ## CMO
-The VS 2012 and 2013 ``.CMO`` exporter uses Autodesk FBX 2013.1. Recommended settings for exporting an FBX as a CMO include:
+The VS 2012 and 2013 ``.CMO`` exporter uses Autodesk FBX 2013.1. VS 2015 uses Autodesk FBX 2015.1. Recommended settings for exporting an FBX as a CMO include:
 
 * Geometry: Smoothing Groups, TurboSmooth, Convert Deforming Dummies to Bones, Preserve edge orientation
 * Animation: Bake Animation (Start=0, End=100, Step=1), Deformations, Skins, Morphs
