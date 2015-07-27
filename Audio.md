@@ -135,12 +135,12 @@ See [[AudioEngine]] for more information.
 Windows 8.x, Windows 10, Windows phone 8.x, and Xbox One all include XAudio 2.8 or later. Therefore, the standard ``DirectXTK.lib`` includes _DirectXTK for Audio_ for all these platforms:
 * _DirectXTK_Windows10_
 * _DirectXTK_Windows81_
-* _DirectXTK_Windows8_
 * _DirectXTK_WindowsPhone81_
 * _DirectXTK_XAMLSilverlight_WindowsPhone81_ 
 * _DirectXTK_WindowsPhone8_
 * _DirectXTK_XboxOneXDK_ 
 * _DirectXTK_XboxOneADK_
+* _DirectXTK_Desktop_2015_Win10_
 
 For Windows desktop applications targeting Windows 8.x or later, you can make use of XAudio 2.8. The ``DirectXTKAudioWin8.lib`` contains the XAudio 2.8 version of DirectXTK for Audio, while ``DirectXTK.lib`` for Windows desktop contains only the math/graphics components. To support Windows desktop applications on Windows 7 and Windows Vista, we must make use XAudio 2.7, the legacy DirectX SDK, and the legacy DirectX End-User Runtime Redistribution packages (aka DirectSetup). The ``DirectXTKAudioDX.lib`` is the XAudio 2.7 version of DirectXTK for Audio.
 
