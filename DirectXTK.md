@@ -70,7 +70,7 @@ In your application's solution, right-click on the Solution and use **Add \ Exis
 * _DirectXTK_WindowsPhone81_ is for Windows phone 8.1 C++ apps building with VS 2013 Update 2 or later. 
 * _DirectXTK_XAMLSilverlight_WindowsPhone81_ is for Windows phone Silverlight 8.1 C++ apps building with VS 2013 Update 2 or later. 
 * _DirectXTK_WindowsPhone8_ is for Windows phone 8 C++ apps building with VS 2012 or VS 2013 and the Windows Phone 8.0 SDK 
-* _DirectXTK_Desktop_2015_ is for Windows desktop C++ applications building with VS 2015 
+* _DirectXTK_Desktop_2015_ is for Windows desktop C++ applications building with VS 2015 Express for Desktop, VS 2015 Community, or VS 2015 Professional or higher
 * _DirectXTK_Desktop_2013_ is for Windows desktop C++ applications building with the VS 2013 Express for Desktop, VS 2013 Community, VS 2013 Professional or higher 
 * _DirectXTK_Desktop_2012_ is for Windows desktop C++ applications building with VS 2012 Express for Desktop, VS 2012 Professional or higher 
 * _DirectXTK_XboxOneXDK_ is for Xbox One exclusive C++ applications building with VS 2012 using the Xbox One XDK 
