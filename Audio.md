@@ -144,19 +144,16 @@ Windows 8.x, Windows 10, Windows phone 8.x, and Xbox One all include XAudio 2.8 
 
 For Windows desktop applications targeting Windows 8.x or later, you can make use of XAudio 2.8. The ``DirectXTKAudioWin8.lib`` contains the XAudio 2.8 version of DirectXTK for Audio, while ``DirectXTK.lib`` for Windows desktop contains only the math/graphics components. To support Windows desktop applications on Windows 7 and Windows Vista, we must make use XAudio 2.7, the legacy DirectX SDK, and the legacy DirectX End-User Runtime Redistribution packages (aka DirectSetup). The ``DirectXTKAudioDX.lib`` is the XAudio 2.7 version of DirectXTK for Audio.
 
-DirectXTK_Desktop_2015, DirectXTK_Desktop_2013, DirectXTK_Desktop_2012, and DirectXTK_Desktop_2010 do not include _DirectXTK for Audio_. To add _DirectXTK for Audio_ support for a Win32 desktop application, you must also add one of the following projects from the ``Audio`` folder of the distribution to your solution and **Add a Reference** to it (see [[DirectXTK]] for more details).
+DirectXTK_Desktop_2015, DirectXTK_Desktop_2013, and DirectXTK_Desktop_2012 do not include _DirectXTK for Audio_. To add _DirectXTK for Audio_ support for a Win32 desktop application, you must also add one of the following projects from the ``Audio`` folder of the distribution to your solution and **Add a Reference** to it (see [[DirectXTK]] for more details).
 
 When targeting Windows 8.x or later:
 * _DirectXTKAudio_Desktop_2012_Win8_ - DirectXTK for Audio using VS 2012 and XAudio 2.8 
 * _DirectXTKAudio_Desktop_2013_Win8_ - DirectXTK for Audio using VS 2013 and XAudio 2.8
 * _DirectXTKAudio_Desktop_2015_Win8_ - DirectXTK for Audio using VS 2015 and XAudio 2.8
 
-When targeting Windows Vista, Windows 7, or Windows 8.x:
-* _DirectXTKAudio_Desktop_2010_DXSDK_ - DirectXTK for Audio project for VS 2010 + Windows 8.1 SDK + legacy DirectXTK using XAudio 2.7 
+When targeting Windows Vista or Windows 7:
 * _DirectXTKAudio_Desktop_2012_DXSDK_ - DirectXTK for Audio project for VS 2012 + Windows 8.0 SDK + legacy DirectXTK using XAudio 2.7 
 * _DirectXTKAudio_Desktop_2013_DXSDK_ - DirectXTK for Audio project for VS 2013 + Windows 8.1 SDK + legacy DirectXTK using XAudio 2.7
-
-**VS 2010 Note:** We only support DirectXTK for Audio with the legacy DirectX SDK due to some issues with using the VS 2010 toolset and with Windows 8.x SDK WinRT headers.
 
 [XAudio2 Versions](http://msdn.microsoft.com/en-us/library/windows/desktop/ee415802.aspx)
 
