@@ -10,7 +10,7 @@ In the **Game.h** file, add the following variable to the bottom of the Game cla
 
     std::unique_ptr<DirectX::GamePad> m_gamePad;
 
-In **Game.cpp**, add to the TODO of **CreateDevice**:
+In **Game.cpp**, add to the end of **Initialize**:
 
     m_gamePad.reset(new GamePad());
 
