@@ -95,6 +95,8 @@ If you are using XAudio 2.8, then your application should be built to require Wi
     #define _WIN32_WINNT 0x0602
     #include <SDKDDKVer.h>
 
+> For platforms other than Windows desktop, you do not need to explicitly set ``_WIN32_WINNT`` as it's already set appropriately.
+
 > _Troubleshooting:_ If you get a compilation error indicating you are missing ``comdecl.h``, then you have incorrectly configured the ``_WIN32_WINNT`` variable. See [Using the Windows Headers](http://msdn.microsoft.com/en-us/library/windows/desktop/aa383745.aspx).
 
 > XAudio 2.9 requires Windows 10 and ``_WIN32_WINNT`` being set to ``0x0A00``
