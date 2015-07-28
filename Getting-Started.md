@@ -50,6 +50,7 @@ We will be using a Win32 desktop application project template in order to suppor
 ## Input
 
 * [[Game controller input]]
+* [[Mouse and keyboard input]]
 
 ## Math
 
