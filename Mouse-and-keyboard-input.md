@@ -17,10 +17,6 @@ In **Game.cpp**, add to the end of **Initialize**:
     m_mouse.reset(new Mouse);
     m_mouse->SetWindow(window);
 
-In **Game.cpp**, add to the TODO of **OnResuming** and **OnActivated**:
-
-    m_keyboard->Reset();
-
 In **Game.cpp**, add to the TODO of **Update**:
 
     auto kb = m_keyboard->GetState();
@@ -35,6 +31,7 @@ In **Main.cpp**, add to the ``switch`` statement in **WndProc**:
 
         ...
 
+        Keyboard::ProcessMessage(message, wParam, lParam);
         Mouse::ProcessMessage(message, wParam, lParam);
         break;
 
