@@ -92,7 +92,7 @@ _When resuming from a pause or suspend, be sure to call **Reset** on the tracker
 
 By default, the mouse state is returned as a absolute pixel location in the ``x`` and ``y`` values of ``State``. For 'mouse-look' behavior in games, however, relative mouse movement is desired. While there are some older tricks for emulating this with absolute pixel locations and computing deltas, there are better options which are implemented by Mouse.
 
-Control of the mode is set by *SetMode* passing either ``MODE_ABSOLUTE`` (the default) or ``MODE_RELATIVE``. The current mode is returned in ``State`` in the ``positionMode`` value to inform your input code locally the mode of the ``x``, ``y`` values.
+Control of the mode is set by **SetMode** passing either ``MODE_ABSOLUTE`` (the default) or ``MODE_RELATIVE``. The current mode is returned in ``State`` in the ``positionMode`` value to inform your input code locally the mode of the ``x``, ``y`` values.
 
 Here, we are using relative movement whenever the left mouse button is held down:
 
