@@ -17,10 +17,6 @@ In **Game.cpp**, add to the end of **Initialize**:
     m_mouse.reset(new Mouse);
     m_mouse->SetWindow(window);
 
-In **Game.cpp**, add to the TODO of **OnResuming** and **OnActivated**:
-
-    m_keyboard->Reset();
-
 In **Game.cpp**, add to the TODO of **Update**:
 
     auto kb = m_keyboard->GetState();
