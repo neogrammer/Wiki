@@ -35,6 +35,7 @@ In **Main.cpp**, add to the ``switch`` statement in **WndProc**:
 
         ...
 
+        Keyboard::ProcessMessage(message, wParam, lParam);
         Mouse::ProcessMessage(message, wParam, lParam);
         break;
 
