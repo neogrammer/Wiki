@@ -24,6 +24,9 @@ In **Game.cpp**, add to the TODO of **OnResuming** and **OnActivated**:
 In **Game.cpp**, add to the TODO of **Update**:
 
     auto kb = m_keyboard->GetState();
+    if ( kb.Escape )
+        PostQuitMessage(0);
+
     auto mouse = m_mouse->GetState();
 
 In **Main.cpp**, add to the ``switch`` statement in **WndProc**:
@@ -50,7 +53,7 @@ In **Main.cpp**, add to the ``switch`` statement in **WndProc**:
         Keyboard::ProcessMessage(message, wParam, lParam);
         break;
 
-Build and run. The application does not display anything or respond to input yet.
+Build and run. The application does not display anything, but you can use the Escape key to exit.
 
 > **UNDER CONSTRUCTION**
 
