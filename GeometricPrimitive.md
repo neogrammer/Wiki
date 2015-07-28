@@ -101,13 +101,19 @@ These geometric primitives are intended for view from the 'outside' for efficien
 
 For a right-handed view system: 
 
-    std::unique_ptr<GeometricPrimitive> shape(
+    std::unique_ptr<GeometricPrimitive> sky(
         GeometricPrimitive::CreateBox( deviceContext, XMFLOAT3(10,10,10), false, true);
+
+    std::unique_ptr<GeometricPrimitive> sky(
+        GeometricPrimitive::CreateSphere( deviceContext, 100.f, false, true);
 
 For a left-handed view system: 
 
-    std::unique_ptr<GeometricPrimitive> shape(
+    std::unique_ptr<GeometricPrimitive> sky(
         GeometricPrimitive::CreateBox( deviceContext, XMFLOAT3(10,10,10), true, true);
+
+    std::unique_ptr<GeometricPrimitive> sky(
+        GeometricPrimitive::CreateSphere( deviceContext, 100.f, true, true);
 
 # Alpha blending
 Alpha blending defaults to using premultiplied alpha. To make use of 'straight' alpha textures, override the blending mode via the optional callback:
