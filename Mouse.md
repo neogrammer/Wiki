@@ -1,5 +1,7 @@
 This is a helper for simplified mouse tracking modeled after the [XNA Game Studio](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.input.mouse.aspx) Mouse class.
 
+![Microsoft Sculpt Mobile Mouse - Blue](https://github.com/Microsoft/DirectXTK/wiki/images/sculptmobilemouse.jpg)
+
 **Related tutorial**: [[Mouse and keyboard input]]
 
 # Header 
