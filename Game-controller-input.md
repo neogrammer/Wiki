@@ -125,7 +125,7 @@ In **Game.cpp*, modify the TODO section of *Update*:
         }
     }
 
-**Next lessons:** [[Using the SimpleMath library]], [[Adding the DirectX Tool Kit for Audio]]
+**Next lessons:** [[Mouse and keyboard input]]
 
 # Further reading
 
