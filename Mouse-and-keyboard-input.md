@@ -31,6 +31,15 @@ In **Game.cpp**, add to the TODO of **Update**:
 
 In **Main.cpp**, add to the ``switch`` statement in **WndProc**:
 
+    case WM_ACTIVATEAPP:
+
+        ...
+
+        Mouse::ProcessMessage(message, wParam, lParam);
+        break;
+
+    ...
+
     case WM_INPUT:
     case WM_MOUSEMOVE:
     case WM_LBUTTONDOWN:
