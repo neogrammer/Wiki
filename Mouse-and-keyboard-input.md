@@ -168,7 +168,7 @@ In **Game.cpp**, modify to the TODO of **Update**:
 
     Quaternion q = Quaternion::CreateFromYawPitchRoll(m_yaw, m_pitch, 0.f);
 
-    move = Vector3::Transform(move, quat);
+    move = Vector3::Transform(move, q);
 
     move *= MOVEMENT_GAIN;
 
