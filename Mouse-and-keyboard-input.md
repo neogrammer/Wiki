@@ -186,10 +186,11 @@ In **Game.cpp**, add to the TODO of **Update** just before your keyboard code ab
 
     if (mouse.positionMode == Mouse::MODE_RELATIVE)
     {
-        XMVECTOR delta = XMVectorSet(float(mouse.x), float(mouse.y), 0.f, 0.f) * ROTATION_GAIN;
+        Vector3 delta = Vector3(float(mouse.x), float(mouse.y), 0.f)
+                        * ROTATION_GAIN;
 
-        m_pitch -= XMVectorGetY(delta);
-        m_yaw -= XMVectorGetX(delta);
+        m_pitch -= delta.y;
+        m_yaw -= delta.x;
 
         // limit pitch to straight up or straight down
         float limit = XM_PI/ 2.0f - 0.01f;
