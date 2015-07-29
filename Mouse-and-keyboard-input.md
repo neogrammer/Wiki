@@ -59,7 +59,7 @@ In **Main.cpp**, add to the ``switch`` statement in **WndProc**:
         Keyboard::ProcessMessage(message, wParam, lParam);
         break;
 
-Build and run. The application does not display anything, but you can use the Escape key to exit.
+Build and run. The application does not display anything other than our cornflower blue screen, but you can use the Escape key to exit. You can use ``Up``, ``Down``, ``Left``, ``Right``, ``PageUp``, and ``PageDown`` to move through the scene.
 
 # Adding a simple scene
 Start by saving [roomtexture.dds](https://github.com/Microsoft/DirectXTK/wiki/roomtexture.dds) into your new project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "roomtexture.dds" and click "OK".
@@ -75,6 +75,7 @@ At the top of **Game.cpp** after the ``using`` statements, add:
 
     static const XMVECTORF32 START_POSITION = { 0.f, -1.5f, 0.f, 0.f };
     static const XMVECTORF32 ROOM_BOUNDS = { 8.f, 6.f, 12.f, 0.f };
+    static const float MOVEMENT_GAIN = 0.07f;
 
 In **Game.cpp** file, add to the **Game** constructor:
 
@@ -102,11 +103,45 @@ In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
 In **Game.cpp**, add to the TODO of **Render**:
 
-    XMVECTOR lookAt = XMVectorAdd(m_cameraPos, Vector3::Backward);
+    XMVECTOR lookAt = m_cameraPos + Vector3::Backward;
 
     XMMATRIX view = XMMatrixLookAtRH(m_cameraPos, lookAt, Vector3::Up);
 
     m_room->Draw(Matrix::Identity, view, m_proj, Colors::White, m_roomTex.Get());
+
+In **Game.cpp**, add to the TODO of **Update**:
+
+    if (kb.Home)
+        m_cameraPos = START_POSITION.v;
+
+    Vector3 move = Vector3::Zero;
+
+    if (kb.Up || kb.W)
+        move.y += 1.f;
+
+    if (kb.Down || kb.S)
+        move.y -= 1.f;
+
+    if (kb.Left || kb.A)
+        move.x -= 1.f;
+
+    if (kb.Right || kb.D)
+        move.x += 1.f;
+
+    if (kb.PageUp || kb.Space)
+        move.z += 1.f;
+
+    if (kb.PageDown || kb.X)
+        move.z -= 1.f;
+
+    move *= MOVEMENT_GAIN;
+
+    m_cameraPos += move;
+
+    Vector3 halfBound = (Vector3(ROOM_BOUNDS.v) / Vector3(2.f) ) - Vector3(0.1f, 0.1f, 0.1f);
+
+    m_cameraPos = Vector3::Min(m_cameraPos, halfBound);
+    m_cameraPos = Vector3::Max(m_cameraPos, -halfBound);
 
 Build and run, and you should get the following screen:
 
