@@ -198,8 +198,8 @@ In **Game.cpp**, add to the TODO of **Update** just before your keyboard code ab
 
         // limit pitch to straight up or straight down
         float limit = XM_PI/ 2.0f - 0.01f;
-        m_pitch = __max(-limit, m_pitch);
-        m_pitch = __min(+limit, m_pitch);
+        m_pitch = std::max(-limit, m_pitch);
+        m_pitch = std::min(+limit, m_pitch);
 
         // keep longitude in sane range by wrapping
         if (m_yaw > XM_PI)
