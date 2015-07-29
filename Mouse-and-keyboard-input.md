@@ -170,7 +170,8 @@ In **Game.cpp**, modify to the TODO of **Update**:
 
     m_cameraPos += move;
 
-    Vector3 halfBound = (Vector3(ROOM_BOUNDS.v) / Vector3(2.f) ) - Vector3(0.1f, 0.1f, 0.1f);
+    Vector3 halfBound = (Vector3(ROOM_BOUNDS.v) / Vector3(2.f) )
+        - Vector3(0.1f, 0.1f, 0.1f);
 
     m_cameraPos = Vector3::Min(m_cameraPos, halfBound);
     m_cameraPos = Vector3::Max(m_cameraPos, -halfBound);
