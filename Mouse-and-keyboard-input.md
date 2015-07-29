@@ -166,14 +166,9 @@ In **Game.cpp**, modify to the TODO of **Update**:
     if (kb.PageDown || kb.X)
         move.z -= 1.f;
 
-    Vector3 adjust;
-    adjust.x = move.x*cosf(m_yaw) - move.y*sinf(m_yaw);
-    adjust.y = move.x*sinf(m_yaw) + move.y*cosf(m_yaw);
-    adjust.z = move.z;
+    move *= MOVEMENT_GAIN;
 
-    adjust *= MOVEMENT_GAIN;
-
-    m_cameraPos += adjust;
+    m_cameraPos += move;
 
     Vector3 halfBound = (Vector3(ROOM_BOUNDS.v) / Vector3(2.f) ) - Vector3(0.1f, 0.1f, 0.1f);
 
