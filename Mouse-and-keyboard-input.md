@@ -166,6 +166,10 @@ In **Game.cpp**, modify to the TODO of **Update**:
     if (kb.PageDown || kb.X)
         move.z -= 1.f;
 
+    Quaternion q = Quaternion::CreateFromYawPitchRoll(m_yaw, m_pitch, 0.f);
+
+    move = Vector3::Transform(move, quat);
+
     move *= MOVEMENT_GAIN;
 
     m_cameraPos += move;
