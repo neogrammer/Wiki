@@ -123,10 +123,10 @@ In **Game.cpp**, add to the TODO of **Update**:
         move.y -= 1.f;
 
     if (kb.Left || kb.A)
-        move.x -= 1.f;
+        move.x += 1.f;
 
     if (kb.Right || kb.D)
-        move.x += 1.f;
+        move.x -= 1.f;
 
     if (kb.PageUp || kb.Space)
         move.z += 1.f;
