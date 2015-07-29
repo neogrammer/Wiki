@@ -59,7 +59,7 @@ In **Main.cpp**, add to the ``switch`` statement in **WndProc**:
         Keyboard::ProcessMessage(message, wParam, lParam);
         break;
 
-Build and run. The application does not display anything other than our cornflower blue screen, but you can use the Escape key to exit. You can use ``Up``, ``Down``, ``Left``, ``Right``, ``PageUp``, and ``PageDown`` to move through the scene.
+Build and run. The application does not display anything other than our cornflower blue screen, but you can use the Escape key to exit.
 
 # Adding a simple scene
 Start by saving [roomtexture.dds](https://github.com/Microsoft/DirectXTK/wiki/roomtexture.dds) into your new project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "roomtexture.dds" and click "OK".
@@ -146,6 +146,8 @@ In **Game.cpp**, add to the TODO of **Update**:
 Build and run, and you should get the following screen:
 
 ![Screenshot of room](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotRoom.PNG)
+
+You can use ``Up``, ``Down``, ``Left``, ``Right``, ``PageUp``, ``PageDown``. ``W``, ``A``, ``S``, ``D``, ``X``, and ``Space`` to move through the scene. You can use ``Home`` to return to the start position.
 
 > _Troubleshooting:_ If you get a runtime exception, then you may have the "roomtexture.dds" in the wrong folder, have modified the "Working Directory" in the "Debugging" configuration settings, or otherwise changed the expected paths at runtime of the application. You should set a break-point on ``CreateDDSTextureFromFile`` and step into the code to find the exact problem.
 
