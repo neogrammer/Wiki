@@ -197,6 +197,7 @@ In **Game.cpp**, add to the TODO of **Update** just before your keyboard code ab
         m_yaw -= delta.x;
 
         // limit pitch to straight up or straight down
+        // with a little fudge-factor to avoid gimbal lock
         float limit = XM_PI/ 2.0f - 0.01f;
         m_pitch = std::max(-limit, m_pitch);
         m_pitch = std::min(+limit, m_pitch);
@@ -221,3 +222,5 @@ Build and run. Now in addition to keyboard controls, you can press & hold the le
 # Further reading
 
 DirectX Tool Kit docs [[Keyboard]], [[Mouse]]
+
+[Gimbal lock](https://en.wikipedia.org/wiki/Gimbal_lock)
