@@ -217,10 +217,17 @@ In **Game.cpp**, add to the TODO of **Update** just before your keyboard code ab
 
 Build and run. Now in addition to keyboard controls, you can press & hold the left mouse button to rotate the view.
 
+## Technical notes
+
+* We rotate the movement vector created by the keyboard commands by the pitch/yaw values so that they are relative to the view direction rather than be fixed in world coordinates.
+
+* The view can never be exactly straight up or straight down to avoid a problem known as 
+[gimbal lock](https://en.wikipedia.org/wiki/Gimbal_lock) which can cause the camera to tumble uncontrollably.
+
+* This control implementation is very simple, and really only works on a system with fast frame-rate. For a more robust implementation, the ``Update`` code should make use of ``elapsedTime`` to scale the keyboard movement rate values and ``MOVEMENT_GAIN`` adjusted accordingly.
+
 **Next lessons:** [[Using the SimpleMath library]], [[Adding the DirectX Tool Kit for Audio]]
 
 # Further reading
 
 DirectX Tool Kit docs [[Keyboard]], [[Mouse]]
-
-[Gimbal lock](https://en.wikipedia.org/wiki/Gimbal_lock)
