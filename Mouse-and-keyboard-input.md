@@ -70,16 +70,28 @@ In the **Game.h** file, add the following variables to the bottom of the Game cl
     Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_roomTex;
     DirectX::SimpleMath::Matrix m_proj;
     DirectX::SimpleMath::Vector3 m_cameraPos;
+    float m_pitch;
+    float m_yaw;
 
 At the top of **Game.cpp** after the ``using`` statements, add:
 
     static const XMVECTORF32 START_POSITION = { 0.f, -1.5f, 0.f, 0.f };
     static const XMVECTORF32 ROOM_BOUNDS = { 8.f, 6.f, 12.f, 0.f };
+    static const float ROTATION_GAIN = 0.004f;
     static const float MOVEMENT_GAIN = 0.07f;
 
-In **Game.cpp** file, add to the **Game** constructor:
+In **Game.cpp** file, modify the **Game** constructor to initialize our variables:
 
-    m_cameraPos = START_POSITION.v;
+    Game::Game() :
+        m_window(0),
+        m_outputWidth(800),
+        m_outputHeight(600),
+        m_featureLevel(D3D_FEATURE_LEVEL_9_1),
+        m_pitch(0),
+        m_yaw(0)
+    {
+        m_cameraPos = START_POSITION.v;
+    }
 
 In **Game.cpp**, add to the TODO of **CreateDevice**:
 
@@ -103,16 +115,36 @@ In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
 In **Game.cpp**, add to the TODO of **Render**:
 
-    XMVECTOR lookAt = m_cameraPos + Vector3::Backward;
+    float y = sinf(m_pitch);
+    float r = cosf(m_pitch);
+    float z = r*cosf(m_yaw);
+    float x = r*sinf(m_yaw);
+
+    XMVECTOR lookAt = m_cameraPos + Vector3(x, y, z);
 
     XMMATRIX view = XMMatrixLookAtRH(m_cameraPos, lookAt, Vector3::Up);
 
     m_room->Draw(Matrix::Identity, view, m_proj, Colors::White, m_roomTex.Get());
 
-In **Game.cpp**, add to the TODO of **Update**:
+Build and run, and you should get the following screen:
+
+![Screenshot of room](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotRoom.PNG)
+
+> _Troubleshooting:_ If you get a runtime exception, then you may have the "roomtexture.dds" in the wrong folder, have modified the "Working Directory" in the "Debugging" configuration settings, or otherwise changed the expected paths at runtime of the application. You should set a break-point on ``CreateDDSTextureFromFile`` and step into the code to find the exact problem.
+
+# Adding keyboard controls
+
+In **Game.cpp**, modify to the TODO of **Update**:
+
+    auto kb = m_keyboard->GetState();
+    if ( kb.Escape )
+        PostQuitMessage(0);
 
     if (kb.Home)
+    {
         m_cameraPos = START_POSITION.v;
+        m_pitch = m_yaw = 0;
+    }
 
     Vector3 move = Vector3::Zero;
 
@@ -134,24 +166,54 @@ In **Game.cpp**, add to the TODO of **Update**:
     if (kb.PageDown || kb.X)
         move.z -= 1.f;
 
-    move *= MOVEMENT_GAIN;
+    Vector3 adjust;
+    adjust.x = move.x*cosf(m_yaw) - move.y*sinf(m_yaw);
+    adjust.y = move.x*sinf(m_yaw) + move.y*cosf(m_yaw);
+    adjust.z = move.z;
 
-    m_cameraPos += move;
+    adjust *= MOVEMENT_GAIN;
+
+    m_cameraPos += adjust;
 
     Vector3 halfBound = (Vector3(ROOM_BOUNDS.v) / Vector3(2.f) ) - Vector3(0.1f, 0.1f, 0.1f);
 
     m_cameraPos = Vector3::Min(m_cameraPos, halfBound);
     m_cameraPos = Vector3::Max(m_cameraPos, -halfBound);
 
-Build and run, and you should get the following screen:
+Build and run. You can use ``Up``, ``Down``, ``Left``, ``Right``, ``PageUp``, ``PageDown``. ``W``, ``A``, ``S``, ``D``, ``X``, and ``Space`` to move through the scene. You can use ``Home`` to return to the start position.
 
-![Screenshot of room](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotRoom.PNG)
+# Adding mouse controls
 
-You can use ``Up``, ``Down``, ``Left``, ``Right``, ``PageUp``, ``PageDown``. ``W``, ``A``, ``S``, ``D``, ``X``, and ``Space`` to move through the scene. You can use ``Home`` to return to the start position.
+In **Game.cpp**, add to the TODO of **Update** just before your keyboard code above:
 
-> _Troubleshooting:_ If you get a runtime exception, then you may have the "roomtexture.dds" in the wrong folder, have modified the "Working Directory" in the "Debugging" configuration settings, or otherwise changed the expected paths at runtime of the application. You should set a break-point on ``CreateDDSTextureFromFile`` and step into the code to find the exact problem.
+    auto mouse = m_mouse->GetState();
 
-> **UNDER CONSTRUCTION**
+    if (mouse.positionMode == Mouse::MODE_RELATIVE)
+    {
+        XMVECTOR delta = XMVectorSet(float(mouse.x), float(mouse.y), 0.f, 0.f) * ROTATION_GAIN;
+
+        m_pitch -= XMVectorGetY(delta);
+        m_yaw -= XMVectorGetX(delta);
+
+        // limit pitch to straight up or straight down
+        float limit = XM_PI/ 2.0f - 0.01f;
+        m_pitch = __max(-limit, m_pitch);
+        m_pitch = __min(+limit, m_pitch);
+
+        // keep longitude in sane range by wrapping
+        if (m_yaw > XM_PI)
+        {
+            m_yaw -= XM_PI * 2.0f;
+        }
+        else if (m_yaw < -XM_PI)
+        {
+            m_yaw += XM_PI * 2.0f;
+        }      
+    }
+
+    m_mouse->SetMode(mouse.leftButton ? Mouse::MODE_RELATIVE : Mouse::MODE_ABSOLUTE);
+
+Build and run. Now in addition to keyboard controls, you can press & hold the left mouse button to rotate the view.
 
 **Next lessons:** [[Using the SimpleMath library]], [[Adding the DirectX Tool Kit for Audio]]
 
