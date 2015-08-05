@@ -50,11 +50,11 @@ Keep in mind is that passing ComPtr variables by value will result in incrementi
 When passing ComPtr variables to constructors, you usually want the new class to increase the reference count, which is handled automatically by assigning the raw pointer to a new ``ComPtr<T>`` or by copying one ``ComPtr<T>`` to another.
 
 # Namespaces
-In keeping with C++ best practice, you should use fully-qualified names in header files.
+In keeping with C++ best practice, you should use fully-qualified names in ``.h`` header files.
 
     Microsoft::WRL::ComPtr<T> variable;
 
-In .cpp files, you can add the following to your module to make it less verbose to use ComPtr:
+In ``.cpp`` source files, you can add the following to your module to make it less verbose to use ComPtr:
 
     using Microsoft::WRL::ComPtr;
     
