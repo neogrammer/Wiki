@@ -30,7 +30,7 @@ If you are using a ComPtr as a class member, then you should use **ReleaseAndGet
 
 _Note that ATL's CComPtr asserted that the object was always null for ``operator&``, which had a potential to cause resource leaks._
 
-Because ``operator&`` maps to **ReleaseAndGetAddressOf**(), when calling DIrect3D 11 functions that take a pointer to an array of inputs and you are passing a single pointer, use the explicit **GetAddressOf**() method instead:
+Because ``operator&`` maps to **ReleaseAndGetAddressOf**(), when calling Direct3D functions that take a pointer to an array of inputs and you are passing a single pointer, use the explicit **GetAddressOf**() method instead:
 
     context->OMSetRenderTargets(1, m_renderTargetView.GetAddressOf(),
         m_depthStencilView.Get());
