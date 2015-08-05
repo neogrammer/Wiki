@@ -1,4 +1,4 @@
-``Microsoft::WRL::ComPtr`` is a C++ template smart-pointer for COM objects that is used extensively in WinRT programming. It works in Win32 desktop applications as well. It is similar to ATL's ``CComPtr`` with some useful improvements. ``Microsoft::WRL:::ComPtr`` is in the Windows 8.x SDK and Windows 10 SDK, which, unlike ATL, is available when using the Express versions of Visual Studio. It is used extensively in _DirectX Tool Kit_ to properly handle COM reference counting maintenance.
+``Microsoft::WRL::ComPtr`` is a C++ template smart-pointer for COM objects that is used extensively in Windows Runtime (WinRT) C++ programming. It works in Win32 desktop applications as well. It is similar to ATL's ``CComPtr`` with some useful improvements. ``Microsoft::WRL:::ComPtr`` is in the Windows 8.x SDK and Windows 10 SDK, which, unlike ATL, is available when using the Express versions of Visual Studio. It is used extensively in _DirectX Tool Kit_ to properly handle COM reference counting maintenance.
 
 See [MSDN](http://msdn.microsoft.com/en-us/library/br244983.aspx)
 
@@ -37,6 +37,8 @@ Because ``operator&`` maps to **ReleaseAndGetAddressOf**(), when calling Direct3
     // or
     auto rt = m_renderTargetView.Get();
     context->OMSetRenderTargets(1, &rt, m_depthStencilView.Get());
+
+> If you used ``context->OMSetRenderTargets(1, &m_renderTargetView, m_depthStencilView.Get());`` the ``m_renderTargetView`` variable would get released before the call to ``OMSetRenderTargets`` and the result would likely crash.
 
 # Parameters
 Keep in mind is that passing ComPtr variables by value will result in incrementing/decrementing the reference count. You can avoid this by either passing the smart-pointer by const reference or passing a raw pointer instead. Raw pointers are generally the more flexible option, but require the use of **Get**() at the call-site.
