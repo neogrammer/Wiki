@@ -135,7 +135,7 @@ The Mouse class should be thread-safe with the exception of the **ProcessMessage
 # Platform notes
 The Xbox One platform doesn't support pointer or mouse input devices.
 
-For Windows Store, universal Windows apps, and Windows phone touch/pointer devices are captured as mouse movement. Touch/pointer devices do not, however, result in changes to button state. Relative mouse movement is captured per this [MSDN](https://msdn.microsoft.com/en-us/library/windows/apps/xaml/hh994925.aspx) article.
+For Windows Store, universal Windows apps, and Windows phone touch/pointer devices are captured as [mouse movement](https://msdn.microsoft.com/en-us/library/windows/apps/xaml/Hh994931.aspx). Touch/pointer devices do not, however, result in changes to button state. Relative mouse movement is captured per this [MSDN](https://msdn.microsoft.com/en-us/library/windows/apps/xaml/hh994925.aspx) article.
 
 For Windows desktop apps, relative mouse movement is captured using "raw input" per the article [Taking Advantage of High-Definition Mouse Movement](https://msdn.microsoft.com/en-us/library/windows/desktop/ee418864.aspx). Note that a consequence of this implementation is that relative mouse movement is not available when using the application through Remote Desktop.
 
