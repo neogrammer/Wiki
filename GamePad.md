@@ -50,6 +50,8 @@ For exception safety, it is recommended you make use of the C++ [RAII](http://en
 
 The valid range for _player_ is 0 to ``GamePad::MAX_PLAYER_COUNT - 1``. Outside that range, the state is always reported as disconnected.
 
+> Since GamePad is a singleton, you can make use of the static method **Get** if desired: ``auto state = GamePad::Get().GetState()``
+
 # Dead zones
 GamePad implements the same dead zone scheme as XNA.
 
