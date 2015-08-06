@@ -73,7 +73,7 @@ You need to call **SetWindow** and **SetDpi** in the appropriate places.
     // This is the absolute position of the mouse relative
     // to the upper-left corner of the window
 
-> Since Mouse is a singleton, you can make use of the static method **Get** if desired: ``auto state = Mouse::Get().GetState()``.
+> Since Mouse is a singleton, you can make use of the static method **Get** if desired: ``auto state = Mouse::Get().GetState()``
 
 # Button state tracker
 
