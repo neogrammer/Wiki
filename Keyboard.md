@@ -73,6 +73,8 @@ For universal Windows apps or Windows Store apps, you need to call **SetWindow**
     if ( kb.IsKeyDown( VK_RETURN ) )
         // Return key is down
 
+> Since Keyboard is a singleton, you can make use of the static method **Get** if desired: ``auto kb = Keyboard::Get().GetState()``
+
 # Keyboard state tracker
 
 A common pattern is to trigger an action when a key is pressed or released, but you don't want to trigger the action every single frame if the key is held down for more than a single frame. This helper class simplifies this.
