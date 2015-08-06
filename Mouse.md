@@ -141,4 +141,5 @@ For Windows desktop apps, relative mouse movement is captured using "raw input" 
 
 # Further reading
 [DirectX Tool Kit: Keyboard and Mouse support](http://blogs.msdn.com/b/chuckw/archive/2015/08/06/directx-tool-kit-keyboard-and-mouse-support.aspx)  
-[Mouse Input](https://msdn.microsoft.com/en-us/library/windows/desktop/ms645533.aspx)
+[Mouse Input](https://msdn.microsoft.com/en-us/library/windows/desktop/ms645533.aspx)  
+[Work with input and controls in your DirectX game](https://msdn.microsoft.com/en-us/library/windows/apps/Hh452799.aspx)
