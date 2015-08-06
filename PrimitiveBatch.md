@@ -31,7 +31,7 @@ Setting up a suitable BasicEffect and input layout:
     std::unique_ptr<BasicEffect> basicEffect(new BasicEffect(device));
 
     basicEffect->SetProjection(XMMatrixOrthographicOffCenterRH(0,
-        screenHeight, screenWidth, 0, 0, 1));
+        screenWidth, screenHeight, 0, 0, 1));
     basicEffect->SetVertexColorEnabled(true);
 
     void const* shaderByteCode;
