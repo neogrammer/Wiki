@@ -51,7 +51,7 @@ Setting up a suitable BasicEffect and input layout:
     CommonStates states( device );
     deviceContext->OMSetBlendState( states.Opaque(), nullptr, 0xFFFFFFFF );
     deviceContext->OMSetDepthStencilState( states.DepthNone(), 0 );
-    deviceContext->RSSetState( states.CullCounterClockwise() );
+    deviceContext->RSSetState( states.CullNone() );
 
     basicEffect->Apply(deviceContext);
     deviceContext->IASetInputLayout(inputLayout.Get());
