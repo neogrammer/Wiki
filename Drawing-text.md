@@ -114,6 +114,54 @@ In **Game.cpp**, modify the TODO section of **Render** to be:
 
 Build and run to see our text string centered in the middle of the rendering window.
 
+# Drop-shadow effect
+
+In **Game.cpp**, modify the TODO section of **Render** to be:
+
+    m_spriteBatch->Begin();
+
+    const wchar_t* output = L"Hello World";
+
+    m_font->DrawString(m_spriteBatch.get(), output,
+        m_fontPos + Vector2(1.f, 1.f), Colors::Black, 0.f, origin);
+    m_font->DrawString(m_spriteBatch.get(), output,
+        m_fontPos + Vector2(-1.f, 1.f), Colors::Black, 0.f, origin);
+
+    Vector2 origin = m_font->MeasureString(output) / 2.f;
+
+    m_font->DrawString(m_spriteBatch.get(), output,
+        m_fontPos, Colors::White, 0.f, origin);
+
+    m_spriteBatch->End();
+
+Build and run to see our text string centered in the middle of the rendering window but with a drop-shadow.
+
+# Outline effect
+
+In **Game.cpp**, modify the TODO section of **Render** to be:
+
+    m_spriteBatch->Begin();
+
+    const wchar_t* output = L"Hello World";
+
+    m_font->DrawString(m_spriteBatch.get(), output,
+        m_fontPos + Vector2(1.f, 1.f), Colors::Black, 0.f, origin);
+    m_font->DrawString(m_spriteBatch.get(), output,
+        m_fontPos + Vector2(-1.f, 1.f), Colors::Black, 0.f, origin);
+    m_font->DrawString(m_spriteBatch.get(), output,
+        m_fontPos + Vector2(-1.f, -1.f), Colors::Black, 0.f, origin);
+    m_font->DrawString(m_spriteBatch.get(), output,
+        m_fontPos + Vector2(1.f, -1.f), Colors::Black, 0.f, origin);
+
+    Vector2 origin = m_font->MeasureString(output) / 2.f;
+
+    m_font->DrawString(m_spriteBatch.get(), output,
+        m_fontPos, Colors::White, 0.f, origin);
+
+    m_spriteBatch->End();
+
+Build and run to see our text string centered in the middle of the rendering window but with a drop-shadow.
+
 **Next lesson:** [[Simple rendering]]
 
 # Further reading
