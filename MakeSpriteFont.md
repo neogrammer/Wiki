@@ -52,9 +52,10 @@ Examples:
 * Fallback character substituted in place of codepoints that are not included in the font. If zero, missing characters throw exceptions.
 
 **/FontSize:_value_**
+* Size for TrueType fonts. Defaults to 23. Ignored when converting a bitmap font.
 
 **/FontStyle:_value_**
-* Size and style (bold or italic) for TrueType fonts. Ignored when converting a bitmap font.
+* Style for TrueType fonts: Regular, Bold, Italic, Strikeout, or Underline. Defaults to Regular. Ignored when converting a bitmap font.
 
 **/LineSpacing:_value_**
 
