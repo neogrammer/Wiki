@@ -160,7 +160,7 @@ In **Game.cpp**, modify the TODO section of **Render** to be:
 
     m_spriteBatch->End();
 
-Build and run to see our text string centered in the middle of the rendering window but with a drop-shadow.
+Build and run to see our text string centered in the middle of the rendering window but with an outline.
 
 **Next lesson:** [[Simple rendering]]
 
