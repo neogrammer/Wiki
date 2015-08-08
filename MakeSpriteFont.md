@@ -55,7 +55,7 @@ Examples:
 * Size for TrueType fonts. Defaults to 23. Ignored when converting a bitmap font.
 
 **/FontStyle:_value_**
-* Style for TrueType fonts: Regular, Bold, Italic, Strikeout, or Underline. Defaults to Regular. Ignored when converting a bitmap font.
+* Style for TrueType fonts: ``Regular``, ``Bold``, ``Italic``, ``Strikeout``, or ``Underline``. Defaults to Regular. Ignored when converting a bitmap font.
 
 **/LineSpacing:_value_**
 
