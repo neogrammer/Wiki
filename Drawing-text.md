@@ -25,7 +25,7 @@ To get a **Bold** version of the font, run the following command-line:
 
 For an _Italics_ version of the font, run the following command-line:
 
-    MakeSpriteFont "Courier New" myfilebolditalic.spritefont /FontSize:32 /FontStyle:Italic
+    MakeSpriteFont "Courier New" myfileitalic.spritefont /FontSize:32 /FontStyle:Italic
 
 # Loading a bitmap font
 In the **Game.h** file, add the following variable to the bottom of the Game class's private declarations:
