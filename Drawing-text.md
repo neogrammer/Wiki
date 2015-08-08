@@ -23,7 +23,7 @@ To get a **Bold** version of the font, run the following command-line:
 
     MakeSpriteFont "Courier New" myfilebold.spritefont /FontSize:32 /FontStyle:Bold
 
-For an Italics version of the font, run the following command-line:
+For an _Italics_ version of the font, run the following command-line:
 
     MakeSpriteFont "Courier New" myfilebolditalic.spritefont /FontSize:32 /FontStyle:Italic
 
