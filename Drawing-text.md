@@ -21,19 +21,19 @@ Then from the top menu in Visual Studio select **Project** / **Add Existing Item
 
 To get a **Bold** version of the font, run the following command-line:
 
-    MakeSpriteFont "Courier New" myfilebold.spritefont /FontSize:32 /FontStyle:Bold
+    MakeSpriteFont "Courier New" myfileb.spritefont /FontSize:32 /FontStyle:Bold
 
 For an _Italics_ version of the font, run the following command-line:
 
-    MakeSpriteFont "Courier New" myfileitalic.spritefont /FontSize:32 /FontStyle:Italic
+    MakeSpriteFont "Courier New" myfilei.spritefont /FontSize:32 /FontStyle:Italic
 
 For a <strike>Strikeout</strike> version of the font, run the following command-line:
 
-    MakeSpriteFont "Courier New" myfilestrikeout.spritefont /FontSize:32 /FontStyle:Strikeout
+    MakeSpriteFont "Courier New" myfiles.spritefont /FontSize:32 /FontStyle:Strikeout
 
 For a <u>Underline</u> version of the font, run the following command-line:
 
-    MakeSpriteFont "Courier New" myfileunderline.spritefont /FontSize:32 /FontStyle:Underline
+    MakeSpriteFont "Courier New" myfileu.spritefont /FontSize:32 /FontStyle:Underline
 
 # Loading a bitmap font
 In the **Game.h** file, add the following variable to the bottom of the Game class's private declarations:
