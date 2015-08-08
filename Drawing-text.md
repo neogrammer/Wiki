@@ -27,6 +27,14 @@ For an _Italics_ version of the font, run the following command-line:
 
     MakeSpriteFont "Courier New" myfileitalic.spritefont /FontSize:32 /FontStyle:Italic
 
+For a <strike>Strikeout</strike> version of the font, run the following command-line:
+
+    MakeSpriteFont "Courier New" myfilestrikeout.spritefont /FontSize:32 /FontStyle:Strikeout
+
+For a <u>Underline</u> version of the font, run the following command-line:
+
+    MakeSpriteFont "Courier New" myfileunderline.spritefont /FontSize:32 /FontStyle:Underline
+
 # Loading a bitmap font
 In the **Game.h** file, add the following variable to the bottom of the Game class's private declarations:
 
