@@ -8,11 +8,11 @@ First create a new project using the instructions from the first two lessons: [[
 In order to do a draw operation with Direct3D 11, we need to provide the following objects and settings:
 
 * A *vertex buffer* containing the vertices of the elements to draw.
-* The *input layout* that describes the memory layout of the vertices in the _vertex buffer_.
+* The *input layout* that [describes](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476180.aspx) the memory layout of the vertices in the _vertex buffer_.
 * A *primitive topology* setting that indicates how to interpret the individual vertices (as a point, a line, a triangle, etc.)
 * A compiled *vertex shader* program
 * A compiled *pixel shader* program
-* Set any required *state objects* for raster state, depth/stencil state, blend state, and sampler state (if using textures)
+* Set any required *state objects* for [rasterizer state](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476198.aspx), [depth/stencil state](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476110.aspx), [blend state](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476087.aspx), and [sampler state](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476207.aspx) (if using textures)
 
 For this lesson, the [[BasicEffect]] object will provide the vertex and pixel shader programs, [[VertexPositionColor|VertexTypes]] will provide the input layout, and **PrimitiveBatch** will provide the vertex buffer and primitive topology.
 
