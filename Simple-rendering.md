@@ -127,7 +127,7 @@ Then build & run you will see the triangle reappear.
 
 For 'closed' objects, you typically use *backface culling* to speed up rendering which can quickly reject triangles that are not facing the viewer and avoids the need to run the pixel shader for those pixels.
 
-> The culling mode does not affect points or lines, only triangles.
+> The culling mode does not affect points or lines.
 
 # Drawing a grid
 
