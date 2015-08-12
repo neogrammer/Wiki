@@ -113,6 +113,22 @@ Build and run to get the same image, but if you resize the window the triangle w
 * Internally, both SpriteBatch and PrimitiveBatch make use of a _dynamic_ rather than _static_ vertex buffer object which makes use of special memory shared between the CPU and GPU. Generally, we prefer when possible to use static vertex buffers as they can reside in the video memory directly that is only accessible by the GPU.
 * We are not using textures in our shaders for this lesson, so we don't need to use any sampler state objects.
 
+# State Objects
+
+The use of ``CullNone`` for our rasterizer state above allows triangles and quads--which in Direct3D are just two triangles--to be drawn with arbitrary winding order. If you modify **Render** above as follows:
+
+    m_d3dContext->RSSetState( m_states->CullClockwise() );
+
+Then build & run you run you will see nothing drawn because the triangle winding order was specified in clockwise order. If you changed it again to:
+
+    m_d3dContext->RSSetState( m_states->CullCounterClockwise() );
+
+Then build & run you will see the triangle reappear.
+
+For 'closed' objects, you typically use *backface culling* to speed up rendering which can quickly reject triangles that are not facing the viewer.
+
+> The culling mode does not affect points or lines, only triangles.
+
 # Drawing a grid
 
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
@@ -189,5 +205,5 @@ Build and run to see a 3D grid.
 
 # Further reading
 
-DirectX Tool Kit docs [[Effects]], [[PrimitiveBatch]], [[VertexTypes]]
+DirectX Tool Kit docs [[CommonStates]], [[Effects]], [[PrimitiveBatch]], [[VertexTypes]]
 
