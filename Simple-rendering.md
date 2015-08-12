@@ -126,7 +126,7 @@ Then build & run you run you will see nothing drawn because the triangle winding
 
 Then build & run you will see the triangle reappear.
 
-For 'closed' objects, you typically use *backface culling* to speed up rendering which can quickly reject triangles that are not facing the viewer and avoids the need to run the pixel shader for those pixels.
+For 'closed' objects, you typically use [backface culling](https://en.wikipedia.org/wiki/Back-face_culling) to speed up rendering which can quickly reject triangles that are not facing the viewer and avoids the need to run the pixel shader for those pixels.
 
 > The culling mode does not affect points or lines.
 
