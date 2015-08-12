@@ -12,6 +12,7 @@ In order to do a draw operation with Direct3D 11, we need to provide the followi
 * A *primitive topology* setting that indicates how to interpret the individual vertices (as a point, a line, a triangle, etc.)
 * A compiled *vertex shader* program
 * A compiled *pixel shader* program
+* Set any required *state objects* for raster state, depth/stencil state, blend state, and sampler state (if using textures)
 
 For this lesson, the [[BasicEffect]] object will provide the vertex and pixel shader programs, [[VertexPositionColor|VertexTypes]] will provide the input layout, and **PrimitiveBatch** will provide the vertex buffer and primitive topology.
 
