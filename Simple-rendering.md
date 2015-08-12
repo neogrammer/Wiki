@@ -20,11 +20,14 @@ Note that since the _input layout_ is the bridge between the _vertex buffer_ dat
 # Drawing a triangle
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 
+    std::unique_ptr<DirectX::CommonStates> m_states;
     std::unique_ptr<DirectX::BasicEffect> m_effect;
     std::unique_ptr<DirectX::PrimitiveBatch<DirectX::VertexPositionColor>> m_batch;
     Microsoft::WRL::ComPtr<ID3D11InputLayout> m_inputLayout;
 
 In **Game.cpp**, add to the TODO of **CreateDevice**:
+
+    m_states.reset(new CommonStates(m_d3dDevice.Get()));
 
     m_effect.reset(new BasicEffect(m_d3dDevice.Get()));
     m_effect->SetVertexColorEnabled(true);
@@ -44,11 +47,16 @@ In **Game.cpp**, add to the TODO of **CreateDevice**:
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
+    m_states.reset();
     m_effect.reset();
     m_batch.reset();
     m_inputLayout.Reset();
 
 In **Game.cpp**, add to the TODO of **Render**:
+
+    m_d3dContext->OMSetBlendState( m_states->Opaque(), nullptr, 0xFFFFFFFF );
+    m_d3dContext->OMSetDepthStencilState( m_states->DepthNone(), 0 );
+    m_d3dContext->RSSetState( m_states->CullNone() );
 
     m_effect->Apply(m_d3dContext.Get());
 
@@ -78,6 +86,10 @@ In **Game.cpp**, add to the TODO of **CreateResources**:
     m_effect->SetProjection(proj);
 
 In **Game.cpp**, modify the TODO of **Render**:
+
+    m_d3dContext->OMSetBlendState( m_states->Opaque(), nullptr, 0xFFFFFFFF );
+    m_d3dContext->OMSetDepthStencilState( m_states->DepthNone(), 0 );
+    m_d3dContext->RSSetState( m_states->CullNone() );
 
     m_effect->Apply(m_d3dContext.Get());
 
@@ -122,6 +134,10 @@ In **Game.cpp**, add to the TODO of **CreateResources**:
     m_effect->SetProjection(m_proj);
 
 In **Game.cpp**, modify to the TODO of **Render**:
+
+    m_d3dContext->OMSetBlendState( m_states->Opaque(), nullptr, 0xFFFFFFFF );
+    m_d3dContext->OMSetDepthStencilState( m_states->DepthNone(), 0 );
+    m_d3dContext->RSSetState( m_states->CullNone() );
 
     m_effect->SetWorld(m_world);
 
