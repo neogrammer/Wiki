@@ -73,7 +73,7 @@ For default geometry winding use CullCounterClockwise(). For inverted winding (t
 
 For "double-sided" geometry, use CullNone(). Keep in mind this is a potentially large performance hit, so use it sparingly.
 
-Wireframe() is self-explanatory.
+Wireframe() is a wireframe rendering mode and shows both sides of the geometry.
 
 # Sampler State
 [XNA Game Studio](http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.samplerstate_fields.aspx)  
@@ -158,7 +158,7 @@ These common states are equivalent to using the following descriptors:
     CD3D11_RASTERIZER_DESC desc(D3D11_FILL_SOLID, D3D11_CULL_BACK, FALSE, 0, 0.f, 0.f, TRUE, FALSE, TRUE, FALSE);
 
     // Wireframe
-    CD3D11_RASTERIZER_DESC desc(D3D11_FILL_WIREFRAME, D3D11_CULL_BACK, FALSE, 0, 0.f, 0.f, TRUE, FALSE, TRUE, FALSE);
+    CD3D11_RASTERIZER_DESC desc(D3D11_FILL_WIREFRAME, D3D11_CULL_NONE, FALSE, 0, 0.f, 0.f, TRUE, FALSE, TRUE, FALSE);
 
 ## Sampler states
 
