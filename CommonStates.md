@@ -157,6 +157,7 @@ These common states are equivalent to using the following descriptors:
     // CullCounterClockwise
     CD3D11_RASTERIZER_DESC desc(D3D11_FILL_SOLID, D3D11_CULL_BACK, FALSE, 0, 0.f, 0.f, TRUE, FALSE, TRUE, FALSE);
 
+    // Wireframe
     CD3D11_RASTERIZER_DESC desc(D3D11_FILL_WIREFRAME, D3D11_CULL_BACK, FALSE, 0, 0.f, 0.f, TRUE, FALSE, TRUE, FALSE);
 
 ## Sampler states
