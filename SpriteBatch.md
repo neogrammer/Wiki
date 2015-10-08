@@ -258,6 +258,11 @@ Using the DirectX starting template, you will want to add to your ``CreateWindow
 
 _In ``Common\DeviceResources.h``, you need to make ``ComputeDisplayRotation`` a public function instead of being private._
 
+# Xbox One
+When using Direct3D 11.x fast semantics, you must make use of ``SetViewport`` which is otherwise optional as ``RSGetViewports`` is not supported in this mode.
+
+    spriteBatch->SetViewport(viewPort);
+
 # Further reading
 [ShawnHar's blog on SpriteBatch](http://www.shawnhargreaves.com/blogindex.html#spritebatch)  
 [ShawnHar's blog on Premultiplied Alpha](http://www.shawnhargreaves.com/blogindex.html#premultipliedalpha)    
