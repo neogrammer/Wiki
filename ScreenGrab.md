@@ -154,4 +154,4 @@ See [File access and permissions (Windows Runtime apps)](https://msdn.microsoft.
 [ApplicationData.TemporaryFolder property](http://msdn.microsoft.com/en-us/library/windows/apps/xaml/windows.storage.applicationdata.temporaryfolder.aspx)
 
 # Xbox One
-When using Direct3D 11.x fast semantics and trying to capture a Render Target, it must be decompressed with ``DecompressResource`` before calling ``SaveDDSTextureToFile`` or ``SaveWICTextureToFile``.
+When using Direct3D 11.x fast semantics and trying to capture a Render Target, it must be decompressed with ``DecompressResource`` before calling ``SaveDDSTextureToFile`` or ``SaveWICTextureToFile``. The save functions will block until the resource copy is completed, so it should not be used with high frequency.
