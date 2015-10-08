@@ -152,3 +152,6 @@ For _Save*TextureToFile_ to succeed, the application must have write access to t
 
 See [File access and permissions (Windows Runtime apps)](https://msdn.microsoft.com/en-us/library/windows/apps/hh967755.aspx), 
 [ApplicationData.TemporaryFolder property](http://msdn.microsoft.com/en-us/library/windows/apps/xaml/windows.storage.applicationdata.temporaryfolder.aspx)
+
+# Xbox One
+When using Direct3D 11.x fast semantics and trying to capture a Render Target, it must be decompressed with ``DecompressResource`` before calling ``SaveDDSTextureToFile`` or ``SaveWICTextureToFile``.
