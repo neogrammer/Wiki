@@ -154,9 +154,6 @@ The texture loader function is typically used to load texture files from the app
     
 [File access and permissions (Windows Runtime apps)](https://msdn.microsoft.com/en-us/library/windows/apps/hh967755.aspx)
 
-# Xbox One
-When using Direct3D 11.x fast semantics, this function does not support auto-gen mipmaps--an exception is thrown at runtime if attempted.
-
 # Further reading
 
 [Linear-Space Lighting (i.e. Gamma)](http://filmicgames.com/archives/299)
