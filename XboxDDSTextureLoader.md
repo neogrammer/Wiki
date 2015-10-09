@@ -31,6 +31,9 @@ Either _texture_ or _textureView_ can be nullptr, but not both.
 
 The _grfxMemory_ is returned as a pointer to the video memory which the caller is responsible for releasing with *D3DFreeGraphicsMemory*
 
+# Remark
+Auto-gen mipmaps are not supported with these functions.
+
 # Example
 
     using namespace Microsoft::WRL;
