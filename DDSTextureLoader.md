@@ -189,6 +189,9 @@ This function loads both traditional and FourCC "DX10" variant ``.DDS`` files.
 
 [DDS on MSDN](http://msdn.microsoft.com/en-us/library/windows/desktop/bb943990.aspx)
 
+# Xbox One
+When using Direct3D 11.x fast semantics, this function does not support auto-gen mipmaps--an exception is thrown at runtime if attempted. For fast semantics, using [[XboxDDSTextureLoader]] is highly recommended.
+
 # Further Reading
 [The DDS File Format Lives](http://blogs.msdn.com/b/chuckw/archive/2010/02/05/the-dds-file-format-lives.aspx)
 
