@@ -5,7 +5,7 @@ This tutorial assumes the reader is familiar with the basics of C++ programming 
 
 * [C++ Language and Standard Libraries](http://msdn.microsoft.com/en-us/library/hh875057.aspx)
 * [Tools for Visual C++ Development](http://msdn.microsoft.com/en-us/library/hh967574.aspx)
-* [Smart Pointers](http://msdn.microsoft.com/en-us/library/hh279674.aspx)
+* [Smart Pointers](http://msdn.microsoft.com/en-us/library/hh279674.aspx) and [[ComPtr]]
 
 This tutorial does not assume prior experience with Direct3D, but the reader should be familiar with the basic graphics concepts for DirectX or OpenGL. That said, you can get a long way using _DirectX Tool Kit_ without much in the way of graphics experience.
 
