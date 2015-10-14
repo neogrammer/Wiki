@@ -8,7 +8,7 @@ This loader does not support array textures, 1D textures, 3D volume textures, or
 
 Also part of the [DirectXTex](http://go.microsoft.com/fwlink/?LinkId=248926) package.
 
-> The module assumes that the client code will have already called ``CoInitialize``, ``CoInitializeEx``, or ``Windows::Foundation::Initialize`` as needed by the application before calling the WIC loader routines.
+The module assumes that the client code will have already called ``CoInitialize``, ``CoInitializeEx``, or ``Windows::Foundation::Initialize`` as needed by the application before calling the WIC loader routines.
 
 **Related tutorial:** [[Sprites and textures]]
 
