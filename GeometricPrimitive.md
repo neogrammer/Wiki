@@ -155,5 +155,7 @@ GeometricPrimitive makes use of the following states:
 * Index buffer
 * Constant buffer (Vertex Shader stage, slot 0)
 
+The GeometricPrimitive class assumes you've already set the Render Target view, Depth Stencil view, and Viewport.
+
 # Remark
 Tetrahedron, Cube/Hexahedron, Octahedron, Dodecahedron, and Icosahedron comprise the five [Platonic solid](https://en.wikipedia.org/wiki/Platonic_solid). The Utah Teapot is sometimes referred to as the "Sixth Platonic solid" due to its prevalence in rendering sample images.
