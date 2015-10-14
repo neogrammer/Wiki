@@ -6,7 +6,7 @@ MSAA textures are resolved before being written.
 
 Also part of the [DirectXTex](http://go.microsoft.com/fwlink/?LinkId=248926) package.
 
-_The module assumes that the client code will have already called ``CoInitialize``, ``CoInitializeEx``, or ``Windows::Foundation::Initialize`` as needed by the application before calling the WIC save routines_
+The module assumes that the client code will have already called ``CoInitialize``, ``CoInitializeEx``, or ``Windows::Foundation::Initialize`` as needed by the application before calling the WIC save routines.
 
 # Header
     #include <ScreenGrab.h>
