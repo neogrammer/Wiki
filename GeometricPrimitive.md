@@ -137,5 +137,23 @@ Each GeometricPrimitive instance only supports drawing from one thread at a time
 
 [Immediate and Deferred Rendering](http://msdn.microsoft.com/en-us/library/windows/desktop/ff476892.aspx)
 
+# State management
+
+When ``Draw`` is called,  it will set the states needed to render with the effect. Existing state is not save or restored. For efficiency, it simply sets the state it requires to render and assumes that any subsequent rendering will overwrite state that it needs.
+
+GeometricPrimitive makes use of the following states:
+
+* BlendState
+* DepthStencilState
+* RasterizerState
+* SamplerState (Pixel Shader stage, slot 0)
+* Primitive topology
+* Input layout
+* Vertex shader
+* Pixel shader
+* Vertex buffer (slot 0)
+* Index buffer
+* Constant buffer (Vertex Shader stage, slot 0)
+
 # Remark
 Tetrahedron, Cube/Hexahedron, Octahedron, Dodecahedron, and Icosahedron comprise the five [Platonic solid](https://en.wikipedia.org/wiki/Platonic_solid). The Utah Teapot is sometimes referred to as the "Sixth Platonic solid" due to its prevalence in rendering sample images.
