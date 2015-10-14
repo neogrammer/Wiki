@@ -99,7 +99,7 @@ PrimitiveBatch makes use of the following states:
 * Vertex buffer (slot 0)
 * Index buffer
 
-The PrimitiveBatch class assumes you've already set the Render Target view, Depth Stencil view, Viewport, BlendState, DepthStencilState, RasterizerState, Input layout, Vertex shader, Pixel shader, and Constant buffers.
+The PrimitiveBatch class assumes you've already set the Render Target view, Depth Stencil view, Viewport, BlendState, DepthStencilState, RasterizerState, Input layout, Vertex shader, Pixel shader, Constant buffers, and any required SamplerState or Shader resources.
 
 # Further Reading
 [DirectXTK PrimitiveBatch helper makes it easy to draw user primitives with D3D11](http://blogs.msdn.com/b/shawnhar/archive/2012/10/12/directxtk-primitivebatch-helper-makes-it-easy-to-draw-user-primitives-with-d3d11.aspx)  
