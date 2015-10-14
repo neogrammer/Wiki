@@ -2,7 +2,7 @@ This is a version of [[DDSTextureLoader]] for use by Xbox One XDK developers. Th
 
 These pre-tiled resources are stored in a variant of the ``.DDS`` file format marked with the "XBOX" FourCC pixel format. To generate these .DDS files, see the *xtexconv* sample on the [Microsoft Game Developer Network](https://developer.xboxlive.com/en-us/platform/development/education/Pages/Samples.aspx) site (_access required_).
 
-_To load traditional or FourCC "DX10" variant DDS files, use [[DDSTextureLoader]]_
+> To load traditional or FourCC "DX10" variant DDS files, use [[DDSTextureLoader]]
 
 # Header
     #include <XboxDDSTextureLoader.h>
