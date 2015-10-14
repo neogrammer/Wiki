@@ -1,6 +1,6 @@
 This is a class hierarchy for drawing simple meshes with support for loading models from Visual Studio 3D Starter Kit ``.CMO`` files, legacy DirectX SDK ``.SDKMESH`` files, and ``.VBO`` files. It is an implementation of a mesh renderer similar to the [XNA Game Studio](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.model.aspx) Model, ModelMesh, ModelMeshPart design.
 
-_NOTE: Support for loading keyframe animations is not yet included._
+> _NOTE: Support for loading keyframe animations is not yet included._
 
 A Model consists of one or more [[ModelMesh]] instances. The ModelMesh instances can be shared by multiple instances of Model. A ModelMesh instance consists of one or more ModelMeshPart instances.
 
@@ -173,6 +173,8 @@ Model makes use of the following states:
 * Constant buffer (Vertex Shader stage, slot 0)
 
 > If you used [[DGSLEffectFactory|EffectFactory]] for the model then ``Draw`` will make use of additional state as outlined in [[Effects]]
+
+The Model class assumes you've already set the Render Target view, Depth Stencil view, and Viewport.
 
 # Further reading
 [Models, meshes, parts, and bones](http://msdn.microsoft.com/en-us/library/windows/desktop/ff476891.aspx)  
