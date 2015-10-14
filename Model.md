@@ -158,7 +158,7 @@ The ModelMeshPart is tied to a device, but not a device context. This means that
 
 When ``Draw`` is called,  it will set the states needed to render with the effect. Existing state is not save or restored. For efficiency, it simply sets the state it requires to render and assumes that any subsequent rendering will overwrite state that it needs.
 
-GeometricPrimitive makes use of the following states:
+Model makes use of the following states:
 
 * BlendState
 * DepthStencilState
