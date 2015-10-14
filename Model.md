@@ -161,17 +161,17 @@ When ``Draw`` is called,  it will set the states needed to render with the effec
 Model makes use of the following states:
 
 * BlendState
+* Constant buffer (Vertex Shader and Pixel Shader stages, slot 0)
 * DepthStencilState
+* Index buffer
+* Input layout
+* Pixel shader
+* Primitive topology
 * RasterizerState
 * SamplerState (Pixel Shader stage, slots 0 and 1)
-* Primitive topology
-* Input layout
-* Vertex shader
-* Pixel shader
-* Vertex buffer (slot 0)
-* Index buffer
-* Constant buffer (Vertex Shader and Pixel Shader stages, slot 0)
 * Shader resources (Pixel Shader stage, slots 0 and 1)
+* Vertex shader
+* Vertex buffer (slot 0)
 
 > If you used [[DGSLEffectFactory|EffectFactory]] for the model then ``Draw`` will make use of additional state as outlined in [[Effects]]
 
