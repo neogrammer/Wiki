@@ -120,10 +120,11 @@ The built-in effects make use of the following states:
 
 * Vertex shader
 * Pixel shader
-* Constant buffer (Vertex Shader and Pixel Shader stages, slot 0; ``DGSLEffect`` uses slots 0-4)
+* Constant buffer (Vertex Shader and Pixel Shader stages, slot 0)
 * SamplerState (Pixel Shader stage, slot 0 and 1)
 
 [DGLSEffect] also uses:
+* Constant buffer (Vertex Shader and Pixel Shader stages, slots 0-4)
 * SamplerState (Pixel Shader stage, all 8 slots)
 * ShaderResources (Pixel Shader stage, all 8 slots)
 
