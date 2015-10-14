@@ -1,16 +1,16 @@
 This is a helper for drawing simple geometric shapes including texture coordinates and surface normals.
 
-* Cube (aka hexahedron)
-* Sphere
-* Geodesic Sphere
-* Cylinder
 * Cone
-* Torus
-* Tetrahedron
-* Octahedron
+* Cube (aka hexahedron)
+* Cylinder
 * Dodecahedron
+* Geodesic Sphere
 * Icosahedron
+* Octahedron
+* Sphere
 * Teapot
+* Tetrahedron
+* Torus
 
 ![GeometricPrimitive Example](https://github.com/Microsoft/DirectXTK/wiki/images/GeometricPrimitiveExample.png)
 
@@ -144,17 +144,17 @@ When ``Draw`` is called,  it will set the states needed to render with the effec
 GeometricPrimitive makes use of the following states:
 
 * BlendState
+* Constant buffer (Vertex Shader and Pixel Shader stages, slot 0)
 * DepthStencilState
+* Index buffer
+* Input layout
+* Pixel shader
+* Primitive topology
 * RasterizerState
 * SamplerState (Pixel Shader stage, slot 0)
-* Primitive topology
-* Input layout
-* Vertex shader
-* Pixel shader
-* Vertex buffer (slot 0)
-* Index buffer
-* Constant buffer (Vertex Shader and Pixel Shader stages, slot 0)
 * Shader resources (Pixel Shader stage, slot 0)
+* Vertex shader
+* Vertex buffer (slot 0)
 
 The GeometricPrimitive class assumes you've already set the Render Target view, Depth Stencil view, and Viewport.
 
