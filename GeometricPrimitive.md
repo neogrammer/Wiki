@@ -6,7 +6,7 @@ This is a helper for drawing simple geometric shapes including texture coordinat
 * Dodecahedron
 * Icosahedron
 * Octahedron
-* Sphere
+* Sphere (uv or geodesic)
 * Teapot
 * Tetrahedron
 * Torus
