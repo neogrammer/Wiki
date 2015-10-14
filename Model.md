@@ -163,7 +163,7 @@ Model makes use of the following states:
 * BlendState
 * DepthStencilState
 * RasterizerState
-* SamplerState (Pixel Shader stage, slots 0-1)
+* SamplerState (Pixel Shader stage, slots 0 and 1)
 * Primitive topology
 * Input layout
 * Vertex shader
@@ -171,7 +171,7 @@ Model makes use of the following states:
 * Vertex buffer (slot 0)
 * Index buffer
 * Constant buffer (Vertex Shader and Pixel Shader stages, slot 0)
-* Shader resources (Pixel Shader stage, slots 0-1)
+* Shader resources (Pixel Shader stage, slots 0 and 1)
 
 > If you used [[DGSLEffectFactory|EffectFactory]] for the model then ``Draw`` will make use of additional state as outlined in [[Effects]]
 
