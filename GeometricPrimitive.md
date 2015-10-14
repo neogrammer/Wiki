@@ -4,7 +4,6 @@ This is a helper for drawing simple geometric shapes including texture coordinat
 * Cone
 * Cylinder
 * Dodecahedron
-* Geodesic Sphere
 * Icosahedron
 * Octahedron
 * Sphere
