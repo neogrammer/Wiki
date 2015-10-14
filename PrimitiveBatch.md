@@ -90,6 +90,17 @@ Each PrimitiveBatch instance only supports drawing from one thread at a time, bu
 
 [Immediate and Deferred Rendering](http://msdn.microsoft.com/en-us/library/windows/desktop/ff476892.aspx)
 
+# State management
+PrimitiveBatch does not save and restore existing state. For efficiency, it simply sets the state it requires to render and assumes that any subsequent rendering after ``primitiveBatch->End()`` will overwrite state that it needs.
+
+PrimitiveBatch makes use of the following states:
+
+* Primitive topology
+* Vertex buffer (slot 0)
+* Index buffer
+
+The PrimitiveBatch class assumes you've already set the Render Target view, Depth Stencil view, Viewport, BlendState, DepthStencilState, RasterizerState, SamplerState, Input layout, Vertex shader, Pixel shader, and Constant buffers.
+
 # Further Reading
 [DirectXTK PrimitiveBatch helper makes it easy to draw user primitives with D3D11](http://blogs.msdn.com/b/shawnhar/archive/2012/10/12/directxtk-primitivebatch-helper-makes-it-easy-to-draw-user-primitives-with-d3d11.aspx)  
 [How to: Use dynamic resources](http://msdn.microsoft.com/en-us/library/windows/desktop/dn508285.aspx)  
