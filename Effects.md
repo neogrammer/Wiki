@@ -118,11 +118,11 @@ When ``Apply`` is called on an effect, it will set the states needed to render w
 
 The built-in effects make use of the following states:
 
-* Vertex shader
-* Pixel shader
 * Constant buffer (Vertex Shader and Pixel Shader stages, slot 0)
+* Pixel shader
 * SamplerState (Pixel Shader stage, slot 0 and 1)
 * Shader resources (Pixel Shader stage, slots 0 and 1)
+* Vertex shader
 
 [[DGSLEffect]] also uses:
 * Constant buffer (Vertex Shader stage, slots 0-4)
