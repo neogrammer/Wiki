@@ -153,7 +153,7 @@ GeometricPrimitive makes use of the following states:
 * Pixel shader
 * Vertex buffer (slot 0)
 * Index buffer
-* Constant buffer (Vertex Shader stage, slot 0)
+* Constant buffer (Vertex Shader and Pixel Shader stages, slot 0)
 
 The GeometricPrimitive class assumes you've already set the Render Target view, Depth Stencil view, and Viewport.
 
