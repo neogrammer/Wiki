@@ -153,6 +153,27 @@ A ``.VBO`` file does not contain any material or attribute information. The load
 # Threading model
 The ModelMeshPart is tied to a device, but not a device context. This means that Model creation/loading is ‘free threaded’. Drawing can be done on the immediate context or by a deferred context, but keep in mind device contexts are not ‘free threaded’. See [[EffectFactory]] for some additional notes.
 
+# State management
+
+
+When ``Draw`` is called,  it will set the states needed to render with the effect. Existing state is not save or restored. For efficiency, it simply sets the state it requires to render and assumes that any subsequent rendering will overwrite state that it needs.
+
+GeometricPrimitive makes use of the following states:
+
+* BlendState
+* DepthStencilState
+* RasterizerState
+* SamplerState (Pixel Shader stage, slots 0-1)
+* Primitive topology
+* Input layout
+* Vertex shader
+* Pixel shader
+* Vertex buffer (slot 0)
+* Index buffer
+* Constant buffer (Vertex Shader stage, slot 0)
+
+> If you used [[DGSLEffectFactory|EffectFactory]] for the model then ``Draw`` will make use of additional state as outlined in [[Effects]]
+
 # Further reading
 [Models, meshes, parts, and bones](http://msdn.microsoft.com/en-us/library/windows/desktop/ff476891.aspx)  
 
