@@ -170,8 +170,8 @@ Model makes use of the following states:
 * RasterizerState
 * SamplerState (Pixel Shader stage, slots 0 and 1)
 * Shader resources (Pixel Shader stage, slots 0 and 1)
-* Vertex shader
 * Vertex buffer (slot 0)
+* Vertex shader
 
 > If you used [[DGSLEffectFactory|EffectFactory]] for the model then ``Draw`` will make use of additional state as outlined in [[Effects]]
 
