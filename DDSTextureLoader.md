@@ -2,7 +2,7 @@ A streamlined version of the DirectX SDK sample [DDSWithoutD3DX](http://blogs.ms
 
 Also part of the [DirectXTex](http://go.microsoft.com/fwlink/?LinkId=248926) package. To load legacy files that require runtime format conversion, use _DirectXTex_ or convert them with the [texconv](https://github.com/Microsoft/DirectXTex/wiki/Texconv) utility.
 
-_To load FourCC "XBOX" variant ``.DDS`` files, use [[XboxDDSTextureLoader]]_.
+> To load FourCC "XBOX" variant ``.DDS`` files, use [[XboxDDSTextureLoader]].
 
 **Related tutorial:** [[Sprites and textures]]
 
