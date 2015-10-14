@@ -112,6 +112,17 @@ Creation is fully asynchronous, so you can instantiate multiple effect  instance
 
 [Immediate and Deferred Rendering](http://msdn.microsoft.com/en-us/library/windows/desktop/ff476892.aspx)
 
+# State management
+
+When ``Apply`` is called on an effect, it will set the states needed to render with the effect. Existing state is not save or restored. For efficiency, it simply sets the state it requires to render and assumes that any subsequent rendering will overwrite state that it needs.
+
+The built-in effects make use of the following states:
+
+* Vertex shader
+* Pixel shader
+* Constant buffer (Vertex Shader and Pixel Shader stages, slot 0; ``DGSLEffect`` uses slots 0-4)
+* SamplerState (Pixel Shader stage, slot 0 and 1; ``DGSLEffect`` uses all 8 slots)
+
 # Further reading
 
 [New built-in effects in XNA Game Studio 4.0](http://blogs.msdn.com/b/shawnhar/archive/2010/04/28/new-built-in-effects-in-xna-game-studio-4-0.aspx)  
