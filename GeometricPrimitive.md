@@ -152,8 +152,8 @@ GeometricPrimitive makes use of the following states:
 * RasterizerState
 * SamplerState (Pixel Shader stage, slot 0)
 * Shader resources (Pixel Shader stage, slot 0)
-* Vertex shader
 * Vertex buffer (slot 0)
+* Vertex shader
 
 The GeometricPrimitive class assumes you've already set the Render Target view, Depth Stencil view, and Viewport.
 
