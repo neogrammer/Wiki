@@ -274,6 +274,7 @@ SpriteBatch makes use of the following states:
 * Vertex buffer (slot 0)
 * Index buffer
 * Constant buffer (Vertex Shader stage, slot 0)
+* Shader resources (Pixel Shader stage, slot 0)
 
 The SpriteBatch class assumes you've already set the Render Target view, Depth Stencil view, and Viewport. It will also read the first viewport set on the device unless you've explicitly called ``SetViewport``.
 
