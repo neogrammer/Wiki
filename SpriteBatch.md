@@ -275,7 +275,7 @@ SpriteBatch makes use of the following states:
 * Index buffer
 * Constant buffer (Vertex Shader stage, slot 0)
 
-The SpriteBatch class assumes you've already set the Render Target view, Depth Stencil view, and Viewport. It will also make use of the first viewport set on the device unless you've explicitly called ``SetViewport``.
+The SpriteBatch class assumes you've already set the Render Target view, Depth Stencil view, and Viewport. It will also read the first viewport set on the device unless you've explicitly called ``SetViewport``.
 
 # Xbox One
 When using Direct3D 11.x fast semantics, you must make use of ``SetViewport`` which is otherwise optional as ``RSGetViewports`` is not supported in this mode.
