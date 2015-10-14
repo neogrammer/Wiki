@@ -258,6 +258,25 @@ Using the DirectX starting template, you will want to add to your ``CreateWindow
 
 _In ``Common\DeviceResources.h``, you need to make ``ComputeDisplayRotation`` a public function instead of being private._
 
+# State management
+Unlike ``ID3DXSprite``, SpriteBatch does not save and restore existing state. For efficiency, it simply sets the state it requires to render and assumes that any subsequent rendering after ``spriteBatch->End()`` will overwrite state that it needs.
+
+SpriteBatch makes use of the following states:
+
+* BlendState
+* DepthStencilState
+* RasterizerState
+* SamplerState (Pixel Shader stage, slot 0)
+* Primitive topology
+* Input layout
+* Vertex shader
+* Pixel shader
+* Vertex buffer (slot 0)
+* Index buffer
+* Constant buffer (Vertex Shader stage, slot 0)
+
+The SpriteBatch class assumes you've already set the Render Target view and Depth Stencil view. It will also make use of the first viewport set on the device unless you've explicitly called ``SetViewport``.
+
 # Xbox One
 When using Direct3D 11.x fast semantics, you must make use of ``SetViewport`` which is otherwise optional as ``RSGetViewports`` is not supported in this mode.
 
