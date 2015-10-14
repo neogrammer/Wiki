@@ -170,7 +170,7 @@ Model makes use of the following states:
 * Pixel shader
 * Vertex buffer (slot 0)
 * Index buffer
-* Constant buffer (Vertex Shader stage, slot 0)
+* Constant buffer (Vertex Shader and Pixel Shader stages, slot 0)
 
 > If you used [[DGSLEffectFactory|EffectFactory]] for the model then ``Draw`` will make use of additional state as outlined in [[Effects]]
 
