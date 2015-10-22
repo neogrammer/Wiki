@@ -74,8 +74,4 @@ We will be using a Win32 desktop application project template in order to suppor
 
 # Resources
 
-[Book Recommendations](http://blogs.msdn.com/b/chuckw/archive/2014/04/07/book-recommendations.aspx)
-
-[Getting Started with Direct3D 11](http://blogs.msdn.com/b/chuckw/archive/2011/07/11/getting-started-with-direct3d-11.aspx)
-
 [Dual-use Coding Techniques for Games](http://blogs.msdn.com/b/chuckw/archive/2012/09/17/dual-use-coding-techniques-for-games.aspx)
