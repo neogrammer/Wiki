@@ -148,6 +148,20 @@ Note if the instance was created without ``SoundEffectInstance_Use3D``, then cal
 
 See [[AudioListener]], [[AudioEmitter]]
 
+## Coordinate systems
+
+The emitter and listener (based on the XNA Game Studio conventions) use right-handed coordinates. They can be used with left-handed coordinates by setting the rhcoords parameter on the ``Apply3D`` method to 'false' (the parameter defaults to 'true').
+
+    AudioListener listener;
+    listener.SetPosition( ... );
+    listener.SetOrientation( ... );
+
+    AudioEmitter emitter;
+    emitter.SetPosition( ... );
+    emitter.SetOrientation( ... );
+
+    effect->Apply3D( listener, emitter, false );
+
 # Properties
 
 * **GetState**: Returns ``STOPPED``, ``PLAYING``, or ``PAUSED``.
