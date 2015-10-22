@@ -7,9 +7,11 @@ See [[AudioListener]].
 
 # Initialization
 
-The default constructor creates a point omnidirectional emitter located at 0,0,0  facing ``+z`` and an up vector of ``+y`` for a mono source. 
+The default constructor creates a point omnidirectional emitter located at 0,0,0  facing ``-z`` and an up vector of ``+y`` for a mono source. 
 
 CurveDistanceScaler and DopplerScaler are set to 1 by default. InnerRadius is set to 0, and InnerRadiusAngle is set to ``X3DAUDIO_PI/4.0`` (45 degrees).
+
+> When using left-handed coordinates, be sure to set ``OrientFront``
 
 # Helpers
 In addition to setting the members of ``X3DAUDIO_EMITTER`` directly, these helper functions are provided:
