@@ -150,7 +150,7 @@ See [[AudioListener]], [[AudioEmitter]]
 
 ## Coordinate systems
 
-The emitter and listener (based on the XNA Game Studio conventions) use right-handed coordinates. They can be used with left-handed coordinates by setting the rhcoords parameter on the ``Apply3D`` method to 'false' (the parameter defaults to 'true').
+The emitter and listener (based on the XNA Game Studio conventions) use right-handed coordinates. They can be used with left-handed coordinates by setting the _rhcoords_ parameter on the ``Apply3D`` method to 'false' (the parameter defaults to 'true').
 
     AudioListener listener;
     listener.SetPosition( ... );
