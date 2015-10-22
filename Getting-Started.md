@@ -15,7 +15,7 @@ One thing that many C++ developers, particularly game developers, may not be all
 * [C++ Exception Handling](http://msdn.microsoft.com/en-us/library/4t3saedz.aspx)
 * [Exception Handling (Debugging)](http://msdn.microsoft.com/en-us/library/x85tt0dd.aspx)
 
-Note that Direct3D 11 and _DirectX Tool Kit_ are not "WinRT" APIs, so we do not make use of the new C++/CX language extensions. _DirectX Tool Kit_ is a 'pure' C++ library, which is why it's not directly usable by Visual Basic, C# or HTML+JavaScript applications.
+> Note that Direct3D 11 and _DirectX Tool Kit_ are not Windows Runtime (aka "WinRT") APIs, so we do not make use of the new C++/CX language extensions. _DirectX Tool Kit_ is a 'pure' C++ library, which is why it's not directly usable by Visual Basic, C# or HTML+JavaScript applications.
 
 # Audience
 These tutorials are written with game development in mind as the target application since games are an excellent fit for the 'immersive DirectX app' model. Keep in mind, however, that the majority of the functionality in the _DirectX Tool Kit_ is applicable to DirectX graphics programming in general for both game and non-game applications.
