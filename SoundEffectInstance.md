@@ -86,6 +86,20 @@ Note if the instance was created without ``SoundEffectInstance_Use3D``, then cal
 
 See [[AudioListener]], [[AudioEmitter]]
 
+## Coordinate systems
+
+The emitter and listener (based on the XNA Game Studio conventions) use right-handed coordinates. They can be used with left-handed coordinates by setting the rhcoords parameter on the ``Apply3D`` method to 'false' (the parameter defaults to 'true').
+
+    AudioListener listener;
+    listener.SetPosition( ... );
+    listener.SetOrientation( ... );
+
+    AudioEmitter emitter;
+    emitter.SetPosition( ... );
+    emitter.SetOrientation( ... );
+
+    effect->Apply3D( listener, emitter, false );
+
 # Voice management
 
 A SoundEffectInstance will allocate a XAudio2 source voice when played, and will keep that source voice for the life of the object. You can force all SoundEffectInstances that currently have source voices but are not currently playing to release them by calling ``AudioEngine::TrimVoicePool``.
