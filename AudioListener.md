@@ -7,7 +7,9 @@ See [[AudioEmitter]].
 
 # Initialization
 
-The default constructor creates a listener located at 0,0,0 facing ``+z`` and an up vector of ``+y``.
+The default constructor creates a listener located at 0,0,0 facing ``-z`` and an up vector of ``+y``.
+
+> When using left-handed coordinates, be sure to set ``OrientFront``
 
 # Helpers
 
