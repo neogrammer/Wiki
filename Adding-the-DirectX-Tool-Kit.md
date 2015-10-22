@@ -6,7 +6,7 @@ The easiest way to achieve this is to use the [NuGet package manager](https://ww
 * From the drop-down menu, select **Project** / **Manage NuGet Packages...**
 * Select "Online/All" in the left-hand tree view
 * In the text search field on the top-right type "DirectXTK" and hit enter to search for the packages
-* Select the package with the id **[directxtk_desktop_2013](https://www.nuget.org/packages/directxtk_desktop_2013/)**
+* Select the package with the id **[directxtk_desktop_2013](https://www.nuget.org/packages/directxtk_desktop_2013/)** or **[directxtk_desktop_2015](https://www.nuget.org/packages/directxtk_desktop_2015/)**
 * Select "Install"
 * Select "Close"
 
