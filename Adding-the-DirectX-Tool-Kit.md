@@ -14,16 +14,18 @@ The easiest way to achieve this is to use the [NuGet package manager](https://ww
 
 You can check for updates to the NuGet package by selecting "Updates/All" in the left-hand tree view. If there are updates, select the "DirectX Tool Kit" package, and click on "Update".
 
+> If you are using the Direct3DUWPGame template, you would use package id **[directxtk_uwp](https://www.nuget.org/packages/directxtk_uwp)**
+
 # Project-to-project references
 Another option rather than using NuGet is to use Visual Studio's [project-to-project references](http://blogs.msdn.com/b/vcblog/archive/2010/05/03/flexible-project-to-project-references.aspx). This approach is a little more setup, but it does ensure that you are building the full DirectX Tool Kit library as part of your solution, and allows you to make changes directly to the tool kit if desired as well.
 
 * Extract the [release .zip file](https://github.com/Microsoft/DirectXTK/releases) into a directory relative to the new project you created. For this tutorial, we will assume the ``DirectXTK`` folder is in the same folder as your new project's Visual Studio Solution (``.sln``) file.
 * Right-click on your solution in the Solution Explorer, and select **Add** / **Existing Project...**
-* Browse into the "DirectXTK" folder and select ``DirectXTK_Desktop_2013.vcxproj``, click "Open"
+* Browse into the "DirectXTK" folder and select ``DirectXTK_Desktop_2013.vcxproj`` or ``DirectXTK_Desktop_2015.vcxproj``, click "Open"
 * If Visual Studio presents a "Security Warning", select "OK". Optional: Uncheck "Ask me for every project in this solution" first.
 * Right-click on your project in the Solution Explorer, and select **Add** / **References...**
 * Select "Add New Reference..."
-* Check ``DirectXTK_Desktop_2013`` and select "OK"
+* Check ``DirectXTK_Desktop_2013`` or ``DirectXTK_Desktop_2015`` and select "OK"
 * Click on "Configuration Properties" in the left-hand tree view, then **C/C++** / **General**
 * Select "All Configurations" and "All Platforms"
 * Edit _Additional Include Directories_ to the relative path to the ``DirectXTK\Inc`` folder. With our original assumption, you can use ``$(SolutionDir)\DirectXTK\Inc``.
