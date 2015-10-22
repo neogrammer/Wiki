@@ -39,7 +39,7 @@ XAudio 2.8 is built into Windows 8.0 or later, and everything needed is include 
 1. If Visual Studio presents a "Security Warning", select "OK". Optional: Uncheck "Ask me for every project in this solution" first.
 1. Right-click on your project in the Solution Explorer, and select **Add** / **References...**
 1. Select "Add New Reference..."
-1. Check ``DirectXTKAudio_Desktop_2013_Win8.vcxproj`` and select "OK"
+1. Check ``DirectXTKAudio_Desktop_2013_Win8.vcxproj`` or ``DirectXTKAudio_Desktop_2015_Win8.vcxproj`` and select "OK"
 1. Select "OK"
 
 ![Add Reference (Windows 8)](https://github.com/Microsoft/DirectXTK/wiki/images/AddReferenceWin8.png)
