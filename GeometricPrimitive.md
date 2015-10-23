@@ -124,6 +124,24 @@ Alpha blending defaults to using premultiplied alpha. To make use of 'straight' 
         deviceContext->OMSetBlendState( states.NonPremultiplied(), nullptr, 0xFFFFFFFF);
     });
 
+# Custom geometry
+
+There are equivalent static methods for each of the factory methods that return the vertex and index buffer data as ``std::vector``. These values can be modified, and then used to create a customized geometric primitive or drawn through some other mechanism.
+
+    std::vector<VertexPositionNormalTexture> vertices;
+    std::vector<uint16_t> indices;
+    GeometricPrimitive::CreateBox( vertices, indices, XMFLOAT3(1.f/2.f, 2.f/2.f, 3.f/2.f));
+
+    // Tile the texture in a 5x5 grid
+    for( auto it = vertices.begin(); it != vertices.end(); ++it )
+    {
+        it->textureCoordinate.x *= 5.f;
+        it->textureCoordinate.y *= 5.f;
+    }
+
+    std::unique_ptr<GeometricPrimitive> customBox(
+        GeometricPrimitive::CreateCustom( deviceContext, vertices, indices ) );
+
 # Feature Level Notes
 In order to support [all feature levels](http://msdn.microsoft.com/en-us/library/windows/desktop/ff476876.aspx), the GeometricPrimitive implementation make use of 16-bit indices (``DXGI_FORMAT_R16_UINT``) which limits to a maximum of 65535 vertices.
 
