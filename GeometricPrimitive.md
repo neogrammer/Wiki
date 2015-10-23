@@ -130,7 +130,8 @@ There are equivalent static methods for each of the factory methods that return 
 
     std::vector<VertexPositionNormalTexture> vertices;
     std::vector<uint16_t> indices;
-    GeometricPrimitive::CreateBox( vertices, indices, XMFLOAT3(1.f/2.f, 2.f/2.f, 3.f/2.f));
+    GeometricPrimitive::CreateBox( vertices, indices,
+        XMFLOAT3(1.f/2.f, 2.f/2.f, 3.f/2.f) );
 
     // Tile the texture in a 5x5 grid
     for( auto it = vertices.begin(); it != vertices.end(); ++it )
