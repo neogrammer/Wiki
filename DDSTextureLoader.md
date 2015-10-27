@@ -184,6 +184,72 @@ The texture loader function is typically used to load texture files from the app
 
 See [File access and permissions (Windows Runtime apps)](https://msdn.microsoft.com/en-us/library/windows/apps/hh967755.aspx)
 
+# Debugging texture loading
+
+If the ``HRESULT`` is a success, but you are still having problems using the texture, the next step in debugging is to examine details about the loaded texture. You can do this with the following code:
+
+    ComPtr<ID3D11Resource> res;
+    ComPtr<ID3D11ShaderResourceView> srv;
+    HRESULT hr = CreateDDSTextureFromFile(d3dDevice.Get(), L"SEAFLOOR.DDS",
+        res.GetAddressOf(), srv.GetAddressOf());
+    DX::ThrowIfFailed(hr);
+
+    D3D11_RESOURCE_DIMENSION resType = D3D11_RESOURCE_DIMENSION_UNKNOWN;
+    res->GetType( &resType );
+
+    switch( resType )
+    {
+    case D3D11_RESOURCE_DIMENSION_TEXTURE1D:
+        {
+            ComPtr<ID3D11Texture1D> tex;
+            hr = res.As(&tex);
+            DX::ThrowIfFailed(hr);
+
+            D3D11_TEXTURE1D_DESC desc;
+            tex->GetDesc(&desc);
+
+            // This is a 1D texture. Check values of desc here
+        }
+        break;
+
+    case D3D11_RESOURCE_DIMENSION_TEXTURE2D:
+        {
+            ComPtr<ID3D11Texture2D> tex;
+            hr = res.As(&tex);
+            DX::ThrowIfFailed(hr);
+
+            D3D11_TEXTURE2D_DESC desc;
+            tex->GetDesc(&desc);
+
+            // This is a 2D texture. Check values of desc here
+        }
+        break;
+
+    case D3D11_RESOURCE_DIMENSION_TEXTURE3D:
+        {
+            ComPtr<ID3D11Texture3D> tex;
+            hr = res.As(&tex);
+            DX::ThrowIfFailed(hr);
+
+            D3D11_TEXTURE3D_DESC desc;
+            tex->GetDesc(&desc);
+
+            // This is a 3D volume texture. Check values of desc here
+        }
+        break;
+
+    default:
+        // Error!
+        break;
+    }
+
+``desc.Width`` is the texture width in pixels (of the top most mip level)  
+``desc.Height`` is the texture height in pixels (of the top most mip level) for 2D and 3D textures  
+``desc.Depth`` is the texture depth (of the top most level) for 3D textures  
+``desc.MipLevels`` is the number of mip levels (or 1 if there are no mips)  
+``desc.ArraySize`` is the number of textures in the array (or 1 if this not an array)  
+``desc.Format`` is the DXGI format of the texture resource
+
 # DDS Files
 This function loads both traditional and FourCC "DX10" variant ``.DDS`` files.
 
