@@ -148,7 +148,6 @@ The full transformation depends on the orientation setting and/or the viewport s
 
     // DXGI_MODE_ROTATION_UNSPECIFIED
     finalMatrix = matrix;
-    {code:c++}
 
 # Custom clipping
 If custom clipping of the sprites is desired (such as clipping font strings), you can achieve this by first creating a custom raster state with scissor rectangle culling enabled:
