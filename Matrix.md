@@ -69,12 +69,9 @@ A four by four row-major matrix modeled after the [XNA Game Studio](https://msdn
 * **CreateRotationY**
 * **CreateRotationZ**
 * **CreateFromAxisAngle**
-* **CreatePerspectiveFieldOfView**
-* **CreatePerspective**
-* **CreatePerspectiveOffCenter**
-* **CreateOrthographic**
-* **CreateOrthographicOffCenter**
-* **CreateLookAt**
+* **CreatePerspective**, **CreatePerspectiveFieldOfView**, **CreatePerspectiveOffCenter**: Creates perspective projection in right-handed (RH) coordinates
+* **CreateOrthographic**, **CreateOrthographicOffCenter**: Creates orthographic projection in right-handed (RH) coordinates
+* **CreateLookAt**: Creates a look-at matrix in right-handed (RH) coordinates
 * **CreateWorld**
 * **CreateFromQuaternion**
 * **CreateFromYawPitchRoll**
