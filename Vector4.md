@@ -26,7 +26,7 @@ Four component vector class modeled after the [XNA Game Studio](https://msdn.mic
 * Assignment operators: ``=``, ``+=``, ``-=``, ``*=``, ``/=``
 * Unary operators: ``+``, ``-``
 * Binary operators: ``+``, ``-``, ``*``, ``/``
-* **InBounds**
+* **InBounds**: Tests if the vector is within the bounds set by the positive and negative of the input bounds.
 * **Length**
 * **LengthSquared**
 * **Dot**
@@ -39,15 +39,15 @@ Four component vector class modeled after the [XNA Game Studio](https://msdn.mic
 * **DistanceSquared**
 * **Min**
 * **Max**
-* **Lerp**
-* **SmoothStep**
-* **Barycentric**
-* **CatmullRom**
-* **Hermite**
-* **Reflect**
-* **Refract**
+* **Lerp**: Performs a linear interpolation
+* **SmoothStep**: Performs a cube interpolation
+* **Barycentric**: Returns a point in Barycentric coordinates
+* **CatmullRom**: Performs a Catmull-Rom interpolation
+* **Hermite**: Performs a Hermite spline interpolation
+* **Reflect**: Reflects an incident vector across a normal vector
+* **Refract**: Refracts an incident vector across a normal vector
 * **Transform**
-* **TransformNormal**
+* **TransformNormal**: Transforms the vector by the rotation and scale in the matrix, ignoring translation (row 3).
 
 # Constants
 
