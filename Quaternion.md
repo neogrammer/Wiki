@@ -30,7 +30,7 @@ A rotation represented as a four component vector modeled after the [XNA Game St
 * **Length**
 * **LengthSquared**
 * **Normalize**: Normalizes the quaternion. _Note that only normalized quaternions correspond to 3D rotations._
-* **Conjugate**
+* **Conjugate**: Computes the conjugate of a quaternion. _This result is ``Quaternion(-x, -y, -z, w)``._
 * **Inverse**
 * **Dot**
 
