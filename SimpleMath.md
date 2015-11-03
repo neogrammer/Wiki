@@ -1,6 +1,6 @@
 ``SimpleMath.h`` wraps the [DirectXMath](http://blogs.msdn.com/b/chuckw/archive/2012/03/27/introducing-directxmath.aspx) SIMD vector/matrix math API with an easier to use C++ interface. It provides the following types, with similar names, methods, and operator overloads to the XNA Game Studio math API:
 
-* Vector2
+* [[Vector2]]
 * Vector3
 * Vector4
 * Matrix
