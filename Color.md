@@ -38,11 +38,11 @@ Four component color vector class modeled after the [XNA Game Studio](https://ms
 * **RGBA**: Converts to a ``DirectX::PackedVector::XMUBYTEN4`` XNA Game Studio style packed color
 * **ToVector3**
 * **ToVector4**
-* **Negate**
+* **Negate**: Negates or inverses the color. _The result is ``Color( 1 - x, 1 - y, 1 - z, w )``._
 * **Saturate**: Clamps the color to the 0 to 1 range
 * **Premultiply**: Converts straight-alpha color to premultiplied alpha
-* **AdjustSaturation**
-* **AdjustContrast**
+* **AdjustSaturation**: A parameter of 0 returns the grey-scale of the color, 1 returns the original color
+* **AdjustContrast**: A parameter of 0 returns 50% grey of the color, 1 returns the original color
 
 # Statics
 * **Modulate**
