@@ -51,8 +51,9 @@ Quaternion can freely convert to and from a ``XMFLOAT4`` and ``XMVECTOR``
 # Further Reading
 [Quaternions and spatial rotation](https://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation)  
 
-Ken Shoemake, "Quaternions", Department of Computer and Information Science, University of Pennsylvania [link](http://www.cs.ucr.edu/~vbz/resources/quatut.pdf)
-
 Jonathan Blow, "Understanding Slerp, Then Not Using It", The Inner Product, April 2004 [link](http://number-none.com/product/Understanding%20Slerp,%20Then%20Not%20Using%20It/)
 
-David Eberly, "Quaternion Algebra and Calculus" [link](http://www.magic-software.com/Documentation/Quaternions.pdf)
+David Eberly, "Quaternion Algebra and Calculus" [link](http://www.geometrictools.com/Documentation/Quaternions.pdf)
+
+Ken Shoemake, "Quaternions", Department of Computer and Information Science, University of Pennsylvania [link](http://www.cs.ucr.edu/~vbz/resources/quatut.pdf)
+
