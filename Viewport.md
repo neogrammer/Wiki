@@ -44,7 +44,9 @@ Viewport class modeled after the [XNA Game Studio](https://msdn.microsoft.com/en
 > Note that the XNA Game Studio equivalent of this function only returned the reduced safe area on Xbox, and returns the full rectangle otherwise on Windows phone and PC. Because the universal Windows app platform can share a single binary or set of binaries across many devices, it is up to the app to determine what device it is currently running under. Therefore, this function always returns the reduced safe area and it is up to the app to apply this in the correct circumstances.
 
 # Remarks
-The Viewport can be converted to and from a ``D3D11_VIEWPORT`` structure. To use with Direct3D 11, you typically need an address of the viewport which is provided by ``Get11``:
+The Viewport can be converted to and from a ``D3D11_VIEWPORT`` structure.
+
+To use with Direct3D 11, you typically need an address of the viewport as a ``const D3D11_VIEWPORT*`` which is provided by ``Get11``:
 
     Viewport viewPort(0.0f, 0.0f, outputWidth, outputHeight);
 
