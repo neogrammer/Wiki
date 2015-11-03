@@ -61,7 +61,7 @@ This includes:
 
 These were designed to already be similar to the XNA Game Studio math API bounding types.
 
-_Note: Currently the BoundingFrustum class is not compatible with Right-Handed coordinates._
+> Note: Currently the ``BoundingFrustum`` class is not compatible with Right-Handed coordinates.
 
 # Coordinate Systems
 
