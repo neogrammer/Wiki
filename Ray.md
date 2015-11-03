@@ -20,3 +20,7 @@ Ray class modeled after the [XNA Game Studio](https://msdn.microsoft.com/en-us/l
 # Methods
 * Comparison operators: ``==`` and ``!=``
 * **Intersects**: Performs intersection tests of the ray against a collision type, a triangle, or a [[Plane]].
+
+# Further reading
+
+[Ray](https://en.wikipedia.org/wiki/Line_(geometry)#Ray)  
