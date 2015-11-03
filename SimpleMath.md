@@ -15,6 +15,10 @@
 # Header
 
     #include "SimpleMath.h"
+
+# Namespace
+
+All the functions in SimpleMath are in the **DirectX::SimpleMath** C++ namespace.
     
     using namespace DirectX::SimpleMath;
 
