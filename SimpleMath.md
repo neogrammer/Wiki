@@ -8,6 +8,7 @@
 * Plane
 * Ray
 * Color
+* Viewport
 
 **Related tutorials:** [[Using the SimpleMath library]], [[Basic game math]], [[Collision detection]], [[Mixing SimpleMath and DirectXMath]]
 
