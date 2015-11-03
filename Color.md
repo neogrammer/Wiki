@@ -45,8 +45,8 @@ Four component color vector class modeled after the [XNA Game Studio](https://ms
 * **AdjustContrast**: A parameter of 0 returns 50% grey of the color, 1 returns the original color
 
 # Statics
-* **Modulate**
-* **Lerp**
+* **Modulate**: Blends two colors together
+* **Lerp**: Linearly interpolates between two colors
 
 # Remark
 Color can freely convert to and from a ``XMFLOAT4`` and ``XMVECTOR``
