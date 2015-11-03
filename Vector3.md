@@ -9,11 +9,11 @@ Three component vector class modeled after the [XNA Game Studio](https://msdn.mi
     using namespace DirectX::SimpleMath;
 
     Vector3 v;          // Creates a vector [0, 0, 0]
-    Vector3 v(4);       // Creates a vector [4, 4, 4]
+    Vector3 v(10);      // Creates a vector [10, 10, 10]
     Vector3 v(1, 2, 3); // Creates a vector [1, 2, 3]
 
     float arr[3] = { 1, 2, 3 };
-    Vector3 v(arr);  // Creates a vector [1, 2, 3]
+    Vector3 v(arr);     // Creates a vector [1, 2, 3]
 
 # Fields
 * *x* component of vector
