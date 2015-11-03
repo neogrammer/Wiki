@@ -8,8 +8,10 @@ Ray class modeled after the [XNA Game Studio](https://msdn.microsoft.com/en-us/l
 
     using namespace DirectX::SimpleMath;
 
-    Ray r;                                // Create a ray starting at the origin pointing in positive Z
-    Ray( Vector3(1,2,3), Vector3(0,1,0 ); // Creates a ray at 1,2,3 pointing in positive Y
+    Ray r;                                // Create a ray starting at the origin
+                                          // pointing in positive Z
+    Ray( Vector3(1,2,3), Vector3(0,1,0 ); // Creates a ray at 1,2,3
+                                          // pointing in positive Y
 
 # Fields
 * *position*: Position of the ray
