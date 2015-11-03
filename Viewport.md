@@ -31,8 +31,8 @@ Viewport class modeled after the [XNA Game Studio](https://msdn.microsoft.com/en
 * Comparison operators: ``==`` and ``!=``
 * Assignment operators: ``=``
 * **AspectRatio**: Compute the aspect ratio. If the width or height is zero, it returns 0
-* **Project**: Projects a 3D point using given world, view, and projection matrices an the viewport
-* **Unproject**: Projects a 3D point using given world, view, and projection matrices an the viewport
+* **Project**: Projects a 3D point using given world, view, and projection matrices an the viewport, moving from world coordinates to screen space.
+* **Unproject**: Reverse projects a 3D point using given world, view, and projection matrices an the viewport moving from screen space to world coordinates.
 
 # Statics
 * **ComputeDisplayArea**: When using various scaling modes with the backbuffer via ``DXGI_SWAP_CHAIN_DESC1.Scaling``, the backbuffer width and height is not necessarily the same size as the output window. Given the backbuffer width and height in pixels, the window output width and height in pixels, and the scaling setting, this function computes the pixel rectangle where the backbuffer content is visible within the window.
