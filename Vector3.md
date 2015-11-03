@@ -63,7 +63,7 @@ Three component vector class modeled after the [XNA Game Studio](https://msdn.mi
 * **Backward**: Backward direction vector for right-handed (RH) coordinates [0, 0, 1]
 
 # Remark
-Vector3 can freely convert to and from a ``XMFLOAT3`` and ``XMVECTOR``
+Vector3 can freely convert to and from a ``XMFLOAT3`` and ``XMVECTOR`` (the w component is lost).
 
 When assigning a color from ``DirectXColors.h`` to a Vector3, use the ``.v`` union element
 
