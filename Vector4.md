@@ -60,3 +60,7 @@ Four component vector class modeled after the [XNA Game Studio](https://msdn.mic
 
 # Remark
 Vector4 can freely convert to and from a ``XMFLOAT4`` and ``XMVECTOR``
+
+When assigning a color from ``DirectXColors.h`` to a Vector4, use the ``.v`` union element
+
+    Vector4 color = Colors::White;
