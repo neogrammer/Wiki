@@ -35,7 +35,7 @@ Viewport class modeled after the [XNA Game Studio](https://msdn.microsoft.com/en
 * **Unproject**: Reverse projects a 3D point using given world, view, and projection matrices an the viewport moving from screen space to world coordinates.
 
 # Statics
-* **ComputeDisplayArea**: When using various scaling modes with the backbuffer via ``DXGI_SWAP_CHAIN_DESC1.Scaling``, the backbuffer width and height is not necessarily the same size as the output window. Given the backbuffer width and height in pixels, the window output width and height in pixels, and the scaling setting, this function computes the pixel rectangle where the backbuffer content is visible within the window.
+* **ComputeDisplayArea**: When using various scaling modes via ``DXGI_SWAP_CHAIN_DESC1.Scaling``, the backbuffer width and height is not necessarily the same size as the output window. Given the backbuffer width and height in pixels, the window output width and height in pixels, and the scaling setting, this function computes the pixel rectangle where the backbuffer content is visible within the window. This can be used to handle mouse/touch input and map back to the pixel location within the backbuffer.
 
 > If using ICoreWindow, be sure to convert logicalWidth and logicalHeight from DIPs to pixels using the window's DPI property. ``int ConvertDipsToPixels(float dips, float dpi) { return int(dips * dpi / 96.f + 0.5f); }``
 
