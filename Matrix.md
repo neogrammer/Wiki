@@ -55,14 +55,14 @@ A four by four row-major matrix modeled after the [XNA Game Studio](https://msdn
 * Assignment operators: ``=``, ``+=``, ``-=``, ``*=``, ``/=``
 * Unary operators: ``+``, ``-``
 * Binary operators: ``+``, ``-``, ``*``, ``/``
-* **Decompose**
+* **Decompose**: Decompose the matrix into rotation, scaling, and translation components
 * **Transpose**
 * **Invert**
 * **Determinant**
 
 # Statics
-* **CreateBillboard**
-* **CreateConstrainedBillboard**
+* **CreateBillboard**: Creates a spherical billboard that rotates around a specified object position
+* **CreateConstrainedBillboard**: Creates a cylindrical billboard that rotates around a specified axis 
 * **CreateTranslation**
 * **CreateScale**
 * **CreateRotationX**
