@@ -34,8 +34,8 @@ Four component color vector class modeled after the [XNA Game Studio](https://ms
 * Assignment operators: ``=``, ``+=``, ``-=``, ``*=``, ``/=``
 * Unary operators: ``+``, ``-``
 * Binary operators: ``+``, ``-``, ``*``, ``/``
-* **BGRA**: Converts to a ``DirectX::PackedVector::XMCOLOR`` Direct3D 9 style color
-* **RGBA**: Converts to a ``DirectX::PackedVector::XMUBYTEN4`` XNA Game Studio style color
+* **BGRA**: Converts to a ``DirectX::PackedVector::XMCOLOR`` Direct3D 9 style color equivalent to ``D3DCOLOR``.
+* **RGBA**: Converts to a ``DirectX::PackedVector::XMUBYTEN4`` XNA Game Studio style packed color
 * **ToVector3**
 * **ToVector4**
 * **Negate**
