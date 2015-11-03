@@ -29,7 +29,7 @@ A rotation represented as a four component vector modeled after the [XNA Game St
 * Binary operators: ``+``, ``-``, ``*``, ``/``
 * **Length**
 * **LengthSquared**
-* **Normalize**
+* **Normalize**: Normalizes the quaternion. _Note that only normalized quaternions correspond to 3D rotations._
 * **Conjugate***
 * **Inverse**
 * **Dot**
@@ -51,3 +51,5 @@ Quaternion can freely convert to and from a ``XMFLOAT4`` and ``XMVECTOR``
 # Further Reading
 
 [Quaternions and spatial rotation](https://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation)  
+
+Ken Shoemake, "Quaternions", Department of Computer and Information Science, University of Pennsylvania [link](http://www.cs.ucr.edu/~vbz/resources/quatut.pdf)
