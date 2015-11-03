@@ -8,12 +8,12 @@ Two component vector class modeled after the [XNA Game Studio](https://msdn.micr
 
     using namespace DirectX::SimpleMath;
 
-    Vector2 v;       // Creates a vector [0, 0]
-    Vector2 v(4);    // Creates a vector [4, 4]
-    Vector2 v(1, 2); // Creates a vector [1, 2]
+    Vector2 v;        // Creates a vector [0, 0]
+    Vector2 v(10);    // Creates a vector [10, 10]
+    Vector2 v(1, 2);  // Creates a vector [1, 2]
 
     float arr[2] = { 1, 2 };
-    Vector2 v(arr);  // Creates a vector [1, 2]
+    Vector2 v(arr);   // Creates a vector [1, 2]
 
 # Fields
 * *x* component of vector
