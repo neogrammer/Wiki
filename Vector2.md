@@ -23,6 +23,7 @@ Two component vector class modeled after the [XNA Game Studio](https://msdn.micr
 * Comparison operators: ``==`` and ``!=``
 * Assignment operators: ``=``, ``+=``, ``-=``, ``*=``, ``/=``
 * Unary operators: ``+``, ``-``
+* Binary operators: ``+``, ``-``, ``*``, ``/``
 * **InBounds**
 * **Length**
 * **LengthSquared**
