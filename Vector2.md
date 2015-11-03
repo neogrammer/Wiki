@@ -55,4 +55,4 @@ Two component vector class modeled after the [XNA Game Studio](https://msdn.micr
 * **UnitY**: Unit Y vector [0, 1]
 
 # Remark
-Vector2 can freely convert to and from a ``XMFLOAT2`` and ``XMVECTOR``
+Vector2 can freely convert to and from a ``XMFLOAT2`` and ``XMVECTOR`` (the z and w components are lost)
