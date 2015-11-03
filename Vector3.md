@@ -64,3 +64,8 @@ Three component vector class modeled after the [XNA Game Studio](https://msdn.mi
 
 # Remark
 Vector3 can freely convert to and from a ``XMFLOAT3`` and ``XMVECTOR``
+
+When assigning a color from ``DirectXColors.h`` to a Vector3, use the ``.v`` union element
+
+    Vector3 color = Colors::White
+
