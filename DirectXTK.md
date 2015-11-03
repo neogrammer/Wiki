@@ -4,6 +4,8 @@ Public headers are in the **Inc** folder of the distribution package.
 # Namespace
 All the functions in the library are in the **DirectX** C++ namespace.
 
+    using namespace DirectX;
+
 _Note: The Xbox One exclusive application XBoxDDSTextureLoader functions are in the **Xbox** C++ namespace_
 
 # Modules
