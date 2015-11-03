@@ -146,13 +146,13 @@ One of SimpleMath's primary functions is to _hide_ the existence of ``XMVECTOR``
 
 Since this is implemented using C++ conversion operators, you can at any point use a SimpleMath type directly with a DirectXMath function that takes ``XMVECTOR`` and/or ``XMMATRIX``. They are also completely equivalent to a standard memory type in the DirectXMath library:
 
-* Vector2 <-> XMFLOAT2, XMVECTOR
-* Vector3 <-> XMFLOAT3, XMVECTOR
-* Vector4 <-> XMFLOAT4, XMVECTOR
-* Quaternion <-> XMFLOAT4, XMVECTOR
-* Color <-> XMFLOAT4, XMVECTOR
-* Plane <-> XMFLOAT4, XMVECTOR
-* Matrix <-> XMFLOAT4X4, XMMATRIX
+* Vector2 <-> ``XMFLOAT2``, ``XMVECTOR``
+* Vector3 <-> ``XMFLOAT3``, ``XMVECTOR``
+* Vector4 <-> ``XMFLOAT4``, ``XMVECTOR``
+* Quaternion <-> ``XMFLOAT4``, ``XMVECTOR``
+* Color <-> ``XMFLOAT4``, ``XMVECTOR``
+* Plane <-> ``XMFLOAT4``, ``XMVECTOR``
+* Matrix <-> ``XMFLOAT4X4``, ``XMMATRIX``
 
 You can therefore freely mix SimpleMath types with DirectXMath functions at any point.
 
