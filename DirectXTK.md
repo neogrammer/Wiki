@@ -24,6 +24,7 @@ _Note: The Xbox One exclusive application XBoxDDSTextureLoader functions are in 
 * [[PrimitiveBatch]] - simple and efficient way to draw user primitives 
 * [[ScreenGrab]] - light-weight screen shot saver 
 * [[SimpleMath]] - simplified C++ wrapper for DirectXMath 
+ * Vector2, Vector3, Vector4, Matrix, Quaternion, Plane, Ray, Color, Viewport
 * [[SpriteBatch]] - simple & efficient 2D sprite rendering 
 * [[SpriteFont]] - bitmap based text rendering 
 * [[VertexTypes]] - structures for commonly used vertex data formats 
