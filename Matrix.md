@@ -75,9 +75,9 @@ A four by four row-major matrix modeled after the [XNA Game Studio](https://msdn
 * **CreateWorld**
 * **CreateFromQuaternion**
 * **CreateFromYawPitchRoll**
-* **CreateShadow**
-* **CreateReflection**
-* **Lerp**: Linearly interpolates two matrices (useful for blending transformations).
+* **CreateShadow**: Creates transform that flattens geometry into a specified [[Plane]] as if casting a shadow from a specified light source
+* **CreateReflection**: Creates transform that reflects the coordinate system about a specified [[Plane]]. 
+* **Lerp**: Linearly interpolates two matrices element-wise (useful for blending transformations).
 * **Transform**
 
 # Constants
