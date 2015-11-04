@@ -27,19 +27,16 @@ Two component vector class modeled after the [XNA Game Studio](https://msdn.micr
 
 * **InBounds**: Tests if the vector is within the bounds set by the positive and negative of the input bounds.
 
-* **Length**
-* **LengthSquared**
+* **Length**, **LengthSquared**: Compute vector length
 * **Dot**
 * **Cross**
 * **Normalize**
 * **Clamp**
 
 # Statics
-* **Distance**
-* **DistanceSquared**
+* **Distance**, **DistanceSquared**: Compute distance between two vectors
 
-* **Min**
-* **Max**
+* **Min**, * **Max**: Determine minimum/maximum vector elements
 
 * **Lerp**: Performs a linear interpolation
 * **SmoothStep**: Performs a cube interpolation
