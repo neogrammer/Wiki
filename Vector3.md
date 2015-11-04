@@ -37,7 +37,7 @@ Three component vector class modeled after the [XNA Game Studio](https://msdn.mi
 # Statics
 * **Distance**, **DistanceSquared**: Compute distance between two vectors
 
-* **Min**, * **Max**: Determine minimum/maximum vector elements
+* **Min**, **Max**: Determine minimum/maximum vector elements
 
 * **Lerp**: Performs a linear interpolation
 * **SmoothStep**: Performs a cube interpolation
