@@ -30,8 +30,11 @@ Viewport class modeled after the [XNA Game Studio](https://msdn.microsoft.com/en
 # Methods
 * Comparison operators: ``==`` and ``!=``
 * Assignment operators: ``=``
+
 * **AspectRatio**: Compute the aspect ratio. If the width or height is zero, it returns 0
+
 * **Project**: Projects a 3D point using given world, view, and projection matrices an the viewport, moving from world coordinates to screen space.
+
 * **Unproject**: Reverse projects a 3D point using given world, view, and projection matrices an the viewport moving from screen space to world coordinates.
 
 # Statics
