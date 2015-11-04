@@ -77,7 +77,7 @@ A four by four row-major matrix modeled after the [XNA Game Studio](https://msdn
 * **CreateFromYawPitchRoll**
 * **CreateShadow**
 * **CreateReflection**
-* **Lerp**
+* **Lerp**: Linearly interpolates two matrices (useful for blending transformations).
 * **Transform**
 
 # Constants
