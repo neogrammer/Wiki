@@ -38,6 +38,8 @@ In the **Game.h** file, add the following variables to the bottom of the Game cl
     std::unique_ptr<DirectX::IEffectFactory> m_fxFactory;
     std::unique_ptr<DirectX::Model> m_model;
 
+> In most cases you'd want to use ``std::unique_ptr<DirectX::EffectFactory> m_fxFactory;`` instead of ``std::unique_ptr<DirectX::IEffectFactory> m_fxFactory;``, but we keep a pointer to the abstract interface in this tutorial instead of to the concrete class to streamline things later on.
+
 In **Game.cpp**, add to the TODO of **CreateDevice**:
 
     m_states.reset(new CommonStates(m_d3dDevice.Get()));
