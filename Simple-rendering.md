@@ -200,7 +200,76 @@ In **Game.cpp**, modify to the TODO of **Render**:
 
 Build and run to see a 3D grid.
 
-![Screenshot of triangle](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotGrid.PNG)
+![Screenshot of the grid](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotGrid.PNG)
+
+# Anti-aliasing
+
+Taking a closer look at the grid in the previous screenshot, you can see the lines are a little thin in places. To make this more obvious, in **Game.cpp**, add to the TODO of **Update**:
+
+    m_world = Matrix::CreateRotationY( cosf( static_cast<float>(timer.GetTotalSeconds())));
+
+Build and run to see the grid spinning, and notice the slight shimmering of the lines--it will be more obvious if you maximize the window size.    
+
+There are two approaches to addressing this problem, known as [aliasing](https://en.wikipedia.org/wiki/Aliasing).
+
+## Anti-aliased lines
+The first is to enable a special anti-aliasing mode specific to line drawing in Direct3D.
+
+In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
+
+    Microsoft::WRL::ComPtr<ID3D11RasterizerState> m_raster;
+
+In **Game.cpp**, add to the TODO of **CreateDevice**:
+
+    CD3D11_RASTERIZER_DESC rastDesc(D3D11_FILL_SOLID, D3D11_CULL_NONE, FALSE, D3D11_DEFAULT_DEPTH_BIAS,
+        D3D11_DEFAULT_DEPTH_BIAS_CLAMP, D3D11_DEFAULT_SLOPE_SCALED_DEPTH_BIAS, TRUE, FALSE,
+        FALSE, TRUE);
+
+    DX::ThrowIfFailed(m_d3dDevice->CreateRasterizerState( &rastDesc, m_raster.ReleaseAndGetAddressOf() ));
+
+In **Game.cpp**, add to the TODO of **OnDeviceLost**:
+
+    m_raster.Reset();
+
+In **Game.cpp**, modify **Render**, changing:
+
+    m_d3dContext->RSSetState(m_states->CullNone());
+
+to
+ 
+    m_d3dContext->RSSetState(m_raster.Get());
+
+Build and run to see the shimmering of the lines lessen, although they will appear to be a bit thicker than a single pixel.
+
+![Screenshot of the AA grid](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotGridAA.PNG)
+
+## Multisampling
+A second more general solution is to use [Multisample anti-aliasing](https://en.wikipedia.org/wiki/Multisample_anti-aliasing) (MSAA) which uses more video memory and pixel-fill performance to achieve higher quality rendering results. In this case, we will make use of 4x MSAA where the render target and the depth buffer will be 4 times larger. MSAA can be used with all primitives, not just lines.
+
+In **Game.cpp**, modify **CreateDevice**:
+
+    CD3D11_RASTERIZER_DESC rastDesc(D3D11_FILL_SOLID, D3D11_CULL_NONE, FALSE, D3D11_DEFAULT_DEPTH_BIAS,
+        D3D11_DEFAULT_DEPTH_BIAS_CLAMP, D3D11_DEFAULT_SLOPE_SCALED_DEPTH_BIAS, TRUE, FALSE,
+        TRUE, FALSE);
+
+In **Game.cpp**, modify **CreateResources**:
+
+Change the sample count in both places for ``DXGI_SWAP_CHAIN_DESC1`` and ``DXGI_SWAP_CHAIN_DESC`` 
+
+    swapChainDesc.SampleDesc.Count = 4;
+
+Change the depth/stencil texture description to:
+
+    CD3D11_TEXTURE2D_DESC depthStencilDesc(depthBufferFormat, backBufferWidth, backBufferHeight,
+        1, 1, D3D11_BIND_DEPTH_STENCIL, D3D11_USAGE_DEFAULT, 0, 4, 0);
+
+Change the depth/stencil view description to:
+
+    CD3D11_DEPTH_STENCIL_VIEW_DESC depthStencilViewDesc(D3D11_DSV_DIMENSION_TEXTURE2DMS);
+
+Build and run to see the shimmering of the lines lessen compared to the first version, and is slightly less thickened than when we used the AA line mode.
+
+![Screenshot of the MSAA grid](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotGridMSAA.PNG)
 
 **Next lesson:** [[3D shapes]]
 
