@@ -286,4 +286,6 @@ Build and run to see the shimmering of the lines lessen compared to the first ve
 # Further reading
 
 DirectX Tool Kit docs [[CommonStates]], [[Effects]], [[PrimitiveBatch]], [[VertexTypes]]  
-[FXAA](https://en.wikipedia.org/wiki/Fast_approximate_anti-aliasing) and [SMAA](https://en.wikipedia.org/wiki/Spatial_anti-aliasing)
+[FXAA](https://en.wikipedia.org/wiki/Fast_approximate_anti-aliasing)  
+[SMAA](http://www.iryoku.com/smaa/)  
+[Spatial anti-alising](https://en.wikipedia.org/wiki/Spatial_anti-aliasing)
