@@ -279,6 +279,8 @@ Build and run to see the shimmering of the lines lessen compared to the first ve
 
 ![Screenshot of the MSAA grid](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotGridMSAA.PNG)
 
+> _Troubleshooting:_ If you get an exception, it may be because your device does not support 4x MSAA--which you can confirm by checking the debug device output at the failure point. Direct3 Feature Level 10.1 or later devices all support 4x MSAA for most render target formats, but some older 9.x feature levels do not. You can try using 2 instead of 4 in the sample counts if this happens. If you have a Feature Level 11.0 or later device, you can try using 4 or 8. Be sure to change `` DXGI_SWAP_CHAIN_DESC1 ``, `` DXGI_SWAP_CHAIN_DESC``, and ``depthStencilDesc``. See also [CheckMultisampleQualityLevels](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476499.aspx).
+
 **Next lesson:** [[3D shapes]]
 
 # Further reading
