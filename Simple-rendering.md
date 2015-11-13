@@ -204,7 +204,7 @@ Build and run to see a 3D grid.
 
 # Anti-aliasing
 
-Taking a closer look at the grid in the previous screenshot, you can see the lines are a little thin in places. To make this more visible, in **Game.cpp**, add to the TODO of **Update**:
+Taking a closer look at the grid in the previous screenshot, you can see the lines are a little thin and jagged in places. To make this more visible, in **Game.cpp**, add to the TODO of **Update**:
 
     m_world = Matrix::CreateRotationY( cosf( static_cast<float>(timer.GetTotalSeconds())));
 
