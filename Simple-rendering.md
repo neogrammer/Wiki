@@ -215,7 +215,7 @@ There are two approaches to addressing this problem, known as [aliasing](https:/
 ## Anti-aliased lines
 The first is to enable a special anti-aliasing mode specific to line drawing in Direct3D.
 
-In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
+In the **Game.h** file, add the following variable to the bottom of the Game class's private declarations:
 
     Microsoft::WRL::ComPtr<ID3D11RasterizerState> m_raster;
 
