@@ -204,7 +204,7 @@ Build and run to see a 3D grid.
 
 # Anti-aliasing
 
-Taking a closer look at the grid in the previous screenshot, you can see the lines are a little thin in places. To make this more obvious, in **Game.cpp**, add to the TODO of **Update**:
+Taking a closer look at the grid in the previous screenshot, you can see the lines are a little thin in places. To make this more visible, in **Game.cpp**, add to the TODO of **Update**:
 
     m_world = Matrix::CreateRotationY( cosf( static_cast<float>(timer.GetTotalSeconds())));
 
@@ -221,11 +221,15 @@ In the **Game.h** file, add the following variables to the bottom of the Game cl
 
 In **Game.cpp**, add to the TODO of **CreateDevice**:
 
-    CD3D11_RASTERIZER_DESC rastDesc(D3D11_FILL_SOLID, D3D11_CULL_NONE, FALSE, D3D11_DEFAULT_DEPTH_BIAS,
-        D3D11_DEFAULT_DEPTH_BIAS_CLAMP, D3D11_DEFAULT_SLOPE_SCALED_DEPTH_BIAS, TRUE, FALSE,
+    CD3D11_RASTERIZER_DESC rastDesc(D3D11_FILL_SOLID, D3D11_CULL_NONE, FALSE,
+        D3D11_DEFAULT_DEPTH_BIAS, D3D11_DEFAULT_DEPTH_BIAS_CLAMP,
+        D3D11_DEFAULT_SLOPE_SCALED_DEPTH_BIAS, TRUE, FALSE,
         FALSE, TRUE);
 
-    DX::ThrowIfFailed(m_d3dDevice->CreateRasterizerState( &rastDesc, m_raster.ReleaseAndGetAddressOf() ));
+    DX::ThrowIfFailed(m_d3dDevice->CreateRasterizerState( &rastDesc,
+        m_raster.ReleaseAndGetAddressOf() ));
+
+> This creates a raster state that is the same as our standard ``CullNone`` but with ``AntialiasedLineEnable`` set to TRUE.
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
@@ -248,9 +252,12 @@ A second more general solution is to use [Multisample anti-aliasing](https://en.
 
 In **Game.cpp**, modify **CreateDevice**:
 
-    CD3D11_RASTERIZER_DESC rastDesc(D3D11_FILL_SOLID, D3D11_CULL_NONE, FALSE, D3D11_DEFAULT_DEPTH_BIAS,
-        D3D11_DEFAULT_DEPTH_BIAS_CLAMP, D3D11_DEFAULT_SLOPE_SCALED_DEPTH_BIAS, TRUE, FALSE,
+    CD3D11_RASTERIZER_DESC rastDesc(D3D11_FILL_SOLID, D3D11_CULL_NONE, FALSE,
+        D3D11_DEFAULT_DEPTH_BIAS, D3D11_DEFAULT_DEPTH_BIAS_CLAMP,
+        D3D11_DEFAULT_SLOPE_SCALED_DEPTH_BIAS, TRUE, FALSE,
         TRUE, FALSE);
+
+> This creates a raster state that is the same as our standard ``CullNone`` but with ``MultisampleEnable`` set to TRUE.
 
 In **Game.cpp**, modify **CreateResources**:
 
@@ -260,7 +267,8 @@ Change the sample count in both places for ``DXGI_SWAP_CHAIN_DESC1`` and ``DXGI_
 
 Change the depth/stencil texture description to:
 
-    CD3D11_TEXTURE2D_DESC depthStencilDesc(depthBufferFormat, backBufferWidth, backBufferHeight,
+    CD3D11_TEXTURE2D_DESC depthStencilDesc(depthBufferFormat,
+        backBufferWidth, backBufferHeight,
         1, 1, D3D11_BIND_DEPTH_STENCIL, D3D11_USAGE_DEFAULT, 0, 4, 0);
 
 Change the depth/stencil view description to:
