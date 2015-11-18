@@ -103,6 +103,8 @@ _The Xbox One exclusive apps version of MultiByteToWideChar does not support cod
 
 The Sprite Font implementation is compatible with all feature levels. The primary limitation is on the size of the sprite sheet texture which should fit into the limits for [known feature levels](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476876.aspx) (i.e. to support all feature levels, it should be no larger than 2048 x 2048).
 
+> You are of course free to use a larger texture as long as you set your application's minimum supported feature level as appropriate. [[MakeSpriteFont]] will emit warnings if your captured font textures exceed the feature level size threshold.
+
 # Further reading
 
 [Bitmap fonts in XNA](http://blogs.msdn.com/b/shawnhar/archive/2007/04/26/bitmap-fonts-in-xna.aspx)  
