@@ -39,7 +39,7 @@ The file _xboxController.spritefont_ is generated from the [xboxControllerSprite
 # Commandline options
 
 **/CharacterRegion:_region_**
-* Specifies which Unicode codepoints to include in the font. Can be repeated to include more than one region. If not specified, the default ASCII range 32 (``<space>``) - 126 (``~``) is used.
+* Specifies which Unicode (UTF-16) codepoints to include in the font. Can be repeated to include more than one region. If not specified, the default ASCII range 32 (``<space>``) - 126 (``~``) is used.
 
 Examples:
 > /CharacterRegion:a-z
