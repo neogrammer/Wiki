@@ -79,7 +79,7 @@ Examples:
 * Provides the target feature level to control texture size warnings. Defaults to ``FL9_1``.
 
 **/FastPack**
-* By default, the individual glyphs are packed tightly in the resulting texture. This algorithm works well, but can be extremely slow when applied to large character sets. Pass this flag if you want to use a simplified grid-based packing which is much faster for large character sets.
+* By default, the individual glyphs are packed tightly in the resulting texture. This algorithm works well, but can be extremely slow when applied to large character sets. Pass this flag if you want to use a simplified grid-based packing which is much faster to compute for large character sets.
 
 **/DebugOutputSpriteSheet:_filename_**
 * Dumps the generated texture to a bitmap file (useful when debugging the MakeSpriteFont tool, not so much if you are just trying to use it).
