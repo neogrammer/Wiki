@@ -67,13 +67,19 @@ Examples:
 
 **/TextureFormat:_value_**
 * What format should the output texture be? Options:
- * _Auto_ - The default. Chooses between CompressedMono and Rgba32 depending on whether the font data is monochromatic or multicolored.
- * _Rgba32_ - High quality and supports multicolored fonts, but wastes space.
- * _Bgra4444_ - Good choice for color fonts on Windows Store apps and Windows Phone platforms, as this format requires the DirectX 11.1 Runtime and a WDDM 1.2 driver.
- * _CompressedMono_ - The smallest format, and works on all D3D platforms, but it only supports monochromatic font data. This uses a special BC2 encoder: see comments in SpriteFontWriter.cs for details.
+ * ``Auto`` - The default. Chooses between CompressedMono and Rgba32 depending on whether the font data is monochromatic or multicolored.
+ * ``Rgba32`` - High quality and supports multicolored fonts, but wastes space.
+ * ``Bgra4444`` - Good choice for color fonts on Windows Store apps and Windows Phone platforms, as this format requires the DirectX 11.1 Runtime and a WDDM 1.2 driver.
+ * ``CompressedMono`` - The smallest format, and works on all D3D platforms, but it only supports monochromatic font data. This uses a special BC2 encoder: see comments in SpriteFontWriter.cs for details.
 
 **/NoPremultiply**
 * By default, font textures use premultiplied alpha format. Pass this flag if you want interpolative/straight alpha instead.
+
+**/FeatureLevel:_value_**
+* Provides the target feature level to control texture size warnings. Defaults to ``FL9_1``.
+
+**/FastPack**
+* By default, the individual glyphs are packed tightly in the resulting texture. This algorithm works well, but can be extremely slow when applied to large character sets. Pass this flag if you want to use a simplified grid-based packing which is much faster for large character sets.
 
 **/DebugOutputSpriteSheet:_filename_**
 * Dumps the generated texture to a bitmap file (useful when debugging the MakeSpriteFont tool, not so much if you are just trying to use it).
@@ -82,6 +88,8 @@ Examples:
 Since all glyphs specified are captured into a texture, the SpriteFont solution is very effective for smaller character sets. For large character sets such as Chinese, Japanese, or Korean, capturing every possible glyph is extremely slow, and the resulting texture is extremely large possibly exceeding the size supported by your target [Direct3D hardware feature level](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476876.aspx). For these large character sets, using DirectWrite to render glyphs on-the-fly is a better solution.
 
 For cases where DirectWrite is not supported (such as Windows phone 8.0 and Xbox One exclusive apps) and/or when rendering a set of static localized text, another solution is to scan all your translated text and capture only those character regions actually used by your application's specific display strings.
+
+> If using MakeSpriteFont for these large fonts, you should try using the ``/FastPack`` option.
 
 # Extended ASCII
 
