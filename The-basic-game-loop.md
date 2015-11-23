@@ -168,6 +168,16 @@ The Win32 game template makes use of the helper function ``ThrowIfFailed`` in th
     DX::ThrowIfFailed(m_d3dDevice->CreateTexture2D(&depthStencilDesc,
         nullptr, &depthStencil));
 
+If you want to handle a specific HRESULT, then you might do something like:
+
+    HRESULT hr = m_d3dDevice->CreateTexture2D(&depthStencilDesc,
+        nullptr, &depthStencil);
+    if (hr == E_INVALIDARG)
+    {
+        // Do something here specific in response to this specific error.
+    }
+    DX::ThrowIfFailed(hr);
+
 **Next lesson**: [[Adding the DirectX Tool Kit]]
 
 # Further reading
