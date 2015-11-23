@@ -174,7 +174,7 @@ If you want to handle a specific HRESULT, then you might do something like:
         nullptr, &depthStencil);
     if (hr == E_INVALIDARG)
     {
-        // Do something here specific in response to this specific error.
+        // Do something here in response to this specific error.
     }
     DX::ThrowIfFailed(hr);
 
