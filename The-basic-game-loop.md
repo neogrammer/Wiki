@@ -178,6 +178,13 @@ If you want to handle a specific HRESULT, then you might do something like:
     }
     DX::ThrowIfFailed(hr);
 
+For a case where you want to do the error-handling for an HRESULT yourself, be sure to use the ``SUCCEEDED`` or ``FAILED`` macro:
+
+    HRESULT hr = m_d3dDevice->CreateTexture2D(&depthStencilDesc,
+        nullptr, &depthStencil);
+    if (FAILED(hr))
+        // Error handling
+
 **Next lesson**: [[Adding the DirectX Tool Kit]]
 
 # Further reading
