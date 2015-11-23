@@ -185,6 +185,8 @@ For a case where you want to do the error-handling for an HRESULT yourself, be s
     if (FAILED(hr))
         // Error handling
 
+> Do not use ``hr == S_OK`` to check for success. Use ``SUCCEEDED(hr)`` instead.
+
 **Next lesson**: [[Adding the DirectX Tool Kit]]
 
 # Further reading
