@@ -52,6 +52,7 @@ Press F5 to build and run the application It displays the following window:
 # Tour of the code
 For now, we'll focus on the content of ``Game.cpp`` (which is open by default).
 
+## Initialize
 When the application first starts, execution is passed to the **Initialize** method. The TODO here by default leaves the applications [StepTimer](http://blogs.msdn.com/b/chuckw/archive/2014/12/03/understanding-game-time-revisited.aspx) in the 'variable length' mode. You uncomment the code if you want StepTimer in the 'fixed-step' mode. We'll explain this more once we get to ``Update``.
 
     // Initialize the Direct3D resources required to run.
@@ -92,6 +93,7 @@ The other function called by ``Initialize`` is the **CreateResources** function 
         // TODO: Initialize windows-size dependent objects here
     }
 
+## Update
 The **Update** method is intended to handle game-world state modification which is typically driven by time passing, simulation, and/or user-input. By default, ``Update`` is called once per 'frame' and can have an arbitrary delta-time. This is called a 'variable-step' mode.
 
 If in the ``Initialize`` method above you uncomment the TODO code, then each ``Update`` will be for a fixed time-step (1/60th of a second), with ``Update`` called as many time in a single 'frame' as needed to keep it up-to-date. This is called a 'fixed-step' mode and potentially be more stable for many kinds of simulations.
@@ -105,6 +107,7 @@ If in the ``Initialize`` method above you uncomment the TODO code, then each ``U
         elapsedTime;
     }
 
+## Render
 The **Render** function which should render a single 'frame' of the scene, which starts by a ``Clear`` of the render targeting and setting the rendering viewport, then ends with a ``Present`` of the rendered frame.
 
     void Game::Render()
