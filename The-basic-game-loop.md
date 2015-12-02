@@ -151,6 +151,9 @@ The **Clear** function defaults to a background color of the classic "Cornflower
 > **Xbox One:** For Xbox One fast semantics, it is important to set the render targets at the end of ``Clear``
 > because clearing the render target unbinds it from the render pipeline.
 
+## Events
+The template includes a number of message handlers that are called for process state changes: **OnActivated**, **OnDeactivated**, **OnSuspending**, **OnResuming**, and **OnWindowSizeChanged**. 
+
 Since we are using [[ComPtr]], most cleanup is automatic when the Game class is destroyed. If ``Present`` encounters a device-removed or device-reset, then the application needs to release all Direct3D objects and recreate the device, swapchain, and all Direct3D objects again. Therefore, the TODO in **OnDeviceLost** should be updated to release your application's Direct3D objects.
 
     void Game::OnDeviceLost()
