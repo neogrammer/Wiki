@@ -148,8 +148,7 @@ The **Clear** function defaults to a background color of the classic "Cornflower
 > frame-to-frame without being reset is a likely source of rendering bugs. Therefore, this template uses the
 > best practice of resetting the viewport state at the start of each frame.
 
-> **Xbox One:** For Xbox One fast semantics, it is important to set the render targets at the end of ``Clear``
-> because clearing the render target unbinds it from the render pipeline.
+**Xbox One:** For Xbox One fast semantics, it is important to set the render targets at the end of ``Clear`` because clearing the render target unbinds it from the render pipeline.
 
 ## Events
 The template includes a number of message handlers that are called for process state changes: **OnActivated**, **OnDeactivated**, **OnSuspending**, **OnResuming**, and **OnWindowSizeChanged**. 
