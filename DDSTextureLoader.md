@@ -159,7 +159,7 @@ On Windows 8 with WDDM 1.2 drivers, all feature levels support 16bpp formats as 
 * Partial cubemaps (i.e. ``.DDS`` files without all six faces defined) are not supported by Direct3D 11.
 
 # Windows Store apps
-The texture loader function is typically used to load texture files from the application's install folder as they were included with the AppX package. If you wish to create a texture from a file that is specified by the user from a WinRT picker, you will need to copy the file locally to a temporary location before you can use DDSTextureLoader on it. This is because you either won't have file access rights to the user's file location, or the StorageFile is actually not a local file system path (i.e. it's a URL).
+The texture loader function is typically used to load texture files from the application's install folder as they were included with the AppX package for Windows Store apps and universal Windows apps. If you wish to create a texture from a file that is specified by the user from a WinRT picker, you will need to copy the file locally to a temporary location before you can use DDSTextureLoader on it. This is because you either won't have file access rights to the user's file location, or the StorageFile is actually not a local file system path (i.e. it's a URL).
 
     #include <ppltasks.h>
     using namespace concurrency;
