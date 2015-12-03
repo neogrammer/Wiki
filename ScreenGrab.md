@@ -110,7 +110,7 @@ WIC2 is available on Windows 8 and on Windows 7 Service Pack 1 with [KB 2670838]
 See [Windows Imaging Component and Windows 8](http://blogs.msdn.com/b/chuckw/archive/2012/11/19/windows-imaging-component-and-windows-8.aspx)
 
 # Windows Store apps
-For _Save*TextureToFile_ to succeed, the application must have write access to the destination path. For Windows Store apps, the file access permissions are rather restricted so you'll need to make sure you use a fully qualified path to a valid write folder. A good location to use is the app data folder:
+For _Save*TextureToFile_ to succeed, the application must have write access to the destination path. For Windows Store apps and universal Windows apps, the file access permissions are rather restricted so you'll need to make sure you use a fully qualified path to a valid write folder. A good location to use is the app data folder:
 
     auto folder = Windows::Storage::ApplicationData::Current->LocalFolder;
     // use folder->Path->Data() as the path base
