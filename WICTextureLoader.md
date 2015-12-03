@@ -129,7 +129,7 @@ WIC2 is available on Windows 10, Windows 8.x, and on Windows 7 Service Pack 1 wi
 See [Windows Imaging Component and Windows 8](http://blogs.msdn.com/b/chuckw/archive/2012/11/19/windows-imaging-component-and-windows-8.aspx)
 
 # Windows Store apps
-The texture loader function is typically used to load texture files from the application's install folder as they were included with the AppX package. If you wish to create a texture from a file that is specified by the user from a WinRT picker, you will need to copy the file locally to a temporary location before you can use WICTextureLoader on it. This is because you either won't have file access rights to the user's file location, or the StorageFile is actually not a local file system path (i.e. it's a URL).
+The texture loader function is typically used to load texture files from the application's install folder as they were included with the AppX package for Windows Store apps and universal Windows apps. If you wish to create a texture from a file that is specified by the user from a WinRT picker, you will need to copy the file locally to a temporary location before you can use WICTextureLoader on it. This is because you either won't have file access rights to the user's file location, or the StorageFile is actually not a local file system path (i.e. it's a URL).
 
     include <ppltasks.h>
     using namespace concurrency;
