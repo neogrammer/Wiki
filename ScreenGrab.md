@@ -114,11 +114,9 @@ For _Save*TextureToFile_ to succeed, the application must have write access to t
 
     auto folder = Windows::Storage::ApplicationData::Current->LocalFolder;
     // use folder->Path->Data() as the path base
-    {code:c++}
 
-    If you are going to immediately copy it to another location via StorageFolder::MoveAndReplaceAsync, then use the app's temporary folder:
+If you are going to immediately copy it to another location via StorageFolder::MoveAndReplaceAsync, then use the app's temporary folder:
 
-    {code:c++}
     #include <ppltasks.h>
     using namespace concurrency;
 
