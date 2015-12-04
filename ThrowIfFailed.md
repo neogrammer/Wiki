@@ -20,8 +20,8 @@ For "modern" Direct3D programming, the recommended solution is to throw a C++ ex
 
 The usage is very simple. 
 
-    DX::ThrowIfFailed(m_d3dDevice->CreateTexture2D(&depthStencilDesc,
-        nullptr, &depthStencil));
+    DX::ThrowIfFailed( device->CreateTexture2D(&depthStencilDesc,
+        nullptr, &depthStencil) );
 
 ``DX::ThrowIfFailed`` should be used whenever a failure is fatal and should result in 'fast-fail' of the application. Otherwise, traditional ``if FAILED(hr)`` or ``if SUCCEEDED(hr)`` pattern should be used to handle failures that the application can handle.
 
