@@ -1,0 +1,58 @@
+When programming COM APIs like Direct3D, it is important to always check the ``HRESULT`` return value for success or failure. This can be done using the ``SUCCEEDED`` or ``FAILED`` macros, but can get tedious when making lots of calls
+
+> Not all Direct3D functions return ``HRESULT``. Many of them return ``void`` because they can't fail, fail silently, or the failure will be reported on the next ``Present``.
+
+The legacy [DXUT](https://github.com/Microsoft/DXUT) framework makes use of macros like ``V`` and ``V_RETURN`` as a pattern for dealing with ``HRESULT`` values, but these make assumptions about the surrounding functions.
+
+For "modern" Direct3D programming, the recommended solution is to throw a C++ exception on a failed ``HRESULT``. The C++ DirectX templates for universal Windows apps, Windows 8 Store, Windows phone 8, Xbox One, and the [Direct3D Win32 Game](http://blogs.msdn.com/b/chuckw/archive/2015/01/06/direct3d-win32-game-visual-studio-template.aspx) templates all make use of the ``DX::ThrowIfFailed`` helper.
+
+    #include <exception>
+
+    namespace DX
+    {
+        inline void ThrowIfFailed(HRESULT hr)
+        {
+            if (FAILED(hr))
+            {
+                // Set a breakpoint on this line to catch DirectX API errors
+                throw std::exception();
+            }
+        }
+    }
+
+# Enhancements
+
+The templates all include the basic implementation above, but production use might want to make use of a slightly improved version as follows:
+
+
+    #include <exception>
+
+    namespace DX
+    {
+        // Helper class for COM exceptions
+        class com_exception : public std::exception
+        {
+        public:
+            com_exception(HRESULT hr) : result(hr) {}
+
+            virtual const char* what() const override
+            {
+                static char s_str[64] = { 0 };
+                sprintf_s(s_str, "Failure with HRESULT of %08X", result);
+                return s_str;
+            }
+
+        private:
+            HRESULT result;
+        };
+
+        // Helper utility converts D3D API failures into exceptions.
+        inline void ThrowIfFailed(HRESULT hr)
+        {
+            if (FAILED(hr))
+            {
+                throw com_exception(hr);
+            }
+        }
+    }
+
