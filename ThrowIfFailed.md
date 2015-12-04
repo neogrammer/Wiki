@@ -23,7 +23,7 @@ The usage is very simple.
     DX::ThrowIfFailed( device->CreateTexture2D(&depthStencilDesc,
         nullptr, &depthStencil) );
 
-``DX::ThrowIfFailed`` should be used whenever a failure is fatal and should result in 'fast-fail' of the application. Otherwise, traditional ``if FAILED(hr)`` or ``if SUCCEEDED(hr)`` patterns should be used to handle failures that the application can handle.
+``DX::ThrowIfFailed`` should be used whenever a failure is fatal and should result in 'fast-fail' of the application. Otherwise, traditional ``if FAILED(hr)`` or ``if SUCCEEDED(hr)`` patterns should be used to handle failures that the application can recover from (i.e. are not fatal).
 
 > The legacy [DXUT](https://github.com/Microsoft/DXUT) framework makes use of macros like ``V`` and ``V_RETURN`` as a pattern for dealing with ``HRESULT`` values, but these make assumptions about the surrounding functions.
 
