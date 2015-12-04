@@ -117,6 +117,7 @@ DirectXTK makes use of C++ exception handling which should be enabled by the app
 * [How to: Break When an Exception is Thrown](http://msdn.microsoft.com/en-us/library/d14azbfh.aspx)
 * [Dual-use Coding Techniques for Games](http://blogs.msdn.com/b/chuckw/archive/2012/09/17/dual-use-coding-techniques-for-games.aspx)
 * [Resource Acquisition Is Initialization](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization)
+* [[ThrowIfFailed]]
 
 _Visual Studio Express editions have limited exception handling debugging support, so consider using VS 2013 Community or Pro+ instead._
 
