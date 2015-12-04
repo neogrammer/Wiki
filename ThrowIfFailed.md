@@ -29,8 +29,7 @@ The usage is very simple.
 
 # Enhancements
 
-The templates all include the basic implementation above, but production use might want to make use of a slightly improved version as follows:
-
+The templates all include the basic implementation above, but production use might want to utilize a slightly improved version as follows:
 
     #include <exception>
 
