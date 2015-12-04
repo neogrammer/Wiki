@@ -63,3 +63,8 @@ The templates all include the basic implementation above, but production use mig
         }
     }
 
+# Further reading
+
+* [C++ Exception Handling](http://msdn.microsoft.com/en-us/library/4t3saedz.aspx)
+* [How to: Break When an Exception is Thrown](http://msdn.microsoft.com/en-us/library/d14azbfh.aspx)
+* [Error Handling in COM](https://msdn.microsoft.com/en-us/library/windows/desktop/ff485842.aspx)
