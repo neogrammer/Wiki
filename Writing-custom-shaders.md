@@ -69,6 +69,11 @@ In **Game.cpp**, add to the TODO of **Render**:
 
     m_shape->Draw(m_world, m_view, m_projection);
 
+In **Game.cpp**, modify **Clear** to get rid of the ``ClearRenderTargetView`` since we are drawing a full-screen sprite first which sets every pixel--we still need to clear the depth/stencil buffer of course:
+
+    m_d3dContext->ClearDepthStencilView(m_depthStencilView.Get(), D3D11_CLEAR_DEPTH, 1.0f, 0);
+    m_d3dContext->OMSetRenderTargets(1, m_renderTargetView.GetAddressOf(), m_depthStencilView.Get());
+
 Build and run to see our initial scene.
 
 ![Screenshot of Torus](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTorus1.PNG)
@@ -351,7 +356,6 @@ In **Game.cpp**, add to **Render** just before the call to ``Present``:
 
 In **Game.cpp**, modify **Clear** to use ``m_sceneRT`` instead of ``m_renderTargetView``:
 
-    m_d3dContext->ClearRenderTargetView(m_sceneRT.Get(), Colors::CornflowerBlue);
     m_d3dContext->ClearDepthStencilView(m_depthStencilView.Get(),
         D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
     m_d3dContext->OMSetRenderTargets(1, m_sceneRT.GetAddressOf(),
