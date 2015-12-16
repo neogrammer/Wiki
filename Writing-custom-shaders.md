@@ -69,7 +69,7 @@ In **Game.cpp**, add to the TODO of **Render**:
 
     m_shape->Draw(m_world, m_view, m_projection);
 
-In **Game.cpp**, modify **Clear** to get rid of the ``ClearRenderTargetView`` since we are drawing a full-screen sprite first which sets every pixel--we still need to clear the depth/stencil buffer of course:
+In **Game.cpp**, modify **Clear** to remove the call to ``ClearRenderTargetView`` since we are drawing a full-screen sprite first which sets every pixel--we still need to clear the depth/stencil buffer of course:
 
     m_d3dContext->ClearDepthStencilView(m_depthStencilView.Get(),
         D3D11_CLEAR_DEPTH, 1.0f, 0);
