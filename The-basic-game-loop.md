@@ -5,6 +5,8 @@ Our starting point is to use the **Direct3D Win32 Game** project template. Insta
 
 _Note if you are using VS 2015, install [Direct3DUWPGame.vsix](https://github.com/walbourn/directx-vs-templates/raw/master/VSIX/Direct3DUWPGame.vsix) instead which installs both the **Direct3D Win32 Game** template and a similar **Direct3D UWP Game** template for the universal Windows app platform._
 
+> There are two versions of each D3DGame template. The "DR" version makes use of a ``DeviceResources`` abstraction to isolate the device and swapchain handling into a helper file. This is useful for larger projects, but for these tutorial I'm making use of the non-DR version which has all the Direct3D objects inside the ``Game`` class.
+
 # Creating a new project
 * From the drop-down menu, select **File** and then **New** -> **Project...**
 * Select "Visual C++" on the left-hand tree-view.
