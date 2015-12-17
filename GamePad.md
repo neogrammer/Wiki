@@ -14,6 +14,8 @@ GamePad is a singleton.
 
 For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr``.
 
+> On Windows 10, this class assumes that the client code has called ``Windows::Foundation::Initialize`` as needed.
+
 # Basic use
 **GetState** queries the controller status given a _player_ index. If connected, it returns the status of the buttons (A, B, X, Y, left & right stick, left & right shoulder, back, and start), the directional pad (DPAD), the left & right thumb sticks, and the left & right triggers.
 
