@@ -14,8 +14,6 @@ GamePad is a singleton.
 
 For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr``.
 
-> On Windows 10, this class assumes that the client code has called ``Windows::Foundation::Initialize`` as needed.
-
 # Basic use
 **GetState** queries the controller status given a _player_ index. If connected, it returns the status of the buttons (A, B, X, Y, left & right stick, left & right shoulder, back, and start), the directional pad (DPAD), the left & right thumb sticks, and the left & right triggers.
 
@@ -129,13 +127,15 @@ The GamePad object and the underlying XInput APIs are polling based. Typically t
 ## Windows
 For the Windows platform, the GamePad class ensures that attempts to locate unconnected controllers do not happen too frequently to avoid a potential performance issue with XInput.
 
-When built for Windows 8.0 or later, it makes use of XInput 1.4 (linking to ``xinput.lib``). When built for down-level support, it makes use of XInput 9.1.0 which avoids the need for any dependancy on the legacy DirectSetup (linking to ``xinput9_1_0.lib``).
+When built for Windows 8.0 or 8.1, it makes use of XInput 1.4 (linking to ``xinput.lib``). When built for down-level support, it makes use of XInput 9.1.0 which avoids the need for any dependancy on the legacy DirectSetup (linking to ``xinput9_1_0.lib``).
+
+When built for Windows 10, it makes use of ``Windows.Gaming.Input``. This class assumes that the client code has called ``Windows::Foundation::Initialize`` as needed.
 
 Note that subtype capabilities information is somewhat unreliable down-level depending on your exact mix of device and driver, and in some cases is hard-coded. All capabilities information is reliable on Windows 8.0 or later.
 
 XInput supports controllers compatible with the Xbox 360 Common Controller for Windows, the Xbox 360 Wireless Receiver for Windows, and the Xbox One Controller.
 
-Vibration settings for the trigger impulse motors (``leftTrigger``, ``rightTrigger``) on the [Xbox One Controller](http://support.xbox.com/en-US/xbox-one/accessories/controller-pc-compatibility) are not supported by XInput. The "View" button is reported as the "Back" button, and the "Menu" button is reported as the "Start" button.
+Vibration settings for the trigger impulse motors (``leftTrigger``, ``rightTrigger``) on the [Xbox One Controller](http://support.xbox.com/en-US/xbox-one/accessories/controller-pc-compatibility) are not supported by XInput--this is supported by ``Windows.Gaming.Input`` APIs. The "View" button is reported as the "Back" button, and the "Menu" button is reported as the "Start" button.
 
 ## Xbox One
 On Xbox One, this class is implemented using the _Windows.Xbox.Input_ interfaces rather than XInput. It is abstracted to return the same structures. Here are a few notes:
