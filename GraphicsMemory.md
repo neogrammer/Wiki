@@ -20,4 +20,4 @@ The graphics memory helper managed memory allocation for 'in-flight' video memor
 # Platform Notes
 Use of this class is only required for the Xbox One. If you fail to create the singleton, an exception is thrown when using classes that make use of dynamic memory allocation for constant buffers, dynamic index buffers, and dynamic vertex buffers notably all [[Effects]], [[PrimitiveBatch]], and [[SpriteBatch]].
 
-For other Direct3D 11 platforms including Windows desktop, UWP, Windows Store, and Xbox One ADK the use of this class is entirely optional. If created, the class performs a 'no-op' and does nothing. The ``Allocate`` class will always return nullptr.
+For other Direct3D 11 platforms including Windows desktop, UWP, Windows 8 Store apps, and Xbox One ADK apps the use of this class is entirely optional. If created, the class performs a 'no-op' and does nothing. The ``Allocate`` class will always return nullptr.
