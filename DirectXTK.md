@@ -19,6 +19,7 @@ _Note: The Xbox One exclusive application XBoxDDSTextureLoader functions are in 
  * [[AlphaTestEffect]], [[BasicEffect]], [[DGSLEffect]], [[DualTextureEffect]], [[EnvironmentMapEffect]], [[SkinnedEffect]]
 * [[GamePad]] - gamepad controller helper using XInput 
 * [[GeometricPrimitive]] - draws basic shapes such as cubes and spheres 
+* [[GraphicsMemory]] - helper for managing dynamic graphics memory allocation
 * [[Keyboard]] - keyboard state tracking helper
 * [[Model]] - draws simple meshes loaded from .CMO, .SDKMESH, or .VBO files 
  * [[ModelMesh]], [[ModelMeshPart]]
