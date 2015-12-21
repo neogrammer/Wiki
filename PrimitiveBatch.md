@@ -76,6 +76,10 @@ Ideally submit draws of the same topology to avoid flushing, and preferably use 
 
 The PrimitiveBatch constructor allows you to specify what size index and vertex buffers to allocate. You may want to tweak these values to fit your workload, or if you only intend to draw non-indexed geometry, specify maxIndices = 0 to entirely skip creating the index buffer.
 
+# Draw order
+
+Until ``End`` is called on PrimitiveBatch, the various ``Draw`` statements are likely still buffered. They are always drawn in the order of the individual ``Draw`` statements, but if mixing PrimitiveBatch drawing with other drawing, you need to call ``End`` before they will all be submitted to Direct3D.
+
 # Feature Level Notes
 
 In order to support [all feature levels](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476876.aspx), PrimitiveBatch only supports 16-bit indices (``DXGI_FORMAT_R16_UINT``) which limits to a maximum of 65535 addressable vertices. This does not apply to non-indexed drawing when the PrimitiveBatch constructor is called with a maxIndices of 0. 
