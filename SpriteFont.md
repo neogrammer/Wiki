@@ -19,6 +19,8 @@ The SpriteFont class requires a [[SpriteBatch]] instance and a ``.spritefont`` b
 
 For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
+> You create one ``SpriteFont`` instance per font style & point-size you want to use to render with. You can use the same ``SpriteBatch`` or use several ``SpriteBatch`` instances if desired. Be sure to read the _Threading model_ notes for [[SpriteBatch]].
+
 # Simple drawing
 
     spriteBatch->Begin();
