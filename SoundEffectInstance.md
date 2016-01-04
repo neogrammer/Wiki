@@ -104,6 +104,8 @@ The emitter and listener (based on the XNA Game Studio conventions) use right-ha
 
 A SoundEffectInstance will allocate a XAudio2 source voice when played, and will keep that source voice for the life of the object. You can force all SoundEffectInstances that currently have source voices but are not currently playing to release them by calling ``AudioEngine::TrimVoicePool``.
 
+If you want to have the same sound playing multiple times and be 3D positioned, you need to create multiple instances of SoundEffectInstance for the same sound and then clean then up or re-use them manually. For non-3D positioned sounds, this is easily done by using ``SoundEffect::Play()`` or ``WaveBank::Play()`` instead.
+
 By default the number of XAudio2 source voices that can be allocated is 'unlimited'. You can set a specific limit using ``AudioEngine::SetMaxVoicePool`` which will be enforced by generating a C++ exception if there are too many allocated source voices when ``Play`` is called.
 
 See [[AudioEngine]] for more details.
