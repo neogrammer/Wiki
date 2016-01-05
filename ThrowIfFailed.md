@@ -2,7 +2,34 @@ When programming COM APIs like Direct3D, it is important to always check the ``H
 
 > Not all Direct3D functions return ``HRESULT``. Many of them return ``void`` because they can't fail, fail silently, or the failure will be reported on the next ``Present``.
 
-For "modern" Direct3D programming, the recommended solution is to throw a C++ exception on a failed ``HRESULT``. The C++ DirectX templates for universal Windows apps, Windows 8 Store, Windows phone 8, Xbox One, and the [Direct3D Win32 Game](http://blogs.msdn.com/b/chuckw/archive/2015/01/06/direct3d-win32-game-visual-studio-template.aspx) templates all make use of the ``DX::ThrowIfFailed`` helper.
+For "modern" Direct3D programming, the recommended solution is to throw a C++ exception on a failed ``HRESULT``.
+
+    DX::ThrowIfFailed(m_d3dDevice->CreateTexture2D(&depthStencilDesc,
+        nullptr, &depthStencil));
+
+``DX::ThrowIfFailed`` should be used whenever a failure is fatal and should result in 'fast-fail' of the application. Otherwise, traditional ``if FAILED(hr)`` or ``if SUCCEEDED(hr)`` patterns should be used to handle failures that the application can recover from (i.e. are not fatal).
+
+If you want to handle a specific HRESULT, then you might do something like:
+
+    HRESULT hr = m_d3dDevice->CreateTexture2D(&depthStencilDesc,
+        nullptr, &depthStencil);
+    if (hr == E_INVALIDARG)
+    {
+        // Do something here in response to this specific error.
+    }
+    DX::ThrowIfFailed(hr);
+
+For a case where you want to do the error-handling for an HRESULT yourself, be sure to use the ``SUCCEEDED`` or ``FAILED`` macro:
+
+    HRESULT hr = m_d3dDevice->CreateTexture2D(&depthStencilDesc,
+        nullptr, &depthStencil);
+    if (FAILED(hr))
+        // Error handling
+
+> The legacy [DXUT](https://github.com/Microsoft/DXUT) framework makes use of macros like ``V`` and ``V_RETURN`` as a pattern for dealing with ``HRESULT`` values, but these make assumptions about the surrounding functions and are really only suited to samples development.
+
+#Basic version
+The C++ DirectX templates for universal Windows apps, Windows 8 Store, Windows phone 8, Xbox One, and the [Direct3D Win32 Game](http://blogs.msdn.com/b/chuckw/archive/2015/01/06/direct3d-win32-game-visual-studio-template.aspx) templates all make use of the ``DX::ThrowIfFailed`` helper.
 
     #include <exception>
 
@@ -17,15 +44,6 @@ For "modern" Direct3D programming, the recommended solution is to throw a C++ ex
             }
         }
     }
-
-The usage is very simple. 
-
-    DX::ThrowIfFailed( device->CreateTexture2D(&depthStencilDesc,
-        nullptr, &depthStencil) );
-
-``DX::ThrowIfFailed`` should be used whenever a failure is fatal and should result in 'fast-fail' of the application. Otherwise, traditional ``if FAILED(hr)`` or ``if SUCCEEDED(hr)`` patterns should be used to handle failures that the application can recover from (i.e. are not fatal).
-
-> The legacy [DXUT](https://github.com/Microsoft/DXUT) framework makes use of macros like ``V`` and ``V_RETURN`` as a pattern for dealing with ``HRESULT`` values, but these make assumptions about the surrounding functions and are really only suited to samples development.
 
 # Enhancements
 
