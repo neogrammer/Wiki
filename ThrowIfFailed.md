@@ -2,12 +2,10 @@ When programming COM APIs like Direct3D, it is important to always check the ``H
 
 > Not all Direct3D functions return ``HRESULT``. Many of them return ``void`` because they can't fail, fail silently, or the failure will be reported on the next ``Present``.
 
-For "modern" Direct3D programming, the recommended solution is to throw a C++ exception on a failed ``HRESULT``.
+``DX::ThrowIfFailed`` should be used whenever a failure is fatal and should result in 'fast-fail' of the application. Otherwise, traditional ``if FAILED(hr)`` or ``if SUCCEEDED(hr)`` patterns should be used to handle failures that the application can recover from (i.e. are not fatal).
 
     DX::ThrowIfFailed(m_d3dDevice->CreateTexture2D(&depthStencilDesc,
         nullptr, &depthStencil));
-
-``DX::ThrowIfFailed`` should be used whenever a failure is fatal and should result in 'fast-fail' of the application. Otherwise, traditional ``if FAILED(hr)`` or ``if SUCCEEDED(hr)`` patterns should be used to handle failures that the application can recover from (i.e. are not fatal).
 
 If you want to handle a specific HRESULT, then you might do something like:
 
