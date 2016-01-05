@@ -171,7 +171,7 @@ Since we are using [[ComPtr]], most cleanup is automatic when the Game class is 
 # Smart-pointer
 We make use of the ``Microsoft::WRL::ComPtr`` smart-pointer for managing the lifetime of the Direct3D 11 COM objects, which is why we make use of ``.Get()`` in the code above. See [[ComPtr]] for more information and usage.
 
-> If you want to now why we have to use ``.get()`` and ``.Get()`` to convert smart-pointers to standard 'raw' pointers, see [this post](http://herbsutter.com/2012/06/21/reader-qa-why-dont-modern-smart-pointers-implicitly-convert-to/)
+> If you want to know why we have to use ``.get()`` and ``.Get()`` to convert smart-pointers to standard 'raw' pointers, see [this post](http://herbsutter.com/2012/06/21/reader-qa-why-dont-modern-smart-pointers-implicitly-convert-to/)
 
 # Error handling
 Many Direct3D functions return an ``HRESULT`` which is the standard for COM APIs. For robustness and easier debugging, it is important that you always check the result of every function that return an ``HRESULT``. If you really can safely assume there is no error condition for a particular function, the function itself will return ``void`` instead of ``HRESULT``.
@@ -180,23 +180,6 @@ The Win32 game template makes use of the helper function [[ThrowIfFailed]] in th
 
     DX::ThrowIfFailed(m_d3dDevice->CreateTexture2D(&depthStencilDesc,
         nullptr, &depthStencil));
-
-If you want to handle a specific HRESULT, then you might do something like:
-
-    HRESULT hr = m_d3dDevice->CreateTexture2D(&depthStencilDesc,
-        nullptr, &depthStencil);
-    if (hr == E_INVALIDARG)
-    {
-        // Do something here in response to this specific error.
-    }
-    DX::ThrowIfFailed(hr);
-
-For a case where you want to do the error-handling for an HRESULT yourself, be sure to use the ``SUCCEEDED`` or ``FAILED`` macro:
-
-    HRESULT hr = m_d3dDevice->CreateTexture2D(&depthStencilDesc,
-        nullptr, &depthStencil);
-    if (FAILED(hr))
-        // Error handling
 
 > Do not use ``hr == S_OK`` to check for success. Use ``SUCCEEDED(hr)`` instead.
 
