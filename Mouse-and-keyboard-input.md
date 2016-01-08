@@ -230,4 +230,5 @@ Build and run. Now in addition to keyboard controls, you can press & hold the le
 
 # Further reading
 
-DirectX Tool Kit docs [[Keyboard]], [[Mouse]]
+DirectX Tool Kit docs [[Keyboard]], [[Mouse]]  
+[DirectX Tool Kit: Keyboard and Mouse support](http://blogs.msdn.com/b/chuckw/archive/2015/08/06/directx-tool-kit-keyboard-and-mouse-support.aspx)
