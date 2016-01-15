@@ -27,7 +27,7 @@ These tutorials are written with game development in mind as the target applicat
 # Software Setup
 For learning purposes, these instructions are going to focus on the following setup:
 
-* Visual Studio 2013 [Update 5](http://blogs.msdn.com/b/chuckw/archive/2015/07/20/visual-studio-2013-update-5.aspx) or 2015 Community, Professional, Premium, or Ultimate
+* Visual Studio 2013 [Update 5](http://blogs.msdn.com/b/chuckw/archive/2015/07/20/visual-studio-2013-update-5.aspx) or 2015 [Update 1](http://blogs.msdn.com/b/chuckw/archive/2015/11/30/visual-studio-2015-update-1.aspx) Community, Professional, Premium, or Ultimate
 * Windows 7, Windows 8.x, or Windows 10
 
 We will be using a Win32 desktop application project template in order to support developers using Windows 7, but all these techniques and APIs apply to universal Windows apps, Windows Store apps, Windows phone 8.x, and Xbox One as well.
