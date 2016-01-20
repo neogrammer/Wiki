@@ -134,7 +134,7 @@ The **DeviceResources** class includes a number of useful assessors not already 
 
 # Notes
 
-The DR variant also makes use of the enhanced version of [[ThrowIfFailed]].
+The DR variant also includes the enhanced version of [[ThrowIfFailed]].
 
 # Further reading
 
