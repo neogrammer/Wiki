@@ -138,7 +138,7 @@ Since the ``DeviceResources`` class is now in it's own file and no longer direct
 
 * If the SDK Debug Layer is not present on the target system when running ``Debug`` configurations, it will automatically fallback to creating the device without debugging.
 * The DR version always uses ``D3D11_CREATE_DEVICE_BGRA_SUPPORT`` which is required for Direct2D/DirectWrite interop if that's desired.
-* If no hardware device is available, the DR version will fall back to using WARP in non-production builds.
+* If no hardware device is available, the DR version will fall back to using [WARP](https://msdn.microsoft.com/en-us/library/windows/desktop/gg615082.aspx) in non-production builds as this is useful for debugging.
 * In ``Debug`` configurations, additional diagnostic messages are output to the debug window.
 * Rather than always using the default Direct3D device, the DR version will filter out the Microsoft Basic Render Driver adapter as this fallback software device is seldom acceptable performance for games.
 
