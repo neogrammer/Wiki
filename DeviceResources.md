@@ -140,7 +140,7 @@ Since the ``DeviceResources`` class is now in it's own file and no longer direct
 * The DR version always uses ``D3D11_CREATE_DEVICE_BGRA_SUPPORT`` which is required for Direct2D/DirectWrite interop if that's desired.
 * If no hardware device is available, the DR version will fall back to using [WARP](https://msdn.microsoft.com/en-us/library/windows/desktop/gg615082.aspx) in non-production builds as this is useful for debugging and validation.
 * In ``Debug`` configurations, additional diagnostic messages are output to the debug window.
-* Rather than always using the default Direct3D device, the DR version will filter out the Microsoft Basic Render Driver adapter as this fallback software device is seldom acceptable performance for games.
+* Rather than always using the default Direct3D device, the DR version will filter out the _Microsoft Basic Render Driver_ adapter as this fallback software device is seldom acceptable performance for games.
 
 The DR VS template variants also include the enhanced version of [[ThrowIfFailed]].
 
