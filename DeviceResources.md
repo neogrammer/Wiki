@@ -132,6 +132,8 @@ The **DeviceResources** class includes a number of useful assessors not already 
 * **GetDepthBufferFormat**: Returns the format of the depth/stencil buffer returned by ``GetDepthStencilView``.
 * **GetBackBufferCount**: Returns the number of back-buffers in the swap chain.
 
+# Notes
+
 Since the ``DeviceResources`` class is now in it's own file and no longer directly impacts the readability of the template, it has a few enhancements.
 
 * If the SDK Debug Layer is not present on the target system when running ``Debug`` configurations, it will automatically fallback to creating the device without debugging.
@@ -139,8 +141,6 @@ Since the ``DeviceResources`` class is now in it's own file and no longer direct
 * If no hardware device is available, the DR version will fall back to using WARP in non-production builds.
 * In ``Debug`` configurations, additional diagnostic messages are output to the debug window.
 * Rather than always using the default Direct3D device, the DR version will filter out the Microsoft Basic Render Driver adapter as this fallback software device is seldom acceptable performance for games.
-
-# Notes
 
 The DR VS template variants include the enhanced version of [[ThrowIfFailed]].
 
