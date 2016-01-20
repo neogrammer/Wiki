@@ -2,6 +2,8 @@ In [[the basic game loop]] lesson and other tutorials, we are making use of the 
 
 There is therefore a "DR" variant of each of the D3DGame VS templates in the [VS 2013](https://github.com/walbourn/directx-vs-templates/raw/master/VSIX/Direct3DWin32Game.vsix) / [VS 2015](https://github.com/walbourn/directx-vs-templates/raw/master/VSIX/Direct3DUWPGame.vsix) VSIX package.
 
+> The standard Windows Store DirectX and Windows phone 8 VS templates make use of a similar ``DeviceResources`` abstraction which this variant is modeled after.
+
 # Creating a new project
 * From the drop-down menu, select **File** and then **New** -> **Project...**
 * Select "Visual C++" on the left-hand tree-view.
