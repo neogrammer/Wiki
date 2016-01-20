@@ -1,7 +1,5 @@
 ``Microsoft::WRL::ComPtr`` is a C++ template smart-pointer for COM objects that is used extensively in Windows Runtime (WinRT) C++ programming. It works in Win32 desktop applications as well. It is similar to ATL's ``CComPtr`` with some useful improvements. ``Microsoft::WRL:::ComPtr`` is in the Windows 8.x SDK and Windows 10 SDK, which, unlike ATL, is available when using the Express versions of Visual Studio. It is used extensively in _DirectX Tool Kit_ to properly handle COM reference counting maintenance.
 
-See [MSDN](http://msdn.microsoft.com/en-us/library/br244983.aspx)
-
     #include <wrl.h>
     // or
     #include <wrl/client.h>
@@ -101,3 +99,9 @@ The bulk of the Windows Runtime Template Library (WRL) is intended to make it ea
 Because WRL is a pure C++ template library, it has no particular platform support requirements beyond being in the Windows 8.x or Windows 10 SDKs. You can therefore freely use it in Windows desktop applications built for Windows Vista, Windows 7, Windows 8.x, or Windows 10 as well as in Windows Store, Windows phone, Xbox One, and universal Windows apps.
 
 > The Windows 8.0 SDK and later that includes WRL does not support targeting Windows XP / Windows Server 2003. For these older operating systems you have to make use of the Windows 7.1A SDK instead. See [this blog post](http://blogs.msdn.com/b/chuckw/archive/2012/11/26/visual-studio-2012-update-1.aspx) for more details.
+
+# Further reading
+
+[ComPtr on MSDN](http://msdn.microsoft.com/en-us/library/br244983.aspx)  
+[COM on MSDN](https://msdn.microsoft.com/en-us/library/windows/desktop/ms694363.aspx)  
+
