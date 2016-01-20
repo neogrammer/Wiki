@@ -10,9 +10,9 @@ There is therefore a "DR" variant of each of the D3DGame VS templates in the [VS
 * Optional: Uncheck "Create directory for solution" to keep the directory structure as bit flatter.
 * Select "OK".
 
-![Create New Project](https://github.com/Microsoft/DirectXTK/wiki/images/CreateNewProjectDR.png)
+![Create New Project](https://github.com/Microsoft/DirectXTK/wiki/images/CreateNewProjectDR.PNG)
 
-![Open Game Cpp](https://github.com/Microsoft/DirectXTK/wiki/images/OpenGameCppDR.png)
+![Open Game Cpp](https://github.com/Microsoft/DirectXTK/wiki/images/OpenGameCppDR.PNG)
 
 * Precompiled header files
  * pch.h 
