@@ -132,6 +132,10 @@ The **DeviceResources** class includes a number of useful assessors not already 
 * **GetDepthBufferFormat**: Returns the format of the depth/stencil buffer returned by ``GetDepthStencilView``
 * **GetBackBufferCount**: Returns the number of back-buffers in the swap chain
 
+# Notes
+
+The DR variant also makes use of the enhanced version of [[ThrowIfFailed]].
+
 # Further reading
 
 [Direct3D Win32 Game Visual Studio template (Redux)](http://blogs.msdn.com/b/chuckw/archive/2015/12/17/direct3d-game-visual-studio-templates-redux.aspx)  
