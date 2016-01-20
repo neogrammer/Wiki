@@ -121,6 +121,16 @@ The **Clear** method defaults to a background color of the classic "Cornflower b
         context->RSSetViewports(1, &viewport);
     }
 
+# Device Resources
+
+The **DeviceResources** class includes a number of useful assessors not already used above
+
+* **GetSwapChain**: Returns the DXGI swap chain interface
+* **GetDeviceFeatureLevel**: Returns the Direct3D hardware feature level in use
+* **GetBackBufferFormat**: Returns the format of the render target returned by ``GetBackBufferRenderTargetView``
+* **GetDepthBufferFormat**: Returns the format of the depth/stencil buffer returned by ``GetDepthStencilView``
+* **GetBackBufferCount**: Returns the number of back-buffers in the swap chain
+
 # Further reading
 
 [Direct3D Win32 Game Visual Studio template (Redux)](http://blogs.msdn.com/b/chuckw/archive/2015/12/17/direct3d-game-visual-studio-templates-redux.aspx)  
