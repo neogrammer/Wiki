@@ -144,6 +144,13 @@ Since the ``DeviceResources`` class is now in it's own file and no longer direct
 
 The DR VS template variants also include the enhanced version of [[ThrowIfFailed]].
 
+# Platform notes
+
+* Direct3D 11 Win32 version: [DeviceResources.h](https://github.com/walbourn/directx-vs-templates/blob/master/d3d11game_win32_dr/DeviceResources.h) / [DeviceResources.cpp](https://github.com/walbourn/directx-vs-templates/blob/master/d3d11game_win32_dr/DeviceResources.cpp)
+* Direct3D 11 UWP version: [DeviceResources.h](https://github.com/walbourn/directx-vs-templates/blob/master/d3d11game_uwp_dr/DeviceResources.h) / [DeviceResources.cpp](https://github.com/walbourn/directx-vs-templates/blob/master/d3d11game_uwp_dr/DeviceResources.cpp)
+* Direct3D 12 Win32 version: [DeviceResources.h](https://github.com/walbourn/directx-vs-templates/blob/master/d3d12game_win32_dr/DeviceResources.h) / [DeviceResources.cpp](https://github.com/walbourn/directx-vs-templates/blob/master/d3d12game_win32_dr/DeviceResources.cpp)
+* Direct3D 12 UWP version: [DeviceResources.h](https://github.com/walbourn/directx-vs-templates/blob/master/d3d12game_uwp_dr/DeviceResources.h) / [DeviceResources.cpp](https://github.com/walbourn/directx-vs-templates/blob/master/d3d12game_uwp_dr/DeviceResources.cpp)
+
 # Further reading
 
 [Direct3D Win32 Game Visual Studio template (Redux)](http://blogs.msdn.com/b/chuckw/archive/2015/12/17/direct3d-game-visual-studio-templates-redux.aspx)  
