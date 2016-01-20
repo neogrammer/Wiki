@@ -187,5 +187,6 @@ The Win32 game template makes use of the helper function [[ThrowIfFailed]] in th
 
 # Further reading
 [Direct3D Win32 Game Visual Studio template](http://blogs.msdn.com/b/chuckw/archive/2015/01/06/direct3d-win32-game-visual-studio-template.aspx)  
+[Direct3D Win32 Game Visual Studio template (Redux)](http://blogs.msdn.com/b/chuckw/archive/2015/12/17/direct3d-game-visual-studio-templates-redux.aspx)  
 [Manifest Madness](http://blogs.msdn.com/b/chuckw/archive/2013/09/10/manifest-madness.aspx)  
 [64-bit programming for Game Developers](http://msdn.microsoft.com/en-us/library/windows/desktop/ee418798.aspx)
