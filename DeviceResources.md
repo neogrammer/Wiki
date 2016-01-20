@@ -142,7 +142,7 @@ Since the ``DeviceResources`` class is now in it's own file and no longer direct
 * In ``Debug`` configurations, additional diagnostic messages are output to the debug window.
 * Rather than always using the default Direct3D device, the DR version will filter out the Microsoft Basic Render Driver adapter as this fallback software device is seldom acceptable performance for games.
 
-The DR VS template variants include the enhanced version of [[ThrowIfFailed]].
+The DR VS template variants also include the enhanced version of [[ThrowIfFailed]].
 
 # Further reading
 
