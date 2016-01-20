@@ -125,6 +125,7 @@ The **Clear** method defaults to a background color of the classic "Cornflower b
 
 The **DeviceResources** class includes a number of useful assessors not already used above
 
+* **GetOutputSize**: Returns the output size of the presentation window associated with the device
 * **GetSwapChain**: Returns the DXGI swap chain interface
 * **GetDeviceFeatureLevel**: Returns the Direct3D hardware feature level in use
 * **GetBackBufferFormat**: Returns the format of the render target returned by ``GetBackBufferRenderTargetView``
