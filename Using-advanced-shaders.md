@@ -22,9 +22,9 @@ In the **Game.h** file, add the following variables to the bottom of the Game cl
 
 In **Game.cpp**, add to the TODO of **CreateDevice**:
 
-    m_states.reset(new CommonStates(m_d3dDevice.Get()));
+    m_states = std::make_unique<CommonStates>(m_d3dDevice.Get());
 
-    m_effect.reset(new EnvironmentMapEffect(m_d3dDevice.Get()));
+    m_effect = std::make_unique<EnvironmentMapEffect>(m_d3dDevice.Get());
     m_effect->EnableDefaultLighting();
 
     m_shape = GeometricPrimitive::CreateTeapot(m_d3dContext.Get());
