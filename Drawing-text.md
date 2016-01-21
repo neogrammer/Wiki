@@ -42,7 +42,7 @@ In the **Game.h** file, add the following variable to the bottom of the Game cla
 
 In **Game.cpp**, add to the TODO of **CreateDevice**:
 
-    m_font.reset(new SpriteFont(m_d3dDevice.Get(), L"myfile.spritefont"));
+    m_font = std::make_unique<SpriteFont>(m_d3dDevice.Get(), L"myfile.spritefont");
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
@@ -61,7 +61,7 @@ In the **Game.h** file, add the following variables to the bottom of the Game cl
 
 In **Game.cpp**, add to the TODO of **CreateDevice**:
 
-    m_spriteBatch.reset(new SpriteBatch(m_d3dContext.Get()));
+    m_spriteBatch = std::make_unique<SpriteBatch>(m_d3dContext.Get());
 
 In **Game.cpp**, add to the TODO of **CreateResources**:
 
