@@ -15,9 +15,9 @@ In the **Game.h** file, add the following variables to the bottom of the Game cl
 
 In **Game.cpp**, add to the end of **Initialize**:
 
-    m_explode.reset( new SoundEffect( m_audEngine.get(), L"explo1.wav" ) );
-    m_ambient.reset( new SoundEffect( m_audEngine.get(),
-        L"NightAmbienceSimple_02.wav" ) );
+    m_explode = std::make_unique<SoundEffect>( m_audEngine.get(), L"explo1.wav" );
+    m_ambient = std::make_unique<SoundEffect>( m_audEngine.get(),
+        L"NightAmbienceSimple_02.wav" );
 
 Build and run. No sounds will be heard, but the audio files are loaded.
 
@@ -37,7 +37,7 @@ In the **Game.h** file, add the following variables to the bottom of the Game cl
 In **Game.cpp**, add to the end of **Initialize**:
 
     std::random_device rd;
-    m_random.reset( new std::mt19937(rd()) );
+    m_random = std::make_unique<std::mt19937>(rd());
 
     explodeDelay = 2.f;
 
@@ -159,7 +159,7 @@ In the **Game.h** file, add the following variables to the bottom of the Game cl
 In **Game.cpp**, modify **Initialize**:
 
     ...
-    m_sounds.reset( new WaveBank( m_audEngine.get(), L"sounds.xwb" ) );
+    m_sounds = std::make_unique<WaveBank>( m_audEngine.get(), L"sounds.xwb" );
 
     m_nightLoop = m_sounds->CreateInstance( "NightAmbienceSimple_02" );
     if ( m_nightLoop )
