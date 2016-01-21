@@ -15,7 +15,7 @@ In **Game.cpp**, add to the end of **Initialize**:
     #ifdef _DEBUG
     eflags = eflags | AudioEngine_Debug;
     #endif
-    m_audEngine.reset(new AudioEngine(eflags));
+    m_audEngine = std::make_unique<AudioEngine>(eflags);
 
 In **Game.cpp**, add to the TODO of **Update**:
 
@@ -99,7 +99,7 @@ In **Initialize**, modify the audio initialization to be:
     #ifdef _DEBUG
     eflags = eflags | AudioEngine_Debug;
     #endif
-    m_audEngine.reset(new AudioEngine(eflags));
+    m_audEngine = std::make_unique<AudioEngine>(eflags);
     m_retryAudio = false;
 
 In **Update**, modify the audio update to be:
