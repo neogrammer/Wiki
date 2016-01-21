@@ -13,8 +13,8 @@ In the **Game.h** file, add the following variables to the bottom of the Game cl
 
 In **Game.cpp**, add to the end of **Initialize**:
 
-    m_keyboard.reset(new Keyboard);
-    m_mouse.reset(new Mouse);
+    m_keyboard = std::make_unique<Keyboard>();
+    m_mouse = std::make_unique<Mouse>();
     m_mouse->SetWindow(window);
 
 In **Game.cpp**, add to the TODO of **Update**:
