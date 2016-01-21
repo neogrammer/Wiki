@@ -18,18 +18,18 @@ Add to the top of **Game.h** the following after the other ``#include`` statemen
 Then add the following variables to the bottom of the Game class's private declarations:
 
     std::unique_ptr<DirectX::SpriteBatch> m_spriteBatch;
-    std::unique_ptr<AnimatedTexture> m_ship;a
+    std::unique_ptr<AnimatedTexture> m_ship;
     Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture;
     DirectX::SimpleMath::Vector2 m_shipPos;
 
 In **Game.cpp**, add to the TODO of **CreateDevice**:
 
-    m_spriteBatch.reset(new SpriteBatch(m_d3dContext.Get()));
+    m_spriteBatch = std::make_unique<SpriteBatch>(m_d3dContext.Get());
 
     DX::ThrowIfFailed(CreateWICTextureFromFile(m_d3dDevice.Get(), L"shipanimated.png",
         nullptr, m_texture.ReleaseAndGetAddressOf()));
 
-    m_ship.reset(new AnimatedTexture);
+    m_ship = std::make_unique<AnimatedTexture>();
     m_ship->Load(m_texture.Get(), 4, 20);
 
 In **Game.cpp**, add to the TODO of **CreateResources**:
@@ -81,7 +81,7 @@ In **Game.cpp**, add to the TODO of **CreateDevice**:
     DX::ThrowIfFailed(CreateWICTextureFromFile(m_d3dDevice.Get(), L"starfield.png",
         nullptr, m_backgroundTex.ReleaseAndGetAddressOf()));
 
-    m_stars.reset(new ScrollingBackground);
+    m_stars = std::make_unique<new ScrollingBackground>();
     m_stars->Load(m_backgroundTex.Get());
 
 In **Game.cpp**, add to the TODO of **CreateResources**:
