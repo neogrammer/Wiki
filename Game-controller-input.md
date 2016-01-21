@@ -12,7 +12,7 @@ In the **Game.h** file, add the following variable to the bottom of the Game cla
 
 In **Game.cpp**, add to the end of **Initialize**:
 
-    m_gamePad.reset(new GamePad());
+    m_gamePad = std::make_unique<GamePad>();
 
 In **Game.cpp**, add to the TODO of **OnSuspending** and **OnDeactivated**:
 
