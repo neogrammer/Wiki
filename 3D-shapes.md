@@ -117,7 +117,7 @@ In the **Game.h** file, add the following variables to the bottom of the Game cl
 
 In **Game.cpp** modify the TODO of **CreateDevice**:
 
-    m_effect.reset(new BasicEffect(m_d3dDevice.Get()));
+    m_effect = std::make_unique<BasicEffect>(m_d3dDevice.Get());
     m_effect->SetTextureEnabled(true);
     m_effect->SetPerPixelLighting(true);
     m_effect->SetLightingEnabled(true);
