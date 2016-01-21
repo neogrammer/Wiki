@@ -29,9 +29,9 @@ In **Game.cpp**, add to the TODO of **CreateDevice**:
         L"sunset.jpg", nullptr, 
         m_background.ReleaseAndGetAddressOf()));
 
-    m_states.reset(new CommonStates(m_d3dDevice.Get()));
-    m_spriteBatch.reset(new SpriteBatch(m_d3dContext.Get()));
-    m_shape.swap( GeometricPrimitive::CreateTorus(m_d3dContext.Get()) );
+    m_states = std::make_unique<CommonStates>(m_d3dDevice.Get());
+    m_spriteBatch = std::make_unique<SpriteBatch>(m_d3dContext.Get());
+    m_shape = GeometricPrimitive::CreateTorus(m_d3dContext.Get());
 
     m_view = Matrix::CreateLookAt(Vector3(0.f, 3.f, -3.f),
         Vector3::Zero, Vector3::UnitY);
