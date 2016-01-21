@@ -42,9 +42,9 @@ In the **Game.h** file, add the following variables to the bottom of the Game cl
 
 In **Game.cpp**, add to the TODO of **CreateDevice**:
 
-    m_states.reset(new CommonStates(m_d3dDevice.Get()));
+    m_states = std::make_unique<CommonStates>(m_d3dDevice.Get());
 
-    m_fxFactory.reset(new EffectFactory(m_d3dDevice.Get()));
+    m_fxFactory = std::make_unique<EffectFactory>(m_d3dDevice.Get());
 
     m_model = Model::CreateFromCMO(m_d3dDevice.Get(), L"cup.cmo", *m_fxFactory);
 
@@ -125,11 +125,11 @@ For this lesson, we made use of [[EffectFactory]] which will create [[BasicEffec
 
 In **Game.cpp** in the TODO section of **CreateDevice**, change
 
-    m_fxFactory.reset(new EffectFactory(m_d3dDevice.Get()));
+    m_fxFactory = std::make_unique<EffectFactory>(m_d3dDevice.Get());
 
 to
 
-    m_fxFactory.reset(new DGSLEffectFactory(m_d3dDevice.Get()));
+    m_fxFactory = std::make_unique<DGSLEffectFactory>(m_d3dDevice.Get());
 
 > This is why we used the abstract interface ``IEffectFactory`` rather than using ``std::unique_ptr<EffectFactory>`` in **Game.h** so that the variable could refer to either type of factory.
 
