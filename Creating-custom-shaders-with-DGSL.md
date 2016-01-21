@@ -59,14 +59,14 @@ In **Game.cpp** modify in **CreateDevice**:
 
 In **Game.cpp**, add to the TODO of **CreateDevice**:
 
-    m_states.reset(new CommonStates(m_d3dDevice.Get()));
+    m_states = std::make_unique<CommonStates>(m_d3dDevice.Get());
 
     // Create DGSL Effect
     auto blob = DX::ReadData( L"MyDGSLShader.cso" );
     DX::ThrowIfFailed(m_d3dDevice->CreatePixelShader(&blob.front(), blob.size(),
         nullptr, m_pixelShader.ReleaseAndGetAddressOf()));
 
-    m_effect.reset(new DGSLEffect(m_d3dDevice.Get(), m_pixelShader.Get()));
+    m_effect = std::make_unique<DGSLEffect>(m_d3dDevice.Get(), m_pixelShader.Get());
     m_effect->SetTextureEnabled(true);
     m_effect->SetVertexColorEnabled(true);
 
