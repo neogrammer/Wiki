@@ -35,7 +35,7 @@ In the **Game.h** file, add the following variables to the bottom of the Game cl
 
 In **Game.cpp**, modify TODO of **CreateDevice** to be:
 
-    m_spriteBatch.reset(new SpriteBatch(m_d3dContext.Get()));
+    m_spriteBatch = std::make_unique<SpriteBatch>(m_d3dContext.Get());
 
     ComPtr<ID3D11Resource> resource;
     DX::ThrowIfFailed(
@@ -83,7 +83,7 @@ In the **Game.h** file, add the following variable to the bottom of the Game cla
 
 In **Game.cpp**, add to the TODO of **CreateDevice**:
 
-    m_states.reset(new CommonStates(m_d3dDevice.Get()));
+    m_states = std::make_unique<CommonStates>(m_d3dDevice.Get());
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
