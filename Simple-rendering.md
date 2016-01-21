@@ -28,9 +28,9 @@ In the **Game.h** file, add the following variables to the bottom of the Game cl
 
 In **Game.cpp**, add to the TODO of **CreateDevice**:
 
-    m_states.reset(new CommonStates(m_d3dDevice.Get()));
+    m_states = std::make_unique<CommonStates>(m_d3dDevice.Get());
 
-    m_effect.reset(new BasicEffect(m_d3dDevice.Get()));
+    m_effect = std::make_unique<BasicEffect>(m_d3dDevice.Get());
     m_effect->SetVertexColorEnabled(true);
 
     void const* shaderByteCode;
@@ -44,7 +44,7 @@ In **Game.cpp**, add to the TODO of **CreateDevice**:
                 shaderByteCode, byteCodeLength,
                 m_inputLayout.ReleaseAndGetAddressOf()));
 
-    m_batch.reset(new PrimitiveBatch<VertexPositionColor>(m_d3dContext.Get()));
+    m_batch = std::make_unique<PrimitiveBatch<VertexPositionColor>>(m_d3dContext.Get());
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
