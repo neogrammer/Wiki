@@ -85,6 +85,8 @@ In **Game.cpp**, modify the TODO section of **Render** to be:
 
     m_spriteBatch->End();
 
+> If using the UWP template, you also need to add ``m_spriteBatch->SetRotation(m_outputRotation);`` to the **CreateResources** method to handle display orientation changes.
+
 Build and run to see our text string centered in the middle of the rendering window:
 
 ![Screenshot Hello World](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotHelloWorld.PNG)
