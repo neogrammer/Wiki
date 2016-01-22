@@ -57,6 +57,8 @@ In **Game.cpp**, add to the TODO of **CreateResources**:
     m_screenPos.x = backBufferWidth / 2.f;
     m_screenPos.y = backBufferHeight / 2.f;
 
+> If using the UWP template, you also need to add ``m_spriteBatch->SetRotation(m_outputRotation);`` to handle display orientation changes.
+
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
     m_spriteBatch.reset();
