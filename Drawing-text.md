@@ -68,6 +68,8 @@ In **Game.cpp**, add to the TODO of **CreateResources**:
     m_fontPos.x = backBufferWidth / 2.f;
     m_fontPos.y = backBufferHeight / 2.f;
 
+> If using the UWP template, you also need to add ``m_spriteBatch->SetRotation(m_outputRotation);`` to handle display orientation changes.
+
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
     m_spriteBatch.reset();
@@ -84,8 +86,6 @@ In **Game.cpp**, modify the TODO section of **Render** to be:
         m_fontPos, Colors::White, 0.f, origin);
 
     m_spriteBatch->End();
-
-> If using the UWP template, you also need to add ``m_spriteBatch->SetRotation(m_outputRotation);`` to the **CreateResources** method to handle display orientation changes.
 
 Build and run to see our text string centered in the middle of the rendering window:
 
