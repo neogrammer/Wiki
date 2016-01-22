@@ -37,6 +37,8 @@ In **Game.cpp**, add to the TODO of **CreateResources**:
     m_shipPos.x = float(backBufferWidth / 2);
     m_shipPos.y = float((backBufferHeight / 2) + (backBufferHeight / 4));
 
+> If using the UWP template, you also need to add ``m_spriteBatch->SetRotation(m_outputRotation);`` to handle display orientation changes.
+
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
     m_ship.reset();
