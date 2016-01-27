@@ -16,14 +16,14 @@ For this tutorial, we will instead make of use of the [DirectXMesh](http://go.mi
 
 Run the following command-line
 
-    meshconvert cup._obj -cmo -nodds -flipv -y
+    meshconvert cup._obj -cmo -nodds -flip -flipv -y
 
 Then from the top menu in Visual Studio select **Project** / **Add Existing Item...**. Select [cup.cmo](https://github.com/Microsoft/DirectXTK/wiki/cup.cmo) and click "OK".
 
 ## Technical notes
 * The switch ``-cmo`` selects the Visual Studio Compiled Mesh Object runtime format as the output. The **meshconvert** command-line tool also supports ``-sdkmesh`` and ``-vbo``. See [Geometry formats](https://directxmesh.codeplex.com/wikipage?title=Geometry%20formats) for more information.
 * The switch ``-nods`` causes any texture file name references in the material information of the source file to stay in their original file format (such as ``.png`` or ``.jpg``). Otherwise, it assumes you will be converting all the needed texture files to a ``.dds`` instead.
-* The switch ``-flipv`` flips the direction of the texture coordinates. Since [[SimpleMath]] and these tutorials assume we are using _right-handed viewing coordinates_ and the model was created using _left-handed viewing coordinates_ we have to flip them to get the text in the texture to appear correctly.
+* The switch ``-flip`` reverses the face winding, and ``-flipv`` flips the direction of the texture coordinates. Since [[SimpleMath]] and these tutorials assume we are using _right-handed viewing coordinates_ and the model was created using _left-handed viewing coordinates_ we have to flip them to get the text in the texture to appear correctly.
 * The switch `-y` indicates that it is ok to overwrite the output file in case you run it multiple times.
 
 # Drawing a model
