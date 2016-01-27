@@ -51,7 +51,7 @@ The fixed-step duration can be set by using **SetTargetElapsedTicks** or **SetTa
 
 If a larger than usual delay is expected, the code should call **ResetElapsedTime** to avoid the fixed-step ``Tick`` calling the update method a large number of times to 'catch-up'.
 
-#StepTimer
+# StepTimer
 The class provides the following accessors:
 
 * **GetElapsedTicks**: Returns the elapsed time in ticks.
