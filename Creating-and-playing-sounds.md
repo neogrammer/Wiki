@@ -141,7 +141,7 @@ Build and run. The looping night ambient sound will slowly decrease and increase
 
 Above we loaded the individual sound files as distinct **SoundEffect** objects, but games commonly have hundreds or thousands of distinct sounds, music, and voice recordings. A more efficient way to manage this data is to make of a 'wave bank' which is a single file that contains a collection of ``.wav ``files that can be loaded all at once.
 
-1. Download the [XWBTool.exe](https://github.com/Microsoft/DirectXTK/releases/download/jul2015/XWBTool.exe) from the _DirectX Tool Kit_ site and extract the EXE into your project's folder. 
+1. Download the [XWBTool.exe](https://github.com/Microsoft/DirectXTK/releases/download/nov2015/XWBTool.exe) from the _DirectX Tool Kit_ site and extract the EXE into your project's folder. 
 1. Open a [command-prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq) and then change to your project's folder.
 
 Run the following command-line
