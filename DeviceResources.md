@@ -132,6 +132,8 @@ The **DeviceResources** class includes a number of useful assessors not already 
 * **GetDepthBufferFormat**: Returns the format of the depth/stencil buffer returned by ``GetDepthStencilView``.
 * **GetBackBufferCount**: Returns the number of back-buffers in the swap chain.
 
+The universal Windows apps version of **DeviceResources** also includes **GetRotation** and **GetOrientationTransform3D** to simplify handling of display orientation.
+
 # Notes
 
 Since the ``DeviceResources`` class is now in it's own file and no longer directly impacts the readability of the template, it has a few enhancements.
