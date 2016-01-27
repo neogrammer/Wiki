@@ -8,8 +8,6 @@ This tutorial assumes the reader is familiar with the basics of C++ programming 
 * [Smart Pointers](http://msdn.microsoft.com/en-us/library/hh279674.aspx)
 * [[ComPtr]]
 
-> You should also take a look at the [C++ Core Guidelines](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md) project.
-
 This tutorial does not assume prior experience with Direct3D, but the reader should be familiar with the basic graphics concepts for DirectX or OpenGL. That said, you can get a long way using _DirectX Tool Kit_ without much in the way of graphics experience.
 
 * [Getting Started with Direct3D 11](http://blogs.msdn.com/b/chuckw/archive/2011/07/11/getting-started-with-direct3d-11.aspx)
@@ -80,4 +78,5 @@ If using VS 2015, be sure to install Visual C++ which requires using the _Custom
 
 # Resources
 
-[Dual-use Coding Techniques for Games](http://blogs.msdn.com/b/chuckw/archive/2012/09/17/dual-use-coding-techniques-for-games.aspx)
+[Dual-use Coding Techniques for Games](http://blogs.msdn.com/b/chuckw/archive/2012/09/17/dual-use-coding-techniques-for-games.aspx)  
+[C++ Core Guidelines](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md)
