@@ -11,7 +11,7 @@ Visual Studio has a built-in system for converting a Wavefront OBJ or Autodesk F
 
 For this tutorial, we will instead make of use of the [DirectXMesh](http://go.microsoft.com/fwlink/?LinkID=324981) **meshconvert** command-line tool.  Start by saving [cup._obj](https://github.com/Microsoft/DirectXTK/wiki/cup._obj), [cup.mtl](https://github.com/Microsoft/DirectXTK/wiki/cup.mtl), and [cup.jpg](https://github.com/Microsoft/DirectXTK/wiki/images/cup.jpg) into your new project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "cup.jpg" and click "OK".
 
-1. Download the [Meshconvert.exe](https://github.com/Microsoft/DirectXMesh/releases/download/jul2015/meshconvert.exe) from the _DirectXMesh_ site save the EXE into your project's folder.
+1. Download the [Meshconvert.exe](https://github.com/Microsoft/DirectXMesh/releases/download/nov2015/meshconvert.exe) from the _DirectXMesh_ site save the EXE into your project's folder.
 1. Open a [command-prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq) and then change to your project's folder.
 
 Run the following command-line
