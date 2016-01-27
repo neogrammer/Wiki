@@ -7,7 +7,7 @@ The StepTimer class is a helper for managing a timed game loop.
 The typical usage for the StepTimer helper class is to call ``Tick`` once before you render each frame. The ``Tick`` method takes a callback which is invoked to perform time-based updates in your game or application.
 
     #include <windows.h>
-    #include “StepTimer.h”
+    #include "StepTimer.h"
  
     DX::StepTimer s_timer;
  
@@ -74,6 +74,10 @@ The ``CoreApplication::Resuming`` handler should call **ResetElapsedTime**.
 
 # Notes
 Ticks are stored in unsigned 64-bit integers and second values are stored in ``double``. Why it is important to avoid using 32-bit values or single-precision floats is addressed in this article: [Don’t Store That in a Float](https://randomascii.wordpress.com/2012/02/13/dont-store-that-in-a-float/)
+
+# Source
+
+[StepTimer.h](https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d11game_win32/StepTimer.h)
 
 # Further reading
 [Understanding GameTime](http://blogs.msdn.com/b/shawnhar/archive/2007/07/25/understanding-gametime.aspx)  
