@@ -160,6 +160,9 @@ This platform also uses two additional methods:
 * **ValidateDevice** is called from the ``DisplayInformation::DisplayContentsInvalidated`` handler, which can trigger a 'device removed' event.
 * **Trim** is called from the ``CoreApplication::Suspending`` handler, generally after calling ``ClearState`` on the device context.
 
+## Xbox One
+The Xbox One XDK version of **DeviceResources** does not include the 'device lost' handling, and always uses fixed a back-buffer size for 1080p.
+
 # Notes
 
 Since the ``DeviceResources`` class is now in it's own file and no longer directly impacts the readability of the rest of the template, it has a few enhancements compared to the handling in non-DR templates.
