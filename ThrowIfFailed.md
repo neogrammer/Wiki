@@ -45,7 +45,7 @@ The C++ DirectX templates for universal Windows apps, Windows 8 Store, Windows p
 
 # Enhancements
 
-The templates all include the basic implementation above, but production use might want to utilize a slightly improved version as follows:
+The templates all include the basic implementation above, but production use might want to utilize a slightly improved version as follows (which are included in the [[DeviceResources]] variants of the [Direct3D Win32 Game](http://blogs.msdn.com/b/chuckw/archive/2015/12/17/direct3d-game-visual-studio-templates-redux.aspx) templates.
 
     #include <exception>
 
