@@ -112,7 +112,7 @@ Visual Studio has a built-in system for converting images to DDS as part of the 
 
 For this tutorial, we will instead make of use of the [DirectXTex](http://go.microsoft.com/fwlink/?LinkId=248926) **texconv** command-line tool. 
 
-1. Download the [Texconv.exe](https://github.com/Microsoft/DirectXTex/releases/download/jul2015/texconv.exe) from the _DirectXTex_ site save the EXE into your project's folder.
+1. Download the [Texconv.exe](https://github.com/Microsoft/DirectXTex/releases/download/nov2015/texconv.exe) from the _DirectXTex_ site save the EXE into your project's folder.
 1. Open a [command-prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq) and then change to your project's folder.
 
 Then run the following command-line:
