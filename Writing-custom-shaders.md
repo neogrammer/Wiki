@@ -214,15 +214,15 @@ At the top of the **Game.cpp** file after the using namespace statements, add th
 In **Game.cpp**, add to the TODO of **CreateDevice**:
 
     auto blob = DX::ReadData( L"BloomExtract.cso" );
-    DX::ThrowIfFailed(m_d3dDevice->CreatePixelShader( &blob.front(), blob.size(),
+    DX::ThrowIfFailed(m_d3dDevice->CreatePixelShader( blob.data(), blob.size(),
         nullptr, m_bloomExtractPS.ReleaseAndGetAddressOf()));
 
     blob = DX::ReadData( L"BloomCombine.cso" );
-    DX::ThrowIfFailed(m_d3dDevice->CreatePixelShader( &blob.front(), blob.size(),
+    DX::ThrowIfFailed(m_d3dDevice->CreatePixelShader( blob.data(), blob.size(),
         nullptr, m_bloomCombinePS.ReleaseAndGetAddressOf()));
 
     blob = DX::ReadData( L"GaussianBlur.cso" );
-    DX::ThrowIfFailed(m_d3dDevice->CreatePixelShader( &blob.front(), blob.size(),
+    DX::ThrowIfFailed(m_d3dDevice->CreatePixelShader( blob.data(), blob.size(),
         nullptr, m_gaussianBlurPS.ReleaseAndGetAddressOf()));
 
     {
