@@ -140,16 +140,25 @@ The **DeviceResources** class also includes a number of useful assessors not alr
 * **GetDepthBufferFormat**: Returns the format of the depth/stencil buffer returned by ``GetDepthStencilView``.
 * **GetBackBufferCount**: Returns the number of back-buffers in the swap chain.
 
+# Platform notes
+
 ## Windows desktop apps
 The **DeviceResources** implementation is designed to support Windows Vista SP2 and Windows 7 RTM with DirectX 11.0, but also supports Direct3D 11.1 on [Windows 7 SP 1](http://blogs.msdn.com/b/chuckw/archive/2012/11/14/directx-11-1-and-windows-7.aspx) or Windows 8 which provides [significant improvements](https://msdn.microsoft.com/en-us/library/hh404562.aspx) such as simplified interop with Direct2D/DirectWrite. Therefore, you should generally prefer to use **GetD3DDevice** / **GetD3DDeviceContext** / **GetSwapChain**, but where you explicitly need 11.1 features you call **GetD3DDevice1** / **GetD3DDeviceContext1** / **GetSwapChain1**. These will be nullptr if the system only has the DirectX 11.0 Runtime.
 
 ## universal Windows apps
-The UWP version of **DeviceResources** always uses [DirectX 11.3 interfaces](https://msdn.microsoft.com/en-us/library/dn914596.aspx). It also includes **GetRotation** and **GetOrientationTransform3D** to simplify handling of display orientation.
+The UWP version of **DeviceResources** always uses [DirectX 11.3 interfaces](https://msdn.microsoft.com/en-us/library/dn914596.aspx).
+
+It includes **GetRotation** and **GetOrientationTransform3D** to simplify handling of display orientation.
 
     m_spritesBatch->SetRotation( m_deviceResources->GetRotation() );
 
     Matrix perspectiveMatrix = Matrix::CreatePerspectiveFieldOfView(fovAngleY, aspectRatio, 0.01f, 100.0f );
     m_projection = perspectiveMatrix * m_deviceResources->GetOrientationTransform3D();
+
+This platform also uses two additional methods:
+
+* **ValidateDevice** is called from the ``DisplayInformation::DisplayContentsInvalidated`` handler, which can trigger a 'device removed' event.
+* **Trim** is called from the ``CoreApplication::Suspending`` handler.
 
 # Notes
 
@@ -163,7 +172,7 @@ Since the ``DeviceResources`` class is now in it's own file and no longer direct
 
 The DR VS template variants also include the enhanced version of [[ThrowIfFailed]].
 
-# Platform notes
+# Source
 
 * Direct3D 11 Win32 version: [DeviceResources.h](https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d11game_win32_dr/DeviceResources.h) / [DeviceResources.cpp](https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d11game_win32_dr/DeviceResources.cpp)
 * Direct3D 11 UWP version: [DeviceResources.h](https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d11game_uwp_dr/DeviceResources.h) / [DeviceResources.cpp](https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d11game_uwp_dr/DeviceResources.cpp)
