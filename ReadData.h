@@ -42,7 +42,7 @@ namespace DX
         if (!inFile)
             throw std::exception("ReadData");
 
-        inFile.read(reinterpret_cast<char*>(&blob.front()), len);
+        inFile.read(reinterpret_cast<char*>(blob.data()), len);
         if (!inFile)
             throw std::exception("ReadData");
 
