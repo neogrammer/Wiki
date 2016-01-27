@@ -132,7 +132,13 @@ The **DeviceResources** class includes a number of useful assessors not already 
 * **GetDepthBufferFormat**: Returns the format of the depth/stencil buffer returned by ``GetDepthStencilView``.
 * **GetBackBufferCount**: Returns the number of back-buffers in the swap chain.
 
+## universal Windows apps
 The universal Windows apps version of **DeviceResources** also includes **GetRotation** and **GetOrientationTransform3D** to simplify handling of display orientation.
+
+    m_spritesBatch->SetRotation( m_deviceResources->ComputeDisplayRotation() );
+
+    Matrix perspectiveMatrix = Matrix::CreatePerspectiveFieldOfView(fovAngleY, aspectRatio, 0.01f, 100.0f );
+    m_projection = perspectiveMatrix * m_deviceResources->GetOrientationTransform3D();
 
 # Notes
 
