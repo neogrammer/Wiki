@@ -153,7 +153,7 @@ The UWP version of **DeviceResources** always uses [DirectX 11.3 interfaces](htt
 
 # Notes
 
-Since the ``DeviceResources`` class is now in it's own file and no longer directly impacts the readability of the template, it has a few enhancements compared to the handling in non-DR templates.
+Since the ``DeviceResources`` class is now in it's own file and no longer directly impacts the readability of the rest of the template, it has a few enhancements compared to the handling in non-DR templates.
 
 * If the SDK Debug Layer is not present on the target system when running ``Debug`` configurations, it will automatically fallback to creating the device without debugging.
 * The DR version always uses ``D3D11_CREATE_DEVICE_BGRA_SUPPORT`` which is required for Direct2D/DirectWrite interop if that's desired.
