@@ -41,7 +41,7 @@ The newly created project contains the following files:
 Here we are focusing on the differences in ``Game.cpp`` between the original *D3D11Game* and the *D3D11GameDR* template variant. **Update** is the same as before, as are most of the events. **OnDeviceLost** no longer has the calls to re-create the objects as this is now handled by **OnDeviceRestored**. Both are callbacks from ``DeviceResources``.
 
 ## Initialize
-When the application first starts, execution is passed to the **Initialize** method. The TODO here by default leaves the applications [StepTimer](http://blogs.msdn.com/b/chuckw/archive/2014/12/03/understanding-game-time-revisited.aspx) in the 'variable length' mode.
+When the application first starts, execution is passed to the **Initialize** method. The TODO here by default leaves the applications [[StepTimer]] in the 'variable length' mode.
 
     void Game::Initialize(HWND window, int width, int height)
     {
