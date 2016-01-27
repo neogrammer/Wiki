@@ -161,7 +161,7 @@ This platform also uses two additional methods:
 * **Trim** is called from the ``CoreApplication::Suspending`` handler, generally after calling ``ClearState`` on the device context.
 
 ## Xbox One
-The Xbox One XDK version of **DeviceResources** does not include the 'device lost' handling, and always uses fixed a back-buffer size for 1080p.
+The Xbox One XDK version of **DeviceResources** does not include the 'device lost' handling, and always uses a fixed back-buffer size for 1080p.
 
 # Notes
 
