@@ -123,7 +123,15 @@ The **Clear** method defaults to a background color of the classic "Cornflower b
 
 # Device Resources
 
-The **DeviceResources** class includes a number of useful assessors not already used above
+The tour above has made use of the following accessors:
+
+* **GetD3DDevice**: Returns the Direct3D device.
+* **GetD3DDeviceContext**: Returns the Direct3D device context.
+* **GetBackBufferRenderTargetView**: Returns the render target view for the swap chain back-buffer.
+* **GetDepthStencilView**: Returns the depth/stencil buffer created for the back-buffer.
+* **GetScreenViewport**: Returns a viewport for the swap chain back-buffer.
+
+The **DeviceResources** class also includes a number of useful assessors not already used above:
 
 * **GetOutputSize**: Returns the output size of the presentation window associated with the device.
 * **GetSwapChain**: Returns the DXGI swap chain interface.
@@ -132,8 +140,11 @@ The **DeviceResources** class includes a number of useful assessors not already 
 * **GetDepthBufferFormat**: Returns the format of the depth/stencil buffer returned by ``GetDepthStencilView``.
 * **GetBackBufferCount**: Returns the number of back-buffers in the swap chain.
 
+## Windows desktop apps
+The **DeviceResources** implementation is designed to support Windows Vista SP2 and Windows 7 RTM with DirectX 11.0, but also supports Direct3D 11.1 which provides [significant improvements](https://msdn.microsoft.com/en-us/library/hh404562.aspx) such as simplified interop with Direct2D/DirectWrite. Therefore, you should generally prefer to use **GetD3DDevice** / **GetD3DDeviceContext** / **GetSwapChain**, but where you explicitly need 11.1 features you call **GetD3DDevice1** / **GetD3DDeviceContext1** / **GetSwapChain1**. These can be nullptr if the system only has the DirectX 11.0 Runtime.
+
 ## universal Windows apps
-The universal Windows apps version of **DeviceResources** also includes **GetRotation** and **GetOrientationTransform3D** to simplify handling of display orientation.
+The UWP version of **DeviceResources** always uses [DirectX 11.3 interfaces](https://msdn.microsoft.com/en-us/library/dn914596.aspx). It also includes includes **GetRotation** and **GetOrientationTransform3D** to simplify handling of display orientation.
 
     m_spritesBatch->SetRotation( m_deviceResources->ComputeDisplayRotation() );
 
