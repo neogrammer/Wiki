@@ -142,7 +142,7 @@ The universal Windows apps version of **DeviceResources** also includes **GetRot
 
 # Notes
 
-Since the ``DeviceResources`` class is now in it's own file and no longer directly impacts the readability of the template, it has a few enhancements.
+Since the ``DeviceResources`` class is now in it's own file and no longer directly impacts the readability of the template, it has a few enhancements compared to the handling in non-DR templates.
 
 * If the SDK Debug Layer is not present on the target system when running ``Debug`` configurations, it will automatically fallback to creating the device without debugging.
 * The DR version always uses ``D3D11_CREATE_DEVICE_BGRA_SUPPORT`` which is required for Direct2D/DirectWrite interop if that's desired.
