@@ -158,7 +158,7 @@ It includes **GetRotation** and **GetOrientationTransform3D** to simplify handli
 This platform also uses two additional methods:
 
 * **ValidateDevice** is called from the ``DisplayInformation::DisplayContentsInvalidated`` handler, which can trigger a 'device removed' event.
-* **Trim** is called from the ``CoreApplication::Suspending`` handler.
+* **Trim** is called from the ``CoreApplication::Suspending`` handler, generally after calling ``ClearState`` on the device context.
 
 # Notes
 
