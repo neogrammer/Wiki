@@ -146,7 +146,7 @@ The **DeviceResources** implementation is designed to support Windows Vista SP2 
 ## universal Windows apps
 The UWP version of **DeviceResources** always uses [DirectX 11.3 interfaces](https://msdn.microsoft.com/en-us/library/dn914596.aspx). It also includes **GetRotation** and **GetOrientationTransform3D** to simplify handling of display orientation.
 
-    m_spritesBatch->SetRotation( m_deviceResources->ComputeDisplayRotation() );
+    m_spritesBatch->SetRotation( m_deviceResources->GetRotation() );
 
     Matrix perspectiveMatrix = Matrix::CreatePerspectiveFieldOfView(fovAngleY, aspectRatio, 0.01f, 100.0f );
     m_projection = perspectiveMatrix * m_deviceResources->GetOrientationTransform3D();
