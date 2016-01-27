@@ -53,7 +53,7 @@ Press F5 to build and run the application It displays the following window:
 For now, we'll focus on the content of ``Game.cpp`` (which is open by default).
 
 ## Initialize
-When the application first starts, execution is passed to the **Initialize** method. The TODO here by default leaves the applications [StepTimer](http://blogs.msdn.com/b/chuckw/archive/2014/12/03/understanding-game-time-revisited.aspx) in the 'variable length' mode. You uncomment the code if you want StepTimer in the 'fixed-step' mode. We'll explain this more once we get to ``Update``.
+When the application first starts, execution is passed to the **Initialize** method. The TODO here by default leaves the applications [[StepTimer]] in the 'variable length' mode. You uncomment the code if you want StepTimer in the 'fixed-step' mode. We'll explain this more once we get to ``Update``.
 
     // Initialize the Direct3D resources required to run.
     void Game::Initialize(HWND window, int width, int height)
