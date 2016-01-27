@@ -37,7 +37,7 @@ The typical usage for the StepTimer helper class is to call ``Tick`` once before
 ## Variable-step mode
 By default, the StepTimer class will invoke the callback given to ``Tick`` once each frame, and the callback can query the StepTimer class for the duration of time since the last update.
 
-> StepTimer will take a number of precautions to ensure the delta time is never negative, nor is it so large as to cause huge jumps that might otherwise disrupt debugging or suspending behavior.
+> StepTimer will take a number of precautions to ensure the delta time is never negative, nor is it so large (1/10th of a second is the default upper-bound) as to cause huge jumps that might otherwise disrupt debugging or suspending behavior.
 
 ## Fixed-step mode
 Alternatively, the StepTimer class can be put into a fixed-step mode as follows:
