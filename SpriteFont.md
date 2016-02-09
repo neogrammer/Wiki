@@ -114,4 +114,5 @@ Creation is fully asynchronous, so you can instantiate multiple SpriteFont insta
 # Further reading
 
 [Bitmap fonts in XNA](http://blogs.msdn.com/b/shawnhar/archive/2007/04/26/bitmap-fonts-in-xna.aspx)  
-[SpriteBatch billboards in a 3D world](http://blogs.msdn.com/b/shawnhar/archive/2011/01/12/spritebatch-billboards-in-a-3d-world.aspx)
+[SpriteBatch billboards in a 3D world](http://blogs.msdn.com/b/shawnhar/archive/2011/01/12/spritebatch-billboards-in-a-3d-world.aspx)  
+[Redistributable Font Pack](http://xbox.create.msdn.com/en-US/education/catalog/utility/font_pack)
