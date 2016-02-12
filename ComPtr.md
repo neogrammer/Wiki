@@ -98,7 +98,7 @@ Remember that if you set a ComPtr to a raw pointer or another ComPtr via the cop
 
 If you want to give a raw pointer to a ComPtr without changing the reference count, you need to use ``Attach``.
 
-If you want to give a pointer in one ComPtr to another ComPtr without changing the reference count (i.e. transferring ownership), you need to use ``Detach`` from the old ComPtr followed by an ``Attach`` to the new one. Alternatively, you can use ``Swap`` to achieve the same thing.
+If you want to give a pointer in one ComPtr to another ComPtr without changing the reference count (i.e. transferring ownership), you need to use ``Detach`` from the old ComPtr followed by an ``Attach`` to the new one. Alternatively, you can generally use ``Swap`` to achieve the same thing.
 
 ComPtr has a move constructor and a move assignment operator both of which effectively perform a ``Swap``.
 
