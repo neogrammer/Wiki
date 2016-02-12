@@ -98,7 +98,9 @@ Remember that if you set a ComPtr to a raw pointer or another ComPtr via the cop
 
 If you want to give a raw pointer to a ComPtr without changing the reference count, you need to use ``Attach``.
 
-If you want to give a pointer in one ComPtr to another ComPtr without changing the reference count (i.e. transferring ownership), you need to use ``Detach`` from the old ComPtr followed by an ``Attach`` to the new one. Alternatively, you can use ``Swap``.
+If you want to give a pointer in one ComPtr to another ComPtr without changing the reference count (i.e. transferring ownership), you need to use ``Detach`` from the old ComPtr followed by an ``Attach`` to the new one. Alternatively, you can use ``Swap`` to achieve the same thing.
+
+> When using operator ``&``, ``GetAddressOf`` or ``ReleaseAndGetAddressOf`` the reference count is not changed as typically these are used in contexts where the reference count has already been increased (i.e. newly constructed objects coming from APIs, getter methods, etc.).
 
 # Platform notes
 The bulk of the Windows Runtime Template Library (WRL) is intended to make it easier to use the new WinRT style APIs introduced with Windows Store and the universal Windows app platform. It is a pure C++ template library and does not make use of the C++/CX language extensions, which are themselves another way to consume WinRT APIs from C++. You can, however, mix usage of the two easily and most C++/CX programs will use at least ``Microsoft::WRL::ComPtr`` for managing COM objects for non-WinRT APIs such as Direct3D.
