@@ -100,6 +100,8 @@ If you want to give a raw pointer to a ComPtr without changing the reference cou
 
 If you want to give a pointer in one ComPtr to another ComPtr without changing the reference count (i.e. transferring ownership), you need to use ``Detach`` from the old ComPtr followed by an ``Attach`` to the new one. Alternatively, you can use ``Swap`` to achieve the same thing.
 
+ComPtr has a move constructor and a move assignment operator both of which effectively perform a ``Swap``.
+
 > When using operator ``&``, ``GetAddressOf`` or ``ReleaseAndGetAddressOf`` the reference count is not changed as typically these are used in contexts where the reference count has already been increased (i.e. newly constructed objects coming from APIs, getter methods, etc.).
 
 # Platform notes
