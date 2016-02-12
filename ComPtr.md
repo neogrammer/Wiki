@@ -107,7 +107,9 @@ ComPtr has a move constructor and a move assignment operator both of which effec
 > When using operator ``&``, ``GetAddressOf`` or ``ReleaseAndGetAddressOf`` the reference count is not changed as typically these are used in contexts where the reference count has already been increased (i.e. newly constructed objects coming from APIs, getter methods, etc.).
 
 # IUnknown methods
-ComPtr goes through some lengths to hide the base IUnknown methods ``AddRef``, ``Release``, and ``QueryInterface``. You should instead make use of the various ComPtr facilities to achieve the same effect (as discussed above). It is asking for trouble if you try to circumvent this by doing something like ``object.Get()->Release()``.
+ComPtr goes through some lengths to hide the base IUnknown methods ``AddRef``, ``Release``, and ``QueryInterface``. You should instead make use of the various ComPtr facilities to achieve the same effect (as discussed above).
+
+> It is asking for serious trouble if you try to circumvent this by doing something like ``object.Get()->Release()``.
 
 # Platform notes
 The bulk of the Windows Runtime Template Library (WRL) is intended to make it easier to use the new WinRT style APIs introduced with Windows Store and the universal Windows app platform. It is a pure C++ template library and does not make use of the C++/CX language extensions, which are themselves another way to consume WinRT APIs from C++. You can, however, mix usage of the two easily and most C++/CX programs will use at least ``Microsoft::WRL::ComPtr`` for managing COM objects for non-WinRT APIs such as Direct3D.
