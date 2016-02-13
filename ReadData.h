@@ -6,6 +6,8 @@
 // For Windows desktop apps, it looks for files in the same folder as the running EXE if it can't find them in the CWD
 //
 
+#pragma once
+
 #include <stdint.h>
 #include <exception>
 #include <fstream>

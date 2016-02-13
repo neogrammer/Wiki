@@ -14,6 +14,8 @@
 // http://go.microsoft.com/fwlink/?LinkId=248929
 //--------------------------------------------------------------------------------------
 
+#pragma once
+
 #include <stdexcept>
 #include <SpriteBatch.h>
 
