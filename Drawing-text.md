@@ -184,6 +184,8 @@ Build and run to see our text string centered in the middle of the rendering win
 
 ![Screenshot Hello World with outline](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotHelloWorld3.PNG)
 
+> If you are wanting to render text similar to how a classic 'console' application does, see [TextConsole.h](https://github.com/Microsoft/DirectXTK/wiki/TextConsole.h) / [.cpp](https://github.com/Microsoft/DirectXTK/wiki/TextConsole.cpp).
+
 **Next lesson:** [[Simple rendering]]
 
 # Further reading
