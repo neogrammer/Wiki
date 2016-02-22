@@ -1,5 +1,7 @@
 This is a C++ implementation of a simple console for displaying text. As more text is printed, the text display scrolls up.
 
+![Text console test](https://github.com/Microsoft/DirectXTK/wiki/images/TextConsole.PNG)
+
 [TextConsole.h](https://github.com/Microsoft/DirectXTK/wiki/TextConsole.h)
 
     class TextConsole
