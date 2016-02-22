@@ -299,9 +299,13 @@ Wherever you want to add text to the console, use ``Write``, ``WriteLine``, and/
     m_console->WriteLine(L"Line 2");
     m_console->Format(L"Time %u, %f ", timer.GetFrameCount(), timer.GetTotalSeconds());
 
-> Note that the text console class is thread-safe so that you can call ``Write``, ``WriteLine``, ``Format``, or ``Clear`` from other threads. Since it uses a ``SpriteBatch`` to render, the ``Render`` function itself must be run on the same thread that is using the ``context`` you provided.
+If you want to empty the console text, call ``Clear``.
 
-## Xbox One
+# Threading model
+
+The text console class is thread-safe using a built-in mutex so that you can call ``Write``, ``WriteLine``, ``Format``, or ``Clear`` from other threads. Since it uses a ``SpriteBatch`` to render, the ``Render`` function itself must be run on the same thread that is using the ``context`` you provided.
+
+# Xbox One
 Since Xbox One XDK apps do not have 'lost device' scenarios, you can avoid using ``RestoreDevice`` and ``ReleaseDevice``, and just use the alternate constructor in ``CreateDeviceDependentResources``:
 
     m_console = std::make_unique<DX::TextConsole>(context, L"consolas.spritefont");
