@@ -277,6 +277,8 @@ In the equivalent to ``CreateDeviceDependentResources``:
 
     m_console->RestoreDevice(context, L"consolas.spritefont");
 
+> For best results, consider using a monospaced (non-proportional) font. Proportional fonts will work, but might introduce additional newlines and will have a 'ragged' right edge.
+
 In ``OnDeviceLost``:
 
     m_console->ReleaseDevice();
