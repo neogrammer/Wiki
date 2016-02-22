@@ -205,6 +205,7 @@ This is a C++ implementation of a simple console for displaying text. As more te
 
         m_font->SetDefaultCharacter(L' ');
     }
+
     void TextConsole::ProcessString(const wchar_t* str)
     {
         if (!m_lines)
@@ -272,31 +273,31 @@ Create it in your initialization:
     // Optionally set a color other than white with something like:
     // m_console->SetForegroundColor(Colors::Yellow);
 
-In the equivalent to ``CreateDeviceDependentResources``, use ``RestoreDevice``:
+In the equivalent to ``CreateDeviceDependentResources``:
 
     m_console->RestoreDevice(context, L"consolas.spritefont");
 
-In ``OnDeviceLost`` use ``ReleaseDevice``:
+In ``OnDeviceLost``:
 
     m_console->ReleaseDevice();
 
-In the equivalent to ``CreateWindowSizeDependentResources``, use ``SetWindow`` to provide the pixel rectangle to render over:
+In the equivalent to ``CreateWindowSizeDependentResources``, provide the pixel rectangle where you want the console text rendered:
 
     RECT size = m_deviceResources->GetOutputSize();
 
     m_console->SetWindow(SimpleMath::Viewport::ComputeTitleSafeArea(size.right, size.bottom));
 
-Then in your ``Render`` function after clearing the screen and drawing whatever background image you want:
+Then in your ``Render`` function after clearing the screen and drawing whatever background image you want.
 
     m_console->Render();
 
-Wherever you want to add text to the console, use ``Write``, ``WriteLine``, or ``Format``:
+Wherever you want to add text to the console, use ``Write``, ``WriteLine``, and/or ``Format``:
 
     m_console->WriteLine(L"This is a test");
     m_console->WriteLine(L"Line 2");
     m_console->Format(L"Time %u, %f ", timer.GetFrameCount(), timer.GetTotalSeconds());
 
-> Note that the console function is thread-safe so that you can call ``Write``, ``WriteLine``, ``Format``, or ``Clear`` from other threads. Since it uses a ``SpriteBatch`` to render, the ``Render`` function itself must be run on the same thread that is using the ``context`` you provided.
+> Note that the text console class is thread-safe so that you can call ``Write``, ``WriteLine``, ``Format``, or ``Clear`` from other threads. Since it uses a ``SpriteBatch`` to render, the ``Render`` function itself must be run on the same thread that is using the ``context`` you provided.
 
 ## Xbox One
 Since Xbox One XDK apps do not have 'lost device' scenarios, you can avoid using ``RestoreDevice`` and ``ReleaseDevice``, and just use the alternate constructor in ``CreateDeviceDependentResources``:
