@@ -311,3 +311,6 @@ The text console class is thread-safe using a built-in mutex so that you can cal
 Since Xbox One XDK apps do not have 'lost device' scenarios, you can avoid using ``RestoreDevice`` and ``ReleaseDevice``, and just use the alternate constructor in ``CreateDeviceDependentResources``:
 
     m_console = std::make_unique<DX::TextConsole>(context, L"consolas.spritefont");
+
+The example above uses the [[Viewport]] function ``ComputeTitleSafeArea`` which is important when rendering text or other UI element on televisions. This is of course optional when rendering on a PC or mobile device and can use the full render viewport instead.
+
