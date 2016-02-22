@@ -4,8 +4,6 @@
 // Renders a simple on screen console where you can output text information on a Direct3D surface
 //
 
-#pragma once
-
 #include "pch.h"
 #include "TextConsole.h"
 
