@@ -39,7 +39,7 @@ _Note: The Xbox One exclusive application XBoxDDSTextureLoader functions are in 
 * [[XWBTool]] - builds ``.xwb`` XACT-style wave banks for use with WaveBank class
 
 # Building
-This code is designed to build with Visual Studio 2012 or later. It requires the Windows 8.x SDK for functionality such as the DirectXMath library and the DXGI 1.2 headers. Visual Studio 2012 or later already includes the Windows 8.x SDK.
+This code is designed to build with Visual Studio 2013 or later. It requires the Windows 8.x SDK for functionality such as the DirectXMath library and the DXGI 1.2 headers. Visual Studio 2013 or later already includes the Windows 8.1 SDK.
 
 These components are designed to work without requiring any content from the DirectX SDK. For details, see [Where is the DirectX SDK?](http://msdn.microsoft.com/en-us/library/ee663275.aspx) and [Where is the DirectX SDK (2013 Edition)?](http://blogs.msdn.com/b/chuckw/archive/2013/07/01/where-is-the-directx-sdk-2013-edition.aspx)
 
@@ -73,14 +73,11 @@ In your application's solution, right-click on the Solution and use **Add \ Exis
 * _DirectXTK_Windows81_ is for Windows Store C++ apps building with VS 2013 targeting Windows 8.1 / RT 8.1 
 * _DirectXTK_WindowsPhone81_ is for Windows phone 8.1 C++ apps building with VS 2013 Update 2 or later. 
 * _DirectXTK_XAMLSilverlight_WindowsPhone81_ is for Windows phone Silverlight 8.1 C++ apps building with VS 2013 Update 2 or later. 
-* _DirectXTK_WindowsPhone8_ is for Windows phone 8 C++ apps building with VS 2012 or VS 2013 and the Windows Phone 8.0 SDK
+* _DirectXTK_WindowsPhone8_ is for Windows phone 8 C++ apps building with VS 2013 and the Windows Phone 8.0 SDK
 * _DirectXTK_Desktop_2015_Win10_ is for Windows desktop C++ applications for Windows 10 building with VS 2015 Express for Desktop, VS 2015 Community, or VS 2015 Professional and the Windows 10 Tools
 * _DirectXTK_Desktop_2015_ is for Windows desktop C++ applications for Windows Vista SP2 or later building with VS 2015 Express for Desktop, VS 2015 Community, or VS 2015 Professional or higher
 * _DirectXTK_Desktop_2013_ is for Windows desktop C++ applications for Windows Vista SP2 or later building with the VS 2013 Express for Desktop, VS 2013 Community, VS 2013 Professional or higher
-* _DirectXTK_Desktop_2012_ is for Windows desktop C++ applications for Windows Vista SP2 or later building with VS 2012 Express for Desktop, VS 2012 Professional or higher
 * _DirectXTK_XboxOneXDK_2015_ is for Xbox One exclusive C++ applications building with VS 2015 using the Xbox One XDK
-* _DirectXTK_XboxOneXDK_ is for Xbox One exclusive C++ applications building with VS 2012 using the Xbox One XDK
-* _DirectXTK_XboxOneADK_ is for Xbox One hub apps C++ building with VS 2012 using the Xbox One ADK
 
 In your application's project, right-click on the **Project** and use "References...", then "Add New Reference...", and then check the DirectXTK project name and click OK. For a universal Windows app, Windows Store app, Windows phone, or Xbox One solution, you need to set _Reference Assembly Output_ to false since DirectXTK is a static C++ library and not a WinRT component.
 
@@ -100,14 +97,14 @@ Alternatively you can use NuGet to install one of the DirectX Tool Kit packages.
 * Use Id: [directxtk_desktop_2013](https://www.nuget.org/packages/directxtk_desktop_2013/) for Windows desktop C++ applications building with the VS 2013 Express for Desktop, VS 2013 Community, VS 2013 Professional or higher
 * Use Id: [directxtk_windowsstore_8_1](https://www.nuget.org/packages/directxtk_windowsstore_8_1/) for Windows Store C++ apps building with VS 2013 targeting Windows 8.1 / RT 8.1
 * Use Id: [directxtk_windowsphone_8_1](https://www.nuget.org/packages/directxtk_windowsphone_8_1/) for Windows phone 8.1 C++ apps or Windows phone Silverlight 8.1 C++ apps building with VS 2013 Update 2 or later.
-* Use Id: [directxtk_windowsphone_8](https://www.nuget.org/packages/directxtk_windowsphone_8/) for Windows phone 8 C++ apps building with VS 2012 or VS 2013 and the Windows Phone 8.0 SDK.
+* Use Id: [directxtk_windowsphone_8](https://www.nuget.org/packages/directxtk_windowsphone_8/) for Windows phone 8 C++ apps building with VS VS 2013 and the Windows Phone 8.0 SDK.
 
 You should use the NuGet interface to check for updates if you have an older version installed.
 
 # Content pipeline
-To use the Visual Studio 2012 or later graphics assets tools in the build system, be sure to [add them to your project](http://msdn.microsoft.com/en-us/library/hh972446.aspx). 
+To use the Visual Studio 2013 or later graphics assets tools in the build system, be sure to [add them to your project](http://msdn.microsoft.com/en-us/library/hh972446.aspx). 
 
-_The graphics assets tools are not present in the Express editions of Visual Studio 2012. They are present in the Visual Studio 2013 Express for Windows and Community editions, but not in VS 2013 Express for Windows Desktop._
+_The graphics assets tools are not present in the Express editions of Visual Studio 2013. They are present in the Visual Studio 2013 Express for Windows and Community editions, but not in VS 2013 Express for Windows Desktop._
 
 **Note:** When adding ``.spritefont``, ``.sdkmesh``, or ``.xwb`` files to your Windows Store app or Windows phone app project, you need to manually set the file properties to "Content: Yes" for all configurations to have these files included in your AppX package. ``.dds`` files, other image file formats, and ``.wav`` files are automatically detected as a media file and are included as content by default.
 
