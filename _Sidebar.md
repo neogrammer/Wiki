@@ -10,9 +10,7 @@
 # For Development
 * Visual Studio 2015
 * Visual Studio 2013
-* Visual Studio 2012
 * Xbox One XDK
-* Xbox One ADK
 
 # Related Projects
 
