@@ -57,6 +57,7 @@ General advice for C++ projects is that you should only add the headers you actu
     #include "Effects.h"
     #include "GamePad.h"
     #include "GeometricPrimitive.h"
+    #include "GraphicsMemory.h"
     #include "Keyboard.h"
     #include "Model.h"
     #include "Mouse.h"
