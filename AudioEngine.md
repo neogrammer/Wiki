@@ -91,6 +91,8 @@ At some later point (typically after detecting a new audio device is available o
 
 Parameters to **Reset** are the similar as for the AudioEngine constructor. If the original object was created with ``AudioEngine_ThrowOnNoAudioHW``, then ``Reset`` will throw if no default audio device is found.
 
+> For XAudio 2.7 and XAudio 2.8 (Windows 8.x), this logic also handles the 'lost endpoint' scenario that happens if you unplug speakers or headphones. With XAudio 2.9 (Windows 10), if you use a ``deviceId`` of ``nullptr`` (i.e. the default), then the new Windows 10 WASAPI feature Virtual Audio Client is used which prevents the 'lost endpoint' case from being triggered.
+
 ## Win32 desktop applications
 For Win32 desktop applications, you can be informed of new audio devices in your application with [RegisterDeviceNotification](http://msdn.microsoft.com/en-us/library/windows/desktop/aa363431.aspx):
 
