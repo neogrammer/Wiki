@@ -111,6 +111,10 @@ A common pattern for gamepads is to trigger an action when a button is pressed o
             // Take an action when Button A is first pressed, but don't do it again until
             // the button is released and then pressed again
     }
+    else
+    {
+        tracker->Reset();
+    }
 
 Each button is reported by the tracker with a state ``UP``, ``HELD``, ``PRESSED``, or ``RELEASED``.
 
