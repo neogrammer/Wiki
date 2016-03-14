@@ -77,6 +77,7 @@ Build and run to see a simple yellow triangle rendered in 2D.
 
 ![Screenshot of triangle](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTriangle.PNG)
 
+## Pixel vs. normalized device coordinates
 The image above is drawn using device coordinates that are independent of the screen resolution and range from ``-1`` to ``+1``.  Resizing the window will result in the same image scaled to the new window. If instead you want to draw using screen pixel coordinates (which match the coordinate system used by [[SpriteBatch]]), then:
 
 In **Game.cpp**, add to the TODO of **CreateResources**:
