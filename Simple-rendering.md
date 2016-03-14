@@ -87,7 +87,7 @@ In **Game.cpp**, add to the TODO of **CreateResources**:
        * Matrix::CreateTranslation( -1.f, 1.f, 0.f );
     m_effect->SetProjection(proj);
 
-> The same project can also be created with ``Matrix::CreateOrthographicOffCenter(0.f, float(backBufferWidth), float(backBufferHeight), 0.f, 0.f, 1.f);``
+> The projection matrix can also be created with ``Matrix::CreateOrthographicOffCenter(0.f, float(backBufferWidth), float(backBufferHeight), 0.f, 0.f, 1.f);``
 
 In **Game.cpp**, modify the TODO of **Render**:
 
