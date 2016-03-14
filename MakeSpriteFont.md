@@ -11,7 +11,7 @@ Open a [Command Prompt](http://windows.microsoft.com/en-us/windows/command-promp
 
 Enter the following command-line after changing to the appropriate directory:
 
-    MakeSpriteFont "Comic Sans" myfile.spritefont /FontSize:16
+    MakeSpriteFont "Comic Sans MS" myfile.spritefont /FontSize:16
 
 The file _myfile.spritefont_ is generated from the installed TrueType font.
 
