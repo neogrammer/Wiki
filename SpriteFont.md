@@ -105,7 +105,7 @@ _The Xbox One exclusive apps version of MultiByteToWideChar does not support cod
 
 For code for rendering text in a classic-style scrolling console, see [[TextConsole]].
 
-Example code for rendering text mixed with the Xbox controller button spritefont, see [[ControllerFont]].
+Code for rendering text mixed with the Xbox controller button spritefont, see [[ControllerFont]].
 
 # Feature Level Notes
 
