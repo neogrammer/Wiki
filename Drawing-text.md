@@ -187,6 +187,7 @@ Build and run to see our text string centered in the middle of the rendering win
 # More to explore
 
 * If you are wanting to render text similar to how a classic 'console' application does, see [[TextConsole]].
+* For example code rendering text mixed with the Xbox controller button spritefont, see [[ControllerFont]].
 
 **Next lesson:** [[Simple rendering]]
 
