@@ -105,6 +105,8 @@ _The Xbox One exclusive apps version of MultiByteToWideChar does not support cod
 
 For code for rendering text in a classic-style scrolling console, see [[TextConsole]].
 
+Example code for rendering text mixed with the Xbox controller button spritefont, see [[ControllerFont]].
+
 # Feature Level Notes
 
 The Sprite Font implementation is compatible with all feature levels. The primary limitation is on the size of the sprite sheet texture which should fit into the limits for [known feature levels](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476876.aspx) (i.e. to support all feature levels, it should be no larger than 2048 x 2048; if you target feature level 9.3 or later you can use 4096 x 4096, etc.).
