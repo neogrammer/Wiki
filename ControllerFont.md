@@ -179,7 +179,7 @@ For details on creating the ``xboxController.spritefont`` file, see [[MakeSprite
 
 # Example
 
-To use the controller, you need to create and initialize two font instances, and a [[SpriteBatch]]
+To use the controller, you need to create and initialize two [[SpriteFont]] instances, and a [[SpriteBatch]]
 
     std::unique_ptr<DirectX::SpriteBatch> m_batch;
     std::unique_ptr<DirectX::SpriteFont> m_font;
