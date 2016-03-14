@@ -195,9 +195,11 @@ In the ``Render`` function, you use the helper to draw the composed text:
 
     m_batch->Begin();
 
-    DX::DrawControllerString(m_batch.get(), m_font.get(), m_ctrlFont.get(), L"Press [A] to select", pos);
+    DX::DrawControllerString(m_batch.get(), m_font.get(), m_ctrlFont.get(),
+        L"Press [A] to select", pos);
     pos.y += m_font->GetLineSpacing();
 
-    DX::DrawControllerString(m_batch.get(), m_font.get(), m_ctrlFont.get(), L"Press [B] to backup", pos);
+    DX::DrawControllerString(m_batch.get(), m_font.get(), m_ctrlFont.get(),
+        L"Press [B] to backup", pos);
 
     m_batch->End();
