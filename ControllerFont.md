@@ -1,8 +1,8 @@
 This is a C++ implementation of a helper that will composite Xbox controller artwork into a string inspired by [this XNA tutorial](http://mort8088.com/2011/03/11/xna-4-0-tutorial-4-spritebatch-extended/).
 
-For details on creating the ``xboxController.spritefont`` file, see [[MakeSpriteFont]].
-
 ![Controller font test](https://github.com/Microsoft/DirectXTK/wiki/images/ControllerFontExample.PNG)
+
+For details on creating the ``xboxController.spritefont`` file, see [[MakeSpriteFont]].
 
 [ControllerFont.h](https://github.com/Microsoft/DirectXTK/wiki/ControllerFont.h)
 
