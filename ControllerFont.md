@@ -24,8 +24,10 @@ For details on creating the ``xboxController.spritefont`` file, see [[MakeSprite
         LeftShoulder = L'-',
     };
 
-    inline void XM_CALLCONV DrawControllerString(_In_ DirectX::SpriteBatch* spriteBatch, _In_ DirectX::SpriteFont* textFont, _In_ DirectX::SpriteFont* butnFont,
-                                                 _In_z_ wchar_t const* text, DirectX::XMFLOAT2 const& position, DirectX::FXMVECTOR color = DirectX::Colors::White, float scale = 1)
+    inline void XM_CALLCONV DrawControllerString(_In_ DirectX::SpriteBatch* spriteBatch,
+        _In_ DirectX::SpriteFont* textFont, _In_ DirectX::SpriteFont* butnFont,
+        _In_z_ wchar_t const* text, DirectX::XMFLOAT2 const& position,
+        DirectX::FXMVECTOR color = DirectX::Colors::White, float scale = 1)
     {
         using namespace DirectX;
 
@@ -177,7 +179,7 @@ For details on creating the ``xboxController.spritefont`` file, see [[MakeSprite
 
 # Example
 
-TO use the controller, you need to create and initialize two font instances, and a [[SpriteBatch]]
+To use the controller, you need to create and initialize two font instances, and a [[SpriteBatch]]
 
     std::unique_ptr<DirectX::SpriteBatch> m_batch;
     std::unique_ptr<DirectX::SpriteFont> m_font;
