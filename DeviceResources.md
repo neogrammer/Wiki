@@ -229,7 +229,7 @@ This platform also uses two additional methods:
 ## Xbox One
 The Xbox One XDK version of **DeviceResources** does not include the 'device lost' handling, and always uses a fixed back-buffer size. There is also a ``Prepare`` method for optional support of Direct3D 11.X Fast Semantics.
 
-The DR version for Xbox One also uses ``DXGIX_SWAP_CHAIN_FLAG_QUANTIZATION_RGB_FULL`` rather than ``DXGIX_SWAP_CHAIN_MATCH_XBOX360_AND_PC`` so ``XMColorSRGBToRGB`` does not need to be used in ``Clear``.
+The DR version for Xbox One also uses ``DXGIX_SWAP_CHAIN_FLAG_QUANTIZATION_RGB_FULL`` rather than ``DXGIX_SWAP_CHAIN_MATCH_XBOX360_AND_PC`` and defaults to ``DXGI_FORMAT_B8G8R8A8_UNORM`` rather than ``DXGI_FORMAT_B8G8R8A8_UNORM_SRGB``. Therefore the conversion of color values using ``XMColorSRGBToRGB`` does not need to be used in ``Clear`` as the application is expected to provide a linear RGB render target.
 
 # Notes
 Since the ``DeviceResources`` class is now in it's own file and no longer directly impacts the readability of the rest of the template, it has a few enhancements compared to the handling in non-DR templates.
