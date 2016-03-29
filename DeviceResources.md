@@ -38,10 +38,20 @@ The newly created project contains the following files:
 
 # Tour of the code
 
-Here we are focusing on the differences in ``Game.cpp`` between the original *D3D11Game* and the *D3D11GameDR* template variant. **Update** is the same as before, as are most of the events. **OnDeviceLost** no longer has the calls to re-create the objects as this is now handled by **OnDeviceRestored**. Both are callbacks from ``DeviceResources``.
+## Constructor
+
+The Game class constructor is where you can do first initialization of member variables, as well as where we create the DeviceResources instance.
+
+    Game::Game()
+    {
+        m_deviceResources = std::make_unique<DX::DeviceResources>();
+        m_deviceResources->RegisterDeviceNotify(this);
+    }
+
+The DeviceResources constructor takes a number of defaulted parameters to control ``backBufferFormat``, ``depthBufferFormat``, ``backBufferCount``, and ``minFeatureLevel``. You can provide specific values to change them as needed.
 
 ## Initialize
-When the application first starts, execution is passed to the **Initialize** method. The TODO here by default leaves the applications [[StepTimer]] in the 'variable length' mode.
+When the application first starts, execution is passed to the **Initialize** method. The TODO here by default leaves the applications [[StepTimer]] in the 'variable length' mode. You uncomment the code if you want StepTimer in the 'fixed-step' mode. We'll explain this more once we get to ``Update``.
 
     void Game::Initialize(HWND window, int width, int height)
     {
@@ -78,6 +88,20 @@ The second Game method ``Initialize`` calls is **CreateWindowSizeDependentResour
     void Game::CreateWindowSizeDependentResources()
     {
         // TODO: Initialize windows-size dependent objects here.
+    }
+
+## Update
+The **Update** method is intended to handle game-world state modification which is typically driven by time passing, simulation, and/or user-input. By default, ``Update`` is called once per 'frame' and can have an arbitrary delta-time. This is called a 'variable-step' mode.
+
+If in the ``Initialize`` method above you uncomment the TODO code, then each ``Update`` will be for a fixed time-step (1/60th of a second), with ``Update`` called as many time in a single 'frame' as needed to keep it up-to-date. This is called a 'fixed-step' mode and potentially be more stable for many kinds of simulations.
+
+    // Updates the world
+    void Game::Update(DX::StepTimer const& timer)
+    {
+        float elapsedTime = float(timer.GetElapsedSeconds());
+
+        // TODO: Add your game logic here
+        elapsedTime;
     }
 
 ## Render
@@ -120,6 +144,35 @@ The **Clear** method defaults to a background color of the classic "Cornflower b
         auto viewport = m_deviceResources->GetScreenViewport();
         context->RSSetViewports(1, &viewport);
     }
+
+## Events
+The template includes a number of message handlers that are called for process state changes: **OnActivated**, **OnDeactivated**, **OnSuspending**, **OnResuming**, and **OnWindowSizeChanged**. 
+
+Since we are using [[ComPtr]], most cleanup is automatic when the Game class is destroyed. If ``Present`` encounters a device-removed or device-reset, then the application needs to release all Direct3D objects and recreate the device, swapchain, and all Direct3D objects again. Therefore, the TODO in **OnDeviceLost** should be updated to release your application's Direct3D objects.
+
+    void Game::OnDeviceLost()
+    {
+        // TODO: Add Direct3D resource cleanup here
+
+    ...
+    }
+
+> You will not get "device lost" all that often. In legacy Direct3D 9, you would routinely get a 'device lost' if you just ALT+TAB away from the application because the GPU used to be an 'exclusive' rather than 'shared' resource. The situation where you'd get ``DXGI_ERROR_DEVICE_RESET`` is if the driver crashes or the video hardware hangs. You get ``DXGI_ERROR_DEVICE_REMOVED`` if a new driver is installed while your application is running, or if you are running on a 'GPU is in the dock' style laptop and the laptop is undocked. You can test this case by opening the *Developer Command Prompt for Visual Studio* as an administrator, and typing ``dxcap -forcetdr`` which will immediately cause all currently running Direct3D apps to get a ``DXGI_ERROR_DEVICE_REMOVED`` event.
+
+# Smart-pointer
+We make use of the ``Microsoft::WRL::ComPtr`` smart-pointer for managing the lifetime of the Direct3D 11 COM objects. See [[ComPtr]] for more information and usage.
+
+# Error handling
+Many Direct3D functions return an ``HRESULT`` which is the standard for COM APIs. For robustness and easier debugging, it is important that you always check the result of every function that return an ``HRESULT``. If you really can safely assume there is no error condition for a particular function, the function itself will return ``void`` instead of ``HRESULT``.
+
+The Win32 game template makes use of the helper function [[ThrowIfFailed]] in the ``DX`` C++ namespace. This is the same helper that is used by the Windows Store and Windows phone VS templates. This helper throws a C++ exception if the standard ``FAILED`` macro returns true for a given ``HRESULT``.
+
+    DX::ThrowIfFailed(m_d3dDevice->CreateTexture2D(&depthStencilDesc,
+        nullptr, &depthStencil));
+
+> Do not use ``hr == S_OK`` to check for success. Use ``SUCCEEDED(hr)`` instead.
+
+The DR VS template variants include the enhanced version of [[ThrowIfFailed]].
 
 # Device Resources
 
@@ -164,7 +217,6 @@ This platform also uses two additional methods:
 The Xbox One XDK version of **DeviceResources** does not include the 'device lost' handling, and always uses a fixed back-buffer size. There is also a ``Prepare`` method for optional support of Direct3D 11.X Fast Semantics.
 
 # Notes
-
 Since the ``DeviceResources`` class is now in it's own file and no longer directly impacts the readability of the rest of the template, it has a few enhancements compared to the handling in non-DR templates.
 
 * If the SDK Debug Layer is not present on the target system when running ``Debug`` configurations, it will automatically fallback to creating the device without debugging.
@@ -173,17 +225,15 @@ Since the ``DeviceResources`` class is now in it's own file and no longer direct
 * In ``Debug`` configurations, additional diagnostic messages are output to the debug window.
 * Rather than always using the default Direct3D device, the DR version will filter out the _Microsoft Basic Render Driver_ adapter as this fallback software device is seldom acceptable performance for games.
 
-The DR VS template variants also include the enhanced version of [[ThrowIfFailed]].
-
 # Source
-
 * Direct3D 11 Win32 version: [DeviceResources.h](https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d11game_win32_dr/DeviceResources.h) / [DeviceResources.cpp](https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d11game_win32_dr/DeviceResources.cpp)
 * Direct3D 11 UWP version: [DeviceResources.h](https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d11game_uwp_dr/DeviceResources.h) / [DeviceResources.cpp](https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d11game_uwp_dr/DeviceResources.cpp)
 * Direct3D 12 Win32 version: [DeviceResources.h](https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d12game_win32_dr/DeviceResources.h) / [DeviceResources.cpp](https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d12game_win32_dr/DeviceResources.cpp)
 * Direct3D 12 UWP version: [DeviceResources.h](https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d12game_uwp_dr/DeviceResources.h) / [DeviceResources.cpp](https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d12game_uwp_dr/DeviceResources.cpp)
 
-# Further reading
+**Next lesson**: [[Adding the DirectX Tool Kit]]
 
+# Further reading
 [Direct3D Win32 Game Visual Studio template (Redux)](http://blogs.msdn.com/b/chuckw/archive/2015/12/17/direct3d-game-visual-studio-templates-redux.aspx)  
 [Anatomy of Direct3D 11 Create Device](http://blogs.msdn.com/b/chuckw/archive/2014/02/05/anatomy-of-direct3d-11-create-device.aspx)  
 [Visual Studio 2013 Windows Store DirectX Templates](http://blogs.msdn.com/b/ianhu/archive/2014/03/07/visual-studio-2013-windows-store-directx-templates.aspx)  
