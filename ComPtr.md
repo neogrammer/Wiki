@@ -10,6 +10,8 @@ Whenever you need to obtain a raw pointer from a ComPtr, use **Get**()
     
     device.Get()
 
+> If you want to know why we have to use ``.get()`` and ``.Get()`` to convert smart-pointers to standard 'raw' pointers, see [this post](http://herbsutter.com/2012/06/21/reader-qa-why-dont-modern-smart-pointers-implicitly-convert-to/)
+
 Generally, if you are creating a fresh ComPtr and then using a COM creation function or factory, you can use **GetAddressOf**() since you know the ComPtr is initially null.
 
     Microsoft::WRL::ComPtr<ID3D11Device> device;
