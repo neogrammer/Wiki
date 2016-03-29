@@ -36,6 +36,19 @@ The newly created project contains the following files:
  * Game.h
  * Game.cpp
 
+# Running the application
+
+Visual Studio will default to the _Win32_ platform / _Debug_ configuration which builds an x86 (32-bit) application with debugging enabled. The template contains both _Debug_ and _Release_ configurations for both _Win32_ and _x64_ (x64 native 64-bit) platforms.
+
+Press F5 to build and run the application It displays the following window:
+
+![Running Project ](https://github.com/Microsoft/DirectXTK/wiki/images/RunningProject.png)
+
+> _Troubleshooting:_ If the base template fails to start, there are a few possibilities. First, if your system
+> doesn't have any Direct3D capable device of any feature level, it will fail. This is pretty unlikely on modern 
+> versions of Windows. Second if it runs fine in _Release_ but fails in _Debug_, then you likely do not have the 
+> [proper DirectX Debug Device](http://blogs.msdn.com/b/chuckw/archive/2012/11/30/direct3d-sdk-debug-layer-tricks.aspx) installed for your operating system.
+
 # Tour of the code
 
 ## Constructor
@@ -215,6 +228,8 @@ This platform also uses two additional methods:
 
 ## Xbox One
 The Xbox One XDK version of **DeviceResources** does not include the 'device lost' handling, and always uses a fixed back-buffer size. There is also a ``Prepare`` method for optional support of Direct3D 11.X Fast Semantics.
+
+The DR version for Xbox One also uses ``DXGIX_SWAP_CHAIN_FLAG_QUANTIZATION_RGB_FULL`` rather than ``DXGIX_SWAP_CHAIN_MATCH_XBOX360_AND_PC`` so ``XMColorSRGBToRGB`` does not need to be used in ``Clear``.
 
 # Notes
 Since the ``DeviceResources`` class is now in it's own file and no longer directly impacts the readability of the rest of the template, it has a few enhancements compared to the handling in non-DR templates.
