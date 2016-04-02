@@ -46,6 +46,8 @@ In **Game.cpp**, add after the constructor:
         }
     }
 
+> For Universal Windows apps and Xbox One apps, this destructor is not required.
+
 Build and run. You won't hear anything yet, but we do have XAudio2 up and running.
 
 > _Troubleshooting:_ If you get the link  error 'unresolved external symbol' for ``CreateFX``, ``X3DAudioInitialize``, or ``X3DAudioCalculate``, you may have incorrectly configured the x86 vs. x64 versions of the VC++ Directory library paths in the previous lesson.
