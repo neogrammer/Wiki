@@ -130,7 +130,7 @@ If you like the HLSL-like type names, you could use SimpleMath in place of Basic
     typedef DirectX::SimpleMath::Vector4 float4;
     typedef DirectX::SimpleMath::Matrix float4x4;
 
-or on VS 2013 or later use a type-alias instead:
+or on VS 2013 or later use a [type alias](http://en.cppreference.com/w/cpp/language/type_alias) instead:
 
     using float2 = DirectX::SimpleMath::Vector2;
     using float3 = DirectX::SimpleMath::Vector3;
