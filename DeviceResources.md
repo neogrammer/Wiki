@@ -63,12 +63,12 @@ The Game class constructor is where you can do first initialization of member va
 
 The DeviceResources constructor takes a number of defaulted parameters to control ``backBufferFormat``, ``depthBufferFormat``, ``backBufferCount``, and ``minFeatureLevel``. You can provide specific values to change them as needed.
 
-If doing _gamma-correct rendering_, you should use ``DXGI_FORMAT_*_UNORM_SRGB`` or a supported HDR format. Be sure to update **Clear** below accordingly to use a linear clear color.
+If doing _gamma-correct rendering_, you should use ``DXGI_FORMAT_*_UNORM_SRGB`` or a supported HDR format. Be sure to update ``Clear`` below accordingly to use a linear clear color.
 
     // Use gamma-correct rendering.
     m_deviceResources = std::make_unique<DX::DeviceResources>(DXGI_FORMAT_B8G8R8A8_UNORM_SRGB);
 
-If you do not want DeviceResources to create a depth/stencil buffer, you can use ``DXGI_FORMAT_UNKNOWN``. This is useful for 2D only rendering or when doing MSAA which requires handling your own depth buffer with Sample.Count > 1. Be sure to update **Clear** below to avoid referencing a null depth buffer object.
+If you do not want DeviceResources to create a depth/stencil buffer, you can use ``DXGI_FORMAT_UNKNOWN``. This is useful for 2D only rendering or when doing MSAA which requires handling your own depth buffer with Sample.Count > 1. Be sure to update ``Clear`` below to avoid referencing a null depth buffer object.
 
     // Renders only 2D, so no need for a depth buffer.
     m_deviceResources = std::make_unique<DX::DeviceResources>(DXGI_FORMAT_B8G8R8A8_UNORM,
@@ -264,7 +264,7 @@ This platform also uses two additional methods:
 ## Xbox One
 The Xbox One XDK version of **DeviceResources** does not include the 'device lost' handling, and always uses a fixed back-buffer size. There is also a ``Prepare`` method for optional support of Direct3D 11.X Fast Semantics.
 
-The DR version for Xbox One also uses ``DXGIX_SWAP_CHAIN_FLAG_QUANTIZATION_RGB_FULL`` rather than ``DXGIX_SWAP_CHAIN_MATCH_XBOX360_AND_PC`` and defaults to ``DXGI_FORMAT_B8G8R8A8_UNORM`` rather than ``DXGI_FORMAT_B8G8R8A8_UNORM_SRGB``. Therefore the conversion of color values using ``XMColorSRGBToRGB`` does not need to be used in ``Clear``.
+The DR version for Xbox One also uses ``DXGIX_SWAP_CHAIN_FLAG_QUANTIZATION_RGB_FULL`` rather than ``DXGIX_SWAP_CHAIN_MATCH_XBOX360_AND_PC``.
 
 # Notes
 Since the ``DeviceResources`` class is now in it's own file and no longer directly impacts the readability of the rest of the template, it has a few enhancements compared to the handling in non-DR templates.
