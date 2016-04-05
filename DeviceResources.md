@@ -177,7 +177,7 @@ If you are using gamma-correct rendering with a sRGB or HDR backbuffer format, y
     color.v = XMColorSRGBToRGB(Colors::CornflowerBlue);
     context->ClearRenderTargetView(renderTarget, color);
 
-If you have chosen to not have DeviceResources create a depth-stencil buffer (see the _Constructor_ section), you need to update **Clear** to avoid reference a null pointer
+If you chose to not have DeviceResources create a depth-stencil buffer (see the _Constructor_ section), you need to update **Clear** to avoid reference a null reference to the depth buffer object.
 
     void Game::Clear()
     {
