@@ -63,6 +63,16 @@ The Game class constructor is where you can do first initialization of member va
 
 The DeviceResources constructor takes a number of defaulted parameters to control ``backBufferFormat``, ``depthBufferFormat``, ``backBufferCount``, and ``minFeatureLevel``. You can provide specific values to change them as needed.
 
+If doing _gamma-correct rendering_, you should use ``DXGI_FORMAT_*_UNORM_SRGB`` or a supported HDR format. Be sure to update **Clear** below accordingly to use a linear clear color.
+
+    // Use gamma-correct rendering.
+    m_deviceResources = std::make_unique<DX::DeviceResources>(DXGI_FORMAT_B8G8R8A8_UNORM_SRGB);
+
+If you do not want DeviceResources to create a depth/stencil buffer, you can use ``DXGI_FORMAT_UNKNOWN``. This is useful for 2D only rendering or when doing MSAA which requires handling your own depth buffer with Sample.Count > 1. Be sure to update **Clear** below to avoid referencing a null depth buffer object.
+
+    // Renders only 2D, so no need for a depth buffer.
+    m_deviceResources = std::make_unique<DX::DeviceResources>(DXGI_FORMAT_B8G8R8A8_UNORM, DXGI_FORMAT_UNKNOWN);
+
 ## Initialize
 When the application first starts, execution is passed to the **Initialize** method. The TODO here by default leaves the applications [[StepTimer]] in the 'variable length' mode. You uncomment the code if you want StepTimer in the 'fixed-step' mode. We'll explain this more once we get to ``Update``.
 
@@ -140,6 +150,7 @@ The **Render** function which should render a single 'frame' of the scene, which
 
 > Instead of using the class variable ``m_d3dContext`` we have to obtain the device context interface from the ``DeviceResources`` object. See ``CreateDeviceDependentResources`` for how you get the device from ``DeviceResources``.
 
+### Clear
 The **Clear** method defaults to a background color of the classic "Cornflower blue".
 
     void Game::Clear()
@@ -152,6 +163,29 @@ The **Clear** method defaults to a background color of the classic "Cornflower b
         context->ClearRenderTargetView(renderTarget, Colors::CornflowerBlue);
         context->ClearDepthStencilView(depthStencil, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
         context->OMSetRenderTargets(1, &renderTarget, depthStencil);
+
+        // Set the viewport.
+        auto viewport = m_deviceResources->GetScreenViewport();
+        context->RSSetViewports(1, &viewport);
+    }
+
+If you are using gamma-correct rendering with a sRGB or HDR backbuffer format, you need to ensure you are using a linear RGB clear color. DirectXMath colors are defined in sRGB since they are .NET color constants, so you need to replace ``ClearRenderTargetView`` in **Clear** with:
+
+    // Use linear clear color for gamma-correct rendering.
+    XMVECTORF32 color;
+    color.v = XMColorSRGBToRGB(Colors::CornflowerBlue);
+    context->ClearRenderTargetView(renderTarget, color);
+
+If you have chosen to not have DeviceResources create a depth-stencil buffer (see the _Constructor_ section), you need to update **Clear** to avoid reference a null pointer
+
+    void Game::Clear()
+    {
+        // Clear the views
+        auto context = m_deviceResources->GetD3DDeviceContext();
+        auto renderTarget = m_deviceResources->GetBackBufferRenderTargetView();
+
+        context->ClearRenderTargetView(renderTarget, Colors::CornflowerBlue);
+        context->OMSetRenderTargets(1, &renderTarget, nullptr);
 
         // Set the viewport.
         auto viewport = m_deviceResources->GetScreenViewport();
