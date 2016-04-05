@@ -74,6 +74,8 @@ If you do not want DeviceResources to create a depth/stencil buffer, you can use
     m_deviceResources = std::make_unique<DX::DeviceResources>(DXGI_FORMAT_B8G8R8A8_UNORM,
         DXGI_FORMAT_UNKNOWN);
 
+The ``backBufferCount`` defaults to 2, but in some case you may want to override it to use 3. Larger numbers would be quite unusual and are not recommended.
+
 ## Initialize
 When the application first starts, execution is passed to the **Initialize** method. The TODO here by default leaves the applications [[StepTimer]] in the 'variable length' mode. You uncomment the code if you want StepTimer in the 'fixed-step' mode. We'll explain this more once we get to ``Update``.
 
