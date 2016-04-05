@@ -71,7 +71,8 @@ If doing _gamma-correct rendering_, you should use ``DXGI_FORMAT_*_UNORM_SRGB`` 
 If you do not want DeviceResources to create a depth/stencil buffer, you can use ``DXGI_FORMAT_UNKNOWN``. This is useful for 2D only rendering or when doing MSAA which requires handling your own depth buffer with Sample.Count > 1. Be sure to update **Clear** below to avoid referencing a null depth buffer object.
 
     // Renders only 2D, so no need for a depth buffer.
-    m_deviceResources = std::make_unique<DX::DeviceResources>(DXGI_FORMAT_B8G8R8A8_UNORM, DXGI_FORMAT_UNKNOWN);
+    m_deviceResources = std::make_unique<DX::DeviceResources>(DXGI_FORMAT_B8G8R8A8_UNORM,
+        DXGI_FORMAT_UNKNOWN);
 
 ## Initialize
 When the application first starts, execution is passed to the **Initialize** method. The TODO here by default leaves the applications [[StepTimer]] in the 'variable length' mode. You uncomment the code if you want StepTimer in the 'fixed-step' mode. We'll explain this more once we get to ``Update``.
