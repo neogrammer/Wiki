@@ -170,7 +170,7 @@ The **Clear** method defaults to a background color of the classic "Cornflower b
         context->RSSetViewports(1, &viewport);
     }
 
-If you are using gamma-correct rendering with a sRGB or HDR backbuffer format, you need to ensure you are using a linear RGB clear color. DirectXMath colors are defined in sRGB colorspace since they are [.NET color constants](https://msdn.microsoft.com/en-us/library/system.drawing.color.aspx), so you need to replace ``ClearRenderTargetView`` in **Clear** with:
+If you are using _gamma-correct rendering_ with a sRGB or HDR backbuffer format, you need to ensure you are using a linear RGB clear color. DirectXMath colors are defined in sRGB colorspace since they are [.NET color constants](https://msdn.microsoft.com/en-us/library/system.drawing.color.aspx), so you need to replace ``ClearRenderTargetView`` in **Clear** with:
 
     // Use linear clear color for gamma-correct rendering.
     XMVECTORF32 color;
@@ -266,7 +266,7 @@ The Xbox One XDK version of **DeviceResources** does not include the 'device los
 
 The DR version for Xbox One also uses ``DXGIX_SWAP_CHAIN_FLAG_QUANTIZATION_RGB_FULL`` rather than ``DXGIX_SWAP_CHAIN_MATCH_XBOX360_AND_PC``.
 
-# DirectX 12
+## DirectX 12
 The DirectX 12 versions of the templates are very similar to the DirectX 11 versions in design, but the implementation is obviously quite different internally.
 
 > Note that the D3D12 Game Win32 template requires the Windows 10 SDK just like the UWP templates.
@@ -292,7 +292,7 @@ The instructions here apply to the DirectX 12 versions, with the difference bein
         commandList->RSSetScissorRects(1, &scissorRect);
     }
 
-For gamma-correct rendering, the change to use linear clear color is:
+For _gamma-correct rendering_, the change to use linear clear color is:
 
     // Use linear clear color for gamma-correct rendering.
     XMVECTORF32 color;
