@@ -63,12 +63,12 @@ The Game class constructor is where you can do first initialization of member va
 
 The DeviceResources constructor takes a number of defaulted parameters to control ``backBufferFormat``, ``depthBufferFormat``, ``backBufferCount``, and ``minFeatureLevel``. You can provide specific values to change them as needed.
 
-If doing _gamma-correct rendering_, you should use ``DXGI_FORMAT_*_UNORM_SRGB`` or a supported HDR format. Be sure to update ``Clear`` below accordingly to use a linear clear color.
+If doing _gamma-correct rendering_, you should use ``DXGI_FORMAT_*_UNORM_SRGB`` or a supported HDR format for the ``backBufferFormat``. Be sure to update ``Clear`` below accordingly to use a linear clear color.
 
     // Use gamma-correct rendering.
     m_deviceResources = std::make_unique<DX::DeviceResources>(DXGI_FORMAT_B8G8R8A8_UNORM_SRGB);
 
-If you do not want DeviceResources to create a depth/stencil buffer, you can use ``DXGI_FORMAT_UNKNOWN``. This is useful for 2D only rendering or when doing MSAA which requires handling your own depth buffer with Sample.Count > 1. Be sure to update ``Clear`` below to avoid referencing a null depth buffer object.
+If you do not want DeviceResources to create a depth/stencil buffer, you can use ``DXGI_FORMAT_UNKNOWN`` for ``depthBufferFormat``. This is useful for 2D only rendering or when doing MSAA which requires handling your own depth buffer with Sample.Count > 1. Be sure to update ``Clear`` below to avoid referencing a null depth buffer object.
 
     // Renders only 2D, so no need for a depth buffer.
     m_deviceResources = std::make_unique<DX::DeviceResources>(DXGI_FORMAT_B8G8R8A8_UNORM,
