@@ -170,14 +170,14 @@ The **Clear** method defaults to a background color of the classic "Cornflower b
         context->RSSetViewports(1, &viewport);
     }
 
-If you are using gamma-correct rendering with a sRGB or HDR backbuffer format, you need to ensure you are using a linear RGB clear color. DirectXMath colors are defined in sRGB since they are .NET color constants, so you need to replace ``ClearRenderTargetView`` in **Clear** with:
+If you are using gamma-correct rendering with a sRGB or HDR backbuffer format, you need to ensure you are using a linear RGB clear color. DirectXMath colors are defined in sRGB colorspace since they are [.NET color constants](https://msdn.microsoft.com/en-us/library/system.drawing.color.aspx), so you need to replace ``ClearRenderTargetView`` in **Clear** with:
 
     // Use linear clear color for gamma-correct rendering.
     XMVECTORF32 color;
     color.v = XMColorSRGBToRGB(Colors::CornflowerBlue);
     context->ClearRenderTargetView(renderTarget, color);
 
-If you chose to not have DeviceResources create a depth-stencil buffer (see the _Constructor_ section), you need to update **Clear** to avoid reference a null reference to the depth buffer object.
+If you chose to not have DeviceResources create a depth-stencil buffer (see the _Constructor_ section), you need to update **Clear** to avoid reference to a null depth buffer object.
 
     void Game::Clear()
     {
