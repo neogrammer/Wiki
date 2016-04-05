@@ -271,7 +271,9 @@ The DirectX 12 versions of the templates are very similar to the DirectX 11 vers
 
 > Note that the D3D12 Game Win32 template requires the Windows 10 SDK just like the UWP templates.
 
-The instructions on this page apply to the DirectX 12 versions as well, with the key differences being the ``Clear`` function. For DirectX 12 the default ``Clear`` is implemented as follows:
+The instructions on this page apply to the DirectX 12 versions as well, with the key differences being the ``Clear`` function. Also, any use of ``auto context = m_deviceResources->GetD3DDeviceContext();`` is unusually replaced with ``auto commandList = m_deviceResources->GetCommandList();``.
+
+For DirectX 12 the default ``Clear`` is implemented as follows:
 
     void Game::Clear()
     {
