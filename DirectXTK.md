@@ -73,7 +73,6 @@ In your application's solution, right-click on the Solution and use **Add \ Exis
 * _DirectXTK_Windows81_ is for Windows Store C++ apps building with VS 2013 targeting Windows 8.1 / RT 8.1 
 * _DirectXTK_WindowsPhone81_ is for Windows phone 8.1 C++ apps building with VS 2013 Update 2 or later. 
 * _DirectXTK_XAMLSilverlight_WindowsPhone81_ is for Windows phone Silverlight 8.1 C++ apps building with VS 2013 Update 2 or later. 
-* _DirectXTK_WindowsPhone8_ is for Windows phone 8 C++ apps building with VS 2013 and the Windows Phone 8.0 SDK
 * _DirectXTK_Desktop_2015_Win10_ is for Windows desktop C++ applications for Windows 10 building with VS 2015 Express for Desktop, VS 2015 Community, or VS 2015 Professional and the Windows 10 Tools
 * _DirectXTK_Desktop_2015_ is for Windows desktop C++ applications for Windows Vista SP2 or later building with VS 2015 Express for Desktop, VS 2015 Community, or VS 2015 Professional or higher
 * _DirectXTK_Desktop_2013_ is for Windows desktop C++ applications for Windows Vista SP2 or later building with the VS 2013 Express for Desktop, VS 2013 Community, VS 2013 Professional or higher
@@ -98,7 +97,6 @@ Alternatively you can use NuGet to install one of the DirectX Tool Kit packages.
 * Use Id: [directxtk_desktop_2013](https://www.nuget.org/packages/directxtk_desktop_2013/) for Windows desktop C++ applications building with the VS 2013 Express for Desktop, VS 2013 Community, VS 2013 Professional or higher
 * Use Id: [directxtk_windowsstore_8_1](https://www.nuget.org/packages/directxtk_windowsstore_8_1/) for Windows Store C++ apps building with VS 2013 targeting Windows 8.1 / RT 8.1
 * Use Id: [directxtk_windowsphone_8_1](https://www.nuget.org/packages/directxtk_windowsphone_8_1/) for Windows phone 8.1 C++ apps or Windows phone Silverlight 8.1 C++ apps building with VS 2013 Update 2 or later.
-* Use Id: [directxtk_windowsphone_8](https://www.nuget.org/packages/directxtk_windowsphone_8/) for Windows phone 8 C++ apps building with VS VS 2013 and the Windows Phone 8.0 SDK.
 
 You should use the NuGet interface to check for updates if you have an older version installed.
 
