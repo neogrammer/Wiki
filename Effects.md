@@ -97,6 +97,8 @@ The built-in effects support a number of different settings, some of which are o
 * [[IEffectFog]] is the interface to control the effects' fog settings. This is supported by _BasicEffect_, _AlphaTestEffect_, _DualTextureEffect_, _EnvironmentMapEffect_, and _SkinnedEffect_.
 * [[IEffectSkinning]] is the interface to control skinned animation settings. This is supported by _DGSLEffect_ and _SkinnedEffect_. This includes setting the bone transform matrices, and optimizing the number of bone influences per vertex to process (1, 2, or 4; defaults to 4).
 
+> For a UML diagram of the Effects interfaces and classes, see [here](https://raw.githubusercontent.com/wiki/Microsoft/DirectXTK/images/effectsuml.PNG).
+
 # Coordinate systems
 
 The built-in effects work equally well for both right-handed and left-handed coordinate systems. The one difference is that the fog settings start & end for left-handed coordinate systems need to be negated (i.e. ``SetFogStart(6)``, ``SetFogEnd(8)`` for right-handed coordinates becomes ``SetFogStart(-6)``, ``SetFogEnd(-8)`` for left-handed coordinates).
