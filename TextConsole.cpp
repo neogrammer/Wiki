@@ -1,8 +1,15 @@
+//--------------------------------------------------------------------------------------
+// File: TextConsole.cpp
 //
-// TextConsole.cpp
+// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+// ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+// THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+// PARTICULAR PURPOSE.
 //
-// Renders a simple on screen console where you can output text information on a Direct3D surface
+// Copyright(c) Microsoft Corporation. All rights reserved.
 //
+// http://go.microsoft.com/fwlink/?LinkId=248929
+//--------------------------------------------------------------------------------------
 
 #include "pch.h"
 #include "TextConsole.h"
@@ -45,7 +52,7 @@ void TextConsole::Render()
 
     m_batch->Begin();
 
-    unsigned int textLine = unsigned int(m_currentLine - m_rows + m_rows + 1) % m_rows;
+    unsigned int textLine = unsigned int(m_currentLine + 1) % m_rows;
     
     for (unsigned int line = 0; line < m_rows; ++line)
     {
@@ -65,6 +72,8 @@ void TextConsole::Render()
 
 void TextConsole::Clear()
 {
+    std::lock_guard<std::mutex> lock(m_mutex);
+
     if (m_buffer)
     {
         memset(m_buffer.get(), 0, sizeof(wchar_t) * (m_columns + 1) * m_rows);
@@ -140,6 +149,8 @@ void TextConsole::Format(const wchar_t* strFormat, ...)
 
 void TextConsole::SetWindow(const RECT& layout)
 {
+    std::lock_guard<std::mutex> lock(m_mutex);
+
     m_layout = layout;
 
     assert(m_font != 0);
@@ -174,6 +185,11 @@ void TextConsole::SetWindow(const RECT& layout)
     std::swap(rows, m_rows);
     std::swap(buffer, m_buffer);
     std::swap(lines, m_lines);
+
+    if ((m_currentColumn >= m_columns) || (m_currentLine >= m_rows))
+    {
+        IncrementLine();
+    }
 }
 
 

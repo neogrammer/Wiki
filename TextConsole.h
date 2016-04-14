@@ -1,8 +1,20 @@
+//--------------------------------------------------------------------------------------
+// File: TextConsole.h
 //
-// TextConsole.h
+// Renders a simple on screen console where you can output text information on a
+// Direct3D surface
 //
-// Renders a simple on-screen console where you can output text information
+// Note: This is best used with monospace rather than proportional fonts
 //
+// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+// ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+// THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+// PARTICULAR PURPOSE.
+//
+// Copyright(c) Microsoft Corporation. All rights reserved.
+//
+// http://go.microsoft.com/fwlink/?LinkId=248929
+//--------------------------------------------------------------------------------------
 
 #pragma once
 
@@ -11,6 +23,7 @@
 
 #include <mutex>
 #include <vector>
+
 
 namespace DX
 {
