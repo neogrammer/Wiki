@@ -321,6 +321,8 @@ To use the debug draw routines in your application, set up drawing with ``Primit
 
     m_effect = std::make_unique<BasicEffect>(device);
     m_effect->SetVertexColorEnabled(true);
+    m_effect->SetView(...);
+    m_effect->SetProjection(...);
 
     {
         void const* shaderByteCode;
@@ -341,8 +343,6 @@ To render , call ``Begin`` and then use the debug draw functions on the 'open' `
     context->OMSetDepthStencilState(m_states->DepthNone(), 0);
     context->RSSetState(m_states->CullNone());
 
-    m_effect->SetView(m_camera.GetView());
-    m_effect->SetProjection(m_camera.GetProjection());
     m_effect->Apply(context);
 
     context->IASetInputLayout(m_layout.Get());
