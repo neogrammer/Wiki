@@ -3,6 +3,8 @@ This provides a set of helpers that use [[PrimitiveBatch]] to draw common debug 
 ![Collision Sample](https://github.com/Microsoft/DirectXTK/wiki/images/DebugDraw.PNG)
 
 [DebugDraw.h](https://github.com/Microsoft/DirectXTK/wiki/DebugDraw.h)
+ 
+    #include <DirectXCollision.h>
 
     void XM_CALLCONV Draw(DirectX::PrimitiveBatch<DirectX::VertexPositionColor>* batch,
         const DirectX::BoundingSphere& sphere,
@@ -38,6 +40,8 @@ This provides a set of helpers that use [[PrimitiveBatch]] to draw common debug 
         DirectX::GXMVECTOR color = DirectX::Colors::White);
 
 [DebugDraw.cpp](https://github.com/Microsoft/DirectXTK/wiki/DebugDraw.cpp)
+
+    #include "TextConsole.h"
 
     using namespace DirectX;
 
