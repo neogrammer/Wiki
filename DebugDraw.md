@@ -307,3 +307,48 @@ This provides a set of helpers that use [[PrimitiveBatch]] to draw common debug 
 
         batch->Draw(D3D11_PRIMITIVE_TOPOLOGY_LINESTRIP, verts, 4);
     }
+
+# Example
+
+To use the debug draw routines in your application, set up drawing with ``PrimitiveBatch`` per the usual setup (see [[Simple drawing]] for more details).
+
+    m_states = std::make_unique<CommonStates>(device);
+    m_batch = std::make_unique<PrimitiveBatch<VertexPositionColor>>(context);
+
+    m_effect = std::make_unique<BasicEffect>(device);
+    m_effect->SetVertexColorEnabled(true);
+
+    {
+        void const* shaderByteCode;
+        size_t byteCodeLength;
+
+        m_effect->GetVertexShaderBytecode(&shaderByteCode, &byteCodeLength);
+
+        DX::ThrowIfFailed(
+            device->CreateInputLayout(
+                VertexPositionColor::InputElements, VertexPositionColor::InputElementCount,
+                shaderByteCode, byteCodeLength,
+                m_layout.ReleaseAndGetAddressOf()));
+    }
+
+To render , call ``Begin`` and then use the debug draw functions on the 'open' ``PrimitiveBatch``, then call ``End``.
+
+    context->OMSetBlendState(m_states->Opaque(), nullptr, 0xFFFFFFFF);
+    context->OMSetDepthStencilState(m_states->DepthNone(), 0);
+    context->RSSetState(m_states->CullNone());
+
+    m_effect->SetView(m_camera.GetView());
+    m_effect->SetProjection(m_camera.GetProjection());
+    m_effect->Apply(context);
+
+    context->IASetInputLayout(m_layout.Get());
+
+    m_batch->Begin();
+
+    Draw(m_batch.get(), frustum, Colors::Blue); // BoundingFrustum
+    Draw(m_batch.get(), box, Colors::Blue); // BoundingBox
+    Draw(m_batch.get(), orientedBox, Colors::Blue); // BoundingOrientedBox
+    Draw(m_batch.get(), sphere, Colors::Blue); // BoundingSphere
+
+    m_batch->End();
+
