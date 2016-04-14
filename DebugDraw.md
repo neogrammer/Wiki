@@ -314,7 +314,7 @@ This provides a set of helpers that use [[PrimitiveBatch]] to draw common debug 
 
 # Example
 
-To use the debug draw routines in your application, set up drawing with ``PrimitiveBatch`` per the usual setup (see [[Simple drawing]] for more details).
+To use the debug draw routines in your application, set up drawing with ``PrimitiveBatch`` per the usual setup (see [[Simple rendering]] for more details).
 
     m_states = std::make_unique<CommonStates>(device);
     m_batch = std::make_unique<PrimitiveBatch<VertexPositionColor>>(context);
