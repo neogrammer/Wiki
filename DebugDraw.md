@@ -41,7 +41,7 @@ This provides a set of helpers that use [[PrimitiveBatch]] to draw common debug 
 
 [DebugDraw.cpp](https://github.com/Microsoft/DirectXTK/wiki/DebugDraw.cpp)
 
-    #include "TextConsole.h"
+    #include "DebugDraw.h"
 
     using namespace DirectX;
 
