@@ -3,11 +3,6 @@
 //
 // WAV file content examination utility
 //
-// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
-// ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
-// THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
-// PARTICULAR PURPOSE.
-//
 // Copyright (c) Microsoft Corporation. All rights reserved.
 //--------------------------------------------------------------------------------------
 
@@ -123,7 +118,7 @@ int main(int argc, const char** argv)
         return 0;
     }
 
-    ScopedMMHandle h( mmioOpen( (LPSTR)argv[1], NULL, MMIO_ALLOCBUF | MMIO_READ ) );
+    ScopedMMHandle h( mmioOpen( (LPSTR)argv[1], nullptr, MMIO_ALLOCBUF | MMIO_READ ) );
     if ( !h.IsValid() )
     {
         printf("Failed opening %s\n", argv[1] );
@@ -134,7 +129,7 @@ int main(int argc, const char** argv)
     MMCKINFO riff;
     memset( &riff, 0, sizeof(riff) );
 
-    if ( mmioDescend( h.Get(), &riff, NULL, 0 ) != MMSYSERR_NOERROR )
+    if ( mmioDescend( h.Get(), &riff, nullptr, 0 ) != MMSYSERR_NOERROR )
     {
         printf("Failed validating file %s\n", argv[1] );
         return 1;
@@ -281,7 +276,7 @@ int main(int argc, const char** argv)
             if ( memcmp( reinterpret_cast<const BYTE*>(&ext->SubFormat) + sizeof(DWORD),
                          reinterpret_cast<const BYTE*>(&s_wfexBase) + sizeof(DWORD), sizeof(GUID) - sizeof(DWORD) ) == 0 )
             {
-                printf(" (%s)\n", GetFormatTagName( ext->SubFormat.Data1 ) );
+                printf(" (%s)\n", GetFormatTagName( static_cast<WORD>(ext->SubFormat.Data1) ) );
             }
             else
                 printf("\n");
@@ -348,7 +343,7 @@ int main(int argc, const char** argv)
 
         if ( cwsmp.cksize < sizeof( DLSSample ) )
         {
-            printf("wsmp chunk size is only %u bytes\n", cwsmp.cksize, argv[1] );
+            printf("wsmp chunk size is only %u bytes\n", cwsmp.cksize );
             return 1;
         }
 
@@ -432,7 +427,7 @@ int main(int argc, const char** argv)
 
         if ( csmpl.cksize < sizeof( MIDISample ) )
         {
-            printf("smpl chunk size is only %u bytes\n", csmpl.cksize, argv[1] );
+            printf("smpl chunk size is only %u bytes\n", csmpl.cksize );
             return 1;
         }
 

@@ -1,16 +1,9 @@
 //--------------------------------------------------------------------------------------
 // File: xwbdump.cpp
 //
-// XACT 3 style Wave Bank file content examination utility
-//
-// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
-// ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
-// THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
-// PARTICULAR PURPOSE.
+// XACT3 wave bank file content examination utility
 //
 // Copyright (c) Microsoft Corporation. All rights reserved.
-//
-// http://go.microsoft.com/fwlink/?LinkId=248929
 //--------------------------------------------------------------------------------------
 
 #include <windows.h>
@@ -400,7 +393,7 @@ int wmain( int argc, wchar_t *argv[ ], wchar_t *envp[ ]  )
 
     if ( argc < 2 || argc > 2 )
     {
-        printf("Usage: xwbdump <filename.xwb>\n");
+        wprintf(L"Usage: xwbdump <filename.xwb>\n");
         return 0;
     }
 
@@ -413,7 +406,7 @@ int wmain( int argc, wchar_t *argv[ ], wchar_t *envp[ ]  )
                                                   nullptr ) ) );
     if ( !hFile )
     {
-        printf( "ERROR: Failed to open wavebank - %S\n", argv[1] );
+        wprintf( L"ERROR: Failed to open wavebank - %ls\n", argv[1] );
         return 1;
     }
 
@@ -423,13 +416,13 @@ int wmain( int argc, wchar_t *argv[ ], wchar_t *envp[ ]  )
     if ( !ReadFile( hFile.get(), &header, sizeof(header), &bytes, nullptr )
          || bytes != sizeof(header) )
     {
-        printf( "ERROR: File too small for valid wavebank\n");
+        wprintf( L"ERROR: File too small for valid wavebank\n");
         return 1;
     }
 
     if ( header.dwSignature != HEADER::SIGNATURE && header.dwSignature != HEADER::BE_SIGNATURE )
     {
-        printf( "ERROR: File is not a wavebank - %S\n", argv[1] );
+        wprintf( L"ERROR: File is not a wavebank - %ls\n", argv[1] );
         return 1;
     }
 
@@ -441,11 +434,11 @@ int wmain( int argc, wchar_t *argv[ ], wchar_t *envp[ ]  )
 
     if ( header.dwHeaderVersion < HEADER::VERSION )
     {
-        printf( "ERROR: Wavebank version is too old %u - %S\n", header.dwHeaderVersion, argv[1] );
+        wprintf( L"ERROR: Wavebank version is too old %u - %ls\n", header.dwHeaderVersion, argv[1] );
         return 1;
     }
 
-    printf("WAVEBANK - %S\n%s\nHeader: File version %u, Tool version %u\n\tBankData %u, length %u\n\tEntryMetadata %u, length %u\n\tSeekTables %u, length %u\n\tEntryNames %u, length %u\n\tEntryWaveData %u, length %u\n",
+    wprintf( L"WAVEBANK - %ls\n%hs\nHeader: File version %u, Tool version %u\n\tBankData %u, length %u\n\tEntryMetadata %u, length %u\n\tSeekTables %u, length %u\n\tEntryNames %u, length %u\n\tEntryWaveData %u, length %u\n",
            argv[1], (be) ? "BigEndian (Xbox 360 wave bank)" : "LittleEndian (Windows wave bank)", 
            header.dwHeaderVersion, header.dwVersion,
            header.Segments[HEADER::SEGIDX_BANKDATA].dwOffset, header.Segments[HEADER::SEGIDX_BANKDATA].dwLength,
@@ -459,57 +452,57 @@ int wmain( int argc, wchar_t *argv[ ], wchar_t *envp[ ]  )
 
     if ( SetFilePointer( hFile.get(), static_cast<LONG>( header.Segments[HEADER::SEGIDX_BANKDATA].dwOffset ), 0, SEEK_SET ) == INVALID_SET_FILE_POINTER )
     {
-        printf("ERROR: Failed to seek to bank data %u\n", header.Segments[HEADER::SEGIDX_BANKDATA].dwOffset );
+        wprintf( L"ERROR: Failed to seek to bank data %u\n", header.Segments[HEADER::SEGIDX_BANKDATA].dwOffset );
         return 1;
     }
 
     if ( !ReadFile( hFile.get(), &bank, sizeof(bank), &bytes, nullptr )
          || bytes != sizeof(bank) )
     {
-        printf( "ERROR: Failed reading bank data\n");
+        wprintf( L"ERROR: Failed reading bank data\n");
         return 1;
     }
 
     if ( be )
         bank.BigEndian();
 
-    printf("Bank Data:\n\tFlags %08X\n", bank.dwFlags );
+    wprintf( L"Bank Data:\n\tFlags %08X\n", bank.dwFlags );
 
-    printf( "\t\t%s\n", ( bank.dwFlags & BANKDATA::TYPE_STREAMING ) ? "Streaming" : "In-memory" );
+    wprintf( L"\t\t%ls\n", ( bank.dwFlags & BANKDATA::TYPE_STREAMING ) ? L"Streaming" : L"In-memory" );
 
     if ( bank.dwFlags & BANKDATA::FLAGS_ENTRYNAMES)
     {
-        printf( "\t\tFLAGS_ENTRYNAMES\n" );
+        wprintf( L"\t\tFLAGS_ENTRYNAMES\n" );
     }
     if ( bank.dwFlags & BANKDATA::FLAGS_COMPACT)
     {
-        printf( "\t\tFLAGS_COMPACT\n" );
+        wprintf( L"\t\tFLAGS_COMPACT\n" );
 
         if ( !( bank.dwFlags & BANKDATA::TYPE_STREAMING ) )
         {
-            printf("WARNING: XACT only supports streaming with compact wavebanks\n");
+            wprintf( L"WARNING: XACT only supports streaming with compact wavebanks\n");
         }
     }
     if ( bank.dwFlags & BANKDATA::FLAGS_SYNC_DISABLED)
     {
-        printf( "\t\tFLAGS_SYNC_DISABLED\n" );
+        wprintf( L"\t\tFLAGS_SYNC_DISABLED\n" );
     }
     if ( bank.dwFlags & BANKDATA::FLAGS_SEEKTABLES)
     {
-        printf( "\t\tFLAGS_SEEKTABLES\n" );
+        wprintf( L"\t\tFLAGS_SEEKTABLES\n" );
     }
 
     if ( *bank.szBankName )
-        printf("\tName \"%s\"\n", bank.szBankName );
+        wprintf( L"\tName \"%hs\"\n", bank.szBankName );
 
-    printf( "\tEntry metadata size %u\n\tEntry name element size %u\n\tEntry alignment %u\n",
+    wprintf( L"\tEntry metadata size %u\n\tEntry name element size %u\n\tEntry alignment %u\n",
             bank.dwEntryMetaDataElementSize, bank.dwEntryNameElementSize, bank.dwAlignment );
 
     if ( bank.dwFlags & BANKDATA::FLAGS_COMPACT )
     {
         if ( bank.dwEntryMetaDataElementSize != sizeof(ENTRYCOMPACT) )
         {
-            printf("ERROR: Compact banks expect a metadata element size of %u\n", sizeof(ENTRYCOMPACT) );
+            wprintf( L"ERROR: Compact banks expect a metadata element size of %zu\n", sizeof(ENTRYCOMPACT) );
             return 1;
         }
     }
@@ -517,19 +510,19 @@ int wmain( int argc, wchar_t *argv[ ], wchar_t *envp[ ]  )
     {
         if ( bank.dwEntryMetaDataElementSize != sizeof(ENTRY) )
         {
-            printf("ERROR: Banks expect a metadata element size of %u\n", sizeof(ENTRY) );
+            wprintf( L"ERROR: Banks expect a metadata element size of %zu\n", sizeof(ENTRY) );
             return 1;
         }
     }
 
     if ( ( bank.dwAlignment < ALIGNMENT_MIN ) || ( bank.dwAlignment > ALIGNMENT_DVD ) )
     {
-        printf("WARNING: XACT expects alignment to be in the range %u...%u \n", ALIGNMENT_MIN, ALIGNMENT_DVD );
+        wprintf( L"WARNING: XACT expects alignment to be in the range %zu...%zu \n", ALIGNMENT_MIN, ALIGNMENT_DVD );
     }
 
     if ( ( bank.dwFlags & BANKDATA::TYPE_STREAMING ) && ( bank.dwAlignment < DVD_SECTOR_SIZE ) )
     {
-        printf("WARNING: XACT expects streaming buffers to be aligned to DVD sector size\n");
+        wprintf( L"WARNING: XACT expects streaming buffers to be aligned to DVD sector size\n");
     }
 
     SYSTEMTIME st;
@@ -544,13 +537,13 @@ int wmain( int argc, wchar_t *argv[ ], wchar_t *envp[ ]  )
             WCHAR szLocalTime[256] = {0};
             GetTimeFormatW( LOCALE_USER_DEFAULT, 0, &lst, nullptr, szLocalTime, 256 );
 
-            printf("\tBuild time: %S, %S\n", szLocalDate, szLocalTime );
+            wprintf( L"\tBuild time: %ls, %ls\n", szLocalDate, szLocalTime );
         }
     }
 
     if ( !bank.dwEntryCount )
     {
-        printf("NOTE: Empty wave bank\n");
+        wprintf( L"NOTE: Empty wave bank\n");
         return 0;
     }
 
@@ -558,11 +551,11 @@ int wmain( int argc, wchar_t *argv[ ], wchar_t *envp[ ]  )
     DWORD metadataBytes = header.Segments[HEADER::SEGIDX_ENTRYMETADATA].dwLength;
     if ( metadataBytes != ( bank.dwEntryMetaDataElementSize * bank.dwEntryCount ) )
     {
-        printf("ERROR: Mismatch in entries %u and metadata size %u\n", bank.dwEntryCount, metadataBytes );
+        wprintf( L"ERROR: Mismatch in entries %u and metadata size %u\n", bank.dwEntryCount, metadataBytes );
         return 1;
     }
 
-    printf("%u entries in wave bank:\n", bank.dwEntryCount );
+    wprintf( L"%u entries in wave bank:\n", bank.dwEntryCount );
 
     std::unique_ptr<char[]> entryNames;
 
@@ -572,7 +565,7 @@ int wmain( int argc, wchar_t *argv[ ], wchar_t *envp[ ]  )
     {
         if ( namesBytes != ( bank.dwEntryNameElementSize * bank.dwEntryCount ) )
         {
-            printf("ERROR: Mismatch in entries %u and entry names size %u\n", bank.dwEntryCount, namesBytes );
+            wprintf( L"ERROR: Mismatch in entries %u and entry names size %u\n", bank.dwEntryCount, namesBytes );
         }
         else
         {
@@ -580,14 +573,14 @@ int wmain( int argc, wchar_t *argv[ ], wchar_t *envp[ ]  )
 
             if ( SetFilePointer( hFile.get(), static_cast<LONG>( header.Segments[HEADER::SEGIDX_ENTRYNAMES].dwOffset ), 0, SEEK_SET ) == INVALID_SET_FILE_POINTER )
             {
-                printf("ERROR: Failed to seek to entry names data %u\n", header.Segments[HEADER::SEGIDX_ENTRYNAMES].dwOffset );
+                wprintf( L"ERROR: Failed to seek to entry names data %u\n", header.Segments[HEADER::SEGIDX_ENTRYNAMES].dwOffset );
                 return 1;
             }
 
             if ( !ReadFile( hFile.get(), entryNames.get(), namesBytes, &bytes, nullptr )
                             || namesBytes != bytes )
             {
-                printf( "ERROR: Failed reading entry names\n");
+                wprintf( L"ERROR: Failed reading entry names\n");
                 return 1;
             }
         }
@@ -601,11 +594,11 @@ int wmain( int argc, wchar_t *argv[ ], wchar_t *envp[ ]  )
     {
         if ( seekLen < ( bank.dwEntryCount * sizeof(uint32_t) ) )
         {
-            printf("ERROR: Seek table is too small, needs at least %u bytes; only %u bytes\n", bank.dwEntryCount * sizeof(uint32_t), seekLen );
+            wprintf( L"ERROR: Seek table is too small, needs at least %zu bytes; only %u bytes\n", bank.dwEntryCount * sizeof(uint32_t), seekLen );
         }
         else if ( ( seekLen % 4 ) != 0 )
         {
-            printf("ERROR: Seek table should be a multiple of 4 in size (%u bytes)\n", seekLen );
+            wprintf( L"ERROR: Seek table should be a multiple of 4 in size (%u bytes)\n", seekLen );
         }
         else
         {
@@ -615,14 +608,14 @@ int wmain( int argc, wchar_t *argv[ ], wchar_t *envp[ ]  )
 
             if ( SetFilePointer( hFile.get(), static_cast<LONG>( header.Segments[HEADER::SEGIDX_SEEKTABLES].dwOffset ), 0, SEEK_SET ) == INVALID_SET_FILE_POINTER )
             {
-                printf("ERROR: Failed to seek to seek tables %u\n", header.Segments[HEADER::SEGIDX_SEEKTABLES].dwOffset );
+                wprintf( L"ERROR: Failed to seek to seek tables %u\n", header.Segments[HEADER::SEGIDX_SEEKTABLES].dwOffset );
                 return 1;
             }
 
             if ( !ReadFile( hFile.get(), seekTables.get(), seekLen, &bytes, nullptr )
                             || seekLen != bytes )
             {
-                printf( "ERROR: Failed reading seek tables\n");
+                wprintf( L"ERROR: Failed reading seek tables\n");
                 return 1;
             }
 
@@ -650,14 +643,14 @@ int wmain( int argc, wchar_t *argv[ ], wchar_t *envp[ ]  )
 
     if ( SetFilePointer( hFile.get(), static_cast<LONG>( header.Segments[HEADER::SEGIDX_ENTRYMETADATA].dwOffset ), 0, SEEK_SET ) == INVALID_SET_FILE_POINTER )
     {
-        printf("ERROR: Failed to seek to entry metadata data %u\n", header.Segments[HEADER::SEGIDX_ENTRYMETADATA].dwOffset );
+        wprintf( L"ERROR: Failed to seek to entry metadata data %u\n", header.Segments[HEADER::SEGIDX_ENTRYMETADATA].dwOffset );
         return 1;
     }
 
     if ( !ReadFile( hFile.get(), entries.get(), metadataBytes, &bytes, nullptr )
          || metadataBytes != bytes )
     {
-        printf( "ERROR: Failed reading entry metadata\n");
+        wprintf( L"ERROR: Failed reading entry metadata\n");
         return 1;
     }
 
@@ -667,7 +660,7 @@ int wmain( int argc, wchar_t *argv[ ], wchar_t *envp[ ]  )
 
     if ( ( bank.dwFlags & BANKDATA::FLAGS_COMPACT ) && ( waveLen > MAX_COMPACT_DATA_SEGMENT_SIZE * bank.dwAlignment ) )
     {
-        printf( "ERROR: data segment too large for a valid compact wavebank" );
+        wprintf( L"ERROR: data segment too large for a valid compact wavebank" );
         return 1;
     }
 
@@ -689,7 +682,7 @@ int wmain( int argc, wchar_t *argv[ ], wchar_t *envp[ ]  )
             {
                 if ( ( baseOffset + offset ) >= seekLen )
                 {
-                    printf("ERROR: Invalid seek table offset entry\n" );
+                    wprintf( L"ERROR: Invalid seek table offset entry\n" );
                 }
                 else
                 {
@@ -697,7 +690,7 @@ int wmain( int argc, wchar_t *argv[ ], wchar_t *envp[ ]  )
 
                     if ( ( ( ( *seekTable + 1 ) * sizeof(uint32_t) ) + baseOffset + offset ) > seekLen )
                     {
-                        printf("ERROR: Too many seek table entries for size of seek tables segment\n");
+                        wprintf( L"ERROR: Too many seek table entries for size of seek tables segment\n");
                     }
                 }
             }
@@ -710,7 +703,7 @@ int wmain( int argc, wchar_t *argv[ ], wchar_t *envp[ ]  )
             if ( be )
                 entry.BigEndian();
 
-            printf("  Entry %u\n", j );
+            wprintf( L"  Entry %u\n", j );
 
             miniFmt = &bank.CompactFormat;
             dwOffset = entry.dwOffset * bank.dwAlignment;
@@ -721,7 +714,7 @@ int wmain( int argc, wchar_t *argv[ ], wchar_t *envp[ ]  )
             }
             else
             {
-                dwLength = waveLen - dwOffset - entry.dwLengthDeviation;
+                dwLength = static_cast<DWORD>(waveLen - dwOffset - entry.dwLengthDeviation);
             }
 
             DurationCompact = GetDuration( dwLength, miniFmt, seekTable );
@@ -733,23 +726,23 @@ int wmain( int argc, wchar_t *argv[ ], wchar_t *envp[ ]  )
             if ( be )
                 entry.BigEndian();
 
-            printf("  Entry %u\n\tFlags %08X\n", j, entry.dwFlags );
+            wprintf( L"  Entry %u\n\tFlags %08X\n", j, entry.dwFlags );
 
             if ( entry.dwFlags & ENTRY::FLAGS_READAHEAD )
             {
-                printf("\tFLAGS_READAHEAD\n");
+                wprintf( L"\tFLAGS_READAHEAD\n");
             }
             if ( entry.dwFlags & ENTRY::FLAGS_LOOPCACHE )
             {
-                printf("\tFLAGS_LOOPCACHE\n");
+                wprintf( L"\tFLAGS_LOOPCACHE\n");
             }
             if ( entry.dwFlags & ENTRY::FLAGS_REMOVELOOPTAIL )
             {
-                printf("\tFLAGS_REMOVELOOPTAIL\n");
+                wprintf( L"\tFLAGS_REMOVELOOPTAIL\n");
             }
             if ( entry.dwFlags & ENTRY::FLAGS_IGNORELOOP )
             {
-                printf("\tFLAGS_IGNORELOOP\n");
+                wprintf( L"\tFLAGS_IGNORELOOP\n");
             }
 
             miniFmt = &entry.Format;
@@ -766,22 +759,22 @@ int wmain( int argc, wchar_t *argv[ ], wchar_t *envp[ ]  )
             char name[ 64 ] = {0};
             strncpy_s( name, &entryNames[ n ], 64 );
 
-            printf( "\t\"%s\"\n", name );
+            wprintf( L"\t\"%hs\"\n", name );
         }
 
 
         if ( bank.dwFlags & BANKDATA::FLAGS_COMPACT )
         {
             float seconds = float( DurationCompact ) / float( miniFmt->nSamplesPerSec );
-            printf("\tEstDuration %u samples (%f seconds)\n", DurationCompact, seconds );
+            wprintf( L"\tEstDuration %u samples (%f seconds)\n", DurationCompact, seconds );
         }
         else
         {
             float seconds = float( Duration ) / float( miniFmt->nSamplesPerSec );
-            printf("\tDuration %u samples (%f seconds), EstDuration %u\n", Duration, seconds, DurationCompact );
+            wprintf( L"\tDuration %u samples (%f seconds), EstDuration %u\n", Duration, seconds, DurationCompact );
         }
 
-        printf("\tPlay Region %u, Length %u\n", dwOffset, dwLength );
+        wprintf( L"\tPlay Region %u, Length %u\n", dwOffset, dwLength );
 
         if ( !( bank.dwFlags & BANKDATA::FLAGS_COMPACT ) )
         {
@@ -789,7 +782,7 @@ int wmain( int argc, wchar_t *argv[ ], wchar_t *envp[ ]  )
 
             if ( entry.LoopRegion.dwTotalSamples > 0 )
             {
-                printf("\tLoop Region %u...%u\n", entry.LoopRegion.dwStartSample, entry.LoopRegion.dwTotalSamples );
+                wprintf( L"\tLoop Region %u...%u\n", entry.LoopRegion.dwStartSample, entry.LoopRegion.dwTotalSamples );
             }
         }
 
@@ -802,40 +795,40 @@ int wmain( int argc, wchar_t *argv[ ], wchar_t *envp[ ]  )
         case MINIWAVEFORMAT::TAG_XMA:   fmtstr = "XMA"; break;
         }
 
-        printf("\t%s %u channels, %u-bit, %u Hz\n\tblockAlign %u, avgBytesPerSec %u\n",
+        wprintf( L"\t%hs %u channels, %u-bit, %u Hz\n\tblockAlign %u, avgBytesPerSec %u\n",
                fmtstr,
                miniFmt->nChannels, miniFmt->BitsPerSample(), miniFmt->nSamplesPerSec,
                miniFmt->BlockAlign(), miniFmt->AvgBytesPerSec() );
 
         if ( !dwLength )
         {
-            printf("ERROR: Entry length is 0\n");
+            wprintf( L"ERROR: Entry length is 0\n");
         }
 
         if ( dwOffset > waveLen
              || (dwOffset+dwLength) > waveLen )
         {
-            printf("ERROR: Invalid wave data region for entry\n");
+            wprintf( L"ERROR: Invalid wave data region for entry\n");
         }
 
         if ( ( dwOffset % bank.dwAlignment ) != 0 )
         {
-            printf("ERROR: Entry offset doesn't match alignment\n");
+            wprintf( L"ERROR: Entry offset doesn't match alignment\n");
         }
 
         if ( seekTable )
         {
-            printf( "\tSeek table with %u entries", *seekTable );
+            wprintf( L"\tSeek table with %u entries", *seekTable );
 
             for ( uint32_t k = 0; k < *seekTable; ++k )
             {
                 if ( ( k % 6 ) == 0 )
-                    printf( "\n\t");
+                    wprintf( L"\n\t");
 
-                printf( "%u ", seekTable[ k + 1 ] );
+                wprintf( L"%u ", seekTable[ k + 1 ] );
             }
 
-            printf("\n");
+            wprintf( L"\n");
         }
 
         switch( miniFmt->wFormatTag  )
@@ -844,19 +837,19 @@ int wmain( int argc, wchar_t *argv[ ], wchar_t *envp[ ]  )
             hasxma = true;
             if ( ( dwOffset % 2048 ) != 0 )
             {
-                printf("ERROR: XMA2 data needs to be aligned to a 2K boundary\n" );
+                wprintf( L"ERROR: XMA2 data needs to be aligned to a 2K boundary\n" );
             }
 
             if ( !seekTable )
             {
-                printf("ERROR: Missing seek table entry for XMA2 wave\n" );
+                wprintf( L"ERROR: Missing seek table entry for XMA2 wave\n" );
             }
             break;
 
         case MINIWAVEFORMAT::TAG_WMA:
             if ( !seekTable )
             {
-                printf("ERROR: Missing seek table entry for xWMA wave\n" );
+                wprintf( L"ERROR: Missing seek table entry for xWMA wave\n" );
             }
             break;
         }
@@ -868,15 +861,15 @@ int wmain( int argc, wchar_t *argv[ ], wchar_t *envp[ ]  )
     {
         if ( ( header.Segments[HEADER::SEGIDX_ENTRYWAVEDATA].dwOffset % 2048 ) != 0 )
         {
-            printf("WARNING: Wave banks containing XMA2 data should have the wave segment offset aligned to a 2K boundary\n" );
+            wprintf( L"WARNING: Wave banks containing XMA2 data should have the wave segment offset aligned to a 2K boundary\n" );
         }
     }
 
-    printf("  Total wave bytes %Iu\n", waveBytes );
+    wprintf( L"  Total wave bytes %Iu\n", waveBytes );
 
     if ( waveBytes > waveLen )
     {
-        printf("ERROR: Invalid wave data region\n");
+        wprintf( L"ERROR: Invalid wave data region\n");
     }
 
     return 0;
