@@ -113,7 +113,7 @@ Like many smart-pointers, there is an ``operator bool`` overload to let you easi
     if ( !d3dDebug )
         // d3dDebug is currently set to nullptr
     ...
-    assert( d3dDebug ); // throw a failure in debug builds if d3dDebug is set to null at this point
+    assert( d3dDebug ); // trigger error in debug builds if d3dDebug is set to null
 
 # Constructing, assigning, and copying ComPtr
 Remember that if you set a ComPtr to a raw pointer or another ComPtr via the copy constructor or the assignment operator, the behavior is to increase the reference count. This is assuming the original raw pointer or ComPtr will still be calling ``Release``, and the new copy will also be calling ``Release``.
