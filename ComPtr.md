@@ -6,7 +6,7 @@
     // or
     #include <wrl/client.h>
 
-# Namespaces
+# Namespace
 In keeping with C++ best practice, you should use fully-qualified names in ``.h`` header files.
 
     Microsoft::WRL::ComPtr<T> variable;
@@ -39,7 +39,7 @@ For example, if you used ``context->OMSetRenderTargets(1, &m_renderTargetView, m
 # Initialization
 Generally, if you are creating a fresh ComPtr and then using a COM creation function or factory, you can use **GetAddressOf**() since you know the ComPtr is initially null.
 
-    Microsoft::WRL::ComPtr<ID3D11Device> device;
+    ComPtr<ID3D11Device> device;
     
     hr = D3D11CreateDevice( ..., device.GetAddressOf(), ... );
     // or
@@ -47,7 +47,7 @@ Generally, if you are creating a fresh ComPtr and then using a COM creation func
 
 If you are using a ComPtr as a class member, then you should use **ReleaseAndGetAddressOf**() to ensure any existing object reference is properly released. The overload for ``operator&`` does the same thing as **ReleaseAndGetAddressOf**(), but the explicit use of the method name is clearer in code.
 
-    Microsoft::WRL::ComPtr<ID3D11Device> m_device;
+    ComPtr<ID3D11Device> m_device;
     
     hr = D3D11CreateDevice( ..., m_device.ReleaseAndGetAddressOf(), ... );
     // or
@@ -67,7 +67,7 @@ When passing ComPtr variables to constructors, you usually want the new class to
 # Obtaining new interfaces
 ComPtr provides a much simpler syntax for doing ``QueryInterface`` calls on COM Objects
 
-    Microsoft::WRL::ComPtr<ID3D11Device> device;
+    ComPtr<ID3D11Device> device;
     
     hr = D3D11CreateDevice( ..., device.GetAddressOf(), ... );
     if (SUCCEEDED(hr))
