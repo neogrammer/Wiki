@@ -103,6 +103,18 @@ If you wish to release a reference from a particular ComPtr, you can use **Reset
 
 > ``d3dDebug = nullptr;`` has the same effect, but ``Reset`` is a bit more clear.
 
+# Checking for null
+Like many smart-pointers, there is an ``operator bool`` overload to let you easily check if a ComPtr is currently set to null which is often useful in assert statements:
+
+    ComPtr<ID3D11Debug> d3dDebug;
+    
+    ...
+
+    if ( !d3dDebug )
+        // d3dDebug is currently set to nullptr
+    ...
+    assert( d3dDebug ); // throw a failure in debug builds if d3dDebug is set to null at this point
+
 # Constructing, assigning, and copying ComPtr
 Remember that if you set a ComPtr to a raw pointer or another ComPtr via the copy constructor or the assignment operator, the behavior is to increase the reference count. This is assuming the original raw pointer or ComPtr will still be calling ``Release``, and the new copy will also be calling ``Release``.
 
