@@ -26,7 +26,7 @@ Whenever you need to obtain a raw pointer from a ComPtr such as calling a Direct
 
 > If you want to know why we have to use ``.get()`` and ``.Get()`` to convert smart-pointers to standard 'raw' pointers, see [this post](http://herbsutter.com/2012/06/21/reader-qa-why-dont-modern-smart-pointers-implicitly-convert-to/)
 
-A number of Direct3D APIs actually take an array of pointers to COM objects because they can be passed 1 or more objects at once. When you just have one to pass, you'll often see **GetAddressOf**() used because you are passing to a function parameter that is ``**`` (i.e. pointer-to-a-pointer). Because ``operator&`` maps to **ReleaseAndGetAddressOf**(), when calling Direct3D functions that take a pointer to an array of inputs and you are passing a single pointer, use the explicit **GetAddressOf**() method instead:
+A number of Direct3D APIs actually take an array of pointers to COM objects because they can be passed one or more objects at once. When you have just one to pass, you'll often see **GetAddressOf**() used because you are passing to a function parameter that is ``**`` (i.e. pointer-to-a-pointer). Because ``operator&`` maps to **ReleaseAndGetAddressOf**(), when calling Direct3D functions that take a pointer to an array of inputs and you are passing a single pointer, use the explicit **GetAddressOf**() method instead:
 
     context->OMSetRenderTargets(1, m_renderTargetView.GetAddressOf(),
         m_depthStencilView.Get());
