@@ -1,17 +1,42 @@
 ``Microsoft::WRL::ComPtr`` is a C++ template smart-pointer for COM objects that is used extensively in Windows Runtime (WinRT) C++ programming. It works in Win32 desktop applications as well. It is similar to ATL's ``CComPtr`` with some useful improvements. ``Microsoft::WRL:::ComPtr`` is in the Windows 8.x SDK and Windows 10 SDK, which, unlike ATL, is available when using the Express versions of Visual Studio. It is used extensively in _DirectX Tool Kit_ to properly handle COM reference counting maintenance.
 
+# Header
+
     #include <wrl.h>
     // or
     #include <wrl/client.h>
 
-Whenever you need to obtain a raw pointer from a ComPtr, use **Get**()
+# Namespaces
+In keeping with C++ best practice, you should use fully-qualified names in ``.h`` header files.
 
-    Microsoft::WRL::ComPtr<ID3D11Device> device;
+    Microsoft::WRL::ComPtr<T> variable;
+
+In ``.cpp`` source files, you can add the following to your module to make it less verbose to use ComPtr:
+
+    using Microsoft::WRL::ComPtr;
     
-    device.Get()
+    ComPtr<T> variable;
+
+# Calling Direct3D functions
+Whenever you need to obtain a raw pointer from a ComPtr such as calling a Direct3D function that takes a ``*`` (i.e. a pointer), use **Get**()
+
+    ComPtr<ID3D11RasterizerState> rasterState;
+    
+    device->RSSetState( rasterState.Get() );
 
 > If you want to know why we have to use ``.get()`` and ``.Get()`` to convert smart-pointers to standard 'raw' pointers, see [this post](http://herbsutter.com/2012/06/21/reader-qa-why-dont-modern-smart-pointers-implicitly-convert-to/)
 
+A number of Direct3D APIs actually take an array of pointers to COM objects because they can be passed 1 or more objects at once. When you just have one to pass, you'll often see **GetAddressOf** used because you are passing to a function parameter that is ``**`` (i.e. pointer-to-a-pointer). Because ``operator&`` maps to **ReleaseAndGetAddressOf**(), when calling Direct3D functions that take a pointer to an array of inputs and you are passing a single pointer, use the explicit **GetAddressOf**() method instead:
+
+    context->OMSetRenderTargets(1, m_renderTargetView.GetAddressOf(),
+        m_depthStencilView.Get());
+    // or
+    auto rt = m_renderTargetView.Get();
+    context->OMSetRenderTargets(1, &rt, m_depthStencilView.Get());
+
+For example, if you used ``context->OMSetRenderTargets(1, &m_renderTargetView, m_depthStencilView.Get());`` the ``m_renderTargetView`` variable would get released before the call to ``OMSetRenderTargets`` and the result would likely crash.
+
+# Initialization
 Generally, if you are creating a fresh ComPtr and then using a COM creation function or factory, you can use **GetAddressOf**() since you know the ComPtr is initially null.
 
     Microsoft::WRL::ComPtr<ID3D11Device> device;
@@ -30,16 +55,6 @@ If you are using a ComPtr as a class member, then you should use **ReleaseAndGet
 
 _Note that ATL's CComPtr asserted that the object was always null for ``operator&``, which had a potential to cause resource leaks._
 
-Because ``operator&`` maps to **ReleaseAndGetAddressOf**(), when calling Direct3D functions that take a pointer to an array of inputs and you are passing a single pointer, use the explicit **GetAddressOf**() method instead:
-
-    context->OMSetRenderTargets(1, m_renderTargetView.GetAddressOf(),
-        m_depthStencilView.Get());
-    // or
-    auto rt = m_renderTargetView.Get();
-    context->OMSetRenderTargets(1, &rt, m_depthStencilView.Get());
-
-> If you used ``context->OMSetRenderTargets(1, &m_renderTargetView, m_depthStencilView.Get());`` the ``m_renderTargetView`` variable would get released before the call to ``OMSetRenderTargets`` and the result would likely crash.
-
 # Parameters
 Keep in mind is that passing ComPtr variables by value will result in incrementing/decrementing the reference count. You can avoid this by either passing the smart-pointer by const reference or passing a raw pointer instead. Raw pointers are generally the more flexible option, but require the use of **Get**() at the call-site.
 
@@ -48,17 +63,6 @@ Keep in mind is that passing ComPtr variables by value will result in incrementi
     void func( T* param );
 
 When passing ComPtr variables to constructors, you usually want the new class to increase the reference count, which is handled automatically by assigning the raw pointer to a new ``ComPtr<T>`` or by copying one ``ComPtr<T>`` to another.
-
-# Namespaces
-In keeping with C++ best practice, you should use fully-qualified names in ``.h`` header files.
-
-    Microsoft::WRL::ComPtr<T> variable;
-
-In ``.cpp`` source files, you can add the following to your module to make it less verbose to use ComPtr:
-
-    using Microsoft::WRL::ComPtr;
-    
-    ComPtr<T> variable;
 
 # Obtaining new interfaces
 ComPtr provides a much simpler syntax for doing ``QueryInterface`` calls on COM Objects
