@@ -45,7 +45,7 @@ Generally, if you are creating a fresh ComPtr and then using a COM creation func
     // or
     hr = D3D11CreateDevice( ..., &device, ... );
 
-If you are using a ComPtr as a class member, then you should use **ReleaseAndGetAddressOf**() to ensure any existing object reference is properly released. The overload for ``operator&`` does the same thing as **ReleaseAndGetAddressOf**(), but the explicit use of the method name is clearer in code.
+If you are using a ComPtr as a class member, then you should use **ReleaseAndGetAddressOf**() to ensure any existing object reference is properly released. The overload for ``operator&`` does the same thing as **ReleaseAndGetAddressOf**(), but the explicit use of the method name is more clear in code.
 
     ComPtr<ID3D11Device> m_device;
     
@@ -100,6 +100,8 @@ If you wish to release a reference from a particular ComPtr, you can use **Reset
     ...
     
     d3dDebug.Reset();
+
+> ``d3dDebug = nullptr;`` has the same effect, but ``Reset`` is a bit more clear.
 
 # Constructing, assigning, and copying ComPtr
 Remember that if you set a ComPtr to a raw pointer or another ComPtr via the copy constructor or the assignment operator, the behavior is to increase the reference count. This is assuming the original raw pointer or ComPtr will still be calling ``Release``, and the new copy will also be calling ``Release``.
