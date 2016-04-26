@@ -11,7 +11,8 @@ A 2D rectangle class modeled after the [XNA Game Studio](https://msdn.microsoft.
     using namespace DirectX::SimpleMath;
 
     Rectangle r;                    // Creates an empty rectangle [0, 0, 0, 0]
-    Rectangle r(10, 20, 100, 200);  // Creates a rectangle with upper-left [10,20], 100 width, and 200 height
+    Rectangle r(10, 20, 100, 200);  // Creates a rectangle with upper-left [10,20]
+                                    // 100 width, and 200 height
 
 > For Windows desktop apps, you may find that ``Rectangle`` conflicts with the GDI function of the same name. You can resolve this three ways: Use ``#define NOGDI`` before you include ``<windows.h>``; use ``SimpleMath::Rectangle``, or in local scope use ``using Rectangle = SimpleMath::Rectangle;``.
 
