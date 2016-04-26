@@ -1,5 +1,5 @@
 # For Use
-* universal Windows apps for Windows 10
+* Universal Windows Platform apps
 * Windows 8.1 Store apps
 * Windows desktop apps
 * Windows 7
