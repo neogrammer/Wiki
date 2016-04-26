@@ -19,7 +19,7 @@ DirectX Tool Kit was formerly hosted on [CodePlex](https://directxtk.codeplex.co
 
 # NuGet
 DirectXTK is also available on NuGet
-* [universal Windows apps](https://www.nuget.org/packages/directxtk_uwp)
+* [Universal Windows Platform apps](https://www.nuget.org/packages/directxtk_uwp)
 * [Windows desktop app using VS 2013](https://www.nuget.org/packages/directxtk_desktop_2013)
 * [Windows desktop app using VS 2015](https://www.nuget.org/packages/directxtk_desktop_2015)
 * [Windows 8.1 Store](https://www.nuget.org/packages/directxtk_windowsstore_8_1)
