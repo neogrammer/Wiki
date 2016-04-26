@@ -1,6 +1,6 @@
 A 2D rectangle class modeled after the [XNA Game Studio](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.rectangle.aspx) math library
 
-> For Universal Windows Platform and Xbox One, similar functionality is provided by the ``Windows::Foundation::Rect`` Windows Runtime structure
+> For Universal Windows Platform and Xbox One, similar functionality is provided by the [Windows::Foundation::Rect](https://msdn.microsoft.com/en-us/library/windows/apps/windows.foundation.rect.aspx) Windows Runtime structure
 
 # Header
 
