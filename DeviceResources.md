@@ -337,6 +337,33 @@ Since the ``DeviceResources`` class is now in it's own file and no longer direct
 * Direct3D 12 Win32 version: [DeviceResources.h](https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d12game_win32_dr/DeviceResources.h) / [DeviceResources.cpp](https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d12game_win32_dr/DeviceResources.cpp)
 * Direct3D 12 UWP version: [DeviceResources.h](https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d12game_uwp_dr/DeviceResources.h) / [DeviceResources.cpp](https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d12game_uwp_dr/DeviceResources.cpp)
 
+# Tutorial series
+You can use the DR variant of the templates in the tutorial lessons making the following adjustments:
+
+* When directed to add something to ``CreateDevice``, add it to ``CreateDeviceDependentResources`` instead.
+
+* When asked to add something to ``CreateResources``, add it to ``CreateWindowSizeDependentResources`` instead.
+
+* Anywhere you are asked to use ``m_d3dDevice.Get()``, use ``m_deviceResources->GetD3DDevice()`` instead:
+
+    auto device = m_deviceResources->GetD3DDevice();
+
+    // For example:
+    m_states = std::make_unique<CommonStates>(device);
+
+* Anywhere you are asked to use ``m_d3dContext.Get()``, use ``m_deviceResources->GetD3DDeviceContext()`` instead:
+
+    auto context = m_deviceResources->GetD3DDeviceContext();
+ 
+    // For example:
+    m_spriteBatch = std::make_unique<SpriteBatch>(context);
+
+* When asked to use ``backBufferWidth`` or ``backBufferHeight``, use ``m_deviceResources->GetOutputSize()`` instead:
+
+    auto size = m_deviceResources->GetOutputSize();
+    m_screenPos.x = size.right / 2.f;
+    m_screenPos.y = size.bottom / 2.f;
+
 **Next lesson**: [[Adding the DirectX Tool Kit]]
 
 # Further reading
