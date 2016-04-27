@@ -11,38 +11,37 @@ _You can use direct low-level XAudio2 interfaces to implement your own streaming
 
 This class supports integer PCM 8-bit or 16-bit data (defaults to 16-bit) with 1 - 8 interleaved channels.
 
+    std::unique_ptr<DynamicSoundEffectInstance> effect;
+    
     // PCM 44100 Hz, 16-bit, 1 channel
-    std::unique_ptr<DynamicSoundEffectInstance> effect(
-        new DynamicSoundEffectInstance( audEngine.get(),
+    effect = std::unique_ptr<DynamicSoundEffectInstance>( audEngine.get(),
         [](DynamicSoundEffectInstance*)
         {
             // 'Buffer needed' event handler
         },
-        44100, 1 ) )
+        44100, 1 );
 
 For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr``.
 
 It can optionally support 3D positional audio:
 
-    std::unique_ptr<DynamicSoundEffectInstance> effect(
-        new DynamicSoundEffectInstance( audEngine.get(),
+    effect = std::make_unique<DynamicSoundEffectInstance>( audEngine.get(),
         [](DynamicSoundEffectInstance*)
         {
             // 'Buffer needed' event handler
         },
         44100, 1, 16,
-        SoundEffectInstance_Use3D ) )
+        SoundEffectInstance_Use3D );
 
 Or use 3D positional audio with reverb effects (if [[AudioEngine]] was created using ``AudioEngine_EnvironmentalReverb`` | ``AudioEngine_ReverbUseFilters``):
 
-    std::unique_ptr<DynamicSoundEffectInstance> effect(
-        new DynamicSoundEffectInstance( audEngine.get(),
+    effect = std::make_unique<(DynamicSoundEffectInstance>( audEngine.get(),
         [](DynamicSoundEffectInstance*)
         {
             // 'Buffer needed' event handler
         },
         44100, 1, 16,
-        SoundEffectInstance_Use3D | SoundEffectInstance_ReverbUseFilters ) )
+        SoundEffectInstance_Use3D | SoundEffectInstance_ReverbUseFilters );
 
 # Instance flags
 
