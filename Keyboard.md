@@ -10,7 +10,8 @@ This is a helper for simplified keyboard state tracking modeled after the [XNA G
 # Initialization
 Keyboard is a singleton.
 
-    std::unique_ptr<Keyboard> keyboard( new Keyboard );
+    std::unique_ptr<Keyboard> keyboard;
+    keyboard = std::make_unique<Keyboard>();
 
 For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr``.
 
@@ -79,13 +80,12 @@ For universal Windows apps or Windows Store apps, you need to call **SetWindow**
 
 A common pattern is to trigger an action when a key is pressed or released, but you don't want to trigger the action every single frame if the key is held down for more than a single frame. This helper class simplifies this.
 
-    std::unique_ptr<Keyboard::KeyboardStateTracker> tracker(
-        new Keyboard::KeyboardStateTracker );
+    Keyboard::KeyboardStateTracker tracker;
 
     ...
 
     auto state = keyboard->GetState();
-    tracker->Update( state );
+    tracker.Update( state );
 
     if ( tracker.pressed.Space )
         // Space was just pressed down
