@@ -128,8 +128,11 @@ This example uses a sprite sheet that has 4 frames of animation ([shipanimated.d
     #include "SpriteBatch.h"
     #include "AnimatedTexture.h"
 
-    // Create a texture using our sprite sheet
     Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> ship;
+    std::unique_ptr<DirectX::SpriteBatch> spriteBatch;
+    std::unique_ptr<AnimatedTexture> sprite;
+
+    // Create a texture using our sprite sheet
     hr = CreateDDSTextureFromFile( device, L"shipanimated.dds", nullptr,
         ship.GetAddressOf() );
     DX::ThrowIfFailed(hr);
@@ -137,12 +140,11 @@ This example uses a sprite sheet that has 4 frames of animation ([shipanimated.d
     ...
 
     // Create a sprite batch for drawing
-    std::unique_ptr<DirectX::SpriteBatch> spriteBatch = std::make_unique<SpriteBatch>( context );
+    spriteBatch = std::make_unique<SpriteBatch>( context );
 
     // Create an AnimatedTexture helper class instance and set it to use our texture
     // which is assumed to have 4 frames of animation with a FPS of 2 seconds
-    std::unique_ptr<AnimatedTexture> sprite =
-        std::make_unique<AnimatedTexture>( XMFLOAT2(0,0), 0.f, 2.f, 0.5f );
+    sprite = std::make_unique<AnimatedTexture>( XMFLOAT2(0,0), 0.f, 2.f, 0.5f );
     sprite->Load( ship.Get(), 4, 2 );
 
     ...
