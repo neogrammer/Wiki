@@ -259,8 +259,11 @@ And here is some example code to render using this sprite sheet:
     #include "SpriteSheet.h"
     #include "WICTextureLoader.h"
 
-    // Create a texture using our sprite sheet
     Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> texture;
+    std::unique_ptr<DirectX::SpriteBatch> spriteBatch;
+    std::unique_ptr<SpriteSheet> sprites;
+
+    // Create a texture using our sprite sheet
     hr = CreateWICTextureFromFile( device, L"SpriteSheetSample.png",
         nullptr, texture.GetAddressOf() );
     DX::ThrowIfFailed(hr);
@@ -268,10 +271,10 @@ And here is some example code to render using this sprite sheet:
     ...
 
     // Create a SpriteBatch for rendering
-    std::unique_ptr<DirectX::SpriteBatch> spriteBatch( new SpriteBatch( context ) );
+    spriteBatch = std::make_unique<SpriteBatch>( context );
 
     // Create an SpriteSheet helper class instance 
-    std::unique_ptr<SpriteSheet> sprites( new SpriteSheet );
+    sprites = std::make_unique<SpriteSheet>();
     sprites->Load( texture.Get(), L"SpriteSheetSample.txt" );
 
     ...
