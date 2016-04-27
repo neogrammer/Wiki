@@ -54,7 +54,7 @@ When creating the AudioEngine, you can specify enabling of XAudio2 debugging fac
     #ifdef _DEBUG
     eflags = eflags | AudioEngine_Debug;
     #endif
-    std::unique_ptr<AudioEngine> audEngine( new AudioEngine( eflags ) );
+    audEngine = std::make_unique<AudioEngine>( eflags );
 
 [XAudio2 Debugging Facilities](http://msdn.microsoft.com/en-us/library/windows/desktop/ee415752.aspx)
 
