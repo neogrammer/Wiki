@@ -99,7 +99,7 @@ When focus is returned to the application, call the following method to restore 
 
 A common pattern for gamepads is to trigger an action when a button is pressed or released, but you don't want to trigger the action every single frame if the button is held down for more than a single frame. This helper class simplifies this.
 
-    GamePad::ButtonStateTracker> tracker;
+    GamePad::ButtonStateTracker tracker;
 
     ...
 
