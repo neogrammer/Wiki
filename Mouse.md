@@ -10,7 +10,8 @@ This is a helper for simplified mouse tracking modeled after the [XNA Game Studi
 # Initialization
 Mouse is a singleton.
 
-    std::unique_ptr<Mouse> mouse( new Mouse );
+    std::unique_ptr<Mouse> mouse;
+    mouse = = std::make_unique<Mouse>();
 
 For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr``.
 
@@ -79,15 +80,14 @@ You need to call **SetWindow** and **SetDpi** in the appropriate places.
 
 A common pattern is to trigger an action when a mouse button is pressed or released, but you don't want to trigger the action every single frame if the button is held down for more than a single frame. This helper class simplifies this.
 
-    std::unique_ptr<Mouse::ButtonStateTracker> tracker(
-        new Mouse::ButtonStateTracker );
+    Mouse::ButtonStateTracker tracker;
 
     ...
 
     auto state = mouse->GetState();
-    tracker->Update( state );
+    tracker.Update( state );
 
-    if ( tracker->rightButton == Mouse::ButtonStateTracker::PRESSED )
+    if ( tracker.rightButton == Mouse::ButtonStateTracker::PRESSED )
         // Take an action when Right mouse button is first pressed,
         // but don't do it again until the button is released and
         // then pressed again
