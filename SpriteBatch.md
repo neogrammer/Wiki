@@ -10,7 +10,8 @@ This is a native Direct3D 11 implementation of the SpriteBatch helper from [XNA 
 # Initialization
 The SpriteBatch class requires a Direct3D 11 device context for drawing. 
 
-    std::unique_ptr<SpriteBatch> spriteBatch(new SpriteBatch(deviceContext));
+    std::unique_ptr<SpriteBatch> spriteBatch;
+    spriteBatch = std::make_unique<SpriteBatch>(deviceContext);
 
 For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
