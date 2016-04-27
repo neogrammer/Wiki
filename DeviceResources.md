@@ -347,15 +347,11 @@ When asked to add something to ``CreateResources``, add it to ``CreateWindowSize
 Anywhere you are asked to use ``m_d3dDevice.Get()``, use ``m_deviceResources->GetD3DDevice()`` instead:
 
     auto device = m_deviceResources->GetD3DDevice();
-
-    // For example:
     m_states = std::make_unique<CommonStates>(device);
 
 Anywhere you are asked to use ``m_d3dContext.Get()``, use ``m_deviceResources->GetD3DDeviceContext()`` instead:
 
     auto context = m_deviceResources->GetD3DDeviceContext();
- 
-    // For example:
     m_spriteBatch = std::make_unique<SpriteBatch>(context);
 
 When asked to use ``backBufferWidth`` or ``backBufferHeight``, use ``m_deviceResources->GetOutputSize()`` instead:
