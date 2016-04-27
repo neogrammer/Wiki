@@ -181,7 +181,7 @@ See [FXMASTERINGLIMITER_PARAMETERS](http://msdn.microsoft.com/en-us/library/wind
     #ifdef _DEBUG
     eflags = eflags | AudioEngine_Debug;
     #endif
-    std::unique_ptr<AudioEngine> audEngine( new AudioEngine( eflags ) );
+    audEngine = std::make_unique<AudioEngine>( eflags );
 
 # Statistics
 
