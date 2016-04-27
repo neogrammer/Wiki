@@ -28,7 +28,10 @@ The default values assume that your maximum batch size is 2048 vertices arranged
 
 Setting up a suitable BasicEffect and input layout:
 
-    std::unique_ptr<BasicEffect> basicEffect(new BasicEffect(device));
+    std::unique_ptr<BasicEffect> basicEffect;
+    ComPtr<ID3D11InputLayout> inputLayout;
+
+    basicEffect = std::make_unique<BasicEffect>(device);
 
     basicEffect->SetProjection(XMMatrixOrthographicOffCenterRH(0,
         screenWidth, screenHeight, 0, 0, 1));
@@ -38,8 +41,6 @@ Setting up a suitable BasicEffect and input layout:
     size_t byteCodeLength;
 
     basicEffect->GetVertexShaderBytecode(&shaderByteCode, &byteCodeLength);
-
-    ComPtr<ID3D11InputLayout> inputLayout;
 
     device->CreateInputLayout(VertexPositionColor::InputElements,
                               VertexPositionColor::InputElementCount,
