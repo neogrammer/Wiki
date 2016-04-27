@@ -6,7 +6,8 @@ This class is used for the Xbox One platform to manage video memory allocations.
 # Initialization
 The graphics memory helper is a singleton. It needs explicit initialization because it requires the backbuffer count provided when you set up your swapchain.
 
-    std::unique_ptr<GraphicsMemory> graphicsMemory = std::make_unique<GraphicsMemory>(device, backBufferCount);
+    std::unique_ptr<GraphicsMemory> graphicsMemory;
+    graphicsMemory = std::make_unique<GraphicsMemory>(device, backBufferCount);
 
 For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr``.
 
