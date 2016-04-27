@@ -13,8 +13,8 @@ PrimitiveBatch is responsible for setting the vertex buffer, index buffer, and p
 
 Initialize a PrimitiveBatch for drawing ``VertexPositionColor`` data
 
-    std::unique_ptr<PrimitiveBatch<VertexPositionColor>> primitiveBatch(
-        new PrimitiveBatch<VertexPositionColor>(deviceContext));
+    std::unique_ptr<PrimitiveBatch<VertexPositionColor>> primitiveBatch;
+    primitiveBatch = std::make_unique<PrimitiveBatch<VertexPositionColor>>(deviceContext);
 
 For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
