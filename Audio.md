@@ -27,7 +27,8 @@ The first step in using DirectXTK for Audio is to create the AudioEngine, which 
     #ifdef _DEBUG
     eflags = eflags | AudioEngine_Debug;
     #endif
-    std::unique_ptr<AudioEngine> audEngine( new AudioEngine( eflags ) );
+    std::unique_ptr<AudioEngine> audEngine;
+    audEngine = std::make_unique<AudioEngine>( eflags );
 
 # Per-frame processing
 The application should call ``Update`` every frame to allow for per-frame engine updates, such as one-shot voice management. This could also be done in a worker thread rather than on the main rendering thread.
