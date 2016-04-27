@@ -360,6 +360,8 @@ When asked to use ``backBufferWidth`` or ``backBufferHeight``, use ``m_deviceRes
     m_screenPos.x = size.right / 2.f;
     m_screenPos.y = size.bottom / 2.f;
 
+When asked to use ``backBufferCount``, use ``m_deviceResources->GetBackBufferCount()`` instead.
+
 **Next lesson**: [[Adding the DirectX Tool Kit]]
 
 # Further reading
