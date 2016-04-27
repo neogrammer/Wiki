@@ -106,8 +106,11 @@ Displays a top-to-bottom scrolling background of a starfield ([starfield..dds](h
     #include "SpriteBatch.h"
     #include "ScrollingBackground.h"
 
-    // Create a texture for the background
     Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> space;
+    std::unique_ptr<DirectX::SpriteBatch> batch;
+    std::unique_ptr<ScrollingBackground> background;
+
+    // Create a texture for the background
     hr = CreateDDSTextureFromFile( device, L"starfield.dds", nullptr,
         space.GetAddressOf() );
     DX::ThrowIfFailed(hr);
@@ -115,10 +118,10 @@ Displays a top-to-bottom scrolling background of a starfield ([starfield..dds](h
     ...
 
     // Create a sprite batch for drawing
-    std::unique_ptr<DirectX::SpriteBatch> batch( new SpriteBatch( context ) );
+    batch = std::make_unique<SpriteBatch>( context );
 
     // Create a ScrollingBackground helper class instance, and set it to our texture
-    std::unique_ptr<ScrollingBackground> background( new ScrollingBackground );
+    background = std::make_unique<ScrollingBackground>();
     background->Load( space.Get() );
 
     ...
