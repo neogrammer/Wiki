@@ -8,11 +8,13 @@ It uses a simple case-sensitive string-based (wide-character) map for finding ef
 # Initialization
 The **EffectFactory** and **DGSLEffectFactory** constructor require a Direct3D 11 device.
 
-    std::unique_ptr<EffectFactory> fxFactory( new EffectFactory( device ) )
+    std::unique_ptr<EffectFactory> fxFactory;
+    fxFactory = std::make_unique<EffectFactory>( device );
 
 -or-
 
-    std::unique_ptr<DGSLEffectFactory> fxFactory( new DGSLEffectFactory( device ) )
+    std::unique_ptr<DGSLEffectFactory> fxFactory;
+    fxFactory = std::make_unique<DGSLEffectFactory>( device );
 
 For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
