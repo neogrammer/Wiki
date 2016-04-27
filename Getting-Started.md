@@ -31,7 +31,7 @@ For learning purposes, these instructions are going to focus on the following se
 * Visual Studio 2013 [Update 5](http://blogs.msdn.com/b/chuckw/archive/2015/07/20/visual-studio-2013-update-5.aspx) or 2015 [Update 2](https://blogs.msdn.microsoft.com/chuckw/2016/03/31/visual-studio-2015-update-2/) Community, Professional, Premium, or Ultimate
 * Windows 7 Service Pack 1, Windows 8.1, or Windows 10
 
-We will be using a Win32 desktop application project template in order to support developers using Windows 7, but all these techniques and APIs apply to universal Windows apps, Windows Store apps, Windows phone 8.x, and Xbox One as well.
+We will be using a Win32 desktop application project template in order to support developers using Windows 7, but all these techniques and APIs apply to Universal Windows Platform apps, Windows Store apps, Windows phone 8.1, and Xbox One as well.
 
 If using VS 2015, be sure to install Visual C++ which requires using the _Custom_ install as it's not part of the _Typical_ install. See the [Visual C++ Team Blog](http://blogs.msdn.com/b/vcblog/archive/2015/07/24/setup-changes-in-visual-studio-2015-affecting-c-developers.aspx) for details.
 
