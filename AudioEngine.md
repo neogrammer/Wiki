@@ -13,7 +13,8 @@ XAudio2 requires COM be initialized as a prerequisite using ``Windows::Foundatio
 
 All _DirectXTK for Audio_ components require an AudioEngine instance. For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr``.
 
-    std::unique_ptr<AudioEngine> audEngine( new AudioEngine() );
+    std::unique_ptr<AudioEngine> audEngine;
+    audEngine = std::make_unique<AudioEngine>();
 
 The constructor optionally takes a number of parameters:
 
