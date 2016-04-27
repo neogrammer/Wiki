@@ -10,7 +10,8 @@ This is a helper for simplified access to gamepad controllers modeled after the 
 # Initialization
 GamePad is a singleton.
 
-    std::unique_ptr<GamePad> gamePad( new GamePad );
+    std::unique_ptr<GamePad> gamepad;
+    gamepad = std::make_unique<GamePad>();
 
 For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr``.
 
