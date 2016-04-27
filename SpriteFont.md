@@ -13,9 +13,11 @@ This is a native Direct3D implementation of a bitmap font renderer, similar to t
 
 The SpriteFont class requires a [[SpriteBatch]] instance and a ``.spritefont`` bitmap file.
 
-    std::unique_ptr<SpriteBatch> spriteBatch(new SpriteBatch(deviceContext));
-    std::unique_ptr<SpriteFont> spriteFont(new SpriteFont(device,
-        L"myfile.spritefont"));
+    std::unique_ptr<SpriteBatch> spriteBatch;
+    std::unique_ptr<SpriteFont> spriteFont;
+
+    spriteBatch = std::make_unique<SpriteBatch>(deviceContext);
+    spriteFont = std::make_unique<SpriteFont>(device, L"myfile.spritefont");
 
 For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
