@@ -23,11 +23,13 @@ The first step in using DirectXTK for Audio is to create the AudioEngine, which 
 
     ...
 
+    std::unique_ptr<AudioEngine> audEngine;
+
+    ...
     AUDIO_ENGINE_FLAGS eflags = AudioEngine_Default;
     #ifdef _DEBUG
     eflags = eflags | AudioEngine_Debug;
     #endif
-    std::unique_ptr<AudioEngine> audEngine;
     audEngine = std::make_unique<AudioEngine>( eflags );
 
 # Per-frame processing
