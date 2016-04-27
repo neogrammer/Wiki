@@ -35,7 +35,7 @@ It can optionally support 3D positional audio:
 
 Or use 3D positional audio with reverb effects (if [[AudioEngine]] was created using ``AudioEngine_EnvironmentalReverb`` | ``AudioEngine_ReverbUseFilters``):
 
-    effect = std::make_unique<(DynamicSoundEffectInstance>( audEngine.get(),
+    effect = std::make_unique<DynamicSoundEffectInstance>( audEngine.get(),
         [](DynamicSoundEffectInstance*)
         {
             // 'Buffer needed' event handler
