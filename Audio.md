@@ -60,7 +60,6 @@ Creating SoundEffectInstances allows full control over the playback, and are pro
 # Playing one-shots
 A common way to play sounds is to trigger them in a 'fire-and-forget' mode. This is done by calling ``SoundEffect::Play`` rather than creating a SoundEffectInstance. These use XAudio2 source voices managed by AudioEngine, are cleaned up automatically when they finish playing, and can overlap in time. One-shot sounds cannot be looped or have positional 3D effects.
 
-    std::unique_ptr<SoundEffect> soundEffect;
     soundEffect = std::make_unique<SoundEffect>( audEngine.get(), L"Explosion.wav" );
     soundEffect->Play();
 
@@ -141,7 +140,6 @@ Windows 8.x, Windows 10, Windows phone 8.x, and Xbox One all include XAudio 2.8 
 * _DirectXTK_Windows81_
 * _DirectXTK_WindowsPhone81_
 * _DirectXTK_XAMLSilverlight_WindowsPhone81_ 
-* _DirectXTK_WindowsPhone8_
 * _DirectXTK_XboxOneXDK_2015_ 
 * _DirectXTK_Desktop_2015_Win10_
 
