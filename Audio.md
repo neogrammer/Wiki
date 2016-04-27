@@ -49,8 +49,8 @@ The application should call ``Update`` every frame to allow for per-frame engine
 # Loading and a playing a looping sound
 Creating SoundEffectInstances allows full control over the playback, and are provided with a  dedicated XAudio2 source voice. This allows control of playback, looping, volume control, panning,  and pitch-shifting.
 
-    std::unique_ptr<SoundEffect> soundEffect( new SoundEffect( audEngine.get(),
-        L"Sound.wav" ) );
+    std::unique_ptr<SoundEffect> soundEffect;
+    soundEffect = std::make_unique<SoundEffect>( audEngine.get(), L"Sound.wav" );
     auto effect = soundEffect->CreateInstance();
 
     ...
@@ -60,8 +60,8 @@ Creating SoundEffectInstances allows full control over the playback, and are pro
 # Playing one-shots
 A common way to play sounds is to trigger them in a 'fire-and-forget' mode. This is done by calling ``SoundEffect::Play`` rather than creating a SoundEffectInstance. These use XAudio2 source voices managed by AudioEngine, are cleaned up automatically when they finish playing, and can overlap in time. One-shot sounds cannot be looped or have positional 3D effects.
 
-    std::unique_ptr<SoundEffect> soundEffect( new SoundEffect( audEngine.get(),
-        L"Explosion.wav" ) );
+    std::unique_ptr<SoundEffect> soundEffect;
+    soundEffect = std::make_unique<SoundEffect>( audEngine.get(), L"Explosion.wav" );
     soundEffect->Play();
 
     ...
@@ -76,13 +76,12 @@ DirectXTK for Audio supports positional 3D audio with optional environmental rev
     #ifdef _DEBUG
     eflags = eflags | AudioEngine_Debug;
     #endif
-    std::unique_ptr<AudioEngine> audEngine( new AudioEngine( eflags ) );
+    audEngine = std::make_unique<AudioEngine>( eflags );
     audEngine->SetReverb( Reverb_ConcertHall );
 
     ...
 
-    std::unique_ptr<SoundEffect> soundEffect( new SoundEffect( audEngine.get(),
-        L"Sound.wav" ) );
+    soundEffect = std::make_unique<SoundEffect>( audEngine.get(), L"Sound.wav" );
     auto effect = soundEffect->CreateInstance( SoundEffectInstance_Use3D
         | SoundEffectInstance_ReverbUseFilters );
 
@@ -107,8 +106,8 @@ DirectXTK for Audio supports positional 3D audio with optional environmental rev
 # Using wave banks
 Rather than loading individual ``.wav`` files, a more efficient method is to package them into a  "wave bank". This allows for more efficient loading and memory organization. DirectXTK for Audio's WaveBank class can be used to play one-shots or to create SoundEffectInstances from 'in-memory' wave banks.
 
-    std::unique_ptr<WaveBank> wb( new WaveBank( audEngine.get(),
-        L"wavebank.xwb" ) );
+    std::unique_ptr<WaveBank> wb;
+    wb = std::make_unique<WaveBank>( audEngine.get(), L"wavebank.xwb" ) );
 
 A SoundEffectInstance can be created from a wavebank referencing a particular wave in the bank:
 
@@ -189,3 +188,5 @@ Note that ``IVoiceNotify::OnBufferEnd`` is called from XAudio2's thread, so the 
 [XAudio2 and Windows 8](http://blogs.msdn.com/b/chuckw/archive/2012/04/02/xaudio2-and-windows-8-consumer-preview.aspx)
 
 [SoundLab](http://xbox.create.msdn.com/en-US/education/catalog/utility/soundlab)
+
+[The Zombie DirectX SDK](https://blogs.msdn.microsoft.com/chuckw/2015/03/23/the-zombie-directx-sdk/)
