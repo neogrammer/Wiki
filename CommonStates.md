@@ -9,7 +9,8 @@ The CommonStates class is a factory which simplifies setting the most common com
 
 The CommonStates constructor requires a Direct3D 11 device.
 
-    std::unique_ptr<CommonStates> states(new CommonStates(device));
+    std::unique_ptr<CommonStates> states;
+    states = std::make_unique<CommonStates>(device);
 
 For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
