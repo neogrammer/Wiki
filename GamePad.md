@@ -99,22 +99,22 @@ When focus is returned to the application, call the following method to restore 
 
 A common pattern for gamepads is to trigger an action when a button is pressed or released, but you don't want to trigger the action every single frame if the button is held down for more than a single frame. This helper class simplifies this.
 
-    std::unique_ptr<GamePad::ButtonStateTracker> tracker( new  GamePad::ButtonStateTracker );
+    GamePad::ButtonStateTracker> tracker;
 
     ...
 
     auto state = gamePad->GetState( 0 );
     if ( state.IsConnected() )
     {
-        tracker->Update( state );
+        tracker.Update( state );
 
-        if ( tracker->a == GamePad::ButtonStateTracker::PRESSED )
+        if ( tracker.a == GamePad::ButtonStateTracker::PRESSED )
             // Take an action when Button A is first pressed, but don't do it again until
             // the button is released and then pressed again
     }
     else
     {
-        tracker->Reset();
+        tracker.Reset();
     }
 
 Each button is reported by the tracker with a state ``UP``, ``HELD``, ``PRESSED``, or ``RELEASED``.
