@@ -31,7 +31,8 @@ The second takes ownership of a memory buffer containing the wave data. The _wfx
     wfx->wBitsPerSample = 16;
     wfx->cbSize = 0;
 
-    effect = std::make_unique<SoundEffect>( audEngine.get(), wavData, wfx, startAudio, audioSize );
+    effect = std::make_unique<SoundEffect>( audEngine.get(),
+        wavData, wfx, startAudio, audioSize );
 
 This example uses a simple helper routine which fills a buffer with 1 second of a pure sine wave at a given frequency:
 
