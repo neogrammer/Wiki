@@ -7,8 +7,8 @@ SoundEffect is a container class for wave sample data. This data can then be pla
 
 The SoundEffect class can be created with two main forms of constructor. The first loads from a ``.wav`` file on disk.
 
-    std::unique_ptr<SoundEffect> effect( new SoundEffect( audEngine.get(),
-        L"sound.wav" );
+    std::unique_ptr<SoundEffect> effect;
+    effect = std::make_unique<SoundEffect>( audEngine.get(), L"sound.wav" );
 
 For exception safety, it is recommended you make use of the C++ C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
