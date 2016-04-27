@@ -340,25 +340,25 @@ Since the ``DeviceResources`` class is now in it's own file and no longer direct
 # Tutorial series
 You can use the DR variant of the templates in the tutorial lessons making the following adjustments:
 
-* When directed to add something to ``CreateDevice``, add it to ``CreateDeviceDependentResources`` instead.
+When directed to add something to ``CreateDevice``, add it to ``CreateDeviceDependentResources`` instead.
 
-* When asked to add something to ``CreateResources``, add it to ``CreateWindowSizeDependentResources`` instead.
+When asked to add something to ``CreateResources``, add it to ``CreateWindowSizeDependentResources`` instead.
 
-* Anywhere you are asked to use ``m_d3dDevice.Get()``, use ``m_deviceResources->GetD3DDevice()`` instead:
+Anywhere you are asked to use ``m_d3dDevice.Get()``, use ``m_deviceResources->GetD3DDevice()`` instead:
 
     auto device = m_deviceResources->GetD3DDevice();
 
     // For example:
     m_states = std::make_unique<CommonStates>(device);
 
-* Anywhere you are asked to use ``m_d3dContext.Get()``, use ``m_deviceResources->GetD3DDeviceContext()`` instead:
+Anywhere you are asked to use ``m_d3dContext.Get()``, use ``m_deviceResources->GetD3DDeviceContext()`` instead:
 
     auto context = m_deviceResources->GetD3DDeviceContext();
  
     // For example:
     m_spriteBatch = std::make_unique<SpriteBatch>(context);
 
-* When asked to use ``backBufferWidth`` or ``backBufferHeight``, use ``m_deviceResources->GetOutputSize()`` instead:
+When asked to use ``backBufferWidth`` or ``backBufferHeight``, use ``m_deviceResources->GetOutputSize()`` instead:
 
     auto size = m_deviceResources->GetOutputSize();
     m_screenPos.x = size.right / 2.f;
