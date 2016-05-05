@@ -27,6 +27,8 @@ For debugging exceptions thrown by the _DirectX Tool Kit_, you should enable the
 
 ![Exception Settings](https://github.com/Microsoft/DirectXTK/wiki/images/DebugExcept.PNG)
 
+> For Visual Studio 2015, the exception debugging options changed compared to VS 2013. Read [this blog post](https://blogs.msdn.microsoft.com/visualstudioalm/2015/02/23/the-new-exception-settings-window-in-visual-studio-2015/) for more.
+
 # Audience
 These tutorials are written with game development in mind as the target application since games are an excellent fit for the 'immersive DirectX app' model. Keep in mind, however, that the majority of the functionality in the _DirectX Tool Kit_ is applicable to DirectX graphics programming in general for both game and non-game applications.
 
