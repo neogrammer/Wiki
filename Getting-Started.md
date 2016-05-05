@@ -27,7 +27,7 @@ For debugging exceptions thrown by the _DirectX Tool Kit_, you should enable the
 
 ![Exception Settings](https://github.com/Microsoft/DirectXTK/wiki/images/DebugExcept.PNG)
 
-> For some more detail on how the Visual Studio debugger deals with exceptions, read [this](https://blogs.msdn.microsoft.com/visualstudioalm/2015/02/23/the-new-exception-settings-window-in-visual-studio-2015/) blog post.
+> For some more detail on how the Visual Studio debugger deals with exceptions, read [this](https://blogs.msdn.microsoft.com/visualstudioalm/2015/01/07/understanding-exceptions-while-debugging-with-visual-studio/) blog post.
 
 > In Visual Studio 2015, the exception debugging options changed compared to VS 2013; see [this](https://blogs.msdn.microsoft.com/visualstudioalm/2015/02/23/the-new-exception-settings-window-in-visual-studio-2015/) blog post.
 
