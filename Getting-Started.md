@@ -25,7 +25,7 @@ One thing that many C++ developers, particularly game developers, may not be all
 
 For debugging exceptions thrown by the _DirectX Tool Kit_, you should enable the checkbox next to ``std::exception`` in the Visual Studio Exception Settings dialog. It's not on by default.
 
-![Exception Settings](https://github.com/Microsoft/DirectXTK/wiki/images/DebugExcept.png)
+![Exception Settings](https://github.com/Microsoft/DirectXTK/wiki/images/DebugExcept.PNG)
 
 # Audience
 These tutorials are written with game development in mind as the target application since games are an excellent fit for the 'immersive DirectX app' model. Keep in mind, however, that the majority of the functionality in the _DirectX Tool Kit_ is applicable to DirectX graphics programming in general for both game and non-game applications.
