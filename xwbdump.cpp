@@ -531,10 +531,10 @@ int wmain( int argc, wchar_t *argv[ ], wchar_t *envp[ ]  )
         SYSTEMTIME lst;
         if ( SystemTimeToTzSpecificLocalTime( nullptr, &st, &lst ) )
         {
-            WCHAR szLocalDate[256] = {0};
+            wchar_t szLocalDate[256] = {0};
             GetDateFormatW( LOCALE_USER_DEFAULT, DATE_LONGDATE, &lst, nullptr, szLocalDate, 256 );
 
-            WCHAR szLocalTime[256] = {0};
+            wchar_t szLocalTime[256] = {0};
             GetTimeFormatW( LOCALE_USER_DEFAULT, 0, &lst, nullptr, szLocalTime, 256 );
 
             wprintf( L"\tBuild time: %ls, %ls\n", szLocalDate, szLocalTime );
