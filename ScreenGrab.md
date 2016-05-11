@@ -125,7 +125,7 @@ If you are going to immediately copy it to another location via ``StorageFolder:
 
     auto folder = Windows::Storage::ApplicationData::Current->TemporaryFolder;
 
-    WCHAR fname[ _MAX_PATH ];
+    wchar_t fname[ _MAX_PATH ];
     wcscpy_s( fname, folder->Path->Data() );
     wcscat_s( fname, L"\\screenshot.jpg" );
 
