@@ -42,6 +42,8 @@ The Draw method assumes that the proper blend state, depth/stencil state, raster
 
             mesh->PrepareForRendering( deviceContext, states, false );
 
+            // Do any setCustomState work here
+
             mesh->Draw( deviceContext, world, view, projection, false );
         }
     }
@@ -58,6 +60,8 @@ The Draw method assumes that the proper blend state, depth/stencil state, raster
             assert( mesh != 0 );
 
             mesh->PrepareForRendering( deviceContext, states, true );
+
+            // Do any setCustomState work here
 
             mesh->Draw( deviceContext, world, view, projection, true );
         }
