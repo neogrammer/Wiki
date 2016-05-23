@@ -93,9 +93,9 @@ See also the [Visual C+ Team Blog](http://blogs.msdn.com/b/vcblog/archive/2010/0
 ## Using NuGet package manager
 Alternatively you can use NuGet to install one of the DirectX Tool Kit packages. Use *Project / Manage NuGet Packages...* then select "Online" and search for "DirectX Tool Kit".
 
-* Use Id: [directxtk_desktop_2015](https://www.nuget.org/packages/directxtk_desktop_2015/) for Windows desktop C++ applications building with VS 2015 Community, VS 2015 Professional or higher
+* Use Id: [directxtk_desktop_2015](https://www.nuget.org/packages/directxtk_desktop_2015/) for Windows desktop C++ applications building with VS 2015 Community, VS 2015 Professional or higher. _DirectXTK for Audio_ in this package requires XAudio 2.7 from the legacy DirectX SDK.
 * Use id: [directxtk_uwp](https://www.nuget.org/packages/directxtk_uwp/) for Universal Windows Platform apps for Windows 10 building with VS 2015 Community, VS 2015 Professional or higher
-* Use Id: [directxtk_desktop_2013](https://www.nuget.org/packages/directxtk_desktop_2013/) for Windows desktop C++ applications building with the VS 2013 Express for Desktop, VS 2013 Community, VS 2013 Professional or higher
+* Use Id: [directxtk_desktop_2013](https://www.nuget.org/packages/directxtk_desktop_2013/) for Windows desktop C++ applications building with the VS 2013 Express for Desktop, VS 2013 Community, VS 2013 Professional or higher. _DirectXTK for Audio_ in this package requires XAudio 2.7 from the legacy DirectX SDK.
 * Use Id: [directxtk_windowsstore_8_1](https://www.nuget.org/packages/directxtk_windowsstore_8_1/) for Windows Store C++ apps building with VS 2013 targeting Windows 8.1 / RT 8.1
 * Use Id: [directxtk_windowsphone_8_1](https://www.nuget.org/packages/directxtk_windowsphone_8_1/) for Windows phone 8.1 C++ apps or Windows phone Silverlight 8.1 C++ apps building with VS 2013 Update 2 or later.
 
