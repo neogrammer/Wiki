@@ -171,6 +171,8 @@ DirectXTK makes use of the latest Direct3D 11.1 headers available in the Windows
     #pragma warning( disable : 4005 )
     #include <C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\x3daudio.h>
 
+> The NuGet packages [directxtk_desktop_2015](https://www.nuget.org/packages/directxtk_desktop_2015/) and [directxtk_desktop_2013](https://www.nuget.org/packages/directxtk_desktop_2013/) are designed for Windows 7 compatibility, so any use of _DirectX Tool Kit for Audio_ uses XAudio 2.7 from the legacy DirectX SDK.
+
 # Content Pipeline
 **Note:** When adding ``.xwb`` files to your Windows Store app or Windows phone app project, you need to manually set the file properties to "Content: Yes" for all configurations to have these files included in your AppX package. ``.wav`` files are automatically detected as a media file and are included as content by default.
 
