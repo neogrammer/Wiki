@@ -4,7 +4,7 @@
 * Windows desktop apps
 * Windows 7
 * Windows Vista Service Pack 2 with KB971644 
-* Windows phone 8.x
+* Windows phone 8.1
 * Xbox One
 
 # For Development
