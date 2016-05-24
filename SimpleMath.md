@@ -164,11 +164,7 @@ Since this is implemented using C++ conversion operators, you can at any point u
 You can therefore freely mix SimpleMath types with DirectXMath functions at any point.
 
 # Further Reading
-[DirectXMath instruction extension series](http://blogs.msdn.com/b/chuckw/archive/2012/09/11/directxmath-sse-sse2-and-arm-neon.aspx)  
-[Known Issues: DirectXMath 3.03](http://blogs.msdn.com/b/chuckw/archive/2013/03/06/known-issues-directxmath-3-03.aspx)  
-[Known Issues: DirectXMath 3.06](http://blogs.msdn.com/b/chuckw/archive/2014/12/12/known-issues-directxmath-3-06.aspx)  
+[DirectXMath](https://github.com/Microsoft/DirectXMath/wiki) project wiki
 
 [SimpleMath - a simplified wrapper for DirectXMath](http://blogs.msdn.com/b/shawnhar/archive/2013/01/08/simplemath-a-simplified-wrapper-for-directxmath.aspx)
 
-[XDSP.H: Digital Signal Processing helper functions](http://blogs.msdn.com/b/chuckw/archive/2012/05/01/xdsp-h.aspx)  
-[Spherical Harmonics Math](http://blogs.msdn.com/b/chuckw/archive/2012/07/28/spherical-harmonics-math.aspx)
