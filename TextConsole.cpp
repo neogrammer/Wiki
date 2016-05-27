@@ -215,6 +215,16 @@ void TextConsole::RestoreDevice(ID3D11DeviceContext* context, const wchar_t* fon
     m_font->SetDefaultCharacter(L' ');
 }
 
+
+void TextConsole::SetRotation(DXGI_MODE_ROTATION rotation)
+{
+    if (m_batch)
+    {
+        m_batch->SetRotation(rotation);
+    }
+}
+
+
 void TextConsole::ProcessString(const wchar_t* str)
 {
     if (!m_lines)

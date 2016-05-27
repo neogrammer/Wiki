@@ -50,6 +50,8 @@ namespace DX
         void ReleaseDevice();
         void RestoreDevice(ID3D11DeviceContext* context, const wchar_t* fontName);
 
+        void SetRotation(DXGI_MODE_ROTATION rotation);
+
     private:
         void ProcessString(const wchar_t* str);
         void IncrementLine();
