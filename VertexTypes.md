@@ -33,7 +33,7 @@ Each type also provides a ``D3D11_INPUT_ELEMENT_DESC`` array which can be used t
 
 *Texture* coordinates (which uses the semantic "TEXCOORD0") are XMFLOAT2 (``DXGI_FORMAT_R32G32_FLOAT``).
 
-*DualTexture* coordinates (which uses the semantic "TEXCOORD0" and ``TEXCOORD1``) are XMFLOAT2 (``DXGI_FORMAT_R32G32_FLOAT``).
+*DualTexture* coordinates (which uses the semantic "TEXCOORD0" and "TEXCOORD1") are XMFLOAT2 (``DXGI_FORMAT_R32G32_FLOAT``).
 
 # Geometry formats
 
