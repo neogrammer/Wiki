@@ -1,7 +1,9 @@
 The VertexTypes.h header defines these commonly used vertex data structures:
 
+* VertexPosition
 * VertexPositionColor
 * VertexPositionTexture
+* VertexPositionDualTexture
 * VertexPositionNormal
 * VertexPositionColorTexture
 * VertexPositionNormalColor
@@ -30,6 +32,8 @@ Each type also provides a ``D3D11_INPUT_ELEMENT_DESC`` array which can be used t
 *Color* is for per-vertex coloring used by some effects.  Color is typically XMFLOAT4(``DXGI_FORMAT_R32G32B32A32_FLOAT``).
 
 *Texture* coordinates (which uses the semantic "TEXCOORD0") are XMFLOAT2 (``DXGI_FORMAT_R32G32_FLOAT``).
+
+*DualTexture* coordinates (which uses the semantic "TEXCOORD0" and ``TEXCOORD1``) are XMFLOAT2 (``DXGI_FORMAT_R32G32_FLOAT``).
 
 # Geometry formats
 
