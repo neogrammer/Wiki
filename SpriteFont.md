@@ -46,7 +46,7 @@ In addition to ``DrawString`` with various overloads, SpriteFont includes the fo
 
 _Note: The string size is computed from the origin to the rightmost pixel rendered by any character glyph. This has the effect of ignoring 'trailing spaces'._
 
-* **MeasureDrawBounds`` which returns a ``RECT`` bounding the string.
+* **MeasureDrawBounds** which returns a ``RECT`` bounding the string.
 
 * **ContainsCharacter** tests to see if a given character is defined in the font
 
