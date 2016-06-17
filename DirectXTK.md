@@ -78,7 +78,7 @@ In your application's solution, right-click on the Solution and use **Add \ Exis
 * _DirectXTK_Desktop_2013_ is for Windows desktop C++ applications for Windows Vista SP2 or later building with the VS 2013 Express for Desktop, VS 2013 Community, VS 2013 Professional or higher
 * _DirectXTK_XboxOneXDK_2015_ is for Xbox One exclusive C++ applications building with VS 2015 using the Xbox One XDK
 
-In your application's project, right-click on the **Project** and use "References...", then "Add New Reference...", and then check the DirectXTK project name and click OK. For a universal Windows app, Windows Store app, Windows phone, or Xbox One solution, you need to set _Reference Assembly Output_ to false since DirectXTK is a static C++ library and not a WinRT component.
+In your application's project, right-click on the **Project** and use "References...", then "Add New Reference...", and then check the DirectXTK project name and click OK. For a universal Windows app, Windows Store app, Windows phone, or Xbox One solution, you may need to set _Reference Assembly Output_ to false since DirectXTK is a static C++ library and not a WinRT component.
 
 ![Settings dialog](https://github.com/Microsoft/DirectXTK/wiki/images/settingsROA.PNG)
 
