@@ -69,7 +69,7 @@ Then build the Xbox One XDK version of the DirectXTK library.
 ## Using project-to-project references
 In your application's solution, right-click on the Solution and use **Add \ Existing Project...** to add the appropriate ``.vcxproj`` file to your solution.
 
-* _DirectXTK_Windows10_ is for universal Windows apps building with VS 2015 and the Windows 10 Tools targeting Windows 10
+* _DirectXTK_Windows10_ is for Universal Windows Platform (UWP) apps building with VS 2015 and the Windows 10 Tools targeting Windows 10
 * _DirectXTK_Windows81_ is for Windows Store C++ apps building with VS 2013 targeting Windows 8.1 / RT 8.1 
 * _DirectXTK_WindowsPhone81_ is for Windows phone 8.1 C++ apps building with VS 2013 Update 2 or later. 
 * _DirectXTK_XAMLSilverlight_WindowsPhone81_ is for Windows phone Silverlight 8.1 C++ apps building with VS 2013 Update 2 or later. 
