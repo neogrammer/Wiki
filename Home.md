@@ -27,3 +27,13 @@ DirectXTK is also available on NuGet
 
 # Porting from D3DX
 See [this post](http://blogs.msdn.com/b/chuckw/archive/2013/08/21/living-without-d3dx.aspx) for a complete listing of D3DX equivalents.
+
+# Credits
+
+The DirectX Tool Kit is the work of Shawn Hargreaves and Chuck Walbourn, with contributions from Aaron Rodriguez Hernandez, and Daniel Roman.
+
+Thanks to Adrian Tsai for the geodesic sphere implementation.
+
+Thanks to Garrett Serack for his help in creating the NuGet packages for DirectX Tool Kit.
+
+Thanks to Roberto Sonnino for his help with the CMO and DGSL rendering, and to 
