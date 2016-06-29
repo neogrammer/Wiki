@@ -99,7 +99,7 @@ When writing WIC files, you can also provide a callback for setting specific enc
 * Paletted WIC formats are not supported for writing by the ``SaveWICTextureToFile`` function.
 
 # WIC2
-WIC2 is available on Windows 8 and on Windows 7 Service Pack 1 with [KB 2670838](http://support.microsoft.com/kb/2670838) installed.
+WIC2 is available on Windows 10, Windows 8.x, and on Windows 7 Service Pack 1 with [KB 2670838](http://support.microsoft.com/kb/2670838) installed.
 
 * If WIC2 is supported, then this function can make use of the new WIC pixel format ``GUID_WICPixelFormat96bppRGBFloat``.
 
