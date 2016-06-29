@@ -18,6 +18,8 @@ The graphics memory helper manages memory allocation for 'in-flight' data shared
 
     graphicsMemory->Commit();
 
+> Since GraphicsMemory is a singleton, you can make use of the static method **Get** if desired: ``GraphicsMemory::Get().Commit()``
+
 # Platform Notes
 Use of this class is only required for the Xbox One. If you fail to create the singleton, an exception is thrown when using classes that make use of dynamic memory allocation for constant buffers, dynamic index buffers, and dynamic vertex buffers notably all [[Effects]], [[PrimitiveBatch]], and [[SpriteBatch]].
 
