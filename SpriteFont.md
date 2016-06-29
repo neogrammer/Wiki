@@ -44,7 +44,7 @@ In addition to ``DrawString`` with various overloads, SpriteFont includes the fo
 
 * **MeasureString** which returns the size of the given string in pixels.
 
-For example, ``XMVECTOR result = MeasureString( L"Measure" );`` would be the pixel width in ``XMVectorGetX(result)`` and the pixel height in ``XMVectorGetY(result)``:
+For example, ``XMVECTOR result = spriteFont->MeasureString( L"Measure" );`` would be the pixel width in ``XMVectorGetX(result)`` and the pixel height in ``XMVectorGetY(result)``:
 
 ![MeasureString](https://github.com/Microsoft/DirectXTK/wiki/images/MeasureString.png)
 
@@ -52,7 +52,7 @@ _Note: The string size is computed from the origin to the rightmost pixel render
 
 * **MeasureDrawBounds** which returns a ``RECT`` bounding the string.
 
-For example, ``RECT result = MeasureDrawBounds( L"Measure", XMFLOAT2(0.f, 0.f) );`` would return a pixel rectangle as follows:
+For example, ``RECT result = spriteFont->MeasureDrawBounds( L"Measure", XMFLOAT2(0.f, 0.f) );`` would return a pixel rectangle as follows:
 
 ![MeasureDrawBounds](https://github.com/Microsoft/DirectXTK/wiki/images/MeasureDrawBounds.PNG)
 
