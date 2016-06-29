@@ -28,8 +28,6 @@ Saves a texture to a WIC-supported bitmap file on disk. The caller provides the 
         const GUID* targetFormat = nullptr,
         std::function<void(IPropertyBag2*)> setCustomProps = nullptr );
 
-**Note:** _SaveWICTextureToFile is not supported on Windows Phone 8.0, because WIC is not available on that platform_
-
 # Examples
 
 This example saves a JPEG screenshot given a content and swapchain.
