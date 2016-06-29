@@ -92,13 +92,11 @@ When writing WIC files, you can also provide a callback for setting specific enc
     DX::ThrowIfFailed(hr);
 
 # Release Notes
-* If built with ``#define DXGI_1_2_FORMATS`` the DDS writer supports BGRA 4:4:4:4 files.
-
 * JPEG-XR / HD Photo supports nearly all WIC pixel formats including floating-point for both encoding and decoding.
 
 * TIFF can contain floating-point data (128bpp or 96bpp), but the WIC built-in codec can only decode such images. It always converts floating-point data to unorm when encoding.
 
-* Paletted WIC formats are not supported for writing by the SaveWICTextureToFile function.
+* Paletted WIC formats are not supported for writing by the ``SaveWICTextureToFile`` function.
 
 # WIC2
 WIC2 is available on Windows 8 and on Windows 7 Service Pack 1 with [KB 2670838](http://support.microsoft.com/kb/2670838) installed.
