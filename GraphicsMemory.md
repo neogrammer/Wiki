@@ -4,7 +4,7 @@ This class is used for the Xbox One platform to manage video memory allocations.
     #include <GraphicsMemory.h>
 
 # Initialization
-The graphics memory helper is a singleton. It needs explicit initialization because it requires the backbuffer count provided when you set up your swapchain.
+The graphics memory helper is a singleton. It needs explicit initialization because it requires the device and the backbuffer count provided when you set up your swapchain.
 
     std::unique_ptr<GraphicsMemory> graphicsMemory;
     graphicsMemory = std::make_unique<GraphicsMemory>(device, backBufferCount);
