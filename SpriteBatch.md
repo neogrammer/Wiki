@@ -209,49 +209,7 @@ For phones, laptops, and tablets the orientation of the display can be changed b
 
 In older versions of DirectXTK, you had to handle orientation changes via the custom transform matrix on Begin(). In the latest version of DirectXTK, you can handle it via a rotation setting (which is applied after any custom transformation).
 
-## Windows Store apps for Windows 8
-Using the DirectX starting template, you will want to add to your ``CreateWindowSizeDependentResources`` method:
-
-    DXGI_MODE_ROTATION rotation = DXGI_MODE_ROTATION_UNSPECIFIED;
-    switch (m_orientation)
-    {
-    case DisplayOrientations::Landscape:
-        rotation = DXGI_MODE_ROTATION_IDENTITY;
-        break;
-    case DisplayOrientations::Portrait:
-        rotation = DXGI_MODE_ROTATION_ROTATE270;
-        break;
-    case DisplayOrientations::LandscapeFlipped:
-        rotation = DXGI_MODE_ROTATION_ROTATE180;
-        break;
-    case DisplayOrientations::PortraitFlipped:
-        rotation = DXGI_MODE_ROTATION_ROTATE90;
-        break;
-    }
-    spriteBatch->SetRotation( rotation );
-
-## Windows phone 8
-For Windows phone 8.0 applications, you do something very similar to Windows Store apps for Windows 8, although you will need to add the support to the DirectX template as described in [this post](http://www.catalinzima.com/2012/12/handling-orientation-in-a-windows-phone-8-game/).
-
-    DXGI_MODE_ROTATION rotation = DXGI_MODE_ROTATION_UNSPECIFIED;
-    switch (m_orientation)
-    {
-    case DisplayOrientations::Portrait:
-        rotation = DXGI_MODE_ROTATION_IDENTITY;
-        break;
-    case DisplayOrientations::Landscape:
-        rotation = DXGI_MODE_ROTATION_ROTATE90;
-        break;
-    case DisplayOrientations::PortraitFlipped:
-        rotation = DXGI_MODE_ROTATION_ROTATE180;
-        break;
-    case DisplayOrientations::LandscapeFlipped:
-        rotation = DXGI_MODE_ROTATION_ROTATE270;
-        break;
-    }
-    spriteBatch->SetRotation( rotation );
-
-## Windows Store apps for Windows 8.1
+## Windows Store apps for Windows 8.1 and Windows Phone 8.1
 Using the DirectX starting template, you will want to add to your ``CreateWindowSizeDependentResources`` method:
 
     spriteBatch->SetRotation( m_deviceResources->ComputeDisplayRotation() );
