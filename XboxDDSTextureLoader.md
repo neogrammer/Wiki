@@ -63,7 +63,8 @@ This function expects the DDS file to contain a pixel format with FourCC "XBOX" 
         uint32_t    dataSize;
         uint32_t    xdkVer; // matching _XDK_VER
     } headerXbox
-    // Remainder of file is a tiled texture binary layout suitable for use with CreatePlacement APIs
+    // Remainder of file is a tiled texture binary layout suitable
+    // for use with CreatePlacement APIs
 
 Other ``DDS`` loaders and viewers will fail to recognize this pixel format, and other ``DDS`` creation tools do not support creating it. See the **xtexconv** sample for more information on creating this variant form of DDS files.
 
