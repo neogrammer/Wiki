@@ -209,8 +209,7 @@ For phones, laptops, and tablets the orientation of the display can be changed b
 
 In older versions of DirectXTK, you had to handle orientation changes via the custom transform matrix on Begin(). In the latest version of DirectXTK, you can handle it via a rotation setting (which is applied after any custom transformation).
 
-## Windows Store apps for Windows 8.1 and Windows Phone 8.1
-Using the DirectX starting template, you will want to add to your ``CreateWindowSizeDependentResources`` method:
+Using the DirectX starting template for Universal Windows Platform (UWP) apps or Windows 8.1 apps, you will want to add to your ``CreateWindowSizeDependentResources`` method:
 
     spriteBatch->SetRotation( m_deviceResources->ComputeDisplayRotation() );
 
