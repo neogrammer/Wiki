@@ -2,8 +2,6 @@ A Direct3D 11 2D texture loader that uses WIC to load a bitmap (``BMP``, ``JPEG`
 
 This loader does not support array textures, 1D textures, 3D volume textures, or cubemaps. For these scenarios, use the ``.DDS`` file format and [[DDSTextureLoader]] instead.
 
-> **Note:** WICTextureLoader is not supported on Windows Phone 8.0, because WIC is not available on that platform.
-
 [[DDSTextureLoader]] is recommended for fully "precooked" textures for maximum performance and image quality, but this loader can be useful for creating simple 2D texture from standard image files at runtime.
 
 Also part of the [DirectXTex](http://go.microsoft.com/fwlink/?LinkId=248926) package.
