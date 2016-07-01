@@ -21,8 +21,9 @@ This is a helper for drawing simple geometric shapes including texture coordinat
 # Initialization
 The GeometryPrimitive class must be created from a factory method which takes the Direct3D 11 device context.
 
-    std::unique_ptr<GeometricPrimitive> shape(
-        GeometricPrimitive::CreateTeapot(deviceContext) );
+
+    std::unique_ptr<GeometricPrimitive> shape;
+    shape = GeometricPrimitive::CreateTeapot(deviceContext);
 
 For exception safety, the factory functions return a ``std::unique_ptr``.
 
