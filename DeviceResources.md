@@ -268,60 +268,6 @@ The Xbox One XDK version of **DeviceResources** does not include the 'device los
 
 The DR version for Xbox One also uses ``DXGIX_SWAP_CHAIN_FLAG_QUANTIZATION_RGB_FULL`` rather than ``DXGIX_SWAP_CHAIN_MATCH_XBOX360_AND_PC``.
 
-## DirectX 12
-The DirectX 12 versions of the templates are very similar to the DirectX 11 versions in design, but the implementation is obviously quite different internally.
-
-> Note that the D3D12 Game Win32 template requires the Windows 10 SDK just like the UWP templates.
-
-The instructions on this page apply to the DirectX 12 versions as well, with the key differences being the ``Clear`` function. Also, any use of ``m_deviceResources->GetD3DDeviceContext()`` is unusually replaced with ``m_deviceResources->GetCommandList()``.
-
-For DirectX 12 the default ``Clear`` is implemented as follows:
-
-    void Game::Clear()
-    {
-        auto commandList = m_deviceResources->GetCommandList();
-
-        // Clear the views.
-        auto rtvDescriptor = m_deviceResources->GetRenderTargetView();
-        auto dsvDescriptor = m_deviceResources->GetDepthStencilView();
-
-        commandList->OMSetRenderTargets(1, &rtvDescriptor, FALSE, &dsvDescriptor);
-        commandList->ClearRenderTargetView(rtvDescriptor, Colors::CornflowerBlue, 0, nullptr);
-        commandList->ClearDepthStencilView(dsvDescriptor, D3D12_CLEAR_FLAG_DEPTH, 1.0f, 0, 0, nullptr);
-
-        // Set the viewport and scissor rect.
-        auto viewport = m_deviceResources->GetScreenViewport();
-        auto scissorRect = m_deviceResources->GetScissorRect();
-        commandList->RSSetViewports(1, &viewport);
-        commandList->RSSetScissorRects(1, &scissorRect);
-    }
-
-For _gamma-correct rendering_, the change to use linear clear color is:
-
-    // Use linear clear color for gamma-correct rendering.
-    XMVECTORF32 color;
-    color.v = XMColorSRGBToRGB(Colors::CornflowerBlue);
-    commandList->ClearRenderTargetView(rtvDescriptor, color, 0, nullptr);
-
-For the case where you chose to not have a depth-stencil buffer, use:
-
-    void Game::Clear()
-    {
-        auto commandList = m_deviceResources->GetCommandList();
-
-        // Clear the views.
-        auto rtvDescriptor = m_deviceResources->GetRenderTargetView();
-
-        commandList->OMSetRenderTargets(1, &rtvDescriptor, FALSE, nullptr);
-        commandList->ClearRenderTargetView(rtvDescriptor, Colors::CornflowerBlue, 0, nullptr);
-
-        // Set the viewport and scissor rect.
-        auto viewport = m_deviceResources->GetScreenViewport();
-        auto scissorRect = m_deviceResources->GetScissorRect();
-        commandList->RSSetViewports(1, &viewport);
-        commandList->RSSetScissorRects(1, &scissorRect);
-    }
-
 # Notes
 Since the ``DeviceResources`` class is now in it's own file and no longer directly impacts the readability of the rest of the template, it has a few enhancements compared to the handling in non-DR templates.
 
@@ -334,8 +280,6 @@ Since the ``DeviceResources`` class is now in it's own file and no longer direct
 # Source
 * Direct3D 11 Win32 version: [DeviceResources.h](https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d11game_win32_dr/DeviceResources.h) / [DeviceResources.cpp](https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d11game_win32_dr/DeviceResources.cpp)
 * Direct3D 11 UWP version: [DeviceResources.h](https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d11game_uwp_dr/DeviceResources.h) / [DeviceResources.cpp](https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d11game_uwp_dr/DeviceResources.cpp)
-* Direct3D 12 Win32 version: [DeviceResources.h](https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d12game_win32_dr/DeviceResources.h) / [DeviceResources.cpp](https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d12game_win32_dr/DeviceResources.cpp)
-* Direct3D 12 UWP version: [DeviceResources.h](https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d12game_uwp_dr/DeviceResources.h) / [DeviceResources.cpp](https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d12game_uwp_dr/DeviceResources.cpp)
 
 # Tutorial series
 You can use the DR variant of the templates in the tutorial lessons making the following adjustments:
