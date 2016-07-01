@@ -44,11 +44,11 @@ XAudio 2.8 is built into Windows 8.0 or later, and everything needed is include 
 
 ![Add Reference (Windows 8)](https://github.com/Microsoft/DirectXTK/wiki/images/AddReferenceWin8.png)
 
-Complete the steps in **Adding the headers** below including the additional configuration for XAudio 2.8.
-
 > The other platform DirectX Tool Kit vcxproj files already include _DirectX Tool Kit for Audio_ as they always make use of XAudio 2.8 or later which is built into Windows 8.1 (``DirectXTK_Windows81.vcxproj``), Windows 10 (``DirectXTK_Windows10.vcxproj``, ``DirectXTK_Desktop_2015_Win10.vcxproj``), Windows phone 8.1 (``DirectXTK_WindowsPhone81.vcxproj``), and Xbox One (``DirectXTK_XboxOneXDK_2015.vcxproj``).
 
 > The universal Windows platform with Windows 10 (``DirectXTK_Windows10``) includes XAudio 2.9, and the Windows desktop version for Windows 10 (``DirectXTK_Desktop_2015_Win10``) includes using XAudio 2.9 as well. Both require building with the Windows 10 SDK.
+
+Complete the steps in **Adding the headers** below including the additional configuration for XAudio 2.8.
 
 # Adding the headers
 Now that we have the _DirectX Tool Kit for Audio_ usable in your project, the next step is to include the library header into your project.
