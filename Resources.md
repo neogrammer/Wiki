@@ -24,6 +24,10 @@
 # DirectX SDK and Games for Windows Blog
 [Direct3D Game Visual Studio templates (Redux)](https://blogs.msdn.microsoft.com/chuckw/2015/12/17/direct3d-game-visual-studio-templates-redux/)
 
+[DirectX Tool Kit: Keyboard and Mouse support](https://blogs.msdn.microsoft.com/chuckw/2015/08/06/directx-tool-kit-keyboard-and-mouse-support/)
+
+[Where is the DirectX SDK (2015 Edition)?](https://blogs.msdn.microsoft.com/chuckw/2015/08/05/where-is-the-directx-sdk-2015-edition/)
+
 [Samples Content Exporter](http://blogs.msdn.com/b/chuckw/archive/2015/05/06/samples-content-exporter.aspx)
 
 [GitHub](http://blogs.msdn.com/b/chuckw/archive/2015/04/18/github.aspx)
