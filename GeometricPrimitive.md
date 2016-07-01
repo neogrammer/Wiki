@@ -90,8 +90,7 @@ These geometric primitives (based on the XNA Game Studio conventions) use right-
 
 For a left-handed view system: 
 
-    std::unique_ptr<GeometricPrimitive> shape(
-        GeometricPrimitive::CreateTeapot( deviceContext, 1.f, 8, false ) );
+    shape = GeometricPrimitive::CreateTeapot( deviceContext, 1.f, 8, false ) );
 
 _Note: Using the wrong value for rhcoords for your viewing setup will result in the objects looking 'inside out'._
 
@@ -100,19 +99,15 @@ These geometric primitives are intended for view from the 'outside' for efficien
 
 For a right-handed view system: 
 
-    std::unique_ptr<GeometricPrimitive> sky(
-        GeometricPrimitive::CreateBox( deviceContext, XMFLOAT3(10,10,10), false, true);
+    sky = GeometricPrimitive::CreateBox( deviceContext, XMFLOAT3(10,10,10), false, true);
 
-    std::unique_ptr<GeometricPrimitive> sky(
-        GeometricPrimitive::CreateSphere( deviceContext, 100.f, false, true);
+    sky = GeometricPrimitive::CreateSphere( deviceContext, 100.f, false, true);
 
 For a left-handed view system: 
 
-    std::unique_ptr<GeometricPrimitive> sky(
-        GeometricPrimitive::CreateBox( deviceContext, XMFLOAT3(10,10,10), true, true);
+    sky = GeometricPrimitive::CreateBox( deviceContext, XMFLOAT3(10,10,10), true, true);
 
-    std::unique_ptr<GeometricPrimitive> sky(
-        GeometricPrimitive::CreateSphere( deviceContext, 100.f, true, true);
+    sky = GeometricPrimitive::CreateSphere( deviceContext, 100.f, true, true);
 
 # Alpha blending
 Alpha blending defaults to using premultiplied alpha. To make use of 'straight' alpha textures, override the blending mode via the optional callback:
@@ -140,8 +135,7 @@ There are equivalent static methods for each of the factory methods that return 
         it->textureCoordinate.y *= 5.f;
     }
 
-    std::unique_ptr<GeometricPrimitive> customBox(
-        GeometricPrimitive::CreateCustom( deviceContext, vertices, indices ) );
+    customBox = GeometricPrimitive::CreateCustom( deviceContext, vertices, indices ) );
 
 # Feature Level Notes
 In order to support [all feature levels](http://msdn.microsoft.com/en-us/library/windows/desktop/ff476876.aspx), the GeometricPrimitive implementation make use of 16-bit indices (``DXGI_FORMAT_R16_UINT``) which limits to a maximum of 65535 vertices.
