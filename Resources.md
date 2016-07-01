@@ -22,6 +22,8 @@
 [SpriteBatch and BasicEffect for C++ Direct3D 11](http://blogs.msdn.com/b/shawnhar/archive/2012/03/02/spritebatch-and-basiceffect-for-c-direct3d-11.aspx)
 
 # DirectX SDK and Games for Windows Blog
+[Direct3D Game Visual Studio templates (Redux)](https://blogs.msdn.microsoft.com/chuckw/2015/12/17/direct3d-game-visual-studio-templates-redux/)
+
 [Samples Content Exporter](http://blogs.msdn.com/b/chuckw/archive/2015/05/06/samples-content-exporter.aspx)
 
 [GitHub](http://blogs.msdn.com/b/chuckw/archive/2015/04/18/github.aspx)
