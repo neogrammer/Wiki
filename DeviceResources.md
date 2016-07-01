@@ -2,7 +2,7 @@ In [[the basic game loop]] lesson and other tutorials, we are making use of the 
 
 There is therefore a "DR" variant of each of the Direct3D Game VS templates in the [VS 2013](https://github.com/walbourn/directx-vs-templates/raw/master/VSIX/Direct3DWin32Game.vsix) / [VS 2015](https://github.com/walbourn/directx-vs-templates/raw/master/VSIX/Direct3DUWPGame.vsix) VSIX package.
 
-> The standard universal Windows app, Windows 8 Store DirectX, and Windows phone 8 VS templates make use of a similar ``DeviceResources`` abstraction.
+> The standard Universal Windows Platform app, Windows 8 Store DirectX, and Windows phone 8 VS templates make use of a similar ``DeviceResources`` abstraction.
 
 # Creating a new project
 * From the drop-down menu, select **File** and then **New** -> **Project...**
@@ -248,7 +248,7 @@ The **DeviceResources** class also includes a number of useful assessors not alr
 ## Windows desktop apps
 The **DeviceResources** implementation is designed to support Windows Vista SP2 and Windows 7 RTM with DirectX 11.0, but also supports Direct3D 11.1 on [Windows 7 SP 1](http://blogs.msdn.com/b/chuckw/archive/2012/11/14/directx-11-1-and-windows-7.aspx) or Windows 8 which provides [significant improvements](https://msdn.microsoft.com/en-us/library/hh404562.aspx) such as simplified interop with Direct2D/DirectWrite. Therefore, you should generally prefer to use **GetD3DDevice** / **GetD3DDeviceContext** / **GetSwapChain**, but where you explicitly need 11.1 features you call **GetD3DDevice1** / **GetD3DDeviceContext1** / **GetSwapChain1**. These will be nullptr if the system only has the DirectX 11.0 Runtime.
 
-## universal Windows apps
+## Universal Windows Platform apps
 The UWP version of **DeviceResources** always uses [DirectX 11.3 interfaces](https://msdn.microsoft.com/en-us/library/dn914596.aspx).
 
 It includes **GetRotation** and **GetOrientationTransform3D** to simplify handling of display orientation.
