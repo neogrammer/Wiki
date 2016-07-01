@@ -17,8 +17,11 @@ See this [blog post](http://blogs.msdn.com/b/chuckw/archive/2012/03/02/directxtk
 # CodePlex
 DirectX Tool Kit was formerly hosted on [CodePlex](https://directxtk.codeplex.com/).
 
+# DirectX 11
+Use of DirectX 11 for beginners, indies, small projects, and small teams is highly recommended.
+
 # DirectX 12
-A version of _DirectX Tool Kit for DirectX 12_ is available on [GitHub](https://github.com/Microsoft/DirectXTK12). DirectX 12 is an expert graphics API, so use of DirectX 11 for beginners, indies, and small projects is highly recommended.
+A version of _DirectX Tool Kit for DirectX 12_ is available on [GitHub](https://github.com/Microsoft/DirectXTK12). DirectX 12 is an expert API which builds on knowing the ins & outs of DirectX 11. DirectX 12 is an extremely low-level API designed for graphic experts who have a solid understanding of the architecture of modern GPU hardware, and can essentially write the DirectX 11 Runtime from scratch. Both DirectX 11 and DirectX 12 provide access to the same hardware features on Windows 10, but drive the hardware in different ways.
 
 # NuGet
 DirectXTK is also available on NuGet
