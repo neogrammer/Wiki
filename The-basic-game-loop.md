@@ -123,6 +123,7 @@ The **Render** function which should render a single 'frame' of the scene, which
         Present();
     }
 
+### Clear
 The **Clear** function defaults to a background color of the classic "Cornflower blue".
 
     void Game::Clear()
