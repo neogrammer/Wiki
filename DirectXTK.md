@@ -41,7 +41,7 @@ _Note: The Xbox One exclusive application XBoxDDSTextureLoader functions are in 
 # Building
 This code is designed to build with Visual Studio 2013 or later. It requires the Windows 8.x SDK for functionality such as the DirectXMath library and the DXGI 1.2 headers. Visual Studio 2013 or later already includes the Windows 8.1 SDK.
 
-These components are designed to work without requiring any content from the DirectX SDK. For details, see [Where is the DirectX SDK?](http://msdn.microsoft.com/en-us/library/ee663275.aspx) and [Where is the DirectX SDK (2013 Edition)?](http://blogs.msdn.com/b/chuckw/archive/2013/07/01/where-is-the-directx-sdk-2013-edition.aspx)
+These components are designed to work without requiring any content from the DirectX SDK. For details, see [Where is the DirectX SDK?](http://msdn.microsoft.com/en-us/library/ee663275.aspx), [Where is the DirectX SDK (2013 Edition)?](http://blogs.msdn.com/b/chuckw/archive/2013/07/01/where-is-the-directx-sdk-2013-edition.aspx), [Where is the DirectX SDK (2015 Edition)?](https://blogs.msdn.microsoft.com/chuckw/2015/08/05/where-is-the-directx-sdk-2015-edition/), and [The Zombie DirectX SDK](https://blogs.msdn.microsoft.com/chuckw/2015/03/23/the-zombie-directx-sdk/).
 
 ## HLSL shaders
 The distribution package comes with a set of `Src\Shader\*.inc` files containing the compiled HLSL shaders which are included into the DirectXTK static library. They can be rebuilt if using a newer HLSL ``FXC.EXE`` or if the ``.fx`` or ``.hlsl`` files in the library are modified.
