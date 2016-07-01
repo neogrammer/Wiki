@@ -14,6 +14,8 @@
 
 # Related Projects
 
+[DirectXTK12](https://github.com/Microsoft/DirectXTK12)
+
 [DirectXMesh](https://github.com/Microsoft/DirectXMesh)
 
 [DirectXTex](https://github.com/Microsoft/DirectXTex)
