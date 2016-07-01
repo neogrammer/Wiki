@@ -39,4 +39,3 @@ http://www.developer.nokia.com/Community/Wiki/DirectX_on_Windows_Phone:_2D_Game_
 # Xbox One
 [Simple Sample for the Xbox One XDK](https://developer.xboxlive.com/en-us/platform/development/education/Pages/Samples.aspx) (login required)
 
-[Simple Sample for the Xbox One ADK](https://developer.xboxlive.com/en-us/platform/development/adk/Pages/ADKSamples.aspx) (login required)
