@@ -131,7 +131,7 @@ If in the ``Initialize`` method above you uncomment the TODO code, then each ``U
     }
 
 ## Render
-The **Render** function which should render a single 'frame' of the scene, which starts by a ``Clear`` of the render targeting and setting the rendering viewport, then ends with a call to ``DeviceResources::Present`` to show the rendered frame.
+The **Render** function which should render a single 'frame' of the scene, which starts by a ``Clear`` of the render targetg and setting the rendering viewport. It ends with a call to ``DeviceResources::Present`` to show the rendered frame.
 
     void Game::Render()
     {
