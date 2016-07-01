@@ -2,9 +2,11 @@ Here is a list of various samples and articles for making use of DirectXTK.
 
 See the [DirectXTK Samples](https://github.com/walbourn/directxtk-samples) and [DirectXTK Model Viewer](https://github.com/walbourn/directxtkmodelviewer).
 
-# Windows Store apps
-[Simple Sample for Windows 8](http://code.msdn.microsoft.com/DirectXTK-Simple-Sample-608bc274)
+# Universal Windows Platform apps
 
+[DirectXTK Simple Sample](https://github.com/Microsoft/Xbox-ATG-Samples/tree/master/Samples/IntroGraphics/DirectXTKSimpleSampleUWP)
+
+# Windows Store apps
 [Simple Sample for Windows 8.1](http://code.msdn.microsoft.com/DirectXTK-Simple-Sample-a0b6de36)
 
 [DirectX Tool Kit – native “XNA” for Windows 8](http://www.tonicodes.net/blog/directx-tool-kit-native-xna-for-windows-8/)
@@ -25,8 +27,6 @@ See the [DirectXTK Samples](https://github.com/walbourn/directxtk-samples) and [
 [DXUT+DirectXTK Simple Sample](http://code.msdn.microsoft.com/DXUTDirectXTK-Simple-Win32-9cf797e9)
 
 # Windows phone 8
-[Simple Sample (Windows phone 8.0)](http://code.msdn.microsoft.com/DirectXTK-Simple-Windows-80e6b591)
-
 [Marble Maze sample for Windows Phone 8](http://code.msdn.microsoft.com/Marble-Maze-sample-for-c9f3706b)
 
 [Direct3D with XAML Marble Maze](http://code.msdn.microsoft.com/Direct3D-with-XAML-Marble-1d51a37b)
