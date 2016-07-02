@@ -8,7 +8,7 @@ First create a new project using the instructions from the first two lessons: [[
 
 The text renderer in _DirectX Tool Kit_ makes use of bitmap fonts, so the first step is to create a ``.spritefont`` file by capturing a system TrueType font using the **makespritefont** command-line utility.
 
-* Download the [MakeSpriteFont.exe](https://github.com/Microsoft/DirectXTK/releases/download/nov2015/MakeSpriteFont.exe) from the _DirectX Tool Kit_ site save the EXE into your project's folder.
+* Download the [MakeSpriteFont.exe](https://github.com/Microsoft/DirectXTK/releases/download/jun2016/MakeSpriteFont.exe) from the _DirectX Tool Kit_ site save the EXE into your project's folder.
 * Open a [command-prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq) and then change to your project's folder.
 
 Run the following command-line 
