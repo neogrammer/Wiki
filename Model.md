@@ -178,5 +178,5 @@ Model makes use of the following states:
 The Model class assumes you've already set the Render Target view, Depth Stencil view, and Viewport.
 
 # Further reading
-[Models, meshes, parts, and bones](http://msdn.microsoft.com/en-us/library/windows/desktop/ff476891.aspx)  
+[Models, meshes, parts, and bones](https://blogs.msdn.microsoft.com/shawnhar/2006/11/20/models-meshes-parts-and-bones/)  
 
