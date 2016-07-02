@@ -91,7 +91,7 @@ See [[Audio]] for additional information when setting up Windows desktop project
 See also the [Visual C+ Team Blog](http://blogs.msdn.com/b/vcblog/archive/2010/05/03/flexible-project-to-project-references.aspx)
 
 ## Using NuGet package manager
-Alternatively you can use NuGet to install one of the DirectX Tool Kit packages. Use *Project / Manage NuGet Packages...* then select "Online" and search for "DirectX Tool Kit".
+Alternatively you can use NuGet to install one of the DirectX Tool Kit packages. Use *Project / Manage NuGet Packages...* then select "Online" and search for "DirectXTK".
 
 * Use Id: [directxtk_desktop_2015](https://www.nuget.org/packages/directxtk_desktop_2015/) for Windows desktop C++ applications building with VS 2015 Community, VS 2015 Professional or higher. _DirectXTK for Audio_ in this package requires XAudio 2.7 from the legacy DirectX SDK.
 * Use id: [directxtk_uwp](https://www.nuget.org/packages/directxtk_uwp/) for Universal Windows Platform apps for Windows 10 building with VS 2015 Community, VS 2015 Professional or higher. _DirectXTK for Audio_ in this package uses XAudio 2.9 in the Windows 10 SDK.
