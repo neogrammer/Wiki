@@ -1,6 +1,13 @@
 Here is a list of various samples and articles for making use of DirectXTK.
 
-See the [DirectXTK Samples](https://github.com/walbourn/directxtk-samples) and [DirectXTK Model Viewer](https://github.com/walbourn/directxtkmodelviewer).
+[DirectXTK Samples](https://github.com/walbourn/directxtk-samples) 
+
+* SimpleSampleWin32 
+* SimpleSampleWindows10
+* SimpleSampleWindows81 
+* SimpleSampleWindowsPhone81 
+
+See also [DirectXTK Model Viewer](https://github.com/walbourn/directxtkmodelviewer).
 
 # Universal Windows Platform apps
 
