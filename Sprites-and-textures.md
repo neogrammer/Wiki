@@ -149,8 +149,6 @@ Build and run we are rendering our 'clean' cat with premultiplied alpha:
 * The switch ``-m 1`` disables the generation of _mipmaps_ for the image. By default, the tool generates a full set of mipmaps when converting to a ``.dds``, but since our source image is not a power of two in width & height, it also generates a warning message about use with feature level 9.x devices. For standard sprites, we typically do not make use of _mipmaps_.
 * The switch ``-f BC3_UNORM`` selects the ``DXGI_FORMAT_BC3_UNORM`` format for the resulting ``.dds`` file. In combination with the ``-pmalpha`` switch, this results in the "DXT4" [block-compression format](http://blogs.msdn.com/b/chuckw/archive/2012/05/04/direct3d-11-textures-and-block-compression.aspx) being used. 
 
-> **Windows phone:** Note that on Windows phone 8.0, you can't use ``CreateWICTextureFromFile`` as WIC is not available on that platform and you have to use ``CreateDDSTextureFromFile`` to load a ``.dds`` instead. Both are available for Windows phone 8.1.
-
 # Rotating a sprite
 
 Now that we have our cat rendering, we can start to animate it. Here's a simple rotation where we are using the **cosf** function to give us a time-varying value from -1 to 1.
