@@ -17,6 +17,8 @@
     #include <d3d11.h>
     #include "SimpleMath.h"
 
+> If using _DirectX Tool Kit for DirectX 12_, you'd use ``#include <d3d12.h>`` instead of ``#include <d3d11.h>``.
+
 # Namespace
 
 All the functions in SimpleMath are in the **DirectX::SimpleMath** C++ namespace.
