@@ -157,19 +157,47 @@ These common states are equivalent to using the following descriptors:
 
     // CullNone
     CD3D11_RASTERIZER_DESC desc(D3D11_FILL_SOLID, D3D11_CULL_NONE,
-        FALSE, 0, 0.f, 0.f, TRUE, FALSE, TRUE, FALSE);
+        FALSE /* FrontCounterClockwise */,
+        D3D11_DEFAULT_DEPTH_BIAS,
+        D3D11_DEFAULT_DEPTH_BIAS_CLAMP,
+        D3D11_DEFAULT_SLOPE_SCALED_DEPTH_BIAS,
+        TRUE /* DepthClipEnable */,
+        FALSE /* ScissorEnable */,
+        TRUE /* MultisampleEnable */,
+        FALSE /* AntialiasedLineEnable */);
 
     // CullClockwise
     CD3D11_RASTERIZER_DESC desc(D3D11_FILL_SOLID, D3D11_CULL_FRONT,
-        FALSE, 0, 0.f, 0.f, TRUE, FALSE, TRUE, FALSE);
+        FALSE /* FrontCounterClockwise */,
+        D3D11_DEFAULT_DEPTH_BIAS,
+        D3D11_DEFAULT_DEPTH_BIAS_CLAMP,
+        D3D11_DEFAULT_SLOPE_SCALED_DEPTH_BIAS,
+        TRUE /* DepthClipEnable */,
+        FALSE /* ScissorEnable */,
+        TRUE /* MultisampleEnable */,
+        FALSE /* AntialiasedLineEnable */);
 
     // CullCounterClockwise
     CD3D11_RASTERIZER_DESC desc(D3D11_FILL_SOLID, D3D11_CULL_BACK,
-        FALSE, 0, 0.f, 0.f, TRUE, FALSE, TRUE, FALSE);
+        FALSE /* FrontCounterClockwise */,
+        D3D11_DEFAULT_DEPTH_BIAS,
+        D3D11_DEFAULT_DEPTH_BIAS_CLAMP,
+        D3D11_DEFAULT_SLOPE_SCALED_DEPTH_BIAS,
+        TRUE /* DepthClipEnable */,
+        FALSE /* ScissorEnable */,
+        TRUE /* MultisampleEnable */,
+        FALSE /* AntialiasedLineEnable */);
 
     // Wireframe
     CD3D11_RASTERIZER_DESC desc(D3D11_FILL_WIREFRAME, D3D11_CULL_NONE,
-        FALSE, 0, 0.f, 0.f, TRUE, FALSE, TRUE, FALSE);
+        FALSE /* FrontCounterClockwise */,
+        D3D11_DEFAULT_DEPTH_BIAS,
+        D3D11_DEFAULT_DEPTH_BIAS_CLAMP,
+        D3D11_DEFAULT_SLOPE_SCALED_DEPTH_BIAS,
+        TRUE /* DepthClipEnable */,
+        FALSE /* ScissorEnable */,
+        TRUE /* MultisampleEnable */,
+        FALSE /* AntialiasedLineEnable */);
 
 ## Sampler states
 
