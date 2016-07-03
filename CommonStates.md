@@ -105,13 +105,13 @@ These common states are equivalent to using the following descriptors:
 
 ## Blend states
 
-    CD3D11_DEFAULT default;
+    CD3D11_DEFAULT def;
 
     // Opaque
-    CD3D11_BLEND_DESC desc(default);
+    CD3D11_BLEND_DESC desc(def);
 
     // AlphaBlend
-    CD3D11_BLEND_DESC desc(default);
+    CD3D11_BLEND_DESC desc(def);
     desc.RenderTarget[0].BlendEnable = TRUE;
     desc.RenderTarget[0].SrcBlend =
     desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
@@ -119,7 +119,7 @@ These common states are equivalent to using the following descriptors:
     desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_INV_SRC_ALPHA;
 
     // Additive
-    CD3D11_BLEND_DESC desc(default);
+    CD3D11_BLEND_DESC desc(def);
     desc.RenderTarget[0].BlendEnable = TRUE;
     desc.RenderTarget[0].SrcBlend =
     desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_SRC_ALPHA;
@@ -127,7 +127,7 @@ These common states are equivalent to using the following descriptors:
     desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ONE;
 
     // NonPremultiplied
-    CD3D11_BLEND_DESC desc(default);
+    CD3D11_BLEND_DESC desc(def);
     desc.RenderTarget[0].BlendEnable = TRUE;
     desc.RenderTarget[0].SrcBlend =
     desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_SRC_ALPHA;
@@ -136,20 +136,20 @@ These common states are equivalent to using the following descriptors:
 
 ## Depth/Stencil states
 
-    CD3D11_DEFAULT default;
+    CD3D11_DEFAULT def;
 
     // DepthNone
-    CD3D11_DEPTH_STENCIL_DESC desc(default);
+    CD3D11_DEPTH_STENCIL_DESC desc(def);
     desc.DepthEnable = FALSE;
     desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
     desc.DepthFunc = D3D11_COMPARISON_LESS_EQUAL;
 
     // DepthDefault
-    CD3D11_DEPTH_STENCIL_DESC desc(default);
+    CD3D11_DEPTH_STENCIL_DESC desc(def);
     desc.DepthFunc = D3D11_COMPARISON_LESS_EQUAL;
 
     // DepthRead
-    CD3D11_DEPTH_STENCIL_DESC desc(default);
+    CD3D11_DEPTH_STENCIL_DESC desc(def);
     desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
     desc.DepthFunc = D3D11_COMPARISON_LESS_EQUAL;
 
