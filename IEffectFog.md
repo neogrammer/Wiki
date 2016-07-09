@@ -1,4 +1,4 @@
-This abstract interface controls distance fog settings typically communicated to the shader via a dynamic constant buffer. Settings for this interface can influence the choice of shader permutation. This interface is implemented by _BasicEffect_, _AlphaTestEffect_, _DualTextureEffect_, _EnvironmentMapEffect_, and _SkinnedEffect_.
+This abstract interface controls distance fog settings. Settings for this interface can influence the choice of shader permutation. This interface is implemented by _BasicEffect_, _AlphaTestEffect_, _DualTextureEffect_, _EnvironmentMapEffect_, and _SkinnedEffect_.
 
 # Obtaining the interface
 
