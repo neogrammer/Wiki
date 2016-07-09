@@ -1,4 +1,4 @@
-This abstract interface allows setting rendering matrices typically communicated to the shader via a dynamic constant buffer. This interface is implemented by all built-in effects, but is not required for all effects (i.e. a valid effect can implement [[IEffect]] and not implement _IEffectMatrices_).
+This abstract interface allows setting rendering matrices. This interface is implemented by all built-in effects, but is not required for all effects (i.e. a valid effect can implement [[IEffect]] and not implement _IEffectMatrices_).
 
 # Obtaining the interface
 
