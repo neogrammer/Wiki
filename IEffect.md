@@ -1,4 +1,4 @@
-This is the abstract interfaced implemented by all effects in _DirectX Tool Kit_, and is typically used as the 'base' reference. For example, [[ModelMeshPart]] defines a reference to an effect as 
+This is the abstract interfaced implemente by all effects in _DirectX Tool Kit_, and is typically used as the 'base' reference. For example, [[ModelMeshPart]] defines a reference to an effect as 
 
     std::shared_ptr<IEffect> effect;
 
