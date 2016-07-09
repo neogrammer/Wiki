@@ -1,4 +1,4 @@
-This abstract interface controls directional lighting typically communicated to the shader via a dynamic constant buffer. Settings for this interface can influence the choice of shader permutation and input layout signature. This interface is implemented by _BasicEffect_, _EnvironmentMapEffect_, _SkinningEffect_, and _DGSLEffect_.
+This abstract interface controls directional lighting. Settings for this interface can influence the choice of shader permutation and input layout signature. This interface is implemented by _BasicEffect_, _EnvironmentMapEffect_, _SkinningEffect_, and _DGSLEffect_.
 
 Effects that implement this interface require ``NORMAL`` semantic data in the vertex input layout.
 
@@ -31,7 +31,7 @@ For more general cases where a number of effect classes can be in use (such as [
     }
 
 # Controlling lights
-The IEffectLights interface supports 1, 2, or 3 directional lights (_MaxDirectionalLights_ is 3) with an ambient light setting. The lights support both diffuse and specular color, and some effects support per-pixel lighting.
+The ``IEffectLights`` interface supports 1, 2, or 3 directional lights (_MaxDirectionalLights_ is 3) with an ambient light setting. The lights support both diffuse and specular color, and some effects support per-pixel lighting.
 
 The direction vector for the light is assumed to be normalized, and is pointing towards the objects it lights.
 
