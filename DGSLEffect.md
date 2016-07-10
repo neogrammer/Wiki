@@ -41,6 +41,8 @@ DGSLEffect is typically used with ``VertexPositionNormalTangentColorTexture`` or
 
 * **SetAlpha**: Sets the alpha (transparency) of the effect. Defaults to 1 (fully opaque).
 
+* **SetColorAndAlpha**: Sets the diffuse color of the effect and the alpha (transparency).
+
 * **SetUVTransform**: The DGSL effects can apply a UV transform.
 
 * **SetViewport**: DGSL shaders can reference the size of the viewport.
