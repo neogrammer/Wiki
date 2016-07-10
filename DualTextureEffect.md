@@ -28,6 +28,8 @@ This effect requires ``SV_Position``, ``TEXCOORD0``, and  ``TEXCOORD1``. It requ
 
 * **SetAlpha**: Sets the alpha (transparency) of the effect. Defaults to 1 (fully opaque).
 
+* **SetColorAndAlpha**: Sets the diffuse color of the effect and the alpha (transparency).
+
 * **SetVertexColorEnabled**: Enables per-vertex color. Defaults to false. Modifying this setting requires recreating associated input layouts, and enabling it requires ``COLOR``.
 
 * **SetTexture**: Associates a texture shader resource view with the effect. Can be set to nullptr to remove a reference.
