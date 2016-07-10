@@ -24,7 +24,7 @@ This effect requires ``SV_Position``, ``TEXCOORD0``, and  ``TEXCOORD1``. It requ
 
 # Properties
 
-* **SetDiffuseColor**: Sets the diffuse color of the effect. Defaults to white (1,1,1).
+* **SetDiffuseColor**: Sets the diffuse color of the effect. Defaults to white (1,1,1). Alpha channel (.w component) is ignored.
 
 * **SetAlpha**: Sets the alpha (transparency) of the effect. Defaults to 1 (fully opaque).
 
