@@ -29,7 +29,7 @@ DGSLEffect is typically used with ``VertexPositionNormalTangentColorTexture`` or
 # Properties
 * **SetAmbientColor**: Sets the ambient color of the material. Defaults to black (0,0,0). _Note that other built-in effects do not make use of the ambient material color assuming they react equally to all ambient light in the scene._
 
-* **SetDiffuseColor**: Sets the diffuse color of the effect. Defaults to white (1,1,1).
+* **SetDiffuseColor**: Sets the diffuse color of the effect. Defaults to white (1,1,1). Alpha channel (.w component) is ignored.
 
 * **SetEmissiveColor**: Sets the emissive color of the effect. Defaults to black (0,0,0).
 
