@@ -22,7 +22,7 @@ This effect requires ``NORMAL``, ``TEXCOORD0``, ``BLENDINDICES`` and ``BLENDWEIG
 
 # Properties
 
-* **SetDiffuseColor**: Sets the diffuse color of the effect. Defaults to white (1,1,1).
+* **SetDiffuseColor**: Sets the diffuse color of the effect. Defaults to white (1,1,1). Alpha channel (.w component) is ignored.
 
 * **SetEmissiveColor**: Sets the emissive color of the effect. Defaults to black (0,0,0).
 
