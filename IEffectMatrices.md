@@ -12,6 +12,8 @@ There are two methods used in _DirectX Tool Kit_. For simple cases, just maintai
     effect->SetView( view );
     effect->SetProjection( projection );
 
+> If you are setting all three matrices at once, you can use ``effect->SetMatrices(world, view, projection);``
+
 For more general cases where a number of effect classes can be in use (such as [[Model]] which uses a mix of _BasicEffect_, _DualTextureEffect_, _SkinnedEffect_, and/or _DGSLEffect_), use [Run-Time Type Information](https://en.wikipedia.org/wiki/Run-time_type_information) (RTTI) to obtain the interface.
 
     std::shared_ptr<IEffect> effect;
