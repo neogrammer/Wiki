@@ -22,7 +22,7 @@ This effect requires ``SV_Position``, ``NORMAL`` and ``TEXCOORD``.
 
 # Properties
 
-* **SetDiffuseColor**: Sets the diffuse color of the effect. Defaults to white (1,1,1).
+* **SetDiffuseColor**: Sets the diffuse color of the effect. Defaults to white (1,1,1). Alpha channel (.w component) is ignored.
 
 * **SetEmissiveColor**: Sets the emissive color of the effect. Defaults to black (0,0,0).
 
