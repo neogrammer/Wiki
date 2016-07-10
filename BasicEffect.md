@@ -22,7 +22,7 @@ This effect requires ``SV_Position``, ``NORMAL`` if lighting is enabled, ``COLOR
 
 # Properties
 
-* **SetDiffuseColor**: Sets the diffuse color of the effect. Defaults to white (1,1,1).
+* **SetDiffuseColor**: Sets the diffuse color of the effect. Defaults to white (1,1,1). Alpha channel (.w component) is ignored.
 
 * **SetEmissiveColor**: Sets the emissive color of the effect. Defaults to black (0,0,0).
 
@@ -33,6 +33,8 @@ This effect requires ``SV_Position``, ``NORMAL`` if lighting is enabled, ``COLOR
 * **DisableSpecular**: Disables the specular lighting for the effect. Sets the color to black (0,0,0) and power to 1.
 
 * **SetAlpha**: Sets the alpha (transparency) of the effect. Defaults to 1 (fully opaque).
+
+* **SetColorAndAlpha**: Sets the diffuse color of the effect and the alpha (transparency).
 
 * **SetVertexColorEnabled**: Enables per-vertex color. Defaults to false. Modifying this setting requires recreating associated input layouts, and enabling it requires ``COLOR``.
 
