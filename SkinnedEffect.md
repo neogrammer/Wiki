@@ -34,6 +34,8 @@ This effect requires ``NORMAL``, ``TEXCOORD0``, ``BLENDINDICES`` and ``BLENDWEIG
 
 * **SetAlpha**: Sets the alpha (transparency) of the effect. Defaults to 1 (fully opaque).
 
+* **SetColorAndAlpha**: Sets the diffuse color of the effect and the alpha (transparency).
+
 * **SetTexture**: Associates a texture shader resource view with the effect. Can be set to nullptr to remove a reference.
 
 # Remarks
