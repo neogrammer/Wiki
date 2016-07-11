@@ -20,7 +20,7 @@ For more general cases where a number of effect classes can be in use (such as [
 
     ...
 
-    auto imatrices = dynamic_cast<IEffectMatrices*>( part->effect.get() );
+    auto imatrices = dynamic_cast<IEffectMatrices*>( effect.get() );
     if ( imatrices )
     {
         imatrices->SetWorld( world );
