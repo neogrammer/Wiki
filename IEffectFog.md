@@ -19,7 +19,7 @@ For more general cases where a number of effect classes can be in use (such as [
 
     ...
 
-    auto ifog = dynamic_cast<IEffectFog*>( part->effect.get() );
+    auto ifog = dynamic_cast<IEffectFog*>( effect.get() );
     if ( ifog )
     {
         ifog->SetFogEnable(true);
