@@ -43,6 +43,8 @@ This effect requires ``SV_Position``, ``NORMAL`` and ``TEXCOORD``.
 # Remarks
 EnvironmentMapEffect always uses vertex lighting, and does not support per-pixel lighting. Specular light color is also ignored.
 
+This effect always performs texturing, so if 'untextured' rendering is desired you must provide texture coordinates, a sampler in slot 0, and a 1x1 texture with white (1,1,1,1).
+
 This effect requires a texture sampler in both slots 0 and 1. [[GeometricPrimitive]] and [[SpriteBatch]] only set a texture sampler in slot 0 by default, [[Model]] sets a sampler in slots 0 and 1.
 
 # Further reading
