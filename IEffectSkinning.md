@@ -17,7 +17,7 @@ For more general cases where a number of effect classes can be in use (such as [
 
     ...
 
-    auto iskin = dynamic_cast<IEffectSkinning*>( part->effect.get() );
+    auto iskin = dynamic_cast<IEffectSkinning*>( effect.get() );
     if ( iskin )
     {
         iskin->SetBoneTransforms( bones.get(), boneCount );
