@@ -21,7 +21,7 @@ For more general cases where a number of effect classes can be in use (such as [
 
     ...
 
-    auto ilights = dynamic_cast<IEffectLights*>( part->effect.get() );
+    auto ilights = dynamic_cast<IEffectLights*>( effect.get() );
     if ( ilights )
     {
         ilights->SetLightEnabled( 0, true );
