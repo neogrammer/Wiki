@@ -23,9 +23,7 @@ For more general cases where a number of effect classes can be in use (such as [
     auto imatrices = dynamic_cast<IEffectMatrices*>( effect.get() );
     if ( imatrices )
     {
-        imatrices->SetWorld( world );
-        imatrices->SetView( view );
-        imatrices->SetProjection( projection );
+        imatrices->SetMatrices( world, view, projection );
     }
 
 *Note* For the specific case of _IEffectMatrices_, you _could_ try to make the assumption that all effects in use implement _IEffectMatrices_ and make use of a ``reinterpret_cast<>`` or old-school C-style cast instead of ``dynamic_cast<>``, however this will not work since ``IEffectMatrices`` is not derived from ``IEffect``. You would have to assume a specific class of effect instead.
