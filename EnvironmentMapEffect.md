@@ -1,4 +1,4 @@
-This is a native Direct3D 11 implementation of the built-in EnvironmentMapEffect from [XNA Game Studio 4](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.environmentmapeffect.aspx) which supports cubic environment mapping.
+This is a native Direct3D 11 implementation of the built-in EnvironmentMapEffect from [XNA Game Studio 4](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.environmentmapeffect.aspx) which supports cubic environment mapping with texture mapping, vertex lighting, and fogging.
 
 See also [[Effects]]
 
