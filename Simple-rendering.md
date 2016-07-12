@@ -232,7 +232,7 @@ In **Game.cpp**, add to the TODO of **CreateDevice**:
     DX::ThrowIfFailed(m_d3dDevice->CreateRasterizerState( &rastDesc,
         m_raster.ReleaseAndGetAddressOf() ));
 
-> This creates a raster state that is the same as our standard ``CullNone`` but with ``AntialiasedLineEnable`` set to TRUE.
+> This creates a raster state that is the same as our standard ``CullNone`` but with ``AntialiasedLineEnable`` set to TRUE and ``MultisampleEnable`` set to FALSE.
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
