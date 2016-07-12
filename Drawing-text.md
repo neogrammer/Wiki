@@ -50,7 +50,7 @@ In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
 Build and run the application which will still not be displaying anything but the cornflower blue window, but will have a font loaded.
 
-> _Troubleshooting:_ If you get a runtime exception, then you may have the ``myfile.spritefont`` in the wrong folder, have modified the "Working Directory" in the "Debugging" configuration settings, or otherwise changed the expected paths at runtime of the application. You should set a break-point on ``new SpriteFont`` and step into the code to find the exact problem.
+> _Troubleshooting:_ If you get a runtime exception, then you may have the ``myfile.spritefont`` in the wrong folder, have modified the "Working Directory" in the "Debugging" configuration settings, or otherwise changed the expected paths at runtime of the application. You should set a break-point on ``std::make_unique<SpriteFont>(...)`` and step into the code to find the exact problem.
 
 # Drawing text using a font
 
