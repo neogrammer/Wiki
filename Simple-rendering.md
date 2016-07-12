@@ -226,8 +226,7 @@ In **Game.cpp**, add to the TODO of **CreateDevice**:
 
     CD3D11_RASTERIZER_DESC rastDesc(D3D11_FILL_SOLID, D3D11_CULL_NONE, FALSE,
         D3D11_DEFAULT_DEPTH_BIAS, D3D11_DEFAULT_DEPTH_BIAS_CLAMP,
-        D3D11_DEFAULT_SLOPE_SCALED_DEPTH_BIAS, TRUE, FALSE,
-        TRUE, TRUE);
+        D3D11_DEFAULT_SLOPE_SCALED_DEPTH_BIAS, TRUE, FALSE, FALSE, TRUE);
 
     DX::ThrowIfFailed(m_d3dDevice->CreateRasterizerState( &rastDesc,
         m_raster.ReleaseAndGetAddressOf() ));
@@ -257,8 +256,7 @@ In **Game.cpp**, modify **CreateDevice**:
 
     CD3D11_RASTERIZER_DESC rastDesc(D3D11_FILL_SOLID, D3D11_CULL_NONE, FALSE,
         D3D11_DEFAULT_DEPTH_BIAS, D3D11_DEFAULT_DEPTH_BIAS_CLAMP,
-        D3D11_DEFAULT_SLOPE_SCALED_DEPTH_BIAS, FALSE, TRUE,
-        TRUE, FALSE);
+        D3D11_DEFAULT_SLOPE_SCALED_DEPTH_BIAS, TRUE, FALSE, TRUE, FALSE);
 
 > This creates a raster state that is the same as our standard ``CullNone`` which has ``MultisampleEnable`` set to TRUE.
 
