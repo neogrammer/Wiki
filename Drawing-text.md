@@ -140,12 +140,12 @@ In **Game.cpp**, modify the TODO section of **Render** to be:
 
     const wchar_t* output = L"Hello World";
 
+    Vector2 origin = m_font->MeasureString(output) / 2.f;
+
     m_font->DrawString(m_spriteBatch.get(), output,
         m_fontPos + Vector2(1.f, 1.f), Colors::Black, 0.f, origin);
     m_font->DrawString(m_spriteBatch.get(), output,
         m_fontPos + Vector2(-1.f, 1.f), Colors::Black, 0.f, origin);
-
-    Vector2 origin = m_font->MeasureString(output) / 2.f;
 
     m_font->DrawString(m_spriteBatch.get(), output,
         m_fontPos, Colors::White, 0.f, origin);
@@ -164,6 +164,8 @@ In **Game.cpp**, modify the TODO section of **Render** to be:
 
     const wchar_t* output = L"Hello World";
 
+    Vector2 origin = m_font->MeasureString(output) / 2.f;
+
     m_font->DrawString(m_spriteBatch.get(), output,
         m_fontPos + Vector2(1.f, 1.f), Colors::Black, 0.f, origin);
     m_font->DrawString(m_spriteBatch.get(), output,
@@ -172,8 +174,6 @@ In **Game.cpp**, modify the TODO section of **Render** to be:
         m_fontPos + Vector2(-1.f, -1.f), Colors::Black, 0.f, origin);
     m_font->DrawString(m_spriteBatch.get(), output,
         m_fontPos + Vector2(1.f, -1.f), Colors::Black, 0.f, origin);
-
-    Vector2 origin = m_font->MeasureString(output) / 2.f;
 
     m_font->DrawString(m_spriteBatch.get(), output,
         m_fontPos, Colors::White, 0.f, origin);
