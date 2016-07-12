@@ -95,7 +95,7 @@ Build and run to see our text string centered in the middle of the rendering win
 
 In **Game.cpp**, modify the TODO section of **Render** to be:
 
-    std::wstring output = std::wstring(L"Hello") + std::wstring(L" World")
+    std::wstring output = std::wstring(L"Hello") + std::wstring(L" World");
 
     m_spriteBatch->Begin();
 
