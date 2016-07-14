@@ -61,6 +61,17 @@ In **Main.cpp**, add to the ``switch`` statement in **WndProc**:
 
 Build and run. The application does not display anything other than our cornflower blue screen, but you can use the Escape key to exit.
 
+## UWP
+If using a Windows Universal Platform (UWP) app template, then in your **Initialize**, use:
+
+    m_keyboard = std::make_unique<Keyboard>();
+    m_keyboard->SetWindow(reinterpret_cast<ABI::Windows::UI::Core::ICoreWindow*>(window));
+
+    m_mouse = std::make_unique<Mouse>();
+    m_mouse->SetWindow(reinterpret_cast<ABI::Windows::UI::Core::ICoreWindow*>(window));
+
+Then make sure you call ``Mouse::SetDpi(m_DPI);`` from **Main.cpp** at the bottom of ``SetWindow`` and ``OnDpiChanged``.
+
 # Adding a simple scene
 Start by saving [roomtexture.dds](https://github.com/Microsoft/DirectXTK/wiki/roomtexture.dds) into your new project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "roomtexture.dds" and click "OK".
 
