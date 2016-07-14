@@ -142,4 +142,4 @@ Because WRL is a pure C++ template library, it has no particular platform suppor
 
 [ComPtr on MSDN](http://msdn.microsoft.com/en-us/library/br244983.aspx)  
 [COM on MSDN](https://msdn.microsoft.com/en-us/library/windows/desktop/ms694363.aspx)  
-
+[Reference Counting (Direct3D 10)](https://msdn.microsoft.com/en-us/library/windows/desktop/bb205070.aspx)
