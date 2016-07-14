@@ -72,6 +72,14 @@ If using a Windows Universal Platform (UWP) app template, then in your **Initial
 
 Then make sure you call ``Mouse::SetDpi(m_DPI);`` from **Main.cpp** at the bottom of ``SetWindow`` and ``OnDpiChanged``.
 
+In **Update**:
+
+    auto kb = m_keyboard->GetState();
+    if ( kb.Escape )
+        Windows::ApplicationModel::Core::CoreApplication::Exit();
+
+    auto mouse = m_mouse->GetState();
+
 # Adding a simple scene
 Start by saving [roomtexture.dds](https://github.com/Microsoft/DirectXTK/wiki/roomtexture.dds) into your new project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "roomtexture.dds" and click "OK".
 
