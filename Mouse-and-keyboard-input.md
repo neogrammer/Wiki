@@ -70,6 +70,14 @@ If using a Windows Universal Platform (UWP) app template, then in your **Initial
     m_mouse = std::make_unique<Mouse>();
     m_mouse->SetWindow(reinterpret_cast<ABI::Windows::UI::Core::ICoreWindow*>(window));
 
+In **Update** use:
+
+    auto kb = m_keyboard->GetState();
+    if ( kb.Escape )
+        Windows::ApplicationModel::Core::CoreApplication::Exit();
+
+    auto mouse = m_mouse->GetState();
+
 Then make sure you call ``Mouse::SetDpi(m_DPI);`` from **Main.cpp** at the bottom of ``SetWindow`` and ``OnDpiChanged``.
 
 In **Update**:
