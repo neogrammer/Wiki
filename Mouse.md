@@ -55,7 +55,7 @@ You need to call **SetWindow** and **SetDpi** in the appropriate places.
     {
         mouse->SetWindow(window);
 
-        mouse->SetDpi(DisplayInformation::GetForCurrentView()->LogicalDpi;
+        mouse->SetDpi(DisplayInformation::GetForCurrentView()->LogicalDpi);
     }
 
     void App::OnDpiChanged(DisplayInformation^ sender, Object^ args)
