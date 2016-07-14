@@ -57,8 +57,6 @@ DGSLEffect is typically used with ``VertexPositionNormalTangentColorTexture`` or
 
 * **SetTexture**: Associates a texture shader resource view with the effect, which can support up to 8 textures (_MaxTextures_ is 8). Can be set to nullptr to remove a reference: ``SetTexture(value);`` is equivalent to ``SetTexture(0, value);``,
 
-* **SetTexture2**: Associates a texture shader resource view with the effect. Can be set to nullptr to remove a reference. Equivalent to calling ``SetTexture(1, value);``
-
 # Feature Level Notes
 The DGSLEffect includes built-in support for the three default materials: _Unlit_, _Lambert_, and _Phong_. These built-in DGSL materials support all feature levels, as does the built-in DGSL-compatible vertex shader
 
