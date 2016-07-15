@@ -17,8 +17,8 @@ _Note: The Xbox One exclusive application XBoxDDSTextureLoader functions are in 
 * [[Effects]] - set of built-in shaders for common rendering tasks 
  * [[IEffectFactory|EffectFactory]]
  * [[IEffect]], [[IEffectMatrices]], [[IEffectLights]], [[IEffectFog]], [[IEffectSkinning]] 
- * [[AlphaTestEffect]], [[BasicEffect]], [[DGSLEffect]], [[DualTextureEffect]], [[EnvironmentMapEffect]], [[SkinnedEffect]]
- * [[NormalMapEffect]]
+ * [[AlphaTestEffect]], [[BasicEffect]], [[DualTextureEffect]], [[EnvironmentMapEffect]], [[SkinnedEffect]]
+ * [[NormalMapEffect]], [[DGSLEffect]]
 * [[GamePad]] - gamepad controller helper using XInput 
 * [[GeometricPrimitive]] - draws basic shapes such as cubes and spheres 
 * [[GraphicsMemory]] - helper for managing dynamic graphics memory allocation
