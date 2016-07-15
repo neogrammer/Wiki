@@ -90,6 +90,10 @@ Build and run to see the effect of animating the Fresnel factor.
 
 ![Screenshot of teapot](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTeapot2.PNG)
 
+# Normal mapping
+
+> **UNDER CONSTRUCTION**
+
 # Alpha-test
 
 > **UNDER CONSTRUCTION**
