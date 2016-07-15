@@ -33,7 +33,7 @@ The fog effects work for both right-handed and left-handed coordinate systems, b
 
 # Built-in Effect Notes
 
-## BasicEffect, AlphaTestEffect, DualTextureEffect, EnvironmentMapEffect, SkinnedEffect
+## BasicEffect, AlphaTestEffect, DualTextureEffect, EnvironmentMapEffect, NormalMapEffect, SkinnedEffect
 These implement a simple linear fog which is inexpensive on all feature levels.
 
 ## DGSLEffect
