@@ -83,5 +83,8 @@ This effect requires ``TEXCOORD0`` and ``TEXCOORD1``.
 ## EnvironmentMapEffect
 This effect requires ``NORMAL`` and ``TEXCOORD0``.
 
+## NormalMapEffect
+This effect requires ``NORMAL`` , ``TEXCOORD0`` and ``TANGENT``. If per-vertex colors are enabled, it also requires ``COLOR``.
+
 ## SkinnedEffect
 This effect requires ``NORMAL``, ``TEXCOORD0``, ``BLENDINDICES`` and ``BLENDWEIGHT``.
