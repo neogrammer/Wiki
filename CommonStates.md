@@ -28,10 +28,10 @@ For exception safety, it is recommended you make use of the C++ [RAII](http://en
 [D3D11_BLEND_DESC](http://msdn.microsoft.com/en-us/library/windows/desktop/ff476087.aspx)  
 [D3D11_BLEND_DESC1](http://msdn.microsoft.com/en-us/library/windows/desktop/hh404435.aspx)  
 
-* ID3D11BlendState* Opaque();
-* ID3D11BlendState* AlphaBlend();
-* ID3D11BlendState* Additive();
-* ID3D11BlendState* NonPremultiplied();
+* ID3D11BlendState* **Opaque**();
+* ID3D11BlendState* **AlphaBlend**();
+* ID3D11BlendState* **Additive**();
+* ID3D11BlendState* **NonPremultiplied**();
 
 ## Typical usage
 
@@ -46,9 +46,9 @@ For multipass rendering, you'd typically use Additive().
 [XNA Game Studio](http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.depthstencilstate_fields.aspx)  
 [D3D11_DEPTH_STENCIL_DESC](http://msdn.microsoft.com/en-us/library/windows/desktop/ff476110.aspx)  
 
-* ID3D11DepthStencilState* DepthNone();
-* ID3D11DepthStencilState* DepthDefault();
-* ID3D11DepthStencilState* DepthRead();
+* ID3D11DepthStencilState* **DepthNone**();
+* ID3D11DepthStencilState* **DepthDefault**();
+* ID3D11DepthStencilState* **DepthRead**();
 
 ## Typical usage
 
@@ -63,10 +63,10 @@ For drawing objects without any depth-sort at all, use DepthNone().
 [D3D11_RASTERIZER_DESC](http://msdn.microsoft.com/en-us/library/windows/desktop/ff476198.aspx)  
 [D3D11_RASTERIZER_DESC1](http://msdn.microsoft.com/en-us/library/windows/desktop/hh404489.aspx)
 
-* ID3D11RasterizerState* CullNone();
-* ID3D11RasterizerState* CullClockwise();
-* ID3D11RasterizerState* CullCounterClockwise();
-* ID3D11RasterizerState* Wireframe();
+* ID3D11RasterizerState* **CullNone**();
+* ID3D11RasterizerState* **CullClockwise**();
+* ID3D11RasterizerState* **CullCounterClockwise**();
+* ID3D11RasterizerState* **Wireframe**();
 
 ## Typical usage
 
@@ -80,12 +80,12 @@ Wireframe() is a wireframe rendering mode and shows both sides of the geometry.
 [XNA Game Studio](http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.samplerstate_fields.aspx)  
 [D3D11_SAMPLER_DESC](http://msdn.microsoft.com/en-us/library/windows/desktop/ff476207.aspx)
 
-* ID3D11SamplerState* PointWrap();
-* ID3D11SamplerState* PointClamp();
-* ID3D11SamplerState* LinearWrap();
-* ID3D11SamplerState* LinearClamp();
-* ID3D11SamplerState* AnisotropicWrap();
-* ID3D11SamplerState* AnisotropicClamp();
+* ID3D11SamplerState* **PointWrap**();
+* ID3D11SamplerState* **PointClamp**();
+* ID3D11SamplerState* **LinearWrap**();
+* ID3D11SamplerState* **LinearClamp**();
+* ID3D11SamplerState* **AnisotropicWrap**();
+* ID3D11SamplerState* **AnisotropicClamp**();
 
 ## Typical usage
 
