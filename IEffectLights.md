@@ -1,4 +1,4 @@
-This abstract interface controls directional lighting. Settings for this interface can influence the choice of shader permutation and input layout signature. This interface is implemented by _BasicEffect_, _EnvironmentMapEffect_, _SkinningEffect_, and _DGSLEffect_.
+This abstract interface controls directional lighting. Settings for this interface can influence the choice of shader permutation and input layout signature. This interface is implemented by _BasicEffect_, _DGSLEffect_, _EnvironmentMapEffect_, _NormalMapEffect_, and _SkinningEffect_.
 
 Effects that implement this interface require ``NORMAL`` semantic data in the vertex input layout.
 
