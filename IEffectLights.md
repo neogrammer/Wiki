@@ -60,3 +60,6 @@ This effect always implements lighting with 3 directional lights using the cubem
 
 ## SkinnedEffect
 This shader always implements lighting with 3 directional lights, so the **SetLightingEnabled** method is not supported for this effect. Calling ``SetLightingEnabled(false)`` through the base interface will generate an exception.
+
+## NormalMapEffect
+This effect always implements per-pixel lighting with 3 directional lights, so the **SetLightingEnabled** and **SetPerPixelLighting** methods are not supported for this effect.  Calling ``SetLightingEnabled(false)`` through the base interface will generate an exception, and calls to ``SetPerPixelLighting`` are ignored.
