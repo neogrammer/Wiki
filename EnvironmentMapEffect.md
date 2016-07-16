@@ -41,7 +41,7 @@ This effect requires ``SV_Position``, ``NORMAL`` and ``TEXCOORD``.
 * **SetFresnelFactor**: Sets the Frensel factor for the environment map. Defaults to 1. Can be set to 0 to disable the Fresnel factor.
 
 # Remarks
-EnvironmentMapEffect always uses vertex lighting, and does not support per-pixel lighting. Specular light color is also ignored.
+EnvironmentMapEffect computes all specular effects using the cubemap and specular factor, and always performs vertex or per-pixel lighting.
 
 This effect always performs texturing, so if 'untextured' rendering is desired you must provide texture coordinates, a sampler in slot 0, and a 1x1 texture with white (1,1,1,1).
 
