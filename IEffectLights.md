@@ -56,7 +56,7 @@ DGSL shaders always use per-pixel lighting, so the **SetPerPixelLighting** metho
 The number of valid lights is determined by the implementation of the DGSL pixel shader, so calls to **SetLightingEnabled** may have no effect. DGSL defines up to 4 directional lights (``DGSLEffect::MaxDirectionalLights`` is 4). The built-in implementation of the default material "Lambert" supports up to 4 directional lights, while the built-in default material "Phong" supports only 3 directional lights in order to support Feature Level 9.1.
 
 ## EnvironmentMapEffect
-This effect always implements lighting with 3 directional lights using the cubemap and specular factor, so the **SetLightingEnabled** and **SetLightSpecularColor** methods are not supported for this effect.  Calling ``SetLightingEnabled(false)`` through the base interface will generate an exception, and calls to ``SetLightSpecularColor`` are ignored.
+This effect always implements lighting with 3 directional lights using the cubemap and specular factor for specular highlights, so the **SetLightingEnabled** and **SetLightSpecularColor** methods are not supported for this effect.  Calling ``SetLightingEnabled(false)`` through the base interface will generate an exception, and calls to ``SetLightSpecularColor`` are ignored.
 
 ## SkinnedEffect
 This shader always implements lighting with 3 directional lights, so the **SetLightingEnabled** method is not supported for this effect. Calling ``SetLightingEnabled(false)`` through the base interface will generate an exception.
