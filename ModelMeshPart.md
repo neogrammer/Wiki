@@ -21,6 +21,7 @@ All members of ModelMeshPart are public to facilitate writing custom model loade
 * _primitiveType_ - Topology for the primitives in the submesh. It is usually set to ``D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST`` with each three indices in the index buffer forming a triangle. This is used when calling Direct3D11's [IASetPrimitiveTopology](http://msdn.microsoft.com/en-us/library/ff476455.aspx) method.
 * _inputLayout_ - COM smart pointer to the input layout associated with this submesh. This is used when calling Direct3D11's [IASetInputLayout](http://msdn.microsoft.com/en-us/library/ff476454.aspx) method. This must correctly match the signature of the effect and match the vertex data format in the vertex buffer.
 * _effect_ - An [[IEffect|Effects]] instance which is used to set up the proper constant buffer and shader states before drawing the submesh.
+* _vbDecl_ - Input layout description for the vertex buffer.
 
 # Metadata
 The _ModelMeshPart::isAlpha_ boolean indicates if the ModelMeshPart instance's effect makes use of alpha-blending. This information is used by ModelMesh::Draw to ensure that opaque effects are applied before transparent effects, and the depth buffer is used accordingly.
