@@ -29,7 +29,7 @@ Fill out the EffectInfo structure, then call **CreateEffect** to obtain an [[Eff
 
     auto effect = fxFactory->CreateEffect( info, deviceContext );
 
-The standard factory will create instances of [[BasicEffect]]. If _info.enableSkinning_ is true, it returns [[SkinnedEffect]] instances instead. If _info.enableDualTexture_ is true, it returns a [[DualTextureEffect]] instance. If _info.enableNormalMaps_ is true--and you haven't called **EnableNormalMapEffect** to false--, then it returns a [[NormalMapEffect]] instance. They are kept in distinct 'sharing' lists since they have different input layout requirements.
+The standard factory will create instances of [[BasicEffect]]. If _info.enableSkinning_ is true, it returns [[SkinnedEffect]] instances instead. If _info.enableDualTexture_ is true, it returns a [[DualTextureEffect]] instance. If _info.enableNormalMaps_ is true--and you haven't called **EnableNormalMapEffect(false)**--, then it returns a [[NormalMapEffect]] instance. They are kept in distinct 'sharing' lists since they have different input layout requirements.
 
 # Creating DGSL Effects
 The **DGSLEffectFactory** extends the standard EffectFactory with support for the Visual Studio Shader Designer (DGSL) system used by ``.CMO`` files. It creates instances of [[DGSLEffect]]. It also supports sharing the pixel shader instances required for DGSL shaders through the **CreatePixelShader** method.
