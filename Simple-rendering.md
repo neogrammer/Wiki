@@ -282,6 +282,9 @@ Build and run to see the shimmering of the lines lessen compared to the first ve
 
 > _Troubleshooting:_ If you get an exception, it may be because your device does not support 4x MSAA--which you can confirm by checking the debug device output at the failure point. Direct3D Feature Level 10.1 or later devices all support 4x MSAA for most render target formats, but some 10.0 and 9.x feature levels do not. You can try using 2 instead of 4 in the sample counts if this happens. If you have a Feature Level 11.0 or later device, you can try using 4 or 8. Be sure to change `` DXGI_SWAP_CHAIN_DESC1 ``, `` DXGI_SWAP_CHAIN_DESC``, and ``depthStencilDesc``. See also [CheckMultisampleQualityLevels](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476499.aspx).
 
+### Technical Note
+The ability to create an MSAA DXGI swap chain is only supported for the older "bit-blt" style presentation modes, specifically ``DXGI_SWAP_EFFECT_DISCARD`` or ``DXGI_SWAP_EFFECT_SEQUENTIAL``. The newer "flip" style presentation modes required for Universal Windows Platform (UWP) apps and Direct3D 12 don't support creating MSAA swap chains. Instead, you explicitly create your own MSAA render target and then manually resolve via ``ResolveSubresource`` to the DXGI back-buffer for presentation.
+
 # More to explore
 
 * PrimitiveBatch is ideally suited for drawing debug displays such as visualizing bounding volumes, collision data, etc. For more on this, see [[DebugDraw]].
