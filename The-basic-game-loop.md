@@ -93,6 +93,8 @@ The other function called by ``Initialize`` is the **CreateResources** function 
         // TODO: Initialize windows-size dependent objects here
     }
 
+> Universal Windows Platform (UWP) apps require the use of 'flip' style swap effects, either ``DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL`` or ``DXGI_SWAP_EFFECT_FLIP_DISCARD``. These DXGI swap chains cannot be created with an ``DXGI_FORMAT_x_UNORM_SRGB`` format or use MSAA (aka ``SampleDesc.Count`` > 1). Both sRGB gamma-correction and MSAA require special handling. See [[DeviceResources]] for more details.
+
 ## Update
 The **Update** method is intended to handle game-world state modification which is typically driven by time passing, simulation, and/or user-input. By default, ``Update`` is called once per 'frame' and can have an arbitrary delta-time. This is called a 'variable-step' mode.
 
