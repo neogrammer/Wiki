@@ -10,7 +10,9 @@ The easiest way to achieve this is to use the [NuGet package manager](https://ww
 * Select "Install"
 * Select "Close"
 
-![Manage NuGet Packages](https://github.com/Microsoft/DirectXTK/wiki/images/nuget.png)
+![Manage NuGet Packages (VS 2013)](https://github.com/Microsoft/DirectXTK/wiki/images/nuget2013.png)
+
+![Manage NuGet Packages (VS 2015)](https://github.com/Microsoft/DirectXTK/wiki/images/nuget2015.png)
 
 You can check for updates to the NuGet package by selecting "Updates/All" in the left-hand tree view. If there are updates, select the "DirectX Tool Kit" package, and click on "Update".
 
