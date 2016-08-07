@@ -4,8 +4,9 @@ After creating a new project in the [[The basic game loop]], the next step is to
 The easiest way to achieve this is to use the [NuGet package manager](https://www.nuget.org/) built into Visual Studio.
 
 * From the drop-down menu, select **Project** / **Manage NuGet Packages...**
-* Select "Online/All" in the left-hand tree view
-* In the text search field on the top-right type "DirectXTK" and hit enter to search for the packages
+* *VS2013:* Select "Online/All" in the left-hand tree view
+* *VS2015:* Select "Browse" on the top tab, and make sure the _Package source_ is set to "nuget.org"
+* In the text search field type "DirectXTK" and hit enter to search for the packages
 * Select the package with the id **[directxtk_desktop_2013](https://www.nuget.org/packages/directxtk_desktop_2013/)** or **[directxtk_desktop_2015](https://www.nuget.org/packages/directxtk_desktop_2015/)**
 * Select "Install"
 * Select "Close"
