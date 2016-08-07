@@ -63,7 +63,6 @@ If using VS 2015, be sure to install Visual C++ which requires using the _Custom
 * [[Rendering a model]]
 * [[Using skinned models]]
 * [[Using advanced shaders]]
-* [[Applying lightmaps]]
 * [[Creating custom shaders with DGSL]]
 * [[Writing custom shaders]]
 
