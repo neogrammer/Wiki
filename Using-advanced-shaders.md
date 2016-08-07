@@ -96,7 +96,7 @@ Build and run to see the effect of animating the Fresnel factor.
 
 * [[DualTextureEffect]] is used to render a material with two textures applied. This requires the input layout to contain a second set of _texture coordinates_. This does not perform vertex or per-pixel lighting, as the second texture is most often a [lightmap](https://en.wikipedia.org/wiki/Lightmap) with statically computed lighting information.  ``.SDKMESH`` and the [Content Exporter](http://go.microsoft.com/fwlink/?LinkId=226208) support exporting light-mapped models which utilize this effect.
 
-* The [[AlphaTestEffect]]
+* The [[AlphaTestEffect]] is used to perform pixel rejection based on an alpha reference value and function selection. Note that is not related to the _stencil buffer_.
 
 **Next lesson:** [[Creating custom shaders with DGSL]]
 
