@@ -90,15 +90,15 @@ Build and run to see the effect of animating the Fresnel factor.
 
 ![Screenshot of teapot](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTeapot2.PNG)
 
-# Normal mapping
+# More to explore
 
-> **UNDER CONSTRUCTION**
+* The [[NormalMapEffect]] is similar to the [[BasicEffect]] with the addition of a normal texture map and an optional specular texture map. This requires the input layout to contain vertex _tangents_ which are included in ``.CMO`` models, can be included when exporting and ``.SDKMESH`` via the [Content Exporter](http://go.microsoft.com/fwlink/?LinkId=226208), or can be computed using [DirectXMesh](https://github.com/Microsoft/DirectXMesh).
 
-# Alpha-test
+* [[DualTextureEffect]] is used to render a material with two textures applied. This requires the input layout to contain a second set of _texture coordinates_. This does not perform vertex or per-pixel lighting, as the second texture is most often a lightmap with statically computed lighting information.  SDKMESH`` and the [Content Exporter](http://go.microsoft.com/fwlink/?LinkId=226208) support exporting light-mapped models which utilize this effect.
 
-> **UNDER CONSTRUCTION**
+* The [[AlphaTestEffect]]
 
-**Next lesson:** [[Applying lightmaps]]
+**Next lesson:** [[Creating custom shaders with DGSL]]
 
 # Further reading 
 
