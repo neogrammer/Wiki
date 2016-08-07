@@ -14,7 +14,7 @@ See also [[EffectFactory]]
 
 ![Effects Example](https://github.com/Microsoft/DirectXTK/wiki/images/EffectsExample.png)
 
-**Related tutorials:** [[Simple rendering]], [[Using advanced shaders]], [[Applying lightmaps]], [[Creating custom shaders with DGSL]], [[Writing custom shaders]]
+**Related tutorials:** [[Simple rendering]], [[Using advanced shaders]], [[Creating custom shaders with DGSL]], [[Writing custom shaders]]
 
 # Header
     #include <Effects.h>
