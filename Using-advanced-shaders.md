@@ -92,7 +92,7 @@ Build and run to see the effect of animating the Fresnel factor.
 
 # More to explore
 
-* The [[NormalMapEffect]] is similar to the [[BasicEffect]] with the addition of a [normal texture map](https://en.wikipedia.org/wiki/Normal_mapping) and an optional [specular texture map](https://en.wikipedia.org/wiki/Specularity). This requires the input layout to contain vertex _tangents_ which are included in ``.CMO`` models, can be included when exporting and ``.SDKMESH`` via the [Content Exporter](http://go.microsoft.com/fwlink/?LinkId=226208), or can be computed using [DirectXMesh](https://github.com/Microsoft/DirectXMesh).
+* The [[NormalMapEffect]] is similar to the [[BasicEffect]] with the addition of a [normal texture map](https://en.wikipedia.org/wiki/Normal_mapping) and an optional [specular texture map](https://en.wikipedia.org/wiki/Specularity). This requires the input layout to contain vertex _tangents_ which are included in ``.CMO`` models, can be included when exporting an ``.SDKMESH`` via the [Content Exporter](http://go.microsoft.com/fwlink/?LinkId=226208), or can be computed using [DirectXMesh](https://github.com/Microsoft/DirectXMesh).
 
 * [[DualTextureEffect]] is used to render a material with two textures applied. This requires the input layout to contain a second set of _texture coordinates_. This does not perform vertex or per-pixel lighting, as the second texture is most often a [lightmap](https://en.wikipedia.org/wiki/Lightmap) with statically computed lighting information.  ``.SDKMESH`` and the [Content Exporter](http://go.microsoft.com/fwlink/?LinkId=226208) support exporting light-mapped models which utilize this effect.
 
