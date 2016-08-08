@@ -110,7 +110,7 @@ In **Game.cpp**, add to the TODO of **CreateDevice**:
         }
     });
 
-Build and run to get our cup with a colored light and fogging enabled.
+Build and run to get our cup with a colored light, per-pixel rather than vertex lighting, and fogging enabled.
 
 ![Screenshot of fogged cup model](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotCupFog.PNG)
 
