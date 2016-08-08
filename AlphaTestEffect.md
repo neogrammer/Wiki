@@ -30,4 +30,6 @@ This effect requires ``SV_Position`` and ``TEXCOORD0``. It also requires ``COLOR
 
 * **SetReferenceAlpha**: Sets the alpha reference value for the test.
 
+# Remarks
 
+It's primarily to implement techniques that relied on legacy Direct3D 9 alpha testing render state. This effect is independent of the depth/stencil test set in ``D3D11_DEPTH_STENCIL_DESC.DepthFunc`` and ``StencilFunc``.
