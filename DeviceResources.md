@@ -239,9 +239,10 @@ The **DeviceResources** class also includes a number of useful assessors not alr
 * **GetOutputSize**: Returns the output size of the presentation window associated with the device.
 * **GetSwapChain**: Returns the DXGI swap chain interface.
 * **GetDeviceFeatureLevel**: Returns the Direct3D hardware feature level in use.
-* **GetBackBufferFormat**: Returns the format of the render target returned by ``GetBackBufferRenderTargetView``.
+* **GetBackBufferFormat**: Returns the format of the render target returned by ``GetRenderTargetView``.
 * **GetDepthBufferFormat**: Returns the format of the depth/stencil buffer returned by ``GetDepthStencilView``.
 * **GetBackBufferCount**: Returns the number of back-buffers in the swap chain.
+* **GetRenderTarget**, **GetDepthStencil**: Returns the texture objects for the swap chain & depth/stencil buffer.
 
 # Platform notes
 
