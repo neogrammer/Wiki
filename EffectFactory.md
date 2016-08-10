@@ -60,7 +60,7 @@ _DGSLEffect_ instances with and without skinning enable are kept in distinct 'sh
 
 _Note: On the Windows phone 8 platform, WIC is not supported or used. Only ``DDS`` textures are supported on this platform._
 
-> **EnableForceSRGB** is used to determine of loaded textures have _forceSRGB_ set to true for the loaders or not. This defaults to false.
+> **EnableForceSRGB** is used to determine if textures have _forceSRGB_ set to true for the loaders or not. This defaults to false.
 
 # Directories
 The **CreateTexture** and **CreatePixelShader** methods both assume the name given is the filename. By default, this is a relative path to the current directory. To cause the factory to look in a specific directory path, use **SetDirectory**.
