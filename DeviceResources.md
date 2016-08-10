@@ -160,7 +160,7 @@ The **Clear** method defaults to a background color of the classic "Cornflower b
     {
         // Clear the views
         auto context = m_deviceResources->GetD3DDeviceContext();
-        auto renderTarget = m_deviceResources->GetBackBufferRenderTargetView();
+        auto renderTarget = m_deviceResources->GetRenderTargetView();
         auto depthStencil = m_deviceResources->GetDepthStencilView();
 
         context->ClearRenderTargetView(renderTarget, Colors::CornflowerBlue);
@@ -185,7 +185,7 @@ If you chose to not have DeviceResources create a depth-stencil buffer (see the 
     {
         // Clear the views
         auto context = m_deviceResources->GetD3DDeviceContext();
-        auto renderTarget = m_deviceResources->GetBackBufferRenderTargetView();
+        auto renderTarget = m_deviceResources->GetRenderTargetView();
 
         context->ClearRenderTargetView(renderTarget, Colors::CornflowerBlue);
         context->OMSetRenderTargets(1, &renderTarget, nullptr);
@@ -230,7 +230,7 @@ The tour above has made use of the following accessors:
 
 * **GetD3DDevice**: Returns the Direct3D device.
 * **GetD3DDeviceContext**: Returns the Direct3D device context.
-* **GetBackBufferRenderTargetView**: Returns the render target view for the swap chain back-buffer.
+* **GetRenderTargetView**: Returns the render target view for the swap chain back-buffer.
 * **GetDepthStencilView**: Returns the depth/stencil buffer created for the back-buffer.
 * **GetScreenViewport**: Returns a viewport for the swap chain back-buffer.
 
