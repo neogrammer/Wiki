@@ -7,6 +7,7 @@
 * [[Quaternion]]
 * [[Plane]]
 * [[Ray]]
+* [[Rectangle]]
 * [[Color]]
 * [[Viewport]]
 
