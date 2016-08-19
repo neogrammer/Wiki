@@ -81,7 +81,7 @@ Then to render:
     context->IASetVertexBuffers(...);
     context->IASetIndexBuffer(...);
     context->IASetPrimitiveTopology(...);
-    context->Draw*(...);
+    context->DrawIndexed(...);
 
 When dealing with lost device:
 
