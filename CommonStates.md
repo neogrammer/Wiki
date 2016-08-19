@@ -95,7 +95,7 @@ Remember that ??SetSamplers() actually takes an _array_ of sampler state objects
 
 # Feature level usage
 
-All common states work with all feature levels. Anisotropic*() uses a MaxAnisotropy of 2 on Feature Level 9.1.
+All common states work with all feature levels. Anisotropic*() uses a MaxAnisotropy of 2 on Feature Level 9.1. On all other feature levels is uses 16 (``D3D11_MAX_MAXANISOTROPY``).
 
 [Direct3D feature levels](http://msdn.microsoft.com/en-us/library/windows/desktop/ff476876.aspx)
 
