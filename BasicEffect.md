@@ -42,6 +42,51 @@ This effect requires ``SV_Position``, ``NORMAL`` if lighting is enabled, ``COLOR
 
 * **SetTexture**: Associates a texture shader resource view with the effect. Can be set to nullptr to remove a reference.
 
+# Example
+Here is an example of creating and using a basic effect instance:
+
+        std::unique_ptr<DirectX::BasicEffect> basicEffect;
+
+When creating device-dependent resources:
+
+    basicEffect = std::make_unique<BasicEffect>(device);
+
+    basicEffect->EnableDefaultLighting();
+    basicEffect->SetDiffuseColor(Colors::Red);
+    basicEffect->SetFogColor(Colors::CornflowerBlue);
+    basicEffect->SetFogStart(fogstart);
+    basicEffect->SetFogEnd(fogend);
+    basicEffect->SetTexture( texture.Get() );
+
+When the window size is changed is where you typically set the projection:
+
+    basicEffect->SetProjection(projection);
+
+A view matrix is computed based on user input and camera settings:
+
+    basicEffect->SetView(view);
+
+Then to render:
+
+    basicEffect->SetWorld(world);
+    basicEffect->Apply(context);
+
+    context->OMSetBlendState(states->AlphaBlend(), Colors::White, 0xFFFFFFFF);
+    context->OMSetDepthStencilState(states->DepthDefault(), 0);
+    context->RSSetState(states->None());
+
+    ID3D11SamplerState* samplers[] = { states->LinearWrap() };
+    context->PSSetSamplers(0, 1, samplers);
+
+    context->IASetVertexBuffers(...);
+    context->IASetIndexBuffer(...);
+    context->IASetPrimitiveTopology(...);
+    context->Draw*(...);
+
+When dealing with lost device:
+
+    basicEffect.reset();
+
 # Further reading
 
 [BasicEffect optimizations in XNA Game Studio 4.0](http://blogs.msdn.com/b/shawnhar/archive/2010/04/25/basiceffect-optimizations-in-xna-game-studio-4-0.aspx)  
