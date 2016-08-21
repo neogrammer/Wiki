@@ -256,12 +256,14 @@ It includes **GetRotation** and **GetOrientationTransform3D** to simplify handli
 
     m_spritesBatch->SetRotation( m_deviceResources->GetRotation() );
 
-    Matrix perspectiveMatrix = Matrix::CreatePerspectiveFieldOfView( fovAngleY, aspectRatio, nearDist, farDist );
+    Matrix perspectiveMatrix = Matrix::CreatePerspectiveFieldOfView(
+        fovAngleY, aspectRatio, nearDist, farDist );
     m_projection = perspectiveMatrix * m_deviceResources->GetOrientationTransform3D();
 
     -or-
 
-    XMMATRIX projection = XMMatrixPerspectiveFovLH( fovAngleY, aspectRatio, nearDist, farDist );
+    XMMATRIX projection = XMMatrixPerspectiveFovLH(
+        fovAngleY, aspectRatio, nearDist, farDist );
     XMMATRIX orient = XMLoadFloat4x4( &m_deviceResources->GetOrientationTransform3D() );
     projection *= orient;
 
