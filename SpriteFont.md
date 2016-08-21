@@ -39,6 +39,8 @@ SpriteFont has three constructors:
 * Pass a buffer containing a MakeSpriteFont binary that was already loaded some other way
 * Pass an array of Glyph structs if you prefer to entirely bypass MakeSpriteFont
 
+There is also a _forceSRGB_ option for working around gamma issues with color fonts that are in the sRGB or similar color space but is not encoded explicitly as an SRGB format.
+
 # Helpers
 In addition to ``DrawString`` with various overloads, SpriteFont includes the following helpers:
 
