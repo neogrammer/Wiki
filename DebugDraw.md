@@ -356,3 +356,4 @@ To render , call ``Begin`` and then use the debug draw functions on the 'open' `
 
     m_batch->End();
 
+> This code works as is for both DirectX Tool Kit for DirectX 11 and DirectX 12.
