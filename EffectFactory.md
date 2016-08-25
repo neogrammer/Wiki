@@ -61,9 +61,11 @@ _DGSLEffect_ instances with and without skinning enable are kept in distinct 'sh
 > **EnableForceSRGB** is used to determine if textures have _forceSRGB_ set to true for the loaders or not. This defaults to false.
 
 # Directories
-The **CreateTexture** and **CreatePixelShader** methods both assume the name given is the filename. By default, this is a relative path to the current directory. To cause the factory to look in a specific directory path, use **SetDirectory**.
+The **CreateTexture** and **CreatePixelShader** methods both assume the name given is the filename. By default, this is a relative path to the current working directory ([CWD](https://msdn.microsoft.com/en-us/library/windows/desktop/aa363806.aspx)). To cause the factory to look in a specific directory path, use **SetDirectory**.
 
     fxFactory->SetDirectory( L".\\Assets" );
+
+> It will first look in the current working directory for the file, and then look in the specified path given in ``SetDirectory`` if set.
 
 # Interfaces
 The _EffectFactory_ and _DGSLEffectFactory_ are concrete implementations of the _IEffectFactory_ interface, and provide a default implementation and caching policy. This allows the developer to create their own custom version of the Effect Factory by deriving from _IEffectFactory_, which can be used with Model loaders. This could be used for alternative caching policies, locating textures in packed archives, substituting special [[Effects]] triggered material name, etc.
