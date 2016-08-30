@@ -1,6 +1,6 @@
 This is a native Direct3D 11 implementation of a bitmap font renderer, similar to the SpriteFont type from [XNA Game Studio](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.spritefont.aspx), plus a command line tool ([[MakeSpriteFont]]) for building fonts into bitmap format. It is less fully featured than Direct2D and DirectWrite, but may be useful for those who want something simpler and lighter weight.
 
-> SpriteFont is particularly useful for the Windows phone 8.0 and Xbox One XDK platforms that lack support for Direct2D and DirectWrite.
+> Windows Phone 8.0 and Xbox One XDK do not support Direct2D/DirectWrite. UWP on the Xbox One device family does support it.
 
 ![Sprite Font Example](https://github.com/Microsoft/DirectXTK/wiki/images/SpriteFontExample.png)
 
