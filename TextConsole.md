@@ -2,7 +2,7 @@ This is a C++ implementation of a simple console for displaying text. As more te
 
 ![Text console test](https://github.com/Microsoft/DirectXTK/wiki/images/TextConsole.PNG)
 
-[TextConsole.h](https://github.com/Microsoft/DirectXTK/wiki/TextConsole.h)
+[TextConsole.h](https://github.com/Microsoft/DirectXTK/wiki/TextConsole.h) / [TextConsole.cpp](https://github.com/Microsoft/DirectXTK/wiki/TextConsole.cpp)
 
     class TextConsole
     {
