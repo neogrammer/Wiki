@@ -57,7 +57,7 @@ Enter the following command-line after changing to the appropriate directory:
 Then rebuild the DirectXTK library to update with the latest version of the shaders.
 
 ## Xbox One XDK
-Xbox One exclusive application developers using the Xbox One XDK need to generate the `Src\Shaders\Compiled\XboxOne*.inc` files to build the library as they are not included in the distribution package. They should be generated with the matching FXC compiler from the Xbox One XDK. While they will continue to work if outdated, a mismatch will cause runtime compilation overhead that would otherwise be avoided.
+Xbox One exclusive application developers using the [Xbox One XDK](https://developer.xboxlive.com/) need to generate the `Src\Shaders\Compiled\XboxOne*.inc` files to build the library as they are not included in the distribution package. They should be generated with the matching FXC compiler from the Xbox One XDK. While they will continue to work if outdated, a mismatch will cause runtime compilation overhead that would otherwise be avoided.
 
 Open a Xbox One XDK _Command Prompt_, and change to the directory containing ``CompileShaders.cmd`` (i.e. `...\DirectXTK\Src\Shaders`)
 
