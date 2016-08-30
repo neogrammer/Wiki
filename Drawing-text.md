@@ -1,6 +1,6 @@
 This lesson covers drawing text using bitmap fonts and the sprite renderer.
 
-> With the DirectX 11.1, you can also rely on Direct2D/DirectWrite being available which is recommended for true vector-font features such as high quality across a wide range of scales, for complex layouts, or large-alphabet fonts. SpriteFont is intended for low-overhead bitmap-font rendering using a font that can be captured to a single texture. Note that Windows Phone 8.0 and Xbox One XDK do not support Direct2D/DirectWrite.
+> With the DirectX 11.1, you can also rely on Direct2D/DirectWrite being available which is recommended for true vector-font features such as high quality across a wide range of scales, for complex layouts, or large-alphabet fonts. SpriteFont is intended for low-overhead bitmap-font rendering using a font that can be captured to a single texture. Note that Windows Phone 8.0 and Xbox One XDK do not support Direct2D/DirectWrite. UWP on the Xbox One device family does support it.
 
 # Setup
 First create a new project using the instructions from the first two lessons: [[The basic game loop]] and
