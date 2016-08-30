@@ -29,6 +29,7 @@ TextConsole::TextConsole()
 }
 
 
+_Use_decl_annotations_
 TextConsole::TextConsole(ID3D11DeviceContext* context, const wchar_t* fontName)
     : m_textColor(1.f, 1.f, 1.f, 1.f),
     m_debugOutput(false)
@@ -84,7 +85,7 @@ void TextConsole::Clear()
 
 
 _Use_decl_annotations_
-void TextConsole::Write(_In_z_ const wchar_t *str)
+void TextConsole::Write(const wchar_t *str)
 {
     std::lock_guard<std::mutex> lock(m_mutex);
 
@@ -200,7 +201,7 @@ void TextConsole::ReleaseDevice()
     m_context.Reset();
 }
 
-
+_Use_decl_annotations_
 void TextConsole::RestoreDevice(ID3D11DeviceContext* context, const wchar_t* fontName)
 {
     m_context = context;
@@ -225,7 +226,7 @@ void TextConsole::SetRotation(DXGI_MODE_ROTATION rotation)
 }
 
 
-void TextConsole::ProcessString(const wchar_t* str)
+void TextConsole::ProcessString(_In_z_ const wchar_t* str)
 {
     if (!m_lines)
         return;

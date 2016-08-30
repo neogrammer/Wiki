@@ -21,8 +21,11 @@
 #include "SpriteBatch.h"
 #include "SpriteFont.h"
 
+#include <algorithm>
 #include <mutex>
 #include <vector>
+
+#include <wrl/client.h>
 
 
 namespace DX
@@ -31,7 +34,7 @@ namespace DX
     {
     public:
         TextConsole();
-        TextConsole(ID3D11DeviceContext* context, const wchar_t* fontName);
+        TextConsole(_In_ ID3D11DeviceContext* context, _In_z_ const wchar_t* fontName);
 
         void Render();
 
@@ -48,12 +51,12 @@ namespace DX
         void SetDebugOutput(bool debug) { m_debugOutput = debug; }
 
         void ReleaseDevice();
-        void RestoreDevice(ID3D11DeviceContext* context, const wchar_t* fontName);
+        void RestoreDevice(_In_ ID3D11DeviceContext* context, _In_z_ const wchar_t* fontName);
 
         void SetRotation(DXGI_MODE_ROTATION rotation);
 
     private:
-        void ProcessString(const wchar_t* str);
+        void ProcessString(_In_z_ const wchar_t* str);
         void IncrementLine();
 
         RECT                                            m_layout;
