@@ -114,9 +114,9 @@ The Keyboard class makes use of virtual keys and not scancodes so your code has 
 
 # Platform notes
 
-For Windows phone and Xbox One, the Keyboard and Mouse classes exist in the library to avoid the need for conditional compilation. The Keyboard and Mouse class instance on these platforms, however, are "null" devices and will not return any input.
+For Windows phone and Xbox One, the Keyboard and [[Mouse]] classes exist in the library to avoid the need for conditional compilation. The Keyboard and Mouse class instance on these platforms, however, are "null" devices and will not return any input.
 
-> In theory they could be associated with the virtual keyboard on these platforms, but since the purpose of ``Keyboard`` abstraction is to use key presses as a game controller it makes little sense as a virtual keyboard.
+> In theory they could be associated with the virtual keyboard on these platforms, but since the purpose of ``Keyboard`` abstraction is to use key presses as a game controller it makes little sense as a virtual keyboard. For UWP on Xbox One, the Keyboard class will expose input from the virtual keyboard, but the usability of this method of input is low.
 
 # Further reading
 [DirectX Tool Kit: Keyboard and Mouse support](http://blogs.msdn.com/b/chuckw/archive/2015/08/06/directx-tool-kit-keyboard-and-mouse-support.aspx)  
