@@ -114,7 +114,8 @@ The Keyboard class makes use of virtual keys and not scancodes so your code has 
 
 # Platform notes
 
-For Windows phone and Xbox One, the Keyboard class exists in the library to avoid the need for conditional compilation, but tying the input to the virtual keyboard as that makes little sense as a controller for games.
+For Windows phone and Xbox One, the Keyboard and Mouse classes exist in the library, to avoid the need for conditional compilation. However the Keyboard and Mouse classes are "null" devices and will not return any input.
+
 
 # Further reading
 [DirectX Tool Kit: Keyboard and Mouse support](http://blogs.msdn.com/b/chuckw/archive/2015/08/06/directx-tool-kit-keyboard-and-mouse-support.aspx)  
