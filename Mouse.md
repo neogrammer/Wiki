@@ -137,7 +137,7 @@ The Mouse class should be thread-safe with the exception of the **ProcessMessage
 # Platform notes
 For Windows phone and Xbox One, the [[Keyboard]] and Mouse classes exist in the library to avoid the need for conditional compilation. The Keyboard and Mouse class instance on these platforms, however, are "null" devices and will not return any input.
 
-> For UWP applications on Xbox One, the game controller can be made to emulate a mouse but the input paradigm is more natural if you use the [[GamePad]] class directly.
+> For UWP applications on Xbox One, the game controller can be made to emulate a mouse which will provide input through the Mouse class, but the input paradigm is more natural if you use the [[GamePad]] class directly.
 
 For Windows Store, universal Windows apps, and Windows phone touch/pointer devices are captured as [mouse movement](https://msdn.microsoft.com/en-us/library/windows/apps/xaml/Hh994931.aspx). Touch/pointer devices do not, however, result in changes to button state. Relative mouse movement is captured per this [MSDN](https://msdn.microsoft.com/en-us/library/windows/apps/xaml/hh994925.aspx) article.
 
