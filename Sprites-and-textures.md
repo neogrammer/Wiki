@@ -44,7 +44,7 @@ In **Game.cpp**, modify TODO of **CreateDevice** to be:
         m_texture.ReleaseAndGetAddressOf()));
 
     ComPtr<ID3D11Texture2D> cat;
-    DX::ThrowIfFailed(resource.As(&cat));
+    DX::ThrowIfFailed(m_texture.As(&cat));
 
     CD3D11_TEXTURE2D_DESC catDesc;
     cat->GetDesc(&catDesc);
