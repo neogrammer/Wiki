@@ -12,7 +12,7 @@ See [[Audio]], [[WaveBank]]
 
 The file-name parameter indicates the ``.wav`` file(s) to add to the wave bank.
 
-# Optional Switches Descriptio
+# Optional Switches Description
 
 **-r**: Input file names can contain wildcard characters (``?`` or ``*``). If this switch is used, subdirectories are also searched.
 
