@@ -17,7 +17,7 @@ The file _wavebank.xwb_ is generated from the three input ``.wav`` files.
 # Options
 
 **-r**
-* Input file names can contain wildcard (``?`` or ``*``). If this flag is used, subdirectories are also searched.
+* Input file names can contain wildcard (``?`` or ``*``). If this switch is used, subdirectories are also searched.
 
 **-s**
 * Creates as streaming wave bank, otherwise defaults to in-memory wave bank
