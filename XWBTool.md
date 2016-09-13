@@ -2,21 +2,17 @@ The XWBTool is a command-line utility for building XACT-style wave banks for use
 
 See [[Audio]], [[WaveBank]]
 
-*Note:* The command-line tools in the DirectXTK package are only built by the _DirectXTK_Desktop_201x_ solutions since they are Win32 desktop applications.
+> The command-line tools in the DirectXTK package are only built by the _DirectXTK_Desktop_201x_ solutions since they are Win32 desktop applications.
 
-# Example usage
+# Synax
 
-Open a [Command Prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq), and change to the directory containing ``XWBTool.exe`` (i.e. ``...\DirectXTK\XWBTool\bin\Release``)
+``xwbtool.exe`` uses the following command syntax:
 
-Enter the following command-line after changing to the appropriate directory:
+    xwbtool [-r] [-s] [-o <filename>] [-h <filename>] [-n] [-c | -nc] [-f] <file-name(s)>
 
-    xwbtool -o wavebank.xwb Sound.wav Explosion.wav Music.wav
+The file-name parameter indicates the ``.wav`` file(s) to add to the wave bank.
 
-The file _wavebank.xwb_ is generated from the three input ``.wav`` files.
-
-# Options
-
-    xwbtool [-r] [-s] [-o <filename>] [-h <filename>] [-n] [-c | -nc] [-f]
+# Optional Switches Descriptio
 
 **-r**: Input file names can contain wildcard characters (``?`` or ``*``). If this switch is used, subdirectories are also searched.
 
@@ -31,6 +27,16 @@ The file _wavebank.xwb_ is generated from the three input ``.wav`` files.
 **-c / -nc**: Forces creation or prevents use of compact wave banks. By default, it will try to use a compact wave bank if possible.
 
 **-f**: Includes entry friendly name strings in the wave bank for use with 'string' based versions of WaveBank::Play() and WaveBank::CreateInstance() rather than index-based versions.
+
+# Example usage
+
+Open a [Command Prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq), and change to the directory containing ``XWBTool.exe`` (i.e. ``...\DirectXTK\XWBTool\bin\Release``)
+
+Enter the following command-line after changing to the appropriate directory:
+
+    xwbtool -o wavebank.xwb Sound.wav Explosion.wav Music.wav
+
+The file _wavebank.xwb_ is generated from the three input ``.wav`` files.
 
 # Wave bank types
 XACT-style wave banks come in two forms: _in-memory_ and _streaming_. The _in-memory_ form is intended to have the whole wave bank loaded into memory at once for use. This allows wave banks to be organized by use and efficiently loaded with minimal memory fragmentation. For use with [[SoundEffectInstance]] and as one-shots with [[WaveBank]]'s Play method, use the in-memory form.
