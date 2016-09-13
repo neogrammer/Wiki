@@ -40,7 +40,7 @@ The file _wavebank.xwb_ is generated from the three input ``.wav`` files.
 
     xwbtool -o test.xwb C:\Windows\Media\*.wav
 
-The file _test.xwb_ is generated for all the ``.wav`` files in the ``C:\Windows\Media`` directory.
+The file _test.xwb_ is generated from all the ``.wav`` files in the ``C:\Windows\Media`` directory.
 
 # Wave bank types
 XACT-style wave banks come in two forms: _in-memory_ and _streaming_. The _in-memory_ form is intended to have the whole wave bank loaded into memory at once for use. This allows wave banks to be organized by use and efficiently loaded with minimal memory fragmentation. For use with [[SoundEffectInstance]] and as one-shots with [[WaveBank]]'s Play method, use the in-memory form.
