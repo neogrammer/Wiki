@@ -16,26 +16,21 @@ The file _wavebank.xwb_ is generated from the three input ``.wav`` files.
 
 # Options
 
-**-r**
-* Input file names can contain wildcard characters (``?`` or ``*``). If this switch is used, subdirectories are also searched.
+    xwbtool [-r] [-s] [-o <filename>] [-h <filename>] [-n] [-c | -nc] [-f]
 
-**-s**
-* Creates as streaming wave bank, otherwise defaults to in-memory wave bank
+**-r**: Input file names can contain wildcard characters (``?`` or ``*``). If this switch is used, subdirectories are also searched.
 
-**-o _filename_**
-* Sets output filename for .xwb file. Otherwise, it defaults to the same base name as the first input .wav file
+**-s**: Creates as streaming wave bank, otherwise defaults to in-memory wave bank
 
-**-h _h-filename_**
-* Generates a C/C++ header file with #defines for each of the sounds in the bank matched to their index
+**-o _filename_**: Sets output filename for .xwb file. Otherwise, it defaults to the same base name as the first input .wav file
 
-**-n**
-* Disables the default warning of overwriting an existing ``.xwb`` file
+**-h _h-filename_**: Generates a C/C++ header file with #defines for each of the sounds in the bank matched to their index
 
-**-c / -nc**
-* Forces creation or prevents use of compact wave banks. By default, it will try to use a compact wave bank if possible.
+**-n**: Disables the default warning of overwriting an existing ``.xwb`` file
 
-**-f**
-* Includes entry friendly name strings in the wave bank for use with 'string' based versions of WaveBank::Play() and WaveBank::CreateInstance() rather than index-based versions.
+**-c / -nc**: Forces creation or prevents use of compact wave banks. By default, it will try to use a compact wave bank if possible.
+
+**-f**: Includes entry friendly name strings in the wave bank for use with 'string' based versions of WaveBank::Play() and WaveBank::CreateInstance() rather than index-based versions.
 
 # Wave bank types
 XACT-style wave banks come in two forms: _in-memory_ and _streaming_. The _in-memory_ form is intended to have the whole wave bank loaded into memory at once for use. This allows wave banks to be organized by use and efficiently loaded with minimal memory fragmentation. For use with [[SoundEffectInstance]] and as one-shots with [[WaveBank]]'s Play method, use the in-memory form.
