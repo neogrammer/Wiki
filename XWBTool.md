@@ -20,7 +20,7 @@ The file-name parameter indicates the ``.wav`` file(s) to add to the wave bank.
 
 **-o _filename_**: Sets output filename for .xwb file. Otherwise, it defaults to the same base name as the first input .wav file
 
-**-h _h-filename_**: Generates a C/C++ header file with #defines for each of the sounds in the bank matched to their index
+**-h _filename_**: Generates a C/C++ header file with #defines for each of the sounds in the bank matched to their index
 
 **-n**: Disables the default warning of overwriting an existing ``.xwb`` file
 
