@@ -323,5 +323,5 @@ When asked to use ``backBufferCount``, use ``m_deviceResources->GetBackBufferCou
 [Visual Studio 2013 Windows Store DirectX Templates](http://blogs.msdn.com/b/ianhu/archive/2014/03/07/visual-studio-2013-windows-store-directx-templates.aspx)  
 
 [Gamma-correct rendering](https://blog.molecular-matters.com/2011/11/21/gamma-correct-rendering/)   
-[The Importance of Being Linear](http://http.developer.nvidia.com/GPUGems3/gpugems3_ch24.html)  
+[Chapter 24. The Importance of Being Linear](http://http.developer.nvidia.com/GPUGems3/gpugems3_ch24.html), GPU Gems 3   
 [Linear-Space Lighting (i.e. Gamma)](http://filmicgames.com/archives/299)
