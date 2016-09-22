@@ -183,7 +183,7 @@ The Win32 game template makes use of the helper function [[ThrowIfFailed]] in th
 > Do not use ``hr == S_OK`` to check for success. Use ``SUCCEEDED(hr)`` instead.
 
 # Gamma
-For these tutorials, we make use of the ``DXGI_FORMAT_B8G8R8A8_UNORM`` backbuffer format. This does not give gamma-correct results, but is easier to set up. If you want to implement linear-space rendering, see [[DeviceResources]].
+For these tutorials, we make use of the ``DXGI_FORMAT_B8G8R8A8_UNORM`` backbuffer format. This does not give gamma-correct results, but is easier to set up. If you want to implement linear-space rendering which would use ``DXGI_FORMAT_B8G8R8A8_UNORM_SRGB``, see [[DeviceResources]].
 
 [Linear-Space Lighting (i.e. Gamma)](http://filmicgames.com/archives/299)  
 [Chapter 24. The Importance of Being Linear](http://http.developer.nvidia.com/GPUGems3/gpugems3_ch24.html), GPU Gems 3  
