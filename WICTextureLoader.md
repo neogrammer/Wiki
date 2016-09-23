@@ -50,13 +50,13 @@ The standard routines default to ``D3D11_USAGE_DEFAULT``, ``D3D11_BIND_SHADER_RE
 
 For auto-gen mipmaps, the default binding flags are ``D3D11_BIND_SHADER_RESOURCE`` | ``D3D11_BIND_RENDER_TARGET`` and miscellaneous flags is set to ``D3D11_RESOURCE_MISC_GENERATE_MIPS``.
 
-There is also a _forceSRGB_ option for working around gamma issues with content that is in the sRGB or similar color space but is not encoded explicitly as an SRGB format.
+There is also a _loadFlags_ parameter for working around gamma issues with content w.r.t. to the sRGB colorspace. The flags are ``WIC_LOADER_DEFAULT``, ``WIC_LOADER_FORCE_SRGB``, and ``WIC_LOADER_IGNORE_SRGB``.
 
     HRESULT CreateWICTextureFromMemoryEx( ID3D11Device* d3dDevice,
        const uint8_t* wicData, size_t wicDataSize,
        size_t maxsize, D3D11_USAGE usage, unsigned int bindFlags,
        unsigned int cpuAccessFlags, unsigned int miscFlags,
-       bool forceSRGB,
+       unsigned int loadFlags,
        ID3D11Resource** texture, ID3D11ShaderResourceView** textureView );
 
     HRESULT CreateWICTextureFromMemoryEx( ID3D11Device* d3dDevice,
@@ -64,14 +64,14 @@ There is also a _forceSRGB_ option for working around gamma issues with content 
        const uint8_t* wicData, size_t wicDataSize,
        size_t maxsize, D3D11_USAGE usage, unsigned int bindFlags,
        unsigned int cpuAccessFlags, unsigned int miscFlags,
-       bool forceSRGB,
+       unsigned int loadFlags,
        ID3D11Resource** texture, ID3D11ShaderResourceView** textureView );
 
     HRESULT CreateWICTextureFromFileEx( ID3D11Device* d3dDevice,
        const wchar_t* szFileName,
        size_t maxsize, D3D11_USAGE usage, unsigned int bindFlags,
        unsigned int cpuAccessFlags, unsigned int miscFlags,
-       bool forceSRGB,
+       unsigned int loadFlags,
        ID3D11Resource** texture, ID3D11ShaderResourceView** textureView );
 
     HRESULT CreateWICTextureFromFileEx( ID3D11Device* d3dDevice,
@@ -79,8 +79,10 @@ There is also a _forceSRGB_ option for working around gamma issues with content 
        const wchar_t* szFileName,
        size_t maxsize, D3D11_USAGE usage, unsigned int bindFlags,
        unsigned int cpuAccessFlags, unsigned int miscFlags,
-       bool forceSRGB,
+       unsigned int loadFlags,
        ID3D11Resource** texture, ID3D11ShaderResourceView** textureView );
+
+> The ``loadFlags`` was previously a ``bool forceSRGB``. ``false`` will map to ``WIC_LOADER_DEAULT`` and true maps to ``WIC_LOADER_FORCE_SRGB``.
 
 # Parameters
 Either _texture_ or _textureView_ can be nullptr, but not both.
@@ -106,7 +108,7 @@ This example creates a shader resource view on the Direct3D device which can be 
 
 * WICTextureLoader cannot load ``.TGA``/``.HDR`` files unless the system has a 3rd party WIC codec installed. You must use the [DirectXTex library](http://go.microsoft.com/fwlink/?LinkId=248926) for ``TGA``/``HDR`` file format support without relying on an add-on WIC codec.
 
-* While there is no explicit 'sRGB' pixel format defined for WIC, the load function will check for known metadata tags and may return ``DXGI_FORMAT_*_SRGB`` formats if there are equivalents of the same size and channel configuration available. For PNG, this is indicated by ``/sRGB/RenderingIntent`` set to 1. For JPG this is ``/app1/ifd/exif/{ushort=40961}`` set to 1. For TIFF this is ``/ifd/exif/{ushort=40961}`` set to 1.
+* While there is no explicit 'sRGB' pixel format defined for WIC, the load function will check for known metadata tags and may return ``DXGI_FORMAT_*_SRGB`` formats if there are equivalents of the same size and channel configuration available. For PNG, this is indicated by ``/sRGB/RenderingIntent`` set to 1. For JPG this is ``/app1/ifd/exif/{ushort=40961}`` set to 1. For TIFF this is ``/ifd/exif/{ushort=40961}`` set to 1. Setting _loadFlags_ to ``WIC_LOADER_IGNORE_SRGB`` will ignore this metadata.
 
 # Implementation Details
 * The conversion tables are designed so that they prefer to convert to RGB if a conversion is required as a general preferance for DXGI 1.0 supporting formats supported by WDDM 1.0 drivers. The majority of Direct3D 11 devices actually support BGR DXGI 1.1 formats so we use them when they are the best match. For example, ``GUID_WICPixelFormat32bppBGRA`` loads directly as ``DXGI_FORMAT_B8G8R8A8_UNORM``, but ``GUID_WICPixelFormat32bppPBGRA`` converts to ``DXGI_FORMAT_R8G8B8A8_UNORM``.
