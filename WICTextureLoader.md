@@ -110,6 +110,8 @@ This example creates a shader resource view on the Direct3D device which can be 
 
 * While there is no explicit 'sRGB' pixel format defined for WIC, the load function will check for known metadata tags and may return ``DXGI_FORMAT_*_SRGB`` formats if there are equivalents of the same size and channel configuration available. For PNG, this is indicated by ``/sRGB/RenderingIntent`` set to 1. For JPG this is ``/app1/ifd/exif/{ushort=40961}`` set to 1. For TIFF this is ``/ifd/exif/{ushort=40961}`` set to 1. Setting _loadFlags_ to ``WIC_LOADER_IGNORE_SRGB`` will ignore this metadata.
 
+* ``gAMA`` chunks in PNGs are ignored. If the ``sRGB`` chunk is found, it is assumed to be gamma 2.2.
+
 # Implementation Details
 * The conversion tables are designed so that they prefer to convert to RGB if a conversion is required as a general preferance for DXGI 1.0 supporting formats supported by WDDM 1.0 drivers. The majority of Direct3D 11 devices actually support BGR DXGI 1.1 formats so we use them when they are the best match. For example, ``GUID_WICPixelFormat32bppBGRA`` loads directly as ``DXGI_FORMAT_B8G8R8A8_UNORM``, but ``GUID_WICPixelFormat32bppPBGRA`` converts to ``DXGI_FORMAT_R8G8B8A8_UNORM``.
 
