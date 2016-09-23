@@ -50,7 +50,7 @@ The standard routines default to ``D3D11_USAGE_DEFAULT``, ``D3D11_BIND_SHADER_RE
 
 For auto-gen mipmaps, the default binding flags are ``D3D11_BIND_SHADER_RESOURCE`` | ``D3D11_BIND_RENDER_TARGET`` and miscellaneous flags is set to ``D3D11_RESOURCE_MISC_GENERATE_MIPS``.
 
-There is also a _loadFlags_ parameter for working around gamma issues. The flags are ``WIC_LOADER_DEFAULT``, ``WIC_LOADER_FORCE_SRGB``, and ``WIC_LOADER_IGNORE_SRGB``.
+There is also a _loadFlags_ parameter. The flags are ``WIC_LOADER_DEFAULT``, ``WIC_LOADER_FORCE_SRGB``, and ``WIC_LOADER_IGNORE_SRGB``.
 
     HRESULT CreateWICTextureFromMemoryEx( ID3D11Device* d3dDevice,
        const uint8_t* wicData, size_t wicDataSize,
