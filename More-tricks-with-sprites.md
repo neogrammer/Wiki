@@ -83,7 +83,7 @@ In **Game.cpp**, add to the TODO of **CreateDevice**:
     DX::ThrowIfFailed(CreateWICTextureFromFile(m_d3dDevice.Get(), L"starfield.png",
         nullptr, m_backgroundTex.ReleaseAndGetAddressOf()));
 
-    m_stars = std::make_unique<new ScrollingBackground>();
+    m_stars = std::make_unique<ScrollingBackground>();
     m_stars->Load(m_backgroundTex.Get());
 
 In **Game.cpp**, add to the TODO of **CreateResources**:
