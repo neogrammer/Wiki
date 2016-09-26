@@ -177,6 +177,8 @@ Model makes use of the following states:
 
 The Model class assumes you've already set the Render Target view, Depth Stencil view, and Viewport.
 
+> Be sure that if you set any of the following shaders prior to using built-in effects for your ``Model`` instances that you clear them: Geometry Shader, Hull Shader, Domain Shader, Compute Shader.
+
 # Further reading
 [Models, meshes, parts, and bones](https://blogs.msdn.microsoft.com/shawnhar/2006/11/20/models-meshes-parts-and-bones/)  
 
