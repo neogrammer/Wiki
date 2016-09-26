@@ -128,6 +128,8 @@ The built-in effects make use of the following states:
 * Shader resources (Pixel Shader stage, slots 0, 1, and 2)
 * Vertex shader
 
+> Be sure that if you set any of the following shaders prior to using built-in effects that you clear them: Geometry Shader, Hull Shader, Domain Shader, Compute Shader.
+
 [[DGSLEffect]] also uses:
 * Constant buffer (Vertex Shader stage, slots 0-4)
 * Constant buffer (Pixel Shader stage, slots 0-3)
