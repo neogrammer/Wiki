@@ -110,6 +110,8 @@ PrimitiveBatch makes use of the following states:
 
 The PrimitiveBatch class assumes you've already set the Render Target view, Depth Stencil view, Viewport, BlendState, Constant buffers, DepthStencilState, Input layout, Pixel shader, RasterizerState, Vertex shader, and any required SamplerState or Shader resources.
 
+> Be sure that if you set any of the following shaders prior to using ``PrimitiveBatch`` that you clear them: Geometry Shader, Hull Shader, Domain Shader, Compute Shader.
+
 # Further Reading
 [DirectXTK PrimitiveBatch helper makes it easy to draw user primitives with D3D11](http://blogs.msdn.com/b/shawnhar/archive/2012/10/12/directxtk-primitivebatch-helper-makes-it-easy-to-draw-user-primitives-with-d3d11.aspx)  
 [How to: Use dynamic resources](http://msdn.microsoft.com/en-us/library/windows/desktop/dn508285.aspx)  
