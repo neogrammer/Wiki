@@ -8,6 +8,8 @@ Each [[ModelMeshPart]] references an index buffer, a vertex buffer, an input lay
 
 ![Screenshot](https://github.com/Microsoft/DirectXTK/wiki/images/ModelExample.png)
 
+See also [[EffectFactory]]
+
 **Related tutorial:** [[Rendering a model]]
 
 # Header
