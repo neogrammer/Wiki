@@ -79,7 +79,7 @@ This method clears the sharing cache, which might not release all the instances 
 
 # Effects options
 
-* **EnableNormalMapEffect** is used to determine of [[NormalMapEffect]] is used for models containing tangents and normal-map textures. This defaults to true. If set to false, it will use [[BasicEffect]] instead for these materials.
+* **EnableNormalMapEffect** is used to determine of [[NormalMapEffect]] is used for models containing tangents and normal-map textures. This defaults to true. If set to false, it will use [[BasicEffect]] instead for these materials. _This option is not supported by DGSLEffectFactory_.
 
 * **EnableForceSRGB** is used to determine if textures have "force SRGB" set to true for the loaders or not. This defaults to false.
 
