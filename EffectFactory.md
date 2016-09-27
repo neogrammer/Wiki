@@ -31,8 +31,6 @@ Fill out the EffectInfo structure, then call **CreateEffect** to obtain an [[Eff
 
 The standard factory will create instances of [[BasicEffect]]. If _info.enableSkinning_ is true, it returns [[SkinnedEffect]] instances instead. If _info.enableDualTexture_ is true, it returns a [[DualTextureEffect]] instance. If _info.enableNormalMaps_ is true, then it returns a [[NormalMapEffect]] instance. They are kept in distinct 'sharing' lists since they have different input layout requirements.
 
-> **EnableNormalMapEffect** is used to determine of [[NormalMapEffect]] is used for models containing tangents and normal-map textures. This defaults to true. If set to false, it will use [[BasicEffect]] instead for these materials.
-
 # Creating DGSL Effects
 The **DGSLEffectFactory** extends the standard EffectFactory with support for the Visual Studio Shader Designer (DGSL) system used by ``.CMO`` files. It creates instances of [[DGSLEffect]]. It also supports sharing the pixel shader instances required for DGSL shaders through the **CreatePixelShader** method.
 
@@ -58,8 +56,6 @@ _DGSLEffect_ instances with and without skinning enable are kept in distinct 'sh
     Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> srv;
     fxFactory->CreateTexture( L”stone.dds”, nullptr, srv.GetAddressOf() );
 
-> **EnableForceSRGB** is used to determine if textures have _forceSRGB_ set to true for the loaders or not. This defaults to false.
-
 # Directories
 The **CreateTexture** and **CreatePixelShader** methods both assume the name given is the filename. By default, this is a relative path to the current working directory ([CWD](https://msdn.microsoft.com/en-us/library/windows/desktop/aa363806.aspx)). To cause the factory to look in a specific directory path, use **SetDirectory**.
 
@@ -80,6 +76,12 @@ This method sets the sharing mode which defaults to true. By setting it to false
 This method clears the sharing cache, which might not release all the instances if they are referenced by other objects.
 
     fxFactory->ReleaseCache();
+
+# Effects options
+
+* **EnableNormalMapEffect** is used to determine of [[NormalMapEffect]] is used for models containing tangents and normal-map textures. This defaults to true. If set to false, it will use [[BasicEffect]] instead for these materials.
+
+* **EnableForceSRGB** is used to determine if textures have "force SRGB" set to true for the loaders or not. This defaults to false.
 
 # Threading model
 Creation of resources is fully asynchronous, so you can create many effects and textures at the same time. **CreateEffect** and **CreateTexture** take an optional immediate device context for use when loading WIC-based textures to make use of auto-generated mipmaps. Since use of a device context is not ‘free threaded’, an internal lock is used to keep multiple instances of the WIC loader from being used at the same time, but the user must still take precautions to ensure other users of the immediate context or Present do not occur while loading WIC textures and setting up auto-gen mipmaps.
