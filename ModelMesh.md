@@ -48,7 +48,7 @@ The Draw method assumes that the proper blend state, depth/stencil state, raster
         }
     }
 
-    // Draw alpha parts
+    // Draw alpha parts (should really be done in back-to-front sorted order)
     for( auto mit = models.cbegin(); mit != models.cend(); ++mit )
     {
         auto model = mit->get();
