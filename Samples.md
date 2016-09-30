@@ -44,5 +44,5 @@ See also [DirectXTK Model Viewer](https://github.com/walbourn/directxtkmodelview
 http://www.developer.nokia.com/Community/Wiki/DirectX_on_Windows_Phone:_2D_Game_Example_using_DirectX_Toolkit)
 
 # Xbox One
-[Simple Sample for the Xbox One XDK](https://developer.xboxlive.com/en-us/platform/development/education/Pages/Samples.aspx) (login required)
+[DirectXTKSimpleSample for the Xbox One XDK](https://developer.xboxlive.com/en-us/platform/development/education/Pages/Samples.aspx) (login required)
 
