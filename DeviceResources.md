@@ -246,7 +246,7 @@ The **DeviceResources** class also includes a number of useful assessors not alr
 
 # Threading model
 
-The DeviceResources class methods are intended to be called from the main presenting thread, and not from other threads. The device context associated with DeviceResources is the immediate context, and is intended for use by this 'main' thread.
+The DeviceResources class methods are intended to be called from the main presenting thread, and not from other threads. The device context associated with DeviceResources is the immediate context, and is intended for use by this 'main' thread. Per the [DirectX Graphics Infrastructure (DXGI): Best Practices](https://msdn.microsoft.com/en-us/library/windows/desktop/ee417025.aspx#multithreading_and_dxgi), this presenting thread should also be the same thread as the main window message processing.
 
 # Platform notes
 
