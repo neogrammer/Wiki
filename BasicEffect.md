@@ -42,6 +42,8 @@ This effect requires ``SV_Position``, ``NORMAL`` if lighting is enabled, ``COLOR
 
 * **SetTexture**: Associates a texture shader resource view with the effect. Can be set to nullptr to remove a reference.
 
+* **SetBiasedVertexNormals**: Enables support for compressed vertex normal which require ``*2 - 1`` biasing at runtime.
+
 # Example
 Here is an example of creating and using a basic effect instance:
 
