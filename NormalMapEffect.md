@@ -44,7 +44,7 @@ This effect requires ``SV_Position``, ``NORMAL``, ``TEXCOORD0``, and ``TANGENT``
 
 * **SetSpecularTexture**: Associates a texture shader resource view with the effect for the specular texture. Can be set to nullptr.
 
-* **SetBiasedVertexNormalsAndTangents**: Enables support for compressed vertex normals and tangents which require ``*2 - 1`` biasing at runtime.
+* **SetBiasedVertexNormalsAndTangents**: Enables support for compressed vertex normals and tangents which require ``*2 - 1`` biasing at runtime such as ``DXGI_FORMAT_R10G10B10A2_UNORM``.
 
 # Remarks
 
