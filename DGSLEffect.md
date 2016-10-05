@@ -68,6 +68,8 @@ The [[DGSLEffectFactory|EffectFactory]] automatically attempts to locate a suita
 
 DGSL shaders always use per-pixel lighting if lighting is supported by the effect.
 
+If using compressed vertex normals which require ``*2 - 1`` biasing at runtime such as ``DXGI_FORMAT_R10G10B10A2_UNORM``, this should be implemented directly in the pixel shader.
+
 DGSL shaders can require up to 8 texture samplers. [[GeometricPrimitive]] and [[SpriteBatch]] only set a texture sampler in slot 0 by default, [[Model]] sets a sampler in slots 0 and 1. Note that it only makes use of a single set of texture coordinates no matter how many textures are used.
 
 DGSL shaders support up to 4 directional lights, while the other built-in shaders only support 3 (i.e. ``DGSLEffect::MaxDirectionalLights`` is 4).
