@@ -38,6 +38,8 @@ This effect requires ``NORMAL``, ``TEXCOORD0``, ``BLENDINDICES`` and ``BLENDWEIG
 
 * **SetTexture**: Associates a texture shader resource view with the effect. Can be set to nullptr to remove a reference.
 
+* **SetBiasedVertexNormals**: Enables support for compressed vertex normal which require ``*2 - 1`` biasing at runtime.
+
 # Bone weights
 The ``BLENDINDICES`` and ``BLENDWEIGHT`` elements can hold up to 4 individual bone influences per vertex. Since each influence adds more computation to the shader, you can optimize this effect by setting the supported number of influences to 1, 2, or 4 via **SetWeightsPerVertex** and any additional influences will be ignored. This value defaults to 4.
 
