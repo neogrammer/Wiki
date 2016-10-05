@@ -44,6 +44,8 @@ This effect requires ``SV_Position``, ``NORMAL``, ``TEXCOORD0``, and ``TANGENT``
 
 * **SetSpecularTexture**: Associates a texture shader resource view with the effect for the specular texture. Can be set to nullptr.
 
+* **SetBiasedVertexNormalsAndTangents**: Enables support for compressed vertex normals and tangents which require ``*2 - 1`` biasing at runtime.
+
 # Remarks
 
 This effect always performs per-pixel lighting. Calls to ``SetLightingEnabled(false);`` will generate a C++ exception, and calls to **SetPerPixelLighting** are ignored.
