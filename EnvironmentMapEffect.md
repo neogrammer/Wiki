@@ -40,7 +40,7 @@ This effect requires ``SV_Position``, ``NORMAL`` and ``TEXCOORD``.
 
 * **SetFresnelFactor**: Sets the Frensel factor for the environment map. Defaults to 1. Can be set to 0 to disable the Fresnel factor.
 
-* **SetBiasedVertexNormals**: Enables support for compressed vertex normal which require ``*2 - 1`` biasing at runtime.
+* **SetBiasedVertexNormals**: Enables support for compressed vertex normals which require ``*2 - 1`` biasing at runtime.
 
 # Remarks
 EnvironmentMapEffect computes all specular effects using the cubemap and specular factor, and always performs vertex or per-pixel lighting.
