@@ -50,7 +50,7 @@ To support using custom effect instances, **ModelMeshPart::CreateInputLayout** p
             auto part = it->get();
             assert( part != 0 );
 
-            Microsoft::WRL::ComPtr il;
+            Microsoft::WRL::ComPtr<ID3D11InputLayout> il;
             part->CreateInputLayout( device.Get(), newEffect, il.GetAddressOf() );
 
             newInputLayouts.emplace_back(il);
