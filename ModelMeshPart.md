@@ -39,7 +39,7 @@ To support using custom effect instances, **ModelMeshPart::CreateInputLayout** p
     IEffect* newEffect = ... (device)
 
     // Creating input layouts is expensive, so it shouldn't be done every frame
-    std::vector<Microsoft::WRL::ComPtr> newInputLayouts;
+    std::vector<Microsoft::WRL::ComPtr<ID3D11InputLayout>> newInputLayouts;
     for( auto mit = tiny->meshes.cbegin(); mit != tiny->meshes.cend(); ++mit )
     {
         auto mesh = it->get();
