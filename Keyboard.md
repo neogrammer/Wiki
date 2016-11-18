@@ -103,6 +103,10 @@ This helper is intended for game controls tied to the keyboard. For chat input a
 
 Due to some quirks of the platform, If you press both Left & Right Shift keys at the same time, they will both appear down until both are released.
 
+The **IsConnected** method can be used to test if a keyboard device is present on the system.
+
+> Note that on some systems, support for a virtual keyboard is reported as 'true' even without a physical keyboard.
+
 # International layouts
 Keep in mind when designing the keyboard controls for your game the different layouts of standard keyboards.  In particularly, note the red keys which are in different locations for international keyboards than the traditional English QWERTY keyboard.
 
