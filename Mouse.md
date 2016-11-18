@@ -131,6 +131,8 @@ Here, we are using relative movement whenever the left mouse button is held down
 
 The mouse scroll wheel value is accumulated. To reset the value to 0, use **ResetScrollWheelValue**.
 
+The **IsConnected** method can be used to test if a mouse device is present on the system.
+
 # Threading model
 The Mouse class should be thread-safe with the exception of the **ProcessMessage** which should only be called in your windows message loop.
 
