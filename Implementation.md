@@ -18,12 +18,12 @@ DirectXTK's implementation makes extensive use of the [pImpl idiom](http://en.wi
     class SpriteBatch
     {
     public:
-        SpriteBatch();
+        SpriteBatch(...);
         SpriteBatch(SpriteBatch&& moveFrom);
         SpriteBatch& operator= (SpriteBatch&& moveFrom);
 
-        SpriteBatch(SpriteBatchconst&) = delete;
-        SpriteBatch& operator=(SpriteBatchconst&) = delete;
+        SpriteBatch(SpriteBatch const&) = delete;
+        SpriteBatch& operator=(SpriteBatch const&) = delete;
 
         virtual ~SpriteBatch();
         ...
