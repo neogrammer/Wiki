@@ -33,10 +33,6 @@ DirectXTK's implementation makes extensive use of the [pImpl idiom](http://en.wi
         class Impl;
     
         std::unique_ptr<Impl> pImpl;
-    
-        // Prevent copying.
-        SpriteBatch(SpriteBatch const&) DIRECTX_CTOR_DELETE
-        SpriteBatch& operator= (SpriteBatch const&) DIRECTX_CTOR_DELETE
     };
 
 This also allows use to allocate the pImpl class internally using ``_aligned_malloc(x,16);`` so that we can use the DIrectXMath aligned ``XMVECTOR`` and ``XMMATRIX`` types directly in the implementation across all architectures.
