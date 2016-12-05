@@ -119,6 +119,19 @@ A common pattern for gamepads is to trigger an action when a button is pressed o
 
 Each button is reported by the tracker with a state ``UP``, ``HELD``, ``PRESSED``, or ``RELEASED``.
 
+You may find that using ``GamePad::ButtonStateTracker::PRESSED`` is a bit verbose. You can simplify the code by doing:
+
+    if ( state.IsConnected() )
+    {
+        tracker.Update( state );
+
+        using ButtonState = GamePad::ButtonStateTracker::ButtonState;
+
+        if ( tracker.a == ButtonState::PRESSED )
+            // Take an action when Button A is first pressed, but don't do it again until
+            // the button is released and then pressed again
+    }
+
 _When resuming from a pause or suspend, be sure to call **Reset** on the tracker object to clear the state history._
 
 # Threading model
