@@ -94,6 +94,15 @@ A common pattern is to trigger an action when a mouse button is pressed or relea
         // but don't do it again until the button is released and
         // then pressed again
 
+You may find that using ``Mouse::ButtonStateTracker::PRESSED`` is a bit verbose. You can simplify the code by doing:
+
+    using ButtonState = Mouse::ButtonStateTracker::ButtonState;
+
+    if ( tracker.rightButton == ButtonState::PRESSED )
+        // Take an action when Right mouse button is first pressed,
+        // but don't do it again until the button is released and
+        // then pressed again
+
 _When resuming from a pause or suspend, be sure to call **Reset** on the tracker object to clear the state history._
 
 # Absolute vs. Relative Mouse position
