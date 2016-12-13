@@ -4,9 +4,11 @@ This loader does not support array textures, 1D textures, 3D volume textures, or
 
 [[DDSTextureLoader]] is recommended for fully "precooked" textures for maximum performance and image quality, but this loader can be useful for creating simple 2D texture from standard image files at runtime.
 
+> On Windows 8.1 and Windows 10, you can load simple 2D textures from BC1, BC2, and BC3 a ``DDS`` files using WIC as there is a basic DDS codec present in that version of WIC. All other formats and resource types will fail, and you'll get ``WINCODEC_ERR_COMPONENTNOTFOUND`` on older versions of Windows trying to use WICTextureLoader to load ``DDS`` files.
+
 Also part of the [DirectXTex](http://go.microsoft.com/fwlink/?LinkId=248926) package.
 
-The module assumes that the client code will have already called ``CoInitialize``, ``CoInitializeEx``, or ``Windows::Foundation::Initialize`` as needed by the application before calling the WIC loader routines.
+> The module assumes that the client code will have already called ``CoInitialize``, ``CoInitializeEx``, or ``Windows::Foundation::Initialize`` as needed by the application before calling the WIC loader routines.
 
 **Related tutorial:** [[Sprites and textures]]
 
