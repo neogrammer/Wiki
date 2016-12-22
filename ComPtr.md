@@ -138,6 +138,12 @@ Because WRL is a pure C++ template library, it has no particular platform suppor
 
 > The Windows 8.0 SDK and later that includes WRL does not support targeting Windows XP / Windows Server 2003. For these older operating systems you have to make use of the Windows 7.1A SDK instead. See [this blog post](http://blogs.msdn.com/b/chuckw/archive/2012/11/26/visual-studio-2012-update-1.aspx) for more details.
 
+# Remark
+
+I do not recommend making use of the ``_com_ptr_t`` Visual Studio class.
+
+If using [C++/WinRT projections](https://github.com/Microsoft/cppwinrt), you could also choose to use ``winrt::com_ptr`` instead of ``Microsoft::WRL:ComPtr``.
+
 # Further reading
 
 [ComPtr on MSDN](http://msdn.microsoft.com/en-us/library/br244983.aspx)  
