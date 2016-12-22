@@ -140,7 +140,7 @@ Because WRL is a pure C++ template library, it has no particular platform suppor
 
 # Remark
 
-I do not recommend making use of the ``_com_ptr_t`` Visual Studio class.
+Making use of the older ``_com_ptr_t`` Visual Studio smart-pointer class which was originally intended as a non-ATL option is not recommended.
 
 If using [C++/WinRT projections](https://github.com/Microsoft/cppwinrt), you could also choose to use ``winrt::com_ptr`` instead of ``Microsoft::WRL:ComPtr``.
 
