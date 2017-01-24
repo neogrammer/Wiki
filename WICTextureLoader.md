@@ -8,12 +8,25 @@ This loader does not support array textures, 1D textures, 3D volume textures, or
 
 Also part of the [DirectXTex](http://go.microsoft.com/fwlink/?LinkId=248926) package.
 
-> The module assumes that the client code will have already called ``CoInitialize``, ``CoInitializeEx``, or ``Windows::Foundation::Initialize`` as needed by the application before calling the WIC loader routines.
-
 **Related tutorial:** [[Sprites and textures]]
 
 # Header
     #include <WICTextureLoader.h>
+
+# Initialization
+The library assumes that the client code will have already called ``CoInitialize``, ``CoInitializeEx``, or ``Windows::Foundation::Initialize`` as needed by the application before calling any [Windows Imaging Component](https://msdn.microsoft.com/en-us/library/windows/desktop/ee719654.aspx) functionality.
+
+For a Universal Windows Platform (UWP) app, the Windows Runtime and COM is initialized by the C/C++ Run-Time. For a classic Windows desktop application you have to do this explicitly:
+
+    #if (_WIN32_WINNT >= 0x0A00 /*_WIN32_WINNT_WIN10*/)
+        Microsoft::WRL::Wrappers::RoInitializeWrapper initialize(RO_INIT_MULTITHREADED);
+        if (FAILED(initialize))
+            // error
+    #else
+        HRESULT hr = CoInitializeEx(nullptr, COINITBASE_MULTITHREADED);
+        if (FAILED(hr))
+            // error
+    #endif
 
 # Functions
 
