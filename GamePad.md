@@ -149,6 +149,12 @@ When built for Windows 8.0 or 8.1, it makes use of XInput 1.4 (linking to ``xinp
 
 When built for Windows 10, it makes use of ``Windows.Gaming.Input``. This class assumes that the client code has called ``Windows::Foundation::Initialize`` as needed.
 
+> For a Universal Windows Platform (UWP) app, the Windows Runtime (and COM generally) is initialized by the C/C++ Run-Time. For a classic Windows desktop application you have to do this explicitly:
+
+    Microsoft::WRL::Wrappers::RoInitializeWrapper initialize(RO_INIT_MULTITHREADED);
+    if (FAILED(initialize))
+        // Error
+
 Note that subtype capabilities information is somewhat unreliable down-level depending on your exact mix of device and driver, and in some cases is hard-coded. All capabilities information is reliable on Windows 8.0 or later.
 
 XInput supports controllers compatible with the Xbox 360 Common Controller for Windows, the Xbox 360 Wireless Receiver for Windows, and the Xbox One Controller.
