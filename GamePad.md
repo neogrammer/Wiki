@@ -51,6 +51,8 @@ For exception safety, it is recommended you make use of the C++ [RAII](http://en
 
 The valid range for _player_ is 0 to ``GamePad::MAX_PLAYER_COUNT - 1``. Outside that range, the state is always reported as disconnected.
 
+> If _player_ is passed as -1, then GamePad will use the most recently connected gamepad. This is not a good usage behavior for games or apps, but is useful for tests and samples where you don't have "press a key to start" logic for handling multiple gamepads.
+
 > Since GamePad is a singleton, you can make use of the static method **Get** if desired: ``auto state = GamePad::Get().GetState()``
 
 # Dead zones
