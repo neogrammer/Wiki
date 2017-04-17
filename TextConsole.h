@@ -21,7 +21,6 @@
 #include "SpriteBatch.h"
 #include "SpriteFont.h"
 
-#include <algorithm>
 #include <mutex>
 #include <vector>
 
@@ -52,6 +51,8 @@ namespace DX
 
         void ReleaseDevice();
         void RestoreDevice(_In_ ID3D11DeviceContext* context, _In_z_ const wchar_t* fontName);
+
+        void SetViewport(const D3D11_VIEWPORT& viewPort);
 
         void SetRotation(DXGI_MODE_ROTATION rotation);
 
