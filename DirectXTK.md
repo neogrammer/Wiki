@@ -10,26 +10,26 @@ _Note: The Xbox One exclusive application XBoxDDSTextureLoader functions are in 
 
 # Modules
 * [[Audio]] - low-level audio API using XAudio2
- * [[AudioEngine]], [[SoundEffect]], [[SoundEffectInstance]], [[DynamicSoundEffectInstance]], [[WaveBank]], [[AudioListener]], [[AudioEmitter]]
+     * [[AudioEngine]], [[SoundEffect]], [[SoundEffectInstance]], [[DynamicSoundEffectInstance]], [[WaveBank]], [[AudioListener]], [[AudioEmitter]]
 * [[CommonStates]] - factory providing commonly used D3D state objects 
 * [[DDSTextureLoader]] - light-weight DDS file texture loader 
 * [[DirectXHelpers]] - misc C++ helpers for D3D programming 
 * [[Effects]] - set of built-in shaders for common rendering tasks 
- * [[IEffectFactory|EffectFactory]]
- * [[IEffect]], [[IEffectMatrices]], [[IEffectLights]], [[IEffectFog]], [[IEffectSkinning]] 
- * [[AlphaTestEffect]], [[BasicEffect]], [[DualTextureEffect]], [[EnvironmentMapEffect]], [[SkinnedEffect]]
- * [[NormalMapEffect]], [[DGSLEffect]]
+     * [[IEffectFactory|EffectFactory]]
+     * [[IEffect]], [[IEffectMatrices]], [[IEffectLights]], [[IEffectFog]], [[IEffectSkinning]] 
+     * [[AlphaTestEffect]], [[BasicEffect]], [[DualTextureEffect]], [[EnvironmentMapEffect]], [[SkinnedEffect]]
+     * [[NormalMapEffect]], [[DGSLEffect]]
 * [[GamePad]] - gamepad controller helper using XInput 
 * [[GeometricPrimitive]] - draws basic shapes such as cubes and spheres 
 * [[GraphicsMemory]] - helper for managing dynamic graphics memory allocation
 * [[Keyboard]] - keyboard state tracking helper
 * [[Model]] - draws simple meshes loaded from .CMO, .SDKMESH, or .VBO files 
- * [[ModelMesh]], [[ModelMeshPart]]
+     * [[ModelMesh]], [[ModelMeshPart]]
 * [[Mouse]] - mouse helper
 * [[PrimitiveBatch]] - simple and efficient way to draw user primitives 
 * [[ScreenGrab]] - light-weight screen shot saver 
 * [[SimpleMath]] - simplified C++ wrapper for DirectXMath 
- * [[Rectangle]], [[Vector2]], [[Vector3]], [[Vector4]], [[Matrix]], [[Quaternion]], [[Plane]], [[Ray]], [[Color]], [[Viewport]]
+     * [[Rectangle]], [[Vector2]], [[Vector3]], [[Vector4]], [[Matrix]], [[Quaternion]], [[Plane]], [[Ray]], [[Color]], [[Viewport]]
 * [[SpriteBatch]] - simple & efficient 2D sprite rendering 
 * [[SpriteFont]] - bitmap based text rendering 
 * [[VertexTypes]] - structures for commonly used vertex data formats 
