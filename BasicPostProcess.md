@@ -1,5 +1,7 @@
 Performs basic post-processing with a built-in set of shaders which operate using one input texture.
 
+See also [[PostProcess]]
+
 # Header
 
     #include "PostProcess.h"
