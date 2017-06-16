@@ -36,7 +36,7 @@ To make use of post-processing, you typically render the scene to a offscreen re
             sceneRT.ReleaseAndGetAddressOf()
     ));
 
-Instead of rendering to the usual render target that is created as part of the DXGI swap chain, you set the offscreen texture as your scene texture:
+Instead of rendering to the usual render target that is created as part of the DXGI swap chain, you set the offscreen texture as your scene render target:
 
     context->ClearRenderTargetView(sceneRT.Get(), color);
     context->ClearDepthStencilView(...);
