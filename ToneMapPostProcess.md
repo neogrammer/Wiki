@@ -36,7 +36,7 @@ The electro-optical transfer function is controlled by calling ``TransferFunctio
 
 # Properties
 
-* ``SetHDRSourceTexture`` is used to set the linear texture that provides the original High Dynamic Range (HDR) signal, which is typically in a floating-point format.
+* ``SetHDRSourceTexture`` is used to set the linear texture Shader Resource View that provides the original High Dynamic Range (HDR) signal, which is typically in a floating-point format.
 
 * ``SetExposure`` sets the exposure value for the tonemap operators. The default is 0.0 (which is a linear multiplier of 1.0)
 
