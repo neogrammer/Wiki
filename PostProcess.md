@@ -1,4 +1,4 @@
-Post-processing is a common technique applied to 3D rendering to achieve various effects. It's image-based, so it's performance is based on the size of the 2D render target rather than the complexity of the scene. The post-processing implementation in the DirectX Tool Kit implements common effects like monochrome and bloom, as well tone mapping which is essential to High Dynamic Range (HDR) rendering.
+Post-processing is a common technique applied to 3D rendering to achieve various effects. It's image-based, so it's performance is based on the size of the 2D render target rather than the complexity of the scene. The post-processing implementation in the DirectX Tool Kit performs common effects like monochrome and bloom, as well tone mapping which is essential to High Dynamic Range (HDR) rendering.
 
 * [[BasicPostProcess]] supports post-processing that takes a single input texture such as monochrome conversion or blurring.
 * [[DualPostProcess]] supports post-processing that operates on two images such as merging/blending.
