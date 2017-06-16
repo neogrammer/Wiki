@@ -97,4 +97,4 @@ Most post-process effects make use of the following states:
 # Further reading
 
 [Video post-processing](https://en.wikipedia.org/wiki/Video_post-processing)  
-[tone mapping](https://en.wikipedia.org/wiki/Tone_mapping) 
+[Tone mapping](https://en.wikipedia.org/wiki/Tone_mapping) 
