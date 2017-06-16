@@ -45,6 +45,7 @@ Instead of rendering to the usual render target that is created as part of the D
 Then you render the scene as normal. When the scene is fully rendered, you then change the render target and use the previously generated render texture as your source texture (and you don't use a depth/stencil buffer for the post-processing):
 
     context->OMSetRenderTargets(1, m_renderTargetView.GetAddressOf(), nullptr);
+    postProcess->SetEffect(BasicPostProcess::Sepia);
     postProcess->SetSourceTexture(sceneSRV.Get());
     postProcess->Process(context);
 
