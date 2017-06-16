@@ -27,6 +27,7 @@ _Note: The Xbox One exclusive application XBoxDDSTextureLoader functions are in 
      * [[ModelMesh]], [[ModelMeshPart]]
 * [[Mouse]] - mouse helper
 * [[PostProcess]] - set of built-in shaders for common post-processing operations
+     * [[BasicPostProcess]], [[DualPostProcess]], [[ToneMapPostProcess]]
 * [[PrimitiveBatch]] - simple and efficient way to draw user primitives 
 * [[ScreenGrab]] - light-weight screen shot saver 
 * [[SimpleMath]] - simplified C++ wrapper for DirectXMath 
