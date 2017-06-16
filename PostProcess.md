@@ -84,15 +84,15 @@ When ``Process`` is called on an effect, it will set the states needed to render
 
 Most post-process effects make use of the following states:
 
-    * BlendState
-    * Constant buffer (Pixel Shader stage, slot 0)
-    * DepthStencilState
-    * Pixel shader
-    * Primitive topology
-    * RasterizerState
-    * SamplerState (Pixel Shader stage, slot 0)
-    * Shader resources (Pixel Shader stage, slot 0; optionally slot 1)
-    * Vertex shader
+* BlendState
+* Constant buffer (Pixel Shader stage, slot 0)
+* DepthStencilState
+* Pixel shader
+* Primitive topology
+* RasterizerState
+* SamplerState (Pixel Shader stage, slot 0)
+* Shader resources (Pixel Shader stage, slot 0; optionally slot 1)
+* Vertex shader
 
 # Further reading
 
