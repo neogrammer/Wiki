@@ -32,7 +32,7 @@ The electro-optical transfer function is controlled by calling ``TransferFunctio
 * **SRGB**: The approximate sRGB display curve (Gamma 2.2) is applied.
 * **ST2084**: A Rec.709 to Rec.2020 color primary rotation and ST.2084 display curve is applied for HDR10 output.
 
-> For Xbox One, there is also a ``SetMRTOutput`` Boolean for selecting special shaders that generate both the HDR10 output for display as well as a tonemapped GameDVR signal using Multiple Render Targets.
+> For Xbox One, there is also a ``SetMRTOutput`` boolean for selecting special shaders that generate both the HDR10 output for display as well as a tone-mapped GameDVR signal using Multiple Render Targets.
 
 # Properties
 
