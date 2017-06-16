@@ -76,7 +76,7 @@ The built-in post-processing shaders rely on Direct3D hardware feature level 10.
 
 # Threading model
 
-Post-processing typically takes place on the immediate context typically after the full scene has been rendered, so it should be done in series rather than being multi-threaded.
+Post-processing typically takes place on the immediate context typically after the full scene has been rendered, so it should be done single-threaded.
 
 # State management
 
