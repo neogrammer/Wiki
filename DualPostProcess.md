@@ -25,4 +25,4 @@ DualPostProcess can be configured to use various pixel shaders by calling ``SetE
 
 * ``SetMergeParameters`` is used to set the two weights for the _Merge_ shader. Setting these to 0.5,0.5 will blend two images, while setting them both to 1.0 will add the two images together.
 
-* ``SetBloomCombineParameters`` sets the various parameters for the ``BloomCombine`` shader as the final pass of implementing a bloom effect.
+* ``SetBloomCombineParameters`` sets the various parameters for the _BloomCombine_ shader as the final pass of implementing a bloom effect.
