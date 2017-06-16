@@ -17,7 +17,7 @@ For exception safety, it is recommended you make use of the C++ [RAII](http://en
 BasicPostProcess can be configured to use various pixel shaders by calling ``SetEffect``:
 
 * **Copy**: Performs a simple read of the input texture, outputting the same color. _This is mostly useful for debugging._
-* **Monochrome**: Converts the input texture pixels to a luminancevalue.
+* **Monochrome**: Converts the input texture pixels to a luminance value.
 * **Sepia**: Implements a sepia-tone effect.
 * **DownScale_2x2**: Downscales each 2x2 block of pixels to an average. This is intended to write to a render target that is half the size of the source texture in each dimension.
 * **DownScale_4x4**: Downscales each 4x4 block of pixels to an average. This is intended to write to a render target that is a quarter the size of the source texture in each dimension.
