@@ -27,12 +27,12 @@ To make use of post-processing, you typically render the scene to a offscreen re
     );
 
     DX::ThrowIfFailed(
-        device->CreateShaderResourceView(m_sceneTex.Get(), nullptr,
+        device->CreateShaderResourceView(sceneTex.Get(), nullptr,
             sceneSRV.ReleaseAndGetAddressOf())
     );
 
     DX::ThrowIfFailed(
-        device->CreateRenderTargetView(m_sceneTex.Get(), nullptr,
+        device->CreateRenderTargetView(sceneTex.Get(), nullptr,
             sceneRT.ReleaseAndGetAddressOf()
     ));
 
