@@ -78,8 +78,6 @@ The built-in post-processing shaders rely on Direct3D hardware feature level 10.
 
 Post-processing typically takes place on the immediate context typically after the full scene has been rendered, so it should be done in series rather than being multi-threaded.
 
-[Immediate and Deferred Rendering](http://msdn.microsoft.com/en-us/library/windows/desktop/ff476892.aspx)
-
 # State management
 
 When ``Process`` is called on an effect, it will set the states needed to render and perform the operation by drawing a full-screen rectangle. Existing state is not save or restored. For efficiency, it simply sets the state it requires to render and assumes that any subsequent rendering will overwrite state that it needs.
