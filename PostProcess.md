@@ -27,11 +27,13 @@ To make use of post-processing, you typically render the scene to a offscreen re
     );
 
     DX::ThrowIfFailed(
-        device->CreateShaderResourceView(m_sceneTex.Get(), nullptr, sceneSRV.ReleaseAndGetAddressOf())
+        device->CreateShaderResourceView(m_sceneTex.Get(), nullptr,
+            sceneSRV.ReleaseAndGetAddressOf())
     );
 
     DX::ThrowIfFailed(
-        device->CreateRenderTargetView(m_sceneTex.Get(), nullptr, sceneRT.ReleaseAndGetAddressOf()
+        device->CreateRenderTargetView(m_sceneTex.Get(), nullptr,
+            sceneRT.ReleaseAndGetAddressOf()
     ));
 
 Instead of rendering to the usual render target that is created as part of the DXGI swap chain, you set the offscreen texture as your scene texture:
