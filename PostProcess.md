@@ -54,11 +54,18 @@ In some cases, you will perform several post-processing passes between various o
 
 The post-processing system provides a ``IPostProcess`` interface to simplify use. The only method in this interface is ``Process`` which is expected to execute the post-processing pass with the result placed in the currently bound render target.
 
-        void Process(ID3D11DeviceContext* deviceContext, std::function<void __cdecl()> setCustomState = nullptr);
+    void Process(ID3D11DeviceContext* deviceContext,
+                 std::function<void __cdecl()> setCustomState = nullptr);
 
-# Remarks
+# Custom render states
 
+You modify the render state during post-processing by passing a ``setCustomState`` callback:
 
+    postProcess->Process(context, [=]
+    {
+        ID3D11SamplerState* samplerState = states.AnsiotropicClamp();
+        deviceContext->PSSetSamplers(0, 1, &samplerState);
+    });
 
 # Feature level usage
 
