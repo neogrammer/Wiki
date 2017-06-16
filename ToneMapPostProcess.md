@@ -43,4 +43,5 @@ The electro-optical transfer function is controlled by calling ``TransferFunctio
 * ``SetST2084Parameter`` sets the nits level for paper white when applying the ST.2084 display curve. Reference paper white is 80 nits for a cinema setup, but defaults to 200.0 which is good for typical CRT viewing conditions.
 
 # Further reading
-[Tone mapping](https://en.wikipedia.org/wiki/Tone_mapping) 
+[Tone mapping](https://en.wikipedia.org/wiki/Tone_mapping)  
+[High-dynamic-range video](https://en.wikipedia.org/wiki/High-dynamic-range_video)  
