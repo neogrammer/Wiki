@@ -46,7 +46,7 @@ The ``ThrowIfFailed`` helper is not part of the _DirectX Tool Kit_. The C++ Dire
 
 # Enhancements
 
-The templates all include the basic implementation above, but production use might want to utilize a slightly improved version as follows (which are included in the [[DeviceResources]] variants of the [Direct3D Win32 Game](http://blogs.msdn.com/b/chuckw/archive/2015/12/17/direct3d-game-visual-studio-templates-redux.aspx) templates.
+The templates all include the basic implementation above, but production use might want to utilize a slightly improved version as follows (which are included in the [[DeviceResources]] variants of the [Direct3D Win32 Game](http://blogs.msdn.com/b/chuckw/archive/2015/12/17/direct3d-game-visual-studio-templates-redux.aspx) templates).
 
     #include <exception>
 
