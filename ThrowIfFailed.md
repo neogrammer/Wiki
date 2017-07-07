@@ -27,7 +27,7 @@ For a case where you want to do the error-handling for an HRESULT yourself, be s
 > The legacy [DXUT](https://github.com/Microsoft/DXUT) framework makes use of macros like ``V`` and ``V_RETURN`` as a pattern for dealing with ``HRESULT`` values, but these make assumptions about the surrounding functions and are really only suited to samples development.
 
 #Basic version
-The C++ DirectX templates for universal Windows apps, Windows 8 Store, Windows phone 8, Xbox One, and the [Direct3D Win32 Game](http://blogs.msdn.com/b/chuckw/archive/2015/01/06/direct3d-win32-game-visual-studio-template.aspx) templates all make use of the ``DX::ThrowIfFailed`` helper.
+The ``ThrowIfFailed`` helper is not part of the _DirectX Tool Kit_. Instead, the C++ DirectX templates for universal Windows apps, Windows 8 Store, Windows phone 8, Xbox One, and the [Direct3D Win32 Game](http://blogs.msdn.com/b/chuckw/archive/2015/01/06/direct3d-win32-game-visual-studio-template.aspx) templates all make use of the ``DX::ThrowIfFailed`` helper--you'll typically find it declared in the ``pch.h``.
 
     #include <exception>
 
