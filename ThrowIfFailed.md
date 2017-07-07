@@ -28,7 +28,7 @@ For a case where you want to do the error-handling for an HRESULT yourself, be s
 
 # Basic version
 
-The ``ThrowIfFailed`` helper is not part of the _DirectX Tool Kit_; it's declared in some global header in your application. The C++ DirectX templates for universal Windows apps, Windows 8 Store, Windows phone 8, Xbox One, and the [Direct3D Win32 Game](http://blogs.msdn.com/b/chuckw/archive/2015/01/06/direct3d-win32-game-visual-studio-template.aspx) templates all make use of the ``DX::ThrowIfFailed`` helper--you'll typically find it declared in the ``pch.h``.
+The ``ThrowIfFailed`` helper is not part of the _DirectX Tool Kit_; it's declared in some global header in your application. The C++ DirectX templates for universal Windows apps, Windows 8 Store, Windows phone 8, Xbox One, and the [Direct3D Win32 Game](http://blogs.msdn.com/b/chuckw/archive/2015/01/06/direct3d-win32-game-visual-studio-template.aspx) templates all make use of the ``DX::ThrowIfFailed`` helper--you'll typically find it declared in the ``pch.h`` header.
 
     #include <exception>
 
