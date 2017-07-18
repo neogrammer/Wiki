@@ -61,7 +61,8 @@ The templates all include the basic implementation above, but production use mig
             virtual const char* what() const override
             {
                 static char s_str[64] = { 0 };
-                sprintf_s(s_str, "Failure with HRESULT of %08X", static_cast<unsigned int>(result));
+                sprintf_s(s_str, "Failure with HRESULT of %08X",
+                    static_cast<unsigned int>(result));
                 return s_str;
             }
 
