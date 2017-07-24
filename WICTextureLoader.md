@@ -190,7 +190,7 @@ The texture loader function is typically used to load texture files from the app
             {
                 if (tempFile)
                 {
-                    HRESULT hr = CreateWICTextureFromFile(..., tempFile->Path->Data(), ...);
+                    HRESULT hr = CreateWICTextureFromFile(..., tempFile.Path().c_str(), ...);
                     DeleteFile(tempFile.Path().c_str());
                     DX::ThrowIfFailed(hr);
                 }
