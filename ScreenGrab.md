@@ -139,7 +139,7 @@ If you are going to immediately copy it to another location via ``StorageFolder:
     using Windows::Storage;
     using Windows::Storage::Pickers;
 
-    auto folder = Windows::Storage::ApplicationData::Current->TemporaryFolder;
+    auto folder = ApplicationData::Current->TemporaryFolder;
 
     wchar_t fname[ _MAX_PATH ];
     wcscpy_s( fname, folder->Path->Data() );
