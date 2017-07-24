@@ -150,6 +150,7 @@ The texture loader function is typically used to load texture files from the app
 
 ## C++/CX
     include <ppltasks.h>
+
     using namespace concurrency;
 
     using Windows::Storage;
@@ -160,10 +161,10 @@ The texture loader function is typically used to load texture files from the app
     {
         if (file)
         {
-            auto tempFolder = Windows::Storage::ApplicationData::Current->TemporaryFolder;
+            auto tempFolder = ApplicationData::Current->TemporaryFolder;
             create_task(file->CopyAsync( tempFolder, file->Name, NameCollisionOption::GenerateUniqueName )).then([this](StorageFile^ tempFile)
             {
-                if ( tempFile )
+                if (tempFile)
                 {
                     HRESULT hr = CreateWICTextureFromFile( ..., tempFile->Path->Data(), ... );
                     DeleteFile(tempFile->Path->Data());
@@ -184,7 +185,7 @@ The texture loader function is typically used to load texture files from the app
     {
         if (file)
         {
-            auto tempFolder = winrt::Windows::Storage::ApplicationData::Current().TemporaryFolder();
+            auto tempFolder = ApplicationData::Current().TemporaryFolder();
             auto tempFile = co_await file.CopyAsync(tempFolder, file.Name(), NameCollisionOption::GenerateUniqueName());
             {
                 if (tempFile)
