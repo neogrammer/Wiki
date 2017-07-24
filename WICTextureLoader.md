@@ -156,7 +156,12 @@ The texture loader function is typically used to load texture files from the app
     using Windows::Storage;
     using Windows::Storage::Pickers;
 
-    FileOpenPicker openPicker = new FileOpenPicker();
+    FileOpenPicker openPicker = ref new FileOpenPicker();
+    openPicker->ViewMode = PickerViewMode::Thumbnail; 
+    openPicker->SuggestedStartLocation = PickerLocationId::PicturesLibrary; 
+    openPicker->FileTypeFilter->Append(".jpg"); 
+    openPicker->FileTypeFilter->Append(".png"); 
+
     create_task(openPicker->PickSingleFileAsync()).then([this](StorageFile^ file)
     {
         if (file)
@@ -181,6 +186,11 @@ The texture loader function is typically used to load texture files from the app
     using namespace winrt::Windows::Storage::Pickers;
 
     FileOpenPicker openPicker;
+    openPicker.ViewMode(PickerViewMode::Thumbnail);
+    openPicker.SuggestedStartLocation(PickerLocationId::PicturesLibrary);
+    openPicker.FileTypeFilter().Append(L".jpg");
+    openPicker.FileTypeFilter().Append(L".png");
+
     auto file = co_await openPicker.PickSingleFileAsync();
     if (file)
     {
