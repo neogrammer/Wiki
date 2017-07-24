@@ -196,7 +196,6 @@ If you are going to immediately copy it to another location via ``StorageFolder:
     DX::ThrowIfFailed(hr);
 
     FileSavePicker savePicker;
-    FileSavePicker savePicker;
     savePicker.SuggestedStartLocation(PickerLocationId::PicturesLibrary);
     savePicker.FileTypeChoices().Insert(L"Joint Photographic Experts Group", winrt::single_threaded_vector<winrt::hstring>({ L".jpg" }));
     savePicker.FileTypeChoices().Insert(L"Portable Network Graphics", winrt::single_threaded_vector<winrt::hstring>({ L".png" }));
