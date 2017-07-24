@@ -185,7 +185,7 @@ The texture loader function is typically used to load texture files from the app
     if (file)
     {
         auto tempFolder = ApplicationData::Current().TemporaryFolder();
-        auto tempFile = co_await file.CopyAsync(tempFolder, file.Name(), NameCollisionOption::GenerateUniqueName());
+        auto tempFile = co_await file.CopyAsync(tempFolder, file.Name(), NameCollisionOption::GenerateUniqueName);
         if (tempFile)
         {
             HRESULT hr = CreateWICTextureFromFile(..., tempFile.Path().c_str(), ...);
