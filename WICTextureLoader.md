@@ -148,6 +148,7 @@ See [Windows Imaging Component and Windows 8](http://blogs.msdn.com/b/chuckw/arc
 # Windows Store apps
 The texture loader function is typically used to load texture files from the application's install folder as they were included with the AppX package for Windows Store apps and universal Windows apps. If you wish to create a texture from a file that is specified by the user from a WinRT picker, you will need to copy the file locally to a temporary location before you can use WICTextureLoader on it. This is because you either won't have file access rights to the user's file location, or the StorageFile is actually not a local file system path (i.e. it's a URL).
 
+## C++/CX
     include <ppltasks.h>
     using namespace concurrency;
 
@@ -169,6 +170,10 @@ The texture loader function is typically used to load texture files from the app
                 }
             });
         });
+
+## C++/WinRT
+
+*TODO*
     
 [File access and permissions (Windows Runtime apps)](https://msdn.microsoft.com/en-us/library/windows/apps/hh967755.aspx)
 
