@@ -182,19 +182,15 @@ The texture loader function is typically used to load texture files from the app
 
     FileOpenPicker openPicker;
     auto file = co_await openPicker.PickSingleFileAsync();
+    if (file)
     {
-        if (file)
+        auto tempFolder = ApplicationData::Current().TemporaryFolder();
+        auto tempFile = co_await file.CopyAsync(tempFolder, file.Name(), NameCollisionOption::GenerateUniqueName());
+        if (tempFile)
         {
-            auto tempFolder = ApplicationData::Current().TemporaryFolder();
-            auto tempFile = co_await file.CopyAsync(tempFolder, file.Name(), NameCollisionOption::GenerateUniqueName());
-            {
-                if (tempFile)
-                {
-                    HRESULT hr = CreateWICTextureFromFile(..., tempFile.Path().c_str(), ...);
-                    DeleteFile(tempFile.Path().c_str());
-                    DX::ThrowIfFailed(hr);
-                }
-            }
+            HRESULT hr = CreateWICTextureFromFile(..., tempFile.Path().c_str(), ...);
+            DeleteFile(tempFile.Path().c_str());
+            DX::ThrowIfFailed(hr);
         }
     }
     
