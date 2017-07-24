@@ -119,13 +119,18 @@ WIC2 is available on Windows 10, Windows 8.x, and on Windows 7 Service Pack 1 wi
 See [Windows Imaging Component and Windows 8](http://blogs.msdn.com/b/chuckw/archive/2012/11/19/windows-imaging-component-and-windows-8.aspx)
 
 # Windows Store apps
-For _Save*TextureToFile_ to succeed, the application must have write access to the destination path. For Windows Store apps and universal Windows apps, the file access permissions are rather restricted so you'll need to make sure you use a fully qualified path to a valid write folder. A good location to use is the app data folder:
+For _Save*TextureToFile_ to succeed, the application must have write access to the destination path. For Windows Store apps and Universal Windows Platform (UWP) app, the file access permissions are rather restricted so you'll need to make sure you use a fully qualified path to a valid write folder. A good location to use is the app data folder:
 
+## C++/CX
     auto folder = Windows::Storage::ApplicationData::Current->LocalFolder;
     // use folder->Path->Data() as the path base
 
+## C++/WinRT
+*TODO*
+
 If you are going to immediately copy it to another location via ``StorageFolder::MoveAndReplaceAsync``, then use the app's temporary folder:
 
+## C++/CX
     #include <ppltasks.h>
     using namespace concurrency;
 
@@ -156,6 +161,10 @@ If you are going to immediately copy it to another location via ``StorageFolder:
             });
         }
     });
+
+## C++/WinRT
+
+*TODO*
 
 See [File access and permissions (Windows Runtime apps)](https://msdn.microsoft.com/en-us/library/windows/apps/hh967755.aspx), 
 [ApplicationData.TemporaryFolder property](http://msdn.microsoft.com/en-us/library/windows/apps/xaml/windows.storage.applicationdata.temporaryfolder.aspx)
