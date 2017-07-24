@@ -173,8 +173,29 @@ The texture loader function is typically used to load texture files from the app
         });
 
 ## C++/WinRT
+    #include "winrt/Windows.Storage.h"
+    #include "winrt/Windows.Storage.Pickers.h"
 
-*TODO*
+    using namespace winrt::Windows::Storage;
+    using namespace winrt::Windows::Storage::Pickers;
+
+    FileOpenPicker openPicker;
+    auto file = co_await openPicker.PickSingleFileAsync();
+    {
+        if (file)
+        {
+            auto tempFolder = winrt::Windows::Storage::ApplicationData::Current().TemporaryFolder();
+            auto tempFile = co_await file.CopyAsync(tempFolder, file.Name(), NameCollisionOption::GenerateUniqueName());
+            {
+                if (tempFile)
+                {
+                    HRESULT hr = CreateWICTextureFromFile(..., tempFile->Path->Data(), ...);
+                    DeleteFile(tempFile.Path().c_str());
+                    DX::ThrowIfFailed(hr);
+                }
+            }
+        }
+    }
     
 [File access and permissions (Windows Runtime apps)](https://msdn.microsoft.com/en-us/library/windows/apps/hh967755.aspx)
 
