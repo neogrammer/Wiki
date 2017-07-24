@@ -172,7 +172,11 @@ The texture loader function is typically used to load texture files from the app
     using Windows::Storage;
     using Windows::Storage::Pickers;
 
-    FileOpenPicker openPicker = new FileOpenPicker();
+    FileOpenPicker openPicker = ref new FileOpenPicker();
+    openPicker->ViewMode = PickerViewMode::Thumbnail; 
+    openPicker->SuggestedStartLocation = PickerLocationId::PicturesLibrary; 
+    openPicker->FileTypeFilter->Append(".dds"); 
+
     create_task(openPicker->PickSingleFileAsync()).then([](StorageFile^ file)
     {
         if (file)
