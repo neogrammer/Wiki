@@ -199,7 +199,8 @@ If you are going to immediately copy it to another location via ``StorageFolder:
     savePicker.SuggestedStartLocation(PickerLocationId::PicturesLibrary);
     savePicker.FileTypeChoices().Insert(L"Joint Photographic Experts Group", winrt::single_threaded_vector<winrt::hstring>({ L".jpg" }));
     savePicker.FileTypeChoices().Insert(L"Portable Network Graphics", winrt::single_threaded_vector<winrt::hstring>({ L".png" }));
-    savePicker.SuggestedFileName(L"Screenshot");    auto file = co_await savePicker.PickSaveFileAsync();
+    savePicker.SuggestedFileName(L"Screenshot");
+    auto file = co_await savePicker.PickSaveFileAsync();
     if (file)
     {
         auto tempFolder = ApplicationData::Current().TemporaryFolder();
