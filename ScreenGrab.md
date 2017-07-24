@@ -128,7 +128,7 @@ For _Save*TextureToFile_ to succeed, the application must have write access to t
 ## C++/WinRT
     #include "winrt/Windows.Storage.h"
     auto tempFolder = winrt::Windows::Storage::ApplicationData::Current().TemporaryFolder();
-    // use tempFile.Path().data() as the path base
+    // use tempFile.Path().c_str() as the path base
 
 If you are going to immediately copy it to another location via ``StorageFolder::MoveAndReplaceAsync``, then use the app's temporary folder:
 
@@ -165,8 +165,35 @@ If you are going to immediately copy it to another location via ``StorageFolder:
     });
 
 ## C++/WinRT
+    #include "winrt/Windows.Storage.h"
+    #include "winrt/Windows.Storage.Pickers.h"
 
-*TODO*
+    using namespace winrt::Windows::Storage;
+    using namespace winrt::Windows::Storage::Pickers;
+
+    auto folder = ApplicationData::Current().TemporaryFolder();
+
+    wchar_t fname[_MAX_PATH];
+    wcscpy_s(fname, folder.Path().c_str());
+    wcscat_s(fname, L"\\screenshot.jpg");
+
+    // note that context use is not thread-safe
+    HRESULT hr = SaveWICTextureToFile(immContext.Get(), backBuffer.Get(),
+        GUID_ContainerFormatJpeg, fname);
+
+    DX::ThrowIfFailed(hr);
+
+    FileSavePicker savePicker;
+    auto file = co_await savePicker.PickSaveFileAsync();
+    if (file)
+    {
+        auto tempFolder = ApplicationData::Current().TemporaryFolder();
+        auto tempFile = co_await file.CopyAsync(tempFolder, file.Name(), NameCollisionOption::GenerateUniqueName);
+        if (tempFile)
+        {
+            co_await tempFile.MoveAndReplaceAsync(file);
+        }
+    }
 
 See [File access and permissions (Windows Runtime apps)](https://msdn.microsoft.com/en-us/library/windows/apps/hh967755.aspx), 
 [ApplicationData.TemporaryFolder property](http://msdn.microsoft.com/en-us/library/windows/apps/xaml/windows.storage.applicationdata.temporaryfolder.aspx)
