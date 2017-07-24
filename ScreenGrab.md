@@ -127,7 +127,7 @@ For _Save*TextureToFile_ to succeed, the application must have write access to t
 
 ## C++/WinRT
     #include "winrt/Windows.Storage.h"
-    auto tempFolder = winrt::Windows::Storage::ApplicationData::Current().TemporaryFolder();
+    auto tempFolder = winrt::Windows::Storage::ApplicationData::Current().LocalFolder();
     // use tempFile.Path().c_str() as the path base
 
 If you are going to immediately copy it to another location via ``StorageFolder::MoveAndReplaceAsync``, then use the app's temporary folder:
