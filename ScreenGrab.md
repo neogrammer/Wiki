@@ -151,6 +151,18 @@ If you are going to immediately copy it to another location via ``StorageFolder:
 
     DX::ThrowIfFailed(hr);
 
+    auto savePicker = ref new FileSavePicker();
+    auto jpegExtensions = ref new Platform::Collections::Vector<String^>();
+    jpegExtensions->Append(".jpg");
+
+    auto pngExtensions = ref new Platform::Collections::Vector<String^>();
+    pngExtensions->Append(".png");
+
+    savePicker->SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+    savePicker->FileTypeChoices->Insert("Joint Photographic Experts Group", jpegExtensions);
+    savePicker->FileTypeChoices->Insert("Portable Network Graphics", pngExtensions);
+    savePicker->SuggestedFileName = "Screenshot";
+
     create_task(savePicker->PickSaveFileAsync()).then([](StorageFile^ file)
     {
         if ( file )
@@ -184,6 +196,9 @@ If you are going to immediately copy it to another location via ``StorageFolder:
     DX::ThrowIfFailed(hr);
 
     FileSavePicker savePicker;
+    savePicker.SuggestedStartLocation(PickerLocationId::PicturesLibrary);
+    savePicker.FileTypeChoices(...);
+    savePicker.SuggestedFileName(L"Screenshot");
     auto file = co_await savePicker.PickSaveFileAsync();
     if (file)
     {
