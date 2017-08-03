@@ -61,7 +61,7 @@ The Game class constructor is where you can do first initialization of member va
         m_deviceResources->RegisterDeviceNotify(this);
     }
 
-The DeviceResources constructor takes a number of defaulted parameters to control ``backBufferFormat``, ``depthBufferFormat``, ``backBufferCount``, and ``minFeatureLevel``. You can provide specific values to change them as needed.
+The DeviceResources constructor takes a number of defaulted parameters to control ``backBufferFormat``, ``depthBufferFormat``, ``backBufferCount``, ``minFeatureLevel``, and option ``flags``. You can provide specific values to change them as needed.
 
 If doing _gamma-correct rendering_, you should use ``DXGI_FORMAT_*_UNORM_SRGB`` or a supported HDR format for the ``backBufferFormat``. Be sure to update ``Clear`` below accordingly to use a linear clear color.
 
@@ -75,6 +75,8 @@ If you do not want DeviceResources to create a depth/stencil buffer, you can use
         DXGI_FORMAT_UNKNOWN);
 
 The ``backBufferCount`` defaults to 2, but in some cases you may want to override it to use 3. Larger numbers would be quite unusual and are not recommended.
+
+The ``minFeatureLevel`` defaults to 9.1 for PC and 9.3 for UWP. You can specify a higher hardware level if you want to take a hard requirement on additional capabilities. If you want to make use of [[PostProcess]] then you should specify ``D3D_FEATURE_LEVEL_10_0`` or higher.
 
 ## Initialize
 When the application first starts, execution is passed to the **Initialize** method. The TODO here by default leaves the applications [[StepTimer]] in the 'variable length' mode. You uncomment the code if you want StepTimer in the 'fixed-step' mode. We'll explain this more once we get to ``Update``.
