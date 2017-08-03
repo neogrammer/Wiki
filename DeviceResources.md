@@ -81,7 +81,7 @@ The ``minFeatureLevel`` defaults to 9.1 for PC and 9.3 for UWP. You can specify 
 The ``flags`` options parameter defaults to 0 which is no flags. You can specify one or more of them as or'd values:
 
 * ``c_AllowTearing``: If supported by the system, this enables present 'tearing' for supporting G-Sync/FreeSync displays.
-* ``c_EnableHDR``: If supported by the system, this enables rendering to wide-color gamut displays. For more information, see [[HDR10]].
+* ``c_EnableHDR``: If supported by the system, this enables rendering to wide-color gamut displays.
 
 ## Initialize
 When the application first starts, execution is passed to the **Initialize** method. The TODO here by default leaves the applications [[StepTimer]] in the 'variable length' mode. You uncomment the code if you want StepTimer in the 'fixed-step' mode. We'll explain this more once we get to ``Update``.
