@@ -99,6 +99,6 @@ If you are using the DirectX Tool Kit with the Xbox One XDK, then you have two a
 
 1. You need to build the Xbox One shaders that match your XDK release via ``CompileShaders.cmd xbox``
 
-1. You need to add creation of the [[GraphicsMemory]] singleton to your application and call ``m_graphicsMemory->Commit()`` after calling `m_deviceResources->Present();``
+1. You need to add creation of the [[GraphicsMemory]] singleton to your application and call ``m_graphicsMemory->Commit();`` after calling ``Present();`` / ``m_deviceResources->Present();``
 
 **Next lessons:** [[Sprites and textures]], [[Game controller input]], [[Using the SimpleMath library]], [[Adding the DirectX Tool Kit for Audio]]
