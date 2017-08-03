@@ -331,11 +331,11 @@ When asked to use ``backBufferCount``, use ``m_deviceResources->GetBackBufferCou
 
 # Wide-gamut HDR rendering
 
-If the ctor is created with the ``c_EnableHDR`` option flag, then the **GetColorSpace** property (on PC/UWP) needs to be used to determine if the swapchain is currently using sRGB (``DXGI_COLOR_SPACE_RGB_FULL_G22_NONE_P709``), Linear (``DXGI_COLOR_SPACE_RGB_FULL_G10_NONE_P709``), or HDR10 (``DXGI_COLOR_SPACE_RGB_FULL_G2084_NONE_P2020``) values.
+If the ctor is created with the ``c_EnableHDR`` option flag, then the **GetColorSpace** property (on PC/UWP) needs to be used to determine if the swapchain is currently using sRGB (``DXGI_COLOR_SPACE_RGB_FULL_G22_NONE_P709``), Linear (``DXGI_COLOR_SPACE_RGB_FULL_G10_NONE_P709``), or HDR10 (``DXGI_COLOR_SPACE_RGB_FULL_G2084_NONE_P2020``) values. This can change whenever the window is moved or the HDR mode of the TV is modified, so should be checked each frame.
 
 > The HDR display support requires the Windows 10 Creators Update (15063) and must be built with the Windows 10 Creators Update SDK (15063).
 
-The ``backBufferFormat`` for PC/UWP should be ``DXGI_FORMAT_R10G10B10A2_UNORM`` for rendering in HDR10 or ``DXGI_FORMAT_R16G16B16A16_FLOAT`` for rendering linear float values.
+The ``backBufferFormat`` for PC/UWP should be ``DXGI_FORMAT_R10G10B10A2_UNORM`` for rendering in HDR10 or ``DXGI_FORMAT_R16G16B16A16_FLOAT`` for rendering linear float values. The [[ToneMapPostProcess]] class supports the required color transformations for preparing an HDR10 signal, or tone-mapping for non-HDR displays.
 
 > For _Xbox One_, the ``backBufferFormat`` is actually the GameDVR SDR swapchain. The HDR swapchain in this case is always ``DXGI_FORMAT_R10G10B10A2_UNORM`` using HDR10.
 
