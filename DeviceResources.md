@@ -335,6 +335,10 @@ If the ctor is created with the ``c_EnableHDR`` option flag, then the **GetColor
 
 > The HDR display support requires the Windows 10 Creators Update (15063) and must be built with the Windows 10 Creators Update SDK (15063).
 
+The ``backBufferFormat`` for PC/UWP should be ``DXGI_FORMAT_R10G10B10A2_UNORM`` for rendering in HDR10 or ``DXGI_FORMAT_R16G16B16A16_FLOAT`` for rendering linear float values.
+
+> For _Xbox One_, the ``backBufferFormat`` is actually the GameDVR SDR swapchain. The HDR swapchain in this case is always ``DXGI_FORMAT_R10G10B10A2_UNORM`` using HDR10.
+
 # Further reading
 [Direct3D Win32 Game Visual Studio template (Redux)](http://blogs.msdn.com/b/chuckw/archive/2015/12/17/direct3d-game-visual-studio-templates-redux.aspx)  
 [Anatomy of Direct3D 11 Create Device](http://blogs.msdn.com/b/chuckw/archive/2014/02/05/anatomy-of-direct3d-11-create-device.aspx)  
