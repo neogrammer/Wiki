@@ -66,6 +66,7 @@ General advice for C++ projects is that you should only add the headers you actu
     #include "Keyboard.h"
     #include "Model.h"
     #include "Mouse.h"
+    #include "PostProcess.h"
     #include "PrimitiveBatch.h"
     #include "ScreenGrab.h"
     #include "SimpleMath.h"
