@@ -331,7 +331,7 @@ When asked to use ``backBufferCount``, use ``m_deviceResources->GetBackBufferCou
 
 # Wide-gamut HDR rendering
 
-If the ctor is created with the ``c_EnableHDR`` option flag, then the **GetColorSpace** property (on PC/UWP) needs to be used to determine if the swapchain is currently using sRGB, Linear, or HDR10 values.
+If the ctor is created with the ``c_EnableHDR`` option flag, then the **GetColorSpace** property (on PC/UWP) needs to be used to determine if the swapchain is currently using sRGB (``DXGI_COLOR_SPACE_RGB_FULL_G22_NONE_P709``), Linear (``DXGI_COLOR_SPACE_RGB_FULL_G10_NONE_P709``), or HDR10 (``DXGI_COLOR_SPACE_RGB_FULL_G2084_NONE_P2020``) values.
 
 > The HDR display support requires the Windows 10 Creators Update (15063) and must be built with the Windows 10 Creators Update SDK (15063).
 
