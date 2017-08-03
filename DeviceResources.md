@@ -19,22 +19,22 @@ The newly created project contains the following files:
 ![Open Game Cpp](https://github.com/Microsoft/DirectXTK/wiki/images/OpenGameCppDR.PNG)
 
 * Precompiled header files
- * pch.h 
- * pch.cpp
+  * pch.h 
+  * pch.cpp
 * Main application entry-point and classic Windows procedure function
- * Main.cpp
+  * Main.cpp
 * Device resources abstraction
- * DeviceResources.h
- * DeviceResources.cpp
+  * DeviceResources.h
+  * DeviceResources.cpp
 * Timer helper class
- * StepTimer.h
+  * StepTimer.h
 * Resources
- * directx.ico
- * resource.rc
- * settings.manifest
+  * directx.ico
+  * resource.rc
+  * settings.manifest
 * The Game class
- * Game.h
- * Game.cpp
+  * Game.h
+  * Game.cpp
 
 # Running the application
 
@@ -250,6 +250,7 @@ The **DeviceResources** class also includes a number of useful assessors not alr
 * **GetDepthBufferFormat**: Returns the format of the depth/stencil buffer returned by ``GetDepthStencilView``.
 * **GetBackBufferCount**: Returns the number of back-buffers in the swap chain.
 * **GetRenderTarget**, **GetDepthStencil**: Returns the texture objects for the swap chain & depth/stencil buffer.
+* **GetDeviceOptions**: Returns the device options based on the ctor flags. If the system does not support the option, the flag will be cleared.
 
 # Threading model
 
@@ -327,6 +328,12 @@ When asked to use ``backBufferWidth`` or ``backBufferHeight``, use ``m_deviceRes
 When asked to use ``backBufferCount``, use ``m_deviceResources->GetBackBufferCount()`` instead.
 
 **Next lesson**: [[Adding the DirectX Tool Kit]]
+
+# Wide-gamut HDR rendering
+
+If the ctor is created with the ``c_EnableHDR`` option flag, then the **GetColorSpace** property (on PC/UWP) needs to be used to determine if the swapchain is currently using sRGB, Linear, or HDR10 values.
+
+> The HDR display support requires the Windows 10 Creators Update (15063) and must be built with the Windows 10 Creators Update SDK (15063).
 
 # Further reading
 [Direct3D Win32 Game Visual Studio template (Redux)](http://blogs.msdn.com/b/chuckw/archive/2015/12/17/direct3d-game-visual-studio-templates-redux.aspx)  
