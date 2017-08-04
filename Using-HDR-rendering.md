@@ -5,6 +5,8 @@ First create a new project. For this lesson, use the [[DeviceResources]] variant
 
 # Setting up an HDR render target
 
+Save the files [RenderTexture.h](https://github.com/Microsoft/DirectXTK/wiki/RenderTexture.h) and [RenderTexture.cpp](https://github.com/Microsoft/DirectXTK/wiki/RenderTexture.cpp) to your new project's folder. Using to the top menu and select **Project** / **Add Existing Item....** Select "RenderTexture.h" and hit "OK". Repeat for "RenderTexture.cpp".
+
 *UNDER DEVELOPMENT*
 
 # Adding tone mapping
