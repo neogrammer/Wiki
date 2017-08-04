@@ -510,7 +510,9 @@ And finally we take the result of both blur passes in ``m_rt1SRV`` and combine i
 
 One final note, because we are using a render target that is larger than our blur buffers, we do not need to use ``RSSetViewports`` as we change render targets. If our intermediate render targets were _larger_ than our backbuffer, then we'd need to call ``RSSetViewports`` after calling ``OMSetRenderTargets`` whenever we changed sizes.
 
-**Next lessons:** [[Game controller input]], [[Using the SimpleMath library]], [[Adding the DirectX Tool Kit for Audio]]
+> Note that since this tutorial was written, I've added the [[BasicPostProcess]] / [[DualPostProcess]] classes which already includes the blur and bloom shaders used above. This is still a useful and valid tutorial, but you should check out those classes if you are wanting to add a bloom effect and you are using Direct3D hardware feature level 10.0 or better.
+
+**Next lessons:** [[Using HDR rendering]]
 
 # Further reading 
 
