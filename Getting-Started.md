@@ -65,6 +65,7 @@ If using VS 2015, be sure to install Visual C++ which requires using the _Custom
 * [[Using advanced shaders]]
 * [[Creating custom shaders with DGSL]]
 * [[Writing custom shaders]]
+* [[Using HDR rendering]]
 
 ## Input
 
