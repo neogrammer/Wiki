@@ -19,5 +19,5 @@ First create a new project. For this lesson, use the [[DeviceResources]] variant
 
 # Further reading 
 
-DirectX Tool Kit docs [[PostProcess] and [[ToneMapPostProcess]]
+DirectX Tool Kit docs [[PostProcess]] and [[ToneMapPostProcess]]
 
