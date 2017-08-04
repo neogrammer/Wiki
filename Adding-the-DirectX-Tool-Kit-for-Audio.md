@@ -9,7 +9,7 @@ If you used NuGet when [[Adding the DirectX Tool Kit]], then you already have su
 
 XAudio 2.7 requires the legacy DirectX SDK (June 2010). Due to some technical issues, it must be installed to the 'default' location of ``C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)``. To install the legacy DirectX SDK on your development system, see [this post](http://blogs.msdn.com/b/chuckw/archive/2010/06/15/10023137.aspx) and be sure to read [this article](http://blogs.msdn.com/b/chuckw/archive/2013/09/24/10246203.aspx) for a known issue with the installer.
 
-> The other platform NuGet packages do not require the legacy DirectX SDK as they always make use of XAudio 2.8 or later which is built into Windows 8.1 (``directxtk_windowsstore_8_1``), Windows 10 (``directxtk_uwp``), Windows phone 8.1 (``directxtk_windowsphone_8_1``), and Xbox One.
+> The other platform NuGet packages do not require the legacy DirectX SDK as they always make use of XAudio 2.8 or later which is built into Windows 8.1 (``directxtk_windowsstore_8_1``), Windows 10 (``directxtk_uwp``, ``directxtk12_*``), Windows phone 8.1 (``directxtk_windowsphone_8_1``), and Xbox One.
 
 Complete the steps in **Adding the headers** below including the additional configuration for XAudio 2.7.
 
@@ -32,7 +32,7 @@ XAudio 2.7 supports Windows Vista, Windows 7, or later. It is deployed by the le
 Complete the steps in **Adding the headers** below including the additional configuration for XAudio 2.7.
 
 ## XAudio 2.8
-XAudio 2.8 is built into Windows 8.0 or later, and everything needed is include with the OS and the Windows 8.1 SDK which is deployed with VS 2013.
+XAudio 2.8 is built into Windows 8.0 or later, and everything needed is include with the OS and the Windows 8.1 / Windows 10 SDK which is deployed with VS 2013 or later.
 
 1. Right-click on your solution in the Solution Explorer, and select **Add** / **Existing Project...**
 1. Browse into the "DirectXTK\Audio" folder and select ``DirectXTKAudio_Desktop_2013_Win8.vcxproj`` or ``DirectXTKAudio_Desktop_2015_Win8.vcxproj``, click "Open"
@@ -46,7 +46,7 @@ XAudio 2.8 is built into Windows 8.0 or later, and everything needed is include 
 
 > The other platform DirectX Tool Kit vcxproj files already include _DirectX Tool Kit for Audio_ as they always make use of XAudio 2.8 or later which is built into Windows 8.1 (``DirectXTK_Windows81.vcxproj``), Windows 10 (``DirectXTK_Windows10.vcxproj``, ``DirectXTK_Desktop_2015_Win10.vcxproj``), Windows phone 8.1 (``DirectXTK_WindowsPhone81.vcxproj``), and Xbox One (``DirectXTK_XboxOneXDK_2015.vcxproj``).
 
-> The universal Windows platform with Windows 10 (``DirectXTK_Windows10``) includes XAudio 2.9, and the Windows desktop version for Windows 10 (``DirectXTK_Desktop_2015_Win10``) includes using XAudio 2.9 as well. Both require building with the Windows 10 SDK.
+> The universal Windows platform with Windows 10 (``DirectXTK_Windows10``, ``DirectXTK12_Windows10``) includes XAudio 2.9, and the Windows desktop version for Windows 10 (``DirectXTK_Desktop_2015_Win10``, ``DirectXTK12_*_Win10``) includes using XAudio 2.9 as well. Both require building with the Windows 10 SDK.
 
 Complete the steps in **Adding the headers** below including the additional configuration for XAudio 2.8.
 
