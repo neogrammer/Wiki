@@ -1,4 +1,4 @@
-After creating a new project in the [[The basic game loop]], the next step is to add the _DirectX Tool Kit_ to the project so we can make use of it in our code.
+After creating a new project in the [[The basic game loop]] (or using the [[DeviceResources]] variant), the next step is to add the _DirectX Tool Kit_ to the project so we can make use of it in our code.
 
 # NuGet package manager
 The easiest way to achieve this is to use the [NuGet package manager](https://www.nuget.org/) built into Visual Studio.
