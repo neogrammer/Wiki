@@ -17,7 +17,7 @@ The easiest way to achieve this is to use the [NuGet package manager](https://ww
 
 You can check for updates to the NuGet package by selecting "Updates/All" in the left-hand tree view. If there are updates, select the "DirectX Tool Kit" package, and click on "Update".
 
-> If you are using the Direct3DUWPGame template, you would use package id **[directxtk_uwp](https://www.nuget.org/packages/directxtk_uwp)**
+> If you are using the Direct3DUWPGame template, you would use package id **[directxtk_uwp](https://www.nuget.org/packages/directxtk_uwp)**. Note both **directxtk_desktop_2015** and **directxtk_uwp** support VS 2017 as well.
 
 # Project-to-project references
 Another option rather than using NuGet is to use Visual Studio's [project-to-project references](http://blogs.msdn.com/b/vcblog/archive/2010/05/03/flexible-project-to-project-references.aspx). This approach is a little more setup, but it does ensure that you are building the full DirectX Tool Kit library as part of your solution, and allows you to make changes directly to the tool kit if desired as well.
