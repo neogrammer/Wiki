@@ -11,7 +11,7 @@ First create a new project. For this lesson, use the [[DeviceResources]] variant
 
 *UNDER DEVELOPMENT*
 
-# Using HDR display output
+# Using HDR10 display output
 
 *UNDER DEVELOPMENT*
 
