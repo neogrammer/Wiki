@@ -7,7 +7,7 @@ First create a new project. For this lesson, use the [[DeviceResources]] variant
 
 *UNDER DEVELOPMENT*
 
-# Adding tonemapping
+# Adding tone mapping
 
 *UNDER DEVELOPMENT*
 
