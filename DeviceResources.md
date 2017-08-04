@@ -339,6 +339,8 @@ The ``backBufferFormat`` for PC/UWP should be ``DXGI_FORMAT_R10G10B10A2_UNORM`` 
 
 > For _Xbox One_, the ``backBufferFormat`` is actually the GameDVR SDR swapchain format which can be any 8:8:8:8 or 10:10:10:2 UNORM format. The HDR swapchain in this case is always ``DXGI_FORMAT_R10G10B10A2_UNORM`` using HDR10. You would typically use [[ToneMapPostProcess]] with the MRT mode enabled to generate both HDR10 and SDR signals at the same time.
 
+See the tutorial [[Using HDR rendering]] for example usage.
+
 # Further reading
 [Direct3D Win32 Game Visual Studio template (Redux)](http://blogs.msdn.com/b/chuckw/archive/2015/12/17/direct3d-game-visual-studio-templates-redux.aspx)  
 [Anatomy of Direct3D 11 Create Device](http://blogs.msdn.com/b/chuckw/archive/2014/02/05/anatomy-of-direct3d-11-create-device.aspx)  
