@@ -4,6 +4,8 @@ Post-processing is a common technique applied to 3D rendering to achieve various
 * [[DualPostProcess]] supports post-processing that operates on two images such as merging/blending.
 * [[ToneMapPostProcess]] supports tone-map operations for HDR images such as the Reinhard operator. It also supports the HDR10 signal preparation needed for true 4k UHD wide color gamut rendering.
 
+**Related tutorial:** [[Using HDR rendering]]
+
 # Header
 
     #include "PostProcess.h"
