@@ -96,7 +96,9 @@ In the **Game.h** file, add the following variables to the bottom of the Game cl
     DirectX::SimpleMath::Matrix m_world;
     DirectX::SimpleMath::Matrix m_view;
     DirectX::SimpleMath::Matrix m_proj;
+
     std::unique_ptr<DirectX::GeometricPrimitive> m_shape;
+
     float m_colorScale;
 
 In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
