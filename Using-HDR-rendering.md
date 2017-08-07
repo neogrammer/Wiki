@@ -133,6 +133,8 @@ In **Game.cpp**, add to the TODO of **Update**:
 
 Build and run to see the scene with a teapot. The color scales between black and white which for now is full saturated.
 
+![Screenshot of passthrough](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotHDRCopy.PNG)
+
 # Adding tone mapping
 
 In the previous render, the color values range from 0 to 2, so the teapot over saturates for half the time. To resolve this, we use tone-mapping. In the first case, this uses a [Reinhard local operator](http://www.cs.utah.edu/~reinhard/cdrom/tonemap.pdf) as follows. In **Game.cpp**, modify the **CreateDeviceDependentResources**:
@@ -143,6 +145,8 @@ In the previous render, the color values range from 0 to 2, so the teapot over s
 
 Build and run to see the colors less intense white.
 
+![Screenshot of Reinhard](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotHDRReinhard.PNG)
+
 For a better overall color treatment, you may want to use an [ACES](https://github.com/ampas/aces-dev) [Filmic operator](https://knarkowicz.wordpress.com/2016/01/06/aces-filmic-tone-mapping-curve/) instead. In **Game.cpp**, modify the **CreateDeviceDependentResources**:
 
     // Set the tone-mapper to ACES Filmic
@@ -150,6 +154,8 @@ For a better overall color treatment, you may want to use an [ACES](https://gith
     m_toneMap->SetTransferFunction(ToneMapPostProcess::SRGB);
 
 Build and run to see a slightly different handling.
+
+![Screenshot of ACES Filmic](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotHDRACES.PNG)
 
 # Using HDR10 display output
 
