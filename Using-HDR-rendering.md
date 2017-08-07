@@ -9,6 +9,10 @@ Save the files [RenderTexture.h](https://github.com/Microsoft/DirectXTK/wiki/Ren
 
 *UNDER DEVELOPMENT*
 
+# Rendering a test scene
+
+*UNDER DEVELOPMENT*
+
 # Adding tone mapping
 
 *UNDER DEVELOPMENT*
