@@ -7,6 +7,15 @@ First create a new project. For this lesson, use the [[DeviceResources]] variant
 
 Save the files [RenderTexture.h](https://github.com/Microsoft/DirectXTK/wiki/RenderTexture.h) and [RenderTexture.cpp](https://github.com/Microsoft/DirectXTK/wiki/RenderTexture.cpp) to your new project's folder. Using to the top menu and select **Project** / **Add Existing Item....** Select "RenderTexture.h" and hit "OK". Repeat for "RenderTexture.cpp".
 
+Add to the **Game.h** file to the ``#include`` section:
+
+    #include "RenderTexture.h"
+
+In the **Game.h** file, add the following variable to the bottom of the Game class's private declarations:
+
+    std::unique_ptr<DX::RenderTexture> m_hdrScene;
+    std::unique_ptr<DirectX::ToneMapPostProcess> m_toneMap;
+
 *UNDER DEVELOPMENT*
 
 # Rendering a test scene
