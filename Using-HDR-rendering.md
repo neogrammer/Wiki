@@ -62,7 +62,19 @@ In **Game.cpp**, modify **Clear** as follows:
     context->ClearRenderTargetView(renderTarget, color);
     ...
 
-In **Game.cpp**, add and the end of the TODO of **Render**:
+In **Game.cpp**, modify **Render** as follows:
+
+    // Don't try to render anything before the first Update.
+    if (m_timer.GetFrameCount() == 0)
+    {
+        return;
+    }
+
+    Clear();
+
+    auto context = m_deviceResources->GetD3DDeviceContext();
+
+    // TODO: Add your rendering code here.
 
     auto renderTarget = m_deviceResources->GetRenderTargetView();
     context->OMSetRenderTargets(1, &renderTarget, nullptr);
@@ -71,6 +83,9 @@ In **Game.cpp**, add and the end of the TODO of **Render**:
 
     ID3D11ShaderResourceView* nullsrv[] = { nullptr };
     context->PSSetShaderResources(0, 1, nullsrv);
+
+    // Show the new frame.
+    m_deviceResources->Present();
 
 Build and run, and the result will be the original 'cornflower blue' screen.
 
