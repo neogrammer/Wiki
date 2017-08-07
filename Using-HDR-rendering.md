@@ -37,7 +37,17 @@ In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
     m_toneMap->SetOperator(ToneMapPostProcess::None);
     m_toneMap->SetTransferFunction(ToneMapPostProcess::Linear);
 
-*UNDER DEVELOPMENT*
+In **Game.cpp**, add to the TODO of **CreateWindowSizeDependentResources**:
+
+    auto size = m_deviceResources->GetOutputSize();
+    m_hdrScene->SetWindow(size);
+
+    m_toneMap->SetHDRSourceTexture(m_hdrScene->GetShaderResourceView());
+
+In **Game.cpp**, add to the TODO of **OnDeviceLost**:
+
+    m_hdrScene->ReleaseDevice();
+    m_toneMap.reset();
 
 # Rendering a test scene
 
