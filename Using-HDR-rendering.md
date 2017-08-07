@@ -49,6 +49,21 @@ In **Game.cpp**, add to the TODO of **OnDeviceLost**:
     m_hdrScene->ReleaseDevice();
     m_toneMap.reset();
 
+In **Game.cpp**, modify **Clear** as follows:
+
+    // Clear the views.
+    auto context = m_deviceResources->GetD3DDeviceContext();
+
+    auto renderTarget = m_hdrScene->GetRenderTargetView();
+    auto depthStencil = m_deviceResources->GetDepthStencilView();
+
+    XMVECTORF32 color;
+    color.v = XMColorSRGBToRGB(Colors::CornflowerBlue);
+    context->ClearRenderTargetView(renderTarget, color);
+    ...
+
+In **Game.cpp**, add to the TODO of **Render**:
+
 Build and run, and the result will be the original 'cornflower blue' screen.
 
 # Rendering a test scene
