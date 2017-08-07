@@ -62,7 +62,15 @@ In **Game.cpp**, modify **Clear** as follows:
     context->ClearRenderTargetView(renderTarget, color);
     ...
 
-In **Game.cpp**, add to the TODO of **Render**:
+In **Game.cpp**, add and the end of the TODO of **Render**:
+
+    auto renderTarget = m_deviceResources->GetRenderTargetView();
+    context->OMSetRenderTargets(1, &renderTarget, nullptr);
+
+    m_toneMap->Process(context);
+
+    ID3D11ShaderResourceView* nullsrv[] = { nullptr };
+    context->PSSetShaderResources(0, 1, nullsrv);
 
 Build and run, and the result will be the original 'cornflower blue' screen.
 
