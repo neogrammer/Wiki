@@ -91,6 +91,44 @@ Build and run, and the result will be the original 'cornflower blue' screen.
 
 # Rendering a test scene
 
+In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
+
+    DirectX::SimpleMath::Matrix m_world;
+    DirectX::SimpleMath::Matrix m_view;
+    DirectX::SimpleMath::Matrix m_proj;
+    std::unique_ptr<DirectX::GeometricPrimitive> m_shape;
+    float m_colorScale;
+
+In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
+
+    auto context = m_deviceResources->GetD3DDeviceContext();
+    m_shape = GeometricPrimitive::CreateTeapot(context);
+    
+    m_world = Matrix::Identity;
+
+In **Game.cpp**, add to the TODO of **CreateWindowSizeDependentResources**:
+
+    m_view = Matrix::CreateLookAt(Vector3(2.f, 2.f, 2.f),
+        Vector3::Zero, Vector3::UnitY);
+    m_proj = Matrix::CreatePerspectiveFieldOfView(XM_PI / 4.f,
+        float(size.right) / float(size.bottom), 0.1f, 10.f);
+
+In **Game.cpp**, add to the TODO of **OnDeviceLost**:
+
+    m_shape.reset();
+
+In **Game.cpp**, add to the TODO of **Render**:
+
+    m_shape->Draw(m_world, m_view, m_proj, XMVectorSetW(Colors::White * m_colorScale, 1.f));
+
+In **Game.cpp**, add to the TODO of **Update**:
+
+    float time = float(timer.GetTotalSeconds());
+    
+    m_world = Matrix::CreateRotationZ(cosf(time) * 2.f);
+
+    m_colorScale = 1.f + cosf(time);
+
 *UNDER DEVELOPMENT*
 
 # Adding tone mapping
