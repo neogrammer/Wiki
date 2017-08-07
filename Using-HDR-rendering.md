@@ -35,7 +35,7 @@ In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
 
     // Set tone-mapper as 'pass-through' for now...
     m_toneMap->SetOperator(ToneMapPostProcess::None);
-    m_toneMap->SetTransferFunction(ToneMapPostProcess::Linear);
+    m_toneMap->SetTransferFunction(ToneMapPostProcess::SRGB);
 
 In **Game.cpp**, add to the TODO of **CreateWindowSizeDependentResources**:
 
@@ -48,6 +48,8 @@ In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
     m_hdrScene->ReleaseDevice();
     m_toneMap.reset();
+
+Build and run, and the result will be the original 'cornflower blue' screen.
 
 # Rendering a test scene
 
