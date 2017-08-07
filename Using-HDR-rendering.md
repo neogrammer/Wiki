@@ -129,7 +129,7 @@ In **Game.cpp**, add to the TODO of **Update**:
 
     m_colorScale = 1.f + cosf(time);
 
-*UNDER DEVELOPMENT*
+Build and run to see the scene with a teapot. The color scales between black and white which for now is full saturated.
 
 # Adding tone mapping
 
