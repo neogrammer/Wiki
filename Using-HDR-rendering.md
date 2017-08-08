@@ -198,7 +198,7 @@ In the **Game.cpp** file in the **Render** function, modify the tone-mapping as 
     m_toneMap->Process(context);
     ...
 
-Build and run. If the window is on an HDR display, the output will use the ``DXGI_COLOR_SPACE_RGB_FULL_G2084_NONE_P2020`` HDR10 path or the ``DXGI_COLOR_SPACE_RGB_FULL_G10_NONE_P709`` FP16 path.
+Build and run. If the window is on an HDR display, the output will use the ``DXGI_COLOR_SPACE_RGB_FULL_G2084_NONE_P2020`` HDR10 path or the ``DXGI_COLOR_SPACE_RGB_FULL_G10_NONE_P709`` FP16 path. Otherwise it will use the same ACESFilmic sRGB tone-mapping above.
 
 If you don't use ``DXGI_FORMAT_R16G16B16A16_FLOAT`` you can simplify the code a bit:
 
