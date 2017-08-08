@@ -25,7 +25,7 @@ In the **Game.cpp** file, modify the Game class constructor:
 
     m_hdrScene = std::make_unique<DX::RenderTexture>(DXGI_FORMAT_R16G16B16A16_FLOAT);
 
-> We are using ``DXGI_FORMAT_R16G16B16A16_FLOAT`` for the HDR render target. Other reasonable options (depending on your Direct3D hardware feature level) including ``DXGI_FORMAT_R32G32B32A32_FLOAT``, or ``DXGI_FORMAT_R11G1B10_FLOAT``. ``DXGI_FORMAT_R32G32B32_FLOAT`` (a 96 bits-per-pixel format) support is often optional for various rendering operations. The ``DXGI_FORMAT_R9G9B9E5_SHAREDEXP`` is not typically supported for render targets.
+> We are using ``DXGI_FORMAT_R16G16B16A16_FLOAT`` for the HDR render target. Other reasonable options (depending on your Direct3D hardware feature level) include ``DXGI_FORMAT_R32G32B32A32_FLOAT``, or ``DXGI_FORMAT_R11G1B10_FLOAT``. ``DXGI_FORMAT_R32G32B32_FLOAT`` (a 96 bits-per-pixel format) support is often optional for various rendering operations, so might not be supported by your GPU. The ``DXGI_FORMAT_R9G9B9E5_SHAREDEXP`` is not typically supported for render targets.
 
 In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
 
