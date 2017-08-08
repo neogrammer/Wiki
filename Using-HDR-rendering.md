@@ -163,7 +163,7 @@ Next we'll add support for HDR10 wide color gamut rendering.
 
 > HDR10 display output requires a 4k UHD monitor connected with HDMI 2.0 to a PC running Windows 10 Creators Update. The code has to be built with the Windows 10 Creators Update SDK (15063) which itself requires VS 2017.
 
-In the **Game.cpp** constructor, modify it as follows:
+In the **Game.cpp** constructor, modify it as follows to use the ``c_EnableHDR`` option of [[DeviceResources]]:
 
     m_deviceResources = std::make_unique<DX::DeviceResources>(DXGI_FORMAT_R10G10B10A2_UNORM,
         DXGI_FORMAT_D32_FLOAT, 2, D3D_FEATURE_LEVEL_10_0,
