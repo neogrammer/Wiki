@@ -159,7 +159,68 @@ Build and run to see a slightly different handling.
 
 # Using HDR10 display output
 
-*UNDER DEVELOPMENT*
+Next we'll add support for HDR10 wide color gamut rendering.
+
+> HDR10 display output requires a 4k UHD monitor connected with HDMI 2.0 to a PC running Windows 10 Creators Update. The code has to be built with the Windows 10 Creators Update SDK (15063) which itself requires VS 2017.
+
+In the **Game.cpp** constructor, modify it as follows:
+
+    m_deviceResources = std::make_unique<DX::DeviceResources>(DXGI_FORMAT_R10G10B10A2_UNORM,
+        DXGI_FORMAT_D32_FLOAT, 2, D3D_FEATURE_LEVEL_10_0,
+        DX::DeviceResources::c_EnableHDR);
+
+> You can also use ``DXGI_FORMAT_R16G16B16A16_FLOAT`` instead which means your rendering is always in linear colors, leaving the system to deal with the HDR10 colorspace conversions. This is 'easier' but most games are likely to want to generate the HDR10 signal directly for better control.
+
+In the **Game.cpp** file in the **Render** function, modify the tone-mapping as follows:
+
+    switch (m_deviceResources->GetColorSpace())
+    {
+    default:
+        m_toneMap->SetOperator(ToneMapPostProcess::ACESFilmic);
+        m_toneMap->SetTransferFunction(
+            (m_deviceResources->GetBackBufferFormat() == DXGI_FORMAT_R16G16B16A16_FLOAT)
+            ? ToneMapPostProcess::Linear : ToneMapPostProcess::SRGB);
+        break;
+
+    case DXGI_COLOR_SPACE_RGB_FULL_G2084_NONE_P2020:
+        m_toneMap->SetOperator(ToneMapPostProcess::None);
+        m_toneMap->SetTransferFunction(ToneMapPostProcess::ST2084);
+        break;
+
+    case DXGI_COLOR_SPACE_RGB_FULL_G10_NONE_P709:
+        // Required if R16G16B16A16_FLOAT is used as display format
+        // (otherwise you can omit this case)
+        m_toneMap->SetOperator(ToneMapPostProcess::None);
+        m_toneMap->SetTransferFunction(ToneMapPostProcess::Linear);
+        break;
+    }
+
+    m_toneMap->Process(context);
+    ...
+
+Build and run. If the window is on an HDR display, the output will use the ``DXGI_COLOR_SPACE_RGB_FULL_G2084_NONE_P2020`` HDR10 path or the ``DXGI_COLOR_SPACE_RGB_FULL_G10_NONE_P709`` FP16 path.
+
+If you don't use ``DXGI_FORMAT_R16G16B16A16_FLOAT`` you can simplify the code a bit:
+
+    switch (m_deviceResources->GetColorSpace())
+    {
+    default:
+        m_toneMap->SetOperator(ToneMapPostProcess::ACESFilmic);
+        m_toneMap->SetTransferFunction(ToneMapPostProcess::SRGB);
+        break;
+
+    case DXGI_COLOR_SPACE_RGB_FULL_G2084_NONE_P2020:
+        m_toneMap->SetOperator(ToneMapPostProcess::None);
+        m_toneMap->SetTransferFunction(ToneMapPostProcess::ST2084);
+        break;
+
+    case DXGI_COLOR_SPACE_RGB_FULL_G10_NONE_P709:
+        throw std::exception("FP16 display output not supported");
+        break;
+    }
+
+    m_toneMap->Process(context);
+    ...
 
 **Next lessons:** [[Game controller input]], [[Using the SimpleMath library]], [[Adding the DirectX Tool Kit for Audio]]
 
