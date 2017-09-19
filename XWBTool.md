@@ -8,7 +8,7 @@ See [[Audio]], [[WaveBank]]
 
 ``xwbtool.exe`` uses the following command syntax:
 
-    xwbtool [-r] [-s] [-o <filename>] [-h <filename>] [-n] [-c | -nc] [-f] <file-name(s)>
+    xwbtool [-r] [-s] [-o <filename>] [-h <filename>] [-n] [-c | -nc] [-f] [-flist <filename>] <file-name(s)>
 
 The file-name parameter indicates the ``.wav`` file(s) to add to the wave bank.
 
@@ -27,6 +27,8 @@ The file-name parameter indicates the ``.wav`` file(s) to add to the wave bank.
 **-c / -nc**: Forces creation or prevents use of compact wave banks. By default, it will try to use a compact wave bank if possible.
 
 **-f**: Includes entry friendly name strings in the wave bank for use with 'string' based versions of WaveBank::Play() and WaveBank::CreateInstance() rather than index-based versions.
+
+**-flist _filename_**: Uses the provided filename as a text file containing a list of input files (one per line). Ignores lines that begin with ``#`` (used for comments). Does not support providing additional command-line arguments or the use of filename wildcards.
 
 # Example usage
 
