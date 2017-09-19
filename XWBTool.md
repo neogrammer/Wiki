@@ -8,7 +8,8 @@ See [[Audio]], [[WaveBank]]
 
 ``xwbtool.exe`` uses the following command syntax:
 
-    xwbtool [-r] [-s] [-o <filename>] [-h <filename>] [-n] [-c | -nc] [-f] [-flist <filename>] <file-name(s)>
+    xwbtool [-r] [-s] [-o <filename>] [-h <filename>] [-n] [-c | -nc] [-f]
+    [-flist <filename>] <file-name(s)>
 
 The file-name parameter indicates the ``.wav`` file(s) to add to the wave bank.
 
