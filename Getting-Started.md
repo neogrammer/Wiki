@@ -52,6 +52,14 @@ If using VS 2015, be sure to install Visual C++ which requires using the _Custom
 
 For a quick introduction to DirectX 11 programming, take a look at the [Introductory Graphics](https://github.com/Microsoft/Xbox-ATG-Samples#introductory-graphics) samples on [Xbox-ATG-Samples](https://github.com/Microsoft/Xbox-ATG-Samples).
 
+* Basic drawing: SimpleTriangle
+* Basic texturing: SimpleTexture
+* Basic lighting: SimpleLighting
+* DirectCompute: SimpleCompute
+* Tessellation: SimpleBezier
+* Instancing: SimpleInstancing
+* Multisample Antialiasing: SimpleMSAA
+
 # Tutorials
 
 * [[The basic game loop]]
