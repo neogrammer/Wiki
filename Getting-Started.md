@@ -48,6 +48,10 @@ If using VS 2015, be sure to install Visual C++ which requires using the _Custom
 
 > There is no need to install the legacy DirectX SDK to use DirectX Tool Kit. The DirectX SDK is deprecated and you should not use it. The only time you would need to install the legacy DirectX SDK for this tutorial series is if you are using Windows 7 for the audio portions. See [MSDN](https://msdn.microsoft.com/en-us/library/windows/desktop/ee663275.aspx), [DirectX SDK Samples Catalog](http://blogs.msdn.com/b/chuckw/archive/2013/09/20/directx-sdk-samples-catalog.aspx), and [DirectX SDK Tools Catalog](http://blogs.msdn.com/b/chuckw/archive/2014/10/28/directx-sdk-tools-catalog.aspx).
 
+# Samples
+
+For a quick introduction to DirectX 11 programming, take a look at the [Introductory Graphics](https://github.com/Microsoft/Xbox-ATG-Samples#introductory-graphics) samples on [Xbox-ATG-Samples](https://github.com/Microsoft/Xbox-ATG-Samples)
+
 # Tutorials
 
 * [[The basic game loop]]
