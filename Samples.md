@@ -13,7 +13,7 @@ See also [DirectXTK Model Viewer](https://github.com/walbourn/directxtkmodelview
 
 # Universal Windows Platform apps
 
-[DirectXTK Simple Sample](https://github.com/Microsoft/Xbox-ATG-Samples/tree/master/Samples/IntroGraphics/DirectXTKSimpleSampleUWP)
+[DirectXTK Simple Sample](https://github.com/Microsoft/Xbox-ATG-Samples/tree/master/UWPSamples/IntroGraphics/DirectXTKSimpleSampleUWP)
 
 # Windows Store apps
 [Simple Sample for Windows 8.1](http://code.msdn.microsoft.com/DirectXTK-Simple-Sample-a0b6de36)
@@ -27,11 +27,8 @@ See also [DirectXTK Model Viewer](https://github.com/walbourn/directxtkmodelview
 [Per Pixel Collision Detection in C++](http://geekswithblogs.net/mikebmcl/archive/2013/02/14/c-pixel-perfect-collision-detection-sample-and-base-sample-updated.aspx)
 
 # Windows desktop apps
-[Simple Sample (no audio)](http://code.msdn.microsoft.com/DirectXTK-Simple-Win32-23db418a)
 
-[Simple Sample (Windows 8.x using XAudio 2.8)](http://code.msdn.microsoft.com/DirectXTK-for-Audio-Simple-9d6a7da2)
-
-[Simple Sample (DirectX SDK using XAudio 2.7)](http://code.msdn.microsoft.com/DirectXTK-for-Audio-Simple-928e0700)
+[DirectXTK Simple Sample](https://github.com/Microsoft/Xbox-ATG-Samples/tree/master/PCSamples/IntroGraphics/DirectXTKSimpleSamplePC)
 
 [DXUT+DirectXTK Simple Sample](http://code.msdn.microsoft.com/DXUTDirectXTK-Simple-Win32-9cf797e9)
 
@@ -46,5 +43,5 @@ See also [DirectXTK Model Viewer](https://github.com/walbourn/directxtkmodelview
 http://www.developer.nokia.com/Community/Wiki/DirectX_on_Windows_Phone:_2D_Game_Example_using_DirectX_Toolkit)
 
 # Xbox One
-[DirectXTKSimpleSample for the Xbox One XDK](https://developer.xboxlive.com/en-us/platform/development/education/Pages/Samples.aspx) (login required)
+[DirectXTKSimpleSample for the Xbox One XDK](https://aka.ms/atgspldirectxtksimplesample)
 
