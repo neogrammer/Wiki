@@ -9,7 +9,7 @@ Here is a list of various samples and articles for making use of DirectXTK.
 
 See also [DirectXTK Model Viewer](https://github.com/walbourn/directxtkmodelviewer).
 
-> The [Introductory Graphics](https://github.com/Microsoft/Xbox-ATG-Samples#introductory-graphics) DX11 samples on [Xbox-ATG-Samples](https://github.com/Microsoft/Xbox-ATG-Samples) 
+> The DirectX 11 samples on [Xbox-ATG-Samples](https://github.com/Microsoft/Xbox-ATG-Samples) make use of _DirectX Tool Kit_
 
 # Universal Windows Platform apps
 
