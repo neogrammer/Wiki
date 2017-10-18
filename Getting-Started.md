@@ -50,7 +50,7 @@ If using VS 2015, be sure to install Visual C++ which requires using the _Custom
 
 # Samples
 
-For a quick introduction to DirectX 11 programming, take a look at the [Introductory Graphics](https://github.com/Microsoft/Xbox-ATG-Samples#introductory-graphics) samples on [Xbox-ATG-Samples](https://github.com/Microsoft/Xbox-ATG-Samples)
+For a quick introduction to DirectX 11 programming, take a look at the [Introductory Graphics](https://github.com/Microsoft/Xbox-ATG-Samples#introductory-graphics) samples on [Xbox-ATG-Samples](https://github.com/Microsoft/Xbox-ATG-Samples).
 
 # Tutorials
 
