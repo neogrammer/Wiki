@@ -201,6 +201,29 @@ When built for Windows 10, the GamePad class is implemented using a new WinRT ``
 * ``MAX_PLAYER_COUNT`` is 8 rather than 4
 * Currently only the GAMEPAD type is reported for Xbox One controllers, and ``caps.id`` is always 0.
 
+## UWP on Xbox One
+
+Whenever the B button on a gamepad controller is pressed on Xbox One, the running UWP app is sent a ``BackRequest``. If this is unhandled, the application will be suspended and the previous application is brought forward. This can make using the B button in your UI design a challenge, so the recommended solution is to add a message handler to 'handle' the request:
+
+### C++/CX
+
+    void SetWindow(CoreWindow^ window)
+    {
+        ...
+        auto navigation = Windows::UI::Core::SystemNavigationManager::GetForCurrentView();
+
+        navigation->BackRequested +=
+            ref new EventHandler<BackRequestedEventArgs^>(this, &ViewProvider::OnBackRequested);
+        ...
+    }
+
+    void OnBackRequested(Platform::Object^, Windows::UI::Core::BackRequestedEventArgs^ args)
+    {
+        // UWP on Xbox One triggers a back request whenever the B button is pressed
+        // which can result in the app being suspended if unhandled
+        args->Handled = true;
+    }
+
 # Further reading
 [DirectX Tool Kit: Now with GamePads](http://blogs.msdn.com/b/chuckw/archive/2014/09/05/directx-tool-kit-now-with-gamepads.aspx)  
 [XInput and Windows 8](http://blogs.msdn.com/b/chuckw/archive/2012/04/26/xinput-and-windows-8-consumer-preview.aspx)  
