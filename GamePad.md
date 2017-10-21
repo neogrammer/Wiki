@@ -224,6 +224,21 @@ Whenever the B button on a gamepad controller is pressed on Xbox One, the runnin
         args->Handled = true;
     }
 
+### C++/WinRT
+
+    #include <winrt/Windows.UI.Core.h>
+
+    // UWP on Xbox One triggers a back request whenever the B button is pressed
+    // which can result in the app being suspended if unhandled
+    using namespace winrt::Windows::UI::Core;
+
+    auto navigation = SystemNavigationManager::GetForCurrentView();
+
+    navigation.BackRequested([](const winrt::Windows::Foundation::IInspectable&, const BackRequestedEventArgs& args)
+    {
+        args.Handled(true);
+    });
+
 # Further reading
 [DirectX Tool Kit: Now with GamePads](http://blogs.msdn.com/b/chuckw/archive/2014/09/05/directx-tool-kit-now-with-gamepads.aspx)  
 [XInput and Windows 8](http://blogs.msdn.com/b/chuckw/archive/2012/04/26/xinput-and-windows-8-consumer-preview.aspx)  
