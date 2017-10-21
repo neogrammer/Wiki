@@ -203,7 +203,7 @@ When built for Windows 10, the GamePad class is implemented using a new WinRT ``
 
 ## UWP on Xbox One
 
-Whenever the B button on a gamepad controller is pressed on Xbox One, the running UWP app is sent a ``BackRequest``. If this is unhandled, the application will be suspended and the previous application is brought forward. This can make using the B button in your UI design a challenge, so the recommended solution is to add a message handler to 'handle' the request:
+Whenever the B button on a gamepad controller is pressed on Xbox One, the running UWP app is sent a "back request" (like the hardware 'Back' button on Windows Mobile). If this is unhandled, the application will be suspended and the previous application is brought forward. This can make using the B button in your UI design a challenge, so the recommended solution is to add a message handler to 'handle' the request:
 
 ### C++/CX
 
