@@ -73,14 +73,68 @@ Then build the Xbox One XDK version of the DirectXTK library.
 ## Using project-to-project references
 In your application's solution, right-click on the Solution and use **Add \ Existing Project...** to add the appropriate ``.vcxproj`` file to your solution.
 
-* _DirectXTK_Windows10_ is for Universal Windows Platform (UWP) apps building with VS 2015 and the Windows 10 Tools targeting Windows 10
-* _DirectXTK_Windows81_ is for Windows Store C++ apps building with VS 2013 targeting Windows 8.1 / RT 8.1 
-* _DirectXTK_WindowsPhone81_ is for Windows phone 8.1 C++ apps building with VS 2013 Update 2 or later. 
-* _DirectXTK_XAMLSilverlight_WindowsPhone81_ is for Windows phone Silverlight 8.1 C++ apps building with VS 2013 Update 2 or later. 
-* _DirectXTK_Desktop_2015_Win10_ is for Windows desktop C++ applications for Windows 10 building with VS 2015 Express for Desktop, VS 2015 Community, or VS 2015 Professional and the Windows 10 Tools
-* _DirectXTK_Desktop_2015_ is for Windows desktop C++ applications for Windows Vista SP2 or later building with VS 2015 Express for Desktop, VS 2015 Community, or VS 2015 Professional or higher
-* _DirectXTK_Desktop_2013_ is for Windows desktop C++ applications for Windows Vista SP2 or later building with the VS 2013 Express for Desktop, VS 2013 Community, VS 2013 Professional or higher
-* _DirectXTK_XboxOneXDK_2015_ is for Xbox One exclusive C++ applications building with VS 2015 using the Xbox One XDK
+<table>
+ <tr>
+  <td>DirectXTK_Desktop_2017</td>
+  <td>Windows desktop applications for Windows Vista SP2 or later building with VS 2017 Community, Professional or higher with the Windows 10 SDK (15063).</td>
+ </tr>
+ <tr>
+  <td>DirectXTK_Desktop_2017_Win10</td>
+  <td>Windows desktop applications for Windows 10 building with VS 2017 Community, Professional or higher with the Windows 10 SDK (15063).</td>
+ </tr>
+ <tr>
+  <td>DirectXTK_Windows10</td>
+  <td>Universal Windows Platform (UWP) apps building with VS 2017 with the Windows 10 SDK (15063).<br /><I>The Windows SDK (14393) is also required unless you modify the minimum supported OS setting</I>.</td>
+ </tr>
+ <tr>
+  <td>DirectXTK_XboxOneXDK_2017</td>
+  <td>Xbox One exclusive apps building with VS 2017 using the Xbox One XDK (<I>March 2017 or later</I>).</td>
+ </tr>
+</table>
+
+> For VS 2017, use of the [15.3 update](https://blogs.msdn.microsoft.com/chuckw/2017/08/14/visual-studio-2017-15-3-update/) or later is recommended.
+
+<table>
+ <tr>
+  <td>DirectXTK_Desktop_2015</td>
+  <td>Windows desktop applications for Windows Vista SP2 or later building with VS 2015 Express for Desktop, VS 2015 Community, VS 2015 Professional or higher.</td>
+ </tr>
+ <tr>
+  <td>DirectXTK_Desktop_2015_Win10</td>
+  <td>Windows desktop applications for Windows 10 building with VS 2015 Express for Desktop, VS 2015 Community, VS 2015 Professional or higher.</td>
+ </tr>
+ <tr>
+  <td>DirectXTK_Windows10_2015</td>
+  <td>Universal Windows Platform (UWP) apps building with VS 2015 with the Windows 10 SDK (14393).<br /></td>
+ </tr>
+ <tr>
+  <td>DirectXTK_XboxOneXDK_2015</td>
+  <td>Xbox One exclusive apps building with VS 2015 using the Xbox One XDK.</td>
+ </tr>
+</table>
+
+> For VS 2015, use of the [Update 3](https://blogs.msdn.microsoft.com/chuckw/2016/06/27/visual-studio-2015-update-3/) is recommended.
+
+<table>
+ <tr>
+  <td>DirectXTK_Desktop_2013</td>
+  <td>Windows desktop applications for Windows Vista SP2 or later building with VS 2013 Express for Desktop, VS 2013 Community, VS 2013 Professional or higher.</td>
+ </tr>
+ <tr>
+  <td>DirectXTK_Windows81</td>
+  <td>Windows Store apps building with VS 2013 targeting Windows 8.1.</td>
+ </tr>
+ <tr>
+  <td>DirectXTK_WindowsPhone81</td>
+  <td>Windows phone 8.1 apps building with VS 2013 Update 2 or later.</td>
+ </tr>
+ <tr>
+  <td>DirectXTK_XAMLSilverlight_WindowsPhone81</td>
+  <td>Windows phone Silverlight 8.1 C++ apps building with VS 2013 Update 2 or later.</td>
+ </tr>
+</table>
+
+> For VS 2013, use of the [Update 5](https://blogs.msdn.microsoft.com/chuckw/2015/07/20/visual-studio-2013-update-5/) is recommended.
 
 In your application's project, right-click on the **Project** and use "References...", then "Add New Reference...", and then check the DirectXTK project name and click OK. For a Universal Windows Platform (UWP) app, Windows Store app, Windows phone, or Xbox One solution, you may need to set _Reference Assembly Output_ to false since DirectXTK is a static C++ library and not a WinRT component.
 
@@ -97,8 +151,8 @@ See also the [Visual C+ Team Blog](http://blogs.msdn.com/b/vcblog/archive/2010/0
 ## Using NuGet package manager
 Alternatively you can use NuGet to install one of the DirectX Tool Kit packages. Use *Project / Manage NuGet Packages...* then select "Online" and search for "DirectXTK".
 
-* Use Id: [directxtk_desktop_2015](https://www.nuget.org/packages/directxtk_desktop_2015/) for Windows desktop C++ applications building with VS 2015 Community, VS 2015 Professional or higher. _DirectXTK for Audio_ in this package requires XAudio 2.7 from the legacy DirectX SDK.
-* Use id: [directxtk_uwp](https://www.nuget.org/packages/directxtk_uwp/) for Universal Windows Platform apps for Windows 10 building with VS 2015 Community, VS 2015 Professional or higher. _DirectXTK for Audio_ in this package uses XAudio 2.9 in the Windows 10 SDK.
+* Use Id: [directxtk_desktop_2015](https://www.nuget.org/packages/directxtk_desktop_2015/) for Windows desktop C++ applications building with VS 2015 or VS 2017 Community, VS 2015 or VS 2017 Professional or higher. _DirectXTK for Audio_ in this package requires XAudio 2.7 from the legacy DirectX SDK.
+* Use id: [directxtk_uwp](https://www.nuget.org/packages/directxtk_uwp/) for Universal Windows Platform apps for Windows 10 building with VS 2015 or VS 2017 Community, VS 2015 or VS 2017 Professional or higher. _DirectXTK for Audio_ in this package uses XAudio 2.9 in the Windows 10 SDK.
 * Use Id: [directxtk_desktop_2013](https://www.nuget.org/packages/directxtk_desktop_2013/) for Windows desktop C++ applications building with the VS 2013 Express for Desktop, VS 2013 Community, VS 2013 Professional or higher. _DirectXTK for Audio_ in this package requires XAudio 2.7 from the legacy DirectX SDK.
 * Use Id: [directxtk_windowsstore_8_1](https://www.nuget.org/packages/directxtk_windowsstore_8_1/) for Windows Store C++ apps building with VS 2013 targeting Windows 8.1 / RT 8.1. _DirectXTK for Audio_ in this package uses XAudio 2.8 in the Windows 8.1 SDK.
 * Use Id: [directxtk_windowsphone_8_1](https://www.nuget.org/packages/directxtk_windowsphone_8_1/) for Windows phone 8.1 C++ apps or Windows phone Silverlight 8.1 C++ apps building with VS 2013 Update 2 or later. _DirectXTK for Audio_ in this package uses XAudio 2.8 in the Windows phone 8.1 SDK.
