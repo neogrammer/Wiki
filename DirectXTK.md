@@ -80,7 +80,7 @@ In your application's solution, right-click on the Solution and use **Add \ Exis
  </tr>
  <tr>
   <td>DirectXTK_Desktop_2017_Win10</td>
-  <td>Windows desktop applications for Windows 10 building with VS 2017 Community, Professional or higher with the Windows 10 SDK (15063).</td>
+  <td>Windows desktop applications for Windows 10 building with VS 2017 Community, Professional or higher with the Windows 10 SDK (15063).<br /><I>Uses XAudio 2.9 and <code>Windows.Gaming.Input</code></I></td>
  </tr>
  <tr>
   <td>DirectXTK_Windows10</td>
@@ -101,7 +101,7 @@ In your application's solution, right-click on the Solution and use **Add \ Exis
  </tr>
  <tr>
   <td>DirectXTK_Desktop_2015_Win10</td>
-  <td>Windows desktop applications for Windows 10 building with VS 2015 Express for Desktop, VS 2015 Community, VS 2015 Professional or higher.</td>
+  <td>Windows desktop applications for Windows 10 building with VS 2015 Express for Desktop, VS 2015 Community, VS 2015 Professional or higher.<br /><I>Uses XAudio 2.9 and <code>Windows.Gaming.Input</code></I></td>
  </tr>
  <tr>
   <td>DirectXTK_Windows10_2015</td>
