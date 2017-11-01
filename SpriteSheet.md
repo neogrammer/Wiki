@@ -318,3 +318,8 @@ Enter the following command-line after changing to the appropriate directory:
 
     texconv.exe SpriteSheetSample.png -f BC3_UNORM -m 1 -pmalpha
 
+# Further Development
+
+The more sprites that can be packed into a single texture, the more efficient the draw operations can be. ``SpriteBatch`` only needs to flush when the source texture is changed, so as long as you draw from the same sprite sheet the performance is very good.
+
+You can extend this further on Direct3D hardware feature level 10.0 or better by packing multiple sprite sheets into a single 2D texture array, but this would require modifying ``SpriteBatch`` and the ``SpriteBatch.fx`` shaders to use a per-vertex texture array index.
