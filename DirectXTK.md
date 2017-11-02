@@ -84,7 +84,7 @@ In your application's solution, right-click on the Solution and use **Add \ Exis
  </tr>
  <tr>
   <td>DirectXTK_Windows10</td>
-  <td>Universal Windows Platform (UWP) apps building with VS 2017 with the Windows 10 SDK (15063).<br /><I>The Windows SDK (14393) is also required unless you modify the minimum supported OS setting</I>.</td>
+  <td>Universal Windows Platform (UWP) apps building with VS 2017 with the Windows 10 SDK (16299).<br /><I>The Windows SDK (14393) is also required unless you modify the minimum supported OS setting</I>.</td>
  </tr>
  <tr>
   <td>DirectXTK_XboxOneXDK_2017</td>
