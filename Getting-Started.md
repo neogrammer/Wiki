@@ -31,7 +31,7 @@ For debugging exceptions thrown by the _DirectX Tool Kit_, you should enable the
 
 > For some more detail on how the Visual Studio debugger deals with exceptions, read [this](https://blogs.msdn.microsoft.com/visualstudioalm/2015/01/07/understanding-exceptions-while-debugging-with-visual-studio/) blog post.
 
-> In Visual Studio 2015, the exception debugging options changed compared to VS 2013; see [this](https://blogs.msdn.microsoft.com/visualstudioalm/2015/02/23/the-new-exception-settings-window-in-visual-studio-2015/) blog post.
+> In Visual Studio 2015/2017, the exception debugging options changed compared to VS 2013; see [this](https://blogs.msdn.microsoft.com/visualstudioalm/2015/02/23/the-new-exception-settings-window-in-visual-studio-2015/) blog post.
 
 # Audience
 These tutorials are written with game development in mind as the target application since games are an excellent fit for the 'immersive DirectX app' model. Keep in mind, however, that the majority of the functionality in the _DirectX Tool Kit_ is applicable to DirectX graphics programming in general for both game and non-game applications.
@@ -39,7 +39,7 @@ These tutorials are written with game development in mind as the target applicat
 # Software Setup
 For learning purposes, these instructions are going to focus on the following setup:
 
-* Visual Studio 2013 [Update 5](http://blogs.msdn.com/b/chuckw/archive/2015/07/20/visual-studio-2013-update-5.aspx) or 2015 [Update 2](https://blogs.msdn.microsoft.com/chuckw/2016/03/31/visual-studio-2015-update-2/) Community, Professional, Premium, or Ultimate
+* Visual Studio 2015 [Update 3](https://blogs.msdn.microsoft.com/chuckw/2016/06/27/visual-studio-2015-update-3/) or Visual Studio 2017 Community, Professional, Premium, or Ultimate
 * Windows 7 Service Pack 1, Windows 8.1, or Windows 10
 
 We will be using a Win32 desktop application project template in order to support developers using Windows 7, but all these techniques and APIs apply to Universal Windows Platform apps, Windows Store apps, Windows phone 8.1, and Xbox One as well.
