@@ -50,6 +50,8 @@ For exception safety, the factory functions return a ``std::unique_ptr``.
 
 * **CreateTorus**( deviceContext, float diameter = 1, float thickness = 0.333f, size_t tessellation = 32): Creates a [torus](http://en.wikipedia.org/wiki/Torus) of given diameter, thickness, and tessellation factor.
 
+> Note that ``GeometricPrimitive::VertexType`` is an alias for [[VertexPositionNormalTexture|VertexTypes]]
+
 # Simple drawing
 Simple solid shape drawing:
 
