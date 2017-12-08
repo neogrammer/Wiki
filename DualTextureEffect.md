@@ -32,9 +32,9 @@ This effect requires ``SV_Position``, ``TEXCOORD0``, and  ``TEXCOORD1``. It requ
 
 * **SetVertexColorEnabled**: Enables per-vertex color. Defaults to false. Modifying this setting requires recreating associated input layouts, and enabling it requires ``COLOR``.
 
-* **SetTexture**: Associates a texture shader resource view with the effect. Can be set to nullptr to remove a reference.
+* **SetTexture**: Associates a texture shader resource view with the effect. Can be set to nullptr to remove a reference. This uses the sampler in slot 0.
 
-* **SetTexture2**: Associates a texture shader resource view with the effect. Can be set to nullptr to remove a reference.
+* **SetTexture2**: Associates a texture shader resource view with the effect. Can be set to nullptr to remove a reference. This uses the sampler in slot 1.
 
 # Remarks
 
