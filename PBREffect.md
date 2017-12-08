@@ -54,7 +54,9 @@ This effect requires a texture sampler in both slots 0 and 1. [[GeometricPrimiti
 # Further reading
 [Basic Theory of Physically-Based Rendering](https://www.marmoset.co/toolbag/learn/pbr-theory)
 
-[SIGGRAPH 2016 Course](http://blog.selfshadow.com/publications/s2016-shading-course/)
+Burley et al. "Physically-Based Shading at Disney", SIGGRAPH 2012 Course: Practical Physically Based Shading in Film and Game Production. [Course](http://blog.selfshadow.com/publications/s2012-shading-course/) [Slides](http://blog.selfshadow.com/publications/s2012-shading-course/burley/s2012_pbs_disney_brdf_slides_v2.pdf) [Notes](https://disney-animation.s3.amazonaws.com/library/s2012_pbs_disney_brdf_notes_v2.pdf)
+
+SIGGRAPH Course: [2013](http://blog.selfshadow.com/publications/s2013-shading-course/) [2014](http://blog.selfshadow.com/2014/08/12/physically-based-shading-at-siggraph-2014/) [2015](http://blog.selfshadow.com/publications/s2015-shading-course/) [2016](http://blog.selfshadow.com/publications/s2016-shading-course/)
 
 Pharr, Jakob, and Humphreys, _Physically Based Rendering: From Theory to Implementation_, Morgan Kaufmann, [website](http://pbrt.org/) [code](https://github.com/mmp/pbrt-v3/)
 
