@@ -38,7 +38,7 @@ This effect requires ``SV_Position``, ``NORMAL``, ``TEXCOORD0``, and ``TANGENT``
 
 * **SetVertexColorEnabled**: Enables per-vertex color. Defaults to false. Modifying this setting requires recreating associated input layouts, and enabling it requires ``COLOR``.
 
-* **SetTexture**: Associates a texture shader resource view with the effect for the diffuse texture. Can be set to nullptr to remove a reference.
+* **SetTexture**: Associates a texture shader resource view with the effect for the diffuse/albedo texture. Can be set to nullptr to remove a reference.
 
 * **SetNormalTexture**: Associates a texture shader resource view with the effect for the normal map texture. Can be set to nullptr to remove a reference.
 
