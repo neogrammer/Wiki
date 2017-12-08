@@ -62,7 +62,7 @@ This effect always implements lighting with 3 directional lights using the cubem
 This effect always implements per-pixel lighting with 3 directional lights, so the **SetLightingEnabled** and **SetPerPixelLighting** methods are not supported for this effect.  Calling ``SetLightingEnabled(false)`` through the base interface will generate an exception, and calls to ``SetPerPixelLighting`` are ignored.
 
 ## PBREffect
-This effect always implements per-pixel lighting, and implements up to three directional lights as well as using Imaged-Based Lighting (IBL). The **SetLightingEnabled**, **SetPerPixelLighting**, **SetAmbientLightColor**, **SetLightSpecularColor** methods are not supported for this effect.
+This effect always implements per-pixel lighting, and implements up to three directional lights combined with Imaged-Based Lighting (IBL). The **SetLightingEnabled**, **SetPerPixelLighting**, **SetAmbientLightColor**, **SetLightSpecularColor** methods are not supported for this effect.
 
 ## SkinnedEffect
 This shader always implements lighting with 3 directional lights, so the **SetLightingEnabled** method is not supported for this effect. Calling ``SetLightingEnabled(false)`` through the base interface will generate an exception.
