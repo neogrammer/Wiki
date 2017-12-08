@@ -1,4 +1,4 @@
-This effect implements a Disney-style (Roughness/Metalness workflow) Physically-Based Renderer (PBR) effect using Image-Based Lighting in combination with up to three directional lights.
+This effect implements a Disney-style (Roughness/Metalness workflow) Physically-Based Renderer ([PBR](https://en.wikipedia.org/wiki/Physically_based_rendering)) effect using Image-Based Lighting ([IBL](https://en.wikipedia.org/wiki/Image-based_lighting)) in combination with up to three directional lights.
 
 See also [[Effects]]
 
@@ -29,7 +29,7 @@ This effect requires ``SV_Position``, ``NORMAL``, ``TEXCOORD0``, and ``TANGENT``
 
 * **SetSurfaceTextures**: Associates a albedo texture, normal texture, and roughness/metalness/ambient-occlusion (RMA) texture with the effect. This uses the sampler in slot 0. Can be set to nullptr to remove a reference.
 
-> The RMA texture uses the glTF2 standard order. The _metalness_ is in the B channel, _roughness_ in the G channel, and _occlusion_ in the R channel. If there's no ambient occlusion, then the R channel should be set to all 1.
+> The RMA texture uses the [glTF2](https://github.com/KhronosGroup/glTF) standard order: The _metalness_ is in the B channel, _roughness_ in the G channel, and _ambient occlusion_ in the R channel. If there's no ambient occlusion, then the R channel should be set to all 1.
 
 * **SetIBLTextures**: Associates a radiance and irradiance texture with the effect. The number of miplevels in the radiance texture is also required as this is used to compute roughness. This uses the sampler in slot 1. Can be set to nullptr to remove a reference.
 
