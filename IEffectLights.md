@@ -1,4 +1,4 @@
-This abstract interface controls directional lighting. Settings for this interface can influence the choice of shader permutation and input layout signature. This interface is implemented by _BasicEffect_, _DGSLEffect_, _EnvironmentMapEffect_, _NormalMapEffect_, and _SkinningEffect_.
+This abstract interface controls directional lighting. Settings for this interface can influence the choice of shader permutation and input layout signature. This interface is implemented by _BasicEffect_, _DGSLEffect_, _EnvironmentMapEffect_, _NormalMapEffect_, _PBREffect_, and _SkinningEffect_.
 
 Effects that implement this interface require ``NORMAL`` semantic data in the vertex input layout.
 
@@ -58,8 +58,11 @@ The number of valid lights is determined by the implementation of the DGSL pixel
 ## EnvironmentMapEffect
 This effect always implements lighting with 3 directional lights using the cubemap and specular factor for specular highlights, so the **SetLightingEnabled** and **SetLightSpecularColor** methods are not supported for this effect.  Calling ``SetLightingEnabled(false)`` through the base interface will generate an exception, and calls to ``SetLightSpecularColor`` are ignored.
 
-## SkinnedEffect
-This shader always implements lighting with 3 directional lights, so the **SetLightingEnabled** method is not supported for this effect. Calling ``SetLightingEnabled(false)`` through the base interface will generate an exception.
-
 ## NormalMapEffect
 This effect always implements per-pixel lighting with 3 directional lights, so the **SetLightingEnabled** and **SetPerPixelLighting** methods are not supported for this effect.  Calling ``SetLightingEnabled(false)`` through the base interface will generate an exception, and calls to ``SetPerPixelLighting`` are ignored.
+
+## PBREffect
+This effect always implements per-pixel lighting. The **SetAmbientLightColor** and **SetLightSpecularColor** methods are not supported for this effect.
+
+## SkinnedEffect
+This shader always implements lighting with 3 directional lights, so the **SetLightingEnabled** method is not supported for this effect. Calling ``SetLightingEnabled(false)`` through the base interface will generate an exception.
