@@ -47,7 +47,7 @@ This effect requires ``SV_Position``, ``NORMAL``, ``TEXCOORD0``, and ``TANGENT``
 
 This effect always performs per-pixel lighting. Calls to ``SetLightingEnabled(false);`` will generate a C++ exception, and calls to **SetPerPixelLighting** are ignored.
 
-The lighting modeling for PBR does not make use of an ambient or specular term. Calls to **SetAmbientLightColor** and **SetLightSpecularColor** are ignored.
+The lighting modeling for PBR does not make use of an ambient or specular term as these are more directly modeled by the image-based lighting model. Calls to **SetAmbientLightColor** and **SetLightSpecularColor** are ignored.
 
 This effect requires a texture sampler in both slots 0 and 1. [[GeometricPrimitive]] and [[SpriteBatch]] only set a texture sampler in slot 0 by default, [[Model]] sets a sampler in slots 0 and 1.
 
