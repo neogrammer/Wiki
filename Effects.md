@@ -8,6 +8,7 @@ This is a native Direct3D 11 implementation of the five built-in effects from XN
 
 DirectX Tool Kit also includes the following built-in effects:
 * [[NormalMapEffect]] which extends ``BasicEffect`` to support normal maps and optional specular map.
+* [[PBREffect]] which implements a Disney-style (Roughness/Metalness) Physically-Based Renderer effect using image-based lighting.
 * [[DGSLEffect]] which supports the [Visual Studio Shader Designer](https://msdn.microsoft.com/en-us/library/hh315733.aspx) (DGSL) content pipeline both with and without skinned animation with up to 8 textures.
 
 See also [[EffectFactory]]
