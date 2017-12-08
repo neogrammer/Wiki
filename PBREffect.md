@@ -1,0 +1,61 @@
+This effect implements a Disney-style (Roughness/Metalness workflow) Physically-Based Renderer (PBR) effect using Image-Based Lighting in combination with up to three directional lights.
+
+See also [[Effects]]
+
+# Header
+    #include <Effects.h>
+
+# Initialization
+Construction requires a Direct3D 11 device.
+
+    std::unique_ptr<PBREffect> effect;
+    effect = std::make_unique<PBREffect>(device);
+
+For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
+
+# Interfaces
+PBREffect supports [[IEffect]], [[IEffectMatrices]], and [[IEffectLights]].
+
+Fog settings are not supported by this effect.
+
+# Input layout
+This effect requires ``SV_Position``, ``NORMAL``, ``TEXCOORD0``, and ``TANGENT``. It does not support per-vertex color.
+
+# Properties
+
+* **SetAlpha**: Sets the alpha (transparency) of the effect. Defaults to 1 (fully opaque).
+
+* **SetConstantAlbedo**, **SetConstantMetallic**, and **SetConstantRoughness**: Used to set the constant value when not using texturing for the roughness/metalness/ambient-occlusion information.
+
+* **SetSurfaceTextures**: Associates a albedo texture, normal texture, and roughness/metalness/ambient-occlusion (RMA) texture with the effect. This uses the sampler in slot 0. Can be set to nullptr to remove a reference.
+
+> The RMA texture uses the glTF2 standard order. The _metalness_ is in the B channel, _roughness_ in the G channel, and _occlusion_ in the R channel. If there's no ambient occlusion, then the R channel should be set to all 1.
+
+* **SetIBLTextures**: Associates a radiance and irradiance texture with the effect. The number of miplevels in the radiance texture is also required as this is used to compute roughness. This uses the sampler in slot 1. Can be set to nullptr to remove a reference.
+
+> The _radiance_ and _irradiance_ map are special cubemaps.
+
+* **SetEmissiveTexture**: Associates an emissive texture with the effect. This uses the sampler in slot 0. Can be set to nullptr to remove a reference.
+
+* **SetBiasedVertexNormalsAndTangents**: Enables support for compressed vertex normals and tangents which require ``*2 - 1`` biasing at runtime such as ``DXGI_FORMAT_R10G10B10A2_UNORM``.
+
+* **SetVelocityGeneration**: Enables the generation of a velocity buffer. If set to true, then both a Render Target 0 and Render Target 1 must be bound for rendering.
+
+* **SetRenderTargetSizeInPixels**: Used to set the pixel size of the render target when generating velocity buffers.
+
+# Remarks
+
+This effect always performs per-pixel lighting. Calls to ``SetLightingEnabled(false);`` will generate a C++ exception, and calls to **SetPerPixelLighting** are ignored.
+
+The lighting modeling for PBR does not make use of an ambient or specular term. Calls to **SetAmbientLightColor** and **SetLightSpecularColor** are ignored.
+
+This effect requires a texture sampler in both slots 0 and 1. [[GeometricPrimitive]] and [[SpriteBatch]] only set a texture sampler in slot 0 by default, [[Model]] sets a sampler in slots 0 and 1.
+
+# Further reading
+[Basic Theory of Physically-Based Rendering](https://www.marmoset.co/toolbag/learn/pbr-theory)
+
+[SIGGRAPH 2016 Course](http://blog.selfshadow.com/publications/s2016-shading-course/)
+
+Pharr, Jakob, and Humphreys, _Physically Based Rendering: From Theory to Implementation_, Morgan Kaufmann, [website](http://pbrt.org/) [code](https://github.com/mmp/pbrt-v3/)
+
+_The Comprehensive PBR Guide_, Allegorithmic [website](https://www.allegorithmic.com/pbr-guide)
