@@ -36,6 +36,11 @@ A number of Direct3D APIs actually take an array of pointers to COM objects beca
 
 For example, if you used ``context->OMSetRenderTargets(1, &m_renderTargetView, m_depthStencilView.Get());`` the ``m_renderTargetView`` variable would get released before the call to ``OMSetRenderTargets`` and the result would likely crash.
 
+If building an array of Direct3D interface pointers, you should build one as a local variable:
+
+    ID3D11SamplerState* samplers[] = { sampler1.Get(), sampler2.Get() };
+    context->PSSetSamplers(0, _countof(samplers), samplers);
+
 # Initialization
 Generally, if you are creating a fresh ComPtr and then using a COM creation function or factory, you can use **GetAddressOf**() since you know the ComPtr is initially null.
 
