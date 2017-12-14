@@ -18,7 +18,7 @@ For exception safety, it is recommended you make use of the C++ [RAII](http://en
 NormalMapEffect supports [[IEffect]], [[IEffectMatrices]], [[IEffectLights]], and [[IEffectFog]]
 
 # Input layout
-This effect requires ``SV_Position``, ``NORMAL``, ``TEXCOORD0``, and ``TANGENT``. If per-vertex colors are enabled, it also requires ``COLOR``.
+This effect requires ``SV_Position``, ``NORMAL``, and ``TEXCOORD0``. If per-vertex colors are enabled, it also requires ``COLOR``.
 
 # Properties
 
@@ -44,10 +44,18 @@ This effect requires ``SV_Position``, ``NORMAL``, ``TEXCOORD0``, and ``TANGENT``
 
 * **SetSpecularTexture**: Associates a texture shader resource view with the effect for the specular texture. Can be set to nullptr.
 
-* **SetBiasedVertexNormalsAndTangents**: Enables support for compressed vertex normals and tangents which require ``*2 - 1`` biasing at runtime such as ``DXGI_FORMAT_R10G10B10A2_UNORM``.
+* **SetBiasedVertexNormals**: Enables support for compressed vertex normals which require ``*2 - 1`` biasing at runtime such as ``DXGI_FORMAT_R10G10B10A2_UNORM``.
 
 # Remarks
 
 This effect always performs per-pixel lighting. Calls to ``SetLightingEnabled(false);`` will generate a C++ exception, and calls to **SetPerPixelLighting** are ignored.
 
 This effect always performs texturing, so if 'untextured' diffuse rendering is desired you must provide a 1x1 texture with white (1,1,1,1).
+
+# Feature Level Notes
+
+This effect uses Shader Model 4.0 so requires Direct3D hardware feature level 10.0 or greater.
+
+# Further reading
+
+Christian Schüler, "Normal Mapping without Precomputed Tangents", *ShaderX 5*, Chapter 2.6, pp. 131 – 140 and [this blog post](http://www.thetenthplanet.de/archives/1180)
