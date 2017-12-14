@@ -19,7 +19,7 @@ PBREffect supports [[IEffect]], [[IEffectMatrices]], and [[IEffectLights]].
 Fog settings are not supported by this effect.
 
 # Input layout
-This effect requires ``SV_Position``, ``NORMAL``, ``TEXCOORD0``, and ``TANGENT``. It does not support per-vertex color.
+This effect requires ``SV_Position``, ``NORMAL``, and ``TEXCOORD0``. It does not support per-vertex color.
 
 # Properties
 
@@ -37,7 +37,7 @@ This effect requires ``SV_Position``, ``NORMAL``, ``TEXCOORD0``, and ``TANGENT``
 
 * **SetEmissiveTexture**: Associates an emissive texture with the effect. This uses the sampler in slot 0. Can be set to nullptr to remove a reference.
 
-* **SetBiasedVertexNormalsAndTangents**: Enables support for compressed vertex normals and tangents which require ``*2 - 1`` biasing at runtime such as ``DXGI_FORMAT_R10G10B10A2_UNORM``.
+* **SetBiasedVertexNormals**: Enables support for compressed vertex normals which require ``*2 - 1`` biasing at runtime such as ``DXGI_FORMAT_R10G10B10A2_UNORM``.
 
 * **SetVelocityGeneration**: Enables the generation of a velocity buffer. If set to true, then both a Render Target 0 and Render Target 1 must be bound for rendering.
 
@@ -51,6 +51,10 @@ The lighting modeling for PBR does not make use of an ambient or specular term a
 
 This effect requires a texture sampler in both slots 0 and 1. [[GeometricPrimitive]] and [[SpriteBatch]] only set a texture sampler in slot 0 by default, [[Model]] sets a sampler in slots 0 and 1.
 
+# Feature Level Notes
+
+This effect uses Shader Model 4.0 so requires Direct3D hardware feature level 10.0 or greater.
+
 # Further reading
 [Basic Theory of Physically-Based Rendering](https://www.marmoset.co/toolbag/learn/pbr-theory)
 
@@ -63,3 +67,5 @@ SIGGRAPH Course: [2012](http://blog.selfshadow.com/publications/s2012-shading-co
 Pharr, Jakob, and Humphreys, _Physically Based Rendering: From Theory to Implementation_, Morgan Kaufmann, [website](http://pbrt.org/) [code](https://github.com/mmp/pbrt-v3/)
 
 _The Comprehensive PBR Guide_, Allegorithmic [website](https://www.allegorithmic.com/pbr-guide)
+
+Christian Schüler, "Normal Mapping without Precomputed Tangents", *ShaderX 5*, Chapter 2.6, pp. 131 – 140 and [this blog post](http://www.thetenthplanet.de/archives/1180)
