@@ -96,7 +96,7 @@ The **Draw** operation will only set up a texture sampler in slot 0. If you are 
     });
 
 > GeometricPrimitive shapes define a single set of texture coordinates, which works well with [[BasicEffect]],
-[[EnvironmentMapEffect]], or [[PBREffect]]. They don't include two sets of texture coordinates, so you can't use them with [[DualTextureEffect]]. They do not include tangents or bi-normals, so they don't work with [[DGSLEffect]]. They don't include skinning weights and bone indices, so they aren't suited for use with [[SkinnedEffect]].
+[[EnvironmentMapEffect]], [[NormalMapEffect]], or [[PBREffect]]. They don't include two sets of texture coordinates, so you can't use them with [[DualTextureEffect]]. They do not include tangents or bi-normals, so they don't work with [[DGSLEffect]]. They don't include skinning weights and bone indices, so they aren't suited for use with [[SkinnedEffect]].
 
 # Coordinate systems
 These geometric primitives (based on the XNA Game Studio conventions) use right-handed coordinates. They can be used with left-handed coordinates by setting the _rhcoords_ parameter on the factory methods to 'false' to reverse the winding ordering (the parameter defaults to 'true').
