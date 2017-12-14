@@ -43,6 +43,8 @@ This effect requires ``SV_Position``, ``NORMAL``, and ``TEXCOORD0``. If per-vert
 
 * **SetHemisphericalAmbientColor**: The default mode uses a simple hemispherical ambient lighting so you can see the object with some 3D clues regardless of overall scene lighting. It defaults to using White to Black. This property can set different upper/lower colors.
 
+* **SetVertexColorEnabled**: Enables per-vertex color. Defaults to false. Modifying this setting requires recreating associated input layouts, and enabling it requires ``COLOR``.
+
 * **SetBiasedVertexNormals**: Enables support for compressed vertex normals which require ``*2 - 1`` biasing at runtime such as ``DXGI_FORMAT_R10G10B10A2_UNORM``.
 
 # Feature Level Notes
