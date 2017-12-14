@@ -107,7 +107,9 @@ The built-in effects support a number of different settings, some of which are o
 The built-in effects work equally well for both right-handed and left-handed coordinate systems. The one difference is that the fog settings start & end for left-handed coordinate systems need to be negated (i.e. ``SetFogStart(6)``, ``SetFogEnd(8)`` for right-handed coordinates becomes ``SetFogStart(-6)``, ``SetFogEnd(-8)`` for left-handed coordinates).
 
 # Feature Level Notes
-The built-in shaders are compiled using the ``vs_4_0_level_9_1`` and ``ps_4_0_level_9_1`` profiles to support all feature levels.
+Most built-in shaders are compiled using the ``vs_4_0_level_9_1`` and ``ps_4_0_level_9_1`` profiles to support all feature levels.
+
+The [[PostProcess]], [[DebugEffect]], [[NormalMapEffect]], and [[PBREffect]] use ``vs_4_0`` and ``ps_4_0`` profiles and therefore require Direct3D hardware feature level 10.0 or better.
 
 The compiled shaders are integrated into the DirectXTK library to avoid the need for runtime compilation, shader reflection, or deploying compiled shader binary files (``.cso``).
 
