@@ -56,6 +56,8 @@ This effect always performs texturing, so if 'untextured' diffuse rendering is d
 
 This effect uses Shader Model 4.0 so requires Direct3D hardware feature level 10.0 or greater.
 
+[Direct3D feature levels](http://msdn.microsoft.com/en-us/library/windows/desktop/ff476876.aspx)
+
 # Further reading
 
 Christian Schüler, "Normal Mapping without Precomputed Tangents", *ShaderX 5*, Chapter 2.6, pp. 131 – 140 and [this blog post](http://www.thetenthplanet.de/archives/1180)
