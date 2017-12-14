@@ -55,6 +55,8 @@ This effect requires a texture sampler in both slots 0 and 1. [[GeometricPrimiti
 
 This effect uses Shader Model 4.0 so requires Direct3D hardware feature level 10.0 or greater.
 
+[Direct3D feature levels](http://msdn.microsoft.com/en-us/library/windows/desktop/ff476876.aspx)
+
 # Further reading
 [Basic Theory of Physically-Based Rendering](https://www.marmoset.co/toolbag/learn/pbr-theory)
 
