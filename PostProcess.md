@@ -70,7 +70,7 @@ You modify the render state during post-processing by passing a ``setCustomState
         deviceContext->PSSetSamplers(0, 1, &samplerState);
     });
 
-# Feature level usage
+# Feature level Notes
 
 The built-in post-processing shaders rely on Direct3D hardware feature level 10.0 or greater. This allows the vertex shader to self-generate a full-screen rectangle without requiring any vertex buffer to be bound using the built-in ``SV_VertexId`` system value. For this reason, the Windows Phone 8.1 projects do not include the source for the post-processing implementation as Windows Phone 8.1 hardware only supports Feature level 9.3. Applications should either have a minimum supported feature level of 10.0 or greater, or provide a run-time fallback (perhaps turning off post-processing effects or making use of simplified effects via [[SpriteBatch]] instead).
 
