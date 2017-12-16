@@ -54,7 +54,7 @@ This effect always performs texturing, so if 'untextured' diffuse rendering is d
 
 # Feature Level Notes
 
-This effect uses Shader Model 4.0 so requires Direct3D hardware feature level 10.0 or greater.
+This effect uses Shader Model 4.0 so requires Direct3D hardware feature level 10.0 or greater. For this reason, the Windows Phone 8.1 projects do not include the source for the normal map effect implementation as Windows Phone 8.1 hardware only supports Feature level 9.3
 
 [Direct3D feature levels](http://msdn.microsoft.com/en-us/library/windows/desktop/ff476876.aspx)
 
