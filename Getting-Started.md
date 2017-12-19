@@ -57,7 +57,7 @@ When using the [new lightweight installer](https://blogs.msdn.microsoft.com/vcbl
 * Workload: _Universal Windows Platform development_
 * Optional component: _C++ Universal Windows Platform tools_
 
-> Note that Xbox One XDK developers also need to include the optional component _Windows 8. SDK and UCRT SDK_
+> Note that Xbox One XDK developers also need to include the optional component _Windows 8.1 SDK and UCRT SDK_
 
 # Samples
 
