@@ -44,9 +44,18 @@ For learning purposes, these instructions are going to focus on the following se
 
 We will be using a Win32 desktop application project template in order to support developers using Windows 7, but all these techniques and APIs apply to Universal Windows Platform apps, Windows Store apps, Windows phone 8.1, and Xbox One as well.
 
-If using VS 2015, be sure to install Visual C++ which requires using the _Custom_ install as it's not part of the _Typical_ install. See the [Visual C++ Team Blog](http://blogs.msdn.com/b/vcblog/archive/2015/07/24/setup-changes-in-visual-studio-2015-affecting-c-developers.aspx) for details.
-
 > There is no need to install the legacy DirectX SDK to use DirectX Tool Kit. The DirectX SDK is deprecated and you should not use it. The only time you would need to install the legacy DirectX SDK for this tutorial series is if you are using Windows 7 for the audio portions. See [MSDN](https://msdn.microsoft.com/en-us/library/windows/desktop/ee663275.aspx), [DirectX SDK Samples Catalog](http://blogs.msdn.com/b/chuckw/archive/2013/09/20/directx-sdk-samples-catalog.aspx), and [DirectX SDK Tools Catalog](http://blogs.msdn.com/b/chuckw/archive/2014/10/28/directx-sdk-tools-catalog.aspx).
+
+## Visual Studio 2015
+Be sure to install Visual C++ which requires using the _Custom_ install as it's not part of the _Typical_ install. See the [Visual C++ Team Blog](http://blogs.msdn.com/b/vcblog/archive/2015/07/24/setup-changes-in-visual-studio-2015-affecting-c-developers.aspx) for details.
+
+## Visual Studio 2017
+When using the [new lightweight installer](https://blogs.msdn.microsoft.com/vcblog/2016/08/22/the-lightweight-visual-studio-15-installer/) be sure to select the appropriate workloads. Here are the recommended options to select:
+
+* Workload: _Game development with C++_
+* Workload: _Desktop development with C++_
+* Workload: _Universal Windows Platform development_
+* Optional component: _C++ Tools for UWP_
 
 # Samples
 
