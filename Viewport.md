@@ -1,4 +1,4 @@
-Viewport class modeled after the [XNA Game Studio](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.viewport.aspxaspx) graphics library.
+Viewport class modeled after the [XNA Game Studio](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.viewport.aspx) graphics library.
 
 # Header
 
