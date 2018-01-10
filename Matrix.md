@@ -1,4 +1,4 @@
-A four by four row-major matrix modeled after the [XNA Game Studio](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.matrix.aspx) math library.
+A four by four row-major matrix modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Matrix``) math library.
 
 # Header
 

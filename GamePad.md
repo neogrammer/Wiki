@@ -1,4 +1,4 @@
-This is a helper for simplified access to gamepad controllers modeled after the [XNA Game Studio](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.input.gamepad.aspx) GamePad class.
+This is a helper for simplified access to gamepad controllers modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Input``) GamePad class.
 
 ![Xbox 360 Common Controller](https://github.com/Microsoft/DirectXTK/wiki/images/xbox360controller.png)
 

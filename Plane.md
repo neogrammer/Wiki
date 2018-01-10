@@ -1,4 +1,4 @@
-An infinite 2D plane represented as a four component vector modeled after the [XNA Game Studio](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.plane.aspx) math library.
+An infinite 2D plane represented as a four component vector modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Plane``) math library.
 
 # Header
 

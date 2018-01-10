@@ -1,4 +1,4 @@
-This is a native Direct3D 11 implementation of the built-in DualTextureEffect from [XNA Game Studio 4](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.dualtextureeffect.aspx) which supports two layer multi-texturing (for light maps or detail textures), vertex color, and fogging.
+This is a native Direct3D 11 implementation of the built-in DualTextureEffect from XNA Game Studio 4 (``Microsoft.Xna.Framework.Graphics.DualTextureEffect``) which supports two layer multi-texturing (for light maps or detail textures), vertex color, and fogging.
 
 See also [[Effects]]
 

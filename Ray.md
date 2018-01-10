@@ -1,4 +1,4 @@
-Ray class modeled after the [XNA Game Studio](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.ray.aspx) math library.
+Ray class modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Ray``) math library.
 
 # Header
 

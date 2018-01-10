@@ -1,4 +1,4 @@
-Four component color vector class modeled after the [XNA Game Studio](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.color.aspx) math library.
+Four component color vector class modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Color``) math library.
 
 # Header
 

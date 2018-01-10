@@ -1,4 +1,4 @@
-The _DirectXTK for Audio_ components implement a low-level audio API similar to XNA Game Studio's [Microsoft.Xna.Framework.Audio](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.audio.aspx) design. This consists of the following classes all declared in the ``Audio.h`` header (in the _Inc_ folder of the distribution):
+The _DirectXTK for Audio_ components implement a low-level audio API similar to the XNA Game Studio 4 (``Microsoft.Xna.Framework.Audio``) design. This consists of the following classes all declared in the ``Audio.h`` header (in the _Inc_ folder of the distribution):
 
 * [[AudioEngine]] - This class represents an XAudio2 audio graph, device, and mastering voice. 
 * [[SoundEffect]] - A container class for sound resources which can be loaded from ``.wav`` files. 

@@ -1,4 +1,4 @@
-The CommonStates class is a factory which simplifies setting the most common combinations of Direct3D rendering states.
+The CommonStates class is a factory which simplifies setting the most common combinations of Direct3D rendering states. This is simliar to the XNA Game Studio 4 (``Microsoft.Xna.Framework.Graphics.BlendState``, ``DepthStencilState``, ``RasterizerState``, ``SamplerState``) design.
 
 **Related tutorial:** [[Sprites and textures]]
 
@@ -24,7 +24,6 @@ For exception safety, it is recommended you make use of the C++ [RAII](http://en
     deviceContext->PSSetSamplers(0, 1, &samplerState);
 
 # Blending State
-[XNA Game Studio](http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.blendstate_fields.aspx)  
 [D3D11_BLEND_DESC](http://msdn.microsoft.com/en-us/library/windows/desktop/ff476087.aspx)  
 [D3D11_BLEND_DESC1](http://msdn.microsoft.com/en-us/library/windows/desktop/hh404435.aspx)  
 
@@ -43,7 +42,6 @@ NonPremultiplied() if using 'straight' alpha.
 For multipass rendering, you'd typically use Additive().
 
 # Depth/Stencil State
-[XNA Game Studio](http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.depthstencilstate_fields.aspx)  
 [D3D11_DEPTH_STENCIL_DESC](http://msdn.microsoft.com/en-us/library/windows/desktop/ff476110.aspx)  
 
 * ID3D11DepthStencilState* **DepthNone**();
@@ -59,7 +57,6 @@ For drawing alpha blended objects (which is typically done after all opaque obje
 For drawing objects without any depth-sort at all, use DepthNone().
 
 # Rasterizer State
-[XNA Game Studio](http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.rasterizerstate_fields.aspx)  
 [D3D11_RASTERIZER_DESC](http://msdn.microsoft.com/en-us/library/windows/desktop/ff476198.aspx)  
 [D3D11_RASTERIZER_DESC1](http://msdn.microsoft.com/en-us/library/windows/desktop/hh404489.aspx)
 
@@ -77,7 +74,6 @@ For "double-sided" geometry, use CullNone(). Keep in mind this is a potentially 
 Wireframe() is a wireframe rendering mode and shows both sides of the geometry.
 
 # Sampler State
-[XNA Game Studio](http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.samplerstate_fields.aspx)  
 [D3D11_SAMPLER_DESC](http://msdn.microsoft.com/en-us/library/windows/desktop/ff476207.aspx)
 
 * ID3D11SamplerState* **PointWrap**();

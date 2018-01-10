@@ -1,4 +1,4 @@
-This is a class hierarchy for drawing simple meshes with support for loading models from Visual Studio 3D Starter Kit ``.CMO`` files, legacy DirectX SDK ``.SDKMESH`` files, and ``.VBO`` files. It is an implementation of a mesh renderer similar to the [XNA Game Studio](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.model.aspx) Model, ModelMesh, ModelMeshPart design.
+﻿This is a class hierarchy for drawing simple meshes with support for loading models from Visual Studio 3D Starter Kit ``.CMO`` files, legacy DirectX SDK ``.SDKMESH`` files, and ``.VBO`` files. It is an implementation of a mesh renderer similar to the XNA Game Studio 4 (``Microsoft.Xna.Framework.Graphics``) Model, ModelMesh, ModelMeshPart design.
 
 > _NOTE: Support for loading keyframe animations is not yet included._
 

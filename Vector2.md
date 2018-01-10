@@ -1,4 +1,4 @@
-Two component vector class modeled after the [XNA Game Studio](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.vector2.aspx) math library.
+Two component vector class modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Vector2``) math library.
 
 # Header
 

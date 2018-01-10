@@ -1,4 +1,4 @@
-A rotation represented as a four component vector modeled after the [XNA Game Studio](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.quaternion.aspx) math library.
+A rotation represented as a four component vector modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Quaternion``) math library.
 
 # Header
 

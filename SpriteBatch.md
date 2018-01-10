@@ -1,4 +1,4 @@
-This is a native Direct3D 11 implementation of the SpriteBatch helper from [XNA Game Studio](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.spritebatch.aspx), providing the same functionality and API.
+This is a native Direct3D 11 implementation of the SpriteBatch helper from XNA Game Studio 4 (``Microsoft.Xna.Framework.Graphics.SpriteBatch``), providing the same functionality and API.
 
 ![Sprite Batch Example](https://github.com/Microsoft/DirectXTK/wiki/images/SpriteBatchExample.png)
 
