@@ -1,4 +1,4 @@
-This is a native Direct3D 11 implementation of the built-in AlphaTestEffect from XNA Game Studio 4 (``Microsoft.Xna.Farmework.Graphics.AlphaTestEffect``) which supports per-pixel alpha testing, vertex color, and fogging.
+This is a native Direct3D 11 implementation of the built-in AlphaTestEffect from XNA Game Studio 4 (``Microsoft.Xna.Framework.Graphics.AlphaTestEffect``) which supports per-pixel alpha testing, vertex color, and fogging.
 
 See also [[Effects]]
 
