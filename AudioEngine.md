@@ -101,7 +101,7 @@ For Win32 desktop applications, you can be informed of new audio devices in your
 
     ...
 
-    DEV_BROADCAST_DEVICEINTERFACE filter = {0};
+    DEV_BROADCAST_DEVICEINTERFACE filter = {};
     filter.dbcc_size = sizeof( filter );
     filter.dbcc_devicetype = DBT_DEVTYP_DEVICEINTERFACE;
     filter.dbcc_classguid = KSCATEGORY_AUDIO;

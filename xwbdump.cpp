@@ -531,10 +531,10 @@ int wmain( int argc, wchar_t *argv[ ], wchar_t *envp[ ]  )
         SYSTEMTIME lst;
         if ( SystemTimeToTzSpecificLocalTime( nullptr, &st, &lst ) )
         {
-            wchar_t szLocalDate[256] = {0};
+            wchar_t szLocalDate[256] = {};
             GetDateFormatW( LOCALE_USER_DEFAULT, DATE_LONGDATE, &lst, nullptr, szLocalDate, 256 );
 
-            wchar_t szLocalTime[256] = {0};
+            wchar_t szLocalTime[256] = {};
             GetTimeFormatW( LOCALE_USER_DEFAULT, 0, &lst, nullptr, szLocalTime, 256 );
 
             wprintf( L"\tBuild time: %ls, %ls\n", szLocalDate, szLocalTime );
@@ -756,7 +756,7 @@ int wmain( int argc, wchar_t *argv[ ], wchar_t *envp[ ]  )
         {
             DWORD n = bank.dwEntryNameElementSize * j;
 
-            char name[ 64 ] = {0};
+            char name[ 64 ] = {};
             strncpy_s( name, &entryNames[ n ], 64 );
 
             wprintf( L"\t\"%hs\"\n", name );

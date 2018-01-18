@@ -42,7 +42,7 @@ For details on creating the ``xboxController.spritefont`` file, see [[MakeSprite
         float offsetY = buttonScale / 2.f;
 
         size_t j = 0;
-        wchar_t strBuffer[4096] = {0};
+        wchar_t strBuffer[4096] = {};
 
         bool buttonText = false;
 
@@ -56,7 +56,7 @@ For details on creating the ``xboxController.spritefont`` file, see [[MakeSprite
 
                 if (text[ch] == L']')
                 {
-                    wchar_t button[2] = { 0 };
+                    wchar_t button[2] = {};
 
                     if (_wcsicmp(strBuffer, L"[A]") == 0)
                     {

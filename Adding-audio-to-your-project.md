@@ -147,7 +147,7 @@ In **Main.cpp**, modify the **wWinMain** function as follows:
             g_game->Initialize( hwnd );
 
             // Listen for new audio devices
-            DEV_BROADCAST_DEVICEINTERFACE filter = {0};
+            DEV_BROADCAST_DEVICEINTERFACE filter = {};
             filter.dbcc_size = sizeof( filter );
             filter.dbcc_devicetype = DBT_DEVTYP_DEVICEINTERFACE;
             filter.dbcc_classguid = KSCATEGORY_AUDIO;

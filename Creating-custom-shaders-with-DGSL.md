@@ -96,12 +96,12 @@ In **Game.cpp**, add to the TODO of **CreateDevice**:
 
     // Create sphere geometry with DGSL vertex data
     {
-        D3D11_BUFFER_DESC desc = { 0 };
+        D3D11_BUFFER_DESC desc = {};
         desc.ByteWidth = sizeof(g_sphereVB);
         desc.Usage = D3D11_USAGE_DEFAULT;
         desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 
-        D3D11_SUBRESOURCE_DATA initData = { 0 };
+        D3D11_SUBRESOURCE_DATA initData = {};
         initData.pSysMem = g_sphereVB;
         
         DX::ThrowIfFailed( m_d3dDevice->CreateBuffer( &desc, &initData,
@@ -109,12 +109,12 @@ In **Game.cpp**, add to the TODO of **CreateDevice**:
     }
 
     {
-        D3D11_BUFFER_DESC desc = { 0 };
+        D3D11_BUFFER_DESC desc = {};
         desc.ByteWidth = sizeof(g_sphereIB);
         desc.Usage = D3D11_USAGE_DEFAULT;
         desc.BindFlags = D3D11_BIND_INDEX_BUFFER;
 
-        D3D11_SUBRESOURCE_DATA initData = { 0 };
+        D3D11_SUBRESOURCE_DATA initData = {};
         initData.pSysMem = g_sphereIB;
         
         DX::ThrowIfFailed( m_d3dDevice->CreateBuffer( &desc, &initData,
