@@ -71,3 +71,5 @@ Pharr, Jakob, and Humphreys, _Physically Based Rendering: From Theory to Impleme
 _The Comprehensive PBR Guide_, Allegorithmic [website](https://www.allegorithmic.com/pbr-guide)
 
 Christian Schüler, "Normal Mapping without Precomputed Tangents", *ShaderX 5*, Chapter 2.6, pp. 131 – 140 and [this blog post](http://www.thetenthplanet.de/archives/1180)
+
+[Art Pipeline for glTF](https://www.khronos.org/blog/art-pipeline-for-gltf)
