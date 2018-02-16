@@ -45,6 +45,11 @@ Modern C++ development strongly encourages use of the [RAII](http://en.wikipedia
         uint8_t* scanline(size_t slice, size_t row) const;
     }
 
+# Misc helpers
+
+* **AlignDown**: Aligns a value down to the next power of 2.
+* **AlignUp**: Aligns a value up to the next power of 2.
+
 # Debug object naming
 To help track down resource leaks, the Direct3D 11 debug layer allows you to provide ASCII debug names to Direct3D 11 objects. This is done with a specific GUID and the ``SetPrivateData`` method. Since you typically want to exclude this for release builds, it can get somewhat messy to add these to code. The ``SetDebugObjectName`` template greatly simplifies this for static debug name strings.
 
