@@ -4,14 +4,8 @@
 // C++ version of the C# example on how to animate a 2D sprite using SpriteBatch
 // http://msdn.microsoft.com/en-us/library/bb203866.aspx
 //
-// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
-// ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
-// THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
-// PARTICULAR PURPOSE.
-//
 // Copyright (c) Microsoft Corporation. All rights reserved.
-//
-// http://go.microsoft.com/fwlink/?LinkId=248929
+// Licensed under the MIT License.
 //--------------------------------------------------------------------------------------
 
 #pragma once

@@ -4,6 +4,7 @@
 // XACT3 wave bank file content examination utility
 //
 // Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
 //--------------------------------------------------------------------------------------
 
 #include <windows.h>
