@@ -14,7 +14,7 @@ This class supports integer PCM 8-bit or 16-bit data (defaults to 16-bit) with 1
     std::unique_ptr<DynamicSoundEffectInstance> effect;
     
     // PCM 44100 Hz, 16-bit, 1 channel
-    effect = std::unique_ptr<DynamicSoundEffectInstance>( audEngine.get(),
+    effect = std::make_unique<DynamicSoundEffectInstance>( audEngine.get(),
         [](DynamicSoundEffectInstance*)
         {
             // 'Buffer needed' event handler
