@@ -5,7 +5,7 @@ The easiest way to achieve this is to use the [NuGet package manager](https://ww
 
 * From the drop-down menu, select **Project** / **Manage NuGet Packages...**
 * *VS2013:* Select "Online/All" in the left-hand tree view
-* *VS2015:* Select "Browse" on the top tab, and make sure the _Package source_ is set to "nuget.org"
+* *VS2015/2017:* Select "Browse" on the top tab, and make sure the _Package source_ is set to "nuget.org"
 * In the text search field type "DirectXTK" and hit enter to search for the packages
 * Select the package with the id **[directxtk_desktop_2013](https://www.nuget.org/packages/directxtk_desktop_2013/)** or **[directxtk_desktop_2015](https://www.nuget.org/packages/directxtk_desktop_2015/)**
 * Select "Install"
