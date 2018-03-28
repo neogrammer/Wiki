@@ -7,7 +7,7 @@ The easiest way to achieve this is to use the [NuGet package manager](https://ww
 * *VS2013:* Select "Online/All" in the left-hand tree view
 * *VS2015/2017:* Select "Browse" on the top tab, and make sure the _Package source_ is set to "nuget.org"
 * In the text search field type "DirectXTK" and hit enter to search for the packages
-* Select the package with the id **[directxtk_desktop_2013](https://www.nuget.org/packages/directxtk_desktop_2013/)** or **[directxtk_desktop_2015](https://www.nuget.org/packages/directxtk_desktop_2015/)**
+* Select the package with the id **[directxtk_desktop_2013](https://www.nuget.org/packages/directxtk_desktop_2013/)** or **[directxtk_desktop_2015](https://www.nuget.org/packages/directxtk_desktop_2015/)** for Win32 or **[directxtk_uwp](https://www.nuget.org/packages/directxtk_uwp/)** for UWP
 * Select "Install"
 * When finished, close the NuGet Manager
 
@@ -24,11 +24,11 @@ Another option rather than using NuGet is to use Visual Studio's [project-to-pro
 
 * Extract the [release .zip file](https://github.com/Microsoft/DirectXTK/releases) into a directory relative to the new project you created. For this tutorial, we will assume the ``DirectXTK`` folder is in the same folder as your new project's Visual Studio Solution (``.sln``) file.
 * Right-click on your solution in the Solution Explorer, and select **Add** / **Existing Project...**
-* Browse into the "DirectXTK" folder and select ``DirectXTK_Desktop_2013.vcxproj``, ``DirectXTK_Desktop_2015.vcxproj``, or ``DirectXTK_Desktop_2017.vcxproj``, click "Open"
+* Browse into the "DirectXTK" folder and select ``DirectXTK_Desktop_2013.vcxproj``, ``DirectXTK_Desktop_2015.vcxproj``, or ``DirectXTK_Desktop_2017.vcxproj`` for Win32 or ``DirectXTK_Windows10.vcxproj`` for UWP, click "Open"
 * If Visual Studio presents a "Security Warning", select "OK". Optional: Uncheck "Ask me for every project in this solution" first.
 * Right-click on your project in the Solution Explorer, and select **Add** / **References...**
 * Select "Add New Reference..."
-* Check ``DirectXTK_Desktop_2013``, ``DirectXTK_Desktop_2015``, or ``DirectXTK_Desktop_2017`` and select "OK"
+* Check ``DirectXTK`` and select "OK"
 * Click on "Configuration Properties" in the left-hand tree view, then **C/C++** / **General**
 * Select "All Configurations" and "All Platforms"
 * Edit _Additional Include Directories_ to the relative path to the ``DirectXTK\Inc`` folder. With our original assumption, you can use ``$(SolutionDir)\DirectXTK\Inc``.
