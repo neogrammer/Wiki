@@ -149,6 +149,8 @@ Making use of the older ``_com_ptr_t`` Visual Studio smart-pointer class which w
 
 If using [C++/WinRT projections](https://github.com/Microsoft/cppwinrt), you could also choose to use ``winrt::com_ptr`` instead of ``Microsoft::WRL:ComPtr``.
 
+Note that WRL is not supported for Managed C++ (``/clr``) projects. In that case you should make use of ATL's ``CComPtr`` instead keeping in mind the difference in behavior of ``operator&``.
+
 # Further reading
 
 [ComPtr on MSDN](http://msdn.microsoft.com/en-us/library/br244983.aspx)  
