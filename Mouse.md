@@ -136,6 +136,12 @@ Here, we are using relative movement whenever the left mouse button is held down
 
 > When using ``MODE_RELATIVE``, the system cursor is hidden so a user can't navigate away to another monitor or app or even exit. If your game makes use of 'mouse-look' controls, you should ensure that a simple key (like the ESC key) returns to the game's menu/pause screen and that needs to restore ``MODE_ABSOLUTE`` behavior.
 
+# Cursor Visibility
+
+The system cursor is shown by default on Windows desktop systems. Mouse will hide the cursor when using relative mode, but restores it when returning to absolute mode.
+
+The property **IsVisible** can be checked at any time. Use **SetVisible** to hide/show the cursor while in absolute mode.
+
 # Remark
 
 The mouse scroll wheel value is accumulated. To reset the value to 0, use **ResetScrollWheelValue**.
