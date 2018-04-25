@@ -26,7 +26,7 @@ The newly created project contains the following files:
 * Device resources abstraction
   * DeviceResources.h
   * DeviceResources.cpp
-* Timer helper class
+* [[Timer|StepTimer]] helper class
   * StepTimer.h
 * Resources
   * directx.ico
