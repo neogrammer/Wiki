@@ -20,19 +20,19 @@ The newly created project contains the following files:
 ![Open Game Cpp](https://github.com/Microsoft/DirectXTK/wiki/images/OpenGameCpp.png)
 
 * Precompiled header files
- * pch.h 
- * pch.cpp
+  * pch.h 
+  * pch.cpp
 * Main application entry-point and classic Windows procedure function
- * Main.cpp
+  * Main.cpp
 * Timer helper class
- * StepTimer.h
+  * StepTimer.h
 * Resources
- * directx.ico
- * resource.rc
- * settings.manifest
+  * directx.ico
+  * resource.rc
+  * settings.manifest
 * The Game class
- * Game.h
- * Game.cpp
+  * Game.h
+  * Game.cpp
 
 # Running the application
 
