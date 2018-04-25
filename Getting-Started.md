@@ -5,9 +5,9 @@ This is the _Getting Started_ tutorial for _DirectX Tool Kit_ which introduces t
 # Background
 This tutorial assumes the reader is familiar with the basics of C++ programming using Microsoft Visual C++, including writing code, building applications, and basic debugging. Coding conventions here will make use of C++11 language features such as ``nullptr``, ``auto``, simple _lambdas_  (aka anonymous functions), and the standard smart-pointer ``std::unique_ptr`` / ``std::make_unique<T>()``, but will generally be otherwise 'core' C++.
 
-* [C++ Language and Standard Libraries](http://msdn.microsoft.com/en-us/library/hh875057.aspx)
-* [Tools for Visual C++ Development](http://msdn.microsoft.com/en-us/library/hh967574.aspx)
-* [Smart Pointers](http://msdn.microsoft.com/en-us/library/hh279674.aspx)
+* [C++ Language and Standard Libraries](https://docs.microsoft.com/en-us/cpp/cpp/c-cpp-language-and-standard-libraries)
+* [Tools for Visual C++ Development](https://docs.microsoft.com/en-us/cpp/ide/ide-and-tools-for-visual-cpp-development)
+* [Smart Pointers](https://docs.microsoft.com/en-us/cpp/cpp/smart-pointers-modern-cpp)
 * [[ComPtr]]
 
 This tutorial does not assume prior experience with Direct3D, but the reader should be familiar with the basic graphics concepts for DirectX or OpenGL. That said, you can get a long way using _DirectX Tool Kit_ without much in the way of graphics experience.
