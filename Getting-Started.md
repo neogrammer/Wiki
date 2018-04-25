@@ -20,9 +20,9 @@ This tutorial does not assume prior experience with Direct3D, but the reader sho
 # Error handling
 One thing that many C++ developers, particularly game developers, may not be all that familiar with is "C++ Exception Handling". This is distinct from "Structured Exception Handling" (SEH) which some developers have seen in the past, and can leave an unfavorable impression of C++ EH. On both ARM and x64 native platforms, C++ EH is very efficient, although the x86 32-bit implementation does have some quirks. In any case, _DirectX Tool Kit_ uses C++ Exception Handling for most error conditions, just as the Standard Template Library (STL) does and the standard behavior of the operator ``new``.
 
-* [Errors and Exception Handling](http://msdn.microsoft.com/en-us/library/hh279678.aspx)
-* [C++ Exception Handling](http://msdn.microsoft.com/en-us/library/4t3saedz.aspx)
-* [Exception Handling (Debugging)](http://msdn.microsoft.com/en-us/library/x85tt0dd.aspx)
+* [Errors and Exception Handling](https://docs.microsoft.com/en-us/cpp/cpp/errors-and-exception-handling-modern-cpp)
+* [C++ Exception Handling](https://docs.microsoft.com/en-us/cpp/cpp/cpp-exception-handling)
+* [Exception Handling (Debugging)](https://docs.microsoft.com/en-us/visualstudio/debugger/managing-exceptions-with-the-debugger)
 * [[ThrowIfFailed]]
 
 For debugging exceptions thrown by the _DirectX Tool Kit_, you should enable the checkbox next to ``std::exception`` in the Visual Studio Exception Settings dialog (_Debug_ -> _Windows_ -> _Exception Settings_). It's not on by default. Then select the "C++ Exceptions" line, click the PLUS button, and type ``DirectX::com_exception`` to add that one. If working with the [Direct3D VS Game templates](https://github.com/walbourn/directx-vs-templates) you should do this once more typing ``DX::com_exception``.
