@@ -47,15 +47,27 @@ The ``std::function`` is used for callbacks as a general pattern so that client 
 _Note: ``std::function`` doesn't support using ``__vectorcall`` until VS 2015, so use of ``/Gv`` is difficult in VS 2013 or earlier._
 
 # Default constructors/assignment operators
-The C++11 standard includes a more efficient ``=default`` and ``=delete`` construct for dealing with default constructors and assignment operators. This is not supported until VS 2013.
+The C++11 standard includes a more efficient ``=default`` and ``=delete`` construct for dealing with special constructors and operators.
 
-For example, to prevent copying we use:
+To declare a standard copy constructor and copy assignment operators, we use:
+
+    Rectangle(const Rectangle&) = default;
+    Rectangle& operator=(const Rectangle&) = default;
+
+To prevent copying we use:
 
     // Prevent copying.
     SpriteBatch(SpriteBatch const&) = delete;
     SpriteBatch& operator= (SpriteBatch const&) = delete;
 
-_Note that use of ``=default`` and ``=delete`` can improve codegen for derived types._
+VS 2013 added support for ``=default`` and ``=delete``, however VS 2013 did not support automatic generation of move constructor or move operators, so ``=default`` for those won't work until VS 2015 or later. For this reason, in the places we declare default move ctors/operators we guard them:
+
+    #if !defined(_MSC_VER) || _MSC_VER >= 1900
+        Rectangle(Rectangle&&) = default;
+        Rectangle& operator=(Rectangle&&) = default;
+    #endif
+
+> Note that use of ``=default`` can improve codegen for derived types as well.
 
 # DirectXMath Parameter Conventions
 The library uses the [DirectXMath](https://msdn.microsoft.com/en-us/library/windows/desktop/ee418728.aspx#Call_Conventions) calling convention types to improve parameter passing of ``XMVECTOR`` and ``XMMATRIX`` types.
