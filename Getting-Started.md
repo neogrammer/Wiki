@@ -25,7 +25,7 @@ One thing that many C++ developers, particularly game developers, may not be all
 * [Exception Handling (Debugging)](http://msdn.microsoft.com/en-us/library/x85tt0dd.aspx)
 * [[ThrowIfFailed]]
 
-For debugging exceptions thrown by the _DirectX Tool Kit_, you should enable the checkbox next to ``std::exception`` in the Visual Studio Exception Settings dialog. It's not on by default.
+For debugging exceptions thrown by the _DirectX Tool Kit_, you should enable the checkbox next to ``std::exception`` in the Visual Studio Exception Settings dialog. It's not on by default. Then select the "C++ Exceptions" line, click the PLUS button, and type ``DirectX::com_exception`` to add that one as well.
 
 ![Exception Settings](https://github.com/Microsoft/DirectXTK/wiki/images/DebugExcept.PNG)
 
