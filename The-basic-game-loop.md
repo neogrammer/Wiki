@@ -24,7 +24,7 @@ The newly created project contains the following files:
   * pch.cpp
 * Main application entry-point and classic Windows procedure function
   * Main.cpp
-* Timer helper class
+* [[Timer|StepTimer]] helper class
   * StepTimer.h
 * Resources
   * directx.ico
