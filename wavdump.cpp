@@ -127,8 +127,7 @@ int main(int argc, const char** argv)
     }
 
     // Validate file is a WAVE
-    MMCKINFO riff;
-    memset( &riff, 0, sizeof(riff) );
+    MMCKINFO riff = {};
 
     if ( mmioDescend( h.Get(), &riff, nullptr, 0 ) != MMSYSERR_NOERROR )
     {
@@ -148,8 +147,7 @@ int main(int argc, const char** argv)
     std::unique_ptr<BYTE> chunk;
 
     // find 'fmt ' chunk
-    MMCKINFO c;
-    memset( &c, 0, sizeof(c) );
+    MMCKINFO c = {};
 
     c.ckid = mmioFOURCC( 'f', 'm', 't', ' ' );
     if ( mmioDescend( h.Get(), &c, &riff, MMIO_FINDCHUNK ) != MMSYSERR_NOERROR )
@@ -312,8 +310,7 @@ int main(int argc, const char** argv)
         return 1;
     }
 
-    MMCKINFO cwsmp;
-    memset( &cwsmp, 0, sizeof(cwsmp) );
+    MMCKINFO cwsmp = {};
 
     cwsmp.ckid = mmioFOURCC( 'w', 's', 'm', 'p' );
     if ( mmioDescend( h.Get(), &cwsmp, &riff, MMIO_FINDCHUNK ) == MMSYSERR_NOERROR )
@@ -393,8 +390,7 @@ int main(int argc, const char** argv)
         return 1;
     }
 
-    MMCKINFO csmpl;
-    memset( &csmpl, 0, sizeof(csmpl) );
+    MMCKINFO csmpl = {};
 
     csmpl.ckid = mmioFOURCC( 's', 'm', 'p', 'l' );
     if ( mmioDescend( h.Get(), &csmpl, &riff, MMIO_FINDCHUNK ) == MMSYSERR_NOERROR )
@@ -476,8 +472,7 @@ int main(int argc, const char** argv)
         return 1;
     }
 
-    MMCKINFO cdpds;
-    memset( &cdpds, 0, sizeof(cdpds) );
+    MMCKINFO cdpds = {};
 
     cdpds.ckid = mmioFOURCC( 'd', 'p', 'd', 's' );
     if ( mmioDescend( h.Get(), &cdpds, &riff, MMIO_FINDCHUNK ) == MMSYSERR_NOERROR )
@@ -524,8 +519,7 @@ int main(int argc, const char** argv)
         return 1;
     }
 
-    MMCKINFO cseek;
-    memset( &cseek, 0, sizeof(cseek) );
+    MMCKINFO cseek = {};
 
     cseek.ckid = mmioFOURCC( 's', 'e', 'e', 'k' );
     if ( mmioDescend( h.Get(), &cseek, &riff, MMIO_FINDCHUNK ) == MMSYSERR_NOERROR )
