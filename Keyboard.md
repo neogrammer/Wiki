@@ -116,12 +116,6 @@ The Keyboard class makes use of virtual keys and not scancodes so your code has 
 
 [QWERTY](https://en.wikipedia.org/wiki/QWERTY), [QWERTZ](https://en.wikipedia.org/wiki/QWERTZ), [AZERTY](https://en.wikipedia.org/wiki/AZERTY), [QZERTY](https://en.wikipedia.org/wiki/Keyboard_layout#QZERTY)
 
-# Platform notes
-
-For Windows phone, the Keyboard and [[Mouse]] classes exist in the library to avoid the need for conditional compilation. The Keyboard and Mouse class instance on this platform, however, are "null" devices and will not return any input.
-
-> In theory they could be associated with the virtual keyboard on these platforms, but since the purpose of ``Keyboard`` abstraction is to use key presses as a game controller it makes little sense as a virtual keyboard.
-
 # Further reading
 [DirectX Tool Kit: Keyboard and Mouse support](http://blogs.msdn.com/b/chuckw/archive/2015/08/06/directx-tool-kit-keyboard-and-mouse-support.aspx)  
 [Using Keyboard Input](https://msdn.microsoft.com/en-us/library/windows/desktop/ms646268.aspx)  
