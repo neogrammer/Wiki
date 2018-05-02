@@ -153,7 +153,7 @@ The Mouse class should be thread-safe with the exception of the **ProcessMessage
 
 # Platform notes
 
-For Windows Store, universal Windows apps, and Windows phone touch/pointer devices are captured as [mouse movement](https://msdn.microsoft.com/en-us/library/windows/apps/xaml/Hh994931.aspx). Touch/pointer devices do not, however, result in changes to button state. Relative mouse movement is captured per this [MSDN](https://msdn.microsoft.com/en-us/library/windows/apps/xaml/hh994925.aspx) article.
+For Universal Windows Platform apps, touch/pointer devices are captured as [mouse movement](https://msdn.microsoft.com/en-us/library/windows/apps/xaml/Hh994931.aspx). Touch/pointer devices do not, however, result in changes to button state. Relative mouse movement is captured per this [MSDN](https://msdn.microsoft.com/en-us/library/windows/apps/xaml/hh994925.aspx) article.
 
 > For UWP applications on Xbox One, the game controller can be made to emulate a mouse which will provide input through the Mouse class, but the input paradigm is more natural if you use the [[GamePad]] class directly.
 
