@@ -866,7 +866,7 @@ int wmain( int argc, wchar_t *argv[ ], wchar_t *envp[ ]  )
         }
     }
 
-    wprintf( L"  Total wave bytes %Iu\n", waveBytes );
+    wprintf( L"  Total wave bytes %zu\n", waveBytes );
 
     if ( waveBytes > waveLen )
     {
