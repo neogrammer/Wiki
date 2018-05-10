@@ -1,6 +1,6 @@
 In [[the basic game loop]] lesson and other tutorials, we are making use of the **Direct3D 11 Game** VS template which has all the relevant Direct3D code in the ``Game`` class including creating the device and swap chain. This makes it easy to teach with, and for the reader to see all the code in one place. This, however, does result in a lot of 'boiler-plate' code in the main ``Game`` class which could be distracting in larger projects & samples.
 
-There is therefore a "DR" variant of each of the Direct3D Game VS templates in the [VS 2013](https://github.com/walbourn/directx-vs-templates/raw/jul2017/VSIX/Direct3DWin32Game.vsix) / [VS 2015 / VS 2017](https://github.com/walbourn/directx-vs-templates/raw/master/VSIX/Direct3DUWPGame.vsix) VSIX package.
+There is therefore a "DR" variant of each of the Direct3D Game VS templates in the [VS 2015 / VS 2017](https://github.com/walbourn/directx-vs-templates/raw/master/VSIX/Direct3DUWPGame.vsix) VSIX package.
 
 > The standard Universal Windows Platform app, Windows 8 Store DirectX, and Windows phone 8 VS templates make use of a similar ``DeviceResources`` abstraction.
 
