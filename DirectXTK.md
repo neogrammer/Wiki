@@ -44,7 +44,7 @@ _Note: The Xbox One exclusive application XBoxDDSTextureLoader functions are in 
 * [[XWBTool]] - builds ``.xwb`` XACT-style wave banks for use with WaveBank class
 
 # Building
-This code is designed to build with Visual Studio 2013 or later. It requires the Windows 8.x SDK for functionality such as the DirectXMath library and the DXGI 1.2 headers. Visual Studio 2013 or later already includes the Windows 8.1 SDK.
+This code is designed to build with Visual Studio 2015 or later. It requires the Windows 8.x SDK for functionality such as the DirectXMath library and the DXGI 1.2 headers. Visual Studio 2015 or later already includes the Windows 8.1  / Windows 10 SDK.
 
 These components are designed to work without requiring any content from the DirectX SDK. For details, see [Where is the DirectX SDK?](http://msdn.microsoft.com/en-us/library/ee663275.aspx), [Where is the DirectX SDK (2013 Edition)?](http://blogs.msdn.com/b/chuckw/archive/2013/07/01/where-is-the-directx-sdk-2013-edition.aspx), [Where is the DirectX SDK (2015 Edition)?](https://blogs.msdn.microsoft.com/chuckw/2015/08/05/where-is-the-directx-sdk-2015-edition/), and [The Zombie DirectX SDK](https://blogs.msdn.microsoft.com/chuckw/2015/03/23/the-zombie-directx-sdk/).
 
@@ -85,7 +85,7 @@ In your application's solution, right-click on the Solution and use **Add \ Exis
  </tr>
  <tr>
   <td>DirectXTK_Windows10</td>
-  <td>Universal Windows Platform (UWP) apps building with VS 2017 with the Windows 10 SDK (16299).<br /><I>The Windows SDK (14393) is also required unless you modify the minimum supported OS setting</I>.</td>
+  <td>Universal Windows Platform (UWP) apps building with VS 2017 with the Windows 10 SDK (16299).</td>
  </tr>
  <tr>
   <td>DirectXTK_XboxOneXDK_2017</td>
@@ -93,7 +93,7 @@ In your application's solution, right-click on the Solution and use **Add \ Exis
  </tr>
 </table>
 
-> For VS 2017, use of the [15.3 update](https://blogs.msdn.microsoft.com/chuckw/2017/08/14/visual-studio-2017-15-3-update/) or later is recommended.
+> For VS 2017, use of the [15.4 update](https://blogs.msdn.microsoft.com/chuckw/2017/10/11/windows-10-fall-creators-update-sdk/) or later is recommended.
 
 <table>
  <tr>
@@ -116,27 +116,6 @@ In your application's solution, right-click on the Solution and use **Add \ Exis
 
 > For VS 2015, use of the [Update 3](https://blogs.msdn.microsoft.com/chuckw/2016/06/27/visual-studio-2015-update-3/) is recommended.
 
-<table>
- <tr>
-  <td>DirectXTK_Desktop_2013</td>
-  <td>Windows desktop applications for Windows Vista SP2 or later building with VS 2013 Express for Desktop, VS 2013 Community, VS 2013 Professional or higher.</td>
- </tr>
- <tr>
-  <td>DirectXTK_Windows81</td>
-  <td>Windows Store apps building with VS 2013 targeting Windows 8.1.</td>
- </tr>
- <tr>
-  <td>DirectXTK_WindowsPhone81</td>
-  <td>Windows phone 8.1 apps building with VS 2013 Update 2 or later.</td>
- </tr>
- <tr>
-  <td>DirectXTK_XAMLSilverlight_WindowsPhone81</td>
-  <td>Windows phone Silverlight 8.1 C++ apps building with VS 2013 Update 2 or later.</td>
- </tr>
-</table>
-
-> For VS 2013, use of the [Update 5](https://blogs.msdn.microsoft.com/chuckw/2015/07/20/visual-studio-2013-update-5/) is recommended.
-
 In your application's project, right-click on the **Project** and use "References...", then "Add New Reference...", and then check the DirectXTK project name and click OK. For a Universal Windows Platform (UWP) app, Windows Store app, Windows phone, or Xbox One solution, you may need to set _Reference Assembly Output_ to false since DirectXTK is a static C++ library and not a WinRT component.
 
 ![Settings dialog](https://github.com/Microsoft/DirectXTK/wiki/images/settingsROA.PNG)
@@ -154,16 +133,11 @@ Alternatively you can use NuGet to install one of the DirectX Tool Kit packages.
 
 * Use Id: [directxtk_desktop_2015](https://www.nuget.org/packages/directxtk_desktop_2015/) for Windows desktop C++ applications building with VS 2015 or VS 2017 Community, VS 2015 or VS 2017 Professional or higher. _DirectXTK for Audio_ in this package requires XAudio 2.7 from the legacy DirectX SDK.
 * Use id: [directxtk_uwp](https://www.nuget.org/packages/directxtk_uwp/) for Universal Windows Platform apps for Windows 10 building with VS 2015 or VS 2017 Community, VS 2015 or VS 2017 Professional or higher. _DirectXTK for Audio_ in this package uses XAudio 2.9 in the Windows 10 SDK.
-* Use Id: [directxtk_desktop_2013](https://www.nuget.org/packages/directxtk_desktop_2013/) for Windows desktop C++ applications building with the VS 2013 Express for Desktop, VS 2013 Community, VS 2013 Professional or higher. _DirectXTK for Audio_ in this package requires XAudio 2.7 from the legacy DirectX SDK.
-* Use Id: [directxtk_windowsstore_8_1](https://www.nuget.org/packages/directxtk_windowsstore_8_1/) for Windows Store C++ apps building with VS 2013 targeting Windows 8.1 / RT 8.1. _DirectXTK for Audio_ in this package uses XAudio 2.8 in the Windows 8.1 SDK.
-* Use Id: [directxtk_windowsphone_8_1](https://www.nuget.org/packages/directxtk_windowsphone_8_1/) for Windows phone 8.1 C++ apps or Windows phone Silverlight 8.1 C++ apps building with VS 2013 Update 2 or later. _DirectXTK for Audio_ in this package uses XAudio 2.8 in the Windows phone 8.1 SDK.
 
 You should use the NuGet interface to check for updates if you have an older version installed.
 
 # Content pipeline
-To use the Visual Studio 2013 or later graphics assets tools in the build system, be sure to [add them to your project](http://msdn.microsoft.com/en-us/library/hh972446.aspx). 
-
-_The graphics assets tools are not present in the Express editions of Visual Studio 2013. They are present in the Visual Studio 2013 Express for Windows and Community editions, but not in VS 2013 Express for Windows Desktop._
+To use the Visual Studio 2015 or later graphics assets tools in the build system, be sure to [add them to your project](http://msdn.microsoft.com/en-us/library/hh972446.aspx). 
 
 **Note:** When adding ``.spritefont``, ``.sdkmesh``, or ``.xwb`` files to your Windows Store app or Windows phone app project, you need to manually set the file properties to "Content: Yes" for all configurations to have these files included in your AppX package. ``.dds`` files, other image file formats, and ``.wav`` files are automatically detected as a media file and are included as content by default.
 
@@ -176,7 +150,7 @@ DirectXTK makes use of C++ exception handling which should be enabled by the app
 * [Resource Acquisition Is Initialization](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization)
 * [[ThrowIfFailed]]
 
-_Visual Studio Express editions have limited exception handling debugging support, so consider using VS 2013 Community or Pro+ instead._
+_Visual Studio Express editions have limited exception handling debugging support, so consider using VS Community or Pro+ instead._
 
 # Smart-pointers and reference counting
 DirectXTK encourages and makes use of a number of smart-pointers to simplify resource lifetime tracking.
