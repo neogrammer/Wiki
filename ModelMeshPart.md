@@ -33,6 +33,10 @@ Use the ``Model::Draw`` function which will call ``ModelMesh::Draw`` on all the 
 # Advanced drawing
 The **ModelMeshPart::Draw** method is used to draw each individual submesh. **ModelMeshPart::Draw** can be used to implement complex 'scene graph' policies (such as sorting all ModelMeshPart instance in a scene by [[Effects]] to minimize draw overhead or rough-sorting by bounding volume front-to-back for opaque parts and back-to-front for alpha blended parts), or can be used to temporarily override the effect instance being used to draw the mesh (for example when drawing shadows).
 
+    void Draw(ID3D11DeviceContext* deviceContext,
+        IEffect* ieffect, ID3D11InputLayout* iinputLayout,
+        std::function<void __cdecl()> setCustomState = nullptr) const;
+
 To support using custom effect instances, **ModelMeshPart::CreateInputLayout** provides the ability to create a new input layout with a signature that matches the submesh's vertex buffer and the new custom effect instance.
 
     // An example of using a single custom effect when drawing all the parts of a Model
