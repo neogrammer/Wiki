@@ -75,7 +75,7 @@ To support using custom effect instances, **ModelMeshPart::CreateInputLayout** p
     size_t count = 0;
     for( auto mit = tiny->meshes.cbegin(); mit != tiny->meshes.cend(); ++mit )
     {
-        auto mesh = it->get();
+        auto mesh = mit->get();
         assert( mesh != 0 );
 
         for( auto it = mesh->meshParts.cbegin(); it != mesh->meshParts.cend(); ++it )
