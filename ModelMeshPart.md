@@ -86,7 +86,7 @@ To support using custom effect instances, **ModelMeshPart::CreateInputLayout** p
             assert( part != 0 );
 
             // Could call if a custom transformation was desired for each part
-            // if (imatricies) imatrices->SetWorld( local ) 
+            // if (imatrices) imatrices->SetWorld( local ) 
 
             part->Draw( deviceContext.Get(), newEffect,
                 newInputLayouts[ count++ ].Get() );
