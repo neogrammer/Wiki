@@ -49,6 +49,8 @@ To support using custom effect instances, **ModelMeshPart::CreateInputLayout** p
         auto mesh = it->get();
         assert( mesh != 0 );
 
+        mesh->PrepareForRendering(context, states);
+
         for( auto it = mesh->meshParts.cbegin(); it != mesh->meshParts.cend(); ++it )
         {
             auto part = it->get();
