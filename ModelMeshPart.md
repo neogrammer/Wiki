@@ -37,6 +37,13 @@ The **ModelMeshPart::Draw** method is used to draw each individual submesh. **Mo
         IEffect* ieffect, ID3D11InputLayout* iinputLayout,
         std::function<void __cdecl()> setCustomState = nullptr) const;
 
+You can also perform instanced drawing, although this scenario requires custom shader state to get interesting results:
+
+    void DrawInstanced(ID3D11DeviceContext* deviceContext,
+        IEffect* ieffect, ID3D11InputLayout* iinputLayout,
+        uint32_t instanceCount, uint32_t startInstanceLocation = 0,
+        std::function<void __cdecl()> setCustomState = nullptr) const;
+
 To support using custom effect instances, **ModelMeshPart::CreateInputLayout** provides the ability to create a new input layout with a signature that matches the submesh's vertex buffer and the new custom effect instance.
 
     // An example of using a single custom effect when drawing all the parts of a Model
@@ -121,3 +128,5 @@ If any ModelMeshPart makes use of 32-bit indices (i.e. _ModelMeshPart:: indexFor
 If any ModelMeshPart uses adjacency (i.e. _ModelMeshPart::primitiveType_ equals ``D3D_PRIMITIVE_TOPOLOGY_*_ADJ``), then that model requires Feature Level 10.0 or greater. If using tessellation (i.e. ``D3D_PRIMITIVE_TOPOLOGY_?_CONTROL_POINT_PATCHLIST``), then that model requires Feature Level 11.0 or greater.
 
 Keep in mind that there are maximum primitive count limits per ModelMeshPart based on feature level as well (65535 for Feature Level 9.1, 1048575 or Feature Level 9.2 and 9.3, and 4294967295 for Feature Level 10.0 or greater).
+
+Remember that instanced drawing require Feature Level 9.3 or later.
