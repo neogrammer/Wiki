@@ -31,7 +31,7 @@ The _ModelMeshPart::vbDecl_ contains the input layout element descriptor needed 
 Use the ``Model::Draw`` function which will call ``ModelMesh::Draw`` on all the meshes it contains, which in turn will call **ModelMeshPart::Draw** on each submesh part.
 
 # Advanced drawing
-The **ModelMeshPart::Draw** method is used to draw each individual submesh. **ModelMeshPart::Draw** can be used to implement complex 'scene graph' policies (such as sorting all ModelMeshPart instance in a scene by [Effects] to minimize draw overhead or rough-sorting by bounding volume front-to-back for opaque parts and back-to-front for alpha blended parts), or can be used to temporarily override the effect instance being used to draw the mesh (for example when drawing shadows).
+The **ModelMeshPart::Draw** method is used to draw each individual submesh. **ModelMeshPart::Draw** can be used to implement complex 'scene graph' policies (such as sorting all ModelMeshPart instance in a scene by [[Effects]] to minimize draw overhead or rough-sorting by bounding volume front-to-back for opaque parts and back-to-front for alpha blended parts), or can be used to temporarily override the effect instance being used to draw the mesh (for example when drawing shadows).
 
 To support using custom effect instances, **ModelMeshPart::CreateInputLayout** provides the ability to create a new input layout with a signature that matches the submesh's vertex buffer and the new custom effect instance.
 
