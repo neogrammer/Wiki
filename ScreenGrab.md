@@ -111,7 +111,7 @@ When writing WIC files, you can also provide a callback for setting specific enc
 
 * Paletted WIC formats are not supported for writing by the ``SaveWICTextureToFile`` function.
 
-* When writing PNG files, if the input image format is ``DXGI_FORMAT_*_SRGB``, then the resulting file will have the ``sRGB`` rendering intent chunk. Otherwise, it will not have the ``sRGB`` and will have an explicit ``gAMA`` chunk of 1.0.
+* When writing PNG files, if the input image format is ``DXGI_FORMAT_*_SRGB``, then the resulting file will have the ``sRGB`` rendering intent chunk. Otherwise, it will not have the ``sRGB`` chunk and instead will have an explicit ``gAMA`` chunk of 1.0.
 
 # WIC2
 WIC2 is available on Windows 10, Windows 8.x, and on Windows 7 Service Pack 1 with [KB 2670838](http://support.microsoft.com/kb/2670838) installed.
