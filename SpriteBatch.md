@@ -56,7 +56,17 @@ Alpha blending defaults to using premultiplied alpha. To make use of 'straight' 
 *Note:* If you need to provide custom blend factors or sample mask, use the setCustomShaders callback to call the device context's ``OMSetBlendState`` directly instead.
 
 # Custom render states
-By default SpriteBatch uses premultiplied alpha blending, no depth buffer, counter clockwise culling, and linear filtering with clamp texture addressing. You can change this by passing custom state objects to ``SpriteBatch::Begin``. Pass null for any parameters that should use their default value.
+By default SpriteBatch uses premultiplied alpha blending, no depth buffer, counter clockwise culling, and linear filtering with clamp texture addressing. You can change this by passing custom state objects to ``SpriteBatch::Begin``. 
+
+    void Begin(SpriteSortMode sortMode,
+        ID3D11BlendState* blendState, 
+        ID3D11SamplerState* samplerState,
+        ID3D11DepthStencilState* depthStencilState,
+        ID3D11RasterizerState* rasterizerState,
+        std::function<void> setCustomShaders,
+        FXMMATRIX transformMatrix);
+
+Pass null for any parameters that should use their default value.
 
     spriteBatch->Begin(SpriteSortMode_Deferred, nullptr, nullptr, nullptr, nullptr, [=]
     {
