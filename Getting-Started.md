@@ -1,7 +1,7 @@
 This is the _Getting Started_ tutorial for _DirectX Tool Kit_ which introduces the reader to programming Direct3D 11 in C++.
 
 > If you are looking to use DirectX 12 and are already familiar with Direct3D 11, the place to start is the _DirectX Tool Kit for DirectX 12_ [tutorials](https://github.com/Microsoft/DirectXTK12/wiki/Getting-Started). Keep in mind that DirectX 12 is an expert API which builds on knowing the ins & outs of DirectX 11, and is an unforgiving API to developers new to Direct3D or graphics in general.
-
+15
 # Background
 This tutorial assumes the reader is familiar with the basics of C++ programming using Microsoft Visual C++, including writing code, building applications, and basic debugging. Coding conventions here will make use of C++11 language features such as ``nullptr``, ``auto``, simple _lambdas_  (aka anonymous functions), and the standard smart-pointer ``std::unique_ptr`` / ``std::make_unique<T>()``, but will generally be otherwise 'core' C++.
 
@@ -39,7 +39,7 @@ These tutorials are written with game development in mind as the target applicat
 # Software Setup
 For learning purposes, these instructions are going to focus on the following setup:
 
-* Visual Studio 2015 [Update 3](https://blogs.msdn.microsoft.com/chuckw/2016/06/27/visual-studio-2015-update-3/) or Visual Studio 2017 ([15.6 update](https://blogs.msdn.microsoft.com/chuckw/2018/03/06/vs-2017-15-6-update/)) Community, Professional, Premium, or Ultimate
+* Visual Studio 2015 [Update 3](https://blogs.msdn.microsoft.com/chuckw/2016/06/27/visual-studio-2015-update-3/) or Visual Studio 2017 ([15.7 update](https://blogs.msdn.microsoft.com/chuckw/2018/05/07/vs-2017-15-7-update/) or [15.8 update](https://blogs.msdn.microsoft.com/chuckw/2018/08/16/vs-2017-15-8-update/)) Community, Professional, Premium, or Ultimate
 * Windows 7 Service Pack 1, Windows 8.1, or Windows 10
 
 We will be using a Win32 desktop application project template in order to support developers using Windows 7, but all these techniques and APIs apply to Universal Windows Platform apps, Windows Store apps, Windows phone 8.1, and Xbox One as well.
