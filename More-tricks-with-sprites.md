@@ -124,7 +124,7 @@ These lessons on SpriteBatch only begin to show the many techniques you can impl
 
 * The SpriteBatch class has a 'rotation mode' setting which can be used to handle device orientation changes for Windows Store apps and Windows phone apps, or just for special effects. You call **SetRotation** with one of the ``DXGI_MODE_ROTATION`` settings which controls the final view transformation to flip the output an extra 90 degrees, 180 degrees, or 270 degrees. It defaults to no extra rotation with ``DXGI_MODE_ROTATION_IDENTITY``.
 
-* With the *setCustomShaders* parameter to Begin you can override the shader settings and other Direct3D state to implement things like post-processing, chroma-key conversion to alpha, or normal-map based effects with SpriteBatch.
+* With the *setCustomShaders* parameter to ``Begin`` you can override the shader settings and other Direct3D state to implement things like post-processing, chroma-key conversion to alpha, or normal-map based effects with SpriteBatch.
 
 * The *transformationMatrix* parameter to ``Begin`` lets you provide a custom transformation for the sprite renderering. This is combined with the viewport-based final view transform, but if you use ``SetRotation( DXGI_MODE_ROTATION_UNSPECIFIED )`` this will be disabled. The default value for this parameter is the _identity matrix_.
 
