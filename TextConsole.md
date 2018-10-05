@@ -113,7 +113,7 @@ This is a C++ implementation of a simple console for displaying text. As more te
         m_currentColumn = m_currentLine = 0;
     }
 
-    void TextConsole::Write(_In_z_ const wchar_t *str)
+    void TextConsole::Write(const wchar_t *str)
     {
         std::lock_guard<std::mutex> lock(m_mutex);
 
