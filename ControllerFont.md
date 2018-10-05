@@ -24,9 +24,9 @@ For details on creating the ``xboxController.spritefont`` file, see [[MakeSprite
         LeftShoulder = L'-',
     };
 
-    inline void XM_CALLCONV DrawControllerString(_In_ DirectX::SpriteBatch* spriteBatch,
-        _In_ DirectX::SpriteFont* textFont, _In_ DirectX::SpriteFont* butnFont,
-        _In_z_ wchar_t const* text, DirectX::XMFLOAT2 const& position,
+    inline void XM_CALLCONV DrawControllerString(DirectX::SpriteBatch* spriteBatch,
+        DirectX::SpriteFont* textFont, DirectX::SpriteFont* butnFont,
+        wchar_t const* text, DirectX::XMFLOAT2 const& position,
         DirectX::FXMVECTOR color = DirectX::Colors::White, float scale = 1)
     {
         using namespace DirectX;
