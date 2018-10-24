@@ -1,6 +1,8 @@
 # For Use
 * Universal Windows Platform apps
 * Windows desktop apps
+* Windows 10
+* Windows 8.1
 * Windows 7 Service Pack 1
 * Windows Vista Service Pack 2 with KB971644 
 * Xbox One
