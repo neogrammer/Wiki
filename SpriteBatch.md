@@ -55,6 +55,8 @@ Alpha blending defaults to using premultiplied alpha. To make use of 'straight' 
 
 *Note:* If you need to provide custom blend factors or sample mask, use the setCustomShaders callback to call the device context's ``OMSetBlendState`` directly instead.
 
+> If you use [[SpriteFont]], remember that the ``.spritefont`` files created by [[MakeSpriteFont]] default to assuming premultiplied alpha. If you use 'straight alpha', then you should either submit all your text rendering in a different batch with premultipled alpha, or you need to generate 'straight-alpha' ``.spritefont`` files using the ``/NoPremultiply`` switch.
+
 # Custom render states
 By default SpriteBatch uses premultiplied alpha blending, no depth buffer, counter clockwise culling, and linear filtering with clamp texture addressing. You can change this by passing custom state objects to ``SpriteBatch::Begin``. 
 
