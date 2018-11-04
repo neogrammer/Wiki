@@ -23,7 +23,7 @@ A version of _DirectX Tool Kit for DirectX 12_ is available on [GitHub](https://
 # NuGet
 DirectXTK is also available on NuGet
 * [Universal Windows Platform apps](https://www.nuget.org/packages/directxtk_uwp)
-* [Windows desktop app using VS 2015](https://www.nuget.org/packages/directxtk_desktop_2015)
+* [Windows desktop app using VS 2015 or VS 2017](https://www.nuget.org/packages/directxtk_desktop_2015)
 
 ## Archived
 * [Windows desktop app using VS 2013](https://www.nuget.org/packages/directxtk_desktop_2013)
@@ -35,12 +35,12 @@ See [this post](http://blogs.msdn.com/b/chuckw/archive/2013/08/21/living-without
 
 # Credits
 
-The DirectX Tool Kit is the work of Shawn Hargreaves and Chuck Walbourn, with contributions from Aaron Rodriguez Hernandez, and Daniel Roman.
+The _DirectX Tool Kit_ is the work of Shawn Hargreaves and Chuck Walbourn, with contributions from Aaron Rodriguez Hernandez, and Daniel Roman.
 
 Thanks to Adrian Tsai for the geodesic sphere implementation.
 
 Thanks to Garrett Serack for his help in creating the NuGet packages for DirectX Tool Kit.
 
-Thanks to Roberto Sonnino for his help with the CMO and DGSL rendering.
+Thanks to Roberto Sonnino for his help with the ``CMO`` and DGSL rendering.
 
-Thanks to Pete Lewis and Justin Saunders for the normal-mapped shaders implementation.
+Thanks to Pete Lewis and Justin Saunders for the normal-mapped and PBR shaders implementation.
