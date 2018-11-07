@@ -3,13 +3,17 @@ This is a native Direct3D 11 implementation of the built-in BasicEffect from XNA
 See also [[Effects]]
 
 # Header
-    #include <Effects.h>
+```cpp
+#include <Effects.h>
+```
 
 # Initialization
 Construction requires a Direct3D 11 device.
 
-    std::unique_ptr<BasicEffect> effect;
-    effect = std::make_unique<BasicEffect>(device);
+```cpp
+std::unique_ptr<BasicEffect> effect;
+effect = std::make_unique<BasicEffect>(device);
+```
 
 For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
@@ -47,47 +51,59 @@ This effect requires ``SV_Position``, ``NORMAL`` if lighting is enabled, ``COLOR
 # Example
 Here is an example of creating and using a basic effect instance:
 
-        std::unique_ptr<DirectX::BasicEffect> basicEffect;
+```cpp
+std::unique_ptr<DirectX::BasicEffect> basicEffect;
+```
 
 When creating device-dependent resources:
 
-    basicEffect = std::make_unique<BasicEffect>(device);
+```cpp
+basicEffect = std::make_unique<BasicEffect>(device);
 
-    basicEffect->EnableDefaultLighting();
-    basicEffect->SetDiffuseColor(Colors::Red);
-    basicEffect->SetFogColor(Colors::CornflowerBlue);
-    basicEffect->SetFogStart(fogstart);
-    basicEffect->SetFogEnd(fogend);
-    basicEffect->SetTexture( texture.Get() );
+basicEffect->EnableDefaultLighting();
+basicEffect->SetDiffuseColor(Colors::Red);
+basicEffect->SetFogColor(Colors::CornflowerBlue);
+basicEffect->SetFogStart(fogstart);
+basicEffect->SetFogEnd(fogend);
+basicEffect->SetTexture( texture.Get() );
+```
 
 When the window size is changed is where you typically set the projection:
 
-    basicEffect->SetProjection(projection);
+```cpp
+basicEffect->SetProjection(projection);
+```
 
 A view matrix is computed based on user input and camera settings:
 
-    basicEffect->SetView(view);
+```cpp
+basicEffect->SetView(view);
+```
 
 Then to render:
 
-    basicEffect->SetWorld(world);
-    basicEffect->Apply(context);
+```cpp
+basicEffect->SetWorld(world);
+basicEffect->Apply(context);
 
-    context->OMSetBlendState(states->AlphaBlend(), Colors::White, 0xFFFFFFFF);
-    context->OMSetDepthStencilState(states->DepthDefault(), 0);
-    context->RSSetState(states->None());
+context->OMSetBlendState(states->AlphaBlend(), Colors::White, 0xFFFFFFFF);
+context->OMSetDepthStencilState(states->DepthDefault(), 0);
+context->RSSetState(states->None());
 
-    ID3D11SamplerState* samplers[] = { states->LinearWrap() };
-    context->PSSetSamplers(0, 1, samplers);
+ID3D11SamplerState* samplers[] = { states->LinearWrap() };
+context->PSSetSamplers(0, 1, samplers);
 
-    context->IASetVertexBuffers(...);
-    context->IASetIndexBuffer(...);
-    context->IASetPrimitiveTopology(...);
-    context->DrawIndexed(...);
+context->IASetVertexBuffers(...);
+context->IASetIndexBuffer(...);
+context->IASetPrimitiveTopology(...);
+context->DrawIndexed(...);
+```
 
-When dealing with lost device:
+When dealing with lost device (if required):
 
-    basicEffect.reset();
+```cpp
+basicEffect.reset();
+```
 
 # Further reading
 

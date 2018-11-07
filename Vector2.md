@@ -1,19 +1,22 @@
 Two component vector class modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Vector2``) math library.
 
 # Header
-
-    #include <SimpleMath.h>
+```cpp
+#include <SimpleMath.h>
+```
 
 # Initialization
 
-    using namespace DirectX::SimpleMath;
+```cpp
+using namespace DirectX::SimpleMath;
 
-    Vector2 v;        // Creates a vector [0, 0]
-    Vector2 v(10);    // Creates a vector [10, 10]
-    Vector2 v(1, 2);  // Creates a vector [1, 2]
+Vector2 v;        // Creates a vector [0, 0]
+Vector2 v(10);    // Creates a vector [10, 10]
+Vector2 v(1, 2);  // Creates a vector [1, 2]
 
-    float arr[2] = { 1, 2 };
-    Vector2 v(arr);   // Creates a vector [1, 2]
+float arr[2] = { 1, 2 };
+Vector2 v(arr);   // Creates a vector [1, 2]
+```
 
 # Fields
 * *x* component of vector

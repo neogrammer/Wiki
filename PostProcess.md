@@ -7,49 +7,58 @@ Post-processing is a common technique applied to 3D rendering to achieve various
 **Related tutorial:** [[Using HDR rendering]]
 
 # Header
-
-    #include "PostProcess.h"
+```cpp
+#include "PostProcess.h"
+```
 
 # Initialization
 
 The built-in post-processors typically require only the device.
 
-    postProcess = std::make_unique<BasicPostProcess>(device);
+```cpp
+postProcess = std::make_unique<BasicPostProcess>(device);
+```
 
 # Usage
 
 To make use of post-processing, you typically render the scene to a offscreen render texture.
 
-    CD3D11_TEXTURE2D_DESC sceneDesc(
-        DXGI_FORMAT_R16G16B16A16_FLOAT, width, height,
-        1, 1, D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE);
+```cpp
+CD3D11_TEXTURE2D_DESC sceneDesc(
+    DXGI_FORMAT_R16G16B16A16_FLOAT, width, height,
+    1, 1, D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE);
 
-    DX::ThrowIfFailed(
-       device->CreateTexture2D(&sceneDesc, nullptr, sceneTex.GetAddressOf())
-    );
+DX::ThrowIfFailed(
+   device->CreateTexture2D(&sceneDesc, nullptr, sceneTex.GetAddressOf())
+);
 
-    DX::ThrowIfFailed(
-        device->CreateShaderResourceView(sceneTex.Get(), nullptr,
-            sceneSRV.ReleaseAndGetAddressOf())
-    );
+DX::ThrowIfFailed(
+    device->CreateShaderResourceView(sceneTex.Get(), nullptr,
+        sceneSRV.ReleaseAndGetAddressOf())
+);
 
-    DX::ThrowIfFailed(
-        device->CreateRenderTargetView(sceneTex.Get(), nullptr,
-            sceneRT.ReleaseAndGetAddressOf()
-    ));
+DX::ThrowIfFailed(
+    device->CreateRenderTargetView(sceneTex.Get(), nullptr,
+        sceneRT.ReleaseAndGetAddressOf()
+));
+```
 
 Instead of rendering to the usual render target that is created as part of the DXGI swap chain, you set the offscreen texture as your scene render target:
 
-    context->ClearRenderTargetView(sceneRT.Get(), color);
-    context->ClearDepthStencilView(...);
-    context->OMSetRenderTargets(1, sceneRT.GetAddressOf(), depthStencilView.Get());
+```cpp
+context->ClearRenderTargetView(sceneRT.Get(), color);
+context->ClearDepthStencilView(...);
+context->OMSetRenderTargets(1, sceneRT.GetAddressOf(), depthStencilView.Get());
+```
 
 Then you render the scene as normal. When the scene is fully rendered, you then change the render target and use the previously generated render texture as your source texture (and you don't use a depth/stencil buffer for the post-processing):
 
-    context->OMSetRenderTargets(1, m_renderTargetView.GetAddressOf(), nullptr);
-    postProcess->SetEffect(BasicPostProcess::Sepia);
-    postProcess->SetSourceTexture(sceneSRV.Get());
-    postProcess->Process(context);
+```cpp
+context->OMSetRenderTargets(1, m_renderTargetView.GetAddressOf(), nullptr);
+postProcess->SetEffect(BasicPostProcess::Sepia);
+postProcess->SetSourceTexture(sceneSRV.Get());
+postProcess->Process(context);
+```
 
 In some cases, you will perform several post-processing passes between various off-screen render targets before applying the final pass to the swapchain render target for presentation.
 
@@ -57,24 +66,29 @@ In some cases, you will perform several post-processing passes between various o
 
 The post-processing system provides a ``IPostProcess`` interface to simplify use. The only method in this interface is ``Process`` which is expected to execute the post-processing pass with the result placed in the currently bound render target.
 
-    void Process(ID3D11DeviceContext* deviceContext,
-                 std::function<void __cdecl()> setCustomState = nullptr);
+```cpp
+void Process(
+    ID3D11DeviceContext* deviceContext,
+    std::function<void __cdecl()> setCustomState = nullptr);
+```
 
 # Custom render states
 
 You modify the render state during post-processing by passing a ``setCustomState`` callback:
 
-    postProcess->Process(context, [=]
-    {
-        ID3D11SamplerState* samplerState = states.AnsiotropicClamp();
-        deviceContext->PSSetSamplers(0, 1, &samplerState);
-    });
+```cpp
+postProcess->Process(context, [=]
+{
+    ID3D11SamplerState* samplerState = states.AnsiotropicClamp();
+    deviceContext->PSSetSamplers(0, 1, &samplerState);
+});
+```
 
 # Feature level Notes
 
-The built-in post-processing shaders rely on Direct3D hardware feature level 10.0 or greater. This allows the vertex shader to self-generate a full-screen rectangle without requiring any vertex buffer to be bound using the built-in ``SV_VertexId`` system value. For this reason, the Windows Phone 8.1 projects do not include the source for the post-processing implementation as Windows Phone 8.1 hardware only supports Feature level 9.3. Applications should either have a minimum supported feature level of 10.0 or greater, or provide a run-time fallback (perhaps turning off post-processing effects or making use of simplified effects via [[SpriteBatch]] instead).
+The built-in post-processing shaders rely on Direct3D hardware feature level 10.0 or greater. This allows the vertex shader to self-generate a full-screen rectangle without requiring any vertex buffer to be bound using the built-in ``SV_VertexId`` system value.  Applications should either have a minimum supported feature level of 10.0 or greater, or provide a run-time fallback (perhaps turning off post-processing effects or making use of simplified effects via [[SpriteBatch]] instead).
 
-[Direct3D feature levels](http://msdn.microsoft.com/en-us/library/windows/desktop/ff476876.aspx)
+[Direct3D feature levels](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/overviews-direct3d-11-devices-downlevel-intro)
 
 # Threading model
 
@@ -99,4 +113,3 @@ Most post-process effects make use of the following states:
 # Further reading
 
 [Video post-processing](https://en.wikipedia.org/wiki/Video_post-processing)  
-

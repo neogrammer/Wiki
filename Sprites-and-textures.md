@@ -9,17 +9,23 @@ Start by saving [cat.png](https://github.com/Microsoft/DirectXTK/wiki/images/cat
 
 In the **Game.h** file, add the following variable to the bottom of the Game class's private declarations:
 
-    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture;
+```cpp
+Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture;
+```
 
 In **Game.cpp**, add to the TODO of **CreateDevice**:
 
-    DX::ThrowIfFailed(
-        CreateWICTextureFromFile(m_d3dDevice.Get(), L"cat.png", nullptr,
-        m_texture.ReleaseAndGetAddressOf()));
+```cpp
+DX::ThrowIfFailed(
+    CreateWICTextureFromFile(m_d3dDevice.Get(), L"cat.png", nullptr,
+    m_texture.ReleaseAndGetAddressOf()));
+```
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
-    m_texture.Reset();
+```cpp
+m_texture.Reset();
+```
 
 Build and run the application which will still not be displaying anything but the cornflower blue window, but will have a texture loaded.
 
@@ -29,48 +35,58 @@ Build and run the application which will still not be displaying anything but th
 
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 
-    std::unique_ptr<DirectX::SpriteBatch> m_spriteBatch;
-    DirectX::SimpleMath::Vector2 m_screenPos;
-    DirectX::SimpleMath::Vector2 m_origin;
+```cpp
+std::unique_ptr<DirectX::SpriteBatch> m_spriteBatch;
+DirectX::SimpleMath::Vector2 m_screenPos;
+DirectX::SimpleMath::Vector2 m_origin;
+```
 
 In **Game.cpp**, modify TODO of **CreateDevice** to be:
 
-    m_spriteBatch = std::make_unique<SpriteBatch>(m_d3dContext.Get());
+```cpp
+m_spriteBatch = std::make_unique<SpriteBatch>(m_d3dContext.Get());
 
-    ComPtr<ID3D11Resource> resource;
-    DX::ThrowIfFailed(
-        CreateWICTextureFromFile(m_d3dDevice.Get(), L"cat.png",
-        resource.GetAddressOf(),
-        m_texture.ReleaseAndGetAddressOf()));
+ComPtr<ID3D11Resource> resource;
+DX::ThrowIfFailed(
+    CreateWICTextureFromFile(m_d3dDevice.Get(), L"cat.png",
+    resource.GetAddressOf(),
+    m_texture.ReleaseAndGetAddressOf()));
 
-    ComPtr<ID3D11Texture2D> cat;
-    DX::ThrowIfFailed(resource.As(&cat));
+ComPtr<ID3D11Texture2D> cat;
+DX::ThrowIfFailed(resource.As(&cat));
 
-    CD3D11_TEXTURE2D_DESC catDesc;
-    cat->GetDesc(&catDesc);
+CD3D11_TEXTURE2D_DESC catDesc;
+cat->GetDesc(&catDesc);
 
-    m_origin.x = float(catDesc.Width / 2);
-    m_origin.y = float(catDesc.Height / 2);
+m_origin.x = float(catDesc.Width / 2);
+m_origin.y = float(catDesc.Height / 2);
+```
 
 In **Game.cpp**, add to the TODO of **CreateResources**:
 
-    m_screenPos.x = backBufferWidth / 2.f;
-    m_screenPos.y = backBufferHeight / 2.f;
+```cpp
+m_screenPos.x = backBufferWidth / 2.f;
+m_screenPos.y = backBufferHeight / 2.f;
+```
 
 > If using the UWP template, you also need to add ``m_spriteBatch->SetRotation(m_outputRotation);`` to handle display orientation changes.
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
-    m_spriteBatch.reset();
+```cpp
+m_spriteBatch.reset();
+```
 
 In **Game.cpp**, add to the TODO of **Render**:
 
-    m_spriteBatch->Begin();
+```cpp
+m_spriteBatch->Begin();
 
-    m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr, Colors::White,
-        0.f, m_origin);
+m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr, Colors::White,
+    0.f, m_origin);
 
-    m_spriteBatch->End();
+m_spriteBatch->End();
+```
 
 Build and run, and you should get the following screen:
 
@@ -81,24 +97,32 @@ One thing you should notice is that the edges of the cat look strange with a bit
 
 In the **Game.h** file, add the following variable to the bottom of the Game class's private declarations:
 
-    std::unique_ptr<DirectX::CommonStates> m_states;
+```cpp
+std::unique_ptr<DirectX::CommonStates> m_states;
+```
 
 In **Game.cpp**, add to the TODO of **CreateDevice**:
 
-    m_states = std::make_unique<CommonStates>(m_d3dDevice.Get());
+```cpp
+m_states = std::make_unique<CommonStates>(m_d3dDevice.Get());
+```
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
-    m_states.reset();
+```cpp
+m_states.reset();
+```
 
 In **Game.cpp**, modify the TODO of **Render**:
 
-    m_spriteBatch->Begin( SpriteSortMode_Deferred, m_states->NonPremultiplied() );
+```cpp
+m_spriteBatch->Begin( SpriteSortMode_Deferred, m_states->NonPremultiplied() );
 
-    m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr, Colors::White,
-        0.f, m_origin);
+m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr, Colors::White,
+    0.f, m_origin);
 
-    m_spriteBatch->End();
+m_spriteBatch->End();
+```
 
 Build and run again, and you'll get a nice clean cat:
 
@@ -108,9 +132,9 @@ Build and run again, and you'll get a nice clean cat:
 
 Rather than use a ``PNG`` and the Windows Imaging Component (WIC) to load the texture, a more efficient thing for us to do is to make use of a ``DDS`` file instead. A ``DDS`` file is a container for all kinds of Direct3D resources including 1D and 2D textures, _cubemaps_, _volume maps_, arrays of 1D or 2D textures or cubemaps each optionally with _mipmaps_. It can contain a wide-array of pixel formats and hardware-supported 'block-compression' schemes to save on video memory usage at runtime.
 
-Visual Studio has a built-in system for converting images to DDS as part of the build process, which you can read about [here](http://msdn.microsoft.com/en-us/library/hh972446.aspx).
+Visual Studio has a built-in system for converting images to DDS as part of the build process, which you can read about [here](https://docs.microsoft.com/en-us/visualstudio/designers/using-3-d-assets-in-your-game-or-app).
 
-For this tutorial, we will instead make of use of the [DirectXTex](http://go.microsoft.com/fwlink/?LinkId=248926) **texconv** command-line tool. 
+For this tutorial, we will instead make of use of the [DirectXTex](http://go.microsoft.com/fwlink/?LinkId=248926) **texconv** command-line tool.
 
 1. Download the [Texconv.exe](https://github.com/Microsoft/DirectXTex/releases/download/aug2018b/texconv.exe) from the _DirectXTex_ site save the EXE into your project's folder.
 1. Open a [command-prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq) and then change to your project's folder.
@@ -123,21 +147,25 @@ Then from the top menu in Visual Studio select **Project** / **Add Existing Item
 
 Now will return to **Game.cpp** in the **CreateDevice** and change our use of ``CreateWICTextureFromFile`` to ``CreateDDSTextureFromFile``:
 
-    DX::ThrowIfFailed(
-        CreateDDSTextureFromFile(m_d3dDevice.Get(), L"cat.dds",
-            resource.GetAddressOf(),
-        m_texture.ReleaseAndGetAddressOf()));
+```cpp
+DX::ThrowIfFailed(
+    CreateDDSTextureFromFile(m_d3dDevice.Get(), L"cat.dds",
+        resource.GetAddressOf(),
+    m_texture.ReleaseAndGetAddressOf()));
+```
 
 Note that since we used the option ``-pmalpha``, we should also make sure we change back to the default ``Begin`` in our **Render** because our "cat.dds" has premultiplied alpha in it.
 
 In **Game.cpp**, modify the TODO of **Render**:
 
-    m_spriteBatch->Begin();
+```cpp
+m_spriteBatch->Begin();
 
-    m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr, Colors::White,
-        0.f, m_origin);
+m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr, Colors::White,
+    0.f, m_origin);
 
-    m_spriteBatch->End();
+m_spriteBatch->End();
+```
 
 Build and run we are rendering our 'clean' cat with premultiplied alpha:
 
@@ -147,7 +175,7 @@ Build and run we are rendering our 'clean' cat with premultiplied alpha:
 
 * The switch ``-pmalpha`` causes the **texconv** command-line tool to convert the image to premultiplied alpha before saving the ``.dds`` file. This assumes the source image is in straight-alpha.
 * The switch ``-m 1`` disables the generation of _mipmaps_ for the image. By default, the tool generates a full set of mipmaps when converting to a ``.dds``, but since our source image is not a power of two in width & height, it also generates a warning message about use with feature level 9.x devices. For standard sprites, we typically do not make use of _mipmaps_.
-* The switch ``-f BC3_UNORM`` selects the ``DXGI_FORMAT_BC3_UNORM`` format for the resulting ``.dds`` file. In combination with the ``-pmalpha`` switch, this results in the "DXT4" [block-compression format](http://blogs.msdn.com/b/chuckw/archive/2012/05/04/direct3d-11-textures-and-block-compression.aspx) being used. 
+* The switch ``-f BC3_UNORM`` selects the ``DXGI_FORMAT_BC3_UNORM`` format for the resulting ``.dds`` file. In combination with the ``-pmalpha`` switch, this results in the "DXT4" [block-compression format](http://blogs.msdn.com/b/chuckw/archive/2012/05/04/direct3d-11-textures-and-block-compression.aspx) being used.
 
 # Rotating a sprite
 
@@ -155,14 +183,16 @@ Now that we have our cat rendering, we can start to animate it. Here's a simple 
 
 In **Game.cpp**, modify the TODO of **Render**:
 
-    float time = float(m_timer.GetTotalSeconds());
+```cpp
+float time = float(m_timer.GetTotalSeconds());
 
-    m_spriteBatch->Begin();
+m_spriteBatch->Begin();
 
-    m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr, Colors::White,
-        cosf(time) * 4.f, m_origin);
+m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr, Colors::White,
+    cosf(time) * 4.f, m_origin);
 
-    m_spriteBatch->End();
+m_spriteBatch->End();
+```
 
 Build and run to see the cat spinning.
 
@@ -172,15 +202,17 @@ We can scale a sprite's size as well. Again, we are using **cosf** to give us a 
 
 In **Game.cpp**, modify the TODO of **Render**:
 
-    float time = float(m_timer.GetTotalSeconds());
+```cpp
+float time = float(m_timer.GetTotalSeconds());
 
-    m_spriteBatch->Begin();
+m_spriteBatch->Begin();
 
-    m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr, Colors::White,
-        0.f, m_origin,
-        cosf(time) + 2.f);
+m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr, Colors::White,
+    0.f, m_origin,
+    cosf(time) + 2.f);
 
-    m_spriteBatch->End();
+m_spriteBatch->End();
+```
 
 Build and run to see the cat growing and shrinking.
 
@@ -190,12 +222,14 @@ We can modify the color of the sprite with a tint as well:
 
 In **Game.cpp**, modify the TODO of **Render**:
 
-    m_spriteBatch->Begin();
+```cpp
+m_spriteBatch->Begin();
 
-    m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr, Colors::Green,
-        0.f, m_origin);
+m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr, Colors::Green,
+    0.f, m_origin);
 
-    m_spriteBatch->End();
+m_spriteBatch->End();
+```
 
 Build and run to see a green-tinged cat.
 
@@ -205,33 +239,41 @@ With the optional source-rectangle parameter, we can tile a sprite.
 
 In the **Game.h** file, add the following variable to the bottom of the Game class's private declarations:
 
-    RECT m_tileRect;
+```cpp
+RECT m_tileRect;
+```
 
 In the **Game.cpp** file, modify in the TODO section of **CreateDevice**:
 
-change 
+change
 
-    m_origin.x = float(catDesc.Width / 2);
-    m_origin.y = float(catDesc.Height / 2);
+```cpp
+m_origin.x = float(catDesc.Width / 2);
+m_origin.y = float(catDesc.Height / 2);
+```
 
 to
 
-    m_origin.x = float(catDesc.Width * 2);
-    m_origin.y = float(catDesc.Height * 2);
-    
-    m_tileRect.left = catDesc.Width * 2;
-    m_tileRect.right = catDesc.Width * 6;
-    m_tileRect.top = catDesc.Height * 2;
-    m_tileRect.bottom = catDesc.Height * 6;
+```cpp
+m_origin.x = float(catDesc.Width * 2);
+m_origin.y = float(catDesc.Height * 2);
+
+m_tileRect.left = catDesc.Width * 2;
+m_tileRect.right = catDesc.Width * 6;
+m_tileRect.top = catDesc.Height * 2;
+m_tileRect.bottom = catDesc.Height * 6;
+```
 
 In the **Game.cpp** file, modify in the TODO section of **Render**:
 
-    m_spriteBatch->Begin(SpriteSortMode_Deferred, nullptr, m_states->LinearWrap());
+```cpp
+m_spriteBatch->Begin(SpriteSortMode_Deferred, nullptr, m_states->LinearWrap());
 
-    m_spriteBatch->Draw(m_texture.Get(), m_screenPos, &m_tileRect, Colors::White,
-        0.f, m_origin);
+m_spriteBatch->Draw(m_texture.Get(), m_screenPos, &m_tileRect, Colors::White,
+    0.f, m_origin);
 
-    m_spriteBatch->End();
+m_spriteBatch->End();
+```
 
 Build and run to see the sprite as an array of 4x4 cats.
 
@@ -239,46 +281,58 @@ Build and run to see the sprite as an array of 4x4 cats.
 
 # Drawing a background image
 
-Our last exercise for this lesson is rendering a sprite as a full background image.  Start by saving 
+Our last exercise for this lesson is rendering a sprite as a full background image.  Start by saving
 [sunset.jpg](https://github.com/Microsoft/DirectXTK/wiki/images/sunset.jpg) to your project directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "sunset.jpg" and click "OK".
 
 In the **Game.h** file, add  the following variables to the bottom of the Game class's private declarations:
 
-    RECT m_fullscreenRect;
-    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_background;
+```cpp
+RECT m_fullscreenRect;
+Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_background;
+```
 
 In **Game.cpp**, add to the TODO of **CreateDevice**:
 
-    DX::ThrowIfFailed(
-        CreateWICTextureFromFile(m_d3dDevice.Get(), L"sunset.jpg", nullptr,
-        m_background.ReleaseAndGetAddressOf()));
+```cpp
+DX::ThrowIfFailed(
+    CreateWICTextureFromFile(m_d3dDevice.Get(), L"sunset.jpg", nullptr,
+    m_background.ReleaseAndGetAddressOf()));
+```
 
 In **Game.cpp**, add to the TODO of **CreateResources**:
 
-    m_fullscreenRect.left = 0;
-    m_fullscreenRect.top = 0;
-    m_fullscreenRect.right = backBufferWidth;
-    m_fullscreenRect.bottom = backBufferHeight;
+```cpp
+m_fullscreenRect.left = 0;
+m_fullscreenRect.top = 0;
+m_fullscreenRect.right = backBufferWidth;
+m_fullscreenRect.bottom = backBufferHeight;
+```
 
-and then modify the ``m_origin`` initialization back to:
+nd then modify the ``m_origin`` initialization back to:
 
-    m_origin.x = float(catDesc.Width / 2);
-    m_origin.y = float(catDesc.Height / 2);
+```cpp
+m_origin.x = float(catDesc.Width / 2);
+m_origin.y = float(catDesc.Height / 2);
+```
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
-    m_background.Reset();
+```cpp
+m_background.Reset();
+```
 
 In **Game.cpp**, modify the TODO section of **Render** to be:
 
-    m_spriteBatch->Begin();
+```cpp
+m_spriteBatch->Begin();
 
-    m_spriteBatch->Draw(m_background.Get(), m_fullscreenRect);
+m_spriteBatch->Draw(m_background.Get(), m_fullscreenRect);
 
-    m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr, Colors::White,
-        0.f, m_origin);
+m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr, Colors::White,
+    0.f, m_origin);
 
-    m_spriteBatch->End();
+m_spriteBatch->End();
+```
 
 Build and run to see our cat drawing over a sunset background.
 
@@ -293,4 +347,3 @@ DirectX Tool Kit docs [[CommonStates]], [[DDSTextureLoader]], [[SpriteBatch]], [
 [Direc3D 11 Textures and Block Compression](http://blogs.msdn.com/b/chuckw/archive/2012/05/04/direct3d-11-textures-and-block-compression.aspx)  
 [ShawnHar on Premultiplied Alpha](http://blogs.msdn.com/b/shawnhar/archive/2009/11/06/premultiplied-alpha.aspx)  
 [Tom Forsyth on Premultiplied Alpha](http://home.comcast.net/~tom_forsyth/blog.wiki.html#%5B%5BPremultiplied%20alpha%5D%5D)
-

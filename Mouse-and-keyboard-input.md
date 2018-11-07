@@ -8,142 +8,163 @@ First create a new project using the instructions from the first two lessons: [[
 
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 
-    std::unique_ptr<DirectX::Keyboard> m_keyboard;
-    std::unique_ptr<DirectX::Mouse> m_mouse;
+```cpp
+std::unique_ptr<DirectX::Keyboard> m_keyboard;
+std::unique_ptr<DirectX::Mouse> m_mouse;
+```
 
 In **Game.cpp**, add to the end of **Initialize**:
 
-    m_keyboard = std::make_unique<Keyboard>();
-    m_mouse = std::make_unique<Mouse>();
-    m_mouse->SetWindow(window);
+```cpp
+m_keyboard = std::make_unique<Keyboard>();
+m_mouse = std::make_unique<Mouse>();
+m_mouse->SetWindow(window);
+```
 
 In **Game.cpp**, add to the TODO of **Update**:
 
-    auto kb = m_keyboard->GetState();
-    if ( kb.Escape )
-        PostQuitMessage(0);
+```cpp
+auto kb = m_keyboard->GetState();
+if ( kb.Escape )
+{
+    ExitGame();
+}
 
-    auto mouse = m_mouse->GetState();
+auto mouse = m_mouse->GetState();
+```
 
 In **Main.cpp**, add to the ``switch`` statement in **WndProc**:
 
-    case WM_ACTIVATEAPP:
-
-        ...
-
-        Keyboard::ProcessMessage(message, wParam, lParam);
-        Mouse::ProcessMessage(message, wParam, lParam);
-        break;
+```cpp
+case WM_ACTIVATEAPP:
 
     ...
 
-    case WM_INPUT:
-    case WM_MOUSEMOVE:
-    case WM_LBUTTONDOWN:
-    case WM_LBUTTONUP:
-    case WM_RBUTTONDOWN:
-    case WM_RBUTTONUP:
-    case WM_MBUTTONDOWN:
-    case WM_MBUTTONUP:
-    case WM_MOUSEWHEEL:
-    case WM_XBUTTONDOWN:
-    case WM_XBUTTONUP:
-    case WM_MOUSEHOVER:
-        Mouse::ProcessMessage(message, wParam, lParam);
-        break;
+    Keyboard::ProcessMessage(message, wParam, lParam);
+    Mouse::ProcessMessage(message, wParam, lParam);
+    break;
 
-    case WM_KEYDOWN:
-    case WM_SYSKEYDOWN:
-    case WM_KEYUP:
-    case WM_SYSKEYUP:
-        Keyboard::ProcessMessage(message, wParam, lParam);
-        break;
+...
+
+case WM_INPUT:
+case WM_MOUSEMOVE:
+case WM_LBUTTONDOWN:
+case WM_LBUTTONUP:
+case WM_RBUTTONDOWN:
+case WM_RBUTTONUP:
+case WM_MBUTTONDOWN:
+case WM_MBUTTONUP:
+case WM_MOUSEWHEEL:
+case WM_XBUTTONDOWN:
+case WM_XBUTTONUP:
+case WM_MOUSEHOVER:
+    Mouse::ProcessMessage(message, wParam, lParam);
+    break;
+
+case WM_KEYDOWN:
+case WM_SYSKEYDOWN:
+case WM_KEYUP:
+case WM_SYSKEYUP:
+    Keyboard::ProcessMessage(message, wParam, lParam);
+    break;
+```
 
 Build and run. The application does not display anything other than our cornflower blue screen, but you can use the Escape key to exit.
 
-## UWP
+## Universal Windows Platform (UWP)
 If using a Windows Universal Platform (UWP) app template, then in your **Initialize**, use:
 
-    m_keyboard = std::make_unique<Keyboard>();
-    m_keyboard->SetWindow(reinterpret_cast<ABI::Windows::UI::Core::ICoreWindow*>(window));
+```cpp
+m_keyboard = std::make_unique<Keyboard>();
+m_keyboard->SetWindow(reinterpret_cast<ABI::Windows::UI::Core::ICoreWindow*>(window));
 
-    m_mouse = std::make_unique<Mouse>();
-    m_mouse->SetWindow(reinterpret_cast<ABI::Windows::UI::Core::ICoreWindow*>(window));
+m_mouse = std::make_unique<Mouse>();
+m_mouse->SetWindow(reinterpret_cast<ABI::Windows::UI::Core::ICoreWindow*>(window));
+```
 
-In **Update** use:
-
-    auto kb = m_keyboard->GetState();
-    if ( kb.Escape )
-        Windows::ApplicationModel::Core::CoreApplication::Exit();
-
-    auto mouse = m_mouse->GetState();
-
-Then make sure you call ``Mouse::SetDpi(m_DPI);`` from **Main.cpp** at the bottom of ``SetWindow`` and ``OnDpiChanged``.
+Be sure you call ``Mouse::SetDpi(m_DPI);`` from **Main.cpp** at the bottom of ``SetWindow`` and ``OnDpiChanged``. The ``Mouse`` class returns position information in pixels, while the UWP platform specifies mouse location in "device-independent pixels" (DIPs) so this value is needed for the scaling conversion.
 
 # Adding a simple scene
 Start by saving [roomtexture.dds](https://github.com/Microsoft/DirectXTK/wiki/roomtexture.dds) into your new project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "roomtexture.dds" and click "OK".
 
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 
-    std::unique_ptr<DirectX::GeometricPrimitive> m_room;
-    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_roomTex;
-    DirectX::SimpleMath::Matrix m_proj;
-    DirectX::SimpleMath::Vector3 m_cameraPos;
-    float m_pitch;
-    float m_yaw;
+```cpp
+std::unique_ptr<DirectX::GeometricPrimitive> m_room;
+Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_roomTex;
+DirectX::SimpleMath::Matrix m_proj;
+DirectX::SimpleMath::Vector3 m_cameraPos;
+float m_pitch;
+float m_yaw;
+```
 
 At the top of **Game.cpp** after the ``using`` statements, add:
 
-    static const XMVECTORF32 START_POSITION = { 0.f, -1.5f, 0.f, 0.f };
-    static const XMVECTORF32 ROOM_BOUNDS = { 8.f, 6.f, 12.f, 0.f };
-    static const float ROTATION_GAIN = 0.004f;
-    static const float MOVEMENT_GAIN = 0.07f;
+```cpp
+namespace
+{
+   const XMVECTORF32 START_POSITION = { 0.f, -1.5f, 0.f, 0.f };
+   const XMVECTORF32 ROOM_BOUNDS = { 8.f, 6.f, 12.f, 0.f };
+   const float ROTATION_GAIN = 0.004f;
+   const float MOVEMENT_GAIN = 0.07f;
+}
+```
 
 In **Game.cpp** file, modify the **Game** constructor to initialize our variables:
 
-    Game::Game() :
-        m_window(0),
-        m_outputWidth(800),
-        m_outputHeight(600),
-        m_featureLevel(D3D_FEATURE_LEVEL_9_1),
-        m_pitch(0),
-        m_yaw(0)
-    {
-        m_cameraPos = START_POSITION.v;
-    }
+```cpp
+Game::Game() :
+    m_window(0),
+    m_outputWidth(800),
+    m_outputHeight(600),
+    m_featureLevel(D3D_FEATURE_LEVEL_9_1),
+    m_pitch(0),
+    m_yaw(0)
+{
+    m_cameraPos = START_POSITION.v;
+}
+```
 
 In **Game.cpp**, add to the TODO of **CreateDevice**:
 
-    m_room = GeometricPrimitive::CreateBox(m_d3dContext.Get(),
-        XMFLOAT3(ROOM_BOUNDS[0], ROOM_BOUNDS[1], ROOM_BOUNDS[2]),
-        false, true);
+```cpp
+m_room = GeometricPrimitive::CreateBox(m_d3dContext.Get(),
+    XMFLOAT3(ROOM_BOUNDS[0], ROOM_BOUNDS[1], ROOM_BOUNDS[2]),
+    false, true);
 
-    DX::ThrowIfFailed(
-        CreateDDSTextureFromFile(m_d3dDevice.Get(), L"roomtexture.dds",
-        nullptr, m_roomTex.ReleaseAndGetAddressOf()));
+DX::ThrowIfFailed(
+    CreateDDSTextureFromFile(m_d3dDevice.Get(), L"roomtexture.dds",
+    nullptr, m_roomTex.ReleaseAndGetAddressOf()));
+```
 
 In **Game.cpp**, add to the TODO of **CreateResources**:
 
-    m_proj = Matrix::CreatePerspectiveFieldOfView(XMConvertToRadians(70.f),
-        float(backBufferWidth) / float(backBufferHeight), 0.01f, 100.f);
+```cpp
+  m_proj = Matrix::CreatePerspectiveFieldOfView(XMConvertToRadians(70.f),
+      float(backBufferWidth) / float(backBufferHeight), 0.01f, 100.f);
+```
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
-    m_room.reset();
-    m_roomTex.Reset();
+```cpp
+m_room.reset();
+m_roomTex.Reset();
+```
 
 In **Game.cpp**, add to the TODO of **Render**:
 
-    float y = sinf(m_pitch);
-    float r = cosf(m_pitch);
-    float z = r*cosf(m_yaw);
-    float x = r*sinf(m_yaw);
+```cpp
+float y = sinf(m_pitch);
+float r = cosf(m_pitch);
+float z = r*cosf(m_yaw);
+float x = r*sinf(m_yaw);
 
-    XMVECTOR lookAt = m_cameraPos + Vector3(x, y, z);
+XMVECTOR lookAt = m_cameraPos + Vector3(x, y, z);
 
-    XMMATRIX view = XMMatrixLookAtRH(m_cameraPos, lookAt, Vector3::Up);
+XMMATRIX view = XMMatrixLookAtRH(m_cameraPos, lookAt, Vector3::Up);
 
-    m_room->Draw(Matrix::Identity, view, m_proj, Colors::White, m_roomTex.Get());
+m_room->Draw(Matrix::Identity, view, m_proj, Colors::White, m_roomTex.Get());
+```
 
 Build and run, and you should get the following screen:
 
@@ -155,49 +176,53 @@ Build and run, and you should get the following screen:
 
 In **Game.cpp**, modify to the TODO of **Update**:
 
-    auto kb = m_keyboard->GetState();
-    if ( kb.Escape )
-        PostQuitMessage(0);
+```cpp
+auto kb = m_keyboard->GetState();
+if ( kb.Escape )
+{
+    ExitGame();
+}
 
-    if (kb.Home)
-    {
-        m_cameraPos = START_POSITION.v;
-        m_pitch = m_yaw = 0;
-    }
+if (kb.Home)
+{
+    m_cameraPos = START_POSITION.v;
+    m_pitch = m_yaw = 0;
+}
 
-    Vector3 move = Vector3::Zero;
+Vector3 move = Vector3::Zero;
 
-    if (kb.Up || kb.W)
-        move.y += 1.f;
+if (kb.Up || kb.W)
+    move.y += 1.f;
 
-    if (kb.Down || kb.S)
-        move.y -= 1.f;
+if (kb.Down || kb.S)
+    move.y -= 1.f;
 
-    if (kb.Left || kb.A)
-        move.x += 1.f;
+if (kb.Left || kb.A)
+    move.x += 1.f;
 
-    if (kb.Right || kb.D)
-        move.x -= 1.f;
+if (kb.Right || kb.D)
+    move.x -= 1.f;
 
-    if (kb.PageUp || kb.Space)
-        move.z += 1.f;
+if (kb.PageUp || kb.Space)
+    move.z += 1.f;
 
-    if (kb.PageDown || kb.X)
-        move.z -= 1.f;
+if (kb.PageDown || kb.X)
+    move.z -= 1.f;
 
-    Quaternion q = Quaternion::CreateFromYawPitchRoll(m_yaw, m_pitch, 0.f);
+Quaternion q = Quaternion::CreateFromYawPitchRoll(m_yaw, m_pitch, 0.f);
 
-    move = Vector3::Transform(move, q);
+move = Vector3::Transform(move, q);
 
-    move *= MOVEMENT_GAIN;
+move *= MOVEMENT_GAIN;
 
-    m_cameraPos += move;
+m_cameraPos += move;
 
-    Vector3 halfBound = (Vector3(ROOM_BOUNDS.v) / Vector3(2.f) )
-        - Vector3(0.1f, 0.1f, 0.1f);
+Vector3 halfBound = (Vector3(ROOM_BOUNDS.v) / Vector3(2.f) )
+    - Vector3(0.1f, 0.1f, 0.1f);
 
-    m_cameraPos = Vector3::Min(m_cameraPos, halfBound);
-    m_cameraPos = Vector3::Max(m_cameraPos, -halfBound);
+m_cameraPos = Vector3::Min(m_cameraPos, halfBound);
+m_cameraPos = Vector3::Max(m_cameraPos, -halfBound);
+```
 
 Build and run. You can use ``Up``, ``Down``, ``Left``, ``Right``, ``PageUp``, ``PageDown``. ``W``, ``A``, ``S``, ``D``, ``X``, and ``Space`` to move through the scene. You can use ``Home`` to return to the start position.
 
@@ -205,34 +230,36 @@ Build and run. You can use ``Up``, ``Down``, ``Left``, ``Right``, ``PageUp``, ``
 
 In **Game.cpp**, add to the TODO of **Update** just before your keyboard code above:
 
-    auto mouse = m_mouse->GetState();
+```cpp
+auto mouse = m_mouse->GetState();
 
-    if (mouse.positionMode == Mouse::MODE_RELATIVE)
+if (mouse.positionMode == Mouse::MODE_RELATIVE)
+{
+    Vector3 delta = Vector3(float(mouse.x), float(mouse.y), 0.f)
+                    * ROTATION_GAIN;
+
+    m_pitch -= delta.y;
+    m_yaw -= delta.x;
+
+    // limit pitch to straight up or straight down
+    // with a little fudge-factor to avoid gimbal lock
+    float limit = XM_PI/ 2.0f - 0.01f;
+    m_pitch = std::max(-limit, m_pitch);
+    m_pitch = std::min(+limit, m_pitch);
+
+    // keep longitude in sane range by wrapping
+    if (m_yaw > XM_PI)
     {
-        Vector3 delta = Vector3(float(mouse.x), float(mouse.y), 0.f)
-                        * ROTATION_GAIN;
-
-        m_pitch -= delta.y;
-        m_yaw -= delta.x;
-
-        // limit pitch to straight up or straight down
-        // with a little fudge-factor to avoid gimbal lock
-        float limit = XM_PI/ 2.0f - 0.01f;
-        m_pitch = std::max(-limit, m_pitch);
-        m_pitch = std::min(+limit, m_pitch);
-
-        // keep longitude in sane range by wrapping
-        if (m_yaw > XM_PI)
-        {
-            m_yaw -= XM_PI * 2.0f;
-        }
-        else if (m_yaw < -XM_PI)
-        {
-            m_yaw += XM_PI * 2.0f;
-        }      
+        m_yaw -= XM_PI * 2.0f;
     }
+    else if (m_yaw < -XM_PI)
+    {
+        m_yaw += XM_PI * 2.0f;
+    }      
+}
 
-    m_mouse->SetMode(mouse.leftButton ? Mouse::MODE_RELATIVE : Mouse::MODE_ABSOLUTE);
+m_mouse->SetMode(mouse.leftButton ? Mouse::MODE_RELATIVE : Mouse::MODE_ABSOLUTE);
+```
 
 Build and run. Now in addition to keyboard controls, you can press & hold the left mouse button to rotate the view.
 
@@ -240,7 +267,7 @@ Build and run. Now in addition to keyboard controls, you can press & hold the le
 
 * We rotate the movement vector created by the keyboard commands by the pitch/yaw values so that they are relative to the view direction rather than be fixed in world coordinates.
 
-* The view can never be exactly straight up or straight down to avoid a problem known as 
+* The view can never be exactly straight up or straight down to avoid a problem known as
 [gimbal lock](https://en.wikipedia.org/wiki/Gimbal_lock) which can cause the camera view to flip unexpectedly or tumble uncontrollably.
 
 * This control implementation is very simple, and really only works on a system with fast frame-rate. For a more robust implementation, the ``Update`` code should make use of ``elapsedTime`` to scale the keyboard movement rate values and ``MOVEMENT_GAIN`` adjusted accordingly.

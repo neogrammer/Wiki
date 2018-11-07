@@ -3,37 +3,47 @@ SoundEffectInstance is an instance of a sound from a [[SoundEffect]] or a [[Wave
 Note that the SoundEffectInstance does not copy the wave data and instead refers to the data 'owned' by the SoundEffect / WaveBank. Therefore, the parent object must be kept "live" until all sounds playing from it are finished.
 
 # Header
-    #include <Audio.h>
+```cpp
+#include <Audio.h>
+```
 
 # Initialization
 
 It can be created for an individual sound loaded as a SoundEffect (which is returned as a ``std::unique_ptr<SoundEffectInstance>``)
 
-    auto effect = soundEffect->CreateInstance();
+```cpp
+auto effect = soundEffect->CreateInstance();
+```
 
 Or created for an entry in a WaveBank (which is returned as a ``std::unique_ptr<SoundEffectInstance>``):
 
-    auto effect = wb->CreateInstance( 2 );
-    if ( !effect )
-        // Index not found in wave bank
+```cpp
+auto effect = wb->CreateInstance( 2 );
+if ( !effect )
+    // Index not found in wave bank
+```
 
 It can optionally support 3D positional audio:
 
-    auto effect = soundEffect->CreateInstance( SoundEffectInstance_Use3D );
-    
-    auto effect = wb->CreateInstance( 2, SoundEffectInstance_Use3D );
-    if ( !effect )
-        // Index not found in wave bank
+```cpp
+auto effect = soundEffect->CreateInstance( SoundEffectInstance_Use3D );
+
+auto effect = wb->CreateInstance( 2, SoundEffectInstance_Use3D );
+if ( !effect )
+    // Index not found in wave bank
+```
 
 Or use 3D positional audio with reverb effects (if [[AudioEngine]] was created using ``AudioEngine_EnvironmentalReverb`` | ``AudioEngine_ReverbUseFilters``):
 
-    auto effect = soundEffect->CreateInstance( SoundEffectInstance_Use3D
-                    | SoundEffectInstance_ReverbUseFilters);
+```cpp
+auto effect = soundEffect->CreateInstance(
+    SoundEffectInstance_Use3D | SoundEffectInstance_ReverbUseFilters);
 
-    auto effect = wb->CreateInstance( 2, SoundEffectInstance_Use3D
-                    | SoundEffectInstance_ReverbUseFilters);
-    if ( !effect )
-        // Index not found in wave bank
+auto effect = wb->CreateInstance( 2,
+    SoundEffectInstance_Use3D | SoundEffectInstance_ReverbUseFilters);
+if ( !effect )
+    // Index not found in wave bank
+```
 
 # Instance flags
 
@@ -72,15 +82,17 @@ This is a combination of sound effect instance flags. It defaults to ``SoundEffe
 
 # Positional 3D audio
 
-DirectXTK for Audio uses [X3DAudio](http://msdn.microsoft.com/en-us/library/windows/desktop/ee415714.aspx) for positional audio computations. To apply a 3D effect to a sound instance, you call **Apply3D** with the listener location (i.e. where the player/camera is located) and the emitter (i.e. where the sound source is located in 3D dimensions):
+DirectXTK for Audio uses [X3DAudio](https://docs.microsoft.com/en-us/windows/desktop/xaudio2/x3daudio) for positional audio computations. To apply a 3D effect to a sound instance, you call **Apply3D** with the listener location (i.e. where the player/camera is located) and the emitter (i.e. where the sound source is located in 3D dimensions):
 
-    AudioListener listener;
-    listener.SetPosition( ... );
+```cpp
+AudioListener listener;
+listener.SetPosition( ... );
 
-    AudioEmitter emitter;
-    emitter.SetPosition( ... );
+AudioEmitter emitter;
+emitter.SetPosition( ... );
 
-    effect->Apply3D( listener, emitter );
+effect->Apply3D( listener, emitter );
+```
 
 Note if the instance was created without ``SoundEffectInstance_Use3D``, then calls to **Apply3D** will result in a C++ exception being thrown. **Apply3D** will overwrite any ``SetPan`` settings.
 
@@ -90,15 +102,17 @@ See [[AudioListener]], [[AudioEmitter]]
 
 The emitter and listener (based on the XNA Game Studio conventions) use right-handed coordinates. They can be used with left-handed coordinates by setting the _rhcoords_ parameter on the ``Apply3D`` method to 'false' (the parameter defaults to 'true').
 
-    AudioListener listener;
-    listener.SetPosition( ... );
-    listener.SetOrientation( ... );
+```cpp
+AudioListener listener;
+listener.SetPosition( ... );
+listener.SetOrientation( ... );
 
-    AudioEmitter emitter;
-    emitter.SetPosition( ... );
-    emitter.SetOrientation( ... );
+AudioEmitter emitter;
+emitter.SetPosition( ... );
+emitter.SetOrientation( ... );
 
-    effect->Apply3D( listener, emitter, false );
+effect->Apply3D( listener, emitter, false );
+```
 
 # Voice management
 
@@ -115,4 +129,3 @@ See [[AudioEngine]] for more details.
 * **IsLooped**: Returns true if the sound was played with looping enable.
 
 * **GetState**: Returns ``STOPPED``, ``PLAYING``, or ``PAUSED``.
-

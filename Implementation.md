@@ -14,63 +14,62 @@ The _DirectX Toolkit_ library makes extensive use of SAL2 annotations (``_In_``,
 # The pImpl idiom
 DirectXTK's implementation makes extensive use of the [pImpl idiom](http://en.wikipedia.org/wiki/Opaque_pointer). This keeps the public headers slim and minimizes inter-module dependencies.
 
-    // SpriteBatch.h public header
-    class SpriteBatch
-    {
-    public:
-        SpriteBatch(...);
-        SpriteBatch(SpriteBatch&& moveFrom);
-        SpriteBatch& operator= (SpriteBatch&& moveFrom);
+```cpp
+// SpriteBatch.h public header
+class SpriteBatch
+{
+public:
+    SpriteBatch(...);
+    SpriteBatch(SpriteBatch&& moveFrom);
+    SpriteBatch& operator= (SpriteBatch&& moveFrom);
 
-        SpriteBatch(SpriteBatch const&) = delete;
-        SpriteBatch& operator=(SpriteBatch const&) = delete;
+    SpriteBatch(SpriteBatch const&) = delete;
+    SpriteBatch& operator=(SpriteBatch const&) = delete;
 
-        virtual ~SpriteBatch();
-        ...
-    
-    private:
-        // Private implementation.
-        class Impl;
-    
-        std::unique_ptr<Impl> pImpl;
-    };
+    virtual ~SpriteBatch();
+    ...
+
+private:
+    // Private implementation.
+    class Impl;
+
+    std::unique_ptr<Impl> pImpl;
+};
+```
 
 This also allows use to allocate the pImpl class internally using ``_aligned_malloc(x,16);`` so that we can use the DIrectXMath aligned ``XMVECTOR`` and ``XMMATRIX`` types directly in the implementation across all architectures.
 
 # Calling-conventions
 The ``std::function`` is used for callbacks as a general pattern so that client code can provide function pointers, lambdas, functors, etc. To support building with a mix of calling conventions, we need to annotate the ``std::function`` correctly.
 
+```cpp
     HRESULT __cdecl SaveWICTextureToFile( /*...*/,
         std::function<void __cdecl(IPropertyBag2*)> setCustomProps
             = nullptr );
-
-_Note: ``std::function`` doesn't support using ``__vectorcall`` until VS 2015, so use of ``/Gv`` is difficult in VS 2013 or earlier._
+```            
 
 # Default constructors/assignment operators
 The C++11 standard includes a more efficient ``=default`` and ``=delete`` construct for dealing with special constructors and operators.
 
 To declare a standard copy constructor and copy assignment operators, we use:
 
-    Rectangle(const Rectangle&) = default;
-    Rectangle& operator=(const Rectangle&) = default;
+```cpp
+Rectangle(const Rectangle&) = default;
+Rectangle& operator=(const Rectangle&) = default;
+```
 
 To prevent copying we use:
 
-    // Prevent copying.
-    SpriteBatch(SpriteBatch const&) = delete;
-    SpriteBatch& operator= (SpriteBatch const&) = delete;
-
-VS 2013 added support for ``=default`` and ``=delete``, however VS 2013 did not support automatic generation of move constructor or move operators, so ``=default`` for those won't work until VS 2015 or later. For this reason, in the places we declare default move ctors/operators we guard them:
-
-    #if !defined(_MSC_VER) || _MSC_VER >= 1900
-        Rectangle(Rectangle&&) = default;
-        Rectangle& operator=(Rectangle&&) = default;
-    #endif
+```cpp
+// Prevent copying.
+SpriteBatch(SpriteBatch const&) = delete;
+SpriteBatch& operator= (SpriteBatch const&) = delete;
+```
 
 > Note that use of ``=default`` can improve codegen for derived types as well.
 
 # DirectXMath Parameter Conventions
-The library uses the [DirectXMath](https://msdn.microsoft.com/en-us/library/windows/desktop/ee418728.aspx#Call_Conventions) calling convention types to improve parameter passing of ``XMVECTOR`` and ``XMMATRIX`` types.
+The library uses the [DirectXMath](https://docs.microsoft.com/en-us/windows/desktop/dxmath/pg-xnamath-internals#Call_Conventions) calling convention types to improve parameter passing of ``XMVECTOR`` and ``XMMATRIX`` types.
 
 # Further Reading
 [Dual-use Coding Techniques for Games](http://blogs.msdn.com/b/chuckw/archive/2012/09/17/dual-use-coding-techniques-for-games.aspx)  

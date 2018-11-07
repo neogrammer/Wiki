@@ -19,7 +19,7 @@ The newly created project contains the following files:
 ![Open Game Cpp](https://github.com/Microsoft/DirectXTK/wiki/images/OpenGameCppDR.PNG)
 
 * Precompiled header files
-  * pch.h 
+  * pch.h
   * pch.cpp
 * Main application entry-point and classic Windows procedure function
   * Main.cpp
@@ -45,8 +45,8 @@ Press F5 to build and run the application It displays the following window:
 ![Running Project ](https://github.com/Microsoft/DirectXTK/wiki/images/RunningProject.png)
 
 > _Troubleshooting:_ If the base template fails to start, there are a few possibilities. First, if your system
-> doesn't have any Direct3D capable device of any feature level, it will fail. This is pretty unlikely on modern 
-> versions of Windows. Second if it runs fine in _Release_ but fails in _Debug_, then you likely do not have the 
+> doesn't have any Direct3D capable device of any feature level, it will fail. This is pretty unlikely on modern
+> versions of Windows. Second if it runs fine in _Release_ but fails in _Debug_, then you likely do not have the
 > [proper DirectX Debug Device](http://blogs.msdn.com/b/chuckw/archive/2012/11/30/direct3d-sdk-debug-layer-tricks.aspx) installed for your operating system.
 
 # Tour of the code
@@ -55,24 +55,30 @@ Press F5 to build and run the application It displays the following window:
 
 The Game class constructor is where you can do first initialization of member variables, as well as where we create the DeviceResources instance.
 
-    Game::Game()
-    {
-        m_deviceResources = std::make_unique<DX::DeviceResources>();
-        m_deviceResources->RegisterDeviceNotify(this);
-    }
+```cpp
+Game::Game()
+{
+    m_deviceResources = std::make_unique<DX::DeviceResources>();
+    m_deviceResources->RegisterDeviceNotify(this);
+}
+```
 
 The DeviceResources constructor takes a number of defaulted parameters to control ``backBufferFormat``, ``depthBufferFormat``, ``backBufferCount``, ``minFeatureLevel``, and option ``flags``. You can provide specific values to change them as needed.
 
 If doing _gamma-correct rendering_, you should use ``DXGI_FORMAT_*_UNORM_SRGB`` or a supported HDR format for the ``backBufferFormat``. Be sure to update ``Clear`` below accordingly to use a linear clear color.
 
-    // Use gamma-correct rendering.
-    m_deviceResources = std::make_unique<DX::DeviceResources>(DXGI_FORMAT_B8G8R8A8_UNORM_SRGB);
+```cpp
+// Use gamma-correct rendering.
+m_deviceResources = std::make_unique<DX::DeviceResources>(DXGI_FORMAT_B8G8R8A8_UNORM_SRGB);
+```
 
 If you do not want DeviceResources to create a depth/stencil buffer, you can use ``DXGI_FORMAT_UNKNOWN`` for ``depthBufferFormat``. This is useful for 2D only rendering or when doing MSAA on Universal Windows Platform (UWP) apps which requires handling your own render target and depth buffer with ``Sample.Count`` > 1. Be sure to update ``Clear`` below to avoid referencing a null depth buffer object.
 
-    // Renders only 2D, so no need for a depth buffer.
-    m_deviceResources = std::make_unique<DX::DeviceResources>(DXGI_FORMAT_B8G8R8A8_UNORM,
-        DXGI_FORMAT_UNKNOWN);
+```cpp
+// Renders only 2D, so no need for a depth buffer.
+m_deviceResources = std::make_unique<DX::DeviceResources>(DXGI_FORMAT_B8G8R8A8_UNORM,
+    DXGI_FORMAT_UNKNOWN);
+```
 
 The ``backBufferCount`` defaults to 2, but in some cases you may want to override it to use 3. Larger numbers would be quite unusual and are not recommended.
 
@@ -86,133 +92,151 @@ The ``flags`` options parameter defaults to 0 which is no flags. You can specify
 ## Initialize
 When the application first starts, execution is passed to the **Initialize** method. The TODO here by default leaves the applications [[StepTimer]] in the 'variable length' mode. You uncomment the code if you want StepTimer in the 'fixed-step' mode. We'll explain this more once we get to ``Update``.
 
-    void Game::Initialize(HWND window, int width, int height)
-    {
-        m_deviceResources->SetWindow(window, width, height);
+```cpp
+void Game::Initialize(HWND window, int width, int height)
+{
+    m_deviceResources->SetWindow(window, width, height);
 
-        m_deviceResources->CreateDeviceResources();
-        CreateDeviceDependentResources();
+    m_deviceResources->CreateDeviceResources();
+    CreateDeviceDependentResources();
 
-        m_deviceResources->CreateWindowSizeDependentResources();
-        CreateWindowSizeDependentResources();
+    m_deviceResources->CreateWindowSizeDependentResources();
+    CreateWindowSizeDependentResources();
 
-        // TODO: Change the timer settings if you want something other than the default variable timestep mode.
-        // e.g. for 60 FPS fixed timestep update logic, call:
-        /*
-        m_timer.SetFixedTimeStep(true);
-        m_timer.SetTargetElapsedSeconds(1.0 / 60);
-        */
-    }
+    // TODO: Change the timer settings if you want something other than the default variable timestep mode.
+    // e.g. for 60 FPS fixed timestep update logic, call:
+    /*
+    m_timer.SetFixedTimeStep(true);
+    m_timer.SetTargetElapsedSeconds(1.0 / 60);
+    */
+}
+```
 
 The first Game method ``Initialize`` calls is **CreateDeviceDependentResources** for the creation of objects that depend on the device or context, but do not care about the size of the rendering window.
 
-    void Game::CreateDeviceDependentResources()
-    {
-        auto device = m_deviceResources->GetD3DDevice();
+```cpp
+void Game::CreateDeviceDependentResources()
+{
+    auto device = m_deviceResources->GetD3DDevice();
 
-        // TODO: Initialize device dependent objects here (independent of window size).
-        device; // This is only here to avoid a warning. You can remove it once you make use of device!
-    }
+    // TODO: Initialize device dependent objects here (independent of window size).
+    device; // This is only here to avoid a warning. You can remove it once you make use of device!
+}
+```
 
 > Instead of using the class variable ``m_d3dDevice`` we have to obtain the device interface from the ``DeviceResources`` object. See ``Render`` for how you get the device context from ``DeviceResources``.
 
 The second Game method ``Initialize`` calls is **CreateWindowSizeDependentResources** for creation of objects that depend on the size of the rendering window. Note that this function could be creating these objects for the first time, it could be re-creating already existing objects due to a window-size change, or could be creating 'fresh' objects after a Direct3D device-removed or device-reset case.
 
-    void Game::CreateWindowSizeDependentResources()
-    {
-        // TODO: Initialize windows-size dependent objects here.
-    }
+```cpp
+void Game::CreateWindowSizeDependentResources()
+{
+    // TODO: Initialize windows-size dependent objects here.
+}
+```
 
 ## Update
 The **Update** method is intended to handle game-world state modification which is typically driven by time passing, simulation, and/or user-input. By default, ``Update`` is called once per 'frame' and can have an arbitrary delta-time. This is called a 'variable-step' mode.
 
 If in the ``Initialize`` method above you uncomment the TODO code, then each ``Update`` will be for a fixed time-step (1/60th of a second), with ``Update`` called as many time in a single 'frame' as needed to keep it up-to-date. This is called a 'fixed-step' mode and potentially be more stable for many kinds of simulations.
 
-    // Updates the world
-    void Game::Update(DX::StepTimer const& timer)
-    {
-        float elapsedTime = float(timer.GetElapsedSeconds());
+```cpp
+// Updates the world
+void Game::Update(DX::StepTimer const& timer)
+{
+    float elapsedTime = float(timer.GetElapsedSeconds());
 
-        // TODO: Add your game logic here
-        elapsedTime;
-    }
+    // TODO: Add your game logic here
+    elapsedTime;
+}
+```
 
 ## Render
 The **Render** function which should render a single 'frame' of the scene, which starts by a ``Clear`` of the render targetg and setting the rendering viewport. It ends with a call to ``DeviceResources::Present`` to show the rendered frame.
 
-    void Game::Render()
+```cpp
+void Game::Render()
+{
+    // Don't try to render anything before the first Update.
+    if (m_timer.GetFrameCount() == 0)
     {
-        // Don't try to render anything before the first Update.
-        if (m_timer.GetFrameCount() == 0)
-        {
-            return;
-        }
-
-        Clear();
-
-        auto context = m_deviceResources->GetD3DDeviceContext();
-
-        // TODO: Add your rendering code here.
-        context; // This is only here to avoid a warning. You can remove it once you make use of context!
-
-        m_deviceResources->Present();
+        return;
     }
+
+    Clear();
+
+    auto context = m_deviceResources->GetD3DDeviceContext();
+
+    // TODO: Add your rendering code here.
+    context; // This is only here to avoid a warning. You can remove it once you make use of context!
+
+    m_deviceResources->Present();
+}
+```
 
 > Instead of using the class variable ``m_d3dContext`` we have to obtain the device context interface from the ``DeviceResources`` object. See ``CreateDeviceDependentResources`` for how you get the device from ``DeviceResources``.
 
 ### Clear
 The **Clear** method defaults to a background color of the classic "Cornflower blue".
 
-    void Game::Clear()
-    {
-        // Clear the views
-        auto context = m_deviceResources->GetD3DDeviceContext();
-        auto renderTarget = m_deviceResources->GetRenderTargetView();
-        auto depthStencil = m_deviceResources->GetDepthStencilView();
+```cpp
+void Game::Clear()
+{
+    // Clear the views
+    auto context = m_deviceResources->GetD3DDeviceContext();
+    auto renderTarget = m_deviceResources->GetRenderTargetView();
+    auto depthStencil = m_deviceResources->GetDepthStencilView();
 
-        context->ClearRenderTargetView(renderTarget, Colors::CornflowerBlue);
-        context->ClearDepthStencilView(depthStencil, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
-        context->OMSetRenderTargets(1, &renderTarget, depthStencil);
+    context->ClearRenderTargetView(renderTarget, Colors::CornflowerBlue);
+    context->ClearDepthStencilView(depthStencil, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+    context->OMSetRenderTargets(1, &renderTarget, depthStencil);
 
-        // Set the viewport.
-        auto viewport = m_deviceResources->GetScreenViewport();
-        context->RSSetViewports(1, &viewport);
-    }
+    // Set the viewport.
+    auto viewport = m_deviceResources->GetScreenViewport();
+    context->RSSetViewports(1, &viewport);
+}
+```
 
-If you are using _gamma-correct rendering_ with a sRGB or HDR backbuffer format, you need to ensure you are using a linear RGB clear color. DirectXMath colors are defined in sRGB colorspace since they are [.NET color constants](https://msdn.microsoft.com/en-us/library/system.drawing.color.aspx), so you need to replace ``ClearRenderTargetView`` in **Clear** with:
+If you are using _gamma-correct rendering_ with a sRGB or HDR backbuffer format, you need to ensure you are using a linear RGB clear color. DirectXMath colors are defined in sRGB colorspace since they are [.NET color constants](https://docs.microsoft.com/en-us/dotnet/api/system.drawing.color), so you need to replace ``ClearRenderTargetView`` in **Clear** with:
 
-    // Use linear clear color for gamma-correct rendering.
-    XMVECTORF32 color;
-    color.v = XMColorSRGBToRGB(Colors::CornflowerBlue);
-    context->ClearRenderTargetView(renderTarget, color);
+```cpp
+// Use linear clear color for gamma-correct rendering.
+XMVECTORF32 color;
+color.v = XMColorSRGBToRGB(Colors::CornflowerBlue);
+context->ClearRenderTargetView(renderTarget, color);
+```
 
 If you chose to not have DeviceResources create a depth-stencil buffer (see the _Constructor_ section), you need to update **Clear** to avoid reference to a null depth buffer object.
 
-    void Game::Clear()
-    {
-        // Clear the views
-        auto context = m_deviceResources->GetD3DDeviceContext();
-        auto renderTarget = m_deviceResources->GetRenderTargetView();
+```cpp
+void Game::Clear()
+{
+    // Clear the views
+    auto context = m_deviceResources->GetD3DDeviceContext();
+    auto renderTarget = m_deviceResources->GetRenderTargetView();
 
-        context->ClearRenderTargetView(renderTarget, Colors::CornflowerBlue);
-        context->OMSetRenderTargets(1, &renderTarget, nullptr);
+    context->ClearRenderTargetView(renderTarget, Colors::CornflowerBlue);
+    context->OMSetRenderTargets(1, &renderTarget, nullptr);
 
-        // Set the viewport.
-        auto viewport = m_deviceResources->GetScreenViewport();
-        context->RSSetViewports(1, &viewport);
-    }
+    // Set the viewport.
+    auto viewport = m_deviceResources->GetScreenViewport();
+    context->RSSetViewports(1, &viewport);
+}
+```
 
 ## Events
-The template includes a number of message handlers that are called for process state changes: **OnActivated**, **OnDeactivated**, **OnSuspending**, **OnResuming**, and **OnWindowSizeChanged**. 
+The template includes a number of message handlers that are called for process state changes: **OnActivated**, **OnDeactivated**, **OnSuspending**, **OnResuming**, and **OnWindowSizeChanged**.
 
 Since we are using [[ComPtr]], most cleanup is automatic when the Game class is destroyed. If ``Present`` encounters a device-removed or device-reset, then the application needs to release all Direct3D objects and recreate the device, swapchain, and all Direct3D objects again. Therefore, the TODO in **OnDeviceLost** should be updated to release your application's Direct3D objects.
 
-    void Game::OnDeviceLost()
-    {
-        // TODO: Add Direct3D resource cleanup here
+```cpp
+void Game::OnDeviceLost()
+{
+    // TODO: Add Direct3D resource cleanup here
 
-    ...
-    }
+...
+}
+```
 
 > You will not get "device lost" all that often. In legacy Direct3D 9, you would routinely get a 'device lost' if you just ALT+TAB away from the application because the GPU used to be an 'exclusive' rather than 'shared' resource. The situation where you'd get ``DXGI_ERROR_DEVICE_RESET`` is if the driver crashes or the video hardware hangs. You get ``DXGI_ERROR_DEVICE_REMOVED`` if a new driver is installed while your application is running, or if you are running on a 'GPU is in the dock' style laptop and the laptop is undocked. You can test this case by opening the *Developer Command Prompt for Visual Studio* as an administrator, and typing ``dxcap -forcetdr`` which will immediately cause all currently running Direct3D apps to get a ``DXGI_ERROR_DEVICE_REMOVED`` event.
 
@@ -224,8 +248,10 @@ Many Direct3D functions return an ``HRESULT`` which is the standard for COM APIs
 
 The Win32 game template makes use of the helper function [[ThrowIfFailed]] in the ``DX`` C++ namespace. This is the same helper that is used by the Windows Store and Windows phone VS templates. This helper throws a C++ exception if the standard ``FAILED`` macro returns true for a given ``HRESULT``.
 
-    DX::ThrowIfFailed(device->CreateTexture2D(&depthStencilDesc,
-        nullptr, &depthStencil));
+```cpp
+DX::ThrowIfFailed(device->CreateTexture2D(&depthStencilDesc,
+    nullptr, &depthStencil));
+```
 
 > Do not use ``hr == S_OK`` to check for success. Use ``SUCCEEDED(hr)`` instead.
 
@@ -254,30 +280,34 @@ The **DeviceResources** class also includes a number of useful assessors not alr
 
 # Threading model
 
-The DeviceResources class methods are intended to be called from the main presenting thread, and not from other threads. The device context associated with DeviceResources is the immediate context, and is intended for use by this 'main' thread. Per the [DirectX Graphics Infrastructure (DXGI): Best Practices](https://msdn.microsoft.com/en-us/library/windows/desktop/ee417025.aspx#multithreading_and_dxgi), this presenting thread should also be the same thread as the main window message processing.
+The DeviceResources class methods are intended to be called from the main presenting thread, and not from other threads. The device context associated with DeviceResources is the immediate context, and is intended for use by this 'main' thread. Per the [DirectX Graphics Infrastructure (DXGI): Best Practices](https://docs.microsoft.com/en-us/windows/desktop/direct3darticles/dxgi-best-practices#multithreading_and_dxgi), this presenting thread should also be the same thread as the main window message processing.
 
 # Platform notes
 
 ## Windows desktop apps
-The **DeviceResources** implementation is designed to support Windows Vista SP2 and Windows 7 RTM with DirectX 11.0, but also supports Direct3D 11.1 on [Windows 7 SP 1](http://blogs.msdn.com/b/chuckw/archive/2012/11/14/directx-11-1-and-windows-7.aspx) or Windows 8 which provides [significant improvements](https://msdn.microsoft.com/en-us/library/hh404562.aspx) such as simplified interop with Direct2D/DirectWrite. Therefore, you should generally prefer to use **GetD3DDevice** / **GetD3DDeviceContext** / **GetSwapChain**, but where you explicitly need 11.1 features you call **GetD3DDevice1** / **GetD3DDeviceContext1** / **GetSwapChain1**. These will be nullptr if the system only has the DirectX 11.0 Runtime.
+The **DeviceResources** implementation is designed to support Windows Vista SP2 and Windows 7 RTM with DirectX 11.0, but also supports Direct3D 11.1 on [Windows 7 SP 1](http://blogs.msdn.com/b/chuckw/archive/2012/11/14/directx-11-1-and-windows-7.aspx) or Windows 8 which provides [significant improvements](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/direct3d-11-1-features) such as simplified interop with Direct2D/DirectWrite. Therefore, you should generally prefer to use **GetD3DDevice** / **GetD3DDeviceContext** / **GetSwapChain**, but where you explicitly need 11.1 features you call **GetD3DDevice1** / **GetD3DDeviceContext1** / **GetSwapChain1**. These will be nullptr if the system only has the DirectX 11.0 Runtime.
 
 ## Universal Windows Platform apps
-The UWP version of **DeviceResources** always uses [DirectX 11.3 interfaces](https://msdn.microsoft.com/en-us/library/dn914596.aspx).
+The UWP version of **DeviceResources** always uses [DirectX 11.3 interfaces](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/direct3d-11-3-features).
 
 It includes **GetRotation** and **GetOrientationTransform3D** to simplify handling of display orientation.
 
-    m_spritesBatch->SetRotation( m_deviceResources->GetRotation() );
+```cpp
+m_spritesBatch->SetRotation( m_deviceResources->GetRotation() );
 
-    Matrix perspectiveMatrix = Matrix::CreatePerspectiveFieldOfView(
-        fovAngleY, aspectRatio, nearDist, farDist );
-    m_projection = perspectiveMatrix * m_deviceResources->GetOrientationTransform3D();
+Matrix perspectiveMatrix = Matrix::CreatePerspectiveFieldOfView(
+    fovAngleY, aspectRatio, nearDist, farDist );
+m_projection = perspectiveMatrix * m_deviceResources->GetOrientationTransform3D();
+```
 
-    -or-
+-or-
 
-    XMMATRIX projection = XMMatrixPerspectiveFovLH(
-        fovAngleY, aspectRatio, nearDist, farDist );
-    XMMATRIX orient = XMLoadFloat4x4( &m_deviceResources->GetOrientationTransform3D() );
-    projection *= orient;
+```cpp
+XMMATRIX projection = XMMatrixPerspectiveFovLH(
+    fovAngleY, aspectRatio, nearDist, farDist );
+XMMATRIX orient = XMLoadFloat4x4( &m_deviceResources->GetOrientationTransform3D() );
+projection *= orient;
+```
 
 This platform also uses two additional methods:
 
@@ -294,7 +324,7 @@ Since the ``DeviceResources`` class is now in it's own file and no longer direct
 
 * If the SDK Debug Layer is not present on the target system when running ``Debug`` configurations, it will automatically fallback to creating the device without debugging.
 * The DR version always uses ``D3D11_CREATE_DEVICE_BGRA_SUPPORT`` which is required for Direct2D/DirectWrite interop if that's desired.
-* If no hardware device is available, the DR version will fall back to using [WARP](https://msdn.microsoft.com/en-us/library/windows/desktop/gg615082.aspx) in non-production builds as this is useful for debugging and validation.
+* If no hardware device is available, the DR version will fall back to using [WARP](https://docs.microsoft.com/en-us/windows/desktop/direct3darticles/directx-warp) in non-production builds as this is useful for debugging and validation.
 * In ``Debug`` configurations, additional diagnostic messages are output to the debug window.
 * Rather than always using the default Direct3D device, the DR version will filter out the _Microsoft Basic Render Driver_ adapter as this fallback software device is seldom acceptable performance for games.
 
@@ -312,19 +342,25 @@ When asked to add something to ``CreateResources``, add it to ``CreateWindowSize
 
 Anywhere you are asked to use ``m_d3dDevice.Get()``, use ``m_deviceResources->GetD3DDevice()`` instead:
 
-    auto device = m_deviceResources->GetD3DDevice();
-    m_states = std::make_unique<CommonStates>(device);
+```cpp
+auto device = m_deviceResources->GetD3DDevice();
+m_states = std::make_unique<CommonStates>(device);
+```
 
 Anywhere you are asked to use ``m_d3dContext.Get()``, use ``m_deviceResources->GetD3DDeviceContext()`` instead:
 
-    auto context = m_deviceResources->GetD3DDeviceContext();
-    m_spriteBatch = std::make_unique<SpriteBatch>(context);
+```cpp
+auto context = m_deviceResources->GetD3DDeviceContext();
+m_spriteBatch = std::make_unique<SpriteBatch>(context);
+```
 
 When asked to use ``backBufferWidth`` or ``backBufferHeight``, use ``m_deviceResources->GetOutputSize()`` instead:
 
-    auto size = m_deviceResources->GetOutputSize();
-    m_screenPos.x = size.right / 2.f;
-    m_screenPos.y = size.bottom / 2.f;
+```cpp
+auto size = m_deviceResources->GetOutputSize();
+m_screenPos.x = size.right / 2.f;
+m_screenPos.y = size.bottom / 2.f;
+```
 
 When asked to use ``backBufferCount``, use ``m_deviceResources->GetBackBufferCount()`` instead.
 

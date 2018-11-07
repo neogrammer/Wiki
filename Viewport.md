@@ -2,22 +2,26 @@ Viewport class modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Vi
 
 # Header
 
-    #include <SimpleMath.h>
+```cpp
+#include <SimpleMath.h>
+```
 
 # Initialization
 
-    using namespace DirectX::SimpleMath;
+```cpp
+using namespace DirectX::SimpleMath;
 
-    Viewport vp;                        // Creates the viewport [0,0,0,0,0,1]
-    Viewport vp(0,0,640,480);           // Creates the viewport [0,0,640,480,0,1]
-    Viewport vp(0,0,640,480,0.1f,0.9f); // Creates the viewport [0,0,640.480,0.1,0.9]
+Viewport vp;                        // Creates the viewport [0,0,0,0,0,1]
+Viewport vp(0,0,640,480);           // Creates the viewport [0,0,640,480,0,1]
+Viewport vp(0,0,640,480,0.1f,0.9f); // Creates the viewport [0,0,640.480,0.1,0.9]
 
-    RECT rct;
-    rct.top = 0;
-    rct.left = 0;
-    rct.right = 640;
-    rct.bottom = 480;
-    Viewport vp(rct); // Creates the viewport [0,0,640,480,0,1]
+RECT rct;
+rct.top = 0;
+rct.left = 0;
+rct.right = 640;
+rct.bottom = 480;
+Viewport vp(rct); // Creates the viewport [0,0,640,480,0,1]
+```
 
 # Fields
 * *x*: Upper left x position of the viewport
@@ -44,14 +48,27 @@ Viewport class modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Vi
 
 * **ComputeTitleSafeArea**: When displaying on televisions, edges of the screen can't always be seen by users. This function takes a backbuffer width and height in pixels and returns a [safe area](https://en.wikipedia.org/wiki/Safe_area_%28television%29) rectangle for the content to be displayed. This function uses the [SMPTE RP 2046-2](http://www.nab.org/xert/scitech/pdfs/tv031510.pdf) standard of 90% safe area intended for LCDs, rather than the older SMPTE RP 218 intended for CRTs that used 80% safe area which is what the original XNA Game Studio math function implemented.
 
-> Note that the XNA Game Studio equivalent of this function only returned the reduced safe area on Xbox, and returns the full rectangle otherwise on Windows phone and PC. Because the universal Windows app platform can share a single binary or set of binaries across many devices, it is up to the app to determine what device it is currently running under. Therefore, this function always returns the reduced safe area and it is up to the app to apply this in the correct circumstances.
+> Note that the XNA Game Studio equivalent of this function only returned the reduced safe area on Xbox, and returns the full rectangle otherwise on Windows phone and PC. Because the Universal Windows Platform app can share a single binary or set of binaries across many devices, it is up to the app to determine what device it is currently running under. Therefore, this function always returns the reduced safe area and it is up to the app to apply this in the correct circumstances.
 
-# Remarks
-The Viewport can be converted to and from a ``D3D11_VIEWPORT`` structure.
+# Remarks (DirectX 11)
+
+If you include the ``SimpleMath.h`` header after you include ``d3d11.h``, then the Viewport can be converted to and from a ``D3D11_VIEWPORT`` structure.
 
 To use with Direct3D 11, you typically need an address of the viewport as a ``const D3D11_VIEWPORT*`` which is provided by ``Get11``:
 
-    Viewport viewPort(0.0f, 0.0f, outputWidth, outputHeight);
+```cpp
+Viewport viewPort(0.0f, 0.0f, outputWidth, outputHeight);
 
-    context->RSSetViewports(1, viewPort.Get11());
+context->RSSetViewports(1, viewPort.Get11());
+```
 
+# Remarks (DirectX 12)
+If you include the ``SimpleMath.h`` header after you include ``d3d12.h``, then the Viewport can be converted to and from a ``D3D12_VIEWPORT`` structure.
+
+To use with Direct3D 12, you typically need an address of the viewport as a ``const D3D12_VIEWPORT*`` which is provided by ``Get12``:
+
+```cpp
+Viewport viewPort(0.0f, 0.0f, outputWidth, outputHeight);
+
+commandList->RSSetViewports(1, viewPort.Get12());
+```

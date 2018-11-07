@@ -3,13 +3,17 @@ This is a native Direct3D 11 implementation of the built-in AlphaTestEffect from
 See also [[Effects]]
 
 # Header
-    #include <Effects.h>
+```cpp
+#include <Effects.h>
+```
 
 # Initialization
 Construction requires a Direct3D 11 device.
 
-    std::unique_ptr<AlphaTestEffect> effect;
-    effect = std::make_unique<AlphaTestEffect>(device);
+```cpp
+std::unique_ptr<AlphaTestEffect> effect;
+effect = std::make_unique<AlphaTestEffect>(device);
+```
 
 For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
@@ -18,7 +22,7 @@ For exception safety, it is recommended you make use of the C++ [RAII](http://en
 AlphaTestEffect supports [[IEffect]], [[IEffectMatrices]], and [[IEffectFog]]
 
 # Input layout
-This effect requires ``SV_Position`` and ``TEXCOORD0``. It also requires ``COLOR`` if per-vertex colors are enabled, 
+This effect requires ``SV_Position`` and ``TEXCOORD0``. It also requires ``COLOR`` if per-vertex colors are enabled,
 
 # Properties
 
@@ -26,7 +30,7 @@ This effect requires ``SV_Position`` and ``TEXCOORD0``. It also requires ``COLOR
 
 * **SetTexture**: Associates a texture shader resource view with the effect. Can be set to nullptr to remove a reference.
 
-* **SetAlphaFunction**: Sets the alpha comparison function. See [D3D11_COMPARISON_FUNC](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476101.aspx). 
+* **SetAlphaFunction**: Sets the alpha comparison function. See [D3D11_COMPARISON_FUNC](https://docs.microsoft.com/en-us/windows/desktop/api/d3d11/ne-d3d11-d3d11_comparison_func).
 
 * **SetReferenceAlpha**: Sets the alpha reference value for the test.
 

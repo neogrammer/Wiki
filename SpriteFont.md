@@ -1,23 +1,27 @@
 This is a native Direct3D 11 implementation of a bitmap font renderer, similar to the SpriteFont type from XNA Game Studio 4 (``Microsoft.Xna.Framework.Graphics.SpriteFont``), plus a command line tool ([[MakeSpriteFont]]) for building fonts into bitmap format. It is less fully featured than Direct2D and DirectWrite, but may be useful for those who want something simpler and lighter weight.
 
-> Windows Phone 8.0 and Xbox One XDK do not support Direct2D/DirectWrite. UWP on the Xbox One device family does support it.
+> UWP on Xbox One supports Direct2D/DirectWrite, but Xbox One XDK does not.
 
 ![Sprite Font Example](https://github.com/Microsoft/DirectXTK/wiki/images/SpriteFontExample.png)
 
 **Related tutorial:** [[Drawing text]]
 
 # Header
-    #include <SpriteFont.h>
+```cpp
+#include <SpriteFont.h>
+```
 
 # Initialization
 
 The SpriteFont class requires a [[SpriteBatch]] instance and a ``.spritefont`` bitmap file.
 
-    std::unique_ptr<SpriteBatch> spriteBatch;
-    std::unique_ptr<SpriteFont> spriteFont;
+```cpp
+std::unique_ptr<SpriteBatch> spriteBatch;
+std::unique_ptr<SpriteFont> spriteFont;
 
-    spriteBatch = std::make_unique<SpriteBatch>(deviceContext);
-    spriteFont = std::make_unique<SpriteFont>(device, L"myfile.spritefont");
+spriteBatch = std::make_unique<SpriteBatch>(deviceContext);
+spriteFont = std::make_unique<SpriteFont>(device, L"myfile.spritefont");
+```
 
 For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
@@ -25,9 +29,11 @@ For exception safety, it is recommended you make use of the C++ [RAII](http://en
 
 # Simple drawing
 
-    spriteBatch->Begin();
-    spriteFont->DrawString(spriteBatch.get(), L"Hello, world!", XMFLOAT2(x, y));
-    spriteBatch->End();
+```cpp
+spriteBatch->Begin();
+spriteFont->DrawString(spriteBatch.get(), L"Hello, world!", XMFLOAT2(x, y));
+spriteBatch->End();
+```
 
 The **DrawString** method has several overloads with parameters controlling color, rotation, origin point, scaling, horizontal or vertical mirroring, and layer depth. These work the same way as the equivalent ``SpriteBatch::Draw`` parameters.
 
@@ -50,7 +56,7 @@ For example, ``XMVECTOR result = spriteFont->MeasureString( L"Measure" );`` woul
 
 ![MeasureString](https://github.com/Microsoft/DirectXTK/wiki/images/MeasureString.png)
 
-_Note: The string size is computed from the origin to the rightmost pixel rendered by any character glyph. This has the effect of ignoring 'trailing spaces'._
+> The string size is computed from the origin to the rightmost pixel rendered by any character glyph. This has the effect of ignoring 'trailing spaces'.
 
 * **MeasureDrawBounds** which returns a ``RECT`` bounding the string.
 
@@ -78,8 +84,6 @@ There is no special handling for the bell character (``\a`` - ASCII character 7)
 
 This implementation supports sparse fonts, so if you are localizing into languages such as Chinese, Japanese, or Korean, you can build a ``.spritefont`` including only the specific characters needed by your program. This is usually a good idea for CJK languages, as a complete CJK character set is too large to fit in a Direct3D texture! If you need full CJK support, DrectWrite would be a better choice if available on your target platform. SpriteFont does not support combining characters or right-to-left (RTL) layout, so it will not work for languages with complex layout requirements such as Arabic or Thai.
 
-> Note: This XNA Game Studio article [How to: Create a Localized Game](https://msdn.microsoft.com/en-us/library/ff966426.aspx) describes how to use the C# content pipeline to scan the game's strings and create a font from it. You have to use a different solution for DirectX Tool Kit but the idea is the same.
-
 # ASCII
 The default character region for [[MakeSpriteFont]] from 32 to 127 covers the standard 7-bit [ASCII](http://ascii-table.com/ascii.php) range. For example, here is a C++ Unicode string for the printable characters (this would be an ASCII string if you remove the L prefix).
 
@@ -90,15 +94,17 @@ The default character region for [[MakeSpriteFont]] from 32 to 127 covers the st
 
 If you are wanting to render an [extended ASCII](http://ascii-table.com/ascii-extended-pc-list.php) string with SpriteFont, you need to capture the full set of characters which are not contiguous in Unicode (see [[MakeSpriteFont]] for details). You then need to convert your 'extended ASCII' string to Unicode using [Code page 437](http://en.wikipedia.org/wiki/Code_page_437) before calling ``DrawString``.
 
-    char ascii[...];
-    wchar_t unicode[...];
-    if (!MultiByteToWideChar(437, MB_PRECOMPOSED,
-        ascii, length-of-ascii-string,
-        unicode, length-of-unicode-string))
-    {
-        // Error
-    }
-    spriteFont->DrawString(spriteBatch.get(), unicode, ...)
+```cpp
+char ascii[...];
+wchar_t unicode[...];
+if (!MultiByteToWideChar(437, MB_PRECOMPOSED,
+    ascii, length-of-ascii-string,
+    unicode, length-of-unicode-string))
+{
+    // Error
+}
+spriteFont->DrawString(spriteBatch.get(), unicode, ...)
+```
 
 For example, here is a C++ Unicode string with the full extended ASCII IBM PC character set from 128 to 255:
 
@@ -113,7 +119,7 @@ For example, here is a C++ Unicode string with the full extended ASCII IBM PC ch
     00B5\x03C4\x03A6\x0398\x03A9\x03B4\x221E\x03C6\x03B5\x2229\x2261\x00B1\x2265\x22
     64\x2320\x2321\x00F7\x2248\x00B0\x2219\x00B7\x221A\x207F\x00B2\x25A0\x00A0"
 
-_The Xbox One exclusive apps version of MultiByteToWideChar does not support code page 437._
+> The Xbox One exclusive apps version of ``MultiByteToWideChar`` does not support code page 437. Generally you should avoid using specific codepages and prefer the use of ``CP_UTF8`` for better portability.
 
 # Applications
 
@@ -123,7 +129,7 @@ Code for rendering text mixed with the Xbox controller button spritefont, see [[
 
 # Feature Level Notes
 
-The Sprite Font implementation is compatible with all feature levels. The primary limitation is on the size of the sprite sheet texture which should fit into the limits for [known feature levels](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476876.aspx) (i.e. to support all feature levels, it should be no larger than 2048 x 2048; if you target feature level 9.3 or later you can use 4096 x 4096, etc.).
+The Sprite Font implementation is compatible with all feature levels. The primary limitation is on the size of the sprite sheet texture which should fit into the limits for [known feature levels](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/overviews-direct3d-11-devices-downlevel-intro) (i.e. to support all feature levels, it should be no larger than 2048 x 2048; if you target feature level 9.3 or later you can use 4096 x 4096, etc.).
 
 > You are of course free to use a larger texture as long as you set your application's minimum supported feature level as appropriate. [[MakeSpriteFont]] will emit warnings if your captured font texture exceeds the various feature level size thresholds.
 

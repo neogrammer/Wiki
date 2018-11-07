@@ -1,10 +1,10 @@
 The _DirectXTK for Audio_ components implement a low-level audio API similar to the XNA Game Studio 4 (``Microsoft.Xna.Framework.Audio``) design. This consists of the following classes all declared in the ``Audio.h`` header (in the _Inc_ folder of the distribution):
 
-* [[AudioEngine]] - This class represents an XAudio2 audio graph, device, and mastering voice. 
-* [[SoundEffect]] - A container class for sound resources which can be loaded from ``.wav`` files. 
-* [[SoundEffectInstance]] - Provides a single playing, paused, or stopped instance of a sound 
-* [[DynamicSoundEffectInstance]] - SoundEffectInstance where the application provides the audio data on demand 
-* [[WaveBank]] - A container class for sound resources packaged into an XACT-style ``.xwb`` wave bank. 
+* [[AudioEngine]] - This class represents an XAudio2 audio graph, device, and mastering voice.
+* [[SoundEffect]] - A container class for sound resources which can be loaded from ``.wav`` files.
+* [[SoundEffectInstance]] - Provides a single playing, paused, or stopped instance of a sound
+* [[DynamicSoundEffectInstance]] - SoundEffectInstance where the application provides the audio data on demand
+* [[WaveBank]] - A container class for sound resources packaged into an XACT-style ``.xwb`` wave bank.
 * [[AudioListener]],  [[AudioEmitter]] - Utility classes used with ``SoundEffectInstance::Apply3D``.
 
 _Note: DirectXTK for Audio uses XAudio 2. It does not make use of the legacy XACT Engine, XACT Cue, or XACT SoundBank._
@@ -13,90 +13,102 @@ _Note: DirectXTK for Audio uses XAudio 2. It does not make use of the legacy XAC
 
 # Header
 
-    #include <Audio.h>
+```cpp
+#include <Audio.h>
+```    
 
 # Initialization
 The first step in using DirectXTK for Audio is to create the AudioEngine, which creates an XAudio2 interface, an XAudio2 mastering voice, and other global resources.
 
-    // This is only needed in Windows desktop apps
-    CoInitializeEx( nullptr, COINIT_MULTITHREADED );
+```cpp
+// This is only needed in Windows desktop apps
+CoInitializeEx( nullptr, COINIT_MULTITHREADED );
 
-    ...
+...
 
-    std::unique_ptr<AudioEngine> audEngine;
+std::unique_ptr<AudioEngine> audEngine;
 
-    ...
-    AUDIO_ENGINE_FLAGS eflags = AudioEngine_Default;
-    #ifdef _DEBUG
-    eflags = eflags | AudioEngine_Debug;
-    #endif
-    audEngine = std::make_unique<AudioEngine>( eflags );
+...
+AUDIO_ENGINE_FLAGS eflags = AudioEngine_Default;
+#ifdef _DEBUG
+eflags = eflags | AudioEngine_Debug;
+#endif
+audEngine = std::make_unique<AudioEngine>( eflags );
+```
 
 # Per-frame processing
 The application should call ``Update`` every frame to allow for per-frame engine updates, such as one-shot voice management. This could also be done in a worker thread rather than on the main rendering thread.
 
-    if ( !audEngine->Update() )
+```cpp
+if ( !audEngine->Update() )
+{
+    // No audio device is active
+    if ( audEngine->IsCriticalError() )
     {
-        // No audio device is active
-        if ( audEngine->IsCriticalError() )
-        {
-            ...
-        }    
-    }
+        ...
+    }    
+}
+```
 
 ``Update`` returns false if no audio is actually playing (either due to there being no audio device on the system at the time AudioEngine was created, or because XAudio2 encountered a Critical Error--typically due to speakers being unplugged). Calls to various DirectXTK for Audio methods can still be made in this state but no actual audio processing will take place. See [[AudioEngine]] for more information.
 
 # Loading and a playing a looping sound
 Creating SoundEffectInstances allows full control over the playback, and are provided with a  dedicated XAudio2 source voice. This allows control of playback, looping, volume control, panning,  and pitch-shifting.
 
-    std::unique_ptr<SoundEffect> soundEffect;
-    soundEffect = std::make_unique<SoundEffect>( audEngine.get(), L"Sound.wav" );
-    auto effect = soundEffect->CreateInstance();
+```cpp
+std::unique_ptr<SoundEffect> soundEffect;
+soundEffect = std::make_unique<SoundEffect>( audEngine.get(), L"Sound.wav" );
+auto effect = soundEffect->CreateInstance();
 
-    ...
+...
 
-    effect->Play( true );
+effect->Play( true );
+```
 
 # Playing one-shots
 A common way to play sounds is to trigger them in a 'fire-and-forget' mode. This is done by calling ``SoundEffect::Play`` rather than creating a SoundEffectInstance. These use XAudio2 source voices managed by AudioEngine, are cleaned up automatically when they finish playing, and can overlap in time. One-shot sounds cannot be looped or have positional 3D effects.
 
-    soundEffect = std::make_unique<SoundEffect>( audEngine.get(), L"Explosion.wav" );
-    soundEffect->Play();
+```cpp
+soundEffect = std::make_unique<SoundEffect>( audEngine.get(), L"Explosion.wav" );
+soundEffect->Play();
 
-    ...
+...
 
-    soundEffect->Play();
+soundEffect->Play();
+```
 
 # Applying 3D audio effects to a sound
 DirectXTK for Audio supports positional 3D audio with optional environmental reverb effects using X3DAudio.
 
-    AUDIO_ENGINE_FLAGS eflags =  AudioEngine_EnvironmentalReverb
-                | AudioEngine_ReverbUseFilters;
-    #ifdef _DEBUG
-    eflags = eflags | AudioEngine_Debug;
-    #endif
-    audEngine = std::make_unique<AudioEngine>( eflags );
-    audEngine->SetReverb( Reverb_ConcertHall );
+```cpp
+AUDIO_ENGINE_FLAGS eflags =  AudioEngine_EnvironmentalReverb
+            | AudioEngine_ReverbUseFilters;
+#ifdef _DEBUG
+eflags = eflags | AudioEngine_Debug;
+#endif
+audEngine = std::make_unique<AudioEngine>( eflags );
+audEngine->SetReverb( Reverb_ConcertHall );
 
-    ...
+...
 
-    soundEffect = std::make_unique<SoundEffect>( audEngine.get(), L"Sound.wav" );
-    auto effect = soundEffect->CreateInstance( SoundEffectInstance_Use3D
-        | SoundEffectInstance_ReverbUseFilters );
+soundEffect = std::make_unique<SoundEffect>( audEngine.get(), L"Sound.wav" );
+auto effect = soundEffect->CreateInstance( SoundEffectInstance_Use3D
+    | SoundEffectInstance_ReverbUseFilters );
 
-    ...
+...
 
-    effect->Play(true);
+effect->Play(true);
 
-    ...
+...
 
-    AudioListener listener;
-    listener.SetPosition( ... );
+AudioListener listener;
+listener.SetPosition( ... );
 
-    AudioEmitter emitter;
-    emitter.SetPosition( ... );
+AudioEmitter emitter;
+emitter.SetPosition( ... );
 
-    effect->Apply3D( listener, emitter );
+effect->Apply3D( listener, emitter );
+```
 
 **Note:** A C++ exception is thrown if you call Apply3D for a SoundEffectInstance that was not created with SoundEffectInstance_Use3D
 
@@ -105,23 +117,29 @@ DirectXTK for Audio supports positional 3D audio with optional environmental rev
 # Using wave banks
 Rather than loading individual ``.wav`` files, a more efficient method is to package them into a  "wave bank". This allows for more efficient loading and memory organization. DirectXTK for Audio's WaveBank class can be used to play one-shots or to create SoundEffectInstances from 'in-memory' wave banks.
 
-    std::unique_ptr<WaveBank> wb;
-    wb = std::make_unique<WaveBank>( audEngine.get(), L"wavebank.xwb" ) );
+```cpp
+std::unique_ptr<WaveBank> wb;
+wb = std::make_unique<WaveBank>( audEngine.get(), L"wavebank.xwb" ) );
+```
 
 A SoundEffectInstance can be created from a wavebank referencing a particular wave in the bank:
 
-    auto effect = wb->CreateInstance( 10 );
-    if ( !effect )
-        // Error (invalid index for wave bank)
+```cpp
+auto effect = wb->CreateInstance( 10 );
+if ( !effect )
+    // Error (invalid index for wave bank)
 
-    ...
+...
 
-    effect->Play( true );
+effect->Play( true );
+```
 
 One-shot sounds can also be played directly from the wave bank.
 
-    wb->Play( 2 );
-    wb->Play( 6 );
+```cpp
+wb->Play( 2 );
+wb->Play( 6 );
+```
 
 XACT3-style "wave banks" can be created by using the [[XWBTool]] command-line tool, or they can be authored using XACT3 in the DirectX SDK. Note that the XWBTool will not perform any format conversions or compression, so more full-featured options are better handled with the XACT3 GUI or XACTBLD, or it can be used on ``.wav`` files already compressed by ``adpcmencode.exe``, ``xwmaencode.exe``, ``xma2encode.exe``, etc.
 
@@ -136,12 +154,12 @@ See [[AudioEngine]] for more information.
 
 # Platform support
 Windows 8.x, Windows 10, Windows phone 8.x, and Xbox One all include XAudio 2.8 or later. Therefore, the standard ``DirectXTK.lib`` includes _DirectXTK for Audio_ for all these platforms:
-* _DirectXTK_Windows10_
-* _DirectXTK_Windows81_
-* _DirectXTK_WindowsPhone81_
-* _DirectXTK_XAMLSilverlight_WindowsPhone81_ 
-* _DirectXTK_XboxOneXDK_2015_ 
-* _DirectXTK_Desktop_2015_Win10_
+* *DirectXTK_Desktop_2015_Win10*
+* *DirectXTK_Desktop_2017_Win10*
+* *DirectXTK_Windows10*
+* *DirectXTK_Windows10_2015*
+* *DirectXTK_XboxOneXDK_2015*
+* *DirectXTK_XboxOneXDK_2017*
 
 For Windows desktop applications targeting Windows 8.x or later, you can make use of XAudio 2.8. The ``DirectXTKAudioWin8.lib`` contains the XAudio 2.8 version of DirectXTK for Audio, while ``DirectXTK.lib`` for Windows desktop contains only the math/graphics components. To support Windows desktop applications on Windows 7 and Windows Vista, we must make use XAudio 2.7, the legacy DirectX SDK, and the legacy DirectX End-User Runtime Redistribution packages (aka DirectSetup). The ``DirectXTKAudioDX.lib`` is the XAudio 2.7 version of DirectXTK for Audio.
 
@@ -149,18 +167,18 @@ For Windows desktop applications targeting Windows 8.x or later, you can make us
 DirectXTK_Desktop_2015 and DirectXTK_Desktop_2013 do not include _DirectXTK for Audio_. To add _DirectXTK for Audio_ support for a Win32 desktop application, you must also add one of the following projects from the ``Audio`` folder of the distribution to your solution and **Add a Reference** to it (see [[DirectXTK]] for more details).
 
 When targeting Windows 8.x or later:
-* _DirectXTKAudio_Desktop_2013_Win8_ - DirectXTK for Audio using VS 2013 and XAudio 2.8
-* _DirectXTKAudio_Desktop_2015_Win8_ - DirectXTK for Audio using VS 2015 and XAudio 2.8
+* *DirectXTKAudio_Desktop_2015_Win8* - DirectXTK for Audio using VS 2015 and XAudio 2.8
+* *DirectXTKAudio_Desktop_2017_Win8* - DirectXTK for Audio using VS 2017 and XAudio 2.8
 
 When targeting Windows Vista or Windows 7:
-* _DirectXTKAudio_Desktop_2013_DXSDK_ - DirectXTK for Audio project for VS 2013 + Windows 8.1 SDK + legacy DirectXTK using XAudio 2.7
-* _DirectXTKAudio_Desktop_2015_DXSDK_ - DirectXTK for Audio project for VS 2015 + Windows 8.1 SDK + legacy DirectXTK using XAudio 2.7
+* *DirectXTKAudio_Desktop_2015_DXSDK* - DirectXTK for Audio project for VS 2015 + Windows 8.1 SDK + legacy DirectXTK using XAudio 2.7
+* *DirectXTKAudio_Desktop_2017_DXSDK* - DirectXTK for Audio project for VS 2017 + Windows 8.1 SDK + legacy DirectXTK using XAudio 2.7
 
-[XAudio2 Versions](http://msdn.microsoft.com/en-us/library/windows/desktop/ee415802.aspx)
+[XAudio2 Versions](https://docs.microsoft.com/en-us/windows/desktop/xaudio2/xaudio2-versions)
 
 [KB2728613](http://support.microsoft.com/kb/2728613)
 
-[Where is the DirectX SDK?](http://msdn.microsoft.com/en-us/library/windows/desktop/ee663275.aspx)
+[Where is the DirectX SDK?](https://docs.microsoft.com/en-us/windows/desktop/directx-sdk--august-2009-)
 
 DirectXTK makes use of the latest Direct3D 11.1 headers available in the Windows 8.x SDK, and there are a number of file conflicts between the Windows 8.x SDK and the legacy DirectX SDK. Therefore, when building for down-level support with XAudio 2.7, ``Audio.h`` explicitly includes the DirectX SDK version of XAudio2 headers with a full path name. These reflect the default install locations, and if you have installed it elsewhere you will need to update this header. The ``*_DXSDK.vcxproj`` files use the ``DXSDK_DIR`` environment variable, so only the ``Audio.h`` references need updating for an alternative location.
 
@@ -172,16 +190,16 @@ DirectXTK makes use of the latest Direct3D 11.1 headers available in the Windows
     #pragma warning( disable : 4005 )
     #include <C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\x3daudio.h>
 
-> The NuGet packages [directxtk_desktop_2015](https://www.nuget.org/packages/directxtk_desktop_2015/) and [directxtk_desktop_2013](https://www.nuget.org/packages/directxtk_desktop_2013/) are designed for Windows 7 compatibility, so any use of _DirectX Tool Kit for Audio_ uses XAudio 2.7 from the legacy DirectX SDK.
+> The NuGet package [directxtk_desktop_2015](https://www.nuget.org/packages/directxtk_desktop_2015/) is designed for Windows 7 compatibility for the main library, but any use of _DirectX Tool Kit for Audio_ uses XAudio 2.8. See [this blog post](https://blogs.msdn.microsoft.com/chuckw/2018/04/30/github-nuget-and-vso/) for details.
 
 > When using the legacy DirectX SDK you need to set up VC++ Directories paths in your project (particularly your EXE/DLL). For the Windows 8.1 SDK or Windows 10 SDK, you need to set up those paths in _reverse_ order from previous include orders. You really only need a small portion of the legacy DirectX SDK for XAudio 2.7, and want to be using the Windows 8.1 SDK / Windows 10 SDK for everything else. For more details see [The Zombie DirectX SDK](https://blogs.msdn.microsoft.com/chuckw/2015/03/23/the-zombie-directx-sdk/).
 
 # Content Pipeline
-**Note:** When adding ``.xwb`` files to your Windows Store app or Windows phone app project, you need to manually set the file properties to "Content: Yes" for all configurations to have these files included in your AppX package. ``.wav`` files are automatically detected as a media file and are included as content by default.
+**Note:** When adding ``.xwb`` files to your Universal Windows Platform app or Xbox One XDK project, you need to manually set the file properties to "Content: Yes" for all configurations to have these files included in your AppX package. ``.wav`` files are automatically detected as a media file and are included as content by default.
 
 # Threading model
 The DirectXTK for Audio methods assume it is always called from a single thread. This is generally either the main thread or a worker thread dedicated to audio processing.  The XAudio2 engine itself makes use of lock-free mechanism to make it 'thread-safe'.
-    
+
 Note that ``IVoiceNotify::OnBufferEnd`` is called from XAudio2's thread, so the callback must be very fast and use thread-safe operations.
 
 # Further reading

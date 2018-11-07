@@ -1,19 +1,23 @@
 Ray class modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Ray``) math library.
 
 # Header
-
-    #include <SimpleMath.h>
+```cpp
+#include <SimpleMath.h>
+```
 
 # Initialization
 
-    using namespace DirectX::SimpleMath;
+```cpp
+using namespace DirectX::SimpleMath;
 
-    Ray r;                                // Create a ray starting at the origin
-                                          // pointing in positive Z
-    Ray( Vector3(1,2,3), Vector3(0,1,0 ); // Creates a ray at 1,2,3
-                                          // pointing in positive Y
+Ray r;                                // Create a ray starting at the origin
+                                      // pointing in positive Z
+Ray( Vector3(1,2,3), Vector3(0,1,0 ); // Creates a ray at 1,2,3
+                                      // pointing in positive Y
+```
 
 # Fields
+
 * *position*: Position of the ray
 * *direction*: Direction vector of the ray
 
@@ -23,4 +27,4 @@ Ray class modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Ray``) 
 
 # Further reading
 
-[Ray](https://en.wikipedia.org/wiki/Line_(geometry)#Ray)  
+[Ray](https://en.wikipedia.org/wiki/Line_%28geometry%29#Ray)  

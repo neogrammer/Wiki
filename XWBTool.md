@@ -64,16 +64,16 @@ The XACT3 GUI and/or the XACTBLD command-line tool in the legacy DirectX SDK (Di
 
 [KB2728613](https://support.microsoft.com/en-us/kb/2728613)
 
-[Where is the DirectX SDK?](http://msdn.microsoft.com/en-us/library/windows/desktop/ee663275.aspx)
+[Where is the DirectX SDK?](https://docs.microsoft.com/en-us/windows/desktop/directx-sdk--august-2009-)
 
 **Compact wave banks**: The legacy XACT3 ENGINE only supports 'streaming' compact wave banks not 'in-memory' compact wave banks. The XACT3 GUI / XACTBLD toolset will therefore only create 'standard' in-memory wave banks. There is also a known bug in the DirectX SDK (June 2010) version of the XACT3 GUI / XACTBLD toolsets that will not attempt to create a compact wave bank if the wave data size exceeds 2,097,151 (~2 MB).
 
 # Content support
 XACT-style wave banks support 8-bit and 16-bit PCM (i.e. not 32-bit IEEE float PCM), ADPCM, xWMA, and XMA2 content.
 
-To compress to ADPCM (a variant of MS-ADPCM) .wav files, use ``adpcmencode.exe`` from the Windows 8.x SDK, Xbox One ADK, Xbox One XDK, or legacy DirectX SDK.
+To compress to ADPCM (a variant of MS-ADPCM) .wav files, use ``adpcmencode.exe`` from the Windows SDK, Xbox One XDK, or legacy DirectX SDK.
 
-To compress to xWMA .wav files, use ``xwmaencode.exe`` from the Xbox One ADK, Xbox One XDK, or legacy DirectX SDK.
+To compress to xWMA .wav files, use ``xwmaencode.exe`` from the Xbox Xbox One XDK or legacy DirectX SDK.
 
 To compress to XMA2 .wav files, use ``xma2encode.exe`` from the Xbox One XDK.
 

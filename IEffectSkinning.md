@@ -5,45 +5,51 @@ Effects that implement this interface typically require ``BLENDINDICES`` and ``B
 # Obtaining the interface
 There are two methods used in _DirectX Tool Kit_. For simple cases, just maintain a reference directly to the desired effect class:
 
-    std::shared_ptr<SkinnedEffect> effect;
+```cpp
+std::shared_ptr<SkinnedEffect> effect;
 
-    ...
+...
 
-    effect->SetBoneTransforms( bones.get(), boneCount );
+effect->SetBoneTransforms( bones.get(), boneCount );
+```
 
 For more general cases where a number of effect classes can be in use (such as [[Model]] which uses a mix of _BasicEffect_, _DualTextureEffect_, _SkinnedEffect_, and/or _DGSLEffect_), use [Run-Time Type Information](https://en.wikipedia.org/wiki/Run-time_type_information) (RTTI) to obtain the interface.
 
-    std::shared_ptr<IEffect> effect;
+```cpp
+std::shared_ptr<IEffect> effect;
 
-    ...
+...
 
-    auto iskin = dynamic_cast<IEffectSkinning*>( effect.get() );
-    if ( iskin )
-    {
-        iskin->SetBoneTransforms( bones.get(), boneCount );
-    }
+auto iskin = dynamic_cast<IEffectSkinning*>( effect.get() );
+if ( iskin )
+{
+    iskin->SetBoneTransforms( bones.get(), boneCount );
+}
+```
 
 # Skinning
 The skinning interface is primarily used to set the per-bone transformation matrices for rendering. This is accomplished through the **SetBoneTransforms** method.  Because the method takes a pointer to ``XMMATRIX``, the memory buffer must be 16-byte aligned. While this is the default of ``new`` and ``malloc`` on 64-bit platforms, this is not true by default for 32-bit platforms. Use of ``_aligned_malloc`` is recommended.
 
-    struct aligned_deleter { void operator()(void* p) { _aligned_free(p); } };
+```cpp
+struct aligned_deleter { void operator()(void* p) { _aligned_free(p); } };
 
-    std::unique_ptr<XMMATRIX[], aligned_deleter> bones(
-            reinterpret_cast<XMMATRIX*>( _aligned_malloc(
-                sizeof(XMMATRIX) * boneCount, 16 ) ) );
+std::unique_ptr<XMMATRIX[], aligned_deleter> bones(
+        reinterpret_cast<XMMATRIX*>( _aligned_malloc(
+            sizeof(XMMATRIX) * boneCount, 16 ) ) );
 
-    ...
+...
 
-    // Simple time-based uniform scaling
-    float s = 1 + sin(time * 1.7f) * 0.5f;
-    XMMATRIX scale = XMMatrixScaling(s,s,s);
+// Simple time-based uniform scaling
+float s = 1 + sin(time * 1.7f) * 0.5f;
+XMMATRIX scale = XMMatrixScaling(s,s,s);
 
-    for (size_t j=0; j < boneCount; ++j )
-    {
-        bones[ j ] = scale;
-    }
+for (size_t j=0; j < boneCount; ++j )
+{
+    bones[ j ] = scale;
+}
 
-    effect->SetBoneTransforms(bones.get(), boneCount);
+effect->SetBoneTransforms(bones.get(), boneCount);
+```
 
 Note that the maximum bone count must be <= _MaxBones_ (72).
 
@@ -63,4 +69,3 @@ This built-in effect can be created with or without support for skinned animatio
 See [Built-in effects, permutations, and performance](http://blogs.msdn.com/b/shawnhar/archive/2010/04/30/built-in-effects-permutations-and-performance.aspx) for performance costs of the various shader permutations.
 
 *Note*: As an optimization, _SkinnedEffect_ and _DGSLEffect_ assume that all the matrices are affine transformations, and that the final column is (0 0 0 1). This means that the value of the last column is effectively ignored when set into the constant buffer containing the bone transformations (i.e. the shaders use ``float4x3``)
-

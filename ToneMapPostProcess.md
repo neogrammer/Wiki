@@ -3,14 +3,17 @@ These built-in post-processing shaders are designed to perform tone-mapping of H
 See also [[PostProcess]]
 
 # Header
-
-    #include "PostProcess.h"
+```cpp
+#include "PostProcess.h"
+```
 
 # Initialization
 Construction requires a Direct3D 11 device.
 
-    std::unique_ptr<ToneMapPostProcess> toneMap;
-    toneMap = std::make_unique<ToneMapPostProcess>(device);
+```cpp
+std::unique_ptr<ToneMapPostProcess> toneMap;
+toneMap = std::make_unique<ToneMapPostProcess>(device);
+```
 
 For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 

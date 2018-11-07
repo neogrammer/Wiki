@@ -3,14 +3,18 @@ This effect provides a way to visualize normals, tangents, and binormals/bitange
 See also [[Effects]]
 
 # Header
-    #include <Effects.h>
+```cpp
+#include <Effects.h>
+```
 
 # Initialization
 Construction requires a Direct3D 11 device.
 
-    std::unique_ptr<Debugffect> effect;
+```cpp
+std::unique_ptr<Debugffect> effect;
 
-    effect = std::make_unique<DebugEffect>(device);
+effect = std::make_unique<DebugEffect>(device);
+```
 
 For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
@@ -51,7 +55,7 @@ This effect requires ``SV_Position``, ``NORMAL``, and ``TEXCOORD0``. If per-vert
 
 This effect uses Shader Model 4.0 so requires Direct3D hardware feature level 10.0 or greater. For this reason, the Windows Phone 8.1 projects do not include the source for the debug effect implementation as Windows Phone 8.1 hardware only supports Feature level 9.3.
 
-[Direct3D feature levels](http://msdn.microsoft.com/en-us/library/windows/desktop/ff476876.aspx)
+[Direct3D feature levels](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/overviews-direct3d-11-devices-downlevel-intro)
 
 # Further reading
 

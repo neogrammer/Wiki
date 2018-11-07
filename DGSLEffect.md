@@ -3,13 +3,17 @@ DGSLEffect is a _DirectX Tool Kit_ implementation of the Visual Studio Shader De
 See also [[Effects]], [[DGSLEffectFactory|EffectFactory]]
 
 # Header
-    #include <Effects.h>
+```cpp
+#include <Effects.h>
+```
 
 # Initialization
 Construction requires a Direct3D 11 device and a _pixelShader_ instance.
 
-    std::unique_ptr<DGSLEffect> effect;
-    effect = std::make_unique<DGSLEffect>(device, pixelShader);
+```cpp
+std::unique_ptr<DGSLEffect> effect;
+effect = std::make_unique<DGSLEffect>(device, pixelShader);
+```
 
 If the _pixelShader_ instance is null, it uses one of the three built-in default materials: _Unlit_, _Lambert_, and _Phong_. This class assumes the pixel shader provided is signature compatible with the built-in DGSL vertex shader, and will work for the feature level of the device.
 

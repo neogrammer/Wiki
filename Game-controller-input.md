@@ -8,28 +8,38 @@ First create a new project using the instructions from the first two lessons: [[
 
 In the **Game.h** file, add the following variable to the bottom of the Game class's private declarations:
 
-    std::unique_ptr<DirectX::GamePad> m_gamePad;
+```cpp
+std::unique_ptr<DirectX::GamePad> m_gamePad;
+```
 
 In **Game.cpp**, add to the end of **Initialize**:
 
-    m_gamePad = std::make_unique<GamePad>();
+```cpp
+m_gamePad = std::make_unique<GamePad>();
+```
 
 In **Game.cpp**, add to the TODO of **OnSuspending** and **OnDeactivated**:
 
-    m_gamePad->Suspend();
+```cpp
+m_gamePad->Suspend();
+```
 
 In **Game.cpp**, add to the TODO of **OnResuming** and **OnActivated**:
 
-    m_gamePad->Resume();
+```cpp
+m_gamePad->Resume();
+```
 
 In **Game.cpp**, add to the TODO of **Update**:
 
-    auto state = m_gamePad->GetState(0);
+```cpp
+auto state = m_gamePad->GetState(0);
 
-    if (state.IsConnected())
-    {
-        // TODO: Read controller 0 here
-    }
+if (state.IsConnected())
+{
+    // TODO: Read controller 0 here
+}
+```
 
 Build and run. The application does not display anything or respond to input, but if a Xbox 360 Common Controller or Xbox One controller is plugged into the PC, then it will be detected.
 
@@ -39,15 +49,17 @@ Here we wire up the _View_ button (know as the _Back_ button on Xbox 360 Control
 
 In **Game.cpp**, modify the TODO section of *Update*:
 
-    auto state = m_gamePad->GetState(0);
+```cpp
+auto state = m_gamePad->GetState(0);
 
-    if (state.IsConnected())
+if (state.IsConnected())
+{
+    if (state.IsViewPressed())
     {
-        if (state.IsViewPressed())
-        {
-            PostQuitMessage(0); // Win32 desktop API for exiting the application
-        }
+        ExitGame();
     }
+}
+```
 
 Build and run. The application exits when you press _View_ / _Back_.
 
@@ -55,23 +67,24 @@ Build and run. The application exits when you press _View_ / _Back_.
 
 In **Game.cpp**, modify the TODO section of **Update**:
 
-    auto state = m_gamePad->GetState(0);
+```cpp
+auto state = m_gamePad->GetState(0);
 
-    if (state.IsConnected())
+if (state.IsConnected())
+{
+    if (state.IsViewPressed())
     {
-        if (state.IsViewPressed())
-        {
-            PostQuitMessage(0);
-        }
-        else
-        {
-            float left = (state.IsAPressed()) ? 1.f : 0;
-            float right = (state.IsBPressed()) ? 1.f : 0;
-
-            m_gamePad->SetVibration(0, left, right);
-        }
+        ExitGame();
     }
+    else
+    {
+        float left = (state.IsAPressed()) ? 1.f : 0;
+        float right = (state.IsBPressed()) ? 1.f : 0;
 
+        m_gamePad->SetVibration(0, left, right);
+    }
+}
+```
 
 Build and run. If you press and hold A or B, you get vibration motors of the controller to activate.
 
@@ -81,16 +94,19 @@ In this version, we tie the left and right triggers to the vibration which provi
 
 In **Game.cpp**, modify the TODO section of **Update**:
 
-    if (state.IsConnected())
+```cpp
+if (state.IsConnected())
+{
+    if (state.IsViewPressed())
     {
-        if (state.IsViewPressed())
-        {
-            PostQuitMessage(0);
-        }
-        else
-        {
-            m_gamePad->SetVibration( 0, state.triggers.left, state.triggers.right );
-        }
+        ExitGame();
+    }
+    else
+    {
+        m_gamePad->SetVibration( 0, state.triggers.left, state.triggers.right );
+    }
+}
+```
 
 Build and run. Slowly depress the left and right triggers to feel the vibration motor change intensity.
 
@@ -100,30 +116,36 @@ Because we are checking the button states each frame, you need to track the butt
 
 In the **Game.h** file, add the following variable to the bottom of the Game class's private declarations:
 
-    DirectX::GamePad::ButtonStateTracker m_buttons;
+```cpp
+DirectX::GamePad::ButtonStateTracker m_buttons;
+```
 
 In **Game.cpp**, add to the TODO of **OnResuming** and **OnActivated**:
 
-    m_buttons.Reset();
+```cpp
+m_buttons.Reset();
+```
 
-In **Game.cpp*, modify the TODO section of *Update*:
+In **Game.cpp**, modify the TODO section of *Update*:
 
-    if (state.IsConnected())
+```cpp
+if (state.IsConnected())
+{
+    if (state.IsViewPressed())
     {
-        if (state.IsViewPressed())
-        {
-            PostQuitMessage(0);
-        }
-        m_buttons.Update(state);
-        if (m_buttons.a == GamePad::ButtonStateTracker::PRESSED)
-        {
-            // A was up last frame, it just went down this frame
-        }
-        if (m_buttons.b == GamePad::ButtonStateTracker::RELEASED)
-        {
-            // B was down last frame, it just went up this frame
-        }
+        ExitGame();
     }
+    m_buttons.Update(state);
+    if (m_buttons.a == GamePad::ButtonStateTracker::PRESSED)
+    {
+        // A was up last frame, it just went down this frame
+    }
+    if (m_buttons.b == GamePad::ButtonStateTracker::RELEASED)
+    {
+        // B was down last frame, it just went up this frame
+    }
+}
+```
 
 **Next lessons:** [[Mouse and keyboard input]]
 
@@ -132,4 +154,3 @@ In **Game.cpp*, modify the TODO section of *Update*:
 DirectX Tool Kit docs [[GamePad]]  
 [DirectX Tool Kit: Now with GamePads](http://blogs.msdn.com/b/chuckw/archive/2014/09/05/directx-tool-kit-now-with-gamepads.aspx)  
 [XInput and Windows 8](http://blogs.msdn.com/b/chuckw/archive/2012/04/26/xinput-and-windows-8-consumer-preview.aspx)
-

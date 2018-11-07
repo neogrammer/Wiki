@@ -1,19 +1,22 @@
 Three component vector class modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Vector3``) math library.
 
 # Header
-
-    #include <SimpleMath.h>
+```cpp
+#include <SimpleMath.h>
+```
 
 # Initialization
 
-    using namespace DirectX::SimpleMath;
+```cpp
+using namespace DirectX::SimpleMath;
 
-    Vector3 v;          // Creates a vector [0, 0, 0]
-    Vector3 v(10);      // Creates a vector [10, 10, 10]
-    Vector3 v(1, 2, 3); // Creates a vector [1, 2, 3]
+Vector3 v;          // Creates a vector [0, 0, 0]
+Vector3 v(10);      // Creates a vector [10, 10, 10]
+Vector3 v(1, 2, 3); // Creates a vector [1, 2, 3]
 
-    float arr[3] = { 1, 2, 3 };
-    Vector3 v(arr);     // Creates a vector [1, 2, 3]
+float arr[3] = { 1, 2, 3 };
+Vector3 v(arr);     // Creates a vector [1, 2, 3]
+```
 
 # Fields
 * *x* component of vector
@@ -68,7 +71,8 @@ Three component vector class modeled after the XNA Game Studio 4 (``Microsoft.Xn
 # Remark
 Vector3 can freely convert to and from a ``XMFLOAT3`` and ``XMVECTOR`` (the w component is lost).
 
-When assigning a color from ``DirectXColors.h`` to a Vector3, use the ``.v`` union element
+When assigning an RGB color from ``DirectXColors.h`` to a Vector3, use the ``.v`` union element
 
-    Vector3 color = Colors::White.v;
-
+```cpp
+Vector3 color = Colors::White.v;
+```

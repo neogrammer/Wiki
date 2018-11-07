@@ -4,39 +4,41 @@ Public headers are in the **Inc** folder of the distribution package.
 # Namespace
 All the functions in the library are in the **DirectX** C++ namespace.
 
-    using namespace DirectX;
+```cpp
+using namespace DirectX;
+```
 
-_Note: The Xbox One exclusive application XBoxDDSTextureLoader functions are in the **Xbox** C++ namespace_
+> The Xbox One exclusive application XBoxDDSTextureLoader functions are in the **Xbox** C++ namespace.
 
 # Modules
 * [[Audio]] - low-level audio API using XAudio2
      * [[AudioEngine]], [[SoundEffect]], [[SoundEffectInstance]], [[DynamicSoundEffectInstance]], [[WaveBank]], [[AudioListener]], [[AudioEmitter]]
-* [[CommonStates]] - factory providing commonly used D3D state objects 
-* [[DDSTextureLoader]] - light-weight DDS file texture loader 
-* [[DirectXHelpers]] - misc C++ helpers for D3D programming 
-* [[Effects]] - set of built-in shaders for common rendering tasks 
+* [[CommonStates]] - factory providing commonly used D3D state objects
+* [[DDSTextureLoader]] - light-weight DDS file texture loader
+* [[DirectXHelpers]] - misc C++ helpers for D3D programming
+* [[Effects]] - set of built-in shaders for common rendering tasks
      * [[IEffectFactory|EffectFactory]]
-     * [[IEffect]], [[IEffectMatrices]], [[IEffectLights]], [[IEffectFog]], [[IEffectSkinning]] 
+     * [[IEffect]], [[IEffectMatrices]], [[IEffectLights]], [[IEffectFog]], [[IEffectSkinning]]
      * [[AlphaTestEffect]], [[BasicEffect]], [[DualTextureEffect]], [[EnvironmentMapEffect]], [[SkinnedEffect]]
      * [[NormalMapEffect]], [[PBREffect]], [[DebugEffect]]
      * [[DGSLEffect]]
-* [[GamePad]] - gamepad controller helper using XInput 
-* [[GeometricPrimitive]] - draws basic shapes such as cubes and spheres 
+* [[GamePad]] - gamepad controller helper using XInput
+* [[GeometricPrimitive]] - draws basic shapes such as cubes and spheres
 * [[GraphicsMemory]] - helper for managing dynamic graphics memory allocation
 * [[Keyboard]] - keyboard state tracking helper
-* [[Model]] - draws simple meshes loaded from .CMO, .SDKMESH, or .VBO files 
+* [[Model]] - draws simple meshes loaded from .CMO, .SDKMESH, or .VBO files
      * [[ModelMesh]], [[ModelMeshPart]]
 * [[Mouse]] - mouse helper
 * [[PostProcess]] - set of built-in shaders for common post-processing operations
      * [[BasicPostProcess]], [[DualPostProcess]], [[ToneMapPostProcess]]
-* [[PrimitiveBatch]] - simple and efficient way to draw user primitives 
-* [[ScreenGrab]] - light-weight screen shot saver 
-* [[SimpleMath]] - simplified C++ wrapper for DirectXMath 
+* [[PrimitiveBatch]] - simple and efficient way to draw user primitives
+* [[ScreenGrab]] - light-weight screen shot saver
+* [[SimpleMath]] - simplified C++ wrapper for DirectXMath
      * [[Rectangle]], [[Vector2]], [[Vector3]], [[Vector4]], [[Matrix]], [[Quaternion]], [[Plane]], [[Ray]], [[Color]], [[Viewport]]
-* [[SpriteBatch]] - simple & efficient 2D sprite rendering 
-* [[SpriteFont]] - bitmap based text rendering 
-* [[VertexTypes]] - structures for commonly used vertex data formats 
-* [[WICTextureLoader]] - WIC-based image file texture loader 
+* [[SpriteBatch]] - simple & efficient 2D sprite rendering
+* [[SpriteFont]] - bitmap based text rendering
+* [[VertexTypes]] - structures for commonly used vertex data formats
+* [[WICTextureLoader]] - WIC-based image file texture loader
 * [[XboxDDSTextureLoader]] - DDSTextureLoader variant for Xbox One exclusive app developers
 
 # Tools
@@ -44,9 +46,9 @@ _Note: The Xbox One exclusive application XBoxDDSTextureLoader functions are in 
 * [[XWBTool]] - builds ``.xwb`` XACT-style wave banks for use with WaveBank class
 
 # Building
-This code is designed to build with Visual Studio 2015 or later. It requires the Windows 8.x SDK for functionality such as the DirectXMath library and the DXGI 1.2 headers. Visual Studio 2015 or later already includes the Windows 8.1  / Windows 10 SDK.
+This code is designed to build with Visual Studio 2015 or later. It requires the Windows 8.x / Windows 10 SDK for functionality such as the DirectXMath library and the DXGI 1.2 headers. Visual Studio 2015 or later already includes Windows 8.1 / Windows 10 SDK.
 
-These components are designed to work without requiring any content from the DirectX SDK. For details, see [Where is the DirectX SDK?](http://msdn.microsoft.com/en-us/library/ee663275.aspx), [Where is the DirectX SDK (2013 Edition)?](http://blogs.msdn.com/b/chuckw/archive/2013/07/01/where-is-the-directx-sdk-2013-edition.aspx), [Where is the DirectX SDK (2015 Edition)?](https://blogs.msdn.microsoft.com/chuckw/2015/08/05/where-is-the-directx-sdk-2015-edition/), and [The Zombie DirectX SDK](https://blogs.msdn.microsoft.com/chuckw/2015/03/23/the-zombie-directx-sdk/).
+These components are designed to work without requiring any content from the DirectX SDK. For details, see [Where is the DirectX SDK?](https://docs.microsoft.com/en-us/windows/desktop/directx-sdk--august-2009-), [Where is the DirectX SDK (2013 Edition)?](http://blogs.msdn.com/b/chuckw/archive/2013/07/01/where-is-the-directx-sdk-2013-edition.aspx), [Where is the DirectX SDK (2015 Edition)?](https://blogs.msdn.microsoft.com/chuckw/2015/08/05/where-is-the-directx-sdk-2015-edition/), and [The Zombie DirectX SDK](https://blogs.msdn.microsoft.com/chuckw/2015/03/23/the-zombie-directx-sdk/).
 
 ## HLSL shaders
 The distribution package comes with a set of `Src\Shader\*.inc` files containing the compiled HLSL shaders which are included into the DirectXTK static library. They can be rebuilt if using a newer HLSL ``FXC.EXE`` or if the ``.fx`` or ``.hlsl`` files in the library are modified.
@@ -116,7 +118,7 @@ In your application's solution, right-click on the Solution and use **Add \ Exis
 
 > For VS 2015, use of the [Update 3](https://blogs.msdn.microsoft.com/chuckw/2016/06/27/visual-studio-2015-update-3/) is recommended.
 
-In your application's project, right-click on the **Project** and use "References...", then "Add New Reference...", and then check the DirectXTK project name and click OK. For a Universal Windows Platform (UWP) app, Windows Store app, Windows phone, or Xbox One solution, you may need to set _Reference Assembly Output_ to false since DirectXTK is a static C++ library and not a WinRT component.
+In your application's project, right-click on the **Project** and use "References...", then "Add New Reference...", and then check the DirectXTK project name and click OK. For a Universal Windows Platform (UWP) app or Xbox One solution, you may need to set _Reference Assembly Output_ to false since DirectXTK is a static C++ library and not a WinRT component.
 
 ![Settings dialog](https://github.com/Microsoft/DirectXTK/wiki/images/settingsROA.PNG)
 
@@ -137,15 +139,15 @@ Alternatively you can use NuGet to install one of the DirectX Tool Kit packages.
 You should use the NuGet interface to check for updates if you have an older version installed.
 
 # Content pipeline
-To use the Visual Studio 2015 or later graphics assets tools in the build system, be sure to [add them to your project](http://msdn.microsoft.com/en-us/library/hh972446.aspx). 
+To use the Visual Studio 2015 or later graphics assets tools in the build system, be sure to [add them to your project](https://docs.microsoft.com/en-us/visualstudio/designers/using-3-d-assets-in-your-game-or-app).
 
-**Note:** When adding ``.spritefont``, ``.sdkmesh``, or ``.xwb`` files to your Windows Store app or Windows phone app project, you need to manually set the file properties to "Content: Yes" for all configurations to have these files included in your AppX package. ``.dds`` files, other image file formats, and ``.wav`` files are automatically detected as a media file and are included as content by default.
+**Note:** When adding ``.spritefont``, ``.sdkmesh``, or ``.xwb`` files to your Universal Windows Platform (UWP) or Xbox One project, you need to manually set the file properties to "Content: Yes" for all configurations to have these files included in your AppX package. ``.dds`` files, other image file formats, and ``.wav`` files are automatically detected as a media file and are included as content by default.
 
 # Error handling
 DirectXTK makes use of C++ exception handling which should be enabled by the application via the `/EHsc` compiler switch. In Visual Studio, this is set in the project settings under "C++ / Code Generation" with Enable C++ Exceptions set to "Yes (/EHsc)" for all configurations.
 
-* [C++ Exception Handling](http://msdn.microsoft.com/en-us/library/4t3saedz.aspx)
-* [How to: Break When an Exception is Thrown](http://msdn.microsoft.com/en-us/library/d14azbfh.aspx)
+* [C++ Exception Handling](https://docs.microsoft.com/en-us/cpp/cpp/cpp-exception-handling)
+* [How to: Break When an Exception is Thrown](https://docs.microsoft.com/en-us/visualstudio/debugger/managing-exceptions-with-the-debugger)
 * [Dual-use Coding Techniques for Games](http://blogs.msdn.com/b/chuckw/archive/2012/09/17/dual-use-coding-techniques-for-games.aspx)
 * [Resource Acquisition Is Initialization](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization)
 * [[ThrowIfFailed]]
@@ -159,12 +161,10 @@ DirectXTK encourages and makes use of a number of smart-pointers to simplify res
 * ``std::shared_ptr`` - A smart-pointer that tracks memory use with reference counting
 * ``Microsoft::WRL::ComPtr`` - A [[COM smart-pointer|ComPtr]] for reference count management very similar to ATL's CComPtr
 
-* [Smart Pointers (Modern C++)](http://msdn.microsoft.com/en-us/library/hh279674.aspx)
-* [Managing the Lifetime of an Object](http://msdn.microsoft.com/en-us/library/windows/desktop/ff485846.aspx)
-* [COM Coding Practices](http://msdn.microsoft.com/en-us/library/windows/desktop/ff485839.aspx#smartptr)
-* [Reference Counting (Direct3D 10)](http://msdn.microsoft.com/en-us/library/windows/desktop/bb205070.aspx)
+* [Smart Pointers (Modern C++)](https://docs.microsoft.com/en-us/cpp/cpp/smart-pointers-modern-cpp)
+* [Managing the Lifetime of an Object](https://docs.microsoft.com/en-us/windows/desktop/LearnWin32/managing-the-lifetime-of-an-object)
+* [COM Coding Practices](https://docs.microsoft.com/en-us/windows/desktop/LearnWin32/com-coding-practices#smartptr)
+* [Reference Counting (Direct3D 10)](https://docs.microsoft.com/en-us/windows/desktop/direct3d10/d3d10-graphics-programming-guide-api-features-reference-counting)
 
 # Additional information
 [[Implementation]]
-
-

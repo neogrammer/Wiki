@@ -4,29 +4,37 @@ This abstract interface allows setting rendering matrices. This interface is imp
 
 There are two methods used in _DirectX Tool Kit_. For simple cases, just maintain a reference directly to the desired effect class:
 
-    std::shared_ptr<BasicEffect> effect;
+```cpp
+std::shared_ptr<BasicEffect> effect;
 
-    ...
+...
 
-    effect->SetWorld( world );
-    effect->SetView( view );
-    effect->SetProjection( projection );
+effect->SetWorld( world );
+effect->SetView( view );
+effect->SetProjection( projection );
+```
 
-> If you are setting all three matrices at once, you can use ``effect->SetMatrices(world, view, projection);``
+If you are setting all three matrices at once, you can use:
+
+```cpp
+effect->SetMatrices(world, view, projection);
+```
 
 For more general cases where a number of effect classes can be in use (such as [[Model]] which uses a mix of _BasicEffect_, _DualTextureEffect_, _SkinnedEffect_, and/or _DGSLEffect_), use [Run-Time Type Information](https://en.wikipedia.org/wiki/Run-time_type_information) (RTTI) to obtain the interface.
 
-    std::shared_ptr<IEffect> effect;
+```cpp
+std::shared_ptr<IEffect> effect;
 
-    ...
+...
 
-    auto imatrices = dynamic_cast<IEffectMatrices*>( effect.get() );
-    if ( imatrices )
-    {
-        imatrices->SetMatrices( world, view, projection );
-    }
+auto imatrices = dynamic_cast<IEffectMatrices*>( effect.get() );
+if ( imatrices )
+{
+    imatrices->SetMatrices( world, view, projection );
+}
+```
 
-*Note* For the specific case of _IEffectMatrices_, you _could_ try to make the assumption that all effects in use implement _IEffectMatrices_ and make use of a ``reinterpret_cast<>`` or old-school C-style cast instead of ``dynamic_cast<>``, however this will not work since ``IEffectMatrices`` is not derived from ``IEffect``. You would have to assume a specific class of effect instead.
+> For the specific case of _IEffectMatrices_, you _could_ try to make the assumption that all effects in use implement _IEffectMatrices_ and make use of a ``reinterpret_cast<>`` or old-school C-style cast instead of ``dynamic_cast<>``. This will not work since ``IEffectMatrices`` is not derived from ``IEffect`` so requires offset fix-up. You would have to assume a specific class of effect instead.
 
 # Setting matrices
 The matrices used by effects can be left-handed or right-handed coordinates, but are always in row-major form.

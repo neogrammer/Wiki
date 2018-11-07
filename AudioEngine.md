@@ -1,31 +1,39 @@
 This class represents an XAudio2 audio graph, device, and mastering voice
 
 # Header
-    #include <Audio.h>
+```cpp
+#include <Audio.h>
+```
 
 # Initialization
 This creates an XAudio2 interface, an XAudio2 mastering voice, and other global resources.
 
 XAudio2 requires COM be initialized as a prerequisite using ``Windows::Foundation::Initialize``, ``CoInitialize``, or ``CoInitializeEx``.
 
-    // This is only needed in Win32 desktop apps
-    CoInitializeEx( nullptr, COINIT_MULTITHREADED );
+```cpp
+// This is only needed in Win32 desktop apps
+CoInitializeEx( nullptr, COINIT_MULTITHREADED );
+```
 
 All _DirectXTK for Audio_ components require an AudioEngine instance. For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr``.
 
-    std::unique_ptr<AudioEngine> audEngine;
-    audEngine = std::make_unique<AudioEngine>();
+```cpp
+std::unique_ptr<AudioEngine> audEngine;
+audEngine = std::make_unique<AudioEngine>();
+```
 
 The constructor optionally takes a number of parameters:
 
-    AudioEngine( AUDIO_ENGINE_FLAGS flags = AudioEngine_Default,
-        const WAVEFORMATEX* wfx = nullptr,
-        const wchar_t* deviceId = nullptr,
-        AUDIO_STREAM_CATEGORY category = AudioCategory_GameEffects );
+```cpp
+AudioEngine( AUDIO_ENGINE_FLAGS flags = AudioEngine_Default,
+    const WAVEFORMATEX* wfx = nullptr,
+    const wchar_t* deviceId = nullptr,
+    AUDIO_STREAM_CATEGORY category = AudioCategory_GameEffects );
+```
 
 # Parameters
 
-*flags*: A combination of audio engine flags. Defaults to ``AudioEngine_Default``. 
+*flags*: A combination of audio engine flags. Defaults to ``AudioEngine_Default``.
 
 * ``AudioEngine_Debug`` - Enables debugging facilities. For XAudio 2.7 this requires the Developer Runtime.
 
@@ -43,103 +51,114 @@ The constructor optionally takes a number of parameters:
 
 *deviceId*: Specifies the output debug for the XAudio2 mastering voice.
 
-> When using XAudio 2.8 or 2.9, this must be a WinRT device identifier, while on XAudio 2.7 this is a [WASAPI](http://msdn.microsoft.com/en-us/library/windows/desktop/dd371455.aspx) audio end-point identifier. If null, it uses the default audio device.
+> When using XAudio 2.8 or 2.9, this must be a WinRT device identifier, while on XAudio 2.7 this is a [WASAPI](https://docs.microsoft.com/en-us/windows/desktop/CoreAudio/wasapi) audio end-point identifier. If null, it uses the default audio device.
 
 *category*: Specifies the audio end-point category for the XAudio2 mastering voice. On XAudio 2.7, this value is ignored.
 
 # Debugging facilities
-When creating the AudioEngine, you can specify enabling of XAudio2 debugging facilities by including the AudioEngine_Debug flag.
+When creating the AudioEngine, you can specify enabling of XAudio2 debugging facilities by including the ``AudioEngine_Debug`` flag.
 
-    AUDIO_ENGINE_FLAGS eflags = AudioEngine_Default;
-    #ifdef _DEBUG
-    eflags = eflags | AudioEngine_Debug;
-    #endif
-    audEngine = std::make_unique<AudioEngine>( eflags );
+```cpp
+AUDIO_ENGINE_FLAGS eflags = AudioEngine_Default;
+#ifdef _DEBUG
+eflags = eflags | AudioEngine_Debug;
+#endif
+audEngine = std::make_unique<AudioEngine>( eflags );
+```
 
-[XAudio2 Debugging Facilities](http://msdn.microsoft.com/en-us/library/windows/desktop/ee415752.aspx)
+[XAudio2 Debugging Facilities](https://docs.microsoft.com/en-us/windows/desktop/xaudio2/xaudio2-debugging-facilities)
 
 > With XAudio 2.7, the developer runtime must be installed on the system for the AudioEngine_Debug case to
->  succeed. With XAudio 2.8 on Windows 8.x, the debug support is built into the OS.
+>  succeed. With XAudio 2.8 on Windows 8.x or Windows 10, the debug support is built into the OS.
 
 # Device enumeration
 
 AudioEngine provides a simple wrapper over the platform-specific audio device enumeration:
 
-    auto enumList = AudioEngine::GetRendererDetails();
+```cpp
+auto enumList = AudioEngine::GetRendererDetails();
 
-    if ( enumList.empty() )
-    {
-        // No audio devices
-    }
-    else
-    {
-       for( auto it = enumList.cbegin(); it != enumList.cend(); ++it )
-       {
-           // it->deviceId.c_str() - this is the device/end-point identifier you can
-           //     pass as a parameter to AudioEngine
-           // it->description.c_str() - this is a textual description
-       }
-    }
+if ( enumList.empty() )
+{
+    // No audio devices
+}
+else
+{
+   for( auto it = enumList.cbegin(); it != enumList.cend(); ++it )
+   {
+       // it->deviceId.c_str() - this is the device/end-point identifier you can
+       //     pass as a parameter to AudioEngine
+       // it->description.c_str() - this is a textual description
+   }
+}
+```
 
-**Windows phone 8 and Xbox One**: The enumeration only returns the 'default' audio device identifier with the description "Default"
+**Xbox One**: The enumeration only returns the 'default' audio device identifier with the description "Default"
 
 # Silent mode
 If the initial device creation fails to find an audio device, by default AudioEngine creation will succeed and be in a 'silent' mode--if ``AudioEngine_ThrowOnNoAudioHW`` is given, then it will throw a C++ exception instead. This allows various DirectXTK for Audio objects to be created and methods called, but no audio processing will take place. This can be detected either by a 'false' return from **Update** or calling **IsAudioDevicePresent**.
 
 At some later point (typically after detecting a new audio device is available on the system), you can retry by calling **Reset**. If this returns 'true', then the AudioEngine is no longer in 'silent' mode. After that, future calls to SoundEffect or WaveBank's Play() will result in one-shots being fired. All SoundEffectInstances are in a stopped state, but can be started after the successful call to ``Reset``.
 
-    bool Reset( const WAVEFORMATEX* wfx = nullptr, const wchar_t* deviceId = nullptr );
+```cpp
+bool Reset( const WAVEFORMATEX* wfx = nullptr, const wchar_t* deviceId = nullptr );
+```
 
 Parameters to **Reset** are the similar as for the AudioEngine constructor. If the original object was created with ``AudioEngine_ThrowOnNoAudioHW``, then ``Reset`` will throw if no default audio device is found.
 
 > For XAudio 2.7 and XAudio 2.8 (Windows 8.x), this logic also handles the 'lost endpoint' scenario that happens if you unplug speakers or headphones. With XAudio 2.9 (Windows 10), if you use a ``deviceId`` of ``nullptr`` (i.e. the default), then the new Windows 10 WASAPI feature Virtual Audio Client is used which prevents the 'lost endpoint' case from being triggered.
 
 ## Win32 desktop applications
-For Win32 desktop applications, you can be informed of new audio devices in your application with [RegisterDeviceNotification](http://msdn.microsoft.com/en-us/library/windows/desktop/aa363431.aspx):
+For Win32 desktop applications, you can be informed of new audio devices in your application with [RegisterDeviceNotification](https://docs.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-registerdevicenotificationa):
 
-    #include <dbt.h>
+```cpp
+#include <dbt.h>
 
-    ...
+...
 
-    DEV_BROADCAST_DEVICEINTERFACE filter = {};
-    filter.dbcc_size = sizeof( filter );
-    filter.dbcc_devicetype = DBT_DEVTYP_DEVICEINTERFACE;
-    filter.dbcc_classguid = KSCATEGORY_AUDIO;
+DEV_BROADCAST_DEVICEINTERFACE filter = {};
+filter.dbcc_size = sizeof( filter );
+filter.dbcc_devicetype = DBT_DEVTYP_DEVICEINTERFACE;
+filter.dbcc_classguid = KSCATEGORY_AUDIO;
 
-    HDEVNOTIFY hNewAudio = RegisterDeviceNotification( hwnd, &filter,
-        DEVICE_NOTIFY_WINDOW_HANDLE );
+HDEVNOTIFY hNewAudio = RegisterDeviceNotification( hwnd, &filter,
+    DEVICE_NOTIFY_WINDOW_HANDLE );
 
-    ...
+...
 
-    case WM_DEVICECHANGE:
-        if ( wParam == DBT_DEVICEARRIVAL ) {
-            auto pDev = reinterpret_cast<PDEV_BROADCAST_HDR>( lParam );
-            if( pDev ) {
-                if ( pDev->dbch_devicetype == DBT_DEVTYP_DEVICEINTERFACE ) {
-                    auto pInter =
-                        reinterpret_cast<const PDEV_BROADCAST_DEVICEINTERFACE>( pDev );
-                    if ( pInter->dbcc_classguid == KSCATEGORY_AUDIO ) {
-                        // New audio device
+case WM_DEVICECHANGE:
+    if ( wParam == DBT_DEVICEARRIVAL ) {
+        auto pDev = reinterpret_cast<PDEV_BROADCAST_HDR>( lParam );
+        if( pDev ) {
+            if ( pDev->dbch_devicetype == DBT_DEVTYP_DEVICEINTERFACE ) {
+                auto pInter =
+                    reinterpret_cast<const PDEV_BROADCAST_DEVICEINTERFACE>( pDev );
+                if ( pInter->dbcc_classguid == KSCATEGORY_AUDIO ) {
+                    // New audio device
+```
 
-Or you can make use of [IMMNotificationClient](http://msdn.microsoft.com/en-us/library/windows/desktop/dd371417.aspx)
+Or you can make use of [IMMNotificationClient](https://docs.microsoft.com/en-us/windows/desktop/api/mmdeviceapi/nn-mmdeviceapi-immnotificationclient)
 
-## Windows Store applications
+## Universal Windows Platform apps
 
 You can be informed of new audio devices by using the WinRT class DeviceWatcher in the ``Windows.Device.Enumeration`` namespace.
 
-[Device Enumeration Sample](http://code.msdn.microsoft.com/windowsapps/Device-Enumeration-Sample-a6e45169)
+[Device Enumeration Sample](http://code.msdn.microsoft.com/windowsapps/Device-Enumeration-Sample-a6e45169)  
+[DeviceEnumerationAndPairing](https://github.com/Microsoft/Windows-universal-samples/tree/master/Samples/DeviceEnumerationAndPairing)
 
 # Per-frame processing
 **Update** should be called often, usually in a per-frame update. This can be done on the main rendering thread, or from a worker thread. This returns false if the audio engine is the 'silent' mode.
 
-    if ( !audEngine->Update() )
+```cpp
+if ( !audEngine->Update() )
+{
+    // No audio device is active
+    if ( audEngine->IsCriticalError() )
     {
-        // No audio device is active
-        if ( audEngine->IsCriticalError() )
-        {
-            ...
-        }    
-    }
+        ...
+    }    
+}
+```
 
 Note that if XAudio2 encounters a critical error (typically because the current audio device is disconnected or on the Windows platform if the speakers are unplugged from the current audio device), then the audio engine will automatically be in 'silent' mode. This can be detected either by a 'false' return from **Update** or calling **IsCriticalError**. If this occurs, you should try calling **Reset** to try the new 'default' device' if there is one. If that retry fails, you should wait until a new audio device is available (ala 'silent' mode above).
 
@@ -149,11 +168,13 @@ Typically games will suspend audio when paused or the game is 'tabbed away' from
 # Positional 3D audio
 AudioEngine by default supports both standard and positional 3D audio voices, but without environmental reverb. If ``AudioEngine_EnvironmentalReverb`` is given, then a reverb effect is created and used for all 3D audio voices--it is not applied to standard voices. You can use **SetReverb** with I3DL2 presets or provide 'native' reverb settings.
 
-    audEngine->SetReverb( Reverb_Quarry );
+```cpp
+audEngine->SetReverb( Reverb_Quarry );
 
-    ...
+...
 
-    audEngine->SetReverb( Reverb_Off );
+audEngine->SetReverb( Reverb_Off );
+```
 
 Optionally ``AudioEngine_ReverbUseFilters`` can be used with ``AudioEngine_EnvironmentalReverb`` to provide some additional reverb/occlusion effects.
 
@@ -175,25 +196,29 @@ The XAudio2 audio renderer makes use of single-precision floating-point values, 
 
 Therefore, _DirectXTK for Audio_ supports attaching a _mastering volume limiter_ xAPO to the mastering voice by setting the ``AudioEngine_UseMasteringLimiter`` flag. It uses default settings, which can be modified by calling **SetMasteringLimit**( release, loudness ).
 
-See [FXMASTERINGLIMITER_PARAMETERS](http://msdn.microsoft.com/en-us/library/windows/desktop/microsoft.directx_sdk.xapofx.fxmasteringlimiter_parameters.aspx)
+See [FXMASTERINGLIMITER_PARAMETERS](https://docs.microsoft.com/en-us/windows/desktop/api/xapofx/ns-xapofx-fxmasteringlimiter_parameters)
 
-    AUDIO_ENGINE_FLAGS eflags = AudioEngine_UseMasteringLimiter;
-    #ifdef _DEBUG
-    eflags = eflags | AudioEngine_Debug;
-    #endif
-    audEngine = std::make_unique<AudioEngine>( eflags );
+```cpp
+AUDIO_ENGINE_FLAGS eflags = AudioEngine_UseMasteringLimiter;
+#ifdef _DEBUG
+eflags = eflags | AudioEngine_Debug;
+#endif
+audEngine = std::make_unique<AudioEngine>( eflags );
+```
 
 # Statistics
 
 The **GetStatistics** function returns information on the number of playing sounds, allocated instances, audio bytes in loaded [[SoundEffect]] and [[WaveBank]] objects, and XAudio2 source voices allocated for various purposes. These values do not rely on debug faculties to be enabled.
 
-    auto stats = engine->GetStatistics();
-    printf( "\nPlaying: %Iu / %Iu; Instances %Iu; Voices %Iu / %Iu / %Iu / %Iu;"
-            "%Iu audio bytes\n",
-        stats.playingOneShots, stats.playingInstances,
-        stats.allocatedInstances, stats.allocatedVoices, stats.allocatedVoices3d,
-        stats.allocatedVoicesOneShot, stats.allocatedVoicesIdle,
-        stats.audioBytes );
+```cpp
+auto stats = engine->GetStatistics();
+printf( "\nPlaying: %Iu / %Iu; Instances %Iu; Voices %Iu / %Iu / %Iu / %Iu;"
+        "%Iu audio bytes\n",
+    stats.playingOneShots, stats.playingInstances,
+    stats.allocatedInstances, stats.allocatedVoices, stats.allocatedVoices3d,
+    stats.allocatedVoicesOneShot, stats.allocatedVoicesIdle,
+    stats.audioBytes );
+```
 
 # Properties
 
@@ -211,14 +236,13 @@ The **GetStatistics** function returns information on the number of playing soun
 
 The following methods can be used to obtain the low-level XAudio2 interface objects used by DirectXTK for Audio. Be sure to also use **RegisterNotify**, **UnregisterNotify**, and the ``IVoiceNotify`` interface to get proper notifications from the XAudio2 engine. You should prefer to use **AllocateVoice** to creating your own source voices if possible, and be sure to use **DestroyVoice** to free the source voice if it is not a 'oneshot' voice. One shot voices are managed and cleaned up by ``AudioEngine::Update``.
 
-* **GetInterface**: Returns ``IXAudio2*`` 
+* **GetInterface**: Returns ``IXAudio2*``
 * **GetMasterVoice**: Returns ``IXAudio2MasteringVoice*``
 * **GetReverbVoice**: Returns ``IXAudio2SubmixVoice*``
 * **Get3DHandle**: Returns ``X3DAUDIO_HANDLE&``
 
 # Further reading
 
-[XAudio2 APIs](http://msdn.microsoft.com/en-us/library/windows/desktop/hh405049.aspx)  
-[Audio Effects](http://msdn.microsoft.com/en-us/library/windows/desktop/ee415754.aspx)  
-[X3DAudio](http://msdn.microsoft.com/en-us/library/windows/desktop/ee415714.aspx)  
-
+[XAudio2 APIs](https://docs.microsoft.com/en-us/windows/desktop/xaudio2/xaudio2-apis-portal)  
+[Audio Effects](https://docs.microsoft.com/en-us/windows/desktop/xaudio2/audio-effects)  
+[X3DAudio](https://docs.microsoft.com/en-us/windows/desktop/xaudio2/x3daudio)  

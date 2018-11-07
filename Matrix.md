@@ -1,39 +1,42 @@
 A four by four row-major matrix modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Matrix``) math library.
 
 # Header
-
-    #include <SimpleMath.h>
+```cpp
+#include <SimpleMath.h>
+```
 
 # Initialization
 
-    using namespace DirectX::SimpleMath;
+```cpp
+using namespace DirectX::SimpleMath;
 
-    Matrix m;                  // Creates an identity matrix
-    Matrix m(1, 2, 3, 4,
-             5, 6, 7, 8,
-             9, 10, 11, 12,
-             13, 14, 15, 16);  // Creates a matrix [1 2 3 4
-                               //                   | 5 6 7 8
-                               //                   | 9 10 11 12
-                               //                   | 13 14 15 16 ]
-    Matrix m( Vector3(1,2,3),
-              Vector3(4,5,6),
-              Vector(7,8,9) ); // Creates a matrix [1 2 3 0
-                               //                   | 4 5 6 0
-                               //                   | 7 8 9 0
-                               //                   | 0 0 0 1 ]
-    Matrix m( Vector4(1, 2, 3, 4),
-              Vector4(5, 6, 7, 8),
-              Vector4(9, 10, 11, 12),
-              Vector4(13, 14, 15, 16) ); // Creates a matrix [1 2 3 4
-                                         //                   | 5 6 7 8
-                                         //                   | 9 10 11 12
-                                         //                   | 13 14 15 16 ]
-    float arr[16] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
-    Matrix m( arr );           // Creates a matrix [1 2 3 0
-                               //                   | 4 5 6 0
-                               //                   | 7 8 9 0
-                               //                   | 0 0 0 1 ]
+Matrix m;                  // Creates an identity matrix
+Matrix m(1, 2, 3, 4,
+         5, 6, 7, 8,
+         9, 10, 11, 12,
+         13, 14, 15, 16);  // Creates a matrix [1 2 3 4
+                           //                   | 5 6 7 8
+                           //                   | 9 10 11 12
+                           //                   | 13 14 15 16 ]
+Matrix m( Vector3(1,2,3),
+          Vector3(4,5,6),
+          Vector(7,8,9) ); // Creates a matrix [1 2 3 0
+                           //                   | 4 5 6 0
+                           //                   | 7 8 9 0
+                           //                   | 0 0 0 1 ]
+Matrix m( Vector4(1, 2, 3, 4),
+          Vector4(5, 6, 7, 8),
+          Vector4(9, 10, 11, 12),
+          Vector4(13, 14, 15, 16) ); // Creates a matrix [1 2 3 4
+                                     //                   | 5 6 7 8
+                                     //                   | 9 10 11 12
+                                     //                   | 13 14 15 16 ]
+float arr[16] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
+Matrix m( arr );           // Creates a matrix [1 2 3 0
+                           //                   | 4 5 6 0
+                           //                   | 7 8 9 0
+                           //                   | 0 0 0 1 ]
+```
 
 # Fields
 * *_11*, *_12*, *_13*, *_14*: First row of matrix
@@ -62,7 +65,7 @@ A four by four row-major matrix modeled after the XNA Game Studio 4 (``Microsoft
 
 # Statics
 * **CreateBillboard**: Creates a spherical billboard that rotates around a specified object position
-* **CreateConstrainedBillboard**: Creates a cylindrical billboard that rotates around a specified axis 
+* **CreateConstrainedBillboard**: Creates a cylindrical billboard that rotates around a specified axis
 * **CreateTranslation**
 * **CreateScale**
 * **CreateRotationX**
@@ -76,7 +79,7 @@ A four by four row-major matrix modeled after the XNA Game Studio 4 (``Microsoft
 * **CreateFromQuaternion**
 * **CreateFromYawPitchRoll**
 * **CreateShadow**: Creates transform that flattens geometry into a specified [[Plane]] as if casting a shadow from a specified light source
-* **CreateReflection**: Creates transform that reflects the coordinate system about a specified [[Plane]]. 
+* **CreateReflection**: Creates transform that reflects the coordinate system about a specified [[Plane]].
 * **Lerp**: Linearly interpolates two matrices element-wise (useful for blending transformations).
 * **Transform**
 

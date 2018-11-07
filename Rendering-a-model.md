@@ -7,7 +7,7 @@ First create a new project using the instructions from the first two lessons: [[
 # Creating a model
 Source assets for models are often stored in Autodesk FBX, Wavefront OBJ, or similar formats. A build process is used to convert them to a more run-time friendly format that is easier to load and render.
 
-Visual Studio has a built-in system for converting a Wavefront OBJ or Autodesk FBX as part of the build process to a CMO, which you can read about [here](http://msdn.microsoft.com/en-us/library/hh972446.aspx).
+Visual Studio has a built-in system for converting a Wavefront OBJ or Autodesk FBX as part of the build process to a CMO, which you can read about [here](https://docs.microsoft.com/en-us/visualstudio/designers/using-3-d-assets-in-your-game-or-app).
 
 For this tutorial, we will instead make of use of the [DirectXMesh](http://go.microsoft.com/fwlink/?LinkID=324981) **meshconvert** command-line tool.  Start by saving [cup._obj](https://github.com/Microsoft/DirectXTK/wiki/cup._obj), [cup.mtl](https://github.com/Microsoft/DirectXTK/wiki/cup.mtl), and [cup.jpg](https://github.com/Microsoft/DirectXTK/wiki/images/cup.jpg) into your new project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "cup.jpg" and click "OK".
 
@@ -30,48 +30,60 @@ Then from the top menu in Visual Studio select **Project** / **Add Existing Item
 
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 
-    DirectX::SimpleMath::Matrix m_world;
-    DirectX::SimpleMath::Matrix m_view;
-    DirectX::SimpleMath::Matrix m_proj;
+```cpp
+DirectX::SimpleMath::Matrix m_world;
+DirectX::SimpleMath::Matrix m_view;
+DirectX::SimpleMath::Matrix m_proj;
 
-    std::unique_ptr<DirectX::CommonStates> m_states;
-    std::unique_ptr<DirectX::IEffectFactory> m_fxFactory;
-    std::unique_ptr<DirectX::Model> m_model;
+std::unique_ptr<DirectX::CommonStates> m_states;
+std::unique_ptr<DirectX::IEffectFactory> m_fxFactory;
+std::unique_ptr<DirectX::Model> m_model;
+```
 
 > In most cases you'd want to use ``std::unique_ptr<DirectX::EffectFactory> m_fxFactory;`` instead of ``std::unique_ptr<DirectX::IEffectFactory> m_fxFactory;``, but we keep a pointer to the abstract interface in this tutorial instead of to the concrete class to streamline things later on.
 
 In **Game.cpp**, add to the TODO of **CreateDevice**:
 
-    m_states = std::make_unique<CommonStates>(m_d3dDevice.Get());
+```cpp
+m_states = std::make_unique<CommonStates>(m_d3dDevice.Get());
 
-    m_fxFactory = std::make_unique<EffectFactory>(m_d3dDevice.Get());
+m_fxFactory = std::make_unique<EffectFactory>(m_d3dDevice.Get());
 
-    m_model = Model::CreateFromCMO(m_d3dDevice.Get(), L"cup.cmo", *m_fxFactory);
+m_model = Model::CreateFromCMO(m_d3dDevice.Get(), L"cup.cmo", *m_fxFactory);
 
-    m_world = Matrix::Identity;
+m_world = Matrix::Identity;
+```
 
 In **Game.cpp**, add to the TODO of **CreateResources**:
 
-    m_view = Matrix::CreateLookAt(Vector3(2.f, 2.f, 2.f),
-        Vector3::Zero, Vector3::UnitY);
-    m_proj = Matrix::CreatePerspectiveFieldOfView(XM_PI / 4.f,
-        float(backBufferWidth) / float(backBufferHeight), 0.1f, 10.f);
+```cpp
+m_view = Matrix::CreateLookAt(Vector3(2.f, 2.f, 2.f),
+    Vector3::Zero, Vector3::UnitY);
+m_proj = Matrix::CreatePerspectiveFieldOfView(XM_PI / 4.f,
+    float(backBufferWidth) / float(backBufferHeight), 0.1f, 10.f);
+```
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
-    m_states.reset();
-    m_fxFactory.reset();
-    m_model.reset();
+```cpp
+m_states.reset();
+m_fxFactory.reset();
+m_model.reset();
+```
 
 In **Game.cpp**, add to the TODO of **Render**:
 
-    m_model->Draw(m_d3dContext.Get(), *m_states, m_world, m_view, m_proj);
+```cpp
+m_model->Draw(m_d3dContext.Get(), *m_states, m_world, m_view, m_proj);
+```
 
 In **Game.cpp**, add to the TODO of **Update**:
 
-    float time = float(timer.GetTotalSeconds());
+```cpp
+float time = float(timer.GetTotalSeconds());
 
-    m_world = Matrix::CreateRotationZ(cosf(time) * 2.f);
+m_world = Matrix::CreateRotationZ(cosf(time) * 2.f);
+```
 
 Build and run and you will see our cup model rendered with default lighting:
 
@@ -81,34 +93,36 @@ Build and run and you will see our cup model rendered with default lighting:
 
 # Updating effects settings in a model
 
-The Model class creates effects automatically for the loaded materials which are set to default lighting parameters. To update them, you use the **Model::UpdateEffects** method. Because the effects system is flexible, we must first enable [C++ Run-Time Type Information](https://msdn.microsoft.com/en-us/library/b2ay8610.aspx) (RTTI) in order to safely discover the various interfaces supported at runtime. From the drop-down menu, select **Project** / **Properties**. Set to "All Configurations" / "All Platforms". On the left-hand tree view select **``C/C++``** / **Language**. Then set "Enable Run-Time Type Information" to "Yes". Click "OK".
+The Model class creates effects automatically for the loaded materials which are set to default lighting parameters. To update them, you use the **Model::UpdateEffects** method. Because the effects system is flexible, we must first enable [C++ Run-Time Type Information](https://docs.microsoft.com/en-us/cpp/cpp/run-time-type-information) (RTTI) in order to safely discover the various interfaces supported at runtime. From the drop-down menu, select **Project** / **Properties**. Set to "All Configurations" / "All Platforms". On the left-hand tree view select **``C/C++``** / **Language**. Then set "Enable Run-Time Type Information" to "Yes". Click "OK".
 
 ![Screenshot C++ RTTI settings](https://github.com/Microsoft/DirectXTK/wiki/images/settingsRTTI.PNG)
 
 In **Game.cpp**, add to the TODO of **CreateDevice**:
 
-    m_model->UpdateEffects([](IEffect* effect)
+```cpp
+m_model->UpdateEffects([](IEffect* effect)
+{
+    auto lights = dynamic_cast<IEffectLights*>(effect);
+    if (lights)
     {
-        auto lights = dynamic_cast<IEffectLights*>(effect);
-        if (lights)
-        {
-            lights->SetLightingEnabled(true);
-            lights->SetPerPixelLighting(true);
-            lights->SetLightEnabled(0, true);
-            lights->SetLightDiffuseColor(0, Colors::Gold);
-            lights->SetLightEnabled(1, false);
-            lights->SetLightEnabled(2, false);
-        }
+        lights->SetLightingEnabled(true);
+        lights->SetPerPixelLighting(true);
+        lights->SetLightEnabled(0, true);
+        lights->SetLightDiffuseColor(0, Colors::Gold);
+        lights->SetLightEnabled(1, false);
+        lights->SetLightEnabled(2, false);
+    }
 
-        auto fog = dynamic_cast<IEffectFog*>(effect);
-        if (fog)
-        {
-            fog->SetFogEnabled(true);
-            fog->SetFogColor(Colors::CornflowerBlue);
-            fog->SetFogStart(3.f);
-            fog->SetFogEnd(4.f);
-        }
-    });
+    auto fog = dynamic_cast<IEffectFog*>(effect);
+    if (fog)
+    {
+        fog->SetFogEnabled(true);
+        fog->SetFogColor(Colors::CornflowerBlue);
+        fog->SetFogStart(3.f);
+        fog->SetFogEnd(4.f);
+    }
+});
+```
 
 Build and run to get our cup with a colored light, per-pixel rather than vertex lighting, and fogging enabled.
 
@@ -125,11 +139,15 @@ For this lesson, we made use of [[EffectFactory]] which will create [[BasicEffec
 
 In **Game.cpp** in the TODO section of **CreateDevice**, change
 
-    m_fxFactory = std::make_unique<EffectFactory>(m_d3dDevice.Get());
+```cpp
+m_fxFactory = std::make_unique<EffectFactory>(m_d3dDevice.Get());
+```
 
 to
 
-    m_fxFactory = std::make_unique<DGSLEffectFactory>(m_d3dDevice.Get());
+```cpp
+m_fxFactory = std::make_unique<DGSLEffectFactory>(m_d3dDevice.Get());
+```
 
 > This is why we used the abstract interface ``IEffectFactory`` rather than using ``std::unique_ptr<EffectFactory>`` in **Game.h** so that the variable could refer to either type of factory.
 
@@ -137,7 +155,7 @@ Build and run. If you still have the **UpdateEffects** code in place, you'll see
 
 ![Screenshot of DSGL cup model](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotCupNoFog.PNG)
 
-The lack of fog is because our "cup.cmo" makes use of the default built-in DGSL shaders _lambert_ and _phong_ which do not implement fog. The ``DGSLEffectFactory`` allows you to use ``Model`` and the [[IEffect]] interface with the more complex custom DGSL shaders supported by the Visual Studio CMO pipeline where you use a [visual editor to build pixel shaders](http://msdn.microsoft.com/en-us/library/hh873117.aspx).
+The lack of fog is because our "cup.cmo" makes use of the default built-in DGSL shaders _lambert_ and _phong_ which do not implement fog. The ``DGSLEffectFactory`` allows you to use ``Model`` and the [[IEffect]] interface with the more complex custom DGSL shaders supported by the Visual Studio CMO pipeline where you use a [visual editor to build pixel shaders](https://docs.microsoft.com/en-us/visualstudio/designers/working-with-shaders).
 
 **Next lesson:** [[Using skinned models]]
 

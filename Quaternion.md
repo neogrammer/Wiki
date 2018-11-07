@@ -1,20 +1,23 @@
 A rotation represented as a four component vector modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Quaternion``) math library.
 
 # Header
-
-    #include <SimpleMath.h>
+```cpp
+#include <SimpleMath.h>
+```
 
 # Initialization
 
-    using namespace DirectX::SimpleMath;
+```cpp
+using namespace DirectX::SimpleMath;
 
-    Quaternion q;                     // Creates the identity quaternion [0, 0, 0, 1]
-    Quaternion q(0, 0, 0, 1);         // Creates a quaternion [0, 0, 0, 1]
-    Quaternion q( Vector3(0,0,0), 1); // Creates a quaternion [0, 0, 0, 1]
-    Quaternion q( Vector4(0,0,0,1) ); // Creates a quaternion [0, 0, 0, 1]
+Quaternion q;                     // Creates the identity quaternion [0, 0, 0, 1]
+Quaternion q(0, 0, 0, 1);         // Creates a quaternion [0, 0, 0, 1]
+Quaternion q( Vector3(0,0,0), 1); // Creates a quaternion [0, 0, 0, 1]
+Quaternion q( Vector4(0,0,0,1) ); // Creates a quaternion [0, 0, 0, 1]
 
-    float arr[4] = { 0, 0, 0, 1 };
-    Quaternion q(arr);                // Creates a quaternion [0, 0, 0, 1]
+float arr[4] = { 0, 0, 0, 1 };
+Quaternion q(arr);                // Creates a quaternion [0, 0, 0, 1]
+```
 
 # Fields
 * *x* vector component of the quaternion
@@ -56,4 +59,3 @@ Jonathan Blow, "Understanding Slerp, Then Not Using It", The Inner Product, Apri
 David Eberly, "Quaternion Algebra and Calculus" [link](http://www.geometrictools.com/Documentation/Quaternions.pdf)
 
 Ken Shoemake, "Quaternions", Department of Computer and Information Science, University of Pennsylvania [link](http://www.cs.ucr.edu/~vbz/resources/quatut.pdf)
-

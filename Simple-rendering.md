@@ -8,11 +8,11 @@ First create a new project using the instructions from the first two lessons: [[
 In order to do a draw operation with Direct3D 11, we need to provide the following objects and settings:
 
 * A *vertex buffer* containing the vertices of the elements to draw.
-* The *input layout* that [describes](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476180.aspx) the memory layout of the vertices in the _vertex buffer_.
+* The *input layout* that [describes](https://docs.microsoft.com/en-us/windows/desktop/api/d3d11/ns-d3d11-d3d11_input_element_desc) the memory layout of the vertices in the _vertex buffer_.
 * A *primitive topology* setting that indicates how to interpret the individual vertices (as a point, a line, a triangle, etc.)
 * A compiled *vertex shader* program
 * A compiled *pixel shader* program
-* Set any required *state objects* for [rasterizer state](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476198.aspx), [depth/stencil state](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476110.aspx), [blend state](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476087.aspx), and [sampler state](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476207.aspx) (if using textures)
+* Set any required *state objects* for [rasterizer state](https://docs.microsoft.com/en-us/windows/desktop/api/d3d11/ns-d3d11-d3d11_rasterizer_desc), [depth/stencil state](https://docs.microsoft.com/en-us/windows/desktop/api/d3d11/ns-d3d11-d3d11_depth_stencil_desc), [blend state](https://docs.microsoft.com/en-us/windows/desktop/api/d3d11/ns-d3d11-d3d11_blend_desc), and [sampler state](https://docs.microsoft.com/en-us/windows/desktop/api/d3d11/ns-d3d11-d3d11_sampler_desc) (if using textures)
 
 For this lesson, the [[BasicEffect]] object will provide the vertex and pixel shader programs, [[VertexPositionColor|VertexTypes]] will provide the input layout, [[CommonStates]] will provide the 'stock' state objects, and **PrimitiveBatch** will provide the vertex buffer and primitive topology.
 
@@ -21,57 +21,65 @@ Note that since the _input layout_ is the bridge between the _vertex buffer_ dat
 # Drawing a triangle
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 
-    std::unique_ptr<DirectX::CommonStates> m_states;
-    std::unique_ptr<DirectX::BasicEffect> m_effect;
-    std::unique_ptr<DirectX::PrimitiveBatch<DirectX::VertexPositionColor>> m_batch;
-    Microsoft::WRL::ComPtr<ID3D11InputLayout> m_inputLayout;
+```cpp
+std::unique_ptr<DirectX::CommonStates> m_states;
+std::unique_ptr<DirectX::BasicEffect> m_effect;
+std::unique_ptr<DirectX::PrimitiveBatch<DirectX::VertexPositionColor>> m_batch;
+Microsoft::WRL::ComPtr<ID3D11InputLayout> m_inputLayout;
+```
 
 In **Game.cpp**, add to the TODO of **CreateDevice**:
 
-    m_states = std::make_unique<CommonStates>(m_d3dDevice.Get());
+```cpp
+m_states = std::make_unique<CommonStates>(m_d3dDevice.Get());
 
-    m_effect = std::make_unique<BasicEffect>(m_d3dDevice.Get());
-    m_effect->SetVertexColorEnabled(true);
+m_effect = std::make_unique<BasicEffect>(m_d3dDevice.Get());
+m_effect->SetVertexColorEnabled(true);
 
-    void const* shaderByteCode;
-    size_t byteCodeLength;
+void const* shaderByteCode;
+size_t byteCodeLength;
 
-    m_effect->GetVertexShaderBytecode(&shaderByteCode, &byteCodeLength);
+m_effect->GetVertexShaderBytecode(&shaderByteCode, &byteCodeLength);
 
-    DX::ThrowIfFailed(
-            m_d3dDevice->CreateInputLayout(VertexPositionColor::InputElements,
-                VertexPositionColor::InputElementCount,
-                shaderByteCode, byteCodeLength,
-                m_inputLayout.ReleaseAndGetAddressOf()));
+DX::ThrowIfFailed(
+        m_d3dDevice->CreateInputLayout(VertexPositionColor::InputElements,
+            VertexPositionColor::InputElementCount,
+            shaderByteCode, byteCodeLength,
+            m_inputLayout.ReleaseAndGetAddressOf()));
 
-    m_batch = std::make_unique<PrimitiveBatch<VertexPositionColor>>(m_d3dContext.Get());
+m_batch = std::make_unique<PrimitiveBatch<VertexPositionColor>>(m_d3dContext.Get());
+```
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
-    m_states.reset();
-    m_effect.reset();
-    m_batch.reset();
-    m_inputLayout.Reset();
+```cpp
+m_states.reset();
+m_effect.reset();
+m_batch.reset();
+m_inputLayout.Reset();
+```
 
 In **Game.cpp**, add to the TODO of **Render**:
 
-    m_d3dContext->OMSetBlendState( m_states->Opaque(), nullptr, 0xFFFFFFFF );
-    m_d3dContext->OMSetDepthStencilState( m_states->DepthNone(), 0 );
-    m_d3dContext->RSSetState( m_states->CullNone() );
+```cpp
+m_d3dContext->OMSetBlendState( m_states->Opaque(), nullptr, 0xFFFFFFFF );
+m_d3dContext->OMSetDepthStencilState( m_states->DepthNone(), 0 );
+m_d3dContext->RSSetState( m_states->CullNone() );
 
-    m_effect->Apply(m_d3dContext.Get());
+m_effect->Apply(m_d3dContext.Get());
 
-    m_d3dContext->IASetInputLayout(m_inputLayout.Get());
+m_d3dContext->IASetInputLayout(m_inputLayout.Get());
 
-    m_batch->Begin();
+m_batch->Begin();
 
-    VertexPositionColor v1(Vector3(0.f, 0.5f, 0.5f), Colors::Yellow);
-    VertexPositionColor v2(Vector3(0.5f, -0.5f, 0.5f), Colors::Yellow);
-    VertexPositionColor v3(Vector3(-0.5f, -0.5f, 0.5f), Colors::Yellow);
+VertexPositionColor v1(Vector3(0.f, 0.5f, 0.5f), Colors::Yellow);
+VertexPositionColor v2(Vector3(0.5f, -0.5f, 0.5f), Colors::Yellow);
+VertexPositionColor v3(Vector3(-0.5f, -0.5f, 0.5f), Colors::Yellow);
 
-    m_batch->DrawTriangle(v1, v2, v3);
+m_batch->DrawTriangle(v1, v2, v3);
 
-    m_batch->End();
+m_batch->End();
+```
 
 Build and run to see a simple yellow triangle rendered in 2D.
 
@@ -82,32 +90,36 @@ The image above is drawn using coordinates that are independent of the screen re
 
 In **Game.cpp**, add to the TODO of **CreateResources**:
 
-    Matrix proj = Matrix::CreateScale( 2.f/float(backBufferWidth),
-       -2.f/float(backBufferHeight), 1.f)
-       * Matrix::CreateTranslation( -1.f, 1.f, 0.f );
-    m_effect->SetProjection(proj);
+```cpp
+Matrix proj = Matrix::CreateScale( 2.f/float(backBufferWidth),
+   -2.f/float(backBufferHeight), 1.f)
+   * Matrix::CreateTranslation( -1.f, 1.f, 0.f );
+m_effect->SetProjection(proj);
+```
 
 > The projection matrix can also be created with ``Matrix::CreateOrthographicOffCenter(0.f, float(backBufferWidth), float(backBufferHeight), 0.f, 0.f, 1.f);``
 
 In **Game.cpp**, modify the TODO of **Render**:
 
-    m_d3dContext->OMSetBlendState( m_states->Opaque(), nullptr, 0xFFFFFFFF );
-    m_d3dContext->OMSetDepthStencilState( m_states->DepthNone(), 0 );
-    m_d3dContext->RSSetState( m_states->CullNone() );
+```cpp
+m_d3dContext->OMSetBlendState( m_states->Opaque(), nullptr, 0xFFFFFFFF );
+m_d3dContext->OMSetDepthStencilState( m_states->DepthNone(), 0 );
+m_d3dContext->RSSetState( m_states->CullNone() );
 
-    m_effect->Apply(m_d3dContext.Get());
+m_effect->Apply(m_d3dContext.Get());
 
-    m_d3dContext->IASetInputLayout(m_inputLayout.Get());
+m_d3dContext->IASetInputLayout(m_inputLayout.Get());
 
-    m_batch->Begin();
+m_batch->Begin();
 
-    VertexPositionColor v1(Vector3(400.f, 150.f, 0.f), Colors::Yellow);
-    VertexPositionColor v2(Vector3(600.f, 450.f, 0.f), Colors::Yellow);
-    VertexPositionColor v3(Vector3(200.f, 450.f, 0.f), Colors::Yellow);
+VertexPositionColor v1(Vector3(400.f, 150.f, 0.f), Colors::Yellow);
+VertexPositionColor v2(Vector3(600.f, 450.f, 0.f), Colors::Yellow);
+VertexPositionColor v3(Vector3(200.f, 450.f, 0.f), Colors::Yellow);
 
-    m_batch->DrawTriangle(v1, v2, v3);
+m_batch->DrawTriangle(v1, v2, v3);
 
-    m_batch->End();
+m_batch->End();
+```
 
 Build and run to get the same image, but if you resize the window the triangle will not change in the second version.
 
@@ -121,11 +133,15 @@ Build and run to get the same image, but if you resize the window the triangle w
 
 The use of ``CullNone`` for our rasterizer state above allows triangles and quads--which in Direct3D are just two triangles--to be drawn with arbitrary winding order. If you modify **Render** above as follows:
 
-    m_d3dContext->RSSetState( m_states->CullClockwise() );
+```cpp
+m_d3dContext->RSSetState( m_states->CullClockwise() );
+```
 
 Then build & run you run you will see nothing drawn because the triangle winding order was specified in clockwise order. If you changed it again to:
 
-    m_d3dContext->RSSetState( m_states->CullCounterClockwise() );
+```cpp
+m_d3dContext->RSSetState( m_states->CullCounterClockwise() );
+```
 
 Then build & run you will see the triangle reappear.
 
@@ -137,69 +153,77 @@ For 'closed' objects, you typically use [backface culling](https://en.wikipedia.
 
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 
-    DirectX::SimpleMath::Matrix m_world;
-    DirectX::SimpleMath::Matrix m_view;
-    DirectX::SimpleMath::Matrix m_proj;
+```cpp
+DirectX::SimpleMath::Matrix m_world;
+DirectX::SimpleMath::Matrix m_view;
+DirectX::SimpleMath::Matrix m_proj;
+```
 
 In **Game.cpp**, add to the TODO of **CreateDevice**:
 
-    m_world = Matrix::Identity;
+```cpp
+m_world = Matrix::Identity;
+```
 
 In **Game.cpp**, add to the TODO of **CreateResources**:
 
-    m_view = Matrix::CreateLookAt(Vector3(2.f, 2.f, 2.f),
-        Vector3::Zero, Vector3::UnitY);
-    m_proj = Matrix::CreatePerspectiveFieldOfView(XM_PI / 4.f,
-        float(backBufferWidth) / float(backBufferHeight), 0.1f, 10.f);
+```cpp
+m_view = Matrix::CreateLookAt(Vector3(2.f, 2.f, 2.f),
+    Vector3::Zero, Vector3::UnitY);
+m_proj = Matrix::CreatePerspectiveFieldOfView(XM_PI / 4.f,
+    float(backBufferWidth) / float(backBufferHeight), 0.1f, 10.f);
 
-    m_effect->SetView(m_view);
-    m_effect->SetProjection(m_proj);
+m_effect->SetView(m_view);
+m_effect->SetProjection(m_proj);
+```
 
 In **Game.cpp**, modify to the TODO of **Render**:
 
-    m_d3dContext->OMSetBlendState( m_states->Opaque(), nullptr, 0xFFFFFFFF );
-    m_d3dContext->OMSetDepthStencilState( m_states->DepthNone(), 0 );
-    m_d3dContext->RSSetState( m_states->CullNone() );
+```cpp
+m_d3dContext->OMSetBlendState( m_states->Opaque(), nullptr, 0xFFFFFFFF );
+m_d3dContext->OMSetDepthStencilState( m_states->DepthNone(), 0 );
+m_d3dContext->RSSetState( m_states->CullNone() );
 
-    m_effect->SetWorld(m_world);
+m_effect->SetWorld(m_world);
 
-    m_effect->Apply(m_d3dContext.Get());
+m_effect->Apply(m_d3dContext.Get());
 
-    m_d3dContext->IASetInputLayout(m_inputLayout.Get());
+m_d3dContext->IASetInputLayout(m_inputLayout.Get());
 
-    m_batch->Begin();
+m_batch->Begin();
 
-    Vector3 xaxis(2.f, 0.f, 0.f);
-    Vector3 yaxis(0.f, 0.f, 2.f);
-    Vector3 origin = Vector3::Zero;
+Vector3 xaxis(2.f, 0.f, 0.f);
+Vector3 yaxis(0.f, 0.f, 2.f);
+Vector3 origin = Vector3::Zero;
 
-    size_t divisions = 20;
+size_t divisions = 20;
 
-    for( size_t i = 0; i <= divisions; ++i )
-    {
-        float fPercent = float(i) / float(divisions);
-        fPercent = ( fPercent * 2.0f ) - 1.0f;
+for( size_t i = 0; i <= divisions; ++i )
+{
+    float fPercent = float(i) / float(divisions);
+    fPercent = ( fPercent * 2.0f ) - 1.0f;
 
-        Vector3 scale = xaxis * fPercent + origin;
+    Vector3 scale = xaxis * fPercent + origin;
 
-        VertexPositionColor v1( scale - yaxis, Colors::White );
-        VertexPositionColor v2( scale + yaxis, Colors::White );
-        m_batch->DrawLine( v1, v2 );
-    }
+    VertexPositionColor v1( scale - yaxis, Colors::White );
+    VertexPositionColor v2( scale + yaxis, Colors::White );
+    m_batch->DrawLine( v1, v2 );
+}
 
-    for( size_t i = 0; i <= divisions; i++ )
-    {
-        float fPercent = float(i) / float(divisions);
-        fPercent = ( fPercent * 2.0f ) - 1.0f;
+for( size_t i = 0; i <= divisions; i++ )
+{
+    float fPercent = float(i) / float(divisions);
+    fPercent = ( fPercent * 2.0f ) - 1.0f;
 
-        Vector3 scale = yaxis * fPercent + origin;
+    Vector3 scale = yaxis * fPercent + origin;
 
-        VertexPositionColor v1( scale - xaxis, Colors::White );
-        VertexPositionColor v2( scale + xaxis, Colors::White );
-        m_batch->DrawLine( v1, v2 );
-    }
+    VertexPositionColor v1( scale - xaxis, Colors::White );
+    VertexPositionColor v2( scale + xaxis, Colors::White );
+    m_batch->DrawLine( v1, v2 );
+}
 
-    m_batch->End();
+m_batch->End();
+```
 
 Build and run to see a 3D grid.
 
@@ -209,7 +233,9 @@ Build and run to see a 3D grid.
 
 Taking a closer look at the grid in the previous screenshot, you can see the lines are a little thin and jagged in places. To make this more visible, in **Game.cpp**, add to the TODO of **Update**:
 
-    m_world = Matrix::CreateRotationY( cosf( static_cast<float>(timer.GetTotalSeconds())));
+```cpp
+m_world = Matrix::CreateRotationY( cosf( static_cast<float>(timer.GetTotalSeconds())));
+```
 
 Build and run to see the grid spinning, and notice the slight shimmering of the lines--it will be more obvious if you maximize the window size.    
 
@@ -220,30 +246,40 @@ The first is to enable a special anti-aliasing mode specific to line drawing in 
 
 In the **Game.h** file, add the following variable to the bottom of the Game class's private declarations:
 
-    Microsoft::WRL::ComPtr<ID3D11RasterizerState> m_raster;
+```cpp
+Microsoft::WRL::ComPtr<ID3D11RasterizerState> m_raster;
+```
 
 In **Game.cpp**, add to the TODO of **CreateDevice**:
 
-    CD3D11_RASTERIZER_DESC rastDesc(D3D11_FILL_SOLID, D3D11_CULL_NONE, FALSE,
-        D3D11_DEFAULT_DEPTH_BIAS, D3D11_DEFAULT_DEPTH_BIAS_CLAMP,
-        D3D11_DEFAULT_SLOPE_SCALED_DEPTH_BIAS, TRUE, FALSE, FALSE, TRUE);
+```cpp
+CD3D11_RASTERIZER_DESC rastDesc(D3D11_FILL_SOLID, D3D11_CULL_NONE, FALSE,
+    D3D11_DEFAULT_DEPTH_BIAS, D3D11_DEFAULT_DEPTH_BIAS_CLAMP,
+    D3D11_DEFAULT_SLOPE_SCALED_DEPTH_BIAS, TRUE, FALSE, FALSE, TRUE);
 
-    DX::ThrowIfFailed(m_d3dDevice->CreateRasterizerState( &rastDesc,
-        m_raster.ReleaseAndGetAddressOf() ));
+DX::ThrowIfFailed(m_d3dDevice->CreateRasterizerState( &rastDesc,
+    m_raster.ReleaseAndGetAddressOf() ));
+```
 
 > This creates a raster state that is the same as our standard ``CullNone`` but with ``AntialiasedLineEnable`` set to TRUE and ``MultisampleEnable`` set to FALSE.
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
-    m_raster.Reset();
+```cpp
+m_raster.Reset();
+```
 
 In **Game.cpp**, modify **Render**, changing:
 
-    m_d3dContext->RSSetState(m_states->CullNone());
+```cpp
+m_d3dContext->RSSetState(m_states->CullNone());
+```
 
 to
- 
-    m_d3dContext->RSSetState(m_raster.Get());
+
+```cpp
+m_d3dContext->RSSetState(m_raster.Get());
+```
 
 Build and run to see the shimmering of the lines lessen, although they will appear to be a bit thicker than a single pixel.
 
@@ -254,36 +290,44 @@ A second more general solution is to use [Multisample anti-aliasing](https://en.
 
 In **Game.cpp**, modify **CreateDevice**:
 
-    CD3D11_RASTERIZER_DESC rastDesc(D3D11_FILL_SOLID, D3D11_CULL_NONE, FALSE,
-        D3D11_DEFAULT_DEPTH_BIAS, D3D11_DEFAULT_DEPTH_BIAS_CLAMP,
-        D3D11_DEFAULT_SLOPE_SCALED_DEPTH_BIAS, TRUE, FALSE, TRUE, FALSE);
+```cpp
+CD3D11_RASTERIZER_DESC rastDesc(D3D11_FILL_SOLID, D3D11_CULL_NONE, FALSE,
+    D3D11_DEFAULT_DEPTH_BIAS, D3D11_DEFAULT_DEPTH_BIAS_CLAMP,
+    D3D11_DEFAULT_SLOPE_SCALED_DEPTH_BIAS, TRUE, FALSE, TRUE, FALSE);
+```
 
 > This creates a raster state that is the same as our standard ``CullNone`` which has ``MultisampleEnable`` set to TRUE.
 
 In **Game.cpp**, modify **CreateResources**:
 
-Change the sample count in both places for ``DXGI_SWAP_CHAIN_DESC1`` and ``DXGI_SWAP_CHAIN_DESC`` 
+Change the sample count in both places for ``DXGI_SWAP_CHAIN_DESC1`` and ``DXGI_SWAP_CHAIN_DESC``
 
-    swapChainDesc.SampleDesc.Count = 4;
+```cpp
+swapChainDesc.SampleDesc.Count = 4;
+```
 
 Change the depth/stencil texture description to:
 
-    CD3D11_TEXTURE2D_DESC depthStencilDesc(depthBufferFormat,
-        backBufferWidth, backBufferHeight,
-        1, 1, D3D11_BIND_DEPTH_STENCIL, D3D11_USAGE_DEFAULT, 0, 4, 0);
+```cpp
+CD3D11_TEXTURE2D_DESC depthStencilDesc(depthBufferFormat,
+    backBufferWidth, backBufferHeight,
+    1, 1, D3D11_BIND_DEPTH_STENCIL, D3D11_USAGE_DEFAULT, 0, 4, 0);
+```
 
 Change the depth/stencil view description to:
 
-    CD3D11_DEPTH_STENCIL_VIEW_DESC depthStencilViewDesc(D3D11_DSV_DIMENSION_TEXTURE2DMS);
+```cpp
+CD3D11_DEPTH_STENCIL_VIEW_DESC depthStencilViewDesc(D3D11_DSV_DIMENSION_TEXTURE2DMS);
+```
 
 Build and run to see the shimmering of the lines lessen compared to the first version, and is slightly less thickened than when we used the AA line mode.
 
 ![Screenshot of the MSAA grid](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotGridMSAA.PNG)
 
-> _Troubleshooting:_ If you get an exception, it may be because your device does not support 4x MSAA--which you can confirm by checking the debug device output at the failure point. Direct3D Feature Level 10.1 or later devices all support 4x MSAA for most render target formats, but some 10.0 and 9.x feature levels do not. You can try using 2 instead of 4 in the sample counts if this happens. If you have a Feature Level 11.0 or later device, you can try using 4 or 8. Be sure to change `` DXGI_SWAP_CHAIN_DESC1 ``, `` DXGI_SWAP_CHAIN_DESC``, and ``depthStencilDesc``. See also [CheckMultisampleQualityLevels](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476499.aspx).
+> _Troubleshooting:_ If you get an exception, it may be because your device does not support 4x MSAA--which you can confirm by checking the debug device output at the failure point. Direct3D Feature Level 10.1 or later devices all support 4x MSAA for most render target formats, but some 10.0 and 9.x feature levels do not. You can try using 2 instead of 4 in the sample counts if this happens. If you have a Feature Level 11.0 or later device, you can try using 4 or 8. Be sure to change `` DXGI_SWAP_CHAIN_DESC1 ``, `` DXGI_SWAP_CHAIN_DESC``, and ``depthStencilDesc``. See also [CheckMultisampleQualityLevels](https://docs.microsoft.com/en-us/windows/desktop/api/d3d11/nf-d3d11-id3d11device-checkmultisamplequalitylevels).
 
 ### Technical Note
-The ability to create an MSAA DXGI swap chain is only supported for the older "bit-blt" style presentation modes, specifically ``DXGI_SWAP_EFFECT_DISCARD`` or ``DXGI_SWAP_EFFECT_SEQUENTIAL``. The newer "flip" style presentation modes ``DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL`` or ``DXGI_SWAP_EFFECT_FLIP_DISCARD`` required for Universal Windows Platform (UWP) apps don't support creating MSAA swap chains. Instead, you create your own MSAA render target and then explicitly resolve from MSAA to single-sample via ``ResolveSubresource`` to the DXGI back-buffer for presentation. See [Multisampling in Universal Windows Platform (UWP) apps](https://msdn.microsoft.com/en-us/windows/uwp/gaming/multisampling--multi-sample-anti-aliasing--in-windows-store-apps) and the [SimpleMSAA](https://github.com/Microsoft/Xbox-ATG-Samples/tree/master/UWPSamples/IntroGraphics/SimpleMSAA_UWP) sample which details how you implement MSAA in these cases.
+The ability to create an MSAA DXGI swap chain is only supported for the older "bit-blt" style presentation modes, specifically ``DXGI_SWAP_EFFECT_DISCARD`` or ``DXGI_SWAP_EFFECT_SEQUENTIAL``. The newer "flip" style presentation modes ``DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL`` or ``DXGI_SWAP_EFFECT_FLIP_DISCARD`` required for Universal Windows Platform (UWP) apps don't support creating MSAA swap chains. Instead, you create your own MSAA render target and then explicitly resolve from MSAA to single-sample via ``ResolveSubresource`` to the DXGI back-buffer for presentation. See [Multisampling in Universal Windows Platform (UWP) apps](https://docs.microsoft.com/en-us/windows/uwp/gaming/multisampling--multi-sample-anti-aliasing--in-windows-store-apps) and the [SimpleMSAA](https://github.com/Microsoft/Xbox-ATG-Samples/tree/master/UWPSamples/IntroGraphics/SimpleMSAA_UWP) sample which details how you implement MSAA in these cases.
 
 # More to explore
 

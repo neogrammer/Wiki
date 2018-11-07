@@ -53,18 +53,20 @@ Complete the steps in **Adding the headers** below including the additional conf
 # Adding the headers
 Now that we have the _DirectX Tool Kit for Audio_ usable in your project, the next step is to include the library header into your project.
 
-    //
-    // pch.h
-    // Header for standard system include files.
-    //
+```cpp
+//
+// pch.h
+// Header for standard system include files.
+//
 
-    #pragma once
+#pragma once
 
-    ...
+...
 
-    #include "Audio.h"
+#include "Audio.h"
 
-    ...
+...
+```
 
 ## XAudio 2.7
 If you are using XAudio 2.7 for Windows 7 and Windows Vista compatibility, we also need to add the DirectX SDK include and library paths to your project. First go to **Project** / **Properties** and select "VC++ Directories" on the left. Then set Configuration to "All Configurations" and Platform to "Win32" (note this is called "x86" in VS 2015). Add to the _end_ of these paths:
@@ -83,7 +85,7 @@ Click "Apply".
 
 ![VC++ Directories (x64)](https://github.com/Microsoft/DirectXTK/wiki/images/settingsDXx64.png)
 
-It is important that the legacy DirectX SDK paths be after the existing path since are making use of the Windows 8.1 / VS 2013. See [Where is the DirectX SDK?](http://msdn.microsoft.com/en-us/library/windows/desktop/ee663275.aspx) for more details.
+It is important that the legacy DirectX SDK paths be after the existing path since are making use of the Windows 8.1 / VS 2013. See [Where is the DirectX SDK?](https://docs.microsoft.com/en-us/windows/desktop/directx-sdk--august-2009-) for more details.
 
 > _Troubleshooting:_ If you get a compilation error indicating you are missing ``comdecl.h``, then you have incorrectly configured your VC++ Directory include paths. If you get a link error indicating you are missing ``x3daudio.lib`` then you incorrectly configured your VC++ Directory library paths.
 
@@ -91,13 +93,15 @@ It is important that the legacy DirectX SDK paths be after the existing path sin
 
 If you are using XAudio 2.8, then your application should be built to require Windows 8.0 or later. In *pch.h* modify the following section:
 
-    #include <WinSDKVer.h>
-    #define _WIN32_WINNT 0x0602
-    #include <SDKDDKVer.h>
+```cpp
+#include <WinSDKVer.h>
+#define _WIN32_WINNT 0x0602
+#include <SDKDDKVer.h>
+```
 
 > For platforms other than Windows desktop, you do not need to explicitly set ``_WIN32_WINNT`` as it's already set appropriately.
 
-> _Troubleshooting:_ If you get a compilation error indicating you are missing ``comdecl.h``, then you have incorrectly configured the ``_WIN32_WINNT`` variable. See [Using the Windows Headers](http://msdn.microsoft.com/en-us/library/windows/desktop/aa383745.aspx).
+> _Troubleshooting:_ If you get a compilation error indicating you are missing ``comdecl.h``, then you have incorrectly configured the ``_WIN32_WINNT`` variable. See [Using the Windows Headers](https://docs.microsoft.com/en-us/windows/desktop/WinProg/using-the-windows-headers).
 
 > XAudio 2.9 requires Windows 10 and ``_WIN32_WINNT`` being set to ``0x0A00``
 

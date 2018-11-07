@@ -5,30 +5,34 @@ Effects that implement this interface require ``NORMAL`` semantic data in the ve
 # Obtaining the interface
 There are two methods used in _DirectX Tool Kit_. For simple cases, just maintain a reference directly to the desired effect class:
 
-    std::shared_ptr<BasicEffect> effect;
+```cpp
+std::shared_ptr<BasicEffect> effect;
 
-    ...
+...
 
-    effect->SetLightingEnabled(true);
-    effect->SetLightEnabled( 0, true );
+effect->SetLightingEnabled(true);
+effect->SetLightEnabled( 0, true );
 
-    static const XMVECTORF32 light { 0.f, -1.f, 0.f, 0.f };
-    effect->SetLightDirection( 0, light );
+static const XMVECTORF32 light { 0.f, -1.f, 0.f, 0.f };
+effect->SetLightDirection( 0, light );
+```
 
 For more general cases where a number of effect classes can be in use (such as [[Model]] which uses a mix of _BasicEffect_, _DualTextureEffect_, _SkinnedEffect_, and/or _DGSLEffect_), use [Run-Time Type Information](https://en.wikipedia.org/wiki/Run-time_type_information) (RTTI) to obtain the interface.
 
-    std::shared_ptr<IEffect> effect;
+```cpp
+std::shared_ptr<IEffect> effect;
 
-    ...
+...
 
-    auto ilights = dynamic_cast<IEffectLights*>( effect.get() );
-    if ( ilights )
-    {
-        ilights->SetLightEnabled( 0, true );
+auto ilights = dynamic_cast<IEffectLights*>( effect.get() );
+if ( ilights )
+{
+    ilights->SetLightEnabled( 0, true );
 
-        static const XMVECTORF32 light { 0.f, -1.f, 0.f, 0.f };
-        ilights->SetLightDirection( 0, light );
-    }
+    static const XMVECTORF32 light { 0.f, -1.f, 0.f, 0.f };
+    ilights->SetLightDirection( 0, light );
+}
+```
 
 # Controlling lights
 The ``IEffectLights`` interface supports 1, 2, or 3 directional lights (_MaxDirectionalLights_ is 3) with an ambient light setting. The lights support both diffuse and specular color, and some effects support per-pixel lighting.
@@ -47,7 +51,7 @@ The default lighting set by **EnableDefaultLighting** consist of three lights:
 ## AlphaTestEffect, DualTextureEffect
 These built-in effects do not support this interface.
 
-## BasicEffect 
+## BasicEffect
 Supports up to 3 directional lights with vertex or per-pixel lighting, optionally using per-vertex colors. Materials definitions include diffuse color, specular color, specular power, and emissive color. Light definitions include ambient color, diffuse color, specular color, and specular power. Note that the standard lighting model does not include an ambient material color.
 
 ## DGSLEffect

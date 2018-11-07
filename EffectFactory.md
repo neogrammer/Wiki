@@ -3,44 +3,54 @@
 It uses a simple case-sensitive string-based (wide-character) map for finding effect and texture instances that have already been created by the factory, which avoid duplication of texture and effect resources in complex models and scenes.
 
 # Header
-    #include <Effects.h>
+```cpp
+#include <Effects.h>
+```
 
 # Initialization
 The **EffectFactory** and **DGSLEffectFactory** constructor require a Direct3D 11 device.
 
-    std::unique_ptr<EffectFactory> fxFactory;
-    fxFactory = std::make_unique<EffectFactory>( device );
+```cpp
+std::unique_ptr<EffectFactory> fxFactory;
+fxFactory = std::make_unique<EffectFactory>( device );
+```
 
 -or-
 
-    std::unique_ptr<DGSLEffectFactory> fxFactory;
-    fxFactory = std::make_unique<DGSLEffectFactory>( device );
+```cpp
+std::unique_ptr<DGSLEffectFactory> fxFactory;
+fxFactory = std::make_unique<DGSLEffectFactory>( device );
+```
 
 For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
 # Creating effects
 Fill out the EffectInfo structure, then call **CreateEffect** to obtain an [[Effects]] instance. If the _info.name_ string is provided then any already created effect from the factory that has the same name will be returned as a shared instance rather than a new instance created. If there is a name match, then all the other parameters in the EffectInfo are ignored.  Otherwise a new effect is created from the provided EffectInfo parameters, and CreateTexture is called automatically if the _info.diffuseTexture_, _info.specularTexture_, and/or _info.normalTexture_ strings are provided. Remember that the use of a texture or _info.perVertexColor_ will result in a varying the input layout requirements for the resulting Effect.
 
-    EffectFactory::EffectInfo info;
-    info.name = L”default”;
-    info.alpha = 1.f;
-    info.ambientColor = XMFLOAT3( 0.2f, 0.2f, 0.2f);
-    info.diffuseColor = XMFLOAT3( 0.8f, 0.8f, 0.8f );
+```cpp
+EffectFactory::EffectInfo info;
+info.name = L"default";
+info.alpha = 1.f;
+info.ambientColor = XMFLOAT3( 0.2f, 0.2f, 0.2f);
+info.diffuseColor = XMFLOAT3( 0.8f, 0.8f, 0.8f );
 
-    auto effect = fxFactory->CreateEffect( info, deviceContext );
+auto effect = fxFactory->CreateEffect( info, deviceContext );
+```
 
 The standard factory will create instances of [[BasicEffect]]. If _info.enableSkinning_ is true, it returns [[SkinnedEffect]] instances instead. If _info.enableDualTexture_ is true, it returns a [[DualTextureEffect]] instance. If _info.enableNormalMaps_ is true, then it returns a [[NormalMapEffect]] instance. They are kept in distinct 'sharing' lists since they have different input layout requirements.
 
 # Creating DGSL Effects
 The **DGSLEffectFactory** extends the standard EffectFactory with support for the Visual Studio Shader Designer (DGSL) system used by ``.CMO`` files. It creates instances of [[DGSLEffect]]. It also supports sharing the pixel shader instances required for DGSL shaders through the **CreatePixelShader** method.
 
-    DGSLEffectFactory::DGSLEffectInfo info;
-    info.name = L”default”;
-    info.alpha = 1.f;
-    info.ambientColor = XMFLOAT3( 0.2f, 0.2f, 0.2f);
-    info.diffuseColor = XMFLOAT3( 0.8f, 0.8f, 0.8f );
-    info.pixelShader = L"lambert.dgsl.cso";
-    auto effect = fxFactory->CreateDGSLEffect( info, deviceContext );
+```cpp
+DGSLEffectFactory::DGSLEffectInfo info;
+info.name = L"default";
+info.alpha = 1.f;
+info.ambientColor = XMFLOAT3( 0.2f, 0.2f, 0.2f);
+info.diffuseColor = XMFLOAT3( 0.8f, 0.8f, 0.8f );
+info.pixelShader = L"lambert.dgsl.cso";
+auto effect = fxFactory->CreateDGSLEffect( info, deviceContext );
+```
 
 Because Visual Studio Shader Designer (DGSL) ``.DGSL.CSO`` files only support Feature Level 10.0+, the _DGSLEffectFactory_ automatically uses a ``.CSO`` of the same name instead which is assumed to be a manually created fall-back shader compiled for Feature Level 9.x. This is the same technique as is used by the [Visual Studio 3D Starter Kit](http://code.msdn.microsoft.com/windowsapps/Visual-Studio-3D-Starter-455a15f1).
 
@@ -53,13 +63,17 @@ _DGSLEffect_ instances with and without skinning enable are kept in distinct 'sh
 # Creating textures
 **CreateTexture** assumes the name given is the filename of the texture to load. If the name string provided matches an already returned texture from the factory, then the existing shader resource view is returned rather than a new texture instance being created. If the name contains the extension ``.dds``, then [[DDSTextureLoader]] is used to create the texture and return the shader resource view, otherwise it will attempt to use [[WICTextureLoader]].  The device context is not used by the DDSTextureLoader, only by the WICTextureLoader or can be null to skip auto-gen of mipmaps.
 
-    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> srv;
-    fxFactory->CreateTexture( L”stone.dds”, nullptr, srv.GetAddressOf() );
+```cpp
+Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> srv;
+fxFactory->CreateTexture( L”stone.dds”, nullptr, srv.GetAddressOf() );
+```
 
 # Directories
-The **CreateTexture** and **CreatePixelShader** methods both assume the name given is the filename. By default, this is a relative path to the current working directory ([CWD](https://msdn.microsoft.com/en-us/library/windows/desktop/aa363806.aspx)). To cause the factory to look in a specific directory path, use **SetDirectory**.
+The **CreateTexture** and **CreatePixelShader** methods both assume the name given is the filename. By default, this is a relative path to the current working directory ([CWD](https://docs.microsoft.com/en-us/windows/desktop/FileIO/changing-the-current-directory)). To cause the factory to look in a specific directory path, use **SetDirectory**.
 
-    fxFactory->SetDirectory( L".\\Assets" );
+```cpp
+fxFactory->SetDirectory( L".\\Assets" );
+```
 
 > It will first look in the current working directory for the file, and then look in the specified path given in ``SetDirectory`` if set.
 
@@ -71,11 +85,15 @@ You can control the sharing cache with two methods that are implemented for both
 
 This method sets the sharing mode which defaults to true. By setting it to false, **CreateEffect**, **CreateTexture**, and **CreatePixelShader** calls will always return a new instance rather than returning a cached instance.
 
-    fxFactory->SetSharing( false );
+```cpp
+fxFactory->SetSharing( false );
+```
 
 This method clears the sharing cache, which might not release all the instances if they are referenced by other objects.
 
-    fxFactory->ReleaseCache();
+```cpp
+fxFactory->ReleaseCache();
+```
 
 # Effects options
 

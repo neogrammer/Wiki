@@ -1,15 +1,17 @@
-AudioEmitter is a helper object derived from [X3DAUDIO_EMITTER](http://msdn.microsoft.com/en-us/library/windows/desktop/microsoft.directx_sdk.x3daudio.x3daudio_emitter.aspx) used by [[SoundEffectInstance]]'s / [[DynamicSoundEffectInstance]]'s **Apply3D** method.
+AudioEmitter is a helper object derived from [X3DAUDIO_EMITTER](https://docs.microsoft.com/en-us/windows/desktop/api/x3daudio/ns-x3daudio-x3daudio_emitter) used by [[SoundEffectInstance]]'s / [[DynamicSoundEffectInstance]]'s **Apply3D** method.
 
 See [[AudioListener]].
 
 # Header
-    #include <Audio.h>
+```cpp
+#include <Audio.h>
+```
 
 # Initialization
 
-The default constructor creates a point omnidirectional emitter located at 0,0,0  facing ``-z`` and an up vector of ``+y`` for a mono source. 
+The default constructor creates a point omnidirectional emitter located at 0,0,0  facing ``-z`` and an up vector of ``+y`` for a mono source.
 
-CurveDistanceScaler and DopplerScaler are set to 1 by default. InnerRadius is set to 0, and InnerRadiusAngle is set to ``X3DAUDIO_PI/4.0`` (45 degrees).
+*CurveDistanceScaler* and *DopplerScaler* are set to 1 by default. *InnerRadius* is set to 0, and *InnerRadiusAngle* is set to ``X3DAUDIO_PI/4.0`` (45 degrees).
 
 > When using left-handed coordinates, be sure to set ``OrientFront``
 
@@ -37,6 +39,5 @@ AudioEmitter defaults to an omnidirectional emitter. To create a sound-cone, set
 The AudioEmitter constructor sets pVolumeCurve, pLFECurve, pLPFDirectCurve, pLPFReverbCurve, and pReverbCurve to nullptr which uses XAudio2 default curves.  Any custom curve definitions must have a pointer to valid memory at the time Apply3D is called.
 
 # Further reading
-[X3DAudio](http://msdn.microsoft.com/en-us/library/windows/desktop/ee415714.aspx)  
-[X3DAudioCalculate](http://msdn.microsoft.com/en-us/library/windows/desktop/microsoft.directx_sdk.x3daudio.x3daudiocalculate.aspx)
-
+[X3DAudio](https://docs.microsoft.com/en-us/windows/desktop/xaudio2/x3daudio)  
+[X3DAudioCalculate](https://docs.microsoft.com/en-us/windows/desktop/api/x3daudio/nf-x3daudio-x3daudiocalculate)

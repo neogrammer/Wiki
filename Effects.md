@@ -10,7 +10,7 @@ DirectX Tool Kit also includes the following built-in effects:
 * [[NormalMapEffect]] which extends ``BasicEffect`` to support normal maps and optional specular map.
 * [[PBREffect]] which implements a Disney-style (Roughness/Metalness workflow) Physically-Based Renderer effect using image-based lighting.
 * [[DebugEffect]] which implements debugging shaders such as visualization of normals, tangents, and bi-tangents.
-* [[DGSLEffect]] which supports the [Visual Studio Shader Designer](https://msdn.microsoft.com/en-us/library/hh315733.aspx) (DGSL) content pipeline both with and without skinned animation with up to 8 textures.
+* [[DGSLEffect]] which supports the [Visual Studio Shader Designer](https://docs.microsoft.com/en-us/visualstudio/designers/shader-designer) (DGSL) content pipeline both with and without skinned animation with up to 8 textures.
 
 See also [[EffectFactory]]
 
@@ -19,26 +19,32 @@ See also [[EffectFactory]]
 **Related tutorials:** [[Simple rendering]], [[Using advanced shaders]], [[Creating custom shaders with DGSL]], [[Writing custom shaders]]
 
 # Header
-    #include <Effects.h>
+```cpp
+#include <Effects.h>
+```
 
 # Initialization
 The built-in effect constructors requires a Direct3D 11 device.
 
-    std::unique_ptr<BasicEffect> effect;
-    effect = std::make_unique<BasicEffect>(device);
+```cpp
+std::unique_ptr<BasicEffect> effect;
+effect = std::make_unique<BasicEffect>(device);
+```
 
 For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
 # Set effect parameters
 
-    effect->SetWorld(world);
-    effect->SetView(view);
-    effect->SetProjection(projection);
+```cpp
+effect->SetWorld(world);
+effect->SetView(view);
+effect->SetProjection(projection);
 
-    effect->SetTexture(cat);
-    effect->SetTextureEnabled(true);
+effect->SetTexture(cat);
+effect->SetTextureEnabled(true);
 
-    effect->EnableDefaultLighting();
+effect->EnableDefaultLighting();
+```
 
 The built-in effects default to a standard lighting and color set
 
@@ -52,37 +58,41 @@ The **EnableDefaultLighting** method sets up a standard three light setup (key, 
 
 # Draw using the effect
 
-    effect->Apply(deviceContext);
+```cpp
+effect->Apply(deviceContext);
 
-    deviceContext->IASetInputLayout(...);
-    deviceContext->IASetVertexBuffers(...);
-    deviceContext->IASetIndexBuffer(...);
-    deviceContext->IASetPrimitiveTopology(...);
-    deviceContext->PSSetSamplers(...);
+deviceContext->IASetInputLayout(...);
+deviceContext->IASetVertexBuffers(...);
+deviceContext->IASetIndexBuffer(...);
+deviceContext->IASetPrimitiveTopology(...);
+deviceContext->PSSetSamplers(...);
 
-    deviceContext->DrawIndexed(...);
+deviceContext->DrawIndexed(...);
+```
 
 # Input layout
 
 To create an input layout matching the effect vertex shader input signature:
 
-    // First, configure effect parameters the way you will be using it. Turning
-    // lighting, texture map, or vertex color on/off alters which vertex shader
-    // is used, so GetVertexShaderBytecode will return a different blob after
-    // you alter these parameters. If you create an input layout using a
-    // BasicEffect that had lighting disabled, but then later enable lighting,
-    // that input layout will no longer match as it will not include the
-    // now-necessary normal vector.
+```cpp
+// First, configure effect parameters the way you will be using it. Turning
+// lighting, texture map, or vertex color on/off alters which vertex shader
+// is used, so GetVertexShaderBytecode will return a different blob after
+// you alter these parameters. If you create an input layout using a
+// BasicEffect that had lighting disabled, but then later enable lighting,
+// that input layout will no longer match as it will not include the
+// now-necessary normal vector.
 
-    void const* shaderByteCode;
-    size_t byteCodeLength;
+void const* shaderByteCode;
+size_t byteCodeLength;
 
-    effect->GetVertexShaderBytecode(&shaderByteCode, &byteCodeLength);
+effect->GetVertexShaderBytecode(&shaderByteCode, &byteCodeLength);
 
-    device->CreateInputLayout(VertexPositionNormalTexture::InputElements,
-                              VertexPositionNormalTexture::InputElementCount,
-                              shaderByteCode, byteCodeLength,
-                              pInputLayout);
+device->CreateInputLayout(VertexPositionNormalTexture::InputElements,
+                          VertexPositionNormalTexture::InputElementCount,
+                          shaderByteCode, byteCodeLength,
+                          pInputLayout);
+```
 
 For the built-in effects, the trigger for needing to create a new layout would be:
 
@@ -118,7 +128,7 @@ The compiled shaders are integrated into the DirectXTK library to avoid the need
 
 Creation is fully asynchronous, so you can instantiate multiple effect  instances at the same time on different threads. Each instance only supports drawing from one thread at a time, but you can simultaneously draw on multiple threads if you create a separate effect instance per Direct3D 11 deferred context.
 
-[Immediate and Deferred Rendering](http://msdn.microsoft.com/en-us/library/windows/desktop/ff476892.aspx)
+[Immediate and Deferred Rendering](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/overviews-direct3d-11-render-multi-thread-render)
 
 # State management
 

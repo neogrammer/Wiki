@@ -17,8 +17,8 @@ The file _myfile.spritefont_ is generated from the installed TrueType font.
 
 You can also use the [Bitmap Font Maker](http://xbox.create.msdn.com/en-US/education/catalog/utility/bitmap_font_maker) tool to capture a TrueType font as a BMP, then edit the image before using it to create a spritefont via the _Bitmap import_ procedure below
 
-# Bitmap Import 
-For importing the font from a bitmap file, characters should be arranged in a grid ordered from top left to bottom right. Monochrome fonts should use white for solid areas and black for transparent areas. To include multicolored characters, add an alpha channel to the bitmap and use that to control which parts of each character are solid. The spaces between characters and around the edges of the grid should be filled with bright pink (red=255, green=0, blue=255). It doesn't matter if your grid includes lots of wasted space, because the converter will rearrange characters, packing everything as tightly as possible. 
+# Bitmap Import
+For importing the font from a bitmap file, characters should be arranged in a grid ordered from top left to bottom right. Monochrome fonts should use white for solid areas and black for transparent areas. To include multicolored characters, add an alpha channel to the bitmap and use that to control which parts of each character are solid. The spaces between characters and around the edges of the grid should be filled with bright pink (red=255, green=0, blue=255). It doesn't matter if your grid includes lots of wasted space, because the converter will rearrange characters, packing everything as tightly as possible.
 
 For example, this is the sprite font for the Xbox 360 Common Controller buttons.
 
@@ -34,7 +34,7 @@ The file _xboxController.spritefont_ is generated from the [xboxControllerSprite
 
 **Note:** _The MakeSpriteFont tool only supports importing from ``.bmp``, ``.png``, or ``.gif`` images. If you are using a ``.tga`` source file, then you use should DirectXTex's **texconv** utility to convert it:_
 
-    texconv -ft PNG originalSpriteFont.tga 
+    texconv -ft PNG originalSpriteFont.tga
 
 # Commandline options
 
@@ -69,7 +69,7 @@ Examples:
 * What format should the output texture be? Options:
  * ``Auto`` - The default. Chooses between CompressedMono and Rgba32 depending on whether the font data is monochromatic or multicolored.
  * ``Rgba32`` - High quality and supports multicolored fonts, but wastes space.
- * ``Bgra4444`` - Good choice for color fonts on Windows Store apps and Windows Phone platforms, as this format requires the DirectX 11.1 Runtime and a WDDM 1.2 driver.
+ * ``Bgra4444`` - Good choice for color fonts on the Univesal Windows Platform (UWP) or Xbox One, as this format requires the DirectX 11.1 Runtime and a WDDM 1.2 driver.
  * ``CompressedMono`` - The smallest format, and works on all D3D platforms, but it only supports monochromatic font data. This uses a special BC2 encoder: see comments in SpriteFontWriter.cs for details.
 
 **/NoPremultiply**
@@ -85,7 +85,7 @@ Examples:
 * Dumps the generated texture to a bitmap file (useful when debugging the MakeSpriteFont tool, not so much if you are just trying to use it).
 
 # Localization
-Since all glyphs specified are captured into a texture, the SpriteFont solution is very effective for smaller character sets. For large character sets such as Chinese, Japanese, or Korean, capturing every possible glyph is extremely slow, and the resulting texture is extremely large possibly exceeding the size supported by your target [Direct3D hardware feature level](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476876.aspx). For these large character sets, using DirectWrite to render glyphs on-the-fly is a better solution.
+Since all glyphs specified are captured into a texture, the SpriteFont solution is very effective for smaller character sets. For large character sets such as Chinese, Japanese, or Korean, capturing every possible glyph is extremely slow, and the resulting texture is extremely large possibly exceeding the size supported by your target [Direct3D hardware feature level](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/overviews-direct3d-11-devices-downlevel-intro). For these large character sets, using DirectWrite to render glyphs on-the-fly is a better solution.
 
 For cases where DirectWrite is not supported (such as Windows phone 8.0 and Xbox One exclusive apps) and/or when rendering a set of static localized text, another solution is to scan all your translated text and capture only those character regions actually used by your application's specific display strings.
 
@@ -122,4 +122,3 @@ The MakeSpriteFont tool will generate warnings if the resulting sprite sheet tex
 [XNA Game Studio Localization](http://xbox.create.msdn.com/en-US/education/catalog/sample/localization)
 
 [Knapsack problem](http://en.wikipedia.org/wiki/Knapsack_problem)
-

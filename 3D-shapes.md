@@ -6,43 +6,55 @@ First create a new project using the instructions from the first two lessons: [[
 
 # Background
 
-In the previous lesson, we generated geometry with code using [[PrimitiveBatch]] to draw simple shapes. Here we make use of **GeometricPrimitive** which procedurally generates shapes like spheres, cubes, etc. These 3D shapes are more efficient to render because they make use of indexed primitives, and because they make use of a static rather than dynamic *vertex buffer* and *index buffer*. 
+In the previous lesson, we generated geometry with code using [[PrimitiveBatch]] to draw simple shapes. Here we make use of **GeometricPrimitive** which procedurally generates shapes like spheres, cubes, etc. These 3D shapes are more efficient to render because they make use of indexed primitives, and because they make use of a static rather than dynamic *vertex buffer* and *index buffer*.
 
 # Drawing a sphere
 
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 
-    DirectX::SimpleMath::Matrix m_world;
-    DirectX::SimpleMath::Matrix m_view;
-    DirectX::SimpleMath::Matrix m_proj;
-    std::unique_ptr<DirectX::GeometricPrimitive> m_shape;
+```cpp
+DirectX::SimpleMath::Matrix m_world;
+DirectX::SimpleMath::Matrix m_view;
+DirectX::SimpleMath::Matrix m_proj;
+std::unique_ptr<DirectX::GeometricPrimitive> m_shape;
+```
 
 In **Game.cpp**, add to the TODO of **CreateDevice**:
 
-    m_shape = GeometricPrimitive::CreateSphere(m_d3dContext.Get());
-    
-    m_world = Matrix::Identity;
+```cpp
+m_shape = GeometricPrimitive::CreateSphere(m_d3dContext.Get());
+
+m_world = Matrix::Identity;
+```
 
 In **Game.cpp**, add to the TODO of **CreateResources**:
 
-    m_view = Matrix::CreateLookAt(Vector3(2.f, 2.f, 2.f),
-        Vector3::Zero, Vector3::UnitY);
-    m_proj = Matrix::CreatePerspectiveFieldOfView(XM_PI / 4.f,
-        float(backBufferWidth) / float(backBufferHeight), 0.1f, 10.f);
+```cpp
+m_view = Matrix::CreateLookAt(Vector3(2.f, 2.f, 2.f),
+    Vector3::Zero, Vector3::UnitY);
+m_proj = Matrix::CreatePerspectiveFieldOfView(XM_PI / 4.f,
+    float(backBufferWidth) / float(backBufferHeight), 0.1f, 10.f);
+```
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
-    m_shape.reset();
+```cpp
+m_shape.reset();
+```
 
 In **Game.cpp**, add to the TODO of **Render**:
 
-    m_shape->Draw(m_world, m_view, m_proj);
+```cpp
+m_shape->Draw(m_world, m_view, m_proj);
+```
 
 In **Game.cpp**, add to the TODO of **Update**:
 
-    float time = float(timer.GetTotalSeconds());
-    
-    m_world = Matrix::CreateRotationZ(cosf(time) * 2.f);
+```cpp
+float time = float(timer.GetTotalSeconds());
+
+m_world = Matrix::CreateRotationZ(cosf(time) * 2.f);
+```
 
 Build and run, and you'll see a white lit sphere.
 
@@ -52,7 +64,9 @@ Build and run, and you'll see a white lit sphere.
 
 In **Game.cpp** modify the TODO of **CreateDevice**:
 
-    m_shape = GeometricPrimitive::CreateTorus(m_d3dContext.Get());
+```cpp
+m_shape = GeometricPrimitive::CreateTorus(m_d3dContext.Get());
+```
 
 Build and run to see a torus instead of a sphere.
 
@@ -60,15 +74,17 @@ Build and run to see a torus instead of a sphere.
 
 You can try out other shapes like a cube, cone, cylinder, dodecahedron, or the classic teapot.
 
-    m_shape = GeometricPrimitive::CreateCube(m_d3dContext.Get());
+```cpp
+m_shape = GeometricPrimitive::CreateCube(m_d3dContext.Get());
 
-    m_shape = GeometricPrimitive::CreateCone(m_d3dContext.Get());
+m_shape = GeometricPrimitive::CreateCone(m_d3dContext.Get());
 
-    m_shape = GeometricPrimitive::CreateCylinder(m_d3dContext.Get());
+m_shape = GeometricPrimitive::CreateCylinder(m_d3dContext.Get());
 
-    m_shape = GeometricPrimitive::CreateDodecahedron(m_d3dContext.Get());
+m_shape = GeometricPrimitive::CreateDodecahedron(m_d3dContext.Get());
 
-    m_shape = GeometricPrimitive::CreateTeapot(m_d3dContext.Get());
+m_shape = GeometricPrimitive::CreateTeapot(m_d3dContext.Get());
+```
 
 # Adding textures to 3D shapes
 
@@ -76,31 +92,43 @@ Start by saving [earth.bmp](https://github.com/Microsoft/DirectXTK/wiki/images/e
 
 In the **Game.h** file, add the following variable to the bottom of the Game class's private declarations:
 
-    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture;
+```cpp
+Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture;
+```
 
 In **Game.cpp**, add to the TODO of **CreateDevice**:
 
-    DX::ThrowIfFailed(
-        CreateWICTextureFromFile(m_d3dDevice.Get(), L"earth.bmp", nullptr,
-        m_texture.ReleaseAndGetAddressOf()));
+```cpp
+DX::ThrowIfFailed(
+    CreateWICTextureFromFile(m_d3dDevice.Get(), L"earth.bmp", nullptr,
+    m_texture.ReleaseAndGetAddressOf()));
+```
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
-    m_texture.Reset();
+```cpp
+m_texture.Reset();
+```
 
 In **Game.cpp** modify the TODO of **CreateDevice**:
 
-    m_shape = GeometricPrimitive::CreateSphere(m_d3dContext.Get());
+```cpp
+m_shape = GeometricPrimitive::CreateSphere(m_d3dContext.Get());
+```
 
 In **Game.cpp**, modify to the TODO of **Render**:
 
-    m_shape->Draw(m_world, m_view, m_proj, Colors::White, m_texture.Get());
+```cpp
+m_shape->Draw(m_world, m_view, m_proj, Colors::White, m_texture.Get());
+```
 
 In **Game.cpp**, modify to the TODO of **Update**:
 
-    float time = float(timer.GetTotalSeconds());
-   
-    m_world = Matrix::CreateRotationY(time);
+```cpp
+float time = float(timer.GetTotalSeconds());
+
+m_world = Matrix::CreateRotationY(time);
+```
 
 Build and you'll see planet earth spinning.
 
@@ -112,45 +140,55 @@ By default the geometric primitive renderer uses a simple [[BasicEffect]] with d
 
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 
-    std::unique_ptr<DirectX::BasicEffect> m_effect;
-    Microsoft::WRL::ComPtr<ID3D11InputLayout> m_inputLayout;
+```cpp
+std::unique_ptr<DirectX::BasicEffect> m_effect;
+Microsoft::WRL::ComPtr<ID3D11InputLayout> m_inputLayout;
+```
 
 In **Game.cpp** modify the TODO of **CreateDevice**:
 
-    m_effect = std::make_unique<BasicEffect>(m_d3dDevice.Get());
-    m_effect->SetTextureEnabled(true);
-    m_effect->SetPerPixelLighting(true);
-    m_effect->SetLightingEnabled(true);
-    m_effect->SetLightEnabled(0, true);
-    m_effect->SetLightDiffuseColor(0, Colors::White);
-    m_effect->SetLightDirection(0, -Vector3::UnitZ);
+```cpp
+m_effect = std::make_unique<BasicEffect>(m_d3dDevice.Get());
+m_effect->SetTextureEnabled(true);
+m_effect->SetPerPixelLighting(true);
+m_effect->SetLightingEnabled(true);
+m_effect->SetLightEnabled(0, true);
+m_effect->SetLightDiffuseColor(0, Colors::White);
+m_effect->SetLightDirection(0, -Vector3::UnitZ);
 
-    m_shape = GeometricPrimitive::CreateSphere(m_d3dContext.Get());
-    m_shape->CreateInputLayout(m_effect.get(),
-        m_inputLayout.ReleaseAndGetAddressOf());
+m_shape = GeometricPrimitive::CreateSphere(m_d3dContext.Get());
+m_shape->CreateInputLayout(m_effect.get(),
+    m_inputLayout.ReleaseAndGetAddressOf());
 
-    DX::ThrowIfFailed(
-       CreateWICTextureFromFile(m_d3dDevice.Get(), L"earth.bmp", nullptr,
-            m_texture.ReleaseAndGetAddressOf()));
+DX::ThrowIfFailed(
+   CreateWICTextureFromFile(m_d3dDevice.Get(), L"earth.bmp", nullptr,
+        m_texture.ReleaseAndGetAddressOf()));
 
-    m_effect->SetTexture(m_texture.Get());
+m_effect->SetTexture(m_texture.Get());
 
-    m_world = Matrix::Identity;
+m_world = Matrix::Identity;
+```
 
 In **Game.cpp**, add to the TODO of **CreateResources**:
 
-    m_effect->SetView(m_view);
-    m_effect->SetProjection(m_proj);
+```cpp
+m_effect->SetView(m_view);
+m_effect->SetProjection(m_proj);
+```
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
-    m_effect.reset();
-    m_inputLayout.Reset();
+```cpp
+m_effect.reset();
+m_inputLayout.Reset();
+```
 
 In **Game.cpp**, modify to the TODO of **Render**:
 
-    m_effect->SetWorld(m_world);
-    m_shape->Draw(m_effect.get(), m_inputLayout.Get());
+```cpp
+m_effect->SetWorld(m_world);
+m_shape->Draw(m_effect.get(), m_inputLayout.Get());
+```
 
 Build and run to see earth with more 'space-like' lighting.
 

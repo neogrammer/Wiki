@@ -4,50 +4,56 @@ This is a helper for simplified access to gamepad controllers modeled after the 
 
 **Related tutorial:** [[Game controller input]]
 
-# Header 
-    #include <GamePad.h>
+# Header
+```cpp
+#include <GamePad.h>
+```
 
 # Initialization
 GamePad is a singleton.
 
-    std::unique_ptr<GamePad> gamepad;
-    gamepad = std::make_unique<GamePad>();
+```cpp
+std::unique_ptr<GamePad> gamepad;
+gamepad = std::make_unique<GamePad>();
+```
 
 For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr``.
 
 # Basic use
 **GetState** queries the controller status given a _player_ index. If connected, it returns the status of the buttons (A, B, X, Y, left & right stick, left & right shoulder, back, and start), the directional pad (DPAD), the left & right thumb sticks, and the left & right triggers.
 
-    auto state = gamePad->GetState( 0 );
+```cpp
+auto state = gamePad->GetState( 0 );
 
-    if ( state.IsConnected() )
-    {
-        if ( state.IsAPressed() )
-            // Do action for button A being down
+if ( state.IsConnected() )
+{
+    if ( state.IsAPressed() )
+        // Do action for button A being down
 
-        if ( state.buttons.y )
-            // Do action for button Y being down
+    if ( state.buttons.y )
+        // Do action for button Y being down
 
-        if ( state.IsDPadLeftPressed() )
-            // Do action for DPAD Left being down
+    if ( state.IsDPadLeftPressed() )
+        // Do action for DPAD Left being down
 
-        if ( state.dpad.up || state.dpad.down || state.dpad.left || state.dpad.right )
-            // Do action based on any DPAD change
+    if ( state.dpad.up || state.dpad.down || state.dpad.left || state.dpad.right )
+        // Do action based on any DPAD change
 
-        float posx = state.thumbSticks.leftX;
-        float posy = state.thumbSticks.leftY;
-            // These values are normalized to -1 to 1
+    float posx = state.thumbSticks.leftX;
+    float posy = state.thumbSticks.leftY;
+        // These values are normalized to -1 to 1
 
-        float throttle = state.triggers.right;
-            // This value is normalized 0 -> 1
+    float throttle = state.triggers.right;
+        // This value is normalized 0 -> 1
 
-        if ( state.IsLeftTriggerPressed() )
-            // Do action based on a left trigger pressed more than halfway
+    if ( state.IsLeftTriggerPressed() )
+        // Do action based on a left trigger pressed more than halfway
 
-        if ( state.IsViewPressed() )
-            // This is an alias for the Xbox 360 'Back' button
-            // which is called 'View' on the Xbox One controller. 
-    }
+    if ( state.IsViewPressed() )
+        // This is an alias for the Xbox 360 'Back' button
+        // which is called 'View' on the Xbox One controller.
+}
+```
 
 The valid range for _player_ is 0 to ``GamePad::MAX_PLAYER_COUNT - 1``. Outside that range, the state is always reported as disconnected.
 
@@ -64,77 +70,91 @@ GamePad implements the same dead zone scheme as XNA.
 
 For example:
 
-    auto state = gamePad->GetState( 0, GamePad::DEAD_ZONE_CIRCULAR );
+```cpp
+auto state = gamePad->GetState( 0, GamePad::DEAD_ZONE_CIRCULAR );
+```
 
 See [Shawn's blog](http://blogs.msdn.com/b/shawnhar/archive/2007/03/28/gamepads-suck.aspx) for details.
 
 # Vibration
 Many controllers include vibration motors to provide force-feedback to the user, which can be controlled with **SetVibration** and the _player_ index. The motor values range from 0 to 1.
 
-    if ( gamePad->SetVibration( 0, 0.5f, 0.25f ) )
-        // If true, the vibration was successfully set.
+```cpp
+if ( gamePad->SetVibration( 0, 0.5f, 0.25f ) )
+    // If true, the vibration was successfully set.
+```
 
 # Device capabilities
 The GamePad class provides a simplified model for the device capabilities.
 
-    auto caps = gamePad->GetCapabilities( 0 );
-    if ( caps.IsConnected() )
-    {
-        if ( caps.gamepadType == GamePad::Capabilities::FLIGHT_STICK )
-            // Use specific controller layout based on a flight stick controller
-        else
-            // Default to treating any unknown type as a standard gamepad
-    }
+```cpp
+auto caps = gamePad->GetCapabilities( 0 );
+if ( caps.IsConnected() )
+{
+    if ( caps.gamepadType == GamePad::Capabilities::FLIGHT_STICK )
+        // Use specific controller layout based on a flight stick controller
+    else
+        // Default to treating any unknown type as a standard gamepad
+}
+```
 
-_Note that much of the information reported in ``XINPUT_CAPABILITIES`` is omitted. This is because much of it is unreliable (see below), but also because the actionable information is entirely captured by the gamepadType subtype._
+> Much of the information reported in ``XINPUT_CAPABILITIES`` is omitted. This is because much of it is unreliable (see below), but also because the actionable information is entirely captured by the gamepadType subtype.
 
 # Application focus
 Unlike mouse or keyboard input on Windows, XInput has 'global' focus when reading the game controller. Therefore, applications should ignore the input when in the background. To implement this, you can call the following method when you lose focus, which will shut off any active vibration and then return 'neutral' data for all connected gamepads.
 
-    gamePad->Suspend();
+```cpp
+gamePad->Suspend();
+```
 
 When focus is returned to the application, call the following method to restore any active vibration and read gamepad data again.
 
-    gamePad->Resume();
+```cpp
+gamePad->Resume();
+```
 
 # Button state tracker
 
 A common pattern for gamepads is to trigger an action when a button is pressed or released, but you don't want to trigger the action every single frame if the button is held down for more than a single frame. This helper class simplifies this.
 
-    GamePad::ButtonStateTracker tracker;
+```cpp
+GamePad::ButtonStateTracker tracker;
 
-    ...
+...
 
-    auto state = gamePad->GetState( 0 );
-    if ( state.IsConnected() )
-    {
-        tracker.Update( state );
+auto state = gamePad->GetState( 0 );
+if ( state.IsConnected() )
+{
+    tracker.Update( state );
 
-        if ( tracker.a == GamePad::ButtonStateTracker::PRESSED )
-            // Take an action when Button A is first pressed, but don't do it again until
-            // the button is released and then pressed again
-    }
-    else
-    {
-        tracker.Reset();
-    }
+    if ( tracker.a == GamePad::ButtonStateTracker::PRESSED )
+        // Take an action when Button A is first pressed, but don't do it again until
+        // the button is released and then pressed again
+}
+else
+{
+    tracker.Reset();
+}
+```
 
 Each button is reported by the tracker with a state ``UP``, ``HELD``, ``PRESSED``, or ``RELEASED``.
 
 You may find that using ``GamePad::ButtonStateTracker::PRESSED`` is a bit verbose. You can simplify the code by doing:
 
-    if ( state.IsConnected() )
-    {
-        tracker.Update( state );
+```cpp
+if ( state.IsConnected() )
+{
+    tracker.Update( state );
 
-        using ButtonState = GamePad::ButtonStateTracker::ButtonState;
+    using ButtonState = GamePad::ButtonStateTracker::ButtonState;
 
-        if ( tracker.a == ButtonState::PRESSED )
-            // Take an action when Button A is first pressed, but don't do it again until
-            // the button is released and then pressed again
-    }
+    if ( tracker.a == ButtonState::PRESSED )
+        // Take an action when Button A is first pressed, but don't do it again until
+        // the button is released and then pressed again
+}
+```
 
-_When resuming from a pause or suspend, be sure to call **Reset** on the tracker object to clear the state history._
+> When resuming from a pause or suspend, be sure to call **Reset** on the tracker object to clear the state history.
 
 # Threading model
 The GamePad class provides no special synchronization above the underlying API. XInput on Windows is thread-safe through a internal global lock, so performance is best when only a single thread accesses the controller.
@@ -153,9 +173,11 @@ When built for Windows 10, it makes use of ``Windows.Gaming.Input``. This class 
 
 > For a Universal Windows Platform (UWP) app, the Windows Runtime (and COM generally) is initialized by the C/C++ Run-Time. For a classic Windows desktop application you have to do this explicitly:
 
-    Microsoft::WRL::Wrappers::RoInitializeWrapper initialize(RO_INIT_MULTITHREADED);
-    if (FAILED(initialize))
-        // Error
+```cpp
+Microsoft::WRL::Wrappers::RoInitializeWrapper initialize(RO_INIT_MULTITHREADED);
+if (FAILED(initialize))
+    // Error
+```
 
 Note that subtype capabilities information is somewhat unreliable down-level depending on your exact mix of device and driver, and in some cases is hard-coded. All capabilities information is reliable on Windows 8.0 or later.
 
@@ -172,27 +194,26 @@ On Xbox One, this class is implemented using the _Windows.Xbox.Input_ interfaces
 
 The _player_ index mapping is not correlated directly with a user as it is on Xbox 360 or Windows, and is assigned 'upon arrival'. To determine the actual user for a given gamepad, you should use the controller ID reported as part of the Capabilities.
 
-    auto caps = gamePad->GetCapabilities( playerIndex );
-    if ( caps.IsConnected() )
+```cpp
+auto caps = gamePad->GetCapabilities( playerIndex );
+if ( caps.IsConnected() )
+{
+    try
     {
-        try
+        auto ctrl = Controller::GetControllerById( caps.id );
+        if ( ctrl )
         {
-            auto ctrl = Controller::GetControllerById( caps.id );
-            if ( ctrl )
-            {
-                User^ user = ctrl->User;
-                // user is the user associated with the controller, if any
-            }
-        }
-        catch ( Platform::Exception ^ e )
-        {
-            // error handling, likely the controller has been removed
-            // since the caps were obtained
+            User^ user = ctrl->User;
+            // user is the user associated with the controller, if any
         }
     }
-
-## Windows Phone
-The GamePad object can be created and used on Windows Phone, but it will always report no devices connected. The original XNA 4 API would report the Windows Phone hardware back button as ``Buttons.Back``, but this implementation does not do this as the information about the hardware button is communicated through ``ICoreWindows`` messages.
+    catch ( Platform::Exception ^ e )
+    {
+        // error handling, likely the controller has been removed
+        // since the caps were obtained
+    }
+}
+```
 
 ## Universal Windows app Platform (UWP)
 When built for Windows 10, the GamePad class is implemented using a new WinRT ``Windows.Gaming.Input`` API similar to the Xbox One API. Here are a few notes:
@@ -206,38 +227,40 @@ When built for Windows 10, the GamePad class is implemented using a new WinRT ``
 Whenever the B button on a gamepad controller is pressed on Xbox One, the running UWP app is sent a "back request" (like the hardware 'Back' button on Windows Mobile). If this is unhandled, the application will be suspended and the previous application is brought forward. This can make using the B button in your UI design a challenge, so the recommended solution is to add a message handler to 'handle' the request:
 
 ### C++/CX
+```cpp
+void SetWindow(CoreWindow^ window)
+{
+    ...
+    auto navigation = Windows::UI::Core::SystemNavigationManager::GetForCurrentView();
 
-    void SetWindow(CoreWindow^ window)
-    {
-        ...
-        auto navigation = Windows::UI::Core::SystemNavigationManager::GetForCurrentView();
+    navigation->BackRequested +=
+        ref new EventHandler<BackRequestedEventArgs^>(this, &ViewProvider::OnBackRequested);
+    ...
+}
 
-        navigation->BackRequested +=
-            ref new EventHandler<BackRequestedEventArgs^>(this, &ViewProvider::OnBackRequested);
-        ...
-    }
-
-    void OnBackRequested(Platform::Object^, Windows::UI::Core::BackRequestedEventArgs^ args)
-    {
-        // UWP on Xbox One triggers a back request whenever the B button is pressed
-        // which can result in the app being suspended if unhandled
-        args->Handled = true;
-    }
-
-### C++/WinRT
-
-    #include <winrt/Windows.UI.Core.h>
-
+void OnBackRequested(Platform::Object^, Windows::UI::Core::BackRequestedEventArgs^ args)
+{
     // UWP on Xbox One triggers a back request whenever the B button is pressed
     // which can result in the app being suspended if unhandled
-    using namespace winrt::Windows::UI::Core;
+    args->Handled = true;
+}
+```
 
-    auto navigation = SystemNavigationManager::GetForCurrentView();
+### C++/WinRT
+```cpp
+#include <winrt/Windows.UI.Core.h>
 
-    navigation.BackRequested([](const winrt::Windows::Foundation::IInspectable&, const BackRequestedEventArgs& args)
-    {
-        args.Handled(true);
-    });
+// UWP on Xbox One triggers a back request whenever the B button is pressed
+// which can result in the app being suspended if unhandled
+using namespace winrt::Windows::UI::Core;
+
+auto navigation = SystemNavigationManager::GetForCurrentView();
+
+navigation.BackRequested([](const winrt::Windows::Foundation::IInspectable&, const BackRequestedEventArgs& args)
+{
+    args.Handled(true);
+});
+```
 
 # Further reading
 [DirectX Tool Kit: Now with GamePads](http://blogs.msdn.com/b/chuckw/archive/2014/09/05/directx-tool-kit-now-with-gamepads.aspx)  

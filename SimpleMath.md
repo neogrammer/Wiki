@@ -14,17 +14,20 @@
 **Related tutorials:** [[Using the SimpleMath library]], [[Basic game math]], [[Collision detection]], [[Mixing SimpleMath and DirectXMath]]
 
 # Header
-
-    #include <d3d11.h>
-    #include "SimpleMath.h"
+```cpp
+#include <d3d11.h>
+#include "SimpleMath.h"
+```
 
 > If using _DirectX Tool Kit for DirectX 12_, you'd use ``#include <d3d12.h>`` instead of ``#include <d3d11.h>``.
 
 # Namespace
 
 All the functions in SimpleMath are in the **DirectX::SimpleMath** C++ namespace.
-    
-    using namespace DirectX::SimpleMath;
+
+```cpp
+using namespace DirectX::SimpleMath;
+```
 
 # Why wrap DirectXMath?
 
@@ -58,10 +61,10 @@ The SimpleMath wrapper does not include classes for bounding volumes because the
 This includes:
 
 * [BoundingSphere](https://msdn.microsoft.com/en-us/library/windows/desktop/microsoft.directx_sdk.directxcollision.boundingsphere.aspx) class
-* [BoundingBox](https://msdn.microsoft.com/en-us/library/windows/desktop/microsoft.directx_sdk.directxcollision.boundingbox.aspx) class
+* [BoundingBox](https://docs.microsoft.com/en-us/windows/desktop/api/directxcollision/ns-directxcollision-boundingbox) class
 * [BoundingOrientedBox](https://msdn.microsoft.com/en-us/library/windows/desktop/microsoft.directx_sdk.directxmath.boundingorientedbox.aspx) class
 * [BoundingFrustum](https://msdn.microsoft.com/en-us/library/windows/desktop/microsoft.directx_sdk.directxmath.boundingfrustum.aspx) class
-* [TriangleTests](https://msdn.microsoft.com/en-us/library/windows/desktop/hh855857.aspx) namespace
+* [TriangleTests](https://docs.microsoft.com/en-us/windows/desktop/dxmath/ovw-xnamath-triangletests) namespace
 
 These were designed to already be similar to the XNA Game Studio math API bounding types.
 
@@ -80,31 +83,35 @@ Because SimpleMath Is intended to look a lot like like XNA Game Studio's math li
 
 If you want to use _left-handed coordinates_, use the DirectXMath methods directly. For example
 
-    // Here's a RH example
-    Vector3 eye, target, up;
-    ...
-    Matrix mView = Matrix::CreateLookAt( eye, target, up );
+```cpp
+// Here's a RH example
+Vector3 eye, target, up;
+...
+Matrix mView = Matrix::CreateLookAt( eye, target, up );
 
-    // Here' is a LH example of same thing which relies on
-    // Vector3 and Matrix conversion operators
-    Vector3 eye, target, up;
-    ...
-    Matrix mView = XMMatrixLookAtLH( eye, target, up ); 
+// Here' is a LH example of same thing which relies on
+// Vector3 and Matrix conversion operators
+Vector3 eye, target, up;
+...
+Matrix mView = XMMatrixLookAtLH( eye, target, up );
+```
 
 With the methods ``Matrix::CreateBillboard`` and ``Matrix::CreateConstrainedBillboard`` the handedness is inherent in the default vectors for _cameraForward_, and _objectForward_ which are _right-handed_. You can make them behave _left-handed_ by providing appropriate vectors.
 
-    Vector3 objectPosition, cameraPosition, rotateAxis;
+```cpp
+Vector3 objectPosition, cameraPosition, rotateAxis;
 
-    Matrix mView = Matrix::CreateBillboard( objectPosition,
-        cameraPosition, Vector3::Up, Vector3::Backward );
+Matrix mView = Matrix::CreateBillboard( objectPosition,
+    cameraPosition, Vector3::Up, Vector3::Backward );
 
-    Matrix mView = Matrix::CreateConstrainedBillboard( objectPosition,
-        cameraPosition, rotateAxis, Vector3::Backward, Vector3::Backward );
+Matrix mView = Matrix::CreateConstrainedBillboard( objectPosition,
+    cameraPosition, rotateAxis, Vector3::Backward, Vector3::Backward );
+```
 
 # Using with HLSL
 SimpleMath as with DirectXMath uses [row-major ordering](https://en.wikipedia.org/wiki/Row-major_order) for matrices. This means that elements are stored in memory in the following order:``_11``, ``_12``, ``_13``, ``_14``, ``_21``, ``_22``, etc.
 
-HLSL as noted on [MSDN](https://msdn.microsoft.com/en-us/library/windows/desktop/bb509634.aspx#Matrix_Ordering) defaults to using _column-major ordering_ as this makes for slightly more efficient shader matrix multiplies. Therefore, if a ``Matrix`` is going to be copied into a HLSL _constant buffer_, it is usually [transposed](https://en.wikipedia.org/wiki/Transpose) to flip the ordering to ``_11``, ``_21``, ``_31``, ``_41_``, ``_12``, ``_22``, etc. as part of updating the constant buffer.
+HLSL as noted on [Microsoft Docs](https://docs.microsoft.com/en-us/windows/desktop/direct3dhlsl/dx-graphics-hlsl-per-component-math#Matrix_Ordering) defaults to using _column-major ordering_ as this makes for slightly more efficient shader matrix multiplies. Therefore, if a ``Matrix`` is going to be copied into a HLSL _constant buffer_, it is usually [transposed](https://en.wikipedia.org/wiki/Transpose) to flip the ordering to ``_11``, ``_21``, ``_31``, ``_41_``, ``_12``, ``_22``, etc. as part of updating the constant buffer.
 
 With the built-in [[Effects]] this is done internally, but if writing your own shaders and managing your own constant buffers, you will need to ensure you pass in your matrix data in the correct order for your HLSL shader settings. This means sticking with the HLSL default by transposing your matrices as you update the constant buffer, using `` #pragma pack_matrix(row_major)`` in your HLSL shader source, or compiling your shaders with ``D3DCOMPILE_PACK_MATRIX_ROW_MAJOR`` / ``/Zpr``.
 
@@ -125,21 +132,14 @@ It is fairly easy to use SimpleMath in place of BasicMath, but keep in mind that
 * float4
 * float4x4
 
-If you like the HLSL-like type names, you could use SimpleMath in place of BasicMath.h by adding some simple typedefs.
+If you like the HLSL-like type names, you could use SimpleMath in place of BasicMath.h by adding a [type alias](http://en.cppreference.com/w/cpp/language/type_alias):
 
-    #include "SimpleMath.h"
-
-    typedef DirectX::SimpleMath::Vector2 float2;
-    typedef DirectX::SimpleMath::Vector3 float3;
-    typedef DirectX::SimpleMath::Vector4 float4;
-    typedef DirectX::SimpleMath::Matrix float4x4;
-
-or on VS 2013 or later use a [type alias](http://en.cppreference.com/w/cpp/language/type_alias) instead:
-
-    using float2 = DirectX::SimpleMath::Vector2;
-    using float3 = DirectX::SimpleMath::Vector3;
-    using float4 = DirectX::SimpleMath::Vector4;
-    using float4x4 = DirectX::SimpleMath::Matrix;
+```cpp
+using float2 = DirectX::SimpleMath::Vector2;
+using float3 = DirectX::SimpleMath::Vector3;
+using float4 = DirectX::SimpleMath::Vector4;
+using float4x4 = DirectX::SimpleMath::Matrix;
+```
 
 **Note:** The actual operations would look different than the way they would using BasicMath.
 
@@ -171,4 +171,3 @@ You can therefore freely mix SimpleMath types with DirectXMath functions at any 
 [DirectXMath](https://github.com/Microsoft/DirectXMath/wiki) project wiki
 
 [SimpleMath - a simplified wrapper for DirectXMath](http://blogs.msdn.com/b/shawnhar/archive/2013/01/08/simplemath-a-simplified-wrapper-for-directxmath.aspx)
-

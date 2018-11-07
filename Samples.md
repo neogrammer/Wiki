@@ -1,11 +1,11 @@
 Here is a list of various samples and articles for making use of DirectXTK.
 
-[DirectXTK Samples](https://github.com/walbourn/directxtk-samples) 
+[DirectXTK Samples](https://github.com/walbourn/directxtk-samples)
 
 * SimpleSampleWin32
-* SimpleSampleWindows10 
-* SimpleSampleWindows81 
-* SimpleSampleWindowsPhone81 
+* SimpleSampleWindows10
+* SimpleSampleWindows81
+* SimpleSampleWindowsPhone81
 
 See also [DirectXTK Model Viewer](https://github.com/walbourn/directxtkmodelviewer).
 
@@ -32,16 +32,5 @@ The DirectX 11 samples on [Xbox-ATG-Samples](https://github.com/Microsoft/Xbox-A
 
 [DXUT+DirectXTK Simple Sample](http://code.msdn.microsoft.com/DXUTDirectXTK-Simple-Win32-9cf797e9)
 
-# Windows phone 8
-[Marble Maze sample for Windows Phone 8](http://code.msdn.microsoft.com/Marble-Maze-sample-for-c9f3706b)
-
-[Direct3D with XAML Marble Maze](http://code.msdn.microsoft.com/Direct3D-with-XAML-Marble-1d51a37b)
-
-[Getting Started with Direct3D on Windows Phone 8](http://www.catalinzima.com/2012/11/getting-started-with-direct3d-on-windows-phone-8-for-2d-game-development/)
-
-[DirectX on Windows Phone: 2D Game Example using DirectX Toolkit](
-http://www.developer.nokia.com/Community/Wiki/DirectX_on_Windows_Phone:_2D_Game_Example_using_DirectX_Toolkit)
-
 # Xbox One
 [DirectXTKSimpleSample for the Xbox One XDK](https://aka.ms/atgspldirectxtksimplesample)
-

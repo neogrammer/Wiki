@@ -16,5 +16,5 @@ First create a new project using the instructions from the first two lessons: [[
 
 # Further reading
 
-[DirectXMath Programmer's Reference](http://msdn.microsoft.com/en-us/library/windows/desktop/ee415574.aspx)  
-[DirectXMath Collision sample](https://code.msdn.microsoft.com/DirectXMath-Win32-Sample-f365b9e5)
+[DirectXMath Programmer's Reference](https://docs.microsoft.com/en-us/windows/desktop/dxmath/ovw-xnamath-reference)  
+[DirectXMath Collision sample](https://github.com/walbourn/directx-sdk-samples/tree/master/Collision)

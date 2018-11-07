@@ -1,42 +1,50 @@
-A streamlined version of the DirectX SDK sample [DDSWithoutD3DX](http://blogs.msdn.com/b/chuckw/archive/2010/07/15/ddswithoutd3dx-sample-update.aspx) texture loading code for a simple light-weight runtime ``.DDS`` file loader. This version does not support Direct3D 9, and performs no runtime pixel data conversions (see _Release Notes_ for more details). This is ideal for runtime usage, and supports the full complement of Direct3D 11 texture resources (1D, 2D, volume maps, cubemaps, mipmap levels, texture arrays, BC formats, etc.). It supports both legacy and 'DX10' extension header format ``.dds`` files.
+This is a simple light-weight DirectDraw Surface (``.dds``) file loader. This is the traditional texture file container for DirectX. This loader performs no pixel data conversions (see _Remarks_ for more details). This is ideal for runtime usage, and supports the full complement of Direct3D 11 texture resources (1D, 2D, volume maps, cubemaps, mipmap levels, texture arrays, cubemap arrays, Block Compressed formats, etc.). It supports both legacy ``DDPIXELFORMAT`` and 'DX10' ``DXGI_FORMAT`` extension header format ``.dds`` files.
 
-Also part of the [DirectXTex](http://go.microsoft.com/fwlink/?LinkId=248926) package. To load legacy files that require runtime format conversion, use _DirectXTex_ or convert them with the [texconv](https://github.com/Microsoft/DirectXTex/wiki/Texconv) utility.
+> A standalone version is included in the [DirectXTex](http://go.microsoft.com/fwlink/?LinkId=248926) package. To load legacy files that require runtime format conversion (i.e. 24bpp RGB files), use _DirectXTex_ or convert them with the [texconv](https://github.com/Microsoft/DirectXTex/wiki/Texconv) utility.
 
-> To load FourCC "XBOX" variant ``.DDS`` files, use [[XboxDDSTextureLoader]].
+> To load FourCC "XBOX" variant ``.DDS`` files, use [[XboxDDSTextureLoader]], which is supported by the [xtexconv](https://aka.ms/atgsplxtexconv) utility.
+
+This code is based on the legacy DirectX SDK sample [DDSWithoutD3DX](http://blogs.msdn.com/b/chuckw/archive/2010/07/15/ddswithoutd3dx-sample-update.aspx) texture loading code for Direct3D 9 / Direct3D 11. This version does not support Direct3D 9 or earlier.
 
 **Related tutorial:** [[Sprites and textures]]
 
 # Header
-    #include <DDSTextureLoader.h>
+```cpp
+#include <DDSTextureLoader.h>
+```
 
 # Functions
 ## CreateDDSTextureFromMemory
-Loads a ``.DDS`` file assuming the image of the file is located in a memory buffer. Creates a Direct3D 11 resource and optionally a Direct3D 11 shader resource view.
+Loads a ``.DDS`` file assuming the image of the file is located in a memory buffer. Creates a Direct3D 11 resource and optionally a Direct3D 11 shader resource view. Providing the ``ID311DeviceContext`` supports auto-generation of mipmaps.
 
-    HRESULT CreateDDSTextureFromMemory(ID3D11Device* d3dDevice,
-        const uint8_t* ddsData, size_t ddsDataSize,
-        ID3D11Resource** texture, ID3D11ShaderResourceView** textureView,
-        size_t maxsize = 0, DDS_ALPHA_MODE* alphaMode = nullptr);
+```cpp
+HRESULT CreateDDSTextureFromMemory(ID3D11Device* d3dDevice,
+    const uint8_t* ddsData, size_t ddsDataSize,
+    ID3D11Resource** texture, ID3D11ShaderResourceView** textureView,
+    size_t maxsize = 0, DDS_ALPHA_MODE* alphaMode = nullptr);
 
-    HRESULT CreateDDSTextureFromMemory(ID3D11Device* d3dDevice,
-        ID3D11DeviceContext* d3dContext,
-        const uint8_t* ddsData, size_t ddsDataSize,
-        ID3D11Resource** texture, ID3D11ShaderResourceView** textureView,
-        size_t maxsize = 0, DDS_ALPHA_MODE* alphaMode = nullptr);
+HRESULT CreateDDSTextureFromMemory(ID3D11Device* d3dDevice,
+    ID3D11DeviceContext* d3dContext,
+    const uint8_t* ddsData, size_t ddsDataSize,
+    ID3D11Resource** texture, ID3D11ShaderResourceView** textureView,
+    size_t maxsize = 0, DDS_ALPHA_MODE* alphaMode = nullptr);
+```
 
 ## CreateDDSTextureFromFile
-Loads a ``.DDS`` file from disk and creates a Direct3D 11 resource and optionally a Direct3D 11 shader resource view.
+Loads a ``.DDS`` file from disk and creates a Direct3D 11 resource and optionally a Direct3D 11 shader resource view. Providing the ``ID311DeviceContext`` supports auto-generation of mipmaps.
 
-    HRESULT CreateDDSTextureFromFile(ID3D11Device* d3dDevice,
-        const wchar_t* szFileName,
-        ID3D11Resource** texture, ID3D11ShaderResourceView** textureView,
-        size_t maxsize = 0, DDS_ALPHA_MODE* alphaMode = nullptr);
+```cpp
+HRESULT CreateDDSTextureFromFile(ID3D11Device* d3dDevice,
+    const wchar_t* szFileName,
+    ID3D11Resource** texture, ID3D11ShaderResourceView** textureView,
+    size_t maxsize = 0, DDS_ALPHA_MODE* alphaMode = nullptr);
 
-    HRESULT CreateDDSTextureFromFile(ID3D11Device* d3dDevice,
-        ID3D11DeviceContext* d3dContext,
-        const wchar_t* szFileName,
-        ID3D11Resource** texture, ID3D11ShaderResourceView** textureView,
-        size_t maxsize = 0, DDS_ALPHA_MODE* alphaMode = nullptr);
+HRESULT CreateDDSTextureFromFile(ID3D11Device* d3dDevice,
+    ID3D11DeviceContext* d3dContext,
+    const wchar_t* szFileName,
+    ID3D11Resource** texture, ID3D11ShaderResourceView** textureView,
+    size_t maxsize = 0, DDS_ALPHA_MODE* alphaMode = nullptr);
+```
 
 ## CreateDDSTextureFromMemoryEx, CreateDDSTextureFromFileEx
 These versions provide explicit control over the created resource's usage, binding flags, CPU access flags, and miscellaneous flags for advanced / expert scenarios.
@@ -47,43 +55,45 @@ These versions provide explicit control over the created resource's usage, bindi
 
 * For auto-gen mipmaps, the default binding flags are ``D3D11_BIND_SHADER_RESOURCE`` | ``D3D11_BIND_RENDER_TARGET`` and miscellaneous flags is set to ``D3D11_RESOURCE_MISC_GENERATE_MIPS``.
 
-There is also a _forceSRGB_ option for working around gamma issues with content that is in the sRGB or similar color space but is not encoded explicitly as an SRGB format.
+There is also a _forceSRGB_ option for working around gamma issues with content that is in the sRGB or similar color space but is not encoded explicitly as an SRGB format. This will force return format be one of the of ``DXGI_FORMAT_*_SRGB`` formats if it exist. Note that no pixel data conversion takes place.
 
 Note that the _maxsize_ parameter is not at the end of the parameter list like it is in the non-Ex version.
 
-    HRESULT CreateDDSTextureFromMemoryEx(ID3D11Device* d3dDevice,
-        const uint8_t* ddsData, size_t ddsDataSize,
-        size_t maxsize, D3D11_USAGE usage, unsigned int bindFlags,
-        unsigned int cpuAccessFlags, unsigned int miscFlags,
-        bool forceSRGB,
-        ID3D11Resource** texture, ID3D11ShaderResourceView** textureView,
-        DDS_ALPHA_MODE* alphaMode = nullptr);
+```cpp
+HRESULT CreateDDSTextureFromMemoryEx(ID3D11Device* d3dDevice,
+    const uint8_t* ddsData, size_t ddsDataSize,
+    size_t maxsize, D3D11_USAGE usage, unsigned int bindFlags,
+    unsigned int cpuAccessFlags, unsigned int miscFlags,
+    bool forceSRGB,
+    ID3D11Resource** texture, ID3D11ShaderResourceView** textureView,
+    DDS_ALPHA_MODE* alphaMode = nullptr);
 
-    HRESULT CreateDDSTextureFromMemoryEx(ID3D11Device* d3dDevice,
-        ID3D11DeviceContext* d3dContext,
-        const uint8_t* ddsData, size_t ddsDataSize,
-        size_t maxsize, D3D11_USAGE usage, unsigned int bindFlags,
-        unsigned int cpuAccessFlags, unsigned int miscFlags,
-        bool forceSRGB,
-        ID3D11Resource** texture, ID3D11ShaderResourceView** textureView,
-        DDS_ALPHA_MODE* alphaMode = nullptr);
+HRESULT CreateDDSTextureFromMemoryEx(ID3D11Device* d3dDevice,
+    ID3D11DeviceContext* d3dContext,
+    const uint8_t* ddsData, size_t ddsDataSize,
+    size_t maxsize, D3D11_USAGE usage, unsigned int bindFlags,
+    unsigned int cpuAccessFlags, unsigned int miscFlags,
+    bool forceSRGB,
+    ID3D11Resource** texture, ID3D11ShaderResourceView** textureView,
+    DDS_ALPHA_MODE* alphaMode = nullptr);
 
-    HRESULT CreateDDSTextureFromFileEx(ID3D11Device* d3dDevice,
-        const wchar_t* szFileName,
-        size_t maxsize, D3D11_USAGE usage, unsigned int bindFlags,
-        unsigned int cpuAccessFlags, unsigned int miscFlags,
-        bool forceSRGB,
-        ID3D11Resource** texture, ID3D11ShaderResourceView** textureView,
-        DDS_ALPHA_MODE* alphaMode = nullptr);
+HRESULT CreateDDSTextureFromFileEx(ID3D11Device* d3dDevice,
+    const wchar_t* szFileName,
+    size_t maxsize, D3D11_USAGE usage, unsigned int bindFlags,
+    unsigned int cpuAccessFlags, unsigned int miscFlags,
+    bool forceSRGB,
+    ID3D11Resource** texture, ID3D11ShaderResourceView** textureView,
+    DDS_ALPHA_MODE* alphaMode = nullptr);
 
-    HRESULT CreateDDSTextureFromFileEx(ID3D11Device* d3dDevice,
-        ID3D11DeviceContext* d3dContext,
-        const wchar_t* szFileName,
-        size_t maxsize, D3D11_USAGE usage, unsigned int bindFlags,
-        unsigned int cpuAccessFlags, unsigned int miscFlags,
-        bool forceSRGB,
-        ID3D11Resource** texture, ID3D11ShaderResourceView** textureView,
-        DDS_ALPHA_MODE* alphaMode = nullptr);
+HRESULT CreateDDSTextureFromFileEx(ID3D11Device* d3dDevice,
+    ID3D11DeviceContext* d3dContext,
+    const wchar_t* szFileName,
+    size_t maxsize, D3D11_USAGE usage, unsigned int bindFlags,
+    unsigned int cpuAccessFlags, unsigned int miscFlags,
+    bool forceSRGB,
+    ID3D11Resource** texture, ID3D11ShaderResourceView** textureView,
+    DDS_ALPHA_MODE* alphaMode = nullptr);
+```
 
 # Parameters
 Either _texture_ or _textureView_ can be nullptr, but not both.
@@ -115,13 +125,15 @@ The last optional parameter _alphaMode_ is a pointer to return the _alpha mode_ 
 
 This example creates a shader resource view on the Direct3D 11 device which can be used for rendering.
 
-    using namespace DirectX;
-    using namespace Microsoft::WRL;
+```cpp
+using namespace DirectX;
+using namespace Microsoft::WRL;
 
-    ComPtr<ID3D11ShaderResourceView> srv;
-    HRESULT hr = CreateDDSTextureFromFile(d3dDevice.Get(), L"SEAFLOOR.DDS",
-        nullptr, srv.GetAddressOf());
-    DX::ThrowIfFailed(hr);
+ComPtr<ID3D11ShaderResourceView> srv;
+HRESULT hr = CreateDDSTextureFromFile(d3dDevice.Get(), L"SEAFLOOR.DDS",
+    nullptr, srv.GetAddressOf());
+DX::ThrowIfFailed(hr);
+```
 
 # Feature Level Notes
 In order to support all feature levels, you should make sure your ``.DDS`` textures are mip-mapped so that they contain a suitably sized image. Non-mipmapped textures will either need explicit feature level association, or be sized less than or equal to 2048 for 1D, 2048 x 2048 for 2D, 512 x 512 for cubemaps, and 256 x 256 x 256 for volume maps.
@@ -140,12 +152,15 @@ Be sure to review the various format limitations for the different feature level
 * ``DXGI_FORMAT_BC2_UNORM``, ``DXGI_FORMAT_BC2_UNORM_SRGB``
 * ``DXGI_FORMAT_BC3_UNORM``, ``DXGI_FORMAT_BC3_UNORM_SRGB``
 
-On Windows 8 with WDDM 1.2 drivers, all feature levels support 16bpp formats as well ``DXGI_FORMAT_B5G6R5_UNORM``, ``DXGI_FORMAT_B5G5R5A1_UNORM``, and ``DXGI_FORMAT_B4G4R4A4_UNORM``.
+On Windows 8 with WDDM 1.2 drivers or later, all feature levels support 16bpp formats as well ``DXGI_FORMAT_B5G6R5_UNORM``, ``DXGI_FORMAT_B5G5R5A1_UNORM``, and ``DXGI_FORMAT_B4G4R4A4_UNORM``.
 
-# Release Notes
-* DDSTextureLoader performs no run-time conversions. If there is not a direct mapping to a DXGI supported format, the function fails. You can make use of the [DirectXTex library](http://go.microsoft.com/fwlink/?LinkId=248926) or ``texconv`` tool to convert legacy Direct3D9 ``.DDS`` files to a supported format. Legacy formats which require conversion include:
+# Remarks
 
- * ``D3DFMT_R8G8B8`` (24bpp RGB) - Use a 32bpp format 
+When applying _maxsize_ and 'stripping' mipmaps on a BC compressed texture, the function may fail if the appropriately sized mipchain is not a muliple-of-4 in width & height as required by Direct3D. The only way to ensure that any given mip meets this requirement is if the top-most level is both a multiple-of-4 and a power-of-2.
+
+DDSTextureLoader performs no run-time conversions. If there is not a direct mapping to a DXGI supported format, the function fails. You can make use of the [DirectXTex library](http://go.microsoft.com/fwlink/?LinkId=248926) or ``texconv`` tool to convert legacy Direct3D9 ``.DDS`` files to a supported format. Legacy formats which require conversion include:
+
+ * ``D3DFMT_R8G8B8`` (24bpp RGB) - Use a 32bpp format
  * ``D3DFMT_X8B8G8R8`` (32bpp RGBX) - Use BGRX, BGRA, or RGBA
  * ``D3DFMT_A2R10G10B10`` (BGRA 10:10:10:2) - Use RGBA 10:10:10:2
  * ``D3DFMT_X1R5G5B5`` (BGR 5:5:5) - Use BGRA 5:5:5:1 or BGR 5:6:5
@@ -154,130 +169,132 @@ On Windows 8 with WDDM 1.2 drivers, all feature levels support 16bpp formats as 
  * ``D3DFMT_A4L4`` (Luminance 4:4) - Expand to a supported format
  * ``D3DFMT_UYVY`` (YUV 4:2:2 16bpp) - Swizzle to YUY2
 
-* On a system with the DirectX 11.0 Runtime or lacking WDDM 1.2 drivers, attempts to load 16bpp format files (BGR 5:6:5, BGRA 5:5:5:1, and BGRA 4:4:4:4) will fail.
+On a system with the DirectX 11.0 Runtime or lacking WDDM 1.2 drivers, attempts to load 16bpp format files (BGR 5:6:5, BGRA 5:5:5:1, and BGRA 4:4:4:4) will fail.
 
-* Partial cubemaps (i.e. ``.DDS`` files without all six faces defined) are not supported by Direct3D 11.
-
-# Remarks
-
-When applying _maxsize_ and 'stripping' mipmaps on a BC compressed texture, the function may fail if the appropriately sized mipchain is not a muliple-of-4 in width & height as required by Direct3D. The only way to ensure that any given mip meets this requirement is if the top-most level is both a multiple-of-4 and a power-of-2.
+Partial cubemaps (i.e. ``.DDS`` files without all six faces defined) are not supported by Direct3D 11.
 
 # Windows Store apps
 The texture loader function is typically used to load texture files from the application's install folder as they were included with the AppX package for Windows Store apps and Universal Windows Platform (UWP) apps. If you wish to create a texture from a file that is specified by the user from a WinRT file picker, you will need to copy the file locally to a temporary location before you can use DDSTextureLoader on it. This is because you either won't have file access rights to the user's file location, or the StorageFile is actually not a local file system path (i.e. it's a URL).
 
 ## C++/CX
-    #include <ppltasks.h>
-    using namespace concurrency;
+```cpp
+#include <ppltasks.h>
+using namespace concurrency;
 
-    using Windows::Storage;
-    using Windows::Storage::Pickers;
+using Windows::Storage;
+using Windows::Storage::Pickers;
 
-    auto openPicker = ref new FileOpenPicker();
-    openPicker->ViewMode = PickerViewMode::Thumbnail; 
-    openPicker->SuggestedStartLocation = PickerLocationId::PicturesLibrary; 
-    openPicker->FileTypeFilter->Append(".dds"); 
+auto openPicker = ref new FileOpenPicker();
+openPicker->ViewMode = PickerViewMode::Thumbnail; 
+openPicker->SuggestedStartLocation = PickerLocationId::PicturesLibrary; 
+openPicker->FileTypeFilter->Append(".dds"); 
 
-    create_task(openPicker->PickSingleFileAsync()).then([](StorageFile^ file)
-    {
-        if (file)
-        {
-            auto tempFolder = Windows::Storage::ApplicationData::Current->TemporaryFolder;
-            create_task(file->CopyAsync(tempFolder, file->Name, NameCollisionOption::GenerateUniqueName)).then([](StorageFile^ tempFile)
-            {
-                if (tempFile)
-                {
-                    HRESULT hr = CreateDDSTextureFromFile(..., tempFile->Path->Data(), ...);
-                    DeleteFile(tempFile->Path->Data());
-                    DX::ThrowIfFailed(hr);
-                }
-            });
-        });
-
-## C++/WinRT
-    #include "winrt/Windows.Storage.h"
-    #include "winrt/Windows.Storage.Pickers.h"
-
-    using namespace winrt::Windows::Storage;
-    using namespace winrt::Windows::Storage::Pickers;
-
-    FileOpenPicker openPicker;
-    openPicker.ViewMode(PickerViewMode::Thumbnail);
-    openPicker.SuggestedStartLocation(PickerLocationId::PicturesLibrary);
-    openPicker.FileTypeFilter().Append(L".dds");
-
-    auto file = co_await openPicker.PickSingleFileAsync();
+create_task(openPicker->PickSingleFileAsync()).then([](StorageFile^ file)
+{
     if (file)
     {
-        auto tempFolder = ApplicationData::Current().TemporaryFolder();
-        auto tempFile = co_await file.CopyAsync(tempFolder, file.Name(), NameCollisionOption::GenerateUniqueName);
-        if (tempFile)
+        auto tempFolder = Windows::Storage::ApplicationData::Current->TemporaryFolder;
+        create_task(file->CopyAsync(tempFolder, file->Name, NameCollisionOption::GenerateUniqueName)).then([](StorageFile^ tempFile)
         {
-            HRESULT hr = CreateDDSTextureFromFile(..., tempFile.Path().c_str(), ...);
-            DeleteFile(tempFile.Path().c_str());
-            DX::ThrowIfFailed(hr);
-        }
-    }
+            if (tempFile)
+            {
+                HRESULT hr = CreateDDSTextureFromFile(..., tempFile->Path->Data(), ...);
+                DeleteFile(tempFile->Path->Data());
+                DX::ThrowIfFailed(hr);
+            }
+        });
+    });
+```
 
-See [File access and permissions (Windows Runtime apps)](https://msdn.microsoft.com/en-us/library/windows/apps/hh967755.aspx)
+## C++/WinRT
+```cpp
+#include "winrt/Windows.Storage.h"
+#include "winrt/Windows.Storage.Pickers.h"
+
+using namespace winrt::Windows::Storage;
+using namespace winrt::Windows::Storage::Pickers;
+
+FileOpenPicker openPicker;
+openPicker.ViewMode(PickerViewMode::Thumbnail);
+openPicker.SuggestedStartLocation(PickerLocationId::PicturesLibrary);
+openPicker.FileTypeFilter().Append(L".dds");
+
+auto file = co_await openPicker.PickSingleFileAsync();
+if (file)
+{
+    auto tempFolder = ApplicationData::Current().TemporaryFolder();
+    auto tempFile = co_await file.CopyAsync(tempFolder, file.Name(), NameCollisionOption::GenerateUniqueName);
+    if (tempFile)
+    {
+        HRESULT hr = CreateDDSTextureFromFile(..., tempFile.Path().c_str(), ...);
+        DeleteFile(tempFile.Path().c_str());
+        DX::ThrowIfFailed(hr);
+    }
+}
+```
+
+See [File access and permissions (Windows Runtime apps)](https://docs.microsoft.com/en-us/windows/uwp/files/file-access-permissions)
 
 # Debugging texture loading
 
 If the ``HRESULT`` is a success, but you are still having problems using the texture, the next step in debugging is to examine details about the loaded texture. You can do this with the following code:
 
-    ComPtr<ID3D11Resource> res;
-    ComPtr<ID3D11ShaderResourceView> srv;
-    HRESULT hr = CreateDDSTextureFromFile(d3dDevice.Get(), L"SEAFLOOR.DDS",
-        res.GetAddressOf(), srv.GetAddressOf());
-    DX::ThrowIfFailed(hr);
+```cpp
+ComPtr<ID3D11Resource> res;
+ComPtr<ID3D11ShaderResourceView> srv;
+HRESULT hr = CreateDDSTextureFromFile(d3dDevice.Get(), L"SEAFLOOR.DDS",
+    res.GetAddressOf(), srv.GetAddressOf());
+DX::ThrowIfFailed(hr);
 
-    D3D11_RESOURCE_DIMENSION resType = D3D11_RESOURCE_DIMENSION_UNKNOWN;
-    res->GetType( &resType );
+D3D11_RESOURCE_DIMENSION resType = D3D11_RESOURCE_DIMENSION_UNKNOWN;
+res->GetType( &resType );
 
-    switch( resType )
+switch( resType )
+{
+case D3D11_RESOURCE_DIMENSION_TEXTURE1D:
     {
-    case D3D11_RESOURCE_DIMENSION_TEXTURE1D:
-        {
-            ComPtr<ID3D11Texture1D> tex;
-            hr = res.As(&tex);
-            DX::ThrowIfFailed(hr);
+        ComPtr<ID3D11Texture1D> tex;
+        hr = res.As(&tex);
+        DX::ThrowIfFailed(hr);
 
-            D3D11_TEXTURE1D_DESC desc;
-            tex->GetDesc(&desc);
+        D3D11_TEXTURE1D_DESC desc;
+        tex->GetDesc(&desc);
 
-            // This is a 1D texture. Check values of desc here
-        }
-        break;
-
-    case D3D11_RESOURCE_DIMENSION_TEXTURE2D:
-        {
-            ComPtr<ID3D11Texture2D> tex;
-            hr = res.As(&tex);
-            DX::ThrowIfFailed(hr);
-
-            D3D11_TEXTURE2D_DESC desc;
-            tex->GetDesc(&desc);
-
-            // This is a 2D texture. Check values of desc here
-        }
-        break;
-
-    case D3D11_RESOURCE_DIMENSION_TEXTURE3D:
-        {
-            ComPtr<ID3D11Texture3D> tex;
-            hr = res.As(&tex);
-            DX::ThrowIfFailed(hr);
-
-            D3D11_TEXTURE3D_DESC desc;
-            tex->GetDesc(&desc);
-
-            // This is a 3D volume texture. Check values of desc here
-        }
-        break;
-
-    default:
-        // Error!
-        break;
+        // This is a 1D texture. Check values of desc here
     }
+    break;
+
+case D3D11_RESOURCE_DIMENSION_TEXTURE2D:
+    {
+        ComPtr<ID3D11Texture2D> tex;
+        hr = res.As(&tex);
+        DX::ThrowIfFailed(hr);
+
+        D3D11_TEXTURE2D_DESC desc;
+        tex->GetDesc(&desc);
+
+        // This is a 2D texture. Check values of desc here
+    }
+    break;
+
+case D3D11_RESOURCE_DIMENSION_TEXTURE3D:
+    {
+        ComPtr<ID3D11Texture3D> tex;
+        hr = res.As(&tex);
+        DX::ThrowIfFailed(hr);
+
+        D3D11_TEXTURE3D_DESC desc;
+        tex->GetDesc(&desc);
+
+        // This is a 3D volume texture. Check values of desc here
+    }
+    break;
+
+default:
+    // Error!
+    break;
+}
+```
 
 ``desc.Width`` is the texture width in pixels (of the top most mip level)  
 ``desc.Height`` is the texture height in pixels (of the top most mip level) for 2D and 3D textures  
@@ -289,15 +306,15 @@ If the ``HRESULT`` is a success, but you are still having problems using the tex
 # DDS Files
 This function loads both traditional and FourCC "DX10" variant ``.DDS`` files.
 
-[DDS on MSDN](http://msdn.microsoft.com/en-us/library/windows/desktop/bb943990.aspx)
+[DDS on MSDN](https://docs.microsoft.com/en-us/windows/desktop/direct3ddds/dx-graphics-dds)
 
 # Further Reading
 [The DDS File Format Lives](http://blogs.msdn.com/b/chuckw/archive/2010/02/05/the-dds-file-format-lives.aspx)
 
 [Direct3D Feature Levels](http://blogs.msdn.com/b/chuckw/archive/2012/06/20/direct3d-feature-levels.aspx)
 
-[Programming Guide for DXGI](http://msdn.microsoft.com/en-us/library/windows/desktop/bb219822.aspx)
+[Programming Guide for DXGI](https://docs.microsoft.com/en-us/windows/desktop/direct3ddxgi/dx-graphics-dxgi-overviews)
 
 [Linear-Space Lighting (i.e. Gamma)](http://filmicgames.com/archives/299)
 
-[Chapter 24. The Importance of Being Linear](http://http.developer.nvidia.com/GPUGems3/gpugems3_ch24.html), GPU Gems 
+[Chapter 24. The Importance of Being Linear](http://http.developer.nvidia.com/GPUGems3/gpugems3_ch24.html), GPU Gems

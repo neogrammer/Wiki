@@ -5,43 +5,51 @@ Note that the DynamicSoundEffectInstance does not copy the wave data and instead
 _You can use direct low-level XAudio2 interfaces to implement your own streaming or procedural sound submission rather than make use of this class._
 
 # Header
-    #include <Audio.h>
+```cpp
+#include <Audio.h>
+```
 
 # Initialization
 
 This class supports integer PCM 8-bit or 16-bit data (defaults to 16-bit) with 1 - 8 interleaved channels.
 
-    std::unique_ptr<DynamicSoundEffectInstance> effect;
-    
-    // PCM 44100 Hz, 16-bit, 1 channel
-    effect = std::make_unique<DynamicSoundEffectInstance>( audEngine.get(),
-        [](DynamicSoundEffectInstance*)
-        {
-            // 'Buffer needed' event handler
-        },
-        44100, 1 );
+```cpp
+std::unique_ptr<DynamicSoundEffectInstance> effect;
+
+// PCM 44100 Hz, 16-bit, 1 channel
+effect = std::make_unique<DynamicSoundEffectInstance>( audEngine.get(),
+    [](DynamicSoundEffectInstance*)
+    {
+        // 'Buffer needed' event handler
+    },
+    44100, 1 );
+```
 
 For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr``.
 
 It can optionally support 3D positional audio:
 
-    effect = std::make_unique<DynamicSoundEffectInstance>( audEngine.get(),
-        [](DynamicSoundEffectInstance*)
-        {
-            // 'Buffer needed' event handler
-        },
-        44100, 1, 16,
-        SoundEffectInstance_Use3D );
+```cpp
+effect = std::make_unique<DynamicSoundEffectInstance>( audEngine.get(),
+    [](DynamicSoundEffectInstance*)
+    {
+        // 'Buffer needed' event handler
+    },
+    44100, 1, 16,
+    SoundEffectInstance_Use3D );
+```
 
 Or use 3D positional audio with reverb effects (if [[AudioEngine]] was created using ``AudioEngine_EnvironmentalReverb`` | ``AudioEngine_ReverbUseFilters``):
 
-    effect = std::make_unique<DynamicSoundEffectInstance>( audEngine.get(),
-        [](DynamicSoundEffectInstance*)
-        {
-            // 'Buffer needed' event handler
-        },
-        44100, 1, 16,
-        SoundEffectInstance_Use3D | SoundEffectInstance_ReverbUseFilters );
+```cpp
+effect = std::make_unique<DynamicSoundEffectInstance>( audEngine.get(),
+    [](DynamicSoundEffectInstance*)
+    {
+        // 'Buffer needed' event handler
+    },
+    44100, 1, 16,
+    SoundEffectInstance_Use3D | SoundEffectInstance_ReverbUseFilters );
+```
 
 # Instance flags
 
@@ -49,7 +57,7 @@ This is a combination of sound effect instance flags. It defaults to ``SoundEffe
 
 * ``SoundEffectInstance_Use3D`` - Required to use **Apply3D**
 * ``SoundEffectInstance_ReverbUseFilters`` - Enables additional effects if the audio engine was created with ``AudioEngine_EnvironmentalReverb`` and optionally ``AudioEngine_ReverbUseFilters``.
-* ``SoundEffectInstance_NoSetPitch`` - If set, this instance cannot use **SetPitch**. This is a useful optimization for XAudio2 if you are not making use of pitch-shifting. 
+* ``SoundEffectInstance_NoSetPitch`` - If set, this instance cannot use **SetPitch**. This is a useful optimization for XAudio2 if you are not making use of pitch-shifting.
 * There is also a ``SoundEffectInstance_UseRedirectLFE`` which is used internally by the library.
 
 > ``SOUND_EFFECT_INSTANCE_FLAGS`` is used as a typed flag enum. Only ``operator|`` is overloaded to combine them,
@@ -68,52 +76,56 @@ This is a combination of sound effect instance flags. It defaults to ``SoundEffe
 # Audio data submission
 Unlike [[SoundEffectInstance]] which obtains the audio data from a [[SoundEffect]] or a [[WaveBank]], this class only plays data provided directly to the class via **SubmitBuffer**.
 
-    std::vector<uint8_t> audioBytes;
-    audioBytes.resize( 44100 * 2 );
+```cpp
+std::vector<uint8_t> audioBytes;
+audioBytes.resize( 44100 * 2 );
 
-    GenerateSineWave( reinterpret_cast<int16_t*>( &audioBytes.front() ),
-        44100, 440 );
-        
-    std::unique_ptr<DynamicSoundEffectInstance> effect(
-        new DynamicSoundEffectInstance( audEngine.get(),
-        [&audioBytes](DynamicSoundEffectInstance* effect)
+GenerateSineWave( reinterpret_cast<int16_t*>( &audioBytes.front() ),
+    44100, 440 );
+
+std::unique_ptr<DynamicSoundEffectInstance> effect(
+    new DynamicSoundEffectInstance( audEngine.get(),
+    [&audioBytes](DynamicSoundEffectInstance* effect)
+    {
+        int count = effect->PendingBufferCount();
+
+        while( count < 3 )
         {
-            int count = effect->PendingBufferCount();
+            effect->SubmitBuffer( &audioBytes.front(), audioBytes.size() );
+            ++count;
+        }
+    }, 44100, 1, 16 ) );
 
-            while( count < 3 )
-            {
-                effect->SubmitBuffer( &audioBytes.front(), audioBytes.size() );
-                ++count;
-            }
-        }, 44100, 1, 16 ) );
+effect->Play();
 
-    effect->Play();
+...
 
-    ...
-
-    // The 'Buffer needed' event function is called during some later call
-    // to Update() as needed
+// The 'Buffer needed' event function is called during some later call
+// to Update() as needed
+```
 
 The 'Buffer needed' callback function is invoked whenever there are <= 2 buffers pending or whenever a buffer completes playback. You should submit sufficient data to avoid starving the voice.
 
 This example uses a simple helper routine which fills a buffer with 1 second of a pure sine wave at a given frequency:
 
-    void GenerateSineWave( _Out_writes_(sampleRate) int16_t* data,
-        int sampleRate, int frequency )
-    {
-        const double timeStep = 1.0 / double(sampleRate);
-        const double freq = double(frequency);
+```cpp
+void GenerateSineWave( _Out_writes_(sampleRate) int16_t* data,
+    int sampleRate, int frequency )
+{
+    const double timeStep = 1.0 / double(sampleRate);
+    const double freq = double(frequency);
 
-        int16_t* ptr = data;
-        double time = 0.0;
-        for( int j = 0; j < sampleRate; ++j, ++ptr )
-        {
-            double angle = ( 2.0 * XM_PI * freq ) * time;
-            double factor = 0.5 * ( sin(angle) + 1.0 );
-            *ptr = int16_t( 32768 * factor );
-            time += timeStep;
-        }
+    int16_t* ptr = data;
+    double time = 0.0;
+    for( int j = 0; j < sampleRate; ++j, ++ptr )
+    {
+        double angle = ( 2.0 * XM_PI * freq ) * time;
+        double factor = 0.5 * ( sin(angle) + 1.0 );
+        *ptr = int16_t( 32768 * factor );
+        time += timeStep;
     }
+}
+```
 
 > This sample is somewhat contrived and is only for illustrative purposes. If the audio data is static, it's more
 > efficient to use a [[SoundEffect]] and then create a [[SoundEffectInstance]] from it to play it as a looped
@@ -133,15 +145,17 @@ This example uses a simple helper routine which fills a buffer with 1 second of 
 
 # Positional 3D audio
 
-DirectXTK for Audio uses [X3DAudio](http://msdn.microsoft.com/en-us/library/windows/desktop/ee415714.aspx)  for positional audio computations. To apply a 3D effect to a sound instance, you call **Apply3D** with the listener location (i.e. where the player/camera is located) and the emitter (i.e. where the sound source is located in 3D dimensions):
+DirectXTK for Audio uses [X3DAudio](https://docs.microsoft.com/en-us/windows/desktop/xaudio2/x3daudio)  for positional audio computations. To apply a 3D effect to a sound instance, you call **Apply3D** with the listener location (i.e. where the player/camera is located) and the emitter (i.e. where the sound source is located in 3D dimensions):
 
-    AudioListener listener;
-    listener.SetPosition( ... );
+```cpp
+AudioListener listener;
+listener.SetPosition( ... );
 
-    AudioEmitter emitter;
-    emitter.SetPosition( ... );
+AudioEmitter emitter;
+emitter.SetPosition( ... );
 
-    effect->Apply3D( listener, emitter );
+effect->Apply3D( listener, emitter );
+```
 
 Note if the instance was created without ``SoundEffectInstance_Use3D``, then calls to **Apply3D** will result in a C++ exception being thrown. **Apply3D** will overwrite any ``SetPan`` settings.
 
@@ -151,15 +165,17 @@ See [[AudioListener]], [[AudioEmitter]]
 
 The emitter and listener (based on the XNA Game Studio conventions) use right-handed coordinates. They can be used with left-handed coordinates by setting the _rhcoords_ parameter on the ``Apply3D`` method to 'false' (the parameter defaults to 'true').
 
-    AudioListener listener;
-    listener.SetPosition( ... );
-    listener.SetOrientation( ... );
+```cpp
+AudioListener listener;
+listener.SetPosition( ... );
+listener.SetOrientation( ... );
 
-    AudioEmitter emitter;
-    emitter.SetPosition( ... );
-    emitter.SetOrientation( ... );
+AudioEmitter emitter;
+emitter.SetPosition( ... );
+emitter.SetOrientation( ... );
 
-    effect->Apply3D( listener, emitter, false );
+effect->Apply3D( listener, emitter, false );
+```
 
 # Properties
 
@@ -176,4 +192,3 @@ The emitter and listener (based on the XNA Game Studio conventions) use right-ha
 * **GetSampleDurationMS** ( bytes ): Returns duration in milliseconds of a buffer of a given size
 
 * **GetSampleSizeInBytes** ( duration ): Returns size of a buffer for a duration given in milliseconds
-

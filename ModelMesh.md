@@ -3,7 +3,9 @@ This class is part of the [[Model]] hierarchy. The primary purpose of this class
 Note that Model uses a collection of ``std::shared_ptr`` instances to ModelMesh since meshes can be shared by multiple instances of Model.
 
 # Header
-    #include <Model.h>
+```cpp
+#include <Model.h>
+```
 
 # Initialization
 ModelMesh instances are typically created by a Model loader along with the ModelMeshPart instances that make up the mesh.
@@ -21,57 +23,59 @@ The Draw method assumes that the proper blend state, depth/stencil state, raster
 
 ``ModelMesh::Draw`` can be used to implement alternate 'scene graph' policies.
 
-    // Rather than draw each model's opaque and then alpha parts in turn, this version
-    // draws all the models' opaque parts first then all the alpha parts second which
-    // can be important for some complex scenes.
+```cpp
+// Rather than draw each model's opaque and then alpha parts in turn, this version
+// draws all the models' opaque parts first then all the alpha parts second which
+// can be important for some complex scenes.
 
-    std::list<std::unique_ptr<Model>> models;
+std::list<std::unique_ptr<Model>> models;
 
-    ...
+...
 
-    // Draw opaque parts
-    for( auto mit = models.cbegin(); mit != models.cend(); ++mit )
+// Draw opaque parts
+for( auto mit = models.cbegin(); mit != models.cend(); ++mit )
+{
+    auto model = mit->get();
+    assert( model != 0 );
+
+    for( auto it = model->meshes.cbegin(); it != model->meshes.cend(); ++it )
     {
-        auto model = mit->get();
-        assert( model != 0 );
+        auto mesh = it->get();
+        assert( mesh != 0 );
 
-        for( auto it = model->meshes.cbegin(); it != model->meshes.cend(); ++it )
-        {
-            auto mesh = it->get();
-            assert( mesh != 0 );
+        mesh->PrepareForRendering( deviceContext, states, false );
 
-            mesh->PrepareForRendering( deviceContext, states, false );
+        // Do model-level setCustomState work here
 
-            // Do model-level setCustomState work here
-
-            mesh->Draw( deviceContext, world, view, projection, false );
-        }
+        mesh->Draw( deviceContext, world, view, projection, false );
     }
+}
 
-    // Draw alpha parts (should really be done in back-to-front sorted order)
-    for( auto mit = models.cbegin(); mit != models.cend(); ++mit )
+// Draw alpha parts (should really be done in back-to-front sorted order)
+for( auto mit = models.cbegin(); mit != models.cend(); ++mit )
+{
+    auto model = mit->get();
+    assert( model != 0 );
+
+    for( auto it = model->meshes.cbegin(); it != model->meshes.cend(); ++it )
     {
-        auto model = mit->get();
-        assert( model != 0 );
+        auto mesh = it->get();
+        assert( mesh != 0 );
 
-        for( auto it = model->meshes.cbegin(); it != model->meshes.cend(); ++it )
-        {
-            auto mesh = it->get();
-            assert( mesh != 0 );
+        mesh->PrepareForRendering( deviceContext, states, true );
 
-            mesh->PrepareForRendering( deviceContext, states, true );
+        // Do model-level setCustomState work here
 
-            // Do model-level setCustomState work here
-
-            mesh->Draw( deviceContext, world, view, projection, true );
-        }
+        mesh->Draw( deviceContext, world, view, projection, true );
     }
+}
+```
 
 # Metadata
 In addition to the list of ModelMeshPart instances that make up the mesh, a ModelMesh also includes a _name_ (a wide-character string) for tracking and application logic.
 
 It includes a bool to indicate if the mesh should be rendered using counter-clockwise winding or clockwise winding (_ccw_), as well as a bool to indicate if the mesh should be rendered with premultiplied alpha blending or 'straight' alpha blending (_pmalpha_).
 
-A ModelMesh also includes bounding information for culling & collision detection in the form of a [BoundingSphere](http://msdn.microsoft.com/en-us/library/windows/desktop/microsoft.directx_sdk.directxcollision.boundingsphere.aspx) and a [BoundingBox](http://msdn.microsoft.com/en-us/library/windows/desktop/microsoft.directx_sdk.directxcollision.boundingbox.aspx).
+A ModelMesh also includes bounding information for culling & collision detection in the form of a [BoundingSphere](http://msdn.microsoft.com/en-us/library/windows/desktop/microsoft.directx_sdk.directxcollision.boundingsphere.aspx) and a [BoundingBox](https://docs.microsoft.com/en-us/windows/desktop/api/directxcollision/ns-directxcollision-boundingbox).
 
 The choice of frame-of-reference for these bounding volumes is up to the Model loader, but is typically in 'local' coordinates.

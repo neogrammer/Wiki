@@ -1,18 +1,21 @@
 A 2D rectangle class modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Rectangle``) math library
 
-> For Universal Windows Platform and Xbox One, similar functionality is provided by the [Windows::Foundation::Rect](https://msdn.microsoft.com/en-us/library/windows/apps/windows.foundation.rect.aspx) Windows Runtime structure
+> For Universal Windows Platform and Xbox One, similar functionality is provided by the [Windows::Foundation::Rect](https://docs.microsoft.com/en-us/uwp/api/Windows.Foundation.Rect) Windows Runtime structure
 
 # Header
-
-    #include <SimpleMath.h>
+```cpp
+#include <SimpleMath.h>
+```
 
 # Initialization
 
-    using namespace DirectX::SimpleMath;
+```cpp
+using namespace DirectX::SimpleMath;
 
-    Rectangle r;                    // Creates an empty rectangle [0, 0, 0, 0]
-    Rectangle r(10, 20, 100, 200);  // Creates a rectangle with upper-left [10,20]
-                                    // 100 width, and 200 height
+Rectangle r;                    // Creates an empty rectangle [0, 0, 0, 0]
+Rectangle r(10, 20, 100, 200);  // Creates a rectangle with upper-left [10,20]
+                                // 100 width, and 200 height
+```
 
 > For Windows desktop apps, you may find that ``Rectangle`` conflicts with the GDI function of the same name. You can resolve this three ways: Use ``#define NOGDI`` before you include ``<windows.h>``; use ``SimpleMath::Rectangle``, or in local scope use ``using Rectangle = SimpleMath::Rectangle;``.
 

@@ -4,14 +4,11 @@ After creating a new project in the [[The basic game loop]] (or using the [[Devi
 The easiest way to achieve this is to use the [NuGet package manager](https://www.nuget.org/) built into Visual Studio.
 
 * From the drop-down menu, select **Project** / **Manage NuGet Packages...**
-* *VS2013:* Select "Online/All" in the left-hand tree view
 * *VS2015/2017:* Select "Browse" on the top tab, and make sure the _Package source_ is set to "nuget.org"
 * In the text search field type "DirectXTK" and hit enter to search for the packages
-* Select the package with the id **[directxtk_desktop_2013](https://www.nuget.org/packages/directxtk_desktop_2013/)** or **[directxtk_desktop_2015](https://www.nuget.org/packages/directxtk_desktop_2015/)** for Win32 or **[directxtk_uwp](https://www.nuget.org/packages/directxtk_uwp/)** for UWP
+* Select the package with the id  **[directxtk_desktop_2015](https://www.nuget.org/packages/directxtk_desktop_2015/)** for Win32 or **[directxtk_uwp](https://www.nuget.org/packages/directxtk_uwp/)** for UWP
 * Select "Install"
 * When finished, close the NuGet Manager
-
-![Manage NuGet Packages (VS 2013)](https://github.com/Microsoft/DirectXTK/wiki/images/nuget2013.png)
 
 ![Manage NuGet Packages (VS 2015)](https://github.com/Microsoft/DirectXTK/wiki/images/nuget2015.png)
 
@@ -24,7 +21,7 @@ Another option rather than using NuGet is to use Visual Studio's [project-to-pro
 
 * Extract the [release .zip file](https://github.com/Microsoft/DirectXTK/releases) into a directory relative to the new project you created. For this tutorial, we will assume the ``DirectXTK`` folder is in the same folder as your new project's Visual Studio Solution (``.sln``) file.
 * Right-click on your solution in the Solution Explorer, and select **Add** / **Existing Project...**
-* Browse into the "DirectXTK" folder and select ``DirectXTK_Desktop_2013.vcxproj``, ``DirectXTK_Desktop_2015.vcxproj``, or ``DirectXTK_Desktop_2017.vcxproj`` for Win32 or ``DirectXTK_Windows10.vcxproj`` for UWP, click "Open"
+* Browse into the "DirectXTK" folder and select ``DirectXTK_Desktop_2015.vcxproj`` or ``DirectXTK_Desktop_2017.vcxproj`` for Win32 or ``DirectXTK_Windows10.vcxproj`` for UWP, click "Open"
 * If Visual Studio presents a "Security Warning", select "OK". Optional: Uncheck "Ask me for every project in this solution" first.
 * Right-click on your project in the Solution Explorer, and select **Add** / **References...**
 * Select "Add New Reference..."
@@ -45,51 +42,55 @@ Now that we have the _DirectX Tool Kit_ usable in your project, the next step is
 
 General advice for C++ projects is that you should only add the headers you actually use to your project, but to simplify the tutorial we will go ahead and add them all to your new project's **pch.h** header:
 
-    //
-    // pch.h
-    // Header for standard system include files.
-    //
+```cpp
+//
+// pch.h
+// Header for standard system include files.
+//
 
-    #pragma once
+#pragma once
 
-    ...
+...
 
-    #include "CommonStates.h"
-    #include "DDSTextureLoader.h"
-    #include "DirectXHelpers.h"
-    #include "Effects.h"
-    #include "GamePad.h"
-    #include "GeometricPrimitive.h"
-    #include "GraphicsMemory.h"
-    #include "Keyboard.h"
-    #include "Model.h"
-    #include "Mouse.h"
-    #include "PostProcess.h"
-    #include "PrimitiveBatch.h"
-    #include "ScreenGrab.h"
-    #include "SimpleMath.h"
-    #include "SpriteBatch.h"
-    #include "SpriteFont.h"
-    #include "VertexTypes.h"
-    #include "WICTextureLoader.h"
+#include "CommonStates.h"
+#include "DDSTextureLoader.h"
+#include "DirectXHelpers.h"
+#include "Effects.h"
+#include "GamePad.h"
+#include "GeometricPrimitive.h"
+#include "GraphicsMemory.h"
+#include "Keyboard.h"
+#include "Model.h"
+#include "Mouse.h"
+#include "PostProcess.h"
+#include "PrimitiveBatch.h"
+#include "ScreenGrab.h"
+#include "SimpleMath.h"
+#include "SpriteBatch.h"
+#include "SpriteFont.h"
+#include "VertexTypes.h"
+#include "WICTextureLoader.h"
+```
 
 > This does not include the _DirectX Tool Kit for Audio_ header ``Audio.h`` which is covered by another [[tutorial|Adding the DirectX Tool Kit for Audio]].
 
 Then finish off the setup by adding a C++ namespace using statement to your **Game.cpp** file to make it a bit easier to use the SimpleMath types:
 
-    //
-    // Game.cpp -
-    //
+```cpp
+//
+// Game.cpp -
+//
 
-    #include "pch.h"
-    #include "Game.h"
+#include "pch.h"
+#include "Game.h"
 
-    using namespace DirectX;
-    using namespace DirectX::SimpleMath;
+using namespace DirectX;
+using namespace DirectX::SimpleMath;
 
-    using Microsoft::WRL::ComPtr;
+using Microsoft::WRL::ComPtr;
 
-    ...
+...
+```
 
 # Platform notes
 

@@ -4,84 +4,95 @@ When programming COM APIs like Direct3D, it is important to always check the ``H
 
 ``DX::ThrowIfFailed`` should be used whenever a failure is fatal and should result in 'fast-fail' of the application. Otherwise, traditional ``if FAILED(hr)`` or ``if SUCCEEDED(hr)`` patterns should be used to handle failures that the application can recover from (i.e. are not fatal).
 
-    DX::ThrowIfFailed(m_d3dDevice->CreateTexture2D(&depthStencilDesc,
-        nullptr, &depthStencil));
+```cpp
+DX::ThrowIfFailed(m_d3dDevice->CreateTexture2D(&depthStencilDesc,
+    nullptr, &depthStencil));
+```
 
 If you want to handle a specific HRESULT, then you might do something like:
 
-    HRESULT hr = m_d3dDevice->CreateTexture2D(&depthStencilDesc,
-        nullptr, &depthStencil);
-    if (hr == E_INVALIDARG)
-    {
-        // Do something here in response to this specific error.
-    }
-    DX::ThrowIfFailed(hr);
+```cpp
+HRESULT hr = m_d3dDevice->CreateTexture2D(&depthStencilDesc,
+    nullptr, &depthStencil);
+if (hr == E_INVALIDARG)
+{
+    // Do something here in response to this specific error.
+}
+DX::ThrowIfFailed(hr);
+```
 
 For a case where you want to do the error-handling for an HRESULT yourself, be sure to use the ``SUCCEEDED`` or ``FAILED`` macro:
 
-    HRESULT hr = m_d3dDevice->CreateTexture2D(&depthStencilDesc,
-        nullptr, &depthStencil);
-    if (FAILED(hr))
-        // Error handling
+```cpp
+HRESULT hr = m_d3dDevice->CreateTexture2D(&depthStencilDesc,
+    nullptr, &depthStencil);
+if (FAILED(hr))
+    // Error handling
+```
 
-> The legacy [DXUT](https://github.com/Microsoft/DXUT) framework makes use of macros like ``V`` and ``V_RETURN`` as a pattern for dealing with ``HRESULT`` values, but these make assumptions about the surrounding functions and are really only suited to samples development.
+> The legacy [DXUT](https://github.com/Microsoft/DXUT) framework makes use of macros like ``V`` and ``V_RETURN`` as a pattern for dealing with ``HRESULT`` values, but these make assumptions about the surrounding functions and are really only suited to general development.
 
 # Basic version
 
-The ``ThrowIfFailed`` helper is not part of the _DirectX Tool Kit_; it's declared in some global header in your application. The C++ DirectX templates for universal Windows apps, Windows 8 Store, Windows phone 8, Xbox One, and the [Direct3D Win32 Game](http://blogs.msdn.com/b/chuckw/archive/2015/01/06/direct3d-win32-game-visual-studio-template.aspx) templates all make use of the ``DX::ThrowIfFailed`` helper--you'll typically find it declared in the ``pch.h`` header.
+The ``ThrowIfFailed`` helper is not part of the _DirectX Tool Kit_; it's declared in some global header in your application. The C++ DirectX templates for Universal Windows Platform apps, Windows 8.x Store, Windows phone 8.x, Xbox One, and the [Direct3D Win32 Game](http://blogs.msdn.com/b/chuckw/archive/2015/01/06/direct3d-win32-game-visual-studio-template.aspx) templates all make use of the ``DX::ThrowIfFailed`` helper--you'll typically find it declared in the ``pch.h`` header.
 
-    #include <exception>
+```cpp
+#include <exception>
 
-    namespace DX
+namespace DX
+{
+    inline void ThrowIfFailed(HRESULT hr)
     {
-        inline void ThrowIfFailed(HRESULT hr)
+        if (FAILED(hr))
         {
-            if (FAILED(hr))
-            {
-                // Set a breakpoint on this line to catch DirectX API errors
-                throw std::exception();
-            }
+            // Set a breakpoint on this line to catch DirectX API errors
+            throw std::exception();
         }
     }
+}
+```
 
 # Enhancements
 
 The templates all include the basic implementation above, but production use might want to utilize a slightly improved version as follows (which are included in the [[DeviceResources]] variants of the [Direct3D Win32 Game](http://blogs.msdn.com/b/chuckw/archive/2015/12/17/direct3d-game-visual-studio-templates-redux.aspx) templates).
 
-    #include <exception>
+```cpp
+#include <exception>
 
-    namespace DX
+namespace DX
+{
+    // Helper class for COM exceptions
+    class com_exception : public std::exception
     {
-        // Helper class for COM exceptions
-        class com_exception : public std::exception
+    public:
+        com_exception(HRESULT hr) : result(hr) {}
+
+        virtual const char* what() const override
         {
-        public:
-            com_exception(HRESULT hr) : result(hr) {}
+            static char s_str[64] = {};
+            sprintf_s(s_str, "Failure with HRESULT of %08X",
+                static_cast<unsigned int>(result));
+            return s_str;
+        }
 
-            virtual const char* what() const override
-            {
-                static char s_str[64] = {};
-                sprintf_s(s_str, "Failure with HRESULT of %08X",
-                    static_cast<unsigned int>(result));
-                return s_str;
-            }
+    private:
+        HRESULT result;
+    };
 
-        private:
-            HRESULT result;
-        };
-
-        // Helper utility converts D3D API failures into exceptions.
-        inline void ThrowIfFailed(HRESULT hr)
+    // Helper utility converts D3D API failures into exceptions.
+    inline void ThrowIfFailed(HRESULT hr)
+    {
+        if (FAILED(hr))
         {
-            if (FAILED(hr))
-            {
-                throw com_exception(hr);
-            }
+            throw com_exception(hr);
         }
     }
+}
+```
 
 # Further reading
 
-* [C++ Exception Handling](http://msdn.microsoft.com/en-us/library/4t3saedz.aspx)
-* [Managing Exceptions with the Debugger](https://msdn.microsoft.com/en-us/library/x85tt0dd.aspx)
-* [Error Handling in COM](https://msdn.microsoft.com/en-us/library/windows/desktop/ff485842.aspx)
+* [C++ Exception Handling](https://docs.microsoft.com/en-us/cpp/cpp/cpp-exception-handling)
+* [Managing Exceptions with the Debugger](https://docs.microsoft.com/en-us/visualstudio/debugger/managing-exceptions-with-the-debugger)
+* [Error Handling in COM](https://docs.microsoft.com/en-us/windows/desktop/LearnWin32/error-handling-in-com)
+*

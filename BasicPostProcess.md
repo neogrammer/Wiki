@@ -3,14 +3,17 @@ Performs basic post-processing with a built-in set of shaders which operate usin
 See also [[PostProcess]]
 
 # Header
-
-    #include "PostProcess.h"
+```cpp
+#include "PostProcess.h"
+```
 
 # Initialization
 Construction requires a Direct3D 11 device.
 
-    std::unique_ptr<BasicPostProcess> postProcess;
-    postProcess = std::make_unique<BasicPostProcess>(device);
+```cpp
+std::unique_ptr<BasicPostProcess> postProcess;
+postProcess = std::make_unique<BasicPostProcess>(device);
+```
 
 For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
@@ -26,13 +29,13 @@ BasicPostProcess can be configured to use various pixel shaders by calling ``Set
 * **GaussianBlur_5x5**: Performs a Gaussian blur with a 5x5 kernel
 * **BloomExtract**: Performs a bloom extract, which is the first pass in implementing a bloom effect
 * **BloomBlur**: Performs a horizontal or vertical blur which is typically the second and third passes of implementing a bloom effect.
-    
+
 # Properties
 
 * ``SetSourceTexture`` is used to set the input texture as a Shader Resource View.
 
-* ``SetGaussianParameter`` sets the multiplier for the _GaussianBlur_5x5_ shader.
+* ``SetGaussianParameter`` sets the multiplier for the *GaussianBlur_5x5* shader.
 
-* ``SetBloomExtractParameter`` sets the extract parameter for the _BloomExtract_ shader.
+* ``SetBloomExtractParameter`` sets the extract parameter for the *BloomExtract* shader.
 
-* ``SetBloomBlurParameters`` sets the horizontal vs. vertical mode as well as the size and brightness factors for the _BloomBlur_ shader.
+* ``SetBloomBlurParameters`` sets the horizontal vs. vertical mode as well as the size and brightness factors for the *BloomBlur* shader.

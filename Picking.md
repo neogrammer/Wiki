@@ -8,9 +8,11 @@ First create a new project using the instructions from the first two lessons: [[
 
 > **UNDER CONSTRUCTION**
 
+You can find an older tutorial on 3D picking using ray/object tests at [Rastertek](http://rastertek.com/dx11tut47.html) that uses the deprecated D3DXMath library.
+
 **Next lesson**: [[Mixing SimpleMath and DirectXMath]]
 
 # Further reading
 
-[DirectMath Programmer's Guide](http://msdn.microsoft.com/en-us/library/windows/desktop/ee415574.aspx)  
+[DirectMath Programmer's Guide](https://docs.microsoft.com/en-us/windows/desktop/dxmath/ovw-xnamath-reference)  
 [DirectXMath Collision sample](https://code.msdn.microsoft.com/DirectXMath-Win32-Sample-f365b9e5)

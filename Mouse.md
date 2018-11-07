@@ -4,14 +4,18 @@ This is a helper for simplified mouse tracking modeled after the XNA Game Studio
 
 **Related tutorial**: [[Mouse and keyboard input]]
 
-# Header 
-    #include <Mouse.h>
+# Header
+```cpp
+#include <Mouse.h>
+```
 
 # Initialization
 Mouse is a singleton.
 
-    std::unique_ptr<Mouse> mouse;
-    mouse = = std::make_unique<Mouse>();
+```cpp
+std::unique_ptr<Mouse> mouse;
+mouse = = std::make_unique<Mouse>();
+```
 
 For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr``.
 
@@ -20,61 +24,67 @@ For exception safety, it is recommended you make use of the C++ [RAII](http://en
 ## Windows desktop
 The application needs to call **SetWindow** and make calls during the main ``WndProc`` message processing to **ProcessMessage**:
 
-    mouse->SetWindow(hWnd);
+```cpp
+mouse->SetWindow(hWnd);
 
-    ...
+...
 
-    LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+{
+    switch (message)
     {
-        switch (message)
-        {
-        case WM_ACTIVATEAPP:
-        case WM_INPUT:
-        case WM_MOUSEMOVE:
-        case WM_LBUTTONDOWN:
-        case WM_LBUTTONUP:
-        case WM_RBUTTONDOWN:
-        case WM_RBUTTONUP:
-        case WM_MBUTTONDOWN:
-        case WM_MBUTTONUP:
-        case WM_MOUSEWHEEL:
-        case WM_XBUTTONDOWN:
-        case WM_XBUTTONUP:
-        case WM_MOUSEHOVER:
-            Mouse::ProcessMessage(message, wParam, lParam);
-            break;
-        }
-
-        return DefWindowProc(hWnd, message, wParam, lParam);
+    case WM_ACTIVATEAPP:
+    case WM_INPUT:
+    case WM_MOUSEMOVE:
+    case WM_LBUTTONDOWN:
+    case WM_LBUTTONUP:
+    case WM_RBUTTONDOWN:
+    case WM_RBUTTONUP:
+    case WM_MBUTTONDOWN:
+    case WM_MBUTTONUP:
+    case WM_MOUSEWHEEL:
+    case WM_XBUTTONDOWN:
+    case WM_XBUTTONUP:
+    case WM_MOUSEHOVER:
+        Mouse::ProcessMessage(message, wParam, lParam);
+        break;
     }
 
-## Universal Windows apps, Windows Store apps
+    return DefWindowProc(hWnd, message, wParam, lParam);
+}
+```
+
+## Universal Windows Platform (UWP) apps
 You need to call **SetWindow** and **SetDpi** in the appropriate places.
 
-    void App::SetWindow(CoreWindow^ window)
-    {
-        mouse->SetWindow(window);
+```cpp
+void App::SetWindow(CoreWindow^ window)
+{
+    mouse->SetWindow(window);
 
-        mouse->SetDpi(DisplayInformation::GetForCurrentView()->LogicalDpi);
-    }
+    mouse->SetDpi(DisplayInformation::GetForCurrentView()->LogicalDpi);
+}
 
-    void App::OnDpiChanged(DisplayInformation^ sender, Object^ args)
-    {
-        Mouse::SetDpi(sender->LogicalDpi);
-    }
+void App::OnDpiChanged(DisplayInformation^ sender, Object^ args)
+{
+    Mouse::SetDpi(sender->LogicalDpi);
+}
+```
 
 # Basic use
 
 **GetState** queries the current state of the mouse.
 
-    auto state = mouse->GetState();
+```cpp
+auto state = mouse->GetState();
 
-    if ( state.leftButton )
-       // Left button is down
+if ( state.leftButton )
+   // Left button is down
 
-    XMFLOAT2 mousePosInPixels( float(m.x), float(m.y) );
-    // This is the absolute position of the mouse relative
-    // to the upper-left corner of the window
+XMFLOAT2 mousePosInPixels( float(m.x), float(m.y) );
+// This is the absolute position of the mouse relative
+// to the upper-left corner of the window
+```
 
 > Since Mouse is a singleton, you can make use of the static method **Get** if desired: ``auto state = Mouse::Get().GetState()``
 
@@ -82,28 +92,32 @@ You need to call **SetWindow** and **SetDpi** in the appropriate places.
 
 A common pattern is to trigger an action when a mouse button is pressed or released, but you don't want to trigger the action every single frame if the button is held down for more than a single frame. This helper class simplifies this.
 
-    Mouse::ButtonStateTracker tracker;
+```cpp
+Mouse::ButtonStateTracker tracker;
 
-    ...
+...
 
-    auto state = mouse->GetState();
-    tracker.Update( state );
+auto state = mouse->GetState();
+tracker.Update( state );
 
-    if ( tracker.rightButton == Mouse::ButtonStateTracker::PRESSED )
-        // Take an action when Right mouse button is first pressed,
-        // but don't do it again until the button is released and
-        // then pressed again
+if ( tracker.rightButton == Mouse::ButtonStateTracker::PRESSED )
+    // Take an action when Right mouse button is first pressed,
+    // but don't do it again until the button is released and
+    // then pressed again
+```
 
 You may find that using ``Mouse::ButtonStateTracker::PRESSED`` is a bit verbose. You can simplify the code by doing:
 
-    using ButtonState = Mouse::ButtonStateTracker::ButtonState;
+```cpp
+using ButtonState = Mouse::ButtonStateTracker::ButtonState;
 
-    if ( tracker.rightButton == ButtonState::PRESSED )
-        // Take an action when Right mouse button is first pressed,
-        // but don't do it again until the button is released and
-        // then pressed again
+if ( tracker.rightButton == ButtonState::PRESSED )
+    // Take an action when Right mouse button is first pressed,
+    // but don't do it again until the button is released and
+    // then pressed again
+```
 
-_When resuming from a pause or suspend, be sure to call **Reset** on the tracker object to clear the state history._
+> When resuming from a pause or suspend, be sure to call **Reset** on the tracker object to clear the state history.
 
 # Absolute vs. Relative Mouse position
 
@@ -113,26 +127,28 @@ Control of the mode is set by **SetMode** passing either ``MODE_ABSOLUTE`` (the 
 
 Here, we are using relative movement whenever the left mouse button is held down:
 
-    auto state = g_mouse->GetState();
-    if (state.positionMode == Mouse::MODE_RELATIVE)
-    {
-        // state.x and state.y are relative values; system cursor is not visible
-    }
-    else
-    {
-        // state.x and state.y are absolute pixel values; system cursor is visible
-    }
+```cpp
+auto state = g_mouse->GetState();
+if (state.positionMode == Mouse::MODE_RELATIVE)
+{
+    // state.x and state.y are relative values; system cursor is not visible
+}
+else
+{
+    // state.x and state.y are absolute pixel values; system cursor is visible
+}
 
-    tracker.Update(state);
+tracker.Update(state);
 
-    if (tracker.leftButton == Mouse::ButtonStateTracker::ButtonState::PRESSED)
-    {
-        mouse->SetMode(Mouse::MODE_RELATIVE);
-    }
-    else if (tracker.leftButton == Mouse::ButtonStateTracker::ButtonState::RELEASED)
-    {
-        mouse->SetMode(Mouse::MODE_ABSOLUTE);
-    }
+if (tracker.leftButton == Mouse::ButtonStateTracker::ButtonState::PRESSED)
+{
+    mouse->SetMode(Mouse::MODE_RELATIVE);
+}
+else if (tracker.leftButton == Mouse::ButtonStateTracker::ButtonState::RELEASED)
+{
+    mouse->SetMode(Mouse::MODE_ABSOLUTE);
+}
+```
 
 > When using ``MODE_RELATIVE``, the system cursor is hidden so a user can't navigate away to another monitor or app or even exit. If your game makes use of 'mouse-look' controls, you should ensure that a simple key (like the ESC key) returns to the game's menu/pause screen and that needs to restore ``MODE_ABSOLUTE`` behavior.
 
@@ -153,13 +169,12 @@ The Mouse class should be thread-safe with the exception of the **ProcessMessage
 
 # Platform notes
 
-For Universal Windows Platform apps, touch/pointer devices are captured as [mouse movement](https://msdn.microsoft.com/en-us/library/windows/apps/xaml/Hh994931.aspx). Touch/pointer devices do not, however, result in changes to button state. Relative mouse movement is captured per this [MSDN](https://msdn.microsoft.com/en-us/library/windows/apps/xaml/hh994925.aspx) article.
+For Universal Windows Platform apps, touch/pointer devices are captured as [mouse movement](https://docs.microsoft.com/en-us/windows/uwp/gaming/tutorial--adding-touch-controls-to-your-directx-game). Touch/pointer devices do not, however, result in changes to button state. Relative mouse movement is captured per this [Microsoft Docs](https://docs.microsoft.com/en-us/windows/uwp/gaming/relative-mouse-movement) article.
 
 > For UWP applications on Xbox One, the game controller can be made to emulate a mouse which will provide input through the Mouse class, but the input paradigm is more natural if you use the [[GamePad]] class directly.
 
-For Windows desktop apps, relative mouse movement is captured using "raw input" per the article [Taking Advantage of High-Definition Mouse Movement](https://msdn.microsoft.com/en-us/library/windows/desktop/ee418864.aspx). Note that a consequence of this implementation is that relative mouse movement is not available when using the application through Remote Desktop.
+For Windows desktop apps, relative mouse movement is captured using "raw input" per the article [Taking Advantage of High-Definition Mouse Movement](https://docs.microsoft.com/en-us/windows/desktop/DxTechArts/taking-advantage-of-high-dpi-mouse-movement). Note that a consequence of this implementation is that relative mouse movement is not available when using the application through Remote Desktop.
 
 # Further reading
 [DirectX Tool Kit: Keyboard and Mouse support](http://blogs.msdn.com/b/chuckw/archive/2015/08/06/directx-tool-kit-keyboard-and-mouse-support.aspx)  
-[Mouse Input](https://msdn.microsoft.com/en-us/library/windows/desktop/ms645533.aspx)  
-[Work with input and controls in your DirectX game](https://msdn.microsoft.com/en-us/library/windows/apps/Hh452799.aspx)
+[Mouse Input](https://docs.microsoft.com/en-us/windows/desktop/inputdev/mouse-input)  

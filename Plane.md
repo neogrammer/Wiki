@@ -1,24 +1,27 @@
 An infinite 2D plane represented as a four component vector modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Plane``) math library.
 
 # Header
-
-    #include <SimpleMath.h>
+```cpp
+#include <SimpleMath.h>
+```
 
 # Initialization
 
-    using namespace DirectX::SimpleMath;
+```cpp
+using namespace DirectX::SimpleMath;
 
-    Plane p;                      // Creates a plane in XZ at the origin
-    Plane p(0, 1, 0, 0);          // Creates a plane in XZ at the origin
-    Plane p( Vector3(0,1,0), 0 ); // Creates a plane in XZ at the origin
-    Plane p( Vector3(1,1,1),
-             Vector3(2,2,2),
-             Vector3(3,3,3));     // Creates a plane containing the three points
-    Plane p( Vector3(1,2,3),
-             Vector3(0,0,1) );    // Creates a plane at [1,2,3] with the normal [0,0,1]
-    
-    float arr[4] = { 0, 1, 0, 0 };
-    Plane p(arr);                 // Creates a plane in XZ at the origin
+Plane p;                      // Creates a plane in XZ at the origin
+Plane p(0, 1, 0, 0);          // Creates a plane in XZ at the origin
+Plane p( Vector3(0,1,0), 0 ); // Creates a plane in XZ at the origin
+Plane p( Vector3(1,1,1),
+         Vector3(2,2,2),
+         Vector3(3,3,3));     // Creates a plane containing the three points
+Plane p( Vector3(1,2,3),
+         Vector3(0,0,1) );    // Creates a plane at [1,2,3] with the normal [0,0,1]
+
+float arr[4] = { 0, 1, 0, 0 };
+Plane p(arr);                 // Creates a plane in XZ at the origin
+```
 
 # Fields
 * *x* component of the plane normal (A)

@@ -5,7 +5,7 @@ First create a new project using the instructions from the first two lessons: [[
 [[Adding the DirectX Tool Kit]] which we will use for this lesson.
 
 # Creating custom shaders using DGSL
-One approach to creating your own shader is to use a visual designer tool, such as Visual Studio's DGSL Shader Designer. In this tool, the vertex shader is 'fixed' and the visual tool is used to create the pixel shader. The result of the designer tool is a compiled shader in a ``.DGSL.CSO`` file that can be loaded at runtime. The resulting shaders can be complex and use up to 8 textures at once, perform tangent-space lighting, and many other complex effects. 
+One approach to creating your own shader is to use a visual designer tool, such as Visual Studio's DGSL Shader Designer. In this tool, the vertex shader is 'fixed' and the visual tool is used to create the pixel shader. The result of the designer tool is a compiled shader in a ``.DGSL.CSO`` file that can be loaded at runtime. The resulting shaders can be complex and use up to 8 textures at once, perform tangent-space lighting, and many other complex effects.
 
 To use these with _DirectX Tool Kit_, you can manually create [[DGSLEffect]] instances and use them with [[PrimitiveBatch]]. You can also load them automatically from a CMO using Model when you provide the [[DGSLEffectFactory|EffectFactory]] rather than the standard [[EffectFactory]] as we demonstrated in [[Rendering a model]].
 
@@ -22,160 +22,178 @@ Right-click on the "MyDGSLShader.dgsl" file in the Solution Explorer, select **P
 
 In **pch.h** add after the other ``#include`` statements:
 
-    #include "ReadData.h"
+```cpp
+#include "ReadData.h"
+```
 
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 
-    DirectX::SimpleMath::Matrix m_world;
-    DirectX::SimpleMath::Matrix m_view;
-    DirectX::SimpleMath::Matrix m_proj;
-    std::unique_ptr<DirectX::CommonStates> m_states;
-    std::unique_ptr<DirectX::DGSLEffect> m_effect;
-    Microsoft::WRL::ComPtr<ID3D11Buffer> m_shapeVB;
-    Microsoft::WRL::ComPtr<ID3D11Buffer> m_shapeIB;
-    Microsoft::WRL::ComPtr<ID3D11InputLayout> m_inputLayout;
-    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture;
-    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture2;
-    Microsoft::WRL::ComPtr<ID3D11PixelShader> m_pixelShader;
+```cpp
+DirectX::SimpleMath::Matrix m_world;
+DirectX::SimpleMath::Matrix m_view;
+DirectX::SimpleMath::Matrix m_proj;
+std::unique_ptr<DirectX::CommonStates> m_states;
+std::unique_ptr<DirectX::DGSLEffect> m_effect;
+Microsoft::WRL::ComPtr<ID3D11Buffer> m_shapeVB;
+Microsoft::WRL::ComPtr<ID3D11Buffer> m_shapeIB;
+Microsoft::WRL::ComPtr<ID3D11InputLayout> m_inputLayout;
+Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture;
+Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture2;
+Microsoft::WRL::ComPtr<ID3D11PixelShader> m_pixelShader;
+```
 
 In **Game.cpp** after the using namespace statements, add:
 
-    namespace
-    {
-    #include "dgslsphere.inc"
-    } 
+```cpp
+namespace
+{
+#include "dgslsphere.inc"
+}
+```
 
 In **Game.cpp** modify in **CreateDevice**:
 
-    static const D3D_FEATURE_LEVEL featureLevels [] =
-    {
-        D3D_FEATURE_LEVEL_11_1,
-        D3D_FEATURE_LEVEL_11_0,
-        D3D_FEATURE_LEVEL_10_1,
-        D3D_FEATURE_LEVEL_10_0,
-    };
+```cpp
+static const D3D_FEATURE_LEVEL featureLevels [] =
+{
+    D3D_FEATURE_LEVEL_11_1,
+    D3D_FEATURE_LEVEL_11_0,
+    D3D_FEATURE_LEVEL_10_1,
+    D3D_FEATURE_LEVEL_10_0,
+};
+```
 
-> **UWP:** The new list would also include ``D3D_FEATURE_LEVEL_12_0`` and ``D3D_FEATURE_LEVEL_12_1``. The change is to delete ``D3D_FEATURE_LEVEL_9_1``, ``D3D_FEATURE_LEVEL_9_2``, and ``D3D_FEATURE_LEVEL_9_3``.
+> **Universal Windows Platform app:** The new list would also include ``D3D_FEATURE_LEVEL_12_0`` and ``D3D_FEATURE_LEVEL_12_1``. The change is to delete ``D3D_FEATURE_LEVEL_9_1``, ``D3D_FEATURE_LEVEL_9_2``, and ``D3D_FEATURE_LEVEL_9_3``.
 
 In **Game.cpp**, add to the TODO of **CreateDevice**:
 
-    m_states = std::make_unique<CommonStates>(m_d3dDevice.Get());
+```cpp
+m_states = std::make_unique<CommonStates>(m_d3dDevice.Get());
 
-    // Create DGSL Effect
-    auto blob = DX::ReadData( L"MyDGSLShader.cso" );
-    DX::ThrowIfFailed(m_d3dDevice->CreatePixelShader(&blob.front(), blob.size(),
-        nullptr, m_pixelShader.ReleaseAndGetAddressOf()));
+// Create DGSL Effect
+auto blob = DX::ReadData( L"MyDGSLShader.cso" );
+DX::ThrowIfFailed(m_d3dDevice->CreatePixelShader(&blob.front(), blob.size(),
+    nullptr, m_pixelShader.ReleaseAndGetAddressOf()));
 
-    m_effect = std::make_unique<DGSLEffect>(m_d3dDevice.Get(), m_pixelShader.Get());
-    m_effect->SetTextureEnabled(true);
-    m_effect->SetVertexColorEnabled(true);
+m_effect = std::make_unique<DGSLEffect>(m_d3dDevice.Get(), m_pixelShader.Get());
+m_effect->SetTextureEnabled(true);
+m_effect->SetVertexColorEnabled(true);
 
-    DX::ThrowIfFailed(
-        CreateDDSTextureFromFile(m_d3dDevice.Get(), L"billard15.dds", nullptr,
-        m_texture.ReleaseAndGetAddressOf()));
+DX::ThrowIfFailed(
+    CreateDDSTextureFromFile(m_d3dDevice.Get(), L"billard15.dds", nullptr,
+    m_texture.ReleaseAndGetAddressOf()));
 
-    m_effect->SetTexture(m_texture.Get());
+m_effect->SetTexture(m_texture.Get());
 
-    DX::ThrowIfFailed(
-        CreateDDSTextureFromFile(m_d3dDevice.Get(), L"envmap.dds", nullptr,
-        m_texture2.ReleaseAndGetAddressOf()));
+DX::ThrowIfFailed(
+    CreateDDSTextureFromFile(m_d3dDevice.Get(), L"envmap.dds", nullptr,
+    m_texture2.ReleaseAndGetAddressOf()));
 
-    m_effect->SetTexture(1, m_texture2.Get());
-    m_effect->EnableDefaultLighting();
+m_effect->SetTexture(1, m_texture2.Get());
+m_effect->EnableDefaultLighting();
 
-    void const* shaderByteCode;
-    size_t byteCodeLength;
+void const* shaderByteCode;
+size_t byteCodeLength;
 
-    m_effect->GetVertexShaderBytecode(&shaderByteCode, &byteCodeLength);
+m_effect->GetVertexShaderBytecode(&shaderByteCode, &byteCodeLength);
 
-    DX::ThrowIfFailed( m_d3dDevice->CreateInputLayout(
-        VertexPositionNormalTangentColorTexture::InputElements, 
-        VertexPositionNormalTangentColorTexture::InputElementCount,
-        shaderByteCode, byteCodeLength,
-        m_inputLayout.ReleaseAndGetAddressOf()));
+DX::ThrowIfFailed( m_d3dDevice->CreateInputLayout(
+    VertexPositionNormalTangentColorTexture::InputElements,
+    VertexPositionNormalTangentColorTexture::InputElementCount,
+    shaderByteCode, byteCodeLength,
+    m_inputLayout.ReleaseAndGetAddressOf()));
 
-    // Create sphere geometry with DGSL vertex data
-    {
-        D3D11_BUFFER_DESC desc = {};
-        desc.ByteWidth = sizeof(g_sphereVB);
-        desc.Usage = D3D11_USAGE_DEFAULT;
-        desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+// Create sphere geometry with DGSL vertex data
+{
+    D3D11_BUFFER_DESC desc = {};
+    desc.ByteWidth = sizeof(g_sphereVB);
+    desc.Usage = D3D11_USAGE_DEFAULT;
+    desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 
-        D3D11_SUBRESOURCE_DATA initData = {};
-        initData.pSysMem = g_sphereVB;
-        
-        DX::ThrowIfFailed( m_d3dDevice->CreateBuffer( &desc, &initData,
-            m_shapeVB.ReleaseAndGetAddressOf() ) );
-    }
+    D3D11_SUBRESOURCE_DATA initData = {};
+    initData.pSysMem = g_sphereVB;
 
-    {
-        D3D11_BUFFER_DESC desc = {};
-        desc.ByteWidth = sizeof(g_sphereIB);
-        desc.Usage = D3D11_USAGE_DEFAULT;
-        desc.BindFlags = D3D11_BIND_INDEX_BUFFER;
+    DX::ThrowIfFailed( m_d3dDevice->CreateBuffer( &desc, &initData,
+        m_shapeVB.ReleaseAndGetAddressOf() ) );
+}
 
-        D3D11_SUBRESOURCE_DATA initData = {};
-        initData.pSysMem = g_sphereIB;
-        
-        DX::ThrowIfFailed( m_d3dDevice->CreateBuffer( &desc, &initData,
-            m_shapeIB.ReleaseAndGetAddressOf() ) );
-    }
+{
+    D3D11_BUFFER_DESC desc = {};
+    desc.ByteWidth = sizeof(g_sphereIB);
+    desc.Usage = D3D11_USAGE_DEFAULT;
+    desc.BindFlags = D3D11_BIND_INDEX_BUFFER;
 
-    m_world = Matrix::Identity;
+    D3D11_SUBRESOURCE_DATA initData = {};
+    initData.pSysMem = g_sphereIB;
+
+    DX::ThrowIfFailed( m_d3dDevice->CreateBuffer( &desc, &initData,
+        m_shapeIB.ReleaseAndGetAddressOf() ) );
+}
+
+m_world = Matrix::Identity;
+```
 
 In **Game.cpp**, add to the TODO of **CreateResources**:
 
-    m_view = Matrix::CreateLookAt(Vector3(2.f, 2.f, 2.f),
-        Vector3::Zero, Vector3::UnitY);
-    m_proj = Matrix::CreatePerspectiveFieldOfView(XM_PI / 4.f,
-        float(backBufferWidth) / float(backBufferHeight), 0.1f, 10.f);
+```cpp
+m_view = Matrix::CreateLookAt(Vector3(2.f, 2.f, 2.f),
+    Vector3::Zero, Vector3::UnitY);
+m_proj = Matrix::CreatePerspectiveFieldOfView(XM_PI / 4.f,
+    float(backBufferWidth) / float(backBufferHeight), 0.1f, 10.f);
 
-    m_effect->SetViewport( float(backBufferWidth), float(backBufferHeight) );
+m_effect->SetViewport( float(backBufferWidth), float(backBufferHeight) );
 
-    m_effect->SetView(m_view);
-    m_effect->SetProjection(m_proj);
+m_effect->SetView(m_view);
+m_effect->SetProjection(m_proj);
+```
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
-    m_states.reset();
-    m_effect.reset();
-    m_shapeVB.Reset();
-    m_shapeIB.Reset();
-    m_inputLayout.Reset();
-    m_texture.Reset();
-    m_texture2.Reset();
-    m_pixelShader.Reset();
+```cpp
+m_states.reset();
+m_effect.reset();
+m_shapeVB.Reset();
+m_shapeIB.Reset();
+m_inputLayout.Reset();
+m_texture.Reset();
+m_texture2.Reset();
+m_pixelShader.Reset();
+```
 
 In **Game.cpp**, add to the TODO of **Render**:
 
-    m_effect->Apply( m_d3dContext.Get() );
+```cpp
+m_effect->Apply( m_d3dContext.Get() );
 
-    auto sampler = m_states->LinearWrap();
-    m_d3dContext->PSSetSamplers( 0, 1, &sampler );
+auto sampler = m_states->LinearWrap();
+m_d3dContext->PSSetSamplers( 0, 1, &sampler );
 
-    m_d3dContext->RSSetState( m_states->CullClockwise() );
+m_d3dContext->RSSetState( m_states->CullClockwise() );
 
-    m_d3dContext->IASetIndexBuffer( m_shapeIB.Get(), DXGI_FORMAT_R16_UINT, 0 );
-    
-    m_d3dContext->IASetInputLayout( m_inputLayout.Get() );
+m_d3dContext->IASetIndexBuffer( m_shapeIB.Get(), DXGI_FORMAT_R16_UINT, 0 );
 
-    UINT stride = sizeof(VertexPositionNormalTangentColorTexture);
-    UINT offset = 0;
-    m_d3dContext->IASetVertexBuffers(0, 1, m_shapeVB.GetAddressOf(), &stride, &offset);
+m_d3dContext->IASetInputLayout( m_inputLayout.Get() );
 
-    m_d3dContext->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );
+UINT stride = sizeof(VertexPositionNormalTangentColorTexture);
+UINT offset = 0;
+m_d3dContext->IASetVertexBuffers(0, 1, m_shapeVB.GetAddressOf(), &stride, &offset);
 
-    m_d3dContext->DrawIndexed( _countof(g_sphereIB), 0, 0 );
+m_d3dContext->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );
+
+m_d3dContext->DrawIndexed( _countof(g_sphereIB), 0, 0 );
+```
 
 In **Game.cpp**, add to the TODO of **Update**:
 
-    float time = float(timer.GetTotalSeconds());
+```cpp
+float time = float(timer.GetTotalSeconds());
 
-    m_effect->SetTime(time);
+m_effect->SetTime(time);
 
-    m_world = Matrix::CreateRotationZ(cosf(time) * 2.f);
+m_world = Matrix::CreateRotationZ(cosf(time) * 2.f);
 
-    m_effect->SetWorld(m_world);
+m_effect->SetWorld(m_world);
+```
 
 Build and run to see the sphere.
 
@@ -193,13 +211,13 @@ The main limitation of using the DGSL tool is that it creates only Shader Model 
 
 To support Windows phone, you need feature level 9.3, and to target Surface RT you need feature level 9.1. There is a workaround which is to manually export the DGSL shader to an HLSL file, then compile it using FXC with either the ``ps_4_0_level_9_1`` or ``ps_4_0_level_9_3`` shader profile. It is quite likely you'll need to manually simplify the HLSL shader to successfully get it to compile. [[DGSLEffectFactory|EffectFactory]] implements this workaround by looking for a 'base-name' equivalent of the ``.DGSL.CSO`` file as a ``.CSO`` file when on feature level 9.x devices.
 
-[How to: Export a Shader](http://msdn.microsoft.com/en-us/library/hh667618.aspx)
+[How to: Export a Shader](https://docs.microsoft.com/en-us/visualstudio/designers/how-to-export-a-shader)
 
 **Next lesson:** [[Writing custom shaders]]
 
-# Further reading 
+# Further reading
 
 DirectX Tool Kit docs [[Effects]]  
-[Using 3-D Assets in Your Game or App](http://msdn.microsoft.com/en-us/library/hh972446.aspx)  
-[Working with Shaders](http://msdn.microsoft.com/en-us/library/hh873117.aspx)  
+[Using 3-D Assets in Your Game or App](https://docs.microsoft.com/en-us/visualstudio/designers/using-3-d-assets-in-your-game-or-app)  
+[Working with Shaders](https://docs.microsoft.com/en-us/visualstudio/designers/working-with-shaders)  
 [Visual Studio 3D Starter Kit (Windows 8.1)](http://aka.ms/vs3dkitwin)

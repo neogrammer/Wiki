@@ -3,13 +3,17 @@ This effect extends [[BasicEffect]] to support normal-mapping and an optional sp
 See also [[Effects]]
 
 # Header
-    #include <Effects.h>
+```cpp
+#include <Effects.h>
+```
 
 # Initialization
 Construction requires a Direct3D 11 device.
 
-    std::unique_ptr<NormalMapEffect> effect;
-    effect = std::make_unique<NormalMapEffect>(device);
+```cpp
+std::unique_ptr<NormalMapEffect> effect;
+effect = std::make_unique<NormalMapEffect>(device);
+```
 
 For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
@@ -54,9 +58,9 @@ This effect always performs texturing, so if 'untextured' diffuse rendering is d
 
 # Feature Level Notes
 
-This effect uses Shader Model 4.0 so requires Direct3D hardware feature level 10.0 or greater. For this reason, the Windows Phone 8.1 projects do not include the source for the normal map effect implementation as Windows Phone 8.1 hardware only supports Feature level 9.3.
+This effect uses Shader Model 4.0 so requires Direct3D hardware feature level 10.0 or greater.
 
-[Direct3D feature levels](http://msdn.microsoft.com/en-us/library/windows/desktop/ff476876.aspx)
+[Direct3D feature levels](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/overviews-direct3d-11-devices-downlevel-intro)
 
 # Further reading
 

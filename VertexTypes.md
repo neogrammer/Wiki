@@ -13,15 +13,22 @@ The VertexTypes.h header defines these commonly used vertex data structures:
 * VertexPositionNormalTangentColorTextureSkinning
 
 # Header
-    #include <VertexTypes.h>
+```cpp
+#include <VertexTypes.h>
+```
 
 # Input Layout
 Each type also provides a ``D3D11_INPUT_ELEMENT_DESC`` array which can be used to create a matching input layout, for example:
 
-    device->CreateInputLayout(VertexPositionColorTexture::InputElements,
-                              VertexPositionColorTexture::InputElementCount,
-                              vertexShaderCode, vertexShaderCodeSize,
-                              &inputLayout);
+```cpp
+Microsoft::WRL::ComPtr<ID3D11InputLayout> inputLayout;
+
+device->CreateInputLayout(
+    VertexPositionColorTexture::InputElements,
+    VertexPositionColorTexture::InputElementCount,
+    vertexShaderCode, vertexShaderCodeSize,
+    inputLayout.GetAddressOf());
+```
 
 # Usage
 
@@ -46,4 +53,3 @@ _VertexPositionNormalTangentColorTextureSkinning_ extends VertexPositionNormalTa
 
 ## DirectX SDK SDKMESH
 The ``.SDKMESH`` format describes input layouts as Direct3D 9 style vertex decls. There is therefore no specific vertex structure for ``.SDKMESH`` data and such input layouts are built on-the-fly. The [[Model]] loader attempts to create input layouts that match the needs of the standard [[Effects]], so it can end up ignoring some of the vertex layout content if the critical content is found first.
-

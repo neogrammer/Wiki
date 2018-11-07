@@ -10,14 +10,18 @@ Save the following files to your new project's folder: [Explo1.wav](https://gith
 
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 
-    std::unique_ptr<DirectX::SoundEffect> m_explode;
-    std::unique_ptr<DirectX::SoundEffect> m_ambient;
+```cpp
+std::unique_ptr<DirectX::SoundEffect> m_explode;
+std::unique_ptr<DirectX::SoundEffect> m_ambient;
+```
 
 In **Game.cpp**, add to the end of **Initialize**:
 
-    m_explode = std::make_unique<SoundEffect>( m_audEngine.get(), L"explo1.wav" );
-    m_ambient = std::make_unique<SoundEffect>( m_audEngine.get(),
-        L"NightAmbienceSimple_02.wav" );
+```cpp
+m_explode = std::make_unique<SoundEffect>( m_audEngine.get(), L"explo1.wav" );
+m_ambient = std::make_unique<SoundEffect>( m_audEngine.get(),
+    L"NightAmbienceSimple_02.wav" );
+```
 
 Build and run. No sounds will be heard, but the audio files are loaded.
 
@@ -27,34 +31,44 @@ Build and run. No sounds will be heard, but the audio files are loaded.
 
 In the **pch.h** file, add after the other includes:
 
-    #include <random>
+```cpp
+#include <random>
+```
 
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 
-    std::unique_ptr<std::mt19937> m_random;
-    float explodeDelay;
+```cpp
+std::unique_ptr<std::mt19937> m_random;
+float explodeDelay;
+```
 
 In **Game.cpp**, add to the end of **Initialize**:
 
-    std::random_device rd;
-    m_random = std::make_unique<std::mt19937>(rd());
+```cpp
+std::random_device rd;
+m_random = std::make_unique<std::mt19937>(rd());
 
-    explodeDelay = 2.f;
+explodeDelay = 2.f;
+```
 
 In **Game.cpp**, add to the TODO of **Update**:
 
-    explodeDelay -= elapsedTime;
-    if (explodeDelay < 0.f)
-    {
-        m_explode->Play();
+```cpp
+explodeDelay -= elapsedTime;
+if (explodeDelay < 0.f)
+{
+    m_explode->Play();
 
-        std::uniform_real_distribution<float> dist(1.f, 10.f);
-        explodeDelay = dist(*m_random);
-    }
+    std::uniform_real_distribution<float> dist(1.f, 10.f);
+    explodeDelay = dist(*m_random);
+}
+```
 
 In **Game.cpp**, add to the TODO of **OnResuming**:
 
-    explodeDelay = 2.f;
+```cpp
+explodeDelay = 2.f;
+```
 
 Build and run. You will hear an explosion sound effect every 1 to 10 seconds. This is a 'one-shot' sound that you trigger and the audio engine will handle all the voice management automatically.  You can trigger the same sound many times at once and each one-shot will play on it's own 'voice'.
 
@@ -64,40 +78,48 @@ Build and run. You will hear an explosion sound effect every 1 to 10 seconds. Th
 
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 
-    std::unique_ptr<DirectX::SoundEffectInstance> m_nightLoop;
+```cpp
+std::unique_ptr<DirectX::SoundEffectInstance> m_nightLoop;
+```
 
 In **Game.cpp**, add to the end of **Initialize**:
 
-    m_nightLoop = m_ambient->CreateInstance();
-    m_nightLoop->Play(true);
+```cpp
+m_nightLoop = m_ambient->CreateInstance();
+m_nightLoop->Play(true);
+```
 
 In **Game.cpp**, modify the handling of ``m_retryAudio`` in **Update** as follows:
 
-    ...
-    if (m_retryAudio)
-    {
-        m_retryAudio = false;
+```cpp
+...
+if (m_retryAudio)
+{
+    m_retryAudio = false;
 
-        if (m_audEngine->Reset())
-        {
-            // TODO: restart any looped sounds here
-            if ( m_nightLoop )
-                m_nightLoop->Play(true);
-        }
+    if (m_audEngine->Reset())
+    {
+        // TODO: restart any looped sounds here
+        if ( m_nightLoop )
+            m_nightLoop->Play(true);
     }
-    ...
+}
+...
+```
 
 In **Game.cpp**, modify the destructor:
 
-    Game::~Game()
+```cpp
+Game::~Game()
+{
+    if (m_audEngine)
     {
-        if (m_audEngine)
-        {
-            m_audEngine->Suspend();
-        }
-
-        m_nightLoop.reset();
+        m_audEngine->Suspend();
     }
+
+    m_nightLoop.reset();
+}
+```
 
 Build and run to hear an ambient night sound looping in the background. In this case, the ``SoundEffectInstance`` has a single assigned voice, so stopping and starting it affects the one playing sound.
 
@@ -112,28 +134,34 @@ When you use **Play** on a one-shot sound, you can specify pitch, volume, and pa
 
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 
-    float nightVolume;
-    float nightSlide;
+```cpp
+float nightVolume;
+float nightSlide;
+```
 
 In **Game.cpp**, add to the end of **Initialize**:
 
-    nightVolume = 1.f;
-    nightSlide = -0.1f;
+```cpp
+nightVolume = 1.f;
+nightSlide = -0.1f;
+```
 
 In **Game.cpp**, add to the TODO of **Update**:
 
-    nightVolume += elapsedTime * nightSlide;
-    if (nightVolume < 0.f)
-    {
-        nightVolume = 0.f;
-        nightSlide = -nightSlide;
-    }
-    else if (nightVolume > 1.f)
-    {
-        nightVolume = 1.f;
-        nightSlide = -nightSlide;
-    }
-    m_nightLoop->SetVolume( nightVolume );
+```cpp
+nightVolume += elapsedTime * nightSlide;
+if (nightVolume < 0.f)
+{
+    nightVolume = 0.f;
+    nightSlide = -nightSlide;
+}
+else if (nightVolume > 1.f)
+{
+    nightVolume = 1.f;
+    nightSlide = -nightSlide;
+}
+m_nightLoop->SetVolume( nightVolume );
+```
 
 Build and run. The looping night ambient sound will slowly decrease and increase volume over time.
 
@@ -141,7 +169,7 @@ Build and run. The looping night ambient sound will slowly decrease and increase
 
 Above we loaded the individual sound files as distinct **SoundEffect** objects, but games commonly have hundreds or thousands of distinct sounds, music, and voice recordings. A more efficient way to manage this data is to make of a 'wave bank' which is a single file that contains a collection of ``.wav ``files that can be loaded all at once.
 
-1. Download the [XWBTool.exe](https://github.com/Microsoft/DirectXTK/releases/download/sep2016b/XWBTool.exe) from the _DirectX Tool Kit_ site and extract the EXE into your project's folder. 
+1. Download the [XWBTool.exe](https://github.com/Microsoft/DirectXTK/releases/download/sep2016b/XWBTool.exe) from the _DirectX Tool Kit_ site and extract the EXE into your project's folder.
 1. Open a [command-prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq) and then change to your project's folder.
 
 Run the following command-line
@@ -150,35 +178,41 @@ Run the following command-line
 
 Then from the top menu in Visual Studio select **Project / Add Existing Item**.... Select [sounds.xwb](https://github.com/Microsoft/DirectXTK/wiki/media/sounds.xwb) and click "OK".
 
-> If you are using a universal Windows app, Windows Store, or Xbox One project rather than a Windows desktop app, you need to manually edit the Visual Studio project properties on the ``sounds.xwb`` file and make sure "Content" is set to "Yes" so the data file will be included in your packaged build.
+> If you are using a Universal Windows Platform app or Xbox One project rather than a Windows desktop app, you need to manually edit the Visual Studio project properties on the ``sounds.xwb`` file and make sure "Content" is set to "Yes" so the data file will be included in your packaged build.
 
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 
-    std::unique_ptr<DirectX::WaveBank> m_sounds;
+```cpp
+std::unique_ptr<DirectX::WaveBank> m_sounds;
+```
 
 In **Game.cpp**, modify **Initialize**:
 
-    ...
-    m_sounds = std::make_unique<WaveBank>( m_audEngine.get(), L"sounds.xwb" );
+```cpp
+...
+m_sounds = std::make_unique<WaveBank>( m_audEngine.get(), L"sounds.xwb" );
 
-    m_nightLoop = m_sounds->CreateInstance( "NightAmbienceSimple_02" );
-    if ( m_nightLoop )
-        m_nightLoop->Play(true);
-    ...
+m_nightLoop = m_sounds->CreateInstance( "NightAmbienceSimple_02" );
+if ( m_nightLoop )
+    m_nightLoop->Play(true);
+...
+```
 
 In **Game.cpp**, modify **Update** as follows:
 
-    ...
-    explodeDelay -= elapsedTime;
-    if (explodeDelay < 0.f)
-    {
-        std::uniform_int_distribution<unsigned int> dist2(0, 3);
-        m_sounds->Play( dist2(*m_random) );
+```cpp
+...
+explodeDelay -= elapsedTime;
+if (explodeDelay < 0.f)
+{
+    std::uniform_int_distribution<unsigned int> dist2(0, 3);
+    m_sounds->Play( dist2(*m_random) );
 
-        std::uniform_real_distribution<float> dist(1.f, 10.f);
-        explodeDelay = dist(*m_random);
-    }
-    ...
+    std::uniform_real_distribution<float> dist(1.f, 10.f);
+    explodeDelay = dist(*m_random);
+}
+...
+```
 
 Build and run. This time the sounds are being played from the wave bank, and the explosion now selects from 4 different exploding sounds at random to provide some variation.
 
@@ -195,18 +229,20 @@ Wavebank entries can be referenced by a 0-based index or by an optional friendly
 
 which would generate a ``sounds.h`` file you could use instead of having 'magic' numbers in your code:
 
-    #pragma once
+```cpp
+#pragma once
 
-    enum XACT_WAVEBANK_SOUNDS
-    {
-        XACT_WAVEBANK_SOUNDS_EXPLO1 = 0,
-        XACT_WAVEBANK_SOUNDS_EXPLO2 = 1,
-        XACT_WAVEBANK_SOUNDS_EXPLO3 = 2,
-        XACT_WAVEBANK_SOUNDS_EXPLO4 = 3,
-        XACT_WAVEBANK_SOUNDS_NIGHTAMBIENCESIMPLE_02 = 4,
-    };
+enum XACT_WAVEBANK_SOUNDS
+{
+    XACT_WAVEBANK_SOUNDS_EXPLO1 = 0,
+    XACT_WAVEBANK_SOUNDS_EXPLO2 = 1,
+    XACT_WAVEBANK_SOUNDS_EXPLO3 = 2,
+    XACT_WAVEBANK_SOUNDS_EXPLO4 = 3,
+    XACT_WAVEBANK_SOUNDS_NIGHTAMBIENCESIMPLE_02 = 4,
+};
 
-    #define XACT_WAVEBANK_SOUNDS_ENTRY_COUNT 5
+#define XACT_WAVEBANK_SOUNDS_ENTRY_COUNT 5
+```
 
 **Next lesson:** [[Using positional audio]]
 

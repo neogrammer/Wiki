@@ -4,75 +4,85 @@ This is a helper for simplified keyboard state tracking modeled after the XNA Ga
 
 **Related tutorial**: [[Mouse and keyboard input]]
 
-# Header 
-    #include <Keyboard.h>
+# Header
+```cpp
+#include <Keyboard.h>
+```
 
 # Initialization
 Keyboard is a singleton.
 
-    std::unique_ptr<Keyboard> keyboard;
-    keyboard = std::make_unique<Keyboard>();
+```cpp
+std::unique_ptr<Keyboard> keyboard;
+keyboard = std::make_unique<Keyboard>();
+```
 
 For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr``.
 
 # Integration
 For Windows desktop applications, the application needs to make the appropriate calls during the main **WndProc** message processing:
 
-    LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+```cpp
+LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+{
+    switch (message)
     {
-        switch (message)
-        {
-        case WM_ACTIVATEAPP:
-            Keyboard::ProcessMessage(message, wParam, lParam);
-            break;
+    case WM_ACTIVATEAPP:
+        Keyboard::ProcessMessage(message, wParam, lParam);
+        break;
 
-        case WM_KEYDOWN:
-        case WM_SYSKEYDOWN:
-        case WM_KEYUP:
-        case WM_SYSKEYUP:
-            Keyboard::ProcessMessage(message, wParam, lParam);
-            break;
-        }
-
-        return DefWindowProc(hWnd, message, wParam, lParam);
+    case WM_KEYDOWN:
+    case WM_SYSKEYDOWN:
+    case WM_KEYUP:
+    case WM_SYSKEYUP:
+        Keyboard::ProcessMessage(message, wParam, lParam);
+        break;
     }
 
-For universal Windows apps or Windows Store apps, you need to call **SetWindow** in the appropriate place.
+    return DefWindowProc(hWnd, message, wParam, lParam);
+}
+```
 
-    void App::SetWindow(CoreWindow^ window)
-    {
-        keyboard->SetWindow(window);
-    }
+For Universal Windows Platform apps, you need to call **SetWindow** in the appropriate place.
+
+```cpp
+void App::SetWindow(CoreWindow^ window)
+{
+    keyboard->SetWindow(window);
+}
+```
 
 # Basic use
 
 **GetState** queries the current state of the keyboard.
 
-    auto kb = keyboard->GetState();
+```cpp
+auto kb = keyboard->GetState();
 
-    if (kb.Back)
-        // Backspace key is down
+if (kb.Back)
+    // Backspace key is down
 
-    if (kb.W)
-        // W key is down
+if (kb.W)
+    // W key is down
 
-    if (kb.A)
-        // A key is down
+if (kb.A)
+    // A key is down
 
-    if (kb.S)
-        // S key is down
+if (kb.S)
+    // S key is down
 
-    if (kb.D)
-        // D key is down
+if (kb.D)
+    // D key is down
 
-    if (kb.LeftShift)
-        // Left shift key is down
+if (kb.LeftShift)
+    // Left shift key is down
 
-    if (kb.RightShift)
-        // Right shift key is down
+if (kb.RightShift)
+    // Right shift key is down
 
-    if ( kb.IsKeyDown( VK_RETURN ) )
-        // Return key is down
+if ( kb.IsKeyDown( VK_RETURN ) )
+    // Return key is down
+```
 
 > Since Keyboard is a singleton, you can make use of the static method **Get** if desired: ``auto kb = Keyboard::Get().GetState()``
 
@@ -80,20 +90,22 @@ For universal Windows apps or Windows Store apps, you need to call **SetWindow**
 
 A common pattern is to trigger an action when a key is pressed or released, but you don't want to trigger the action every single frame if the key is held down for more than a single frame. This helper class simplifies this.
 
-    Keyboard::KeyboardStateTracker tracker;
+```cpp
+Keyboard::KeyboardStateTracker tracker;
 
-    ...
+...
 
-    auto state = keyboard->GetState();
-    tracker.Update( state );
+auto state = keyboard->GetState();
+tracker.Update( state );
 
-    if ( tracker.pressed.Space )
-        // Space was just pressed down
+if ( tracker.pressed.Space )
+    // Space was just pressed down
 
-    if ( tracker.IsKeyReleased( VK_F1 ) )
-        // F1 key was just released
+if ( tracker.IsKeyReleased( VK_F1 ) )
+    // F1 key was just released
+```
 
-_When resuming from a pause or suspend, be sure to call **Reset** on the tracker object to clear the state history._
+> When resuming from a pause or suspend, be sure to call **Reset** on the tracker object to clear the state history.
 
 # Threading model
 The Keyboard class should be thread-safe with the exception of the **ProcessMessage** which should only be called in your windows message loop.
@@ -118,4 +130,4 @@ The Keyboard class makes use of virtual keys and not scancodes so your code has 
 
 # Further reading
 [DirectX Tool Kit: Keyboard and Mouse support](http://blogs.msdn.com/b/chuckw/archive/2015/08/06/directx-tool-kit-keyboard-and-mouse-support.aspx)  
-[Using Keyboard Input](https://msdn.microsoft.com/en-us/library/windows/desktop/ms646268.aspx)  
+[Using Keyboard Input](https://docs.microsoft.com/en-us/windows/desktop/inputdev/using-keyboard-input)  

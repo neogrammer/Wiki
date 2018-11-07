@@ -3,14 +3,17 @@ Performs basic post-processing with a built-in set of shaders which operate usin
 See also [[PostProcess]]
 
 # Header
-
-    #include "PostProcess.h"
+```cpp
+#include "PostProcess.h"
+```
 
 # Initialization
 Construction requires a Direct3D 11 device.
 
-    std::unique_ptr<DualPostProcess> postProcess;
-    postProcess = std::make_unique<DualPostProcess>(device);
+```cpp
+std::unique_ptr<DualPostProcess> postProcess;
+postProcess = std::make_unique<DualPostProcess>(device);
+```
 
 For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
@@ -20,7 +23,7 @@ DualPostProcess can be configured to use various pixel shaders by calling ``SetE
 
 * **Merge**: Combines two images using provided weights.
 * **BloomCombine**: Combines the bloom texture produced by [[BasicPostProcess]] in a final pass with the original scene texture.
-    
+
 # Properties
 
 * ``SetSourceTexture``, ``SetSourceTexture2`` is used to set the input texture as a Shader Resource View.

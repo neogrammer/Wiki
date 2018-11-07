@@ -13,49 +13,63 @@ Next save [shipanimated.png](https://raw.githubusercontent.com/wiki/Microsoft/Di
 
 Add to the top of **Game.h** the following after the other ``#include`` statements:
 
-    #include "AnimatedTexture.h"
+```cpp
+#include "AnimatedTexture.h"
+```
 
 Then add the following variables to the bottom of the Game class's private declarations:
 
-    std::unique_ptr<DirectX::SpriteBatch> m_spriteBatch;
-    std::unique_ptr<AnimatedTexture> m_ship;
-    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture;
-    DirectX::SimpleMath::Vector2 m_shipPos;
+```cpp
+std::unique_ptr<DirectX::SpriteBatch> m_spriteBatch;
+std::unique_ptr<AnimatedTexture> m_ship;
+Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture;
+DirectX::SimpleMath::Vector2 m_shipPos;
+```
 
 In **Game.cpp**, add to the TODO of **CreateDevice**:
 
-    m_spriteBatch = std::make_unique<SpriteBatch>(m_d3dContext.Get());
+```cpp
+m_spriteBatch = std::make_unique<SpriteBatch>(m_d3dContext.Get());
 
-    DX::ThrowIfFailed(CreateWICTextureFromFile(m_d3dDevice.Get(), L"shipanimated.png",
-        nullptr, m_texture.ReleaseAndGetAddressOf()));
+DX::ThrowIfFailed(CreateWICTextureFromFile(m_d3dDevice.Get(), L"shipanimated.png",
+    nullptr, m_texture.ReleaseAndGetAddressOf()));
 
-    m_ship = std::make_unique<AnimatedTexture>();
-    m_ship->Load(m_texture.Get(), 4, 20);
+m_ship = std::make_unique<AnimatedTexture>();
+m_ship->Load(m_texture.Get(), 4, 20);
+```
 
 In **Game.cpp**, add to the TODO of **CreateResources**:
 
-    m_shipPos.x = float(backBufferWidth / 2);
-    m_shipPos.y = float((backBufferHeight / 2) + (backBufferHeight / 4));
+```cpp
+m_shipPos.x = float(backBufferWidth / 2);
+m_shipPos.y = float((backBufferHeight / 2) + (backBufferHeight / 4));
+```
 
 > If using the UWP template, you also need to add ``m_spriteBatch->SetRotation(m_outputRotation);`` to handle display orientation changes.
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
-    m_ship.reset();
-    m_spriteBatch.reset();
-    m_texture.Reset();
+```cpp
+m_ship.reset();
+m_spriteBatch.reset();
+m_texture.Reset();
+```
 
 In **Game.cpp**, add to the TODO of **Render**:
 
-    m_spriteBatch->Begin();
+```cpp
+m_spriteBatch->Begin();
 
-    m_ship->Draw(m_spriteBatch.get(), m_shipPos );
-    
-    m_spriteBatch->End();
+m_ship->Draw(m_spriteBatch.get(), m_shipPos );
+
+m_spriteBatch->End();
+```
 
 In **Game.cpp**, add to the TODO of **Update**:
 
-    m_ship->Update(elapsedTime);
+```cpp
+m_ship->Update(elapsedTime);
+```
 
 Build and run to see our ship at the bottom with animated thrust.
 
@@ -71,42 +85,56 @@ Next save [starfield.png](https://github.com/Microsoft/DirectXTK/wiki/images/sta
 
 Add to the top of **Game.h** the following after the other ``#include`` statements:
 
-    #include "ScrollingBackground.h"
+```cpp
+#include "ScrollingBackground.h"
+```
 
 Then add the following variables to the bottom of the Game class's private declarations:
 
-    std::unique_ptr<ScrollingBackground> m_stars;
-    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_backgroundTex;
+```cpp
+std::unique_ptr<ScrollingBackground> m_stars;
+Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_backgroundTex;
+```
 
 In **Game.cpp**, add to the TODO of **CreateDevice**:
 
-    DX::ThrowIfFailed(CreateWICTextureFromFile(m_d3dDevice.Get(), L"starfield.png",
-        nullptr, m_backgroundTex.ReleaseAndGetAddressOf()));
+```cpp
+DX::ThrowIfFailed(CreateWICTextureFromFile(m_d3dDevice.Get(), L"starfield.png",
+    nullptr, m_backgroundTex.ReleaseAndGetAddressOf()));
 
-    m_stars = std::make_unique<ScrollingBackground>();
-    m_stars->Load(m_backgroundTex.Get());
+m_stars = std::make_unique<ScrollingBackground>();
+m_stars->Load(m_backgroundTex.Get());
+```
 
 In **Game.cpp**, add to the TODO of **CreateResources**:
 
-    m_stars->SetWindow(backBufferWidth, backBufferHeight);
+```cpp
+m_stars->SetWindow(backBufferWidth, backBufferHeight);
+```
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
-    m_stars.reset();
-    m_backgroundTex.Reset();
+```cpp
+m_stars.reset();
+m_backgroundTex.Reset();
+```
 
 In **Game.cpp**, modify the TODO of **Render**:
 
-    m_spriteBatch->Begin();
+```cpp
+m_spriteBatch->Begin();
 
-    m_stars->Draw(m_spriteBatch.get());
-    m_ship->Draw(m_spriteBatch.get(), m_shipPos );
-    
-    m_spriteBatch->End();
+m_stars->Draw(m_spriteBatch.get());
+m_ship->Draw(m_spriteBatch.get(), m_shipPos );
+
+m_spriteBatch->End();
+```
 
 In **Game.cpp**, add to the TODO of **Update**:
 
-    m_stars->Update(elapsedTime * 500 );
+```cpp
+m_stars->Update(elapsedTime * 500 );
+```
 
 Build and run to see our ship in space!
 
@@ -122,7 +150,7 @@ These lessons on SpriteBatch only begin to show the many techniques you can impl
 
 * When drawing lots of different sprites, having to load hundreds of individual texture files is inefficient and potentially wastes video memory.  One solution is to pack the sprite images into a single (or a few) textures and then render parts of them using *sourceRectangle* for ``Draw``. For more on implementing this technique, see [[SpriteSheet]].
 
-* The SpriteBatch class has a 'rotation mode' setting which can be used to handle device orientation changes for Windows Store apps and Windows phone apps, or just for special effects. You call **SetRotation** with one of the ``DXGI_MODE_ROTATION`` settings which controls the final view transformation to flip the output an extra 90 degrees, 180 degrees, or 270 degrees. It defaults to no extra rotation with ``DXGI_MODE_ROTATION_IDENTITY``.
+* The SpriteBatch class has a 'rotation mode' setting which can be used to handle device orientation changes for Universal Windows Platform (UWP) apps, or just for special effects. You call **SetRotation** with one of the ``DXGI_MODE_ROTATION`` settings which controls the final view transformation to flip the output an extra 90 degrees, 180 degrees, or 270 degrees. It defaults to no extra rotation with ``DXGI_MODE_ROTATION_IDENTITY``.
 
 * With the *setCustomShaders* parameter to ``Begin`` you can override the shader settings and other Direct3D state to implement things like post-processing, chroma-key conversion to alpha, or normal-map based effects with SpriteBatch.
 

@@ -13,7 +13,7 @@ The text renderer in _DirectX Tool Kit_ makes use of bitmap fonts, so the first 
 * Download the [MakeSpriteFont.exe](https://github.com/Microsoft/DirectXTK/releases/download/sep2016b/MakeSpriteFont.exe) from the _DirectX Tool Kit_ site save the EXE into your project's folder.
 * Open a [command-prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq) and then change to your project's folder.
 
-Run the following command-line 
+Run the following command-line
 
     MakeSpriteFont "Courier New" myfile.spritefont /FontSize:32
 
@@ -40,15 +40,21 @@ For a <u>Underline</u> version of the font, run the following command-line:
 # Loading a bitmap font
 In the **Game.h** file, add the following variable to the bottom of the Game class's private declarations:
 
-    std::unique_ptr<DirectX::SpriteFont> m_font;
+```cpp
+std::unique_ptr<DirectX::SpriteFont> m_font;
+```
 
 In **Game.cpp**, add to the TODO of **CreateDevice**:
 
-    m_font = std::make_unique<SpriteFont>(m_d3dDevice.Get(), L"myfile.spritefont");
+```cpp
+m_font = std::make_unique<SpriteFont>(m_d3dDevice.Get(), L"myfile.spritefont");
+```
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
-    m_font.reset();
+```cpp
+m_font.reset();
+```
 
 Build and run the application which will still not be displaying anything but the cornflower blue window, but will have a font loaded.
 
@@ -58,36 +64,46 @@ Build and run the application which will still not be displaying anything but th
 
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 
-    DirectX::SimpleMath::Vector2 m_fontPos;
-    std::unique_ptr<DirectX::SpriteBatch> m_spriteBatch;
+```cpp
+DirectX::SimpleMath::Vector2 m_fontPos;
+std::unique_ptr<DirectX::SpriteBatch> m_spriteBatch;
+```
 
 In **Game.cpp**, add to the TODO of **CreateDevice**:
 
-    m_spriteBatch = std::make_unique<SpriteBatch>(m_d3dContext.Get());
+```cpp
+m_spriteBatch = std::make_unique<SpriteBatch>(m_d3dContext.Get());
+```
 
 In **Game.cpp**, add to the TODO of **CreateResources**:
 
-    m_fontPos.x = backBufferWidth / 2.f;
-    m_fontPos.y = backBufferHeight / 2.f;
+```cpp
+m_fontPos.x = backBufferWidth / 2.f;
+m_fontPos.y = backBufferHeight / 2.f;
+```
 
 > If using the UWP template, you also need to add ``m_spriteBatch->SetRotation(m_outputRotation);`` to handle display orientation changes.
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
-    m_spriteBatch.reset();
+```cpp
+m_spriteBatch.reset();
+```
 
 In **Game.cpp**, modify the TODO section of **Render** to be:
 
-    m_spriteBatch->Begin();
+```cpp
+m_spriteBatch->Begin();
 
-    const wchar_t* output = L"Hello World";
+const wchar_t* output = L"Hello World";
 
-    Vector2 origin = m_font->MeasureString(output) / 2.f;
+Vector2 origin = m_font->MeasureString(output) / 2.f;
 
-    m_font->DrawString(m_spriteBatch.get(), output,
-        m_fontPos, Colors::White, 0.f, origin);
+m_font->DrawString(m_spriteBatch.get(), output,
+    m_fontPos, Colors::White, 0.f, origin);
 
-    m_spriteBatch->End();
+m_spriteBatch->End();
+```
 
 Build and run to see our text string centered in the middle of the rendering window:
 
@@ -97,16 +113,18 @@ Build and run to see our text string centered in the middle of the rendering win
 
 In **Game.cpp**, modify the TODO section of **Render** to be:
 
-    std::wstring output = std::wstring(L"Hello") + std::wstring(L" World");
+```cpp
+std::wstring output = std::wstring(L"Hello") + std::wstring(L" World");
 
-    m_spriteBatch->Begin();
+m_spriteBatch->Begin();
 
-    Vector2 origin = m_font->MeasureString(output.c_str()) / 2.f;
+Vector2 origin = m_font->MeasureString(output.c_str()) / 2.f;
 
-    m_font->DrawString(m_spriteBatch.get(), output.c_str(),
-        m_fontPos, Colors::White, 0.f, origin);
+m_font->DrawString(m_spriteBatch.get(), output.c_str(),
+    m_fontPos, Colors::White, 0.f, origin);
 
-    m_spriteBatch->End();
+m_spriteBatch->End();
+```
 
 Build and run to see our text string centered in the middle of the rendering window.
 
@@ -114,23 +132,27 @@ Build and run to see our text string centered in the middle of the rendering win
 
 In **pch.h** after the other ``#include`` statements, add:
 
-    #include <locale>
-    #include <codecvt>
+```cpp
+#include <locale>
+#include <codecvt>
+```
 
 In **Game.cpp**, modify the TODO section of **Render** to be:
 
-    const char *ascii = "Hello World";
-    std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
-    std::wstring output = converter.from_bytes(ascii);
+```cpp
+const char *ascii = "Hello World";
+std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
+std::wstring output = converter.from_bytes(ascii);
 
-    m_spriteBatch->Begin();
+m_spriteBatch->Begin();
 
-    Vector2 origin = m_font->MeasureString(output.c_str()) / 2.f;
+Vector2 origin = m_font->MeasureString(output.c_str()) / 2.f;
 
-    m_font->DrawString(m_spriteBatch.get(), output.c_str(),
-        m_fontPos, Colors::White, 0.f, origin);
+m_font->DrawString(m_spriteBatch.get(), output.c_str(),
+  m_fontPos, Colors::White, 0.f, origin);
 
-    m_spriteBatch->End();
+m_spriteBatch->End();
+```
 
 Build and run to see our text string centered in the middle of the rendering window.
 
@@ -138,21 +160,23 @@ Build and run to see our text string centered in the middle of the rendering win
 
 In **Game.cpp**, modify the TODO section of **Render** to be:
 
-    m_spriteBatch->Begin();
+```cpp
+m_spriteBatch->Begin();
 
-    const wchar_t* output = L"Hello World";
+const wchar_t* output = L"Hello World";
 
-    Vector2 origin = m_font->MeasureString(output) / 2.f;
+Vector2 origin = m_font->MeasureString(output) / 2.f;
 
-    m_font->DrawString(m_spriteBatch.get(), output,
-        m_fontPos + Vector2(1.f, 1.f), Colors::Black, 0.f, origin);
-    m_font->DrawString(m_spriteBatch.get(), output,
-        m_fontPos + Vector2(-1.f, 1.f), Colors::Black, 0.f, origin);
+m_font->DrawString(m_spriteBatch.get(), output,
+    m_fontPos + Vector2(1.f, 1.f), Colors::Black, 0.f, origin);
+m_font->DrawString(m_spriteBatch.get(), output,
+    m_fontPos + Vector2(-1.f, 1.f), Colors::Black, 0.f, origin);
 
-    m_font->DrawString(m_spriteBatch.get(), output,
-        m_fontPos, Colors::White, 0.f, origin);
+m_font->DrawString(m_spriteBatch.get(), output,
+    m_fontPos, Colors::White, 0.f, origin);
 
-    m_spriteBatch->End();
+m_spriteBatch->End();
+```
 
 Build and run to see our text string centered in the middle of the rendering window but with a drop-shadow:
 
@@ -162,25 +186,27 @@ Build and run to see our text string centered in the middle of the rendering win
 
 In **Game.cpp**, modify the TODO section of **Render** to be:
 
-    m_spriteBatch->Begin();
+```cpp
+m_spriteBatch->Begin();
 
-    const wchar_t* output = L"Hello World";
+const wchar_t* output = L"Hello World";
 
-    Vector2 origin = m_font->MeasureString(output) / 2.f;
+Vector2 origin = m_font->MeasureString(output) / 2.f;
 
-    m_font->DrawString(m_spriteBatch.get(), output,
-        m_fontPos + Vector2(1.f, 1.f), Colors::Black, 0.f, origin);
-    m_font->DrawString(m_spriteBatch.get(), output,
-        m_fontPos + Vector2(-1.f, 1.f), Colors::Black, 0.f, origin);
-    m_font->DrawString(m_spriteBatch.get(), output,
-        m_fontPos + Vector2(-1.f, -1.f), Colors::Black, 0.f, origin);
-    m_font->DrawString(m_spriteBatch.get(), output,
-        m_fontPos + Vector2(1.f, -1.f), Colors::Black, 0.f, origin);
+m_font->DrawString(m_spriteBatch.get(), output,
+    m_fontPos + Vector2(1.f, 1.f), Colors::Black, 0.f, origin);
+m_font->DrawString(m_spriteBatch.get(), output,
+    m_fontPos + Vector2(-1.f, 1.f), Colors::Black, 0.f, origin);
+m_font->DrawString(m_spriteBatch.get(), output,
+    m_fontPos + Vector2(-1.f, -1.f), Colors::Black, 0.f, origin);
+m_font->DrawString(m_spriteBatch.get(), output,
+    m_fontPos + Vector2(1.f, -1.f), Colors::Black, 0.f, origin);
 
-    m_font->DrawString(m_spriteBatch.get(), output,
-        m_fontPos, Colors::White, 0.f, origin);
+m_font->DrawString(m_spriteBatch.get(), output,
+    m_fontPos, Colors::White, 0.f, origin);
 
-    m_spriteBatch->End();
+m_spriteBatch->End();
+```
 
 Build and run to see our text string centered in the middle of the rendering window but with an outline:
 

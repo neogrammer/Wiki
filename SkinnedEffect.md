@@ -3,13 +3,17 @@ This is a native Direct3D 11 implementation of the built-in SkinnedEffect from X
 See also [[Effects]]
 
 # Header
-    #include <Effects.h>
+```cpp
+#include <Effects.h>
+```
 
 # Initialization
 Construction requires a Direct3D 11 device.
 
-    std::unique_ptr<SkinnedEffect> effect;
-    effect = std::make_unique<SkinnedEffect>(device);
+```cpp
+std::unique_ptr<SkinnedEffect> effect;
+effect = std::make_unique<SkinnedEffect>(device);
+```
 
 For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
@@ -47,4 +51,3 @@ The ``BLENDINDICES`` and ``BLENDWEIGHT`` elements can hold up to 4 individual bo
 The effect always performs either vertex or per-pixel lighting.
 
 This effect always performs texturing, so if 'untextured' rendering is desired you must provide texture coordinates, a sampler in slot 0, and a 1x1 texture with white (1,1,1,1).
-

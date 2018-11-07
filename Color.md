@@ -1,21 +1,24 @@
 Four component color vector class modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Color``) math library.
 
 # Header
-
-    #include <SimpleMath.h>
+```cpp
+#include <SimpleMath.h>
+```
 
 # Initialization
 
-    using namespace DirectX::SimpleMath;
+```cpp
+using namespace DirectX::SimpleMath;
 
-    Color c;                      // Creates opaque black
-    Color c(1, 1, 1);             // Creates opaque white
-    Color c(1, 1, 1, 0.5f);       // Creates white with 50% alpha (straight-alpha)
-    Color c( Vector3(1,1,1) );    // Creates opaque white
-    Color c( Vector4(1,1,1,0.5f); // Creates white with 50% alpha (straight-alpha)
+Color c;                      // Creates opaque black
+Color c(1, 1, 1);             // Creates opaque white
+Color c(1, 1, 1, 0.5f);       // Creates white with 50% alpha (straight-alpha)
+Color c( Vector3(1,1,1) );    // Creates opaque white
+Color c( Vector4(1,1,1,0.5f); // Creates white with 50% alpha (straight-alpha)
 
-    float arr[4] = { 1, 1, 1, 1 };
-    Color c(arr);                  // Creates opaque white
+float arr[4] = { 1, 1, 1, 1 };
+Color c(arr);                  // Creates opaque white
+```
 
 # Fields
 * *x* is the red component of the color
@@ -53,7 +56,9 @@ Color can freely convert to and from a ``XMFLOAT4`` and ``XMVECTOR``
 
 When assigning a color from ``DirectXColors.h`` to a Color, use the ``.v`` union element
 
-    Color color = Colors::White.v;
+```cpp
+Color color = Colors::White.v;
+```
 
 Color can be copy and assigned from ``DirectX::PackedVector::XMCOLOR`` and ``DirectX::PackedVector::XMUBYTEN4``
 
