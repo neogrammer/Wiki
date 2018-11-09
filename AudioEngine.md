@@ -47,7 +47,7 @@ AudioEngine( AUDIO_ENGINE_FLAGS flags = AudioEngine_Default,
 * ``AudioEngine_ThrowOnNoAudioHW`` - By default, if there is no audio hardware available _DirectXTK for Audio_ will automatically enter 'silent mode'. If this flag is provided, a C++ exception is generated instead.
 : Note: ``AUDIO_ENGINE_FLAGS`` is used as a typed flag enum. Only operator| is overloaded to combine them, so operations like |= are not available without additional static_cast<> statements.
 
-*wfx*: Specifies the output format for the XAudio2 mastering voice (primarily the channel count and sample rate). If null, it uses the device defaults.
+*wfx*: Specifies the output format for the XAudio2 mastering voice (primarily the channel count and sample rate). If null, it uses the device defaults. See [[Wave Formats]].
 
 *deviceId*: Specifies the output debug for the XAudio2 mastering voice.
 
@@ -222,7 +222,7 @@ printf( "\nPlaying: %Iu / %Iu; Instances %Iu; Voices %Iu / %Iu / %Iu / %Iu;"
 
 # Properties
 
-* **GetOutputFormat**: Returns the format consumed by the mastering voice (which is the same as the device output if defaults are used) as a ``WAVEFORMATEXTENSIBLE``.
+* **GetOutputFormat**: Returns the format consumed by the mastering voice (which is the same as the device output if defaults are used) as a ``WAVEFORMATEXTENSIBLE``.  See [[Wave Formats]].
 
 * **GetChannelMask**: Returns the output channel mask
 
