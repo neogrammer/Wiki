@@ -1,0 +1,1 @@
+Audio formats are described by the ``WAVEFORMATEX`` structure, but the polymorphic nature of this format encompasses several other structures as well.
