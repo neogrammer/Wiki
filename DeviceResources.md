@@ -4,6 +4,8 @@ There is therefore a "DR" variant of each of the Direct3D Game VS templates in t
 
 > The standard Universal Windows Platform app, Windows 8 Store DirectX, and Windows phone 8 VS templates make use of a similar ``DeviceResources`` abstraction.
 
+For the DirectX 12 version, see [DeviceResources](https://github.com/Microsoft/DirectXTK12/wiki/DeviceResources)
+
 # Creating a new project
 * From the drop-down menu, select **File** and then **New** -> **Project...**
 * Select "Visual C++" on the left-hand tree-view.
