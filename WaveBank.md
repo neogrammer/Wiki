@@ -126,7 +126,7 @@ See [[SoundEffectInstance]].
 
 * **GetSampleDurationMS** ( index ): Returns the wave data duration in milliseconds. This does not include any loops. This will return 0 if the index is invalid.
 
-* **GetFormat** ( index, WAVEFORMATEX* wfx, size_t maxsize ): Fills out a ``WAVEFORMATEX`` structure that describes the wave data format. This will return nullptr if the index is invalid, otherwise it returns a pointer to wfx. Since the format can be variable length, the caller provides the buffer and maxsize.
+* **GetFormat** ( index, WAVEFORMATEX* wfx, size_t maxsize ): Fills out a ``WAVEFORMATEX`` structure that describes the wave data format. This will return nullptr if the index is invalid, otherwise it returns a pointer to wfx. Since the format can be variable length, the caller provides the buffer and maxsize. See [[Wave Formats]].
 
 > At least 64 bytes is recommended as this is large enough to contain ``WAVEFORMAT``, ``PCMWAVEFORMAT``, ``WAVEFORMATEX``, ``ADPCMWAVEFORMAT`` with coefficients,  ``WAVEFORMATEXTENSIBLE``, or a ``XMA2WAVEFORMATEX``.
 

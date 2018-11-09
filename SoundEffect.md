@@ -106,7 +106,7 @@ See [[SoundEffectInstance]].
 
 * **GetSampleDurationMS**: Returns the wave data duration in milliseconds. This does not include any loops.
 
-* **GetFormat**: Returns ``WAVEFORMATEX`` structure that describes the wave data format.
+* **GetFormat**: Returns ``WAVEFORMATEX`` structure that describes the wave data format. See [[Wave Formats]].
 
 > At least 64 bytes is recommended as this is large enough to contain ``WAVEFORMAT``, ``PCMWAVEFORMAT``, ``WAVEFORMATEX``, ``ADPCMWAVEFORMAT`` with coefficients,  ``WAVEFORMATEXTENSIBLE``, or a ``XMA2WAVEFORMATEX``.
 
