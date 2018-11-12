@@ -37,6 +37,8 @@ Another option rather than using NuGet is to use Visual Studio's [project-to-pro
 
 For more information see [[DirectXTK]] under _Adding to a VS solution_.
 
+> For Xbox One XDK apps, you have to use project-to-project references instead of NuGet to ensure the built library matches the XDK edition specific headers and shader generation.
+
 # Adding the headers
 Now that we have the _DirectX Tool Kit_ usable in your project, the next step is to include the library headers into your project.
 
