@@ -4,7 +4,7 @@ After creating a new project in the [[The basic game loop]] (or using the [[Devi
 The easiest way to achieve this is to use the [NuGet package manager](https://www.nuget.org/) built into Visual Studio.
 
 * From the drop-down menu, select **Project** / **Manage NuGet Packages...**
-* *VS2015/2017:* Select "Browse" on the top tab, and make sure the _Package source_ is set to "nuget.org"
+* Select "Browse" on the top tab, and make sure the _Package source_ is set to "nuget.org"
 * In the text search field type "DirectXTK" and hit enter to search for the packages
 * Select the package with the id  **[directxtk_desktop_2015](https://www.nuget.org/packages/directxtk_desktop_2015/)** for Win32 or **[directxtk_uwp](https://www.nuget.org/packages/directxtk_uwp/)** for UWP
 * Select "Install"
@@ -14,14 +14,14 @@ The easiest way to achieve this is to use the [NuGet package manager](https://ww
 
 You can check for updates to the NuGet package by selecting "Updates/All" in the left-hand tree view. If there are updates, select the "DirectX Tool Kit" package, and click on "Update".
 
-> Note both **directxtk_desktop_2015** and **directxtk_uwp** support VS 2017 as well.
+> Both **directxtk_desktop_2015** and **directxtk_uwp** support VS 2017 as well.
 
 # Project-to-project references
 Another option rather than using NuGet is to use Visual Studio's [project-to-project references](http://blogs.msdn.com/b/vcblog/archive/2010/05/03/flexible-project-to-project-references.aspx). This approach is a little more setup, but it does ensure that you are building the full DirectX Tool Kit library as part of your solution, and allows you to make changes directly to the tool kit if desired as well.
 
 * Extract the [release .zip file](https://github.com/Microsoft/DirectXTK/releases) into a directory relative to the new project you created. For this tutorial, we will assume the ``DirectXTK`` folder is in the same folder as your new project's Visual Studio Solution (``.sln``) file.
 * Right-click on your solution in the Solution Explorer, and select **Add** / **Existing Project...**
-* Browse into the "DirectXTK" folder and select ``DirectXTK_Desktop_2015.vcxproj`` or ``DirectXTK_Desktop_2017.vcxproj`` for Win32 or ``DirectXTK_Windows10.vcxproj`` for UWP, click "Open"
+* Browse into the "DirectXTK" folder and select ``DirectXTK_Desktop_2015.vcxproj`` / ``DirectXTK_Desktop_2017.vcxproj`` for Win32 -or- ``DirectXTK_Windows10.vcxproj`` for UWP, click "Open"
 * If Visual Studio presents a "Security Warning", select "OK". Optional: Uncheck "Ask me for every project in this solution" first.
 * Right-click on your project in the Solution Explorer, and select **Add** / **References...**
 * Select "Add New Reference..."
