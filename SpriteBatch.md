@@ -245,13 +245,19 @@ For phones, laptops, and tablets the orientation of the display can be changed b
 
 In older versions of DirectXTK, you had to handle orientation changes via the custom transform matrix on Begin(). In the latest version of DirectXTK, you can handle it via a rotation setting (which is applied after any custom transformation).
 
-Using the DirectX starting template for Universal Windows Platform (UWP) apps or Windows 8.1 apps, you will want to add to your ``CreateWindowSizeDependentResources`` method:
+Using the DirectX starting template for Universal Windows Platform (UWP) apps, you will want to add to your ``CreateWindowSizeDependentResources`` method:
 
 ```cpp
 spriteBatch->SetRotation( m_deviceResources->ComputeDisplayRotation() );
 ```
 
-_In ``Common\DeviceResources.h``, you need to make ``ComputeDisplayRotation`` a public function instead of being private._
+> In ``Common\DeviceResources.h``, you need to make ``ComputeDisplayRotation`` a public function instead of being private.
+
+When using the [directx-vs-templates](https://github.com/walbourn/directx-vs-templates) DeviceResources for UWP, use:
+
+```cpp
+spriteBatch->SetRotation( m_deviceResources->GetRotation() );
+```
 
 # State management
 Unlike ``ID3DXSprite``, SpriteBatch does not save and restore existing state. For efficiency, it simply sets the state it requires to render and assumes that any subsequent rendering after ``spriteBatch->End()`` will overwrite state that it needs.
