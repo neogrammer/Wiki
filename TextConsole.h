@@ -29,6 +29,12 @@ namespace DX
         TextConsole();
         TextConsole(_In_ ID3D11DeviceContext* context, _In_z_ const wchar_t* fontName);
 
+        TextConsole(TextConsole&&) = default;
+        TextConsole& operator= (TextConsole&&) = default;
+
+        TextConsole(TextConsole const&) = delete;
+        TextConsole& operator= (TextConsole const&) = delete;
+
         void Render();
 
         void Clear();
