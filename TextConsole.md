@@ -32,6 +32,10 @@ public:
     void ReleaseDevice();
     void RestoreDevice(ID3D11DeviceContext* context, const wchar_t* fontName);
 
+    void SetViewport(const D3D11_VIEWPORT& viewPort);
+
+    void SetRotation(DXGI_MODE_ROTATION rotation);   
+
 private:
     void ProcessString(const wchar_t* str);
     void IncrementLine();
@@ -216,6 +220,23 @@ void TextConsole::RestoreDevice(ID3D11DeviceContext* context, const wchar_t* fon
     m_font->SetDefaultCharacter(L' ');
 }
 
+void TextConsole::SetViewport(const D3D11_VIEWPORT& viewPort)
+{
+    if (m_batch)
+    {
+        m_batch->SetViewport(viewPort);
+    }
+}
+
+
+void TextConsole::SetRotation(DXGI_MODE_ROTATION rotation)
+{
+    if (m_batch)
+    {
+        m_batch->SetRotation(rotation);
+    }
+}
+
 void TextConsole::ProcessString(const wchar_t* str)
 {
     if (!m_lines)
@@ -338,3 +359,17 @@ m_console = std::make_unique<DX::TextConsole>(context, L"consolas.spritefont");
 ```
 
 The example above uses the [[Viewport]] function ``ComputeTitleSafeArea`` which is important when rendering text or other UI element on televisions. This is of course optional when rendering on a PC or mobile device and can use the full render viewport instead.
+
+For 11.X Fast Semantics support, you need to call ``SetViewport`` before rendering. This is optional for other platforms.
+
+```cpp
+auto viewport = m_deviceResources->GetScreenViewport();
+m_console->SetViewport(viewport);
+```
+
+# UWP
+For UWP apps, be sure to set the rotation for mobile devices, laptops, tablets, etc.:
+
+```cpp
+m_console->SetRotation( m_deviceResources->GetRotation() );
+```
