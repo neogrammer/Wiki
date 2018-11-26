@@ -19,7 +19,7 @@ For exception safety, it is recommended you make use of the C++ [RAII](http://en
 
 # Interfaces
 
-SkinnedEffect supports [[IEffect]], [[IEffectMatrices]], [[IEffectLights]], and [[IEffectFog]]
+SkinnedEffect supports [[IEffect]], [[IEffectMatrices]], [[IEffectLights]], [[IEffectFog]], and [[IEffectSkinning]
 
 # Input layout
 This effect requires ``NORMAL``, ``TEXCOORD0``, ``BLENDINDICES`` and ``BLENDWEIGHT``.
