@@ -66,7 +66,7 @@ The class provides the following accessors:
 
 * **GetFrameCount**: Returns the frame count (i.e. one frame per call to ``Tick``).
 
-* **GetFramesPerSecond**: Returns the frames per second.
+* **GetFramesPerSecond**: Returns the frames per second. This value is updated once per second, so it's not instantaneous.
 
 * **TicksToSeconds**: Static method to convert ticks to seconds.
 * **SecondsToTicks**: Static method to covert seconds to ticks.
