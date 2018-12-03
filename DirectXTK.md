@@ -79,15 +79,15 @@ In your application's solution, right-click on the Solution and use **Add \ Exis
 <table>
  <tr>
   <td>DirectXTK_Desktop_2017</td>
-  <td>Windows desktop applications for Windows Vista SP2 or later building with VS 2017 Community, Professional or higher with the Windows 10 SDK (17134).</td>
+  <td>Windows desktop applications for Windows Vista SP2 or later building with VS 2017 Community, Professional or higher with the Windows 10 SDK (17763).</td>
  </tr>
  <tr>
   <td>DirectXTK_Desktop_2017_Win10</td>
-  <td>Windows desktop applications for Windows 10 building with VS 2017 Community, Professional or higher with the Windows 10 SDK (17134).<br /><I>Uses XAudio 2.9 and <code>Windows.Gaming.Input</code></I></td>
+  <td>Windows desktop applications for Windows 10 building with VS 2017 Community, Professional or higher with the Windows 10 SDK (17763).<br /><I>Uses XAudio 2.9 and <code>Windows.Gaming.Input</code></I></td>
  </tr>
  <tr>
   <td>DirectXTK_Windows10</td>
-  <td>Universal Windows Platform (UWP) apps building with VS 2017 with the Windows 10 SDK (17134).</td>
+  <td>Universal Windows Platform (UWP) apps building with VS 2017 with the Windows 10 SDK (17763).</td>
  </tr>
  <tr>
   <td>DirectXTK_XboxOneXDK_2017</td>
