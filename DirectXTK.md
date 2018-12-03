@@ -95,7 +95,7 @@ In your application's solution, right-click on the Solution and use **Add \ Exis
  </tr>
 </table>
 
-> For VS 2017, use of the [15.7 update](https://blogs.msdn.microsoft.com/chuckw/2018/05/07/vs-2017-15-7-update/) or later is recommended.
+> For VS 2017, use of the [15.8 update](https://blogs.msdn.microsoft.com/chuckw/2018/08/16/vs-2017-15-8-update/) or [15.9 update](https://blogs.msdn.microsoft.com/chuckw/2018/11/15/vs-2017-15-9-update/) is recommended.
 
 <table>
  <tr>
