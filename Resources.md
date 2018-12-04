@@ -75,3 +75,17 @@
 [Direct3D 11 Textures and Block Compression](http://blogs.msdn.com/b/chuckw/archive/2012/05/04/direct3d-11-textures-and-block-compression.aspx)
 
 [The DDS File Format Lives](http://blogs.msdn.com/b/chuckw/archive/2010/02/05/the-dds-file-format-lives.aspx)
+
+# Hardware Vendors
+
+## Intel
+
+[DX12 on Intel Graphics](https://software.intel.com/en-us/videos/dx12-on-intel-graphics) (video)
+
+[Tutorial: Migrating Your Apps to DirectX* 12 ](https://software.intel.com/en-us/articles/tutorial-migrating-your-apps-to-directx-12-part-1)
+
+## nVidia
+
+[DX12 Do's And Don'ts](https://developer.nvidia.com/dx12-dos-and-donts)
+
+> Note, you should also see [this blog post](http://www.yosoygames.com.ar/wp/2015/09/dx12-dos-and-donts-a-couple-remarks/)
