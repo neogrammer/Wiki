@@ -75,29 +75,3 @@
 [Direct3D 11 Textures and Block Compression](http://blogs.msdn.com/b/chuckw/archive/2012/05/04/direct3d-11-textures-and-block-compression.aspx)
 
 [The DDS File Format Lives](http://blogs.msdn.com/b/chuckw/archive/2010/02/05/the-dds-file-format-lives.aspx)
-
-# Hardware Vendors
-
-[GDC 2016: Practical DirectX 12](https://developer.nvidia.com/sites/default/files/akamai/gameworks/blog/GDC16/GDC16_gthomas_adunn_Practical_DX12.pdf) (PDF)
-
-## Intel
-
-[DX12 on Intel Graphics](https://software.intel.com/en-us/videos/dx12-on-intel-graphics) (video)
-
-[Efficient Rendering with DirectX 12 on Intel Graphics](https://software.intel.com/sites/default/files/managed/4a/38/Efficient-Rendering-with-DirectX-12-on-Intel-Graphics.pdf) (PDF)
-
-[Direct3D 12 Overview](https://software.intel.com/en-us/blogs/2014/07/17/direct3d-overview-part-1-closer-to-the-metal)
-
-[Introduction to Resource Binding in Microsoft DirectX* 12](https://software.intel.com/en-us/articles/introduction-to-resource-binding-in-microsoft-directx-12)   
-[Performance Considerations for Resource Binding in Microsoft DirectX* 12](https://software.intel.com/en-us/articles/performance-considerations-for-resource-binding-in-microsoft-directx-12)
-
-[Direct3D* 12 - Console API Efficiency & Performance on PCs](https://software.intel.com/en-us/articles/console-api-efficiency-performance-on-pcs)
-
-[Tutorial: Migrating Your Apps to DirectX* 12 ](https://software.intel.com/en-us/articles/tutorial-migrating-your-apps-to-directx-12-part-1)
-
-## nVidia
-
-[DX12 Do's And Don'ts](https://developer.nvidia.com/dx12-dos-and-donts)
-
-> Note, you should also see [this blog post](http://www.yosoygames.com.ar/wp/2015/09/dx12-dos-and-donts-a-couple-remarks/)
-
