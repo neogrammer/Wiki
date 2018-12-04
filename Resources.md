@@ -86,7 +86,8 @@
 
 [Direct3D 12 Overview](https://software.intel.com/en-us/blogs/2014/07/17/direct3d-overview-part-1-closer-to-the-metal)
 
-[Introduction to Resource Binding in Microsoft DirectX* 12](https://software.intel.com/en-us/articles/introduction-to-resource-binding-in-microsoft-directx-12)
+[Introduction to Resource Binding in Microsoft DirectX* 12](https://software.intel.com/en-us/articles/introduction-to-resource-binding-in-microsoft-directx-12)   
+[Performance Considerations for Resource Binding in Microsoft DirectX* 12](https://software.intel.com/en-us/articles/performance-considerations-for-resource-binding-in-microsoft-directx-12)
 
 [Direct3D* 12 - Console API Efficiency & Performance on PCs](https://software.intel.com/en-us/articles/console-api-efficiency-performance-on-pcs)
 
