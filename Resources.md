@@ -82,6 +82,10 @@
 
 [DX12 on Intel Graphics](https://software.intel.com/en-us/videos/dx12-on-intel-graphics) (video)
 
+[Efficient Rendering with DirectX 12 on Intel Graphics](https://software.intel.com/sites/default/files/managed/4a/38/Efficient-Rendering-with-DirectX-12-on-Intel-Graphics.pdf) (PDF)
+
+[Direct3D 12 Overview](https://software.intel.com/en-us/blogs/2014/07/17/direct3d-overview-part-1-closer-to-the-metal)
+
 [Tutorial: Migrating Your Apps to DirectX* 12 ](https://software.intel.com/en-us/articles/tutorial-migrating-your-apps-to-directx-12-part-1)
 
 ## nVidia
