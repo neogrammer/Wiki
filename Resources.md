@@ -78,6 +78,8 @@
 
 # Hardware Vendors
 
+[GDC 2016: Practical DirectX 12](https://developer.nvidia.com/sites/default/files/akamai/gameworks/blog/GDC16/GDC16_gthomas_adunn_Practical_DX12.pdf) (PDF)
+
 ## Intel
 
 [DX12 on Intel Graphics](https://software.intel.com/en-us/videos/dx12-on-intel-graphics) (video)
@@ -98,3 +100,4 @@
 [DX12 Do's And Don'ts](https://developer.nvidia.com/dx12-dos-and-donts)
 
 > Note, you should also see [this blog post](http://www.yosoygames.com.ar/wp/2015/09/dx12-dos-and-donts-a-couple-remarks/)
+
