@@ -86,6 +86,8 @@
 
 [Direct3D 12 Overview](https://software.intel.com/en-us/blogs/2014/07/17/direct3d-overview-part-1-closer-to-the-metal)
 
+[Direct3D* 12 - Console API Efficiency & Performance on PCs](https://software.intel.com/en-us/articles/console-api-efficiency-performance-on-pcs)
+
 [Tutorial: Migrating Your Apps to DirectX* 12 ](https://software.intel.com/en-us/articles/tutorial-migrating-your-apps-to-directx-12-part-1)
 
 ## nVidia
