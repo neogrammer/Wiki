@@ -316,7 +316,7 @@ This platform also uses two additional methods:
 * **ValidateDevice** is called from the ``DisplayInformation::DisplayContentsInvalidated`` handler, which can trigger a 'device removed' event.
 * **Trim** is called from the ``CoreApplication::Suspending`` handler, generally after calling ``ClearState`` on the device context.
 
-> The version of DeviceResources in the Visual Studio Universal Windows platform "Direct3D 11 App" template is a little different than the one linked above, although the basic design is the same. The primary difference is that the "Direct3D 11 App" template includes Direct2D and explicit WIC factory handling. It also returns the render target view with ``GetBackBufferRenderTargetView`` instead of ``GetRenderTargertView``.
+> The version of DeviceResources in the Visual Studio Universal Windows platform "Direct3D 11 App" template is a little different than the one linked above, although the basic design is the same. The primary difference is that the "Direct3D 11 App" template includes Direct2D and explicit WIC factory handling. It also returns the render target view with ``GetBackBufferRenderTargetView`` instead of ``GetRenderTargetView``.
 
 ## Xbox One
 The Xbox One XDK version of **DeviceResources** does not include the 'device lost' handling, and always uses a fixed back-buffer size. There is also a ``Prepare`` method for optional support of Direct3D 11.X Fast Semantics.
