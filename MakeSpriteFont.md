@@ -117,6 +117,10 @@ If you are wanting to render an 'extended ASCII' string with SpriteFont, you nee
 
 The MakeSpriteFont tool will generate warnings if the resulting sprite sheet texture is too large for the texture sizes mandated for a known Direct3D feature level (i.e., 2048 x 2048 for 9.1 and 9.2; 4096 x 4096 for 9.3; 8192 x 8192 for 10.x; and 16384 x 16384 for 11.x).
 
+# SpriteFont files
+
+To aid in debugging, here is a [simple console program]() for dumping out the content of a ``.spritefont`` header in a human-readable form along with a ``DDS`` file for the sprite sheet texture. It requires the [dds.h](https://raw.githubusercontent.com/Microsoft/DirectXTK/master/Src/dds.h) header in the DirectXTK library to build.
+
 # Further reading
 
 [XNA Game Studio Localization](http://xbox.create.msdn.com/en-US/education/catalog/sample/localization)
