@@ -1,4 +1,13 @@
-When programming COM APIs like Direct3D, it is important to always check the ``HRESULT`` return value for success or failure. This can be done using the ``SUCCEEDED`` or ``FAILED`` macros, but can get tedious when making lots of calls
+When programming COM APIs like Direct3D, it is important to always check the ``HRESULT`` return value for success or failure. This can be done using the ``SUCCEEDED`` or ``FAILED`` macros, but can get tedious when making lots of calls especially for proper cleanup on exit of every function.
+
+```cpp
+hr = m_d3dDevice->CreateTexture2D(&depthStencilDesc, nullptr, &depthStencil));
+if (FAILED(hr))
+{
+    // Clean up for partial success before here
+    return hr; // Must keep passing the error code back all the way to the main loop
+}
+```
 
 > Not all Direct3D functions return ``HRESULT``. Many of them return ``void`` because they can't fail, fail silently, or the failure will be reported on the next ``Present``.
 
