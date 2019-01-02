@@ -130,6 +130,8 @@ HRESULT hr = CreateWICTextureFromFile( d3dDevice.Get(), immContext.Get(),
 DX::ThrowIfFailed(hr);
 ```
 
+> For rendering you don't need the underlying resource and just want an SRV you can use to draw, which is why the above use pass a ``nullptr`` for the ``ID3D11Resource**`` parameter. You can request just the resource or get both objects back.
+
 # sRGB
 * While there is no explicit 'sRGB' pixel format defined for WIC, the load functions will check for known metadata tags and may return ``DXGI_FORMAT_*_SRGB`` formats if there are equivalents of the same size and channel configuration available. Setting _loadFlags_ to ``WIC_LOADER_IGNORE_SRGB`` will ignore this metadata.
   * For PNG, this is indicated by ``/sRGB/RenderingIntent`` set to 1.
