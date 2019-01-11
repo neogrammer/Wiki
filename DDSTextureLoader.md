@@ -315,6 +315,8 @@ This function loads both traditional and FourCC "DX10" variant ``.DDS`` files.
 
 [Programming Guide for DXGI](https://docs.microsoft.com/en-us/windows/desktop/direct3ddxgi/dx-graphics-dxgi-overviews)
 
-[Linear-Space Lighting (i.e. Gamma)](http://filmicgames.com/archives/299)
+[Linear-Space Lighting (i.e. Gamma)](http://filmicworlds.com/blog/linear-space-lighting-i-e-gamma/)
 
-[Chapter 24. The Importance of Being Linear](http://http.developer.nvidia.com/GPUGems3/gpugems3_ch24.html), GPU Gems
+[Chapter 24. The Importance of Being Linear](https://developer.nvidia.com/gpugems/GPUGems3/gpugems3_ch24.html), GPU Gems 3
+
+[Gamma-correct rendering](https://blog.molecular-matters.com/2011/11/21/gamma-correct-rendering/)   
