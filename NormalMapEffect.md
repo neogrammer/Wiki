@@ -53,7 +53,7 @@ This effect requires ``SV_Position``, ``NORMAL``, and ``TEXCOORD0``. If per-vert
 # Normal maps
 The normal-mapping textures used by this effect are tangent-space normal maps as opposed to object-space normal maps.
 
-The normal map textures used by this effect are assumed to be ``_UNORM`` formats and therefore encoded using the 'x2 bias' model, i.e. the normal component's value range of -1 to +1 have been converted to 0 to +1. This is a simple encoding that is commonly used for normal textures since most file image formats don't support negative numbers. The conversion back to signed values is handled internally in the shader code.
+The normal map textures used by this effect are assumed to be ``_UNORM`` formats and therefore encoded using the 'x2 bias' model, i.e. the normal component's value range of -1 to +1 have been converted to 0 to +1. This is a simple encoding that is commonly used for normal texture maps since most file image formats don't support negative numbers. The conversion back to signed values is handled internally in the shader code.
 
 The red (x) and green (y) channels are loaded from the texture, but blue (z) an alpha (w) channels are unused. The shader reconstructs the z component of the normal using ``z = sqrt( 1 - dot( xy, xy ) )``. This has two positive benefits:
 
