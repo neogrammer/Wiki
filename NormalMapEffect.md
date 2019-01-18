@@ -50,6 +50,16 @@ This effect requires ``SV_Position``, ``NORMAL``, and ``TEXCOORD0``. If per-vert
 
 * **SetBiasedVertexNormals**: Enables support for compressed vertex normals which require ``*2 - 1`` biasing at runtime such as ``DXGI_FORMAT_R10G10B10A2_UNORM``.
 
+# Normal maps
+The normal-mapping textures used by this effect are tangent-space normal maps as opposed to object-space normal maps.
+
+The normal map textures used by this effect are assumed to be ``_UNORM`` formats and therefore encoded using the 'x2 bias' model, i.e. the normal component's value range of -1 to +1 have been converted to 0 to +1. This is a simple encoding that is commonly used for normal textures since most file image formats don't support negative numbers. The conversion back to signed values is handled internally in the shader code.
+
+The red (x) and green (y) channels are loaded from the texture, but blue (z) an alpha (w) channels are unused. The shader reconstructs the z component of the normal using ``z = sqrt( 1 - dot( xy, xy ) )``. This has two positive benefits:
+
+1. You can make use the ``DXGI_FORMAT_BC5_UNORM`` (i.e. [3Dc](https://en.wikipedia.org/wiki/3Dc)) for normal map texture compression without any shader or configuration changes.
+1. Due to quantization effects, the actual unit length of the normal can drift, so this reconstruction can improve quality by effectively renormalizing the value.
+
 # Remarks
 
 This effect always performs per-pixel lighting. Calls to ``SetLightingEnabled(false);`` will generate a C++ exception, and calls to **SetPerPixelLighting** are ignored.
@@ -58,7 +68,7 @@ This effect always performs texturing, so if 'untextured' diffuse rendering is d
 
 # Feature Level Notes
 
-This effect uses Shader Model 4.0 so requires Direct3D hardware feature level 10.0 or greater.
+This effect uses Shader Model 4.0 so requires Direct3D hardware feature level 10.0 or greater. Note this means you can also count on ``DXGI_FORMAT_BC5_UNORM`` texture compression support.
 
 [Direct3D feature levels](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/overviews-direct3d-11-devices-downlevel-intro)
 
