@@ -60,6 +60,8 @@ The red (x) and green (y) channels are loaded from the texture, but blue (z) an 
 1. You can make use the ``DXGI_FORMAT_BC5_UNORM`` (i.e. [3Dc](https://en.wikipedia.org/wiki/3Dc)) for normal map texture compression without any shader or configuration changes.
 1. Due to quantization effects, the actual unit length of the normal can drift, so this reconstruction can improve quality by effectively renormalizing the value.
 
+Finally, the green (y) channel is used "as is" in the shader code. Some viewing and materials conventions can require the green channel to be inverted to properly 'push in' or 'push out'. This issue should be handled by modifying the texture content.
+
 # Remarks
 
 This effect always performs per-pixel lighting. Calls to ``SetLightingEnabled(false);`` will generate a C++ exception, and calls to **SetPerPixelLighting** are ignored.
@@ -68,7 +70,9 @@ This effect always performs texturing, so if 'untextured' diffuse rendering is d
 
 # Feature Level Notes
 
-This effect uses Shader Model 4.0 so requires Direct3D hardware feature level 10.0 or greater. Note this means you can also count on ``DXGI_FORMAT_BC5_UNORM`` texture compression support.
+This effect uses Shader Model 4.0 so requires Direct3D hardware feature level 10.0 or greater.
+
+> Note this means you can also count on ``DXGI_FORMAT_BC5_UNORM`` texture compression hardware support for your normal maps.
 
 [Direct3D feature levels](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/overviews-direct3d-11-devices-downlevel-intro)
 
