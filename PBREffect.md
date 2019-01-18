@@ -1,6 +1,6 @@
 This effect implements a Disney-style (Roughness/Metalness workflow) Physically-Based Renderer ([PBR](https://en.wikipedia.org/wiki/Physically_based_rendering)) effect using Image-Based Lighting ([IBL](https://en.wikipedia.org/wiki/Image-based_lighting)) in combination with up to three directional lights.
 
-See also [[Effects]]
+See also [[Effects]], [[PBREffectFactory|EffectFactory]]
 
 # Header
 ```cpp
