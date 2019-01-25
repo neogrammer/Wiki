@@ -70,6 +70,10 @@ For example, ``RECT result = spriteFont->MeasureDrawBounds( L"Measure", XMFLOAT2
 
 * **GetSpriteSheet** returns a reference to the texture used for the sprite font for custom rendering.
 
+# Wide-character vs. UTF-8
+
+SpriteFont works internally with UTF-16LE which is the Visual C++ implementation for wide characters  (i.e. ``wchar_t``). In order to support use of [UTF-8](http://utf8everywhere.org/), there are overloads for **DrawString**, **MeasureString**, and **MeasureDrawBounds** which take a narrow-string ``char`` which must be UTF-8. UTF-8 by design matches ASCII for the lower 7-bits, but is not the same as Extended ASSCII or ANSI code page 437.
+
 # Default character
 
 If you try to ``DrawString`` or call ``MeasureString`` with a character that is not included in the font, by default you will get an exception. Use **SetDefaultCharacter** to specify some other character that will be automatically substituted in place of any that are missing. You can also use **GetDefaultCharacter** to obtain the current default which is also defined as part of the font.
