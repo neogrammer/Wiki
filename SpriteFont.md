@@ -72,7 +72,7 @@ For example, ``RECT result = spriteFont->MeasureDrawBounds( L"Measure", XMFLOAT2
 
 # Wide-character vs. UTF-8
 
-SpriteFont works internally with UTF-16LE which is the Visual C++ implementation for wide characters  (i.e. ``wchar_t``). In order to support use of [UTF-8](http://utf8everywhere.org/), there are overloads for **DrawString**, **MeasureString**, and **MeasureDrawBounds** which take a narrow-string ``char`` which must be UTF-8. UTF-8 by design matches ASCII for the lower 7-bits, but is not the same as Extended ASSCII or ANSI code page 437.
+SpriteFont works internally with UTF-16LE which is the Visual C++ implementation for wide characters  (i.e. ``wchar_t``). In order to support use of [UTF-8](http://utf8everywhere.org/), there are overloads for **DrawString**, **MeasureString**, and **MeasureDrawBounds** which take a narrow-string ``char`` which must be UTF-8. UTF-8 by design matches ASCII for the lower 7-bits, but is not the same as Extended ASCII / ANSI code page 437.
 
 # Default character
 
