@@ -75,33 +75,26 @@ namespace
             return HRESULT_FROM_WIN32(GetLastError());
 
         // Get the file size
-        LARGE_INTEGER FileSize = {};
-
-#if (_WIN32_WINNT >= _WIN32_WINNT_VISTA)
         FILE_STANDARD_INFO fileInfo;
         if (!GetFileInformationByHandleEx(hFile.get(), FileStandardInfo, &fileInfo, sizeof(fileInfo)))
         {
             return HRESULT_FROM_WIN32(GetLastError());
         }
-        FileSize = fileInfo.EndOfFile;
-#else
-        GetFileSizeEx(hFile.get(), &FileSize);
-#endif
 
         // File is too big for 32-bit allocation, so reject read
-        if (FileSize.HighPart > 0)
+        if (fileInfo.EndOfFile.HighPart > 0)
         {
             return E_FAIL;
         }
 
         // Need at least enough data to fill the magic values, glyph count, spacing, default character, texture metadata
-        if (FileSize.LowPart < (sizeof(DWORD) * 10))
+        if (fileInfo.EndOfFile.LowPart < (sizeof(DWORD) * 10))
         {
             return E_FAIL;
         }
 
         // create enough space for the file data
-        fileData.reset(new uint8_t[FileSize.LowPart]);
+        fileData.reset(new uint8_t[fileInfo.EndOfFile.LowPart]);
         if (!fileData)
         {
             return E_OUTOFMEMORY;
@@ -109,12 +102,12 @@ namespace
 
         // read the data in
         DWORD BytesRead = 0;
-        if (!ReadFile(hFile.get(), fileData.get(), FileSize.LowPart, &BytesRead, NULL))
+        if (!ReadFile(hFile.get(), fileData.get(), fileInfo.EndOfFile.LowPart, &BytesRead, nullptr ))
         {
             return HRESULT_FROM_WIN32(GetLastError());
         }
 
-        if (BytesRead < FileSize.LowPart)
+        if (BytesRead < fileInfo.EndOfFile.LowPart)
         {
             return E_FAIL;
         }
@@ -131,7 +124,7 @@ namespace
             return E_FAIL;
         }
 
-        fileSize = static_cast<size_t>(FileSize.LowPart);
+        fileSize = static_cast<size_t>(fileInfo.EndOfFile.LowPart);
 
         return S_OK;
     }
