@@ -398,6 +398,13 @@ int wmain( int argc, wchar_t *argv[ ], wchar_t *envp[ ]  )
         return 0;
     }
 
+#if (_WIN32_WINNT >= 0x0602 /*_WIN32_WINNT_WIN8*/)
+    ScopedHandle hFile( safe_handle( CreateFile2( argv[1],
+                                                  GENERIC_READ,
+                                                  FILE_SHARE_READ,
+                                                  OPEN_EXISTING,
+                                                  nullptr ) ) );
+#else
     ScopedHandle hFile( safe_handle( CreateFileW( argv[1],
                                                   GENERIC_READ,
                                                   FILE_SHARE_READ,
@@ -405,6 +412,8 @@ int wmain( int argc, wchar_t *argv[ ], wchar_t *envp[ ]  )
                                                   OPEN_EXISTING,
                                                   FILE_ATTRIBUTE_NORMAL,
                                                   nullptr ) ) );
+#endif
+
     if ( !hFile )
     {
         wprintf( L"ERROR: Failed to open wavebank - %ls\n", argv[1] );
