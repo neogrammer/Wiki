@@ -222,6 +222,8 @@ When built for Windows 10, the GamePad class is implemented using a new WinRT ``
 * ``MAX_PLAYER_COUNT`` is 8 rather than 4
 * Currently only the GAMEPAD type is reported for Xbox One controllers, and ``caps.id`` is always 0.
 
+> Technically the ``Windows.Gaming.Input`` API can support more than 8 devices, but the ``GamePad`` implementation can only support up to ``MAX_PLAYER_COUNT``.
+
 ## UWP on Xbox One
 
 Whenever the B button on a gamepad controller is pressed on Xbox One, the running UWP app is sent a "back request" (like the hardware 'Back' button on Windows Mobile). If this is unhandled, the application will be suspended and the previous application is brought forward. This can make using the B button in your UI design a challenge, so the recommended solution is to add a message handler to 'handle' the request:
