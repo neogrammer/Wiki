@@ -80,5 +80,5 @@ DGSL shaders support up to 4 directional lights, while the other built-in shader
 
 # Further reading
 
-[BasicEffect optimizations in XNA Game Studio 4.0](http://blogs.msdn.com/b/shawnhar/archive/2010/04/25/basiceffect-optimizations-in-xna-game-studio-4-0.aspx)  
+[BasicEffect optimizations in XNA Game Studio 4.0](http://www.shawnhargreaves.com/blog/basiceffect-optimizations-in-xna-game-studio-4-0.html)  
 [Visual Studio 3D StarterKit](https://channel9.msdn.com/posts/Visual-Studio-3D-StarterKit)

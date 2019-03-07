@@ -3,23 +3,23 @@
 [From XNA to DirectX/DirectXTK, a Bizzy Bee conversion series](http://channel9.msdn.com/coding4fun/blog/From-XNA-to-DirectXDirectXTK-a-Bizzy-Bee-conversion-series)
 
 # Shawn Hargreaves Blog
-[Windows Phone 8.1](http://blogs.msdn.com/b/shawnhar/archive/2014/04/03/windows-phone-8-1.aspx)
+[Windows Phone 8.1](http://www.shawnhargreaves.com/blog/windows-phone-8-1.html)
 
-[DirectXTK now does audio as well as graphics](http://blogs.msdn.com/b/shawnhar/archive/2014/01/09/directxtk-now-does-audio-as-well-as-graphics.aspx)
+[DirectXTK now does audio as well as graphics](http://www.shawnhargreaves.com/blog/directxtk-now-does-audio-as-well-as-graphics.html)
 
-[DirectXTK now supports loading and drawing 3D models](http://blogs.msdn.com/b/shawnhar/archive/2013/01/25/directxtk-now-supports-loading-and-drawing-3d-models.aspx)
+[DirectXTK now supports loading and drawing 3D models](http://www.shawnhargreaves.com/blog/directxtk-now-supports-loading-and-drawing-3d-models.html)
 
-[SimpleMath - a simplified wrapper for DirectXMath](http://blogs.msdn.com/b/shawnhar/archive/2013/01/08/simplemath-a-simplified-wrapper-for-directxmath.aspx)
+[SimpleMath - a simplified wrapper for DirectXMath](http://www.shawnhargreaves.com/blog/simplemath-a-simplified-wrapper-for-directxmath.html)
 
-[DirectX Tool Kit now supports Windows Phone](http://blogs.msdn.com/b/shawnhar/archive/2012/10/30/directx-tool-kit-now-supports-windows-phone-8.aspx)
+[DirectX Tool Kit now supports Windows Phone](http://www.shawnhargreaves.com/blog/directx-tool-kit-now-supports-windows-phone-8.html)
 
-[DirectXTK PrimitiveBatch helper makes it easy to draw user primitives with D3D11](http://blogs.msdn.com/b/shawnhar/archive/2012/10/12/directxtk-primitivebatch-helper-makes-it-easy-to-draw-user-primitives-with-d3d11.aspx)
+[DirectXTK PrimitiveBatch helper makes it easy to draw user primitives with D3D11](http://www.shawnhargreaves.com/blog/directxtk-primitivebatch-helper-makes-it-easy-to-draw-user-primitives-with-d3d11.html)
 
-[DirectXTK October 2012 release](http://blogs.msdn.com/b/shawnhar/archive/2012/10/02/directxtk-october-2012-release.aspx)
+[DirectXTK October 2012 release](http://www.shawnhargreaves.com/blog/directxtk-october-2012-release.html)
 
-[DirectXTK now includes SpriteFont](http://blogs.msdn.com/b/shawnhar/archive/2012/05/02/directxtk-now-includes-spritefont.aspx)
+[DirectXTK now includes SpriteFont](http://www.shawnhargreaves.com/blog/directxtk-now-includes-spritefont.html)
 
-[SpriteBatch and BasicEffect for C++ Direct3D 11](http://blogs.msdn.com/b/shawnhar/archive/2012/03/02/spritebatch-and-basiceffect-for-c-direct3d-11.aspx)
+[SpriteBatch and BasicEffect for C++ Direct3D 11](http://www.shawnhargreaves.com/blog/spritebatch-and-basiceffect-for-c-direct3d-11.html)
 
 # DirectX SDK and Games for Windows Blog
 [Direct3D Game Visual Studio templates (Redux)](https://blogs.msdn.microsoft.com/chuckw/2015/12/17/direct3d-game-visual-studio-templates-redux/)

@@ -574,4 +574,4 @@ DirectX Tool Kit docs [[SpriteBatch]]
 [Gaussian blur](http://en.wikipedia.org/wiki/Gaussian_blur)
 
 # Credits
-I borrowed heavily from the _XNA Game Studio_ [Bloom Postprocess](http://xbox.create.msdn.com/en-US/education/catalog/sample/bloom) sample for this lesson.
+I borrowed heavily from the _XNA Game Studio_ ``Bloom Postprocess`` sample for this lesson.

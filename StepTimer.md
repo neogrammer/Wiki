@@ -84,6 +84,5 @@ Ticks are stored in unsigned 64-bit integers and second values are stored in ``d
 [StepTimer.h](https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d11game_win32/StepTimer.h)
 
 # Further reading
-[Understanding GameTime](http://blogs.msdn.com/b/shawnhar/archive/2007/07/25/understanding-gametime.aspx)  
+[Understanding GameTime](http://www.shawnhargreaves.com/blog/understanding-gametime.html)  
 [Understanding Game Time Revisited](http://blogs.msdn.com/b/chuckw/archive/2014/12/03/understanding-game-time-revisited.aspx)  
-[Visual Studio 2013 Windows Store DirectX Templates](http://blogs.msdn.com/b/ianhu/archive/2014/03/07/visual-studio-2013-windows-store-directx-templates.aspx)  

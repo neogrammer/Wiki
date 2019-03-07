@@ -48,4 +48,4 @@ This effect requires a texture sampler in both slots 0 and 1. [[GeometricPrimiti
 
 # Further reading
 
-[DualTextureEffect](http://blogs.msdn.com/b/shawnhar/archive/2010/08/04/dualtextureeffect.aspx)  
+[DualTextureEffect]( http://www.shawnhargreaves.com/blog/dualtextureeffect.html)  

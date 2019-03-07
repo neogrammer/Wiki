@@ -246,6 +246,8 @@ CD3D11_SAMPLER_DESC desc(D3D11_FILTER_ANISOTROPIC,
 
 # Further reading
 
-[State objects in XNA Game Studio 4.0](http://blogs.msdn.com/b/shawnhar/archive/2010/04/02/state-objects-in-xna-game-studio-4-0.aspx)
+[State objects in XNA Game Studio 4.0](http://www.shawnhargreaves.com/blog/state-objects-in-xna-game-studio-4-0.html)
 
-[Premultiplied Alpha](http://www.shawnhargreaves.com/blogindex.html#premultipliedalpha)
+[Premultiplied alpha](http://www.shawnhargreaves.com/blog/premultiplied-alpha.html)  
+[Premultiplied alpha and image composition](http://www.shawnhargreaves.com/blog/premultiplied-alpha-and-image-composition.html)  
+[Premultiplied alpha in XNA Game Studio 4.0](http://www.shawnhargreaves.com/blog/premultiplied-alpha-in-xna-game-studio-4-0.html)

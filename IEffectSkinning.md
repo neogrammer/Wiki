@@ -66,6 +66,6 @@ These built-in effects do not implement skinning animation.
 This built-in effect can be created with or without support for skinned animation via the _enableSkinning_ parameter on it's constructor. If **SetBoneTransforms** is called on an instance of _DGSEffect_ that was created with _enableSkinning_ set to false, an exception is thrown.
 
 ## SkinnedEffect
-See [Built-in effects, permutations, and performance](http://blogs.msdn.com/b/shawnhar/archive/2010/04/30/built-in-effects-permutations-and-performance.aspx) for performance costs of the various shader permutations.
+See [Built-in effects, permutations, and performance](http://www.shawnhargreaves.com/blog/built-in-effects-permutations-and-performance.html) for performance costs of the various shader permutations.
 
 *Note*: As an optimization, _SkinnedEffect_ and _DGSLEffect_ assume that all the matrices are affine transformations, and that the final column is (0 0 0 1). This means that the value of the last column is effectively ignored when set into the constant buffer containing the bone transformations (i.e. the shaders use ``float4x3``)

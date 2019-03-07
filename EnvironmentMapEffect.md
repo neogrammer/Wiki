@@ -55,4 +55,4 @@ This effect requires a texture sampler in both slots 0 and 1. [[GeometricPrimiti
 
 # Further reading
 
-[EnvironmentMapEffect](http://blogs.msdn.com/b/shawnhar/archive/2010/08/09/environmentmapeffect.aspx)  
+[EnvironmentMapEffect]( http://www.shawnhargreaves.com/blog/environmentmapeffect.html)  

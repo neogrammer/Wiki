@@ -128,5 +128,5 @@ The PrimitiveBatch class assumes you've already set the Render Target view, Dept
 > Be sure that if you set any of the following shaders prior to using ``PrimitiveBatch`` that you clear them: Geometry Shader, Hull Shader, Domain Shader, Compute Shader.
 
 # Further Reading
-[DirectXTK PrimitiveBatch helper makes it easy to draw user primitives with D3D11](http://blogs.msdn.com/b/shawnhar/archive/2012/10/12/directxtk-primitivebatch-helper-makes-it-easy-to-draw-user-primitives-with-d3d11.aspx)  
+[DirectXTK PrimitiveBatch helper makes it easy to draw user primitives with D3D11]( http://www.shawnhargreaves.com/blog/directxtk-primitivebatch-helper-makes-it-easy-to-draw-user-primitives-with-d3d11.html)  
 [How to: Use dynamic resources](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/how-to--use-dynamic-resources)  

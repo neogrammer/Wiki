@@ -208,6 +208,6 @@ Note that ``IVoiceNotify::OnBufferEnd`` is called from XAudio2's thread, so the 
 
 [XAudio2 and Windows 8](http://blogs.msdn.com/b/chuckw/archive/2012/04/02/xaudio2-and-windows-8-consumer-preview.aspx)
 
-[SoundLab](http://xbox.create.msdn.com/en-US/education/catalog/utility/soundlab)
+[SoundLab](https://github.com/SimonDarksideJ/XNAGameStudio/wiki/SoundLab)
 
 [The Zombie DirectX SDK](https://blogs.msdn.microsoft.com/chuckw/2015/03/23/the-zombie-directx-sdk/)

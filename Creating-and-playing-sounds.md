@@ -6,7 +6,7 @@ First create a new project using the instructions from these four lessons to ena
 # Sounds
 Save the following files to your new project's folder: [Explo1.wav](https://github.com/Microsoft/DirectXTK/wiki/media/Explo1.wav), [Explo2.wav](https://github.com/Microsoft/DirectXTK/wiki/media/Explo2.wav), [Explo3.wav](https://github.com/Microsoft/DirectXTK/wiki/media/Explo3.wav), [Explo4.wav](https://github.com/Microsoft/DirectXTK/wiki/media/Explo4.wav), [NightAmbienceSimple_02.wav](https://github.com/Microsoft/DirectXTK/wiki/media/NightAmbienceSimple_02.wav). Use the top menu and select **Project / Add Existing Item**.... Select each ``.wav`` file in turn and hit "OK".
 
-> These ``.wav`` files are from the _XNA Game Studio_ [SoundLab](http://xbox.create.msdn.com/en-US/education/catalog/utility/soundlab) sample which provides a small collection of sounds under the [MS-PL](http://opensource.org/licenses/MS-PL) license.
+> These ``.wav`` files are from the _XNA Game Studio_ [SoundLab](https://github.com/SimonDarksideJ/XNAGameStudio/wiki/SoundLab)  which provides a small collection of sounds under the [MS-PL](http://opensource.org/licenses/MS-PL) license.
 
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 

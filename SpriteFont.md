@@ -74,7 +74,7 @@ For example, ``RECT result = spriteFont->MeasureDrawBounds( L"Measure", XMFLOAT2
 
 SpriteFont works internally with UTF-16LE which is the Visual C++ implementation for wide characters  (i.e. ``wchar_t``). In order to support use of [UTF-8](http://utf8everywhere.org/), there are overloads for **DrawString**, **MeasureString**, and **MeasureDrawBounds** which take a narrow-string ``char`` which must be UTF-8. UTF-8 by design matches ASCII for the lower 7-bits, but is not the same as Extended ASCII / ANSI / Code page 437.
 
-> Visual Studio 2015 or later supports the ``u8`` character literal for UTF-8 strings. 
+> Visual Studio 2015 or later supports the ``u8`` character literal for UTF-8 strings.
 
 # Default character
 
@@ -145,6 +145,6 @@ Creation is fully asynchronous, so you can instantiate multiple SpriteFont insta
 
 # Further reading
 
-[Bitmap fonts in XNA](http://blogs.msdn.com/b/shawnhar/archive/2007/04/26/bitmap-fonts-in-xna.aspx)  
-[SpriteBatch billboards in a 3D world](http://blogs.msdn.com/b/shawnhar/archive/2011/01/12/spritebatch-billboards-in-a-3d-world.aspx)  
-[Redistributable Font Pack](http://xbox.create.msdn.com/en-US/education/catalog/utility/font_pack)
+[Bitmap fonts in XNA](http://www.shawnhargreaves.com/blog/bitmap-fonts-in-xna.html)  
+[SpriteBatch billboards in a 3D world](http://www.shawnhargreaves.com/blog/spritebatch-billboards-in-a-3d-world.html)  
+[Redistributable Font Pack](https://github.com/SimonDarksideJ/XNAGameStudio/wiki/Redistributable-Font-Pack)

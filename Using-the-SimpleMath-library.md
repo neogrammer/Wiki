@@ -64,7 +64,7 @@ A 32-bit floating-point number ranges from ``–3.402823e38`` to ``+3.402823e38`
 # Further reading
 DirectX Tool Kit docs [[SimpleMath]]  
 
-[SimpleMath - a simplified wrapper for DirectXMath](http://blogs.msdn.com/b/shawnhar/archive/2013/01/08/simplemath-a-simplified-wrapper-for-directxmath.aspx)
+[SimpleMath - a simplified wrapper for DirectXMath](http://www.shawnhargreaves.com/blog/simplemath-a-simplified-wrapper-for-directxmath.html)
 
 [DirectXMath](https://github.com/Microsoft/DirectXMath/wiki) project wiki
 

@@ -152,6 +152,6 @@ The built-in effects make use of the following states:
 
 # Further reading
 
-[New built-in effects in XNA Game Studio 4.0](http://blogs.msdn.com/b/shawnhar/archive/2010/04/28/new-built-in-effects-in-xna-game-studio-4-0.aspx)  
-[Built-in effects, permutations, and performance](http://blogs.msdn.com/b/shawnhar/archive/2010/04/30/built-in-effects-permutations-and-performance.aspx)  
+[New built-in effects in XNA Game Studio 4.0](http://www.shawnhargreaves.com/blog/new-built-in-effects-in-xna-game-studio-4-0.html)  
+[Built-in effects, permutations, and performance](http://www.shawnhargreaves.com/blog/built-in-effects-permutations-and-performance.html)  
 [HLSL, FXC, and D3DCompile](http://blogs.msdn.com/b/chuckw/archive/2012/05/07/hlsl-fxc-and-d3dcompile.aspx)

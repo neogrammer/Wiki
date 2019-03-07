@@ -107,5 +107,6 @@ basicEffect.reset();
 
 # Further reading
 
-[BasicEffect optimizations in XNA Game Studio 4.0](http://blogs.msdn.com/b/shawnhar/archive/2010/04/25/basiceffect-optimizations-in-xna-game-studio-4-0.aspx)  
-[BasicEffect: a misnomer?](http://blogs.msdn.com/b/shawnhar/archive/2008/08/22/basiceffect-a-misnomer.aspx)  
+[BasicEffect optimizations in XNA Game Studio 4.0](http://www.shawnhargreaves.com/blog/basiceffect-optimizations-in-xna-game-studio-4-0.html)  
+[SpriteBatch and BasicEffect for C++ Direct3D 11](http://www.shawnhargreaves.com/blog/spritebatch-and-basiceffect-for-c-direct3d-11.html)  
+[BasicEffect: a misnomer?]( http://www.shawnhargreaves.com/blog/basiceffect-a-misnomer.html)  

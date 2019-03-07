@@ -15,7 +15,7 @@ Enter the following command-line after changing to the appropriate directory:
 
 The file _myfile.spritefont_ is generated from the installed TrueType font.
 
-You can also use the [Bitmap Font Maker](http://xbox.create.msdn.com/en-US/education/catalog/utility/bitmap_font_maker) tool to capture a TrueType font as a BMP, then edit the image before using it to create a spritefont via the _Bitmap import_ procedure below
+You can also use the [Bitmap Font Maker](https://github.com/SimonDarksideJ/XNAGameStudio/wiki/Bitmap-Font-Maker) tool to capture a TrueType font as a BMP, then edit the image before using it to create a spritefont via the _Bitmap import_ procedure below
 
 # Bitmap Import
 For importing the font from a bitmap file, characters should be arranged in a grid ordered from top left to bottom right. Monochrome fonts should use white for solid areas and black for transparent areas. To include multicolored characters, add an alpha channel to the bitmap and use that to control which parts of each character are solid. The spaces between characters and around the edges of the grid should be filled with bright pink (red=255, green=0, blue=255). It doesn't matter if your grid includes lots of wasted space, because the converter will rearrange characters, packing everything as tightly as possible.
@@ -122,7 +122,5 @@ The MakeSpriteFont tool will generate warnings if the resulting sprite sheet tex
 To aid in debugging, here is a [simple console program](https://raw.githubusercontent.com/wiki/Microsoft/DirectXTK/spritefontdump.cpp) for dumping out the content of a ``.spritefont`` header in a human-readable form along with a ``DDS`` file for the sprite sheet texture. It requires the [dds.h](https://raw.githubusercontent.com/Microsoft/DirectXTK/master/Src/dds.h) header in the DirectXTK library to build.
 
 # Further reading
-
-[XNA Game Studio Localization](http://xbox.create.msdn.com/en-US/education/catalog/sample/localization)
 
 [Knapsack problem](http://en.wikipedia.org/wiki/Knapsack_problem)

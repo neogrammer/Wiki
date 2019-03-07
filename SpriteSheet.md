@@ -228,7 +228,7 @@ private:
 
 # Example
 
-This example uses a sprite sheet created from the content in the original C# XNA Game Studio [SpriteSheetSample](http://xbox.create.msdn.com/en-US/education/catalog/sample/sprite_sheet).
+This example uses a sprite sheet created from the content in the original C# XNA Game Studio ``SpriteSheetSample`` sample.
 
 The resulting sprite sheet is [SpriteSheetSample.png](https://github.com/Microsoft/DirectXTK/wiki/images/SpriteSheetSample.png)
 

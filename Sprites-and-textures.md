@@ -345,5 +345,7 @@ Build and run to see our cat drawing over a sunset background.
 DirectX Tool Kit docs [[CommonStates]], [[DDSTextureLoader]], [[SpriteBatch]], [[WICTextureLoader]]
 
 [Direc3D 11 Textures and Block Compression](http://blogs.msdn.com/b/chuckw/archive/2012/05/04/direct3d-11-textures-and-block-compression.aspx)  
-[ShawnHar on Premultiplied Alpha](http://blogs.msdn.com/b/shawnhar/archive/2009/11/06/premultiplied-alpha.aspx)  
-[Tom Forsyth on Premultiplied Alpha](http://home.comcast.net/~tom_forsyth/blog.wiki.html#%5B%5BPremultiplied%20alpha%5D%5D)
+
+[Premultiplied alpha](http://www.shawnhargreaves.com/blog/premultiplied-alpha.html)  
+[Premultiplied alpha and image composition](http://www.shawnhargreaves.com/blog/premultiplied-alpha-and-image-composition.html)  
+[Premultiplied alpha in XNA Game Studio 4.0](http://www.shawnhargreaves.com/blog/premultiplied-alpha-in-xna-game-studio-4-0.html)

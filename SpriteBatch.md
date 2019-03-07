@@ -47,10 +47,10 @@ When drawing scenes with multiple depth layers, ``SpriteSortMode_BackToFront`` o
 
 Multiple SpriteBatch instances are lightweight. It is reasonable to  create several, Begin them at the same time with different sort modes, submit sprites to different batches in arbitrary orders as you traverse a scene, then End the batches in whatever order you want these groups of sprites to be drawn.
 
-[SpriteBatch and SpriteSortMode](http://blogs.msdn.com/b/shawnhar/archive/2006/12/13/spritebatch-and-spritesortmode.aspx)  
-[SpriteBatch sorting part 2](http://blogs.msdn.com/b/shawnhar/archive/2006/12/14/spritebatch-sorting-part-2.aspx)  
-[Return of the SpriteBatch: sorting part 3](http://blogs.msdn.com/b/shawnhar/archive/2006/12/14/return-of-the-spritebatch-sorting-part-3.aspx)  
-[SpriteSortMode.Immediate in XNA Game Studio 4.0](http://blogs.msdn.com/b/shawnhar/archive/2010/04/05/spritesortmode-immediate-in-xna-game-studio-4-0.aspx)
+[SpriteBatch and SpriteSortMode](http://www.shawnhargreaves.com/blog/spritebatch-and-spritesortmode.html)  
+[SpriteBatch sorting part 2](http://www.shawnhargreaves.com/blog/spritebatch-sorting-part-2.html)  
+[Return of the SpriteBatch: sorting part 3](http://www.shawnhargreaves.com/blog/return-of-the-spritebatch-sorting-part-3.html)  
+[SpriteSortMode.Immediate in XNA Game Studio 4.0](http://www.shawnhargreaves.com/blog/spritesortmode-immediate-in-xna-game-studio-4-0.html)
 
 # Alpha blending
 Alpha blending defaults to using premultiplied alpha. To make use of 'straight' alpha textures, provide a blend state object to Begin.
@@ -222,13 +222,15 @@ The [[SpriteSheet]] class demonstrates drawing sprites from a sprite sheet (aka 
 ## Post processing effects
 The techniques described for XNA Game Studio will work with the C++ SpriteBatch.
 
-[Bloom on Windows Phone](http://blogs.msdn.com/b/shawnhar/archive/2012/01/19/bloom-on-windows-phone.aspx)  
+[Bloom on Windows Phone]( http://www.shawnhargreaves.com/blog/bloom-on-windows-phone.html)  
 [Postprocessing effects on WP7, Part I](http://www.catalinzima.com/2012/10/postprocessing-effects-on-wp7-part-i/)  
 [Postprocessing effects on WP7, Part II](http://www.catalinzima.com/2012/10/postprocessing-effects-on-wp7-part-ii/)  
 [Postprocessing effects on WP7, Part III](http://www.catalinzima.com/2012/10/postprocessing-effects-on-wp7-part-iii/)  
 
+> For Direct3D Feature Level 10.0 or better hardware, these are better done using [[PostProcess]]
+
 ## Normal-mapped sprites
-The techniques described in the [SpriteEffects](http://xbox.create.msdn.com/en-US/education/catalog/sample/sprite_effects) sample for XNA Game Studio also work with the C++ SpriteBatch.
+The techniques described in the ``SpriteEffects`` sample for XNA Game Studio also work with the C++ SpriteBatch.
 
 # Feature Level Notes
 The implementation in SpriteBatch uses dynamic vertex buffers with 4 vertices per sprite, which works on all feature levels. The submission maximum batch size (2048) is within the limits of Feature Level 9.1's requirement to use 16-bit indices (``DXGI_FORMAT_R16_UINT``) and the maximum primitives per batch limit of 65535. This is robust and works well for the typical scale of usage for sprite batch.
@@ -289,6 +291,12 @@ spriteBatch->SetViewport(viewPort);
 ```
 
 # Further reading
-[ShawnHar's blog on SpriteBatch](http://www.shawnhargreaves.com/blogindex.html#spritebatch)  
-[ShawnHar's blog on Premultiplied Alpha](http://www.shawnhargreaves.com/blogindex.html#premultipliedalpha)    
-[SpriteBatch and renderstates in XNA Game Studio 4.0](http://blogs.msdn.com/b/shawnhar/archive/2010/06/18/spritebatch-and-renderstates-in-xna-game-studio-4-0.aspx)  
+[SpriteBatch and BasicEffect for C++ Direct3D 11](http://www.shawnhargreaves.com/blog/spritebatch-and-basiceffect-for-c-direct3d-11.html)
+
+[Premultiplied alpha](http://www.shawnhargreaves.com/blog/premultiplied-alpha.html)  
+[Premultiplied alpha and image composition](http://www.shawnhargreaves.com/blog/premultiplied-alpha-and-image-composition.html)  
+[Premultiplied alpha in XNA Game Studio 4.0](http://www.shawnhargreaves.com/blog/premultiplied-alpha-in-xna-game-studio-4-0.html)
+
+[SpriteBatch and custom blend modes](http://www.shawnhargreaves.com/blog/spritebatch-and-custom-blend-modes.html)
+
+[Is SpriteBatch Turing complete?](http://www.shawnhargreaves.com/blog/is-spritebatch-turing-complete.html)

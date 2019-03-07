@@ -74,7 +74,7 @@ For example:
 auto state = gamePad->GetState( 0, GamePad::DEAD_ZONE_CIRCULAR );
 ```
 
-See [Shawn's blog](http://blogs.msdn.com/b/shawnhar/archive/2007/03/28/gamepads-suck.aspx) for details.
+See [Shawn's blog](http://www.shawnhargreaves.com/blog/gamepads-suck.html) for details.
 
 # Vibration
 Many controllers include vibration motors to provide force-feedback to the user, which can be controlled with **SetVibration** and the _player_ index. The motor values range from 0 to 1.
@@ -268,5 +268,5 @@ navigation.BackRequested([](const winrt::Windows::Foundation::IInspectable&, con
 [DirectX Tool Kit: Now with GamePads](http://blogs.msdn.com/b/chuckw/archive/2014/09/05/directx-tool-kit-now-with-gamepads.aspx)  
 [XInput and Windows 8](http://blogs.msdn.com/b/chuckw/archive/2012/04/26/xinput-and-windows-8-consumer-preview.aspx)  
 [XInput and XAudio2](http://blogs.msdn.com/b/chuckw/archive/2012/05/03/xinput-and-xaudio2.aspx)  
-[Xbox 360 Controller Images](http://xbox.create.msdn.com/en-US/education/catalog/utility/controller_images)  
-[Xbox 360 Controller Buttons](http://xbox.create.msdn.com/en-US/education/catalog/utility/controller_buttons)
+[Xbox 360 Controller Images](https://github.com/SimonDarksideJ/XNAGameStudio/wiki/Xbox-360-Controller-Images)  
+[Xbox 360 Controller Buttons](https://github.com/SimonDarksideJ/XNAGameStudio/wiki/Xbox-360-Controller-Button-Images)
