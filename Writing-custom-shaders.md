@@ -568,8 +568,8 @@ One final note, because we are using a render target that is larger than our blu
 
 DirectX Tool Kit docs [[SpriteBatch]]
 
-[HLSL, FXC, and D3DCompile](http://blogs.msdn.com/b/chuckw/archive/2012/05/07/hlsl-fxc-and-d3dcompile.aspx)  
-[What's up with D3DCompiler_xx.dll](http://blogs.msdn.com/b/chuckw/archive/2010/04/22/what-s-up-with-d3dcompiler-xx-dll.aspx)  
+[HLSL, FXC, and D3DCompile](https://aka.ms/Tuoxjdx)  
+[What's up with D3DCompiler_xx.dll](https://walbourn.github.io/whats-up-with-d3dcompiler_xx-dll)  
 [Compiling Shaders](https://docs.microsoft.com/en-us/windows/desktop/direct3dhlsl/dx-graphics-hlsl-part1)  
 [Gaussian blur](http://en.wikipedia.org/wiki/Gaussian_blur)
 

@@ -48,7 +48,7 @@ using namespace DirectX;
 # Building
 This code is designed to build with Visual Studio 2015 or later. It requires the Windows 8.x / Windows 10 SDK for functionality such as the DirectXMath library and the DXGI 1.2 headers. Visual Studio 2015 or later already includes Windows 8.1 / Windows 10 SDK.
 
-These components are designed to work without requiring any content from the DirectX SDK. For details, see [Where is the DirectX SDK?](https://docs.microsoft.com/en-us/windows/desktop/directx-sdk--august-2009-), [Where is the DirectX SDK (2013 Edition)?](http://blogs.msdn.com/b/chuckw/archive/2013/07/01/where-is-the-directx-sdk-2013-edition.aspx), [Where is the DirectX SDK (2015 Edition)?](https://blogs.msdn.microsoft.com/chuckw/2015/08/05/where-is-the-directx-sdk-2015-edition/), and [The Zombie DirectX SDK](https://blogs.msdn.microsoft.com/chuckw/2015/03/23/the-zombie-directx-sdk/).
+These components are designed to work without requiring any content from the DirectX SDK. For details, see [Where is the DirectX SDK?](https://docs.microsoft.com/en-us/windows/desktop/directx-sdk--august-2009-), [Where is the DirectX SDK (2013 Edition)?](https://walbourn.github.io/where-is-the-directx-sdk-2013-edition/), [Where is the DirectX SDK (2015 Edition)?](https://aka.ms/dxsdk), and [The Zombie DirectX SDK](https://aka.ms/AA4gfea).
 
 ## HLSL shaders
 The distribution package comes with a set of `Src\Shader\*.inc` files containing the compiled HLSL shaders which are included into the DirectXTK static library. They can be rebuilt if using a newer HLSL ``FXC.EXE`` or if the ``.fx`` or ``.hlsl`` files in the library are modified.
@@ -95,7 +95,7 @@ In your application's solution, right-click on the Solution and use **Add \ Exis
  </tr>
 </table>
 
-> For VS 2017, use of the [15.8 update](https://blogs.msdn.microsoft.com/chuckw/2018/08/16/vs-2017-15-8-update/) or [15.9 update](https://blogs.msdn.microsoft.com/chuckw/2018/11/15/vs-2017-15-9-update/) is recommended.
+> For VS 2017, use of the [15.8 update](https://walbourn.github.io/vs-2017-15-8-update/) or [15.9 update](https://walbourn.github.io/vs-2017-15-9-update/) is recommended.
 
 <table>
  <tr>
@@ -116,7 +116,7 @@ In your application's solution, right-click on the Solution and use **Add \ Exis
  </tr>
 </table>
 
-> For VS 2015, use of the [Update 3](https://blogs.msdn.microsoft.com/chuckw/2016/06/27/visual-studio-2015-update-3/) is recommended.
+> For VS 2015, use of the [Update 3](https://walbourn.github.io/visual-studio-2015-update-3/) is recommended.
 
 In your application's project, right-click on the **Project** and use "References...", then "Add New Reference...", and then check the DirectXTK project name and click OK. For a Universal Windows Platform (UWP) app or Xbox One solution, you may need to set _Reference Assembly Output_ to false since DirectXTK is a static C++ library and not a WinRT component.
 
@@ -128,7 +128,7 @@ In your application's project settings, on the "C++ / General" page set Configur
 
 See [[Audio]] for additional information when setting up Windows desktop projects to use _DirectXTK for Audio_.
 
-See also the [Visual C+ Team Blog](http://blogs.msdn.com/b/vcblog/archive/2010/05/03/flexible-project-to-project-references.aspx)
+See also the [Visual C+ Team Blog](https://devblogs.microsoft.com/cppblog/flexible-project-to-project-references/)
 
 ## Using NuGet package manager
 Alternatively you can use NuGet to install one of the DirectX Tool Kit packages. Use *Project / Manage NuGet Packages...* then select "Online" and search for "DirectXTK".
@@ -148,7 +148,7 @@ DirectXTK makes use of C++ exception handling which should be enabled by the app
 
 * [C++ Exception Handling](https://docs.microsoft.com/en-us/cpp/cpp/cpp-exception-handling)
 * [How to: Break When an Exception is Thrown](https://docs.microsoft.com/en-us/visualstudio/debugger/managing-exceptions-with-the-debugger)
-* [Dual-use Coding Techniques for Games](http://blogs.msdn.com/b/chuckw/archive/2012/09/17/dual-use-coding-techniques-for-games.aspx)
+* [Dual-use Coding Techniques for Games](https://aka.ms/Fo3su4)
 * [Resource Acquisition Is Initialization](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization)
 * [[ThrowIfFailed]]
 

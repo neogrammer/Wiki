@@ -49,7 +49,7 @@ Press F5 to build and run the application It displays the following window:
 > _Troubleshooting:_ If the base template fails to start, there are a few possibilities. First, if your system
 > doesn't have any Direct3D capable device of any feature level, it will fail. This is pretty unlikely on modern
 > versions of Windows. Second if it runs fine in _Release_ but fails in _Debug_, then you likely do not have the
-> [proper DirectX Debug Device](http://blogs.msdn.com/b/chuckw/archive/2012/11/30/direct3d-sdk-debug-layer-tricks.aspx) installed for your operating system.
+> [proper DirectX Debug Device](https://walbourn.github.io/direct3d-sdk-debug-layer-tricks/) installed for your operating system.
 
 # Tour of the code
 
@@ -287,7 +287,7 @@ The DeviceResources class methods are intended to be called from the main presen
 # Platform notes
 
 ## Windows desktop apps
-The **DeviceResources** implementation is designed to support Windows Vista SP2 and Windows 7 RTM with DirectX 11.0, but also supports Direct3D 11.1 on [Windows 7 SP 1](http://blogs.msdn.com/b/chuckw/archive/2012/11/14/directx-11-1-and-windows-7.aspx) or Windows 8 which provides [significant improvements](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/direct3d-11-1-features) such as simplified interop with Direct2D/DirectWrite. Therefore, you should generally prefer to use **GetD3DDevice** / **GetD3DDeviceContext** / **GetSwapChain**, but where you explicitly need 11.1 features you call **GetD3DDevice1** / **GetD3DDeviceContext1** / **GetSwapChain1**. These will be nullptr if the system only has the DirectX 11.0 Runtime.
+The **DeviceResources** implementation is designed to support Windows Vista SP2 and Windows 7 RTM with DirectX 11.0, but also supports Direct3D 11.1 on [Windows 7 SP 1](https://walbourn.github.io/directx-11-1-and-windows-7/) or Windows 8 which provides [significant improvements](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/direct3d-11-1-features) such as simplified interop with Direct2D/DirectWrite. Therefore, you should generally prefer to use **GetD3DDevice** / **GetD3DDeviceContext** / **GetSwapChain**, but where you explicitly need 11.1 features you call **GetD3DDevice1** / **GetD3DDeviceContext1** / **GetSwapChain1**. These will be nullptr if the system only has the DirectX 11.0 Runtime.
 
 ## Universal Windows Platform apps
 The UWP version of **DeviceResources** always uses [DirectX 11.3 interfaces](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/direct3d-11-3-features).
@@ -383,8 +383,8 @@ The ``backBufferFormat`` for PC/UWP should be ``DXGI_FORMAT_R10G10B10A2_UNORM`` 
 See the tutorial [[Using HDR rendering]] for example usage.
 
 # Further reading
-[Direct3D Win32 Game Visual Studio template (Redux)](http://blogs.msdn.com/b/chuckw/archive/2015/12/17/direct3d-game-visual-studio-templates-redux.aspx)  
-[Anatomy of Direct3D 11 Create Device](http://blogs.msdn.com/b/chuckw/archive/2014/02/05/anatomy-of-direct3d-11-create-device.aspx)  
+[Direct3D Win32 Game Visual Studio template (Redux)](https://walbourn.github.io/direct3d-game-visual-studio-templates-redux/)  
+[Anatomy of Direct3D 11 Create Device](https://walbourn.github.io/anatomy-of-direct3d-11-create-device/)  
 [Visual Studio 2013 Windows Store DirectX Templates](http://blogs.msdn.com/b/ianhu/archive/2014/03/07/visual-studio-2013-windows-store-directx-templates.aspx)  
 
 [Linear-Space Lighting (i.e. Gamma)](http://filmicworlds.com/blog/linear-space-lighting-i-e-gamma/)   

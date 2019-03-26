@@ -176,5 +176,5 @@ For Universal Windows Platform apps, touch/pointer devices are captured as [mous
 For Windows desktop apps, relative mouse movement is captured using "raw input" per the article [Taking Advantage of High-Definition Mouse Movement](https://docs.microsoft.com/en-us/windows/desktop/DxTechArts/taking-advantage-of-high-dpi-mouse-movement). Note that a consequence of this implementation is that relative mouse movement is not available when using the application through Remote Desktop.
 
 # Further reading
-[DirectX Tool Kit: Keyboard and Mouse support](http://blogs.msdn.com/b/chuckw/archive/2015/08/06/directx-tool-kit-keyboard-and-mouse-support.aspx)  
+[DirectX Tool Kit: Keyboard and Mouse support](https://walbourn.github.io/directx-tool-kit-keyboard-and-mouse-support/)  
 [Mouse Input](https://docs.microsoft.com/en-us/windows/desktop/inputdev/mouse-input)  

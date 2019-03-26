@@ -90,9 +90,9 @@ for ( size_t h = 0; h < height; ++h )
 
 # Further reading
 
-[Introducing DirectXMath](http://blogs.msdn.com/b/chuckw/archive/2012/03/27/introducing-directxmath.aspx)  
-[DirectXMath 3.06](http://blogs.msdn.com/b/chuckw/archive/2013/10/24/directxmath-3-06.aspx)  
-[Known Issues: DirectXMath 3.06](http://blogs.msdn.com/b/chuckw/archive/2014/12/12/known-issues-directxmath-3-06.aspx)  
-[Spherical Harmonics Math](http://blogs.msdn.com/b/chuckw/archive/2012/07/28/spherical-harmonics-math.aspx)  
-[XDSP.H: Digital Signal Processing helper functions](http://blogs.msdn.com/b/chuckw/archive/2012/05/01/xdsp-h.aspx)  
-[DirectXMath instruction extensions series](http://blogs.msdn.com/b/chuckw/archive/2012/09/11/directxmath-sse-sse2-and-arm-neon.aspx)
+[Introducing DirectXMath](https://walbourn.github.io/introducing-directxmath/)  
+[DirectXMath 3.06](https://walbourn.github.io/directxmath-3-06/)  
+[Known Issues: DirectXMath 3.06](https://walbourn.github.io/known-issues-directxmath-3-06/)  
+[Spherical Harmonics Math](https://walbourn.github.io/spherical-harmonics-math/)  
+[XDSP.H: Digital Signal Processing helper functions](https://walbourn.github.io/xdsp-h-digital-signal-processing-helper-functions/)  
+[DirectXMath instruction extensions series](https://walbourn.github.io/directxmath-sse-sse2-and-arm-neon/)

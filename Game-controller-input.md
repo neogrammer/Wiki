@@ -152,5 +152,5 @@ if (state.IsConnected())
 # Further reading
 
 DirectX Tool Kit docs [[GamePad]]  
-[DirectX Tool Kit: Now with GamePads](http://blogs.msdn.com/b/chuckw/archive/2014/09/05/directx-tool-kit-now-with-gamepads.aspx)  
-[XInput and Windows 8](http://blogs.msdn.com/b/chuckw/archive/2012/04/26/xinput-and-windows-8-consumer-preview.aspx)
+[DirectX Tool Kit: Now with GamePads](https://walbourn.github.io/directx-tool-kit-now-with-gamepads/)  
+[XInput and Windows 8](https://walbourn.github.io/xinput-and-windows-8/)

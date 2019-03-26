@@ -106,7 +106,7 @@ In order to support [all feature levels](https://docs.microsoft.com/en-us/window
 
 Keep in mind there is a feature-level based limit on the maximum number of primitives in a single draw call, so the overall batch size needs to be under this limit. To support all feature levels, this should be 65535 or less lines or triangles in a single 'draw batch'.
 
-[Direct3D Feature Levels](http://blogs.msdn.com/b/chuckw/archive/2012/06/20/direct3d-feature-levels.aspx)
+[Direct3D Feature Levels](https://aka.ms/Apsgrj)
 
 # Threading model
 

@@ -139,7 +139,7 @@ Keep in mind that there are maximum primitive count limits per ModelMeshPart bas
 
 See [[EffectFactory]] for more Feature Level notes.
 
-[Direct3D feature levels](http://blogs.msdn.com/b/chuckw/archive/2012/06/20/direct3d-feature-levels.aspx)
+[Direct3D feature levels](https://aka.ms/Apsgrj)
 
 # Content Notes
 

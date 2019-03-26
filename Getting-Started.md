@@ -12,8 +12,8 @@ This tutorial assumes the reader is familiar with the basics of C++ programming 
 
 This tutorial does not assume prior experience with Direct3D, but the reader should be familiar with the basic graphics concepts for DirectX or OpenGL. That said, you can get a long way using _DirectX Tool Kit_ without much in the way of graphics experience.
 
-* [Getting Started with Direct3D 11](http://blogs.msdn.com/b/chuckw/archive/2011/07/11/getting-started-with-direct3d-11.aspx)
-* [Book Recommendations](http://blogs.msdn.com/b/chuckw/archive/2014/04/07/book-recommendations.aspx)
+* [Getting Started with Direct3D 11](https://walbourn.github.io/getting-started-with-direct3d-11/)
+* [Book Recommendations](https://walbourn.github.io/book-recommendations/)
 
 > Note that Direct3D 11 and _DirectX Tool Kit_ are not Windows Runtime (aka "WinRT") components, so we do not make use of the C++/CX language extensions or the ``/ZW`` switch. _DirectX Tool Kit_ is a 'pure' C++ library, which is why it's not directly usable by Visual Basic, C# or HTML+JavaScript applications.
 
@@ -29,7 +29,7 @@ For debugging exceptions thrown by the _DirectX Tool Kit_, you should enable the
 
 ![Exception Settings](https://github.com/Microsoft/DirectXTK/wiki/images/DebugExcept.PNG)
 
-> For some more detail on how the Visual Studio debugger deals with exceptions, read [this](https://blogs.msdn.microsoft.com/visualstudioalm/2015/01/07/understanding-exceptions-while-debugging-with-visual-studio/) blog post.
+> For some more detail on how the Visual Studio debugger deals with exceptions, read [this](https://devblogs.microsoft.com/devops/understanding-exceptions-while-debugging-with-visual-studio/) blog post.
 
 > In Visual Studio 2015/2017, the exception debugging options changed compared to VS 2013; see [this](https://blogs.msdn.microsoft.com/visualstudioalm/2015/02/23/the-new-exception-settings-window-in-visual-studio-2015/) blog post.
 
@@ -39,18 +39,18 @@ These tutorials are written with game development in mind as the target applicat
 # Software Setup
 For learning purposes, these instructions are going to focus on the following setup:
 
-* Visual Studio 2015 [Update 3](https://blogs.msdn.microsoft.com/chuckw/2016/06/27/visual-studio-2015-update-3/) or Visual Studio 2017 ([15.7 update](https://blogs.msdn.microsoft.com/chuckw/2018/05/07/vs-2017-15-7-update/) or [15.8 update](https://blogs.msdn.microsoft.com/chuckw/2018/08/16/vs-2017-15-8-update/)) Community, Professional, Premium, or Ultimate
+* Visual Studio 2015 [Update 3](https://walbourn.github.io/visual-studio-2015-update-3/) or Visual Studio 2017 ([15.7 update](https://walbourn.github.io/vs-2017-15-7-update/) or [15.8 update](https://walbourn.github.io/vs-2017-15-8-update/)) Community, Professional, Premium, or Ultimate
 * Windows 7 Service Pack 1, Windows 8.1, or Windows 10
 
 We will be using a Win32 desktop application project template in order to support developers using Windows 7, but all these techniques and APIs apply to Universal Windows Platform apps and Xbox One as well.
 
-> There is no need to install the legacy DirectX SDK to use DirectX Tool Kit. The DirectX SDK is deprecated and you should not use it. The only time you would need to install the legacy DirectX SDK for this tutorial series is if you are using Windows 7 for the audio portions. See [Microsoft Docs](https://docs.microsoft.com/en-us/windows/desktop/directx-sdk--august-2009-), [DirectX SDK Samples Catalog](http://blogs.msdn.com/b/chuckw/archive/2013/09/20/directx-sdk-samples-catalog.aspx), and [DirectX SDK Tools Catalog](http://blogs.msdn.com/b/chuckw/archive/2014/10/28/directx-sdk-tools-catalog.aspx).
+> There is no need to install the legacy DirectX SDK to use DirectX Tool Kit. The DirectX SDK is deprecated and you should not use it. The only time you would need to install the legacy DirectX SDK for this tutorial series is if you are using Windows 7 for the audio portions. See [Microsoft Docs](https://docs.microsoft.com/en-us/windows/desktop/directx-sdk--august-2009-), [DirectX SDK Samples Catalog](https://walbourn.github.io/directx-sdk-samples-catalog/), and [DirectX SDK Tools Catalog](https://walbourn.github.io/directx-sdk-tools-catalog/).
 
 ## Visual Studio 2015
-Be sure to install Visual C++ which requires using the _Custom_ install as it's not part of the _Typical_ install. See the [Visual C++ Team Blog](http://blogs.msdn.com/b/vcblog/archive/2015/07/24/setup-changes-in-visual-studio-2015-affecting-c-developers.aspx) for details.
+Be sure to install Visual C++ which requires using the _Custom_ install as it's not part of the _Typical_ install. See the [Visual C++ Team Blog](https://devblogs.microsoft.com/cppblog/setup-changes-in-visual-studio-2015-affecting-c-developers/) for details.
 
 ## Visual Studio 2017
-When using the [new lightweight installer](https://blogs.msdn.microsoft.com/vcblog/2016/08/22/the-lightweight-visual-studio-15-installer/) be sure to select the appropriate workloads. Here are the recommended options to select:
+When using the [new lightweight installer](https://devblogs.microsoft.com/cppblog/the-lightweight-visual-studio-15-installer/) be sure to select the appropriate workloads. Here are the recommended options to select:
 
 * Workload: _Game development with C++_
 * Workload: _Desktop development with C++_
@@ -112,5 +112,5 @@ For a quick introduction to DirectX 11 programming, take a look at the [Introduc
 
 # Resources
 
-[Dual-use Coding Techniques for Games](http://blogs.msdn.com/b/chuckw/archive/2012/09/17/dual-use-coding-techniques-for-games.aspx)  
+[Dual-use Coding Techniques for Games](https://aka.ms/Fo3su4)  
 [C++ Core Guidelines](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md)

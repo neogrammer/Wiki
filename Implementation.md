@@ -72,5 +72,5 @@ SpriteBatch& operator= (SpriteBatch const&) = delete;
 The library uses the [DirectXMath](https://docs.microsoft.com/en-us/windows/desktop/dxmath/pg-xnamath-internals#Call_Conventions) calling convention types to improve parameter passing of ``XMVECTOR`` and ``XMMATRIX`` types.
 
 # Further Reading
-[Dual-use Coding Techniques for Games](http://blogs.msdn.com/b/chuckw/archive/2012/09/17/dual-use-coding-techniques-for-games.aspx)  
+[Dual-use Coding Techniques for Games](https://aka.ms/Fo3su4)  
 [C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines)

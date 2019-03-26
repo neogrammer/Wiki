@@ -65,8 +65,8 @@ SetDebugObjectName(ID3D11DeviceChild* resource, const char (&name)[TNameLength])
 
 For more information on the Direct3D 11 debug layer, see these blog posts:
 
-[Object Naming](http://blogs.msdn.com/b/chuckw/archive/2010/04/15/object-naming.aspx)  
-[Direct3D SDK Debug Layer Tricks](http://blogs.msdn.com/b/chuckw/archive/2012/11/30/direct3d-sdk-debug-layer-tricks.aspx)
+[Object Naming](https://walbourn.github.io/object-naming/)  
+[Direct3D SDK Debug Layer Tricks](https://walbourn.github.io/direct3d-sdk-debug-layer-tricks/)
 
 # Example
 

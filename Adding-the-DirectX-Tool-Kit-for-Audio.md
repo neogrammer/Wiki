@@ -7,7 +7,7 @@ First create a new project using the instructions from the first two lessons: [[
 # NuGet package manager
 If you used NuGet when [[Adding the DirectX Tool Kit]], then you already have support for _DirectX Tool Kit for Audio._. The id ``directxtk_desktop_2013`` and ``directxtk_desktop_2015`` packages are configured for Windows 7 and Windows Vista support, so it is making use of **XAudio 2.7**.
 
-XAudio 2.7 requires the legacy DirectX SDK (June 2010). Due to some technical issues, it must be installed to the 'default' location of ``C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)``. To install the legacy DirectX SDK on your development system, see [this post](http://blogs.msdn.com/b/chuckw/archive/2010/06/15/10023137.aspx) and be sure to read [this article](http://blogs.msdn.com/b/chuckw/archive/2013/09/24/10246203.aspx) for a known issue with the installer.
+XAudio 2.7 requires the legacy DirectX SDK (June 2010). Due to some technical issues, it must be installed to the 'default' location of ``C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)``. To install the legacy DirectX SDK on your development system, see [this post](https://walbourn.github.io/announcement-directx-sdk-june-2010-is-live/) and be sure to read [this article](https://walbourn.github.io/known-issue-directx-sdk-june-2010-setup-and-the-s1023-error/) for a known issue with the installer.
 
 > The other platform NuGet packages do not require the legacy DirectX SDK as they always make use of XAudio 2.8 or later which is built into Windows 8.1 (``directxtk_windowsstore_8_1``), Windows 10 (``directxtk_uwp``, ``directxtk12_*``), Windows phone 8.1 (``directxtk_windowsphone_8_1``), and Xbox One.
 
@@ -17,7 +17,7 @@ Complete the steps in **Adding the headers** below including the additional conf
 If you used project-to-project references when [[Adding the DirectX Tool Kit]], then you need to add an additional _DirectX Tool Kit for Audio_ project to your solution. There are two choices depending on your platform target.
 
 ## XAudio 2.7
-XAudio 2.7 supports Windows Vista, Windows 7, or later. It is deployed by the legacy _DirectX End User Runtime_ package and requires the legacy DirectX SDK (June 2010) to develop with. Due to some technical issues, it must be installed to the 'default' location of ``C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)``. To install the legacy DirectX SDK on your development system, see [this post](http://blogs.msdn.com/b/chuckw/archive/2010/06/15/10023137.aspx) and be sure to read [this article](http://blogs.msdn.com/b/chuckw/archive/2013/09/24/10246203.aspx) for a known issue with the installer.
+XAudio 2.7 supports Windows Vista, Windows 7, or later. It is deployed by the legacy _DirectX End User Runtime_ package and requires the legacy DirectX SDK (June 2010) to develop with. Due to some technical issues, it must be installed to the 'default' location of ``C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)``. To install the legacy DirectX SDK on your development system, see [this post](https://walbourn.github.io/announcement-directx-sdk-june-2010-is-live/) and be sure to read [this article](https://walbourn.github.io/known-issue-directx-sdk-june-2010-setup-and-the-s1023-error/) for a known issue with the installer.
 
 1. Right-click on your solution in the Solution Explorer, and select **Add** / **Existing Project...**
 1. Browse into the "DirectXTK\Audio" folder and select ``DirectXTKAudio_Desktop_2013_DXSDK.vcxproj`` or ``DirectXTKAudio_Desktop_2015_DXSDK.vcxproj``, click "Open"
@@ -106,7 +106,7 @@ If you are using XAudio 2.8, then your application should be built to require Wi
 > XAudio 2.9 requires Windows 10 and ``_WIN32_WINNT`` being set to ``0x0A00``
 
 # Deployment
-If you are using XAudio 2.7, then your application has a dependency on the _DirectX End-User Runtime_. See [Not So DirectSetup](http://blogs.msdn.com/b/chuckw/archive/2010/09/08/not-so-direct-setup.aspx) for information on using this package.
+If you are using XAudio 2.7, then your application has a dependency on the _DirectX End-User Runtime_. See [Not So DirectSetup](https://aka.ms/dxsetup) for information on using this package.
 
 If you are using XAudio 2.8, then your application has a dependency on Windows 8.0 or later. If using XAudio 2.9, your application will only run on Windows 10 devices.
 
@@ -114,5 +114,5 @@ If you are using XAudio 2.8, then your application has a dependency on Windows 8
 
 # Further reading
 DirectX Tool Kit docs [[Audio]]  
-[DirectX Tool Kit for Audio](http://blogs.msdn.com/b/chuckw/archive/2013/12/25/directx-tool-kit-for-audio.aspx)  
-[XAudio2 and Windows 8](http://blogs.msdn.com/b/chuckw/archive/2012/04/02/xaudio2-and-windows-8-consumer-preview.aspx)
+[DirectX Tool Kit for Audio](https://walbourn.github.io/directx-tool-kit-for-audio/)  
+[XAudio2 and Windows 8](https://walbourn.github.io/xaudio2-and-windows-8/)

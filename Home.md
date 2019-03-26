@@ -2,7 +2,7 @@ http://go.microsoft.com/fwlink/?LinkId=248929
 
 ![DirectX Logo](https://github.com/Microsoft/DirectXTK/wiki/X_jpg.jpg)The **DirectX Tool Kit** (aka **DirectXTK**) is a collection of helper classes for writing **DirectX 11.x** code in C++.
 
-See this [blog post](http://blogs.msdn.com/b/chuckw/archive/2012/03/02/directxtk.aspx).
+See this [blog post](https://walbourn.github.io/directxtk/).
 
 [[Getting Started]]
 
@@ -31,7 +31,7 @@ DirectXTK is also available on NuGet
 * [Windows phone 8.1](https://www.nuget.org/packages/directxtk_windowsphone_8_1)
 
 # Porting from D3DX
-See [this post](http://blogs.msdn.com/b/chuckw/archive/2013/08/21/living-without-d3dx.aspx) for a complete listing of D3DX equivalents.
+See [this post](https://aka.ms/Kfsdiu) for a complete listing of D3DX equivalents.
 
 # Credits
 

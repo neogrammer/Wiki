@@ -229,5 +229,5 @@ case WM_DEVICECHANGE:
 
 DirectX Tool Kit docs [[Audio]], [[AudioEngine]]
 
-[DirectX Tool Kit for Audio](http://blogs.msdn.com/b/chuckw/archive/2013/12/25/directx-tool-kit-for-audio.aspx)  
-[Learning XAudio2](http://blogs.msdn.com/b/chuckw/archive/2012/05/15/learning-xaudio2.aspx)
+[DirectX Tool Kit for Audio](https://walbourn.github.io/directx-tool-kit-for-audio/)  
+[Learning XAudio2](https://walbourn.github.io/learning-xaudio2/)

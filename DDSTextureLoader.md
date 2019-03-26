@@ -4,7 +4,7 @@ This is a simple light-weight DirectDraw Surface (``.dds``) file loader. This is
 
 > To load FourCC "XBOX" variant ``.DDS`` files, use [[XboxDDSTextureLoader]], which is supported by the [xtexconv](https://aka.ms/atgsplxtexconv) utility.
 
-This code is based on the legacy DirectX SDK sample [DDSWithoutD3DX](http://blogs.msdn.com/b/chuckw/archive/2010/07/15/ddswithoutd3dx-sample-update.aspx) texture loading code for Direct3D 9 / Direct3D 11. This version does not support Direct3D 9 or earlier.
+This code is based on the legacy DirectX SDK sample [DDSWithoutD3DX](https://walbourn.github.io/ddswithoutd3dx-sample-update/) texture loading code for Direct3D 9 / Direct3D 11. This version does not support Direct3D 9 or earlier.
 
 **Related tutorial:** [[Sprites and textures]]
 
@@ -309,9 +309,9 @@ This function loads both traditional and FourCC "DX10" variant ``.DDS`` files.
 [DDS on MSDN](https://docs.microsoft.com/en-us/windows/desktop/direct3ddds/dx-graphics-dds)
 
 # Further Reading
-[The DDS File Format Lives](http://blogs.msdn.com/b/chuckw/archive/2010/02/05/the-dds-file-format-lives.aspx)
+[The DDS File Format Lives](https://walbourn.github.io/the-dds-file-format-lives/)
 
-[Direct3D Feature Levels](http://blogs.msdn.com/b/chuckw/archive/2012/06/20/direct3d-feature-levels.aspx)
+[Direct3D Feature Levels](https://aka.ms/Apsgrj)
 
 [Programming Guide for DXGI](https://docs.microsoft.com/en-us/windows/desktop/direct3ddxgi/dx-graphics-dxgi-overviews)
 

@@ -175,7 +175,7 @@ Build and run we are rendering our 'clean' cat with premultiplied alpha:
 
 * The switch ``-pmalpha`` causes the **texconv** command-line tool to convert the image to premultiplied alpha before saving the ``.dds`` file. This assumes the source image is in straight-alpha.
 * The switch ``-m 1`` disables the generation of _mipmaps_ for the image. By default, the tool generates a full set of mipmaps when converting to a ``.dds``, but since our source image is not a power of two in width & height, it also generates a warning message about use with feature level 9.x devices. For standard sprites, we typically do not make use of _mipmaps_.
-* The switch ``-f BC3_UNORM`` selects the ``DXGI_FORMAT_BC3_UNORM`` format for the resulting ``.dds`` file. In combination with the ``-pmalpha`` switch, this results in the "DXT4" [block-compression format](http://blogs.msdn.com/b/chuckw/archive/2012/05/04/direct3d-11-textures-and-block-compression.aspx) being used.
+* The switch ``-f BC3_UNORM`` selects the ``DXGI_FORMAT_BC3_UNORM`` format for the resulting ``.dds`` file. In combination with the ``-pmalpha`` switch, this results in the "DXT4" [block-compression format](https://walbourn.github.io/direct3d-11-textures-and-block-compression/) being used.
 
 # Rotating a sprite
 
@@ -344,7 +344,7 @@ Build and run to see our cat drawing over a sunset background.
 
 DirectX Tool Kit docs [[CommonStates]], [[DDSTextureLoader]], [[SpriteBatch]], [[WICTextureLoader]]
 
-[Direc3D 11 Textures and Block Compression](http://blogs.msdn.com/b/chuckw/archive/2012/05/04/direct3d-11-textures-and-block-compression.aspx)  
+[Direc3D 11 Textures and Block Compression](https://walbourn.github.io/direct3d-11-textures-and-block-compression/)  
 
 [Premultiplied alpha](http://www.shawnhargreaves.com/blog/premultiplied-alpha.html)  
 [Premultiplied alpha and image composition](http://www.shawnhargreaves.com/blog/premultiplied-alpha-and-image-composition.html)  

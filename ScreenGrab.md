@@ -132,7 +132,7 @@ WIC2 is available on Windows 10, Windows 8.x, and on Windows 7 Service Pack 1 wi
 
 * If WIC2 is supported, then this function can make use of the new WIC pixel format ``GUID_WICPixelFormat96bppRGBFloat``.
 
-See [Windows Imaging Component and Windows 8](http://blogs.msdn.com/b/chuckw/archive/2012/11/19/windows-imaging-component-and-windows-8.aspx)
+See [Windows Imaging Component and Windows 8](https://walbourn.github.io/windows-imaging-component-and-windows-8/)
 
 # Windows Store apps
 For _Save*TextureToFile_ to succeed, the application must have write access to the destination path. For Windows Store apps and Universal Windows Platform (UWP) app, the file access permissions are rather restricted so you'll need to make sure you use a fully qualified path to a valid write folder. A good location to use is the app data folder:

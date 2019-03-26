@@ -165,7 +165,7 @@ The bulk of the Windows Runtime Template Library (WRL) is intended to make it ea
 
 Because WRL is a pure C++ template library, it has no particular platform support requirements beyond being in the Windows 8.x or Windows 10 SDKs. You can therefore freely use it in Windows desktop applications built for Windows Vista, Windows 7, Windows 8.x, or Windows 10 as well as in Windows Store, Windows phone, Xbox One, and Universal Windows Platform apps.
 
-> The Windows 8.0 SDK and later that includes WRL does not support targeting Windows XP / Windows Server 2003. For these older operating systems you have to make use of the Windows 7.1A SDK instead. See [this blog post](http://blogs.msdn.com/b/chuckw/archive/2012/11/26/visual-studio-2012-update-1.aspx) for more details.
+> The Windows 8.0 SDK and later that includes WRL does not support targeting Windows XP / Windows Server 2003. For these older operating systems you have to make use of the Windows 7.1A SDK instead. See [this blog post](https://walbourn.github.io/visual-studio-2012-update-1/) for more details.
 
 # Remark
 

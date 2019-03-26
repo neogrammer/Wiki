@@ -190,9 +190,9 @@ DirectXTK makes use of the latest Direct3D 11.1 headers available in the Windows
     #pragma warning( disable : 4005 )
     #include <C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\x3daudio.h>
 
-> The NuGet package [directxtk_desktop_2015](https://www.nuget.org/packages/directxtk_desktop_2015/) is designed for Windows 7 compatibility for the main library, but any use of _DirectX Tool Kit for Audio_ uses XAudio 2.8. See [this blog post](https://blogs.msdn.microsoft.com/chuckw/2018/04/30/github-nuget-and-vso/) for details.
+> The NuGet package [directxtk_desktop_2015](https://www.nuget.org/packages/directxtk_desktop_2015/) is designed for Windows 7 compatibility for the main library, but any use of _DirectX Tool Kit for Audio_ uses XAudio 2.8. See [this blog post](https://walbourn.github.io/github-nuget-and-vso/) for details.
 
-> When using the legacy DirectX SDK you need to set up VC++ Directories paths in your project (particularly your EXE/DLL). For the Windows 8.1 SDK or Windows 10 SDK, you need to set up those paths in _reverse_ order from previous include orders. You really only need a small portion of the legacy DirectX SDK for XAudio 2.7, and want to be using the Windows 8.1 SDK / Windows 10 SDK for everything else. For more details see [The Zombie DirectX SDK](https://blogs.msdn.microsoft.com/chuckw/2015/03/23/the-zombie-directx-sdk/).
+> When using the legacy DirectX SDK you need to set up VC++ Directories paths in your project (particularly your EXE/DLL). For the Windows 8.1 SDK or Windows 10 SDK, you need to set up those paths in _reverse_ order from previous include orders. You really only need a small portion of the legacy DirectX SDK for XAudio 2.7, and want to be using the Windows 8.1 SDK / Windows 10 SDK for everything else. For more details see [The Zombie DirectX SDK](https://aka.ms/AA4gfea).
 
 # Content Pipeline
 **Note:** When adding ``.xwb`` files to your Universal Windows Platform app or Xbox One XDK project, you need to manually set the file properties to "Content: Yes" for all configurations to have these files included in your AppX package. ``.wav`` files are automatically detected as a media file and are included as content by default.
@@ -204,10 +204,10 @@ Note that ``IVoiceNotify::OnBufferEnd`` is called from XAudio2's thread, so the 
 
 # Further reading
 
-[Learning XAudio2](http://blogs.msdn.com/b/chuckw/archive/2012/05/15/learning-xaudio2.aspx)
+[Learning XAudio2](https://walbourn.github.io/learning-xaudio2/)
 
-[XAudio2 and Windows 8](http://blogs.msdn.com/b/chuckw/archive/2012/04/02/xaudio2-and-windows-8-consumer-preview.aspx)
+[XAudio2 and Windows 8](https://walbourn.github.io/xaudio2-and-windows-8/)
 
 [SoundLab](https://github.com/SimonDarksideJ/XNAGameStudio/wiki/SoundLab)
 
-[The Zombie DirectX SDK](https://blogs.msdn.microsoft.com/chuckw/2015/03/23/the-zombie-directx-sdk/)
+[The Zombie DirectX SDK](https://aka.ms/AA4gfea)

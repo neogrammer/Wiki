@@ -129,5 +129,5 @@ The Keyboard class makes use of virtual keys and not scancodes so your code has 
 [QWERTY](https://en.wikipedia.org/wiki/QWERTY), [QWERTZ](https://en.wikipedia.org/wiki/QWERTZ), [AZERTY](https://en.wikipedia.org/wiki/AZERTY), [QZERTY](https://en.wikipedia.org/wiki/Keyboard_layout#QZERTY)
 
 # Further reading
-[DirectX Tool Kit: Keyboard and Mouse support](http://blogs.msdn.com/b/chuckw/archive/2015/08/06/directx-tool-kit-keyboard-and-mouse-support.aspx)  
+[DirectX Tool Kit: Keyboard and Mouse support](https://walbourn.github.io/directx-tool-kit-keyboard-and-mouse-support/)  
 [Using Keyboard Input](https://docs.microsoft.com/en-us/windows/desktop/inputdev/using-keyboard-input)  

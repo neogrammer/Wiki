@@ -17,7 +17,7 @@ You can check for updates to the NuGet package by selecting "Updates/All" in the
 > Both **directxtk_desktop_2015** and **directxtk_uwp** support VS 2017 as well.
 
 # Project-to-project references
-Another option rather than using NuGet is to use Visual Studio's [project-to-project references](http://blogs.msdn.com/b/vcblog/archive/2010/05/03/flexible-project-to-project-references.aspx). This approach is a little more setup, but it does ensure that you are building the full DirectX Tool Kit library as part of your solution, and allows you to make changes directly to the tool kit if desired as well.
+Another option rather than using NuGet is to use Visual Studio's [project-to-project references](https://devblogs.microsoft.com/cppblog/flexible-project-to-project-references/). This approach is a little more setup, but it does ensure that you are building the full DirectX Tool Kit library as part of your solution, and allows you to make changes directly to the tool kit if desired as well.
 
 * Extract the [release .zip file](https://github.com/Microsoft/DirectXTK/releases) into a directory relative to the new project you created. For this tutorial, we will assume the ``DirectXTK`` folder is in the same folder as your new project's Visual Studio Solution (``.sln``) file.
 * Right-click on your solution in the Solution Explorer, and select **Add** / **Existing Project...**

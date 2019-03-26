@@ -85,4 +85,4 @@ Ticks are stored in unsigned 64-bit integers and second values are stored in ``d
 
 # Further reading
 [Understanding GameTime](http://www.shawnhargreaves.com/blog/understanding-gametime.html)  
-[Understanding Game Time Revisited](http://blogs.msdn.com/b/chuckw/archive/2014/12/03/understanding-game-time-revisited.aspx)  
+[Understanding Game Time Revisited](https://walbourn.github.io/understanding-game-time-revisited/)  

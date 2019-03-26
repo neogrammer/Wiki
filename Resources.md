@@ -22,56 +22,56 @@
 [SpriteBatch and BasicEffect for C++ Direct3D 11](http://www.shawnhargreaves.com/blog/spritebatch-and-basiceffect-for-c-direct3d-11.html)
 
 # DirectX SDK and Games for Windows Blog
-[Direct3D Game Visual Studio templates (Redux)](https://blogs.msdn.microsoft.com/chuckw/2015/12/17/direct3d-game-visual-studio-templates-redux/)
+[Direct3D Game Visual Studio templates (Redux)](https://walbourn.github.io/direct3d-game-visual-studio-templates-redux/)
 
-[DirectX Tool Kit: Keyboard and Mouse support](https://blogs.msdn.microsoft.com/chuckw/2015/08/06/directx-tool-kit-keyboard-and-mouse-support/)
+[DirectX Tool Kit: Keyboard and Mouse support](https://walbourn.github.io/directx-tool-kit-keyboard-and-mouse-support/)
 
-[Where is the DirectX SDK (2015 Edition)?](https://blogs.msdn.microsoft.com/chuckw/2015/08/05/where-is-the-directx-sdk-2015-edition/)
+[Where is the DirectX SDK (2015 Edition)?](https://aka.ms/dxsdk)
 
-[Samples Content Exporter](http://blogs.msdn.com/b/chuckw/archive/2015/05/06/samples-content-exporter.aspx)
+[Samples Content Exporter](https://walbourn.github.io/samples-content-exporter/)
 
-[GitHub](http://blogs.msdn.com/b/chuckw/archive/2015/04/18/github.aspx)
+[GitHub](https://walbourn.github.io/github/)
 
-[The Zombie DirectX SDK](https://blogs.msdn.microsoft.com/chuckw/2015/03/23/the-zombie-directx-sdk/)
+[The Zombie DirectX SDK](https://aka.ms/AA4gfea)
 
-[Direct3D Win32 Game Visual Studio template](http://blogs.msdn.com/b/chuckw/archive/2015/01/06/direct3d-win32-game-visual-studio-template.aspx)
+[Direct3D Win32 Game Visual Studio template](https://walbourn.github.io/direct3d-win32-game-visual-studio-template/)
 
-[DirectX Tool Kit: Now with GamePads](http://blogs.msdn.com/b/chuckw/archive/2014/09/05/directx-tool-kit-now-with-gamepads.aspx)
+[DirectX Tool Kit: Now with GamePads](https://walbourn.github.io/directx-tool-kit-now-with-gamepads/)
 
-[CodePlex July 2014 Refresh](http://blogs.msdn.com/b/chuckw/archive/2014/07/31/codeplex-july-2014-refresh.aspx)
+[CodePlex July 2014 Refresh](https://walbourn.github.io/codeplex-july-2014-refresh/)
 
-[DirectX Tool Kit for Audio](http://blogs.msdn.com/b/chuckw/archive/2013/12/25/directx-tool-kit-for-audio.aspx)
+[DirectX Tool Kit for Audio](https://walbourn.github.io/directx-tool-kit-for-audio/)
 
-[CodePlex VS 2013 Refresh](http://blogs.msdn.com/b/chuckw/archive/2013/10/29/codeplex-vs-2013-refresh.aspx)
+[CodePlex VS 2013 Refresh](https://walbourn.github.io/codeplex-vs-2013-refresh/)
 
-[Visual Studio 2013 and Windows 8.1 SDK RTM are now available](http://blogs.msdn.com/b/chuckw/archive/2013/10/18/visual-studio-2013-and-windows-8-1-sdk-rtm-are-now-available.aspx)
+[Visual Studio 2013 and Windows 8.1 SDK RTM are now available](https://walbourn.github.io/visual-studio-2013-and-windows-8-1-sdk-rtm-are-now-available/)
 
-[Where is the DirectX SDK (2013 Edition)?](http://blogs.msdn.com/b/chuckw/archive/2013/07/01/where-is-the-directx-sdk-2013-edition.aspx)
+[Where is the DirectX SDK (2013 Edition)?](https://walbourn.github.io/where-is-the-directx-sdk-2013-edition/)
 
-[DirectX 11.1 and Windows 7 Update](http://blogs.msdn.com/b/chuckw/archive/2013/02/26/directx-11-1-and-windows-7-update.aspx)
+[DirectX 11.1 and Windows 7 Update](https://walbourn.github.io/directx-11-1-and-windows-7-update/)
 
-[DirectXTK Update](http://blogs.msdn.com/b/chuckw/archive/2013/01/27/directxtk-update.aspx)
+[DirectXTK Update](https://walbourn.github.io/directxtk-update/)
 
-[Direct3D SDK Debug Layer Tricks](http://blogs.msdn.com/b/chuckw/archive/2012/11/30/direct3d-sdk-debug-layer-tricks.aspx)
+[Direct3D SDK Debug Layer Tricks](https://walbourn.github.io/direct3d-sdk-debug-layer-tricks/)
 
-[Windows Imaging Component and Windows 8](http://blogs.msdn.com/b/chuckw/archive/2012/11/19/windows-imaging-component-and-windows-8.aspx)
+[Windows Imaging Component and Windows 8](https://walbourn.github.io/windows-imaging-component-and-windows-8/)
 
-[DirectX 11.1 and Windows 7](http://blogs.msdn.com/b/chuckw/archive/2012/11/14/directx-11-1-and-windows-7.aspx)
+[DirectX 11.1 and Windows 7](https://walbourn.github.io/directx-11-1-and-windows-7/)
 
-[Dual-use Coding Techniques for Games](http://blogs.msdn.com/b/chuckw/archive/2012/09/17/dual-use-coding-techniques-for-games.aspx)
+[Dual-use Coding Techniques for Games](https://aka.ms/Fo3su4)
 
-[Visual Studio 2012 and Windows 8.0 SDK RTM are now available](http://blogs.msdn.com/b/chuckw/archive/2012/08/15/visual-studio-2012-and-windows-8-0-sdk-rtm-are-now-available.aspx)
+[Visual Studio 2012 and Windows 8.0 SDK RTM are now available](https://walbourn.github.io/visual-studio-2012-and-windows-8-0-sdk-rtm-are-now-available/)
 
-[Direct3D Feature Levels](http://blogs.msdn.com/b/chuckw/archive/2012/06/20/direct3d-feature-levels.aspx)
+[Direct3D Feature Levels](https://aka.ms/Apsgrj)
 
-[HLSL, FXC, and D3DCompile](http://blogs.msdn.com/b/chuckw/archive/2012/05/07/hlsl-fxc-and-d3dcompile.aspx)
+[HLSL, FXC, and D3DCompile](https://aka.ms/Tuoxjdx)
 
-[DirectXTK](http://blogs.msdn.com/b/chuckw/archive/2012/03/02/directxtk.aspx)
+[DirectXTK](https://walbourn.github.io/directxtk/)
 
-[DirectXTex](http://blogs.msdn.com/b/chuckw/archive/2011/10/28/directxtex.aspx)
+[DirectXTex](https://walbourn.github.io/directxtex/)
 
-[Where is the DirectX SDK?](http://blogs.msdn.com/b/chuckw/archive/2012/03/22/where-is-the-directx-sdk.aspx)
+[Where is the DirectX SDK?](https://walbourn.github.io/where-is-the-directx-sdk/)
 
-[Direct3D 11 Textures and Block Compression](http://blogs.msdn.com/b/chuckw/archive/2012/05/04/direct3d-11-textures-and-block-compression.aspx)
+[Direct3D 11 Textures and Block Compression](https://walbourn.github.io/direct3d-11-textures-and-block-compression/)
 
-[The DDS File Format Lives](http://blogs.msdn.com/b/chuckw/archive/2010/02/05/the-dds-file-format-lives.aspx)
+[The DDS File Format Lives](https://walbourn.github.io/the-dds-file-format-lives/)

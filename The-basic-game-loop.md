@@ -45,7 +45,7 @@ Press F5 to build and run the application It displays the following window:
 > _Troubleshooting:_ If the base template fails to start, there are a few possibilities. First, if your system
 > doesn't have any Direct3D capable device of any feature level, it will fail. This is pretty unlikely on modern
 > versions of Windows. Second if it runs fine in _Release_ but fails in _Debug_, then you likely do not have the
-> [proper DirectX Debug Device](http://blogs.msdn.com/b/chuckw/archive/2012/11/30/direct3d-sdk-debug-layer-tricks.aspx) installed for your operating system.
+> [proper DirectX Debug Device](https://walbourn.github.io/direct3d-sdk-debug-layer-tricks/) installed for your operating system.
 
 > **Xbox One**: the background color may be slightly oversaturated. This is because the basic Xbox One XDK template uses a backBufferFormat of ``DXGI_FORMAT_B8G8R8A8_UNORM_SRGB``. The DirectXMath Colors values are defined using standard [sRGB](https://en.wikipedia.org/wiki/SRGB) colorspace which is slightly different. All the colors defines need to be adjusted slightly for the linear RGB colorspace (aka gamma correct rendering) via ``XMColorSRGBToRGB``.
 
@@ -77,7 +77,7 @@ void Game::Initialize(HWND window, int width, int height)
 }
 ```
 
-One of the two functions called by ``Initialize`` is the **CreateDevice** function which sets up a Direct3D 11.0 ([and optionally Direct3D 11.1](http://blogs.msdn.com/b/chuckw/archive/2014/02/05/anatomy-of-direct3d-11-create-device.aspx)) device using the maximum [Direct3D Feature Level](http://blogs.msdn.com/b/chuckw/archive/2012/06/20/direct3d-feature-levels.aspx) supported by the system which could range from 9.1 to 11.1. For _Debug_ builds, it enables the Direct3D "Debug device" which provides additional validation and diagnostic errors (seen in the "Output" window in Visual C++ when showing output from "Debug"). The TODO here is for adding the creation of objects that depend on the ``m_d3dDevice`` or ``m_d3dContext``, but do not care about the size of the rendering window.
+One of the two functions called by ``Initialize`` is the **CreateDevice** function which sets up a Direct3D 11.0 ([and optionally Direct3D 11.1](https://walbourn.github.io/anatomy-of-direct3d-11-create-device/)) device using the maximum [Direct3D Feature Level](https://aka.ms/Apsgrj) supported by the system which could range from 9.1 to 11.1. For _Debug_ builds, it enables the Direct3D "Debug device" which provides additional validation and diagnostic errors (seen in the "Output" window in Visual C++ when showing output from "Debug"). The TODO here is for adding the creation of objects that depend on the ``m_d3dDevice`` or ``m_d3dContext``, but do not care about the size of the rendering window.
 
 ```cpp
 // These are the resources that depend on the device.
@@ -208,7 +208,7 @@ For these tutorials, we make use of the ``DXGI_FORMAT_B8G8R8A8_UNORM`` backbuffe
 **Next lesson**: [[Adding the DirectX Tool Kit]]
 
 # Further reading
-[Direct3D Win32 Game Visual Studio template](http://blogs.msdn.com/b/chuckw/archive/2015/01/06/direct3d-win32-game-visual-studio-template.aspx)  
-[Direct3D Game Visual Studio templates (Redux)](https://blogs.msdn.microsoft.com/chuckw/2015/12/17/direct3d-game-visual-studio-templates-redux)  
-[Manifest Madness](http://blogs.msdn.com/b/chuckw/archive/2013/09/10/manifest-madness.aspx)  
+[Direct3D Win32 Game Visual Studio template](https://walbourn.github.io/direct3d-win32-game-visual-studio-template/)  
+[Direct3D Game Visual Studio templates (Redux)](https://walbourn.github.io/direct3d-game-visual-studio-templates-redux/)  
+[Manifest Madness](https://aka.ms/I6kdnw)  
 [64-bit programming for Game Developers](https://docs.microsoft.com/en-us/windows/desktop/DxTechArts/sixty-four-bit-programming-for-game-developers)

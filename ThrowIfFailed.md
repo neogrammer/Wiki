@@ -43,7 +43,7 @@ if (FAILED(hr))
 
 # Basic version
 
-The ``ThrowIfFailed`` helper is not part of the _DirectX Tool Kit_; it's declared in some global header in your application. The C++ DirectX templates for Universal Windows Platform apps, Windows 8.x Store, Windows phone 8.x, Xbox One, and the [Direct3D Win32 Game](http://blogs.msdn.com/b/chuckw/archive/2015/01/06/direct3d-win32-game-visual-studio-template.aspx) templates all make use of the ``DX::ThrowIfFailed`` helper--you'll typically find it declared in the ``pch.h`` header.
+The ``ThrowIfFailed`` helper is not part of the _DirectX Tool Kit_; it's declared in some global header in your application. The C++ DirectX templates for Universal Windows Platform apps, Windows 8.x Store, Windows phone 8.x, Xbox One, and the [Direct3D Win32 Game](https://walbourn.github.io/direct3d-win32-game-visual-studio-template/) templates all make use of the ``DX::ThrowIfFailed`` helper--you'll typically find it declared in the ``pch.h`` header.
 
 ```cpp
 #include <exception>
@@ -63,7 +63,7 @@ namespace DX
 
 # Enhancements
 
-The templates all include the basic implementation above, but production use might want to utilize a slightly improved version as follows (which are included in the [[DeviceResources]] variants of the [Direct3D Win32 Game](http://blogs.msdn.com/b/chuckw/archive/2015/12/17/direct3d-game-visual-studio-templates-redux.aspx) templates).
+The templates all include the basic implementation above, but production use might want to utilize a slightly improved version as follows (which are included in the [[DeviceResources]] variants of the [Direct3D Win32 Game](https://walbourn.github.io/direct3d-game-visual-studio-templates-redux/) templates).
 
 ```cpp
 #include <exception>

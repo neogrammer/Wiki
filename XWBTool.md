@@ -60,7 +60,7 @@ The XACT3 GUI and/or the XACTBLD command-line tool in the legacy DirectX SDK (Di
 
 **Endianness**: _DirectXTK for Audio_ does support loading Big-endian (aka Xbox 360) wave banks since those are the only kind that are generated when using the legacy tools with XMA compression when targeting the Xbox One XDK. This support is limited to XMA and 8-bit PCM data, however, as the wave data itself is not byte-swapped. XWBtool always builds Little-endian wave banks.
 
-[Known Issue: DirectX SDK (June 2010) Setup and the S1023 Error](http://blogs.msdn.com/b/chuckw/archive/2011/12/09/known-issue-directx-sdk-june-2010-setup-and-the-s1023-error.aspx)
+[Known Issue: DirectX SDK (June 2010) Setup and the S1023 Error](https://walbourn.github.io/known-issue-directx-sdk-june-2010-setup-and-the-s1023-error/)
 
 [KB2728613](https://support.microsoft.com/en-us/kb/2728613)
 
