@@ -110,7 +110,7 @@ HRESULT CreateWICTextureFromFileEx( ID3D11Device* d3dDevice,
 > The ``loadFlags`` was previously a ``bool forceSRGB``. ``false`` will map to ``WIC_LOADER_DEAULT`` and ``true`` maps to ``WIC_LOADER_FORCE_SRGB``.
 
 # Parameters
-Either _texture_ or _textureView_ can be nullptr, but not both.
+Either _texture_ or _textureView_ can be nullptr, but not both. In most use cases for rendering, you only need the shader resource view (SRV) _textureView_ interface.
 
 For all these functions above, the _maxsize_ parameter provides an upper limit on the size of the resulting texture. If given a 0, the functions assume a maximum size determined from the device's current feature level. If the bitmap file contains a larger image, it will be resized using WIC at load-time to provide scaling.
 
