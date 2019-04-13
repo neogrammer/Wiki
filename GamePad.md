@@ -215,12 +215,14 @@ if ( caps.IsConnected() )
 }
 ```
 
-## Universal Windows app Platform (UWP)
+## Universal Windows Platform (UWP) app
 When built for Windows 10, the GamePad class is implemented using a new WinRT ``Windows.Gaming.Input`` API similar to the Xbox One API. Here are a few notes:
 
 * Full support for ``leftTrigger`` and ``rightTrigger`` motors for the Xbox One controller on Windows.
 * ``MAX_PLAYER_COUNT`` is 8 rather than 4
-* Currently only the GAMEPAD type is reported for Xbox One controllers, and ``caps.id`` is always 0.
+* Only the GAMEPAD type is reported for Xbox One controllers (i.e. controllers that support the ``Windows::Gaming::Input::Gamepad`` interface)
+
+> ArcadeSticks, FlightSticks, and RacingWheels don't support the ``Windows::Gaming::Input::Gamepad`` interface, although they do support ``UINavigation``.
 
 > Technically the ``Windows.Gaming.Input`` API can support more than 8 devices, but the _DirectX Tool Kit_ ``GamePad`` implementation can only support up to ``MAX_PLAYER_COUNT``.
 
