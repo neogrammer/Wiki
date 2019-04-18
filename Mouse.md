@@ -90,7 +90,7 @@ void OnDpiChanged(DisplayInformation const & sender, IInspectable const & /*args
 > You only get the C++/WinRT ``SetWindow`` helper function if you have included ``winrt/Windows.UI.Core.h`` before you include ``Mouse.h``. Alternatively, you can always just do what the helper does for you:
 
 ```cpp
-mouse->SetWindow(reinterpret_cast<ABI::Windows::UI::Core::ICoreWindow*>(static_cast<::IUnknown*>(winrt::get_abi(window))))
+mouse->SetWindow(reinterpret_cast<ABI::Windows::UI::Core::ICoreWindow*>(winrt::get_abi(window)))
 ```
 # Basic use
 
