@@ -21,7 +21,7 @@ For exception safety, it is recommended you make use of the C++ [RAII](http://en
 
 # Integration
 
-## Win32 desktop
+## Windows desktop
 For Windows desktop applications, the application needs to make the appropriate calls during the main **WndProc** message processing:
 
 ```cpp
@@ -45,7 +45,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 }
 ```
 
-## UWP app
+## Universal Windows Platform (UWP) apps
 For Universal Windows Platform apps, you need to call **SetWindow** in the appropriate place.
 
 ### C++/CX (/ZW)
