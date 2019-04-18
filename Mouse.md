@@ -57,6 +57,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 ## Universal Windows Platform (UWP) apps
 You need to call **SetWindow** and **SetDpi** in the appropriate places.
 
+### C++/CX (/ZW)
+
 ```cpp
 void App::SetWindow(CoreWindow^ window)
 {
@@ -71,6 +73,27 @@ void App::OnDpiChanged(DisplayInformation^ sender, Object^ args)
 }
 ```
 
+### C++/WinRT
+
+```cpp
+void App::SetWindow(winrt::Windows::UI::Core::CoreWindow window window)
+{
+    mouse->SetWindow(window);
+
+    mouse->
+}
+
+void OnDpiChanged(DisplayInformation const & sender, IInspectable const & /*args*/)
+{
+    Mouse::SetDpi(sender.LogicalDpi());
+}
+```
+
+> You only get the C++/WinRT ``SetWindow`` helper function if you have included ``winrt/Windows.UI.Core.h`` before you include ``Mouse.h``. Alternatively, you can always just do what the helper does for you:
+
+```cpp
+mouse->SetWindow(reinterpret_cast<ABI::Windows::UI::Core::ICoreWindow*>(static_cast<::IUnknown*>(winrt::get_abi(window))))
+```
 # Basic use
 
 **GetState** queries the current state of the mouse.
