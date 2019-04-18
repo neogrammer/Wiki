@@ -60,14 +60,18 @@ You need to call **SetWindow** and **SetDpi** in the appropriate places.
 ### C++/CX (/ZW)
 
 ```cpp
-void App::SetWindow(CoreWindow^ window)
+void ViewProvider::SetWindow(CoreWindow^ window)
 {
     mouse->SetWindow(window);
 
-    mouse->SetDpi(DisplayInformation::GetForCurrentView()->LogicalDpi);
+    auto currentDisplayInformation = DisplayInformation::GetForCurrentView();
+    currentDisplayInformation->DpiChanged +=
+        ref new TypedEventHandler<DisplayInformation^, Object^>(this, &ViewProvider::OnDpiChanged);
+
+    mouse->SetDpi(currentDisplayInformation->LogicalDpi);
 }
 
-void App::OnDpiChanged(DisplayInformation^ sender, Object^ args)
+void ViewProvider::OnDpiChanged(DisplayInformation^ sender, Object^ args)
 {
     Mouse::SetDpi(sender->LogicalDpi);
 }
@@ -76,12 +80,17 @@ void App::OnDpiChanged(DisplayInformation^ sender, Object^ args)
 ### C++/WinRT
 
 ```cpp
-void App::SetWindow(winrt::Windows::UI::Core::CoreWindow window window)
+void ViewProvider::SetWindow(winrt::Windows::UI::Core::CoreWindow window window)
 {
     mouse->SetWindow(window);
+
+    auto currentDisplayInformation = DisplayInformation::GetForCurrentView();
+    currentDisplayInformation.DpiChanged({ this, &ViewProvider::OnDpiChanged });
+
+    mouse->SetDpi(currentDisplayInformation.LogicalDpi());
 }
 
-void OnDpiChanged(DisplayInformation const & sender, IInspectable const & /*args*/)
+void ViewProvider::OnDpiChanged(DisplayInformation const & sender, IInspectable const & /*args*/)
 {
     Mouse::SetDpi(sender.LogicalDpi());
 }
