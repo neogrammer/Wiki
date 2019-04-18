@@ -79,8 +79,6 @@ void App::OnDpiChanged(DisplayInformation^ sender, Object^ args)
 void App::SetWindow(winrt::Windows::UI::Core::CoreWindow window window)
 {
     mouse->SetWindow(window);
-
-    mouse->
 }
 
 void OnDpiChanged(DisplayInformation const & sender, IInspectable const & /*args*/)
