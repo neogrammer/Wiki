@@ -20,6 +20,8 @@ keyboard = std::make_unique<Keyboard>();
 For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr``.
 
 # Integration
+
+## Win32 desktop
 For Windows desktop applications, the application needs to make the appropriate calls during the main **WndProc** message processing:
 
 ```cpp
@@ -43,13 +45,31 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 }
 ```
 
+## UWP app
 For Universal Windows Platform apps, you need to call **SetWindow** in the appropriate place.
+
+### C++/CX (/ZW)
 
 ```cpp
 void App::SetWindow(CoreWindow^ window)
 {
     keyboard->SetWindow(window);
 }
+```
+
+### C++/WinRT
+
+```cpp
+void App::SetWindow(winrt::Windows::UI::Core::CoreWindow window window)
+{
+    keyboard->SetWindow(window);
+}
+```
+
+> You only get the C++/WinRT ``SetWindow`` helper function if you have included ``winrt/Windows.UI.Core.h`` before you include ``Keyboard.h``. Alternatively, you can always just do what the helper does for you:
+
+```cpp
+keyboard->SetWindow(reinterpret_cast<ABI::Windows::UI::Core::ICoreWindow*>(static_cast<::IUnknown*>(winrt::get_abi(window))))
 ```
 
 # Basic use
