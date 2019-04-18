@@ -51,7 +51,7 @@ For Universal Windows Platform apps, you need to call **SetWindow** in the appro
 ### C++/CX (/ZW)
 
 ```cpp
-void App::SetWindow(CoreWindow^ window)
+void ViewProvider::SetWindow(CoreWindow^ window)
 {
     keyboard->SetWindow(window);
 }
@@ -60,7 +60,7 @@ void App::SetWindow(CoreWindow^ window)
 ### C++/WinRT
 
 ```cpp
-void App::SetWindow(winrt::Windows::UI::Core::CoreWindow window window)
+void ViewProvider::SetWindow(winrt::Windows::UI::Core::CoreWindow window window)
 {
     keyboard->SetWindow(window);
 }
