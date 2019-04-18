@@ -69,7 +69,7 @@ void App::SetWindow(winrt::Windows::UI::Core::CoreWindow window window)
 > You only get the C++/WinRT ``SetWindow`` helper function if you have included ``winrt/Windows.UI.Core.h`` before you include ``Keyboard.h``. Alternatively, you can always just do what the helper does for you:
 
 ```cpp
-keyboard->SetWindow(reinterpret_cast<ABI::Windows::UI::Core::ICoreWindow*>(winrt::get_abi(window)))
+keyboard->SetWindow(reinterpret_cast<ABI::Windows::UI::Core::ICoreWindow*>(winrt::get_abi(window)));
 ```
 
 # Basic use
