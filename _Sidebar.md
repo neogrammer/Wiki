@@ -10,7 +10,6 @@
 * Visual Studio 2019
 * Visual Studio 2017
 * Visual Studio 2015
-* Xbox One
 
 # Related Projects
 
