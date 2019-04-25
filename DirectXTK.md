@@ -8,7 +8,7 @@ All the functions in the library are in the **DirectX** C++ namespace.
 using namespace DirectX;
 ```
 
-> The Xbox One exclusive application XBoxDDSTextureLoader functions are in the **Xbox** C++ namespace.
+> The Xbox One exclusive application *XBoxDDSTextureLoader* functions are in the **Xbox** C++ namespace.
 
 # Modules
 * [[Audio]] - low-level audio API using XAudio2
@@ -78,8 +78,19 @@ In your application's solution, right-click on the Solution and use **Add \ Exis
 
 <table>
  <tr>
+  <td>DirectXTK_Desktop_2019</td>
+  <td>Windows desktop applications for Windows 7 Service Pack 1 or later building with VS 2019 Community, Professional or higher with the Windows 10 SDK (17763).</td>
+ </tr>
+ <tr>
+  <td>DirectXTK_Desktop_2019_Win10</td>
+  <td>Windows desktop applications for Windows 10 building with VS 2019 Community, Professional or higher with the Windows 10 SDK (17763).<br /><I>Uses XAudio 2.9 and <code>Windows.Gaming.Input</code></I></td>
+ </tr>
+</table>
+
+<table>
+ <tr>
   <td>DirectXTK_Desktop_2017</td>
-  <td>Windows desktop applications for Windows Vista SP2 or later building with VS 2017 Community, Professional or higher with the Windows 10 SDK (17763).</td>
+  <td>Windows desktop applications for Windows 7 Service Pack 1  or later building with VS 2017 Community, Professional or higher with the Windows 10 SDK (17763).</td>
  </tr>
  <tr>
   <td>DirectXTK_Desktop_2017_Win10</td>
@@ -95,12 +106,12 @@ In your application's solution, right-click on the Solution and use **Add \ Exis
  </tr>
 </table>
 
-> For VS 2017, use of the [15.8 update](https://walbourn.github.io/vs-2017-15-8-update/) or [15.9 update](https://walbourn.github.io/vs-2017-15-9-update/) is recommended.
+> For VS 2017, use of the [15.9 update](https://walbourn.github.io/vs-2017-15-9-update/) is recommended.
 
 <table>
  <tr>
   <td>DirectXTK_Desktop_2015</td>
-  <td>Windows desktop applications for Windows Vista SP2 or later building with VS 2015 Express for Desktop, VS 2015 Community, VS 2015 Professional or higher.</td>
+  <td>Windows desktop applications for Windows 7 Service Pack 1  or later building with VS 2015 Express for Desktop, VS 2015 Community, VS 2015 Professional or higher.</td>
  </tr>
  <tr>
   <td>DirectXTK_Desktop_2015_Win10</td>
@@ -133,8 +144,8 @@ See also the [Visual C+ Team Blog](https://devblogs.microsoft.com/cppblog/flexib
 ## Using NuGet package manager
 Alternatively you can use NuGet to install one of the DirectX Tool Kit packages. Use *Project / Manage NuGet Packages...* then select "Online" and search for "DirectXTK".
 
-* Use Id: [directxtk_desktop_2015](https://www.nuget.org/packages/directxtk_desktop_2015/) for Windows desktop C++ applications building with VS 2015 or VS 2017 Community, VS 2015 or VS 2017 Professional or higher. _DirectXTK for Audio_ in this package requires XAudio 2.7 from the legacy DirectX SDK.
-* Use id: [directxtk_uwp](https://www.nuget.org/packages/directxtk_uwp/) for Universal Windows Platform apps for Windows 10 building with VS 2015 or VS 2017 Community, VS 2015 or VS 2017 Professional or higher. _DirectXTK for Audio_ in this package uses XAudio 2.9 in the Windows 10 SDK.
+* Use Id: [directxtk_desktop_2015](https://www.nuget.org/packages/directxtk_desktop_2015/) for Windows desktop C++ applications building with VS 2015, VS 2017, or VS 2019 Community/Professional or higher. _DirectXTK for Audio_ in this package uses XAudio 2.8 and requires Windows 8.x or later.
+* Use id: [directxtk_uwp](https://www.nuget.org/packages/directxtk_uwp/) for Universal Windows Platform apps for Windows 10 building with VS 2015, VS 2017 or VS 2019 Community/Professional or higher. _DirectXTK for Audio_ in this package uses XAudio 2.9 in the Windows 10 SDK.
 
 You should use the NuGet interface to check for updates if you have an older version installed.
 
