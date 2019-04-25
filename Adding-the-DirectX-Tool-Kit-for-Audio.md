@@ -5,11 +5,9 @@ First create a new project using the instructions from the first two lessons: [[
 [[Adding the DirectX Tool Kit]] which we will use for this lesson.
 
 # NuGet package manager
-If you used NuGet when [[Adding the DirectX Tool Kit]], then you already have support for _DirectX Tool Kit for Audio._. The id ``directxtk_desktop_2013`` and ``directxtk_desktop_2015`` packages are configured for Windows 7 and Windows Vista support, so it is making use of **XAudio 2.7**.
+If you used NuGet when [[Adding the DirectX Tool Kit]], then you already have support for _DirectX Tool Kit for Audio._.
 
-XAudio 2.7 requires the legacy DirectX SDK (June 2010). Due to some technical issues, it must be installed to the 'default' location of ``C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)``. To install the legacy DirectX SDK on your development system, see [this post](https://walbourn.github.io/announcement-directx-sdk-june-2010-is-live/) and be sure to read [this article](https://walbourn.github.io/known-issue-directx-sdk-june-2010-setup-and-the-s1023-error/) for a known issue with the installer.
-
-> The other platform NuGet packages do not require the legacy DirectX SDK as they always make use of XAudio 2.8 or later which is built into Windows 8.1 (``directxtk_windowsstore_8_1``), Windows 10 (``directxtk_uwp``, ``directxtk12_*``), Windows phone 8.1 (``directxtk_windowsphone_8_1``), and Xbox One.
+The id  ``directxtk_desktop_2015`` packages are configured for Windows 7 Service Pack 1 support for graphics & input, but make use of **XAudio 2.8** for _DirectX Tool Kit for Audio_. Therefore audio support with NuGet requires Windows 8 or later. If you need Windows 7 Service Pack 1 support for audio, then use *Project-to-project references* instead of NuGet. See [this blog post](https://walbourn.github.io/github-nuget-and-vso/) for details.
 
 Complete the steps in **Adding the headers** below including the additional configuration for XAudio 2.7.
 
@@ -17,14 +15,14 @@ Complete the steps in **Adding the headers** below including the additional conf
 If you used project-to-project references when [[Adding the DirectX Tool Kit]], then you need to add an additional _DirectX Tool Kit for Audio_ project to your solution. There are two choices depending on your platform target.
 
 ## XAudio 2.7
-XAudio 2.7 supports Windows Vista, Windows 7, or later. It is deployed by the legacy _DirectX End User Runtime_ package and requires the legacy DirectX SDK (June 2010) to develop with. Due to some technical issues, it must be installed to the 'default' location of ``C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)``. To install the legacy DirectX SDK on your development system, see [this post](https://walbourn.github.io/announcement-directx-sdk-june-2010-is-live/) and be sure to read [this article](https://walbourn.github.io/known-issue-directx-sdk-june-2010-setup-and-the-s1023-error/) for a known issue with the installer.
+XAudio 2.7 supports Windows 7 or later. It is deployed by the legacy _DirectX End User Runtime_ package and requires the legacy DirectX SDK (June 2010) to develop with. Due to some technical issues, it must be installed to the 'default' location of ``C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)``. To install the legacy DirectX SDK on your development system, see [this post](https://walbourn.github.io/announcement-directx-sdk-june-2010-is-live/) and be sure to read [this article](https://walbourn.github.io/known-issue-directx-sdk-june-2010-setup-and-the-s1023-error/) for a known issue with the installer.
 
 1. Right-click on your solution in the Solution Explorer, and select **Add** / **Existing Project...**
-1. Browse into the "DirectXTK\Audio" folder and select ``DirectXTKAudio_Desktop_2013_DXSDK.vcxproj`` or ``DirectXTKAudio_Desktop_2015_DXSDK.vcxproj``, click "Open"
+1. Browse into the "DirectXTK\Audio" folder and select ``DirectXTKAudio_Desktop_201x_DXSDK.vcxproj``, click "Open"
 1. If Visual Studio presents a "Security Warning", select "OK". Optional: Uncheck "Ask me for every project in this solution" first.
 1. Right-click on your project in the Solution Explorer, and select **Add** / **References...**
 1. Select "Add New Reference..."
-1. Check ``DirectXTKAudio_Desktop_2013_DXSDK.vcxproj`` or ``DirectXTKAudio_Desktop_2015_DXSDK.vcxproj`` and select "OK"
+1. Check ``DirectXTKAudio_Desktop_201x_DXSDK.vcxproj`` and select "OK"
 1. Select "OK"
 
 ![Add Reference (DirectX SDK)](https://github.com/Microsoft/DirectXTK/wiki/images/AddReferenceDX.png)
@@ -32,21 +30,19 @@ XAudio 2.7 supports Windows Vista, Windows 7, or later. It is deployed by the le
 Complete the steps in **Adding the headers** below including the additional configuration for XAudio 2.7.
 
 ## XAudio 2.8
-XAudio 2.8 is built into Windows 8.0 or later, and everything needed is include with the OS and the Windows 8.1 / Windows 10 SDK which is deployed with VS 2013 or later.
+XAudio 2.8 is built into Windows 8.0 or later, and everything needed is include with the OS and the Windows 8.1 / Windows 10 SDK.
 
 1. Right-click on your solution in the Solution Explorer, and select **Add** / **Existing Project...**
-1. Browse into the "DirectXTK\Audio" folder and select ``DirectXTKAudio_Desktop_2013_Win8.vcxproj`` or ``DirectXTKAudio_Desktop_2015_Win8.vcxproj``, click "Open"
+1. Browse into the "DirectXTK\Audio" folder and select ``DirectXTKAudio_Desktop_201x_Win8.vcxproj``, click "Open"
 1. If Visual Studio presents a "Security Warning", select "OK". Optional: Uncheck "Ask me for every project in this solution" first.
 1. Right-click on your project in the Solution Explorer, and select **Add** / **References...**
 1. Select "Add New Reference..."
-1. Check ``DirectXTKAudio_Desktop_2013_Win8.vcxproj`` or ``DirectXTKAudio_Desktop_2015_Win8.vcxproj`` and select "OK"
+1. Check ``DirectXTKAudio_Desktop_201x_Win8.vcxproj`` and select "OK"
 1. Select "OK"
 
 ![Add Reference (Windows 8)](https://github.com/Microsoft/DirectXTK/wiki/images/AddReferenceWin8.png)
 
-> The other platform DirectX Tool Kit vcxproj files already include _DirectX Tool Kit for Audio_ as they always make use of XAudio 2.8 or later which is built into Windows 8.1 (``DirectXTK_Windows81.vcxproj``), Windows 10 (``DirectXTK_Windows10.vcxproj``, ``DirectXTK_Desktop_2015_Win10.vcxproj``), Windows phone 8.1 (``DirectXTK_WindowsPhone81.vcxproj``), and Xbox One (``DirectXTK_XboxOneXDK_2015.vcxproj``).
-
-> The universal Windows platform with Windows 10 (``DirectXTK_Windows10``, ``DirectXTK12_Windows10``) includes XAudio 2.9, and the Windows desktop version for Windows 10 (``DirectXTK_Desktop_2015_Win10``, ``DirectXTK12_*_Win10``) includes using XAudio 2.9 as well. Both require building with the Windows 10 SDK.
+> The other platform DirectX Tool Kit vcxproj files already include _DirectX Tool Kit for Audio_ as they always make use of XAudio 2.8 or later which is built into Windows 10 (``DirectXTK*_Windows10.vcxproj``, ``DirectXTK*_Desktop_201x_Win10.vcxproj``,) and Xbox One (``DirectXTK*_XboxOneXDK_201x.vcxproj``).
 
 Complete the steps in **Adding the headers** below including the additional configuration for XAudio 2.8.
 
@@ -69,7 +65,7 @@ Now that we have the _DirectX Tool Kit for Audio_ usable in your project, the ne
 ```
 
 ## XAudio 2.7
-If you are using XAudio 2.7 for Windows 7 and Windows Vista compatibility, we also need to add the DirectX SDK include and library paths to your project. First go to **Project** / **Properties** and select "VC++ Directories" on the left. Then set Configuration to "All Configurations" and Platform to "Win32" (note this is called "x86" in VS 2015). Add to the _end_ of these paths:
+If you are using XAudio 2.7 for Windows 7 compatibility, we also need to add the legacy DirectX SDK include and library paths to your project. First go to **Project** / **Properties** and select "VC++ Directories" on the left. Then set Configuration to "All Configurations" and Platform to "Win32" (note this is called "x86" in VS 2015). Add to the _end_ of these paths:
 * **Include Directories:** ``;$(DXSDK_DIR)Include``
 * **Library Directories:** ``;$(DXSDK_DIR)Lib\x86``
 
@@ -85,7 +81,7 @@ Click "Apply".
 
 ![VC++ Directories (x64)](https://github.com/Microsoft/DirectXTK/wiki/images/settingsDXx64.png)
 
-It is important that the legacy DirectX SDK paths be after the existing path since are making use of the Windows 8.1 / VS 2013. See [Where is the DirectX SDK?](https://docs.microsoft.com/en-us/windows/desktop/directx-sdk--august-2009-) for more details.
+It is important that the legacy DirectX SDK paths be after the existing path since are making use of the Windows 8.1 / 10 SDK. See [Where is the DirectX SDK?](https://docs.microsoft.com/en-us/windows/desktop/directx-sdk--august-2009-) for more details.
 
 > _Troubleshooting:_ If you get a compilation error indicating you are missing ``comdecl.h``, then you have incorrectly configured your VC++ Directory include paths. If you get a link error indicating you are missing ``x3daudio.lib`` then you incorrectly configured your VC++ Directory library paths.
 

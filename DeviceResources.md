@@ -1,6 +1,6 @@
 In [[the basic game loop]] lesson and other tutorials, we are making use of the **Direct3D 11 Game** VS template which has all the relevant Direct3D code in the ``Game`` class including creating the device and swap chain. This makes it easy to teach with, and for the reader to see all the code in one place. This, however, does result in a lot of 'boiler-plate' code in the main ``Game`` class which could be distracting in larger projects & samples.
 
-There is therefore a "DR" variant of each of the Direct3D Game VS templates in the [VS 2015 / VS 2017](https://github.com/walbourn/directx-vs-templates/raw/master/VSIX/Direct3DUWPGame.vsix) VSIX package.
+There is therefore a "DR" variant of each of the Direct3D Game VS templates in the [VS 2015/2017/2019](https://github.com/walbourn/directx-vs-templates/raw/master/VSIX/Direct3DUWPGame.vsix) VSIX package.
 
 > The standard Universal Windows Platform app, Windows 8 Store DirectX, and Windows phone 8 VS templates make use of a similar ``DeviceResources`` abstraction.
 
@@ -287,7 +287,9 @@ The DeviceResources class methods are intended to be called from the main presen
 # Platform notes
 
 ## Windows desktop apps
-The **DeviceResources** implementation is designed to support Windows Vista SP2 and Windows 7 RTM with DirectX 11.0, but also supports Direct3D 11.1 on [Windows 7 SP 1](https://walbourn.github.io/directx-11-1-and-windows-7/) or Windows 8 which provides [significant improvements](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/direct3d-11-1-features) such as simplified interop with Direct2D/DirectWrite. Therefore, you should generally prefer to use **GetD3DDevice** / **GetD3DDeviceContext** / **GetSwapChain**, but where you explicitly need 11.1 features you call **GetD3DDevice1** / **GetD3DDeviceContext1** / **GetSwapChain1**. These will be nullptr if the system only has the DirectX 11.0 Runtime.
+The **DeviceResources** implementation is designed to support Direct3D 11.1 on [Windows 7 Service Pack 1](https://walbourn.github.io/directx-11-1-and-windows-7/), Windows 8.x, or later which provides [significant improvements](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/direct3d-11-1-features) such as simplified interop with Direct2D/DirectWrite.
+
+> Older versions of this DeviceResources supported Windows Vista Service Pack 2 and Windows 7 RTM with DirectX 11.0. The implementation has since been changed to require DirectX 11.1 to simplify the code. If you need details on the differences, see [this blog post](https://walbourn.github.io/anatomy-of-direct3d-11-create-device/)
 
 ## Universal Windows Platform apps
 The UWP version of **DeviceResources** always uses [DirectX 11.3 interfaces](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/direct3d-11-3-features).

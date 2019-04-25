@@ -31,15 +31,13 @@ For debugging exceptions thrown by the _DirectX Tool Kit_, you should enable the
 
 > For some more detail on how the Visual Studio debugger deals with exceptions, read [this](https://devblogs.microsoft.com/devops/understanding-exceptions-while-debugging-with-visual-studio/) blog post.
 
-> In Visual Studio 2015/2017, the exception debugging options changed compared to VS 2013; see [this](https://blogs.msdn.microsoft.com/visualstudioalm/2015/02/23/the-new-exception-settings-window-in-visual-studio-2015/) blog post.
-
 # Audience
 These tutorials are written with game development in mind as the target application since games are an excellent fit for the 'immersive DirectX app' model. Keep in mind, however, that the majority of the functionality in the _DirectX Tool Kit_ is applicable to DirectX graphics programming in general for both game and non-game applications.
 
 # Software Setup
 For learning purposes, these instructions are going to focus on the following setup:
 
-* Visual Studio 2015 [Update 3](https://walbourn.github.io/visual-studio-2015-update-3/) or Visual Studio 2017 ([15.7 update](https://walbourn.github.io/vs-2017-15-7-update/) or [15.8 update](https://walbourn.github.io/vs-2017-15-8-update/)) Community, Professional, Premium, or Ultimate
+* Visual Studio 2015 [Update 3](https://walbourn.github.io/visual-studio-2015-update-3/) , Visual Studio 2017 ([15.9 update](https://walbourn.github.io/vs-2017-15-9-update/)), or VS 2019 Community, Professional, Premium, or Ultimate
 * Windows 7 Service Pack 1, Windows 8.1, or Windows 10
 
 We will be using a Win32 desktop application project template in order to support developers using Windows 7, but all these techniques and APIs apply to Universal Windows Platform apps and Xbox One as well.
@@ -49,7 +47,7 @@ We will be using a Win32 desktop application project template in order to suppor
 ## Visual Studio 2015
 Be sure to install Visual C++ which requires using the _Custom_ install as it's not part of the _Typical_ install. See the [Visual C++ Team Blog](https://devblogs.microsoft.com/cppblog/setup-changes-in-visual-studio-2015-affecting-c-developers/) for details.
 
-## Visual Studio 2017
+## Visual Studio 2017 / 2019
 When using the [new lightweight installer](https://devblogs.microsoft.com/cppblog/the-lightweight-visual-studio-15-installer/) be sure to select the appropriate workloads. Here are the recommended options to select:
 
 * Workload: _Game development with C++_

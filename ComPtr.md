@@ -163,7 +163,7 @@ ComPtr goes through some lengths to hide the base IUnknown methods ``AddRef``, `
 # Platform notes
 The bulk of the Windows Runtime Template Library (WRL) is intended to make it easier to use the new WinRT style APIs introduced with Windows Store and Universal Windows Platform apps. It is a pure C++ template library and does not make use of the C++/CX language extensions, which are themselves another way to consume WinRT APIs from C++. You can, however, mix usage of the two easily and most C++/CX programs will use at least ``Microsoft::WRL::ComPtr`` for managing COM objects for non-WinRT APIs such as Direct3D.
 
-Because WRL is a pure C++ template library, it has no particular platform support requirements beyond being in the Windows 8.x or Windows 10 SDKs. You can therefore freely use it in Windows desktop applications built for Windows Vista, Windows 7, Windows 8.x, or Windows 10 as well as in Windows Store, Windows phone, Xbox One, and Universal Windows Platform apps.
+Because WRL is a pure C++ template library, it has no particular platform support requirements beyond being in the Windows 8.x or Windows 10 SDKs. You can therefore freely use it in Windows desktop applications built for Windows 7, Windows 8.x, or Windows 10 as well as in Windows Store, Windows phone, Xbox One, and Universal Windows Platform apps.
 
 > The Windows 8.0 SDK and later that includes WRL does not support targeting Windows XP / Windows Server 2003. For these older operating systems you have to make use of the Windows 7.1A SDK instead. See [this blog post](https://walbourn.github.io/visual-studio-2012-update-1/) for more details.
 

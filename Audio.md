@@ -153,26 +153,25 @@ Each instance of a SoundEffectInstance will allocate it's own source voice when 
 See [[AudioEngine]] for more information.
 
 # Platform support
-Windows 8.x, Windows 10, Windows phone 8.x, and Xbox One all include XAudio 2.8 or later. Therefore, the standard ``DirectXTK.lib`` includes _DirectXTK for Audio_ for all these platforms:
-* *DirectXTK_Desktop_2015_Win10*
-* *DirectXTK_Desktop_2017_Win10*
-* *DirectXTK_Windows10*
-* *DirectXTK_Windows10_2015*
-* *DirectXTK_XboxOneXDK_2015*
-* *DirectXTK_XboxOneXDK_2017*
+Windows 8.x, Windows 10, and Xbox One all include XAudio 2.8 or later. Therefore, the standard ``DirectXTK.lib`` includes _DirectXTK for Audio_ for all these platforms:
+* *DirectXTK*_Desktop_201x_Win10*
+* *DirectXTK*_Windows10*
+* *DirectXTK*_Windows10_201x*
+* *DirectXTK*_XboxOneXDK_201x*
 
-For Windows desktop applications targeting Windows 8.x or later, you can make use of XAudio 2.8. The ``DirectXTKAudioWin8.lib`` contains the XAudio 2.8 version of DirectXTK for Audio, while ``DirectXTK.lib`` for Windows desktop contains only the math/graphics components. To support Windows desktop applications on Windows 7 and Windows Vista, we must make use XAudio 2.7, the legacy DirectX SDK, and the legacy DirectX End-User Runtime Redistribution packages (aka DirectSetup). The ``DirectXTKAudioDX.lib`` is the XAudio 2.7 version of DirectXTK for Audio.
+For Windows desktop applications targeting Windows 8.x or later, you can make use of XAudio 2.8. The ``DirectXTKAudioWin8.lib`` contains the XAudio 2.8 version of DirectXTK for Audio, while ``DirectXTK.lib`` for Windows desktop contains only the math/graphics components. To support Windows desktop applications on Windows 7, we must make use XAudio 2.7, the legacy DirectX SDK, and the legacy DirectX End-User Runtime Redistribution packages (aka DirectSetup). The ``DirectXTKAudioDX.lib`` is the XAudio 2.7 version of _DirectXTK for Audio_.
 
 ## XAudio 2.7 vs. 2.8
-DirectXTK_Desktop_2015 and DirectXTK_Desktop_2013 do not include _DirectXTK for Audio_. To add _DirectXTK for Audio_ support for a Win32 desktop application, you must also add one of the following projects from the ``Audio`` folder of the distribution to your solution and **Add a Reference** to it (see [[DirectXTK]] for more details).
+DirectXTK_Desktop_201x do not include _DirectXTK for Audio_. To add _DirectXTK for Audio_ support for a Win32 desktop application, you must also add one of the following projects from the ``Audio`` folder of the distribution to your solution and **Add a Reference** to it (see [[DirectXTK]] for more details).
 
 When targeting Windows 8.x or later:
 * *DirectXTKAudio_Desktop_2015_Win8* - DirectXTK for Audio using VS 2015 and XAudio 2.8
 * *DirectXTKAudio_Desktop_2017_Win8* - DirectXTK for Audio using VS 2017 and XAudio 2.8
+* *DirectXTKAudio_Desktop_2019_Win8* - DirectXTK for Audio using VS 2019 and XAudio 2.8
 
-When targeting Windows Vista or Windows 7:
-* *DirectXTKAudio_Desktop_2015_DXSDK* - DirectXTK for Audio project for VS 2015 + Windows 8.1 SDK + legacy DirectXTK using XAudio 2.7
-* *DirectXTKAudio_Desktop_2017_DXSDK* - DirectXTK for Audio project for VS 2017 + Windows 8.1 SDK + legacy DirectXTK using XAudio 2.7
+When targeting Windows 7:
+* *DirectXTKAudio_Desktop_2015_DXSDK* - DirectXTK for Audio project for VS 2015 + Windows 8.1 / 10 SDK + legacy DirectXTK using XAudio 2.7
+* *DirectXTKAudio_Desktop_2017_DXSDK* - DirectXTK for Audio project for VS 2017 + Windows 10 SDK + legacy DirectXTK using XAudio 2.7
 
 [XAudio2 Versions](https://docs.microsoft.com/en-us/windows/desktop/xaudio2/xaudio2-versions)
 
@@ -180,15 +179,17 @@ When targeting Windows Vista or Windows 7:
 
 [Where is the DirectX SDK?](https://docs.microsoft.com/en-us/windows/desktop/directx-sdk--august-2009-)
 
-DirectXTK makes use of the latest Direct3D 11.1 headers available in the Windows 8.x SDK, and there are a number of file conflicts between the Windows 8.x SDK and the legacy DirectX SDK. Therefore, when building for down-level support with XAudio 2.7, ``Audio.h`` explicitly includes the DirectX SDK version of XAudio2 headers with a full path name. These reflect the default install locations, and if you have installed it elsewhere you will need to update this header. The ``*_DXSDK.vcxproj`` files use the ``DXSDK_DIR`` environment variable, so only the ``Audio.h`` references need updating for an alternative location.
+DirectXTK makes use of the latest Direct3D 11.1 headers available in the Windows 8.x / 10 SDK, and there are a number of file conflicts between the Windows 8.x / 10 SDK and the legacy DirectX SDK. Therefore, when building for down-level support with XAudio 2.7, ``Audio.h`` explicitly includes the DirectX SDK version of XAudio2 headers with a full path name. These reflect the default install locations, and if you have installed it elsewhere you will need to update this header. The ``*_DXSDK.vcxproj`` files use the ``DXSDK_DIR`` environment variable, so only the ``Audio.h`` references need updating for an alternative location.
 
-    // Using XAudio 2.7 requires the DirectX SDK
-    #include <C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\comdecl.h>
-    #include <C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xaudio2.h>
-    #include <C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xaudio2fx.h>
-    #pragma warning(push)
-    #pragma warning( disable : 4005 )
-    #include <C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\x3daudio.h>
+```cpp
+// Using XAudio 2.7 requires the DirectX SDK
+#include <C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\comdecl.h>
+#include <C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xaudio2.h>
+#include <C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xaudio2fx.h>
+#pragma warning(push)
+#pragma warning( disable : 4005 )
+#include <C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\x3daudio.h>
+```
 
 > The NuGet package [directxtk_desktop_2015](https://www.nuget.org/packages/directxtk_desktop_2015/) is designed for Windows 7 compatibility for the main library, but any use of _DirectX Tool Kit for Audio_ uses XAudio 2.8. See [this blog post](https://walbourn.github.io/github-nuget-and-vso/) for details.
 

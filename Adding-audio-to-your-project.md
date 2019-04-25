@@ -66,7 +66,7 @@ Build and run. You won't hear anything yet, but we do have XAudio2 up and runnin
 
 > _Troubleshooting:_ If you get the link  error 'unresolved external symbol' for ``CreateFX``, ``X3DAudioInitialize``, or ``X3DAudioCalculate``, you may have incorrectly configured the x86 vs. x64 versions of the VC++ Directory library paths in the previous lesson.
 
-> _Troubleshooting:_ When using the debug version of XAudio 2.7 on Windows Vista or Windows 7, you can get a break-point exception thrown even with a valid device. The debug output window message will be the following. You can safely ignore this and click "Continue".
+> _Troubleshooting:_ When using the debug version of XAudio 2.7 on Windows 7, you can get a break-point exception thrown even with a valid device. The debug output window message will be the following. You can safely ignore this and click "Continue".
 
     ################################################################################
     ### XAUDIO2: enginerendererconnection.cpp:334:

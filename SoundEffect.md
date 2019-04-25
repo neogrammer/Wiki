@@ -129,7 +129,7 @@ XAudio 2.9 on Windows 10 supports PCM, ADPCM, and xWMA.
 
 XAudio 2.8 on Windows 8.x and Windows phone support PCM and ADPCM formats.
 
-XAudio 2.7 on Windows Vista or later via the legacy DirectX End-User Runtime Redistribution (aka DirectSetup) supports PCM, ADPCM, and xWMA.
+XAudio 2.7 on Windows 7 or later via the legacy DirectX End-User Runtime Redistribution (aka DirectSetup) supports PCM, ADPCM, and xWMA.
 
 XAudio on Xbox One supports PCM, ADPCM, and xWMA. Xbox One exclusive app developers can also make use of XMA2.
 
