@@ -39,6 +39,11 @@ void XM_CALLCONV DrawRay(DirectX::PrimitiveBatch<DirectX::VertexPositionColor>* 
 void XM_CALLCONV DrawTriangle(DirectX::PrimitiveBatch<DirectX::VertexPositionColor>* batch,
     DirectX::FXMVECTOR pointA, DirectX::FXMVECTOR pointB, DirectX::FXMVECTOR pointC,
     DirectX::GXMVECTOR color = DirectX::Colors::White);
+
+void XM_CALLCONV DrawQuad(DirectX::PrimitiveBatch<DirectX::VertexPositionColor>* batch,
+    DirectX::FXMVECTOR pointA, DirectX::FXMVECTOR pointB,
+    DirectX::FXMVECTOR pointC, DirectX::GXMVECTOR pointD,
+    DirectX::HXMVECTOR color = DirectX::Colors::White);    
 ```
 
 [DebugDraw.cpp](https://github.com/Microsoft/DirectXTK/wiki/DebugDraw.cpp)
@@ -313,6 +318,30 @@ void XM_CALLCONV DrawTriangle(PrimitiveBatch<VertexPositionColor>* batch,
     XMStoreFloat4(&verts[3].color, color);
 
     batch->Draw(D3D_PRIMITIVE_TOPOLOGY_LINESTRIP, verts, 4);
+}
+
+
+void XM_CALLCONV DX::DrawQuad(PrimitiveBatch<VertexPositionColor>* batch,
+    FXMVECTOR pointA,
+    FXMVECTOR pointB,
+    FXMVECTOR pointC,
+    GXMVECTOR pointD,
+    HXMVECTOR color)
+{
+    VertexPositionColor verts[5];
+    XMStoreFloat3(&verts[0].position, pointA);
+    XMStoreFloat3(&verts[1].position, pointB);
+    XMStoreFloat3(&verts[2].position, pointC);
+    XMStoreFloat3(&verts[3].position, pointD);
+    XMStoreFloat3(&verts[4].position, pointA);
+
+    XMStoreFloat4(&verts[0].color, color);
+    XMStoreFloat4(&verts[1].color, color);
+    XMStoreFloat4(&verts[2].color, color);
+    XMStoreFloat4(&verts[3].color, color);
+    XMStoreFloat4(&verts[4].color, color);
+
+    batch->Draw(D3D_PRIMITIVE_TOPOLOGY_LINESTRIP, verts, 5);
 }
 ```
 
