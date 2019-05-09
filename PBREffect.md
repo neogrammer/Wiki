@@ -43,7 +43,7 @@ This effect requires ``SV_Position``, ``NORMAL``, and ``TEXCOORD0``. It does not
 
 * **SetEmissiveTexture**: Associates an emissive texture with the effect. This uses the sampler in slot 0. Can be set to nullptr to remove a reference.
 
-* **SetSurfaceTextures**: Associates a albedo texture, normal texture, and roughness/metalness/ambient-occlusion (RMA) texture with the effect in one function call. This uses the sampler in slot 0. Can be set to nullptr to remove a reference.
+* **SetSurfaceTextures**: Associates a albedo texture, normal texture, and roughness/metalness/ambient-occlusion (RMA) texture with the effect in one method. This uses the sampler in slot 0. Can be set to nullptr to remove a reference.
 
 * **SetIBLTextures**: Associates a radiance and irradiance texture with the effect. The number of miplevels in the radiance texture is also required as this is used to compute roughness. This uses the sampler in slot 1. Can be set to nullptr to remove a reference.
 
