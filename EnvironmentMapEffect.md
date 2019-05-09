@@ -30,11 +30,11 @@ This effect requires ``SV_Position``, ``NORMAL`` and ``TEXCOORD``.
 
 * **SetEmissiveColor**: Sets the emissive color of the effect. Defaults to black (0,0,0).
 
-* **SetAlpha**: Sets the alpha (transparency) of the effect. Defaults to 1 (fully opaque).
+* **SetAlpha**: Sets the alpha (transparency) of the effect. Defaults to 1 (fully opaque). This value is also used for binning opaque vs. transparent geometry.
 
 * **SetColorAndAlpha**: Sets the diffuse color of the effect and the alpha (transparency).
 
-* **SetTexture**: Associates a texture shader resource view with the effect for the diffuse layer. Can be set to nullptr to remove a reference.
+* **SetTexture**: Associates a texture shader resource view with the effect for the diffuse layer. Can be set to nullptr to remove a reference. Can optionally include an alpha channel as well.
 
 * **SetEnvironmentMap**: Associates the cubemap shader resource view with the effect. Can be set to nullptr to remove a reference.
 
