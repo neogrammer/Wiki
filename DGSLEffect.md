@@ -43,7 +43,7 @@ DGSLEffect is typically used with ``VertexPositionNormalTangentColorTexture`` or
 
 * **DisableSpecular**: Disables the specular lighting for the effect. Sets the color to black (0,0,0) and power to 1.
 
-* **SetAlpha**: Sets the alpha (transparency) of the effect. Defaults to 1 (fully opaque).
+* **SetAlpha**: Sets the alpha (transparency) of the effect. Defaults to 1 (fully opaque). This value is also used for binning opaque vs. transparent geometry.
 
 * **SetColorAndAlpha**: Sets the diffuse color of the effect and the alpha (transparency).
 
