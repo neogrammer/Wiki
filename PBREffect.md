@@ -27,7 +27,7 @@ This effect requires ``SV_Position``, ``NORMAL``, and ``TEXCOORD0``. It does not
 
 # Properties
 
-* **SetAlpha**: Sets the alpha (transparency) of the effect. Defaults to 1 (fully opaque). This value is primarily used for binning opaque vs. transparent geometry when using the albedo texture which contains an alpha channel.
+* **SetAlpha**: Sets the alpha (transparency) of the effect. Defaults to 1 (fully opaque). This value is also used for binning opaque vs. transparent geometry.
 
 * **SetConstantAlbedo**, **SetConstantMetallic**, and **SetConstantRoughness**: Used to set the constant value when not using texturing for the albedo, roughness, and metalness information.
 
