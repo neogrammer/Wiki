@@ -35,15 +35,15 @@ This effect requires ``SV_Position``, ``NORMAL``, and ``TEXCOORD0``. It does not
 
 * **SetNormalTexture**: Sets the normal texture. This uses the sampler in slot 0. Can be set to nullptr to remove a reference.
 
+> See [[NormalMapEffect|NormalMapEffect#normal-maps]] for more details about the normal map texture.
+
 * **SetRMATexture**: Sets the roughness/metalness/ambient-occlusion (RMA) texture. This uses the sampler in slot 0. Can be set to nullptr to remove a reference.
+
+> The RMA texture uses the [glTF2](https://github.com/KhronosGroup/glTF) standard order: The _metalness_ is in the B channel, _roughness_ in the G channel, and _ambient occlusion_ in the R channel. If there's no ambient occlusion, then the R channel should be set to all 1.
 
 * **SetEmissiveTexture**: Associates an emissive texture with the effect. This uses the sampler in slot 0. Can be set to nullptr to remove a reference.
 
 * **SetSurfaceTextures**: Associates a albedo texture, normal texture, and roughness/metalness/ambient-occlusion (RMA) texture with the effect in one function call. This uses the sampler in slot 0. Can be set to nullptr to remove a reference.
-
-> See [[NormalMapEffect|NormalMapEffect#normal-maps]] for more details about the normal map texture.
-
-> The RMA texture uses the [glTF2](https://github.com/KhronosGroup/glTF) standard order: The _metalness_ is in the B channel, _roughness_ in the G channel, and _ambient occlusion_ in the R channel. If there's no ambient occlusion, then the R channel should be set to all 1.
 
 * **SetIBLTextures**: Associates a radiance and irradiance texture with the effect. The number of miplevels in the radiance texture is also required as this is used to compute roughness. This uses the sampler in slot 1. Can be set to nullptr to remove a reference.
 
