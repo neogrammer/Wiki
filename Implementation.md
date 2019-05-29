@@ -19,7 +19,8 @@ DirectXTK's implementation makes extensive use of the [pImpl idiom](http://en.wi
 class SpriteBatch
 {
 public:
-    SpriteBatch(...);
+    SpriteBatch(...) noexcept(false);
+
     SpriteBatch(SpriteBatch&& moveFrom);
     SpriteBatch& operator= (SpriteBatch&& moveFrom);
 
@@ -39,7 +40,9 @@ private:
 
 This also allows use to allocate the pImpl class internally using ``_aligned_malloc(x,16);`` so that we can use the DIrectXMath aligned ``XMVECTOR`` and ``XMMATRIX`` types directly in the implementation across all architectures.
 
-> The class destructor can't be inline and must be implemented in the ``.cpp`` file since ``unique_ptr`` needs the real ``Impl`` type size.
+* The class default constructor can throw an exception since it creates a Impl instance, hence the ``noexcept(false)``.
+
+* The class destructor can't be inline and must be implemented in the ``.cpp`` file since ``unique_ptr`` needs the real ``Impl`` type size.
 
 # Calling-conventions
 The ``std::function`` is used for callbacks as a general pattern so that client code can provide function pointers, lambdas, functors, etc. To support building with a mix of calling conventions, we need to annotate the ``std::function`` correctly.
