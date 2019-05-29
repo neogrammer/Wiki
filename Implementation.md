@@ -38,7 +38,7 @@ private:
 };
 ```
 
-This also allows use to allocate the pImpl class internally using ``_aligned_malloc(x,16);`` so that we can use the DIrectXMath aligned ``XMVECTOR`` and ``XMMATRIX`` types directly in the implementation across all architectures.
+This also allows the implementation to allocate the pImpl class internally using ``_aligned_malloc(x,16);`` so that we can use the DirectXMath aligned ``XMVECTOR`` and ``XMMATRIX`` types directly in the implementation across all architectures.
 
 * The class default constructor can throw an exception since it creates a Impl instance, hence the ``noexcept(false)``.
 
