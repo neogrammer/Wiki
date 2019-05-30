@@ -171,7 +171,7 @@ Because WRL is a pure C++ template library, it has no particular platform suppor
 
 Making use of the older ``_com_ptr_t`` Visual Studio smart-pointer class which was originally intended as a non-ATL option is not recommended.
 
-If using [C++/WinRT projections](https://github.com/Microsoft/cppwinrt), you could also choose to use ``winrt::com_ptr`` instead of ``Microsoft::WRL:ComPtr``.
+If using [C++/WinRT projections](https://docs.microsoft.com/en-us/windows/uwp/cpp-and-winrt-apis/), you could also choose to use ``winrt::com_ptr`` instead of ``Microsoft::WRL:ComPtr``.
 
 Note that WRL is not supported for Managed C++ (``/clr``) projects. In that case you should make use of ATL's ``CComPtr`` instead keeping in mind the difference in behavior of ``operator&``.
 
