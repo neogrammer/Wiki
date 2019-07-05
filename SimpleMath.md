@@ -29,6 +29,8 @@ All the functions in SimpleMath are in the **DirectX::SimpleMath** C++ namespace
 using namespace DirectX::SimpleMath;
 ```
 
+> C++ operator overloads will only work if the operator is in the current namespace scope. A similar issue happens with the DirectXMath ``XMVECTOR`` and ``XMMATRIX`` operator overloads if you don't have ``using namespace DirectX;``.
+
 # Why wrap DirectXMath?
 
 DirectXMath provides highly optimized vector and matrix math functions, which take advantage of SSE SIMD intrinsics when compiled for x86/x64, or the ARM NEON instruction set when compiled for an ARM platform such as Windows RT or Windows Phone. The downside of being designed for efficient SIMD usage is that DirectXMath can be somewhat complicated to work with. Developers must be aware of correct type usage (understanding the difference between SIMD register types such as ``XMVECTOR`` vs. memory storage types such as ``XMFLOAT4``), must take care to maintain correct alignment for SIMD heap allocations, and must carefully structure their code to avoid accessing individual components from a SIMD register. This complexity is necessary for optimal SIMD performance, but sometimes you just want to get stuff working without so much hassle!
