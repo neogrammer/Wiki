@@ -25,6 +25,9 @@ For exception safety, it is recommended you make use of the C++ [RAII](http://en
 The application needs to call **SetWindow** and make calls during the main ``WndProc`` message processing to **ProcessMessage**:
 
 ```cpp
+#include <windows.h>
+#include "Mouse.h"
+
 mouse->SetWindow(hWnd);
 
 ...
