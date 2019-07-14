@@ -260,6 +260,8 @@ m_toneMap->Process(context);
 ...
 ```
 
+> If you have difficulty getting HDR10 output to work on your system, be sure to read [HDR and WCG color settings in Windows 10](https://support.microsoft.com/en-us/help/4040263/windows-10-hdr-advanced-color-settings)
+
 **Next lessons:** [[Game controller input]], [[Using the SimpleMath library]], [[Adding the DirectX Tool Kit for Audio]]
 
 # Further reading
