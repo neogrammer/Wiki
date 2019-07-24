@@ -11,14 +11,18 @@ if (FAILED(hr))
 
 > Not all Direct3D functions return ``HRESULT``. Many of them return ``void`` because they can't fail, fail silently, or the failure will be reported on the next ``Present``.
 
-``DX::ThrowIfFailed`` should be used whenever a failure is fatal and should result in 'fast-fail' of the application. Otherwise, traditional ``if FAILED(hr)`` or ``if SUCCEEDED(hr)`` patterns should be used to handle failures that the application can recover from (i.e. are not fatal).
+## Fast Fail
+``DX::ThrowIfFailed`` should be used whenever a failure is fatal and should result in 'fast-fail' of the application. 
 
 ```cpp
 DX::ThrowIfFailed(m_d3dDevice->CreateTexture2D(&depthStencilDesc,
     nullptr, &depthStencil));
 ```
 
-If you want to handle a specific HRESULT, then you might do something like:
+> A "fast-fail" failure is an error case you never expect to happen in the real world, but if it does happen you want to make sure the process dies quickly so as to avoid 'hiding' the real bug, hardware failure, or other failure that your program just can't handle. In the case above, for example, you are assuming you aren't passing invalid parameters to the function (``E_INVALIDARG``) because you've tested it on a range of supported Direct3D feature level devices, and that you won't run out of memory (``E_OUTOFMEMORY``) because you scale your content appropriately.
+
+## Runtime error handling
+Otherwise, traditional ``if FAILED(hr)`` or ``if SUCCEEDED(hr)`` patterns should be used to handle failures that the application can recover from (i.e. are not fatal). If you want to handle a specific HRESULT, then you might do something like:
 
 ```cpp
 HRESULT hr = m_d3dDevice->CreateTexture2D(&depthStencilDesc,
@@ -39,7 +43,7 @@ if (FAILED(hr))
     // Error handling
 ```
 
-> The legacy [DXUT](https://github.com/Microsoft/DXUT) framework makes use of macros like ``V`` and ``V_RETURN`` as a pattern for dealing with ``HRESULT`` values, but these make assumptions about the surrounding functions and are really only suited to general development.
+> The legacy [DXUT](https://github.com/Microsoft/DXUT) framework makes use of macros like ``V`` and ``V_RETURN`` as a pattern for dealing with ``HRESULT`` values, but these make assumptions about the surrounding functions and are really only suited to sample development.
 
 # Basic version
 
@@ -104,4 +108,3 @@ namespace DX
 * [C++ Exception Handling](https://docs.microsoft.com/en-us/cpp/cpp/cpp-exception-handling)
 * [Managing Exceptions with the Debugger](https://docs.microsoft.com/en-us/visualstudio/debugger/managing-exceptions-with-the-debugger)
 * [Error Handling in COM](https://docs.microsoft.com/en-us/windows/desktop/LearnWin32/error-handling-in-com)
-*
