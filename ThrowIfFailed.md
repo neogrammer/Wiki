@@ -12,7 +12,7 @@ if (FAILED(hr))
 > Not all Direct3D functions return ``HRESULT``. Many of them return ``void`` because they can't fail, fail silently, or the failure will be reported on the next ``Present``.
 
 ## Fast Fail
-``DX::ThrowIfFailed`` should be used whenever a failure is fatal and should result in 'fast-fail' of the application. 
+A simple way to handle always fatal errors is to use C++ exceptions (``/EHsc`` is the default for Visual C++, and has no code impact for x64 native, ARM, or ARM64 platforms). The ``DX::ThrowIfFailed`` helper can be used whenever a failure is fatal and should result in 'fast-fail' of the application. 
 
 ```cpp
 DX::ThrowIfFailed(m_d3dDevice->CreateTexture2D(&depthStencilDesc,
