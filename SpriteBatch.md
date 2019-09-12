@@ -33,7 +33,7 @@ The **Draw** method has many overloads with parameters controlling:
 * Optional source rectangle (in units of pixels) for drawing just part of a sprite sheet
 * Tint color
 * Rotation (in radians)
-* Origin point (in units of pixels): position, scaling and rotation are relative to this
+* Origin point (in units of pixels if using the default transformation): position, scaling and rotation are relative to this
 * Scale
 * SpriteEffects enum (for horizontal or vertical mirroring)
 * Layer depth (for sorting)
