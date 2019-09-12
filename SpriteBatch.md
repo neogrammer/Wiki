@@ -29,7 +29,7 @@ spriteBatch->End();
 
 The **Draw** method has many overloads with parameters controlling:
 
-* Specify screen position as ``XMFLOAT2``, ``XMVECTOR`` or ``RECT`` (in units of pixels)
+* Specify screen position as ``XMFLOAT2``, ``XMVECTOR`` or ``RECT`` (in units of pixels if using default transformation)
 * Optional source rectangle (in units of pixels) for drawing just part of a sprite sheet
 * Tint color
 * Rotation (in radians)
