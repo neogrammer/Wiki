@@ -46,12 +46,13 @@ HRESULT SaveWICTextureToFile( ID3D11DeviceContext* pContext,
     REFGUID guidContainerFormat,
     LPCWSTR fileName,
     const GUID* targetFormat = nullptr,
-    std::function<void(IPropertyBag2*)> setCustomProps = nullptr );
+    std::function<void(IPropertyBag2*)> setCustomProps = nullptr,
+    bool forceSRGB = false );
 ```
 
 # Examples
 
-This example saves a JPEG screenshot given a content and swapchain.
+This example saves a DDS screenshot and a JPEG screenshot given an immediate device context and swapchain backbuffer.
 
 ```cpp
 using namespace DirectX;
@@ -62,8 +63,12 @@ HRESULT hr = swapChain->GetBuffer( 0, __uuidof( ID3D11Texture2D ),
    reinterpret_cast<LPVOID*>( backBuffer.GetAddressOf() ) );
 if ( SUCCEEDED(hr) )
 {
+    hr = SaveDDSTextureToFile( immContext.Get(), backBuffer.Get(),
+             L"SCREENSHOT.DDS" );
+    DX::ThrowIfFailed(hr);
+
     hr = SaveWICTextureToFile( immContext.Get(), backBuffer.Get(),
-                GUID_ContainerFormatJpeg, L"SCREENSHOT.JPG" );
+             GUID_ContainerFormatJpeg, L"SCREENSHOT.JPG" );
 }
 DX::ThrowIfFailed(hr);
 ```
@@ -71,51 +76,43 @@ DX::ThrowIfFailed(hr);
 Here is an example of explicitly writing a screenshot as a 16-bit (5:6:5) BMP.
 
 ```cpp
-using namespace DirectX;
-using namespace Microsoft::WRL;
-
-ComPtr<ID3D11Texture2D> backBuffer;
-HRESULT hr = swapChain->GetBuffer( 0, __uuidof( ID3D11Texture2D ),
-   reinterpret_cast<LPVOID*>( backBuffer.GetAddressOf() ) );
-if ( SUCCEEDED(hr) )
-{
-    hr = SaveWICTextureToFile( immContext.Get(), backBuffer.Get(),
-                GUID_ContainerFormatBmp, L"SCREENSHOT.BMP",
-                &GUID_WICPixelFormat16bppBGR565 );
-}
-DX::ThrowIfFailed(hr);
+...
+hr = SaveWICTextureToFile( immContext.Get(), backBuffer.Get(),
+        GUID_ContainerFormatBmp, L"SCREENSHOT.BMP",
+        &GUID_WICPixelFormat16bppBGR565 );
 ```
 
 When writing WIC files, you can also provide a callback for setting specific encoding options.
 
 ```cpp
-using namespace DirectX;
-using namespace Microsoft::WRL;
+...
+hr = SaveWICTextureToFile( immContext.Get(), backBuffer.Get(),
+         GUID_ContainerFormatTiff, L"SCREENSHOT.TIF", nullptr,
+         [&](IPropertyBag2* props)
+         {
+             PROPBAG2 options[2] = { 0, 0 };
+             options[0].pstrName = const_cast<wchar_t*>(L"CompressionQuality");
+             options[1].pstrName = const_cast<wchar_t*>(L"TiffCompressionMethod");
 
-ComPtr<ID3D11Texture2D> backBuffer;
-HRESULT hr = swapChain->GetBuffer( 0, __uuidof( ID3D11Texture2D ),
-   reinterpret_cast<LPVOID*>( backBuffer.GetAddressOf() ) );
-if ( SUCCEEDED(hr) )
-{
-    hr = SaveWICTextureToFile( immContext.Get(), backBuffer.Get(),
-                GUID_ContainerFormatTiff, L"SCREENSHOT.TIF", nullptr,
-                [&](IPropertyBag2* props)
-                {
-                    PROPBAG2 options[2] = { 0, 0 };
-                    options[0].pstrName = L"CompressionQuality";
-                    options[1].pstrName = L"TiffCompressionMethod";
+             VARIANT varValues[2];
+             varValues[0].vt = VT_R4;
+             varValues[0].fltVal = 0.75f;
 
-                    VARIANT varValues[2];
-                    varValues[0].vt = VT_R4;
-                    varValues[0].fltVal = 0.75f;
+             varValues[1].vt = VT_UI1;
+             varValues[1].bVal = WICTiffCompressionNone;
 
-                    varValues[1].vt = VT_UI1;
-                    varValues[1].bVal = WICTiffCompressionNone;
+             (void)props->Write( 2, options, varValues );
+          });
+```
 
-                    (void)props->Write( 2, options, varValues );
-                });
-}
-DX::ThrowIfFailed(hr);
+# sRGB vs. Linear Color Space
+
+With the modern presentation [flip models](http://aka.ms/dxgiflipmodel), you don't actually use ``DXGI_FORMAT_*_SRGB`` with the backbuffer format. You only use it with the render target view if doing gamma-correct rendering. Therefore, when writing ``PNG`` screenshots directly from the swapchain backbuffer you can end up with a washed-out image. You solve this by using the optional parameter _forceSRGB_  to influence the image metadata:
+
+```cpp
+hr = SaveWICTextureToFile( immContext.Get(), backBuffer.Get(),
+    GUID_ContainerFormatPng, L"SCREENSHOT.PNG",
+    nullptr, nullptr, true );
 ```
 
 # Release Notes
