@@ -292,10 +292,10 @@ RECT m_stretchRect;
 In the **Game.cpp** file, add to the TODO section of **CreateResources**:
 
 ```cpp
-m_stretchRect.left = backBufferWidth / 4.f;
-m_stretchRect.top = backBufferHeight / 4.f;
-m_stretchRect.right = m_stretchRect.left  + backBufferWidth / 2.f;
-m_stretchRect.bottom = m_stretchRect.top + backBufferHeight / 2.f;
+m_stretchRect.left = backBufferWidth / 4;
+m_stretchRect.top = backBufferHeight / 4;
+m_stretchRect.right = m_stretchRect.left  + backBufferWidth / 2;
+m_stretchRect.bottom = m_stretchRect.top + backBufferHeight / 2;
 ```
 
 In the **Game.cpp** file, modify in the TODO section of **Render**:
