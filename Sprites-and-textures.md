@@ -279,6 +279,41 @@ Build and run to see the sprite as an array of 4x4 cats.
 
 ![Screenshot of cat sprite](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotSpriteCat3.PNG)
 
+# Stretch a sprite
+
+Using the optional destination rectangle instead of a 2D position, we can stretch a sprite.
+
+In the **Game.h** file, add the following variable to the bottom of the Game class's private declarations:
+
+```cpp
+RECT m_stretchRect;
+```
+
+In the **Game.cpp** file, add to the TODO section of **CreateResources**:
+
+```cpp
+m_stretchRect.left = backBufferWidth / 4.f;
+m_stretchRect.top = backBufferHeight / 4.f;
+m_stretchRect.right = m_stretchRect.left  + backBufferWidth / 2.f;
+m_stretchRect.bottom = m_stretchRect.top + backBufferHeight / 2.f;
+```
+
+In the **Game.cpp** file, modify in the TODO section of **Render**:
+
+```cpp
+m_spriteBatch->Begin(SpriteSortMode_Deferred, nullptr, m_states->LinearWrap());
+
+m_spriteBatch->Draw(m_texture.Get(), m_stretchRect, nullptr, Colors::White);
+
+m_spriteBatch->End();
+```
+
+Build and run to see the sprite blown up
+
+![Screenshot of cat sprite](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotSpriteCat4.PNG)
+
+You can
+
 # Drawing a background image
 
 Our last exercise for this lesson is rendering a sprite as a full background image.  Start by saving
@@ -336,7 +371,7 @@ m_spriteBatch->End();
 
 Build and run to see our cat drawing over a sunset background.
 
-![Screenshot of cat sprite](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotSpriteCat4.PNG)
+![Screenshot of cat sprite](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotSpriteCat5.PNG)
 
 **Next lesson:** [[More tricks with sprites]]
 
