@@ -156,7 +156,7 @@ These lessons on SpriteBatch only begin to show the many techniques you can impl
 
 * The *transformationMatrix* parameter to ``Begin`` lets you provide a custom transformation for the sprite renderering. This is combined with the viewport-based final view transform, but if you use ``SetRotation( DXGI_MODE_ROTATION_UNSPECIFIED )`` this will be disabled. The default value for this parameter is the _identity matrix_.
 
-* You can use [custom sampler states](https://github.com/Microsoft/DirectXTK/wiki/SpriteBatch#custom-render-states) for special effects utilizing [texture addressing](https://docs.microsoft.com/en-us/windows/desktop/api/d3d11/ne-d3d11-d3d11_texture_address_mode).
+* You can use [custom sampler states](https://github.com/Microsoft/DirectXTK/wiki/SpriteBatch#custom-render-states) for special effects utilizing [texture addressing](https://docs.microsoft.com/en-us/windows/desktop/api/d3d11/ne-d3d11-d3d11_texture_address_mode). You can achieve a 'pixel art' look by using ``PointClamp``.
 
 **Next lesson:** [[Drawing text]]
 
