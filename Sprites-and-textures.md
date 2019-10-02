@@ -279,6 +279,10 @@ Build and run to see the sprite as an array of 4x4 cats.
 
 ![Screenshot of cat sprite](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotSpriteCat3.PNG)
 
+## Technical Notes
+
+By default ``SpriteBatch`` uses a ``LinearClamp`` sampler. In order to do the tiling, we had to override that setting by providing a different ``LinearWrap`` sampler.
+
 # Stretching a sprite
 
 Using the optional destination rectangle instead of a 2D position, we can stretch a sprite.
