@@ -279,7 +279,7 @@ Build and run to see the sprite as an array of 4x4 cats.
 
 ![Screenshot of cat sprite](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotSpriteCat3.PNG)
 
-# Stretch a sprite
+# Stretching a sprite
 
 Using the optional destination rectangle instead of a 2D position, we can stretch a sprite.
 
@@ -311,8 +311,6 @@ m_spriteBatch->End();
 Build and run to see the sprite blown up
 
 ![Screenshot of cat sprite](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotSpriteCat4.PNG)
-
-You can
 
 # Drawing a background image
 
