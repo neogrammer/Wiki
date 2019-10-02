@@ -301,7 +301,7 @@ m_stretchRect.bottom = m_stretchRect.top + backBufferHeight / 2;
 In the **Game.cpp** file, modify in the TODO section of **Render**:
 
 ```cpp
-m_spriteBatch->Begin(SpriteSortMode_Deferred, nullptr, m_states->LinearWrap());
+m_spriteBatch->Begin();
 
 m_spriteBatch->Draw(m_texture.Get(), m_stretchRect, nullptr, Colors::White);
 
