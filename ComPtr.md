@@ -3,10 +3,9 @@
 # Header
 
 ```cpp
-#include <wrl.h>
-// or
 #include <wrl/client.h>
 ```
+> If you use ``#include <wrl.h>`` then all the WRL types will be included in your application.
 
 # Namespace
 In keeping with C++ best practice, you should use fully-qualified names in ``.h`` header files.
