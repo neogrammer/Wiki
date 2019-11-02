@@ -5,7 +5,7 @@
 ```cpp
 #include <wrl/client.h>
 ```
-> If you use ``#include <wrl.h>`` then all the WRL types will be included in your application.
+> If you use ``#include <wrl.h>`` then all the WRL types will be included which is a reasonable choice for UWP apps. If you just plan to use ``ComPtr`` then the client header is all you need.
 
 # Namespace
 In keeping with C++ best practice, you should use fully-qualified names in ``.h`` header files.
