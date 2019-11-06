@@ -166,7 +166,7 @@ Because WRL is a pure C++ template library, it has no particular platform suppor
 
 > The Windows 8.0 SDK and later that includes WRL does not support targeting Windows XP / Windows Server 2003. For these older operating systems you have to make use of the Windows 7.1A SDK instead. See [this blog post](https://walbourn.github.io/visual-studio-2012-update-1/) for more details.
 
-# Remark
+# Remarks
 
 Making use of the older ``_com_ptr_t`` Visual Studio smart-pointer class which was originally intended as a non-ATL option is not recommended.
 
