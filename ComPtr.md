@@ -1,4 +1,4 @@
-``Microsoft::WRL::ComPtr`` is a C++ template smart-pointer for COM objects that is used extensively in Windows Runtime (WinRT) C++ programming. It works in Win32 desktop applications as well. It is similar to ATL's ``CComPtr`` with some useful improvements. ``Microsoft::WRL:::ComPtr`` is in the Windows 8.x SDK and Windows 10 SDK, which, unlike ATL, is available when using the Express versions of Visual Studio. It is used extensively in _DirectX Tool Kit_ to properly handle COM reference counting maintenance.
+``Microsoft::WRL::ComPtr`` is a C++ template smart-pointer for COM objects that is used extensively in Windows Runtime (WinRT) C++ programming. It works in Win32 desktop applications as well, and will work on Windows 7. It is similar to ATL's ``CComPtr`` with some useful improvements. ``Microsoft::WRL:::ComPtr`` is in the Windows 8.x SDK and Windows 10 SDK, which, unlike ATL, is available when using the Express versions of Visual Studio. It is used extensively in _DirectX Tool Kit_ to properly handle COM reference counting maintenance.
 
 # Header
 
