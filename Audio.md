@@ -201,6 +201,16 @@ DirectXTK makes use of the latest Direct3D 11.1 headers available in the Windows
 # Statistics
 Real-time data about the audio system is provided by ``GetStatistics``.
 
+```
+auto stats = m_audEngine->GetStatistics();
+wchar_t statsStr[256] = {};
+swprintf_s(statsStr, L"Playing: %zu / %zu; Instances %zu; Voices %zu / %zu / %zu / %zu; %zu audio bytes",
+    stats.playingOneShots, stats.playingInstances,
+    stats.allocatedInstances, stats.allocatedVoices, stats.allocatedVoices3d,
+    stats.allocatedVoicesOneShot, stats.allocatedVoicesIdle,
+    stats.audioBytes);
+```
+
 # Threading model
 The DirectXTK for Audio methods assume it is always called from a single thread. This is generally either the main thread or a worker thread dedicated to audio processing.  The XAudio2 engine itself makes use of lock-free mechanism to make it 'thread-safe'.
 
