@@ -198,6 +198,9 @@ DirectXTK makes use of the latest Direct3D 11.1 headers available in the Windows
 # Content Pipeline
 **Note:** When adding ``.xwb`` files to your Universal Windows Platform app or Xbox One XDK project, you need to manually set the file properties to "Content: Yes" for all configurations to have these files included in your AppX package. ``.wav`` files are automatically detected as a media file and are included as content by default.
 
+# Statistics
+Real-time data about the audio system is provided by ``GetStatistics``.
+
 # Threading model
 The DirectXTK for Audio methods assume it is always called from a single thread. This is generally either the main thread or a worker thread dedicated to audio processing.  The XAudio2 engine itself makes use of lock-free mechanism to make it 'thread-safe'.
 
