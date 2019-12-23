@@ -2,7 +2,7 @@ In [[the basic game loop]] lesson and other tutorials, we are making use of the 
 
 There is therefore a "DR" variant of each of the Direct3D Game VS templates in the [VS 2015/2017/2019](https://github.com/walbourn/directx-vs-templates/raw/master/VSIX/Direct3DUWPGame.vsix) VSIX package.
 
-> The standard Universal Windows Platform app, Windows 8 Store DirectX, and Windows phone 8 VS templates make use of a similar ``DeviceResources`` abstraction.
+> The standard Universal Windows Platform app templates make use of a similar ``DeviceResources`` abstraction.
 
 For the DirectX 12 version, see [DeviceResources](https://github.com/Microsoft/DirectXTK12/wiki/DeviceResources)
 
@@ -49,7 +49,7 @@ Press F5 to build and run the application It displays the following window:
 > _Troubleshooting:_ If the base template fails to start, there are a few possibilities. First, if your system
 > doesn't have any Direct3D capable device of any feature level, it will fail. This is pretty unlikely on modern
 > versions of Windows. Second if it runs fine in _Release_ but fails in _Debug_, then you likely do not have the
-> [proper DirectX Debug Device](https://walbourn.github.io/direct3d-sdk-debug-layer-tricks/) installed for your operating system.
+> [proper DirectX Debug Device](https://walbourn.github.io/direct3d-sdk-debug-layer-tricks/) installed for your operating system. Finally, if you are on Windows 7, you need to have the [KB2670838](https://walbourn.github.io/directx-11-1-and-windows-7-update/) installed.
 
 # Tour of the code
 
@@ -58,7 +58,7 @@ Press F5 to build and run the application It displays the following window:
 The Game class constructor is where you can do first initialization of member variables, as well as where we create the DeviceResources instance.
 
 ```cpp
-Game::Game()
+Game::Game() noexcept(false)
 {
     m_deviceResources = std::make_unique<DX::DeviceResources>();
     m_deviceResources->RegisterDeviceNotify(this);
