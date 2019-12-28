@@ -1,7 +1,7 @@
 The first lesson in the [[Getting Started]] guide is to create a basic game loop.
 
 # Setup
-Our starting point is to use the **Direct3D Win32 Game** project template. Install the [VS 2015/2017/2019](https://github.com/walbourn/directx-vs-templates/raw/master/VSIX/Direct3DUWPGame.vsix) VSIX on your development system, and then start (or restart) Visual Studio.
+Our starting point is to use the **Direct3D Win32 Game** or the **Direct3D UWP Game** project template. Install the [VS 2015/2017/2019](https://github.com/walbourn/directx-vs-templates/raw/master/VSIX/Direct3DUWPGame.vsix) VSIX on your development system, and then start (or restart) Visual Studio.
 
 > There are two versions of each D3DGame template. The "DR" version makes use of a [[DeviceResources]] abstraction to isolate the device and swapchain handling into a helper file. This is useful for larger projects, but for these lessons I'm making use of the non-DR version which has all the Direct3D objects inside the ``Game`` class.
 
