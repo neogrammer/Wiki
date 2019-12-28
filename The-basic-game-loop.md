@@ -50,6 +50,20 @@ The newly created project contains the following files:
   * Game.h
   * Game.cpp
 
+The Win32 version will have the following files as well:
+
+* Resources
+  * directx.ico
+  * resource.rc
+  * settings.manifest
+
+While the UWP version will have:
+
+* Package.appxmanifest
+* Name_TemporaryKey.pfx
+* Assets
+  * logo PNG files
+
 # Running the application
 
 Visual Studio will default to the _Win32_ platform / _Debug_ configuration which builds an x86 (32-bit) application with debugging enabled. The template contains both _Debug_ and _Release_ configurations for both _Win32_ and _x64_ (x64 native 64-bit) platforms, with UWP also including the ARM platforms.
