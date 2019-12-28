@@ -195,6 +195,32 @@ void Game::Clear()
 
 **Xbox One:** For Xbox One fast semantics, it is important to set the render targets at the end of ``Clear`` because clearing the render target unbinds it from the render pipeline. We also explicitly set the viewport every frame as all state is reset between frames.
 
+### Present
+
+The **Present** method presents the swapchain and handles the device removed ("lost device") detection.
+
+```cpp
+void Game::Present()
+{
+    // The first argument instructs DXGI to block until VSync, putting the application
+    // to sleep until the next VSync. This ensures we don't waste any cycles rendering
+    // frames that will never be displayed to the screen.
+    HRESULT hr = m_swapChain->Present(1, 0);
+
+    // If the device was reset we must completely reinitialize the renderer.
+    if (hr == DXGI_ERROR_DEVICE_REMOVED || hr == DXGI_ERROR_DEVICE_RESET)
+    {
+        OnDeviceLost();
+    }
+    else
+    {
+        DX::ThrowIfFailed(hr);
+    }
+}
+```
+
+**Xbox One:** Xbox One XDK applications do not encounter lost device or device removed scenarios.
+
 ## Events
 The template includes a number of message handlers that are called for process state changes: **OnActivated**, **OnDeactivated**, **OnSuspending**, **OnResuming**, and **OnWindowSizeChanged**.
 
@@ -235,7 +261,7 @@ For these tutorials, we make use of the ``DXGI_FORMAT_B8G8R8A8_UNORM`` backbuffe
 [Chapter 24. The Importance of Being Linear](https://developer.nvidia.com/gpugems/GPUGems3/gpugems3_ch24.html), GPU Gems 3   
 [Gamma-correct rendering](https://blog.molecular-matters.com/2011/11/21/gamma-correct-rendering/)   
 
-**Next lesson**: [[Adding the DirectX Tool Kit]]
+**Next lesson**: [[Using DeviceResources]]
 
 # Further reading
 [Direct3D Win32 Game Visual Studio template](https://walbourn.github.io/direct3d-win32-game-visual-studio-template/)  
