@@ -6,15 +6,33 @@ Our starting point is to use the **Direct3D Win32 Game** project template. Insta
 > There are two versions of each D3DGame template. The "DR" version makes use of a [[DeviceResources]] abstraction to isolate the device and swapchain handling into a helper file. This is useful for larger projects, but for these lessons I'm making use of the non-DR version which has all the Direct3D objects inside the ``Game`` class.
 
 # Creating a new project
+## Visual Studio 2015 / 2017
 * From the drop-down menu, select **File** and then **New** -> **Project...**
 * Select "Visual C++" on the left-hand tree-view.
-* Select "Direct3D Win32 Game".
+* Select "Direct3D Win32 Game" or "Direct3D UWP Game".
 * Fill in the "Name" and "Location" fields as desired.
 * Optional: Uncheck "Create directory for solution" to keep the directory structure as bit flatter.
 * Select "OK".
 
 ![Create New Project](https://github.com/Microsoft/DirectXTK/wiki/images/CreateNewProject.png)
 
+## Visual Studio 2019
+* From the drop-down menu, select **File** and then **New** -> **Project...** or on the startup dialog select **Create a new project**
+* Select "Games" on the project types filter. You can optionally type "Win32" or "UWP" in the search box as well.
+* Select "Direct3D Win32 Game" or "Direct3D UWP Game".
+* Select "Next"
+* Fill in the "Project name" and "Location" fields as desired.
+* Optional: Check "Place solution and project in the same directory" to keep the directory structure as bit flatter.
+* Select "Create".
+
+![Create New Project](https://github.com/Microsoft/DirectXTK/wiki/images/CreateNewProject2019.png)
+
+## Windows 10 SDK Selection
+The templates use the Windows 10 SDK, so the project wizard will trigger this dialog to select the Windows 10 SDK version to use. Note that for Win32 Windows desktop apps, the "Minimum version" setting is ignored.
+
+![Windows 10 SDK Selection](https://github.com/Microsoft/DirectXTK/wiki/images/Windows10SDKSelect.png)
+
+## Newly Created Project
 The newly created project contains the following files:
 
 ![Open Game Cpp](https://github.com/Microsoft/DirectXTK/wiki/images/OpenGameCpp.png)
@@ -36,7 +54,7 @@ The newly created project contains the following files:
 
 # Running the application
 
-Visual Studio will default to the _Win32_ platform / _Debug_ configuration which builds an x86 (32-bit) application with debugging enabled. The template contains both _Debug_ and _Release_ configurations for both _Win32_ and _x64_ (x64 native 64-bit) platforms.
+Visual Studio will default to the _Win32_ platform / _Debug_ configuration which builds an x86 (32-bit) application with debugging enabled. The template contains both _Debug_ and _Release_ configurations for both _Win32_ and _x64_ (x64 native 64-bit) platforms, with UWP also including the ARM platforms.
 
 Press F5 to build and run the application It displays the following window:
 
