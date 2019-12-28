@@ -50,6 +50,8 @@ void Game::Initialize(HWND window, int width, int height)
 
 # Methods
 
+*TODO*
+
 # Accessors
 
 * **GetD3DDevice**: Returns the Direct3D device.
@@ -57,6 +59,7 @@ void Game::Initialize(HWND window, int width, int height)
 * **GetRenderTargetView**: Returns the render target view for the swap chain back-buffer.
 * **GetDepthStencilView**: Returns the depth/stencil buffer created for the back-buffer.
 * **GetScreenViewport**: Returns a viewport for the swap chain back-buffer.
+
 * **GetOutputSize**: Returns the output size of the presentation window associated with the device.
 * **GetSwapChain**: Returns the DXGI swap chain interface.
 * **GetDeviceFeatureLevel**: Returns the Direct3D hardware feature level in use.
