@@ -1,7 +1,7 @@
 This lesson covers the basics of HDR rendering, tone-mapping, and adding HDR10 wide color gamut rendering with _DirectX Tool Kit_.
 
 # Setup
-First create a new project. For this lesson, use the [[DeviceResources]] variant of the [[The basic game loop]], then use the instructions in [[Adding the DirectX Tool Kit]].
+First create a new project. For this lesson, use the [[DeviceResources]] variant described in [[Using DeviceResources]], then use the instructions in [[Adding the DirectX Tool Kit]].
 
 # Setting up an HDR render target
 
