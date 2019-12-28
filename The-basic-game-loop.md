@@ -193,7 +193,7 @@ void Game::Clear()
 > frame-to-frame without being reset is a likely source of rendering bugs. Therefore, this template uses the
 > best practice of resetting the viewport state at the start of each frame.
 
-**Xbox One:** For Xbox One fast semantics, it is important to set the render targets at the end of ``Clear`` because clearing the render target unbinds it from the render pipeline.
+**Xbox One:** For Xbox One fast semantics, it is important to set the render targets at the end of ``Clear`` because clearing the render target unbinds it from the render pipeline. We also explicitly set the viewport every frame as all state is lost between frames.
 
 ## Events
 The template includes a number of message handlers that are called for process state changes: **OnActivated**, **OnDeactivated**, **OnSuspending**, **OnResuming**, and **OnWindowSizeChanged**.
