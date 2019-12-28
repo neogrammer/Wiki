@@ -72,6 +72,7 @@ For a quick introduction to DirectX 11 programming, take a look at the [Introduc
 # Tutorials
 
 * [[The basic game loop]]
+* [[Using DeviceResources]]
 * [[Adding the DirectX Tool Kit]]
 
 ## Graphics
