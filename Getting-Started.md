@@ -38,14 +38,24 @@ These tutorials are written with game development in mind as the target applicat
 For learning purposes, these instructions are going to focus on the following setup:
 
 * Visual Studio 2015 [Update 3](https://walbourn.github.io/visual-studio-2015-update-3/) , Visual Studio 2017 ([15.9 update](https://walbourn.github.io/vs-2017-15-9-update/)), or VS 2019 Community, Professional, Premium, or Ultimate
-* Windows 7 Service Pack 1, Windows 8.1, or Windows 10
+* Windows 10 SDK ([18362](https://walbourn.github.io/windows-10-may-2019-update/) is recommended)
+* Windows 7 Service Pack 1, Windows 8.1, or Windows 10 (November 2019 Update a.k.a. Version 1909 is recommended)
 
 We will be using a Win32 desktop application project template in order to support developers using Windows 7, but all these techniques and APIs apply to Universal Windows Platform apps and Xbox One as well.
 
 > There is no need to install the legacy DirectX SDK to use DirectX Tool Kit. The DirectX SDK is deprecated and you should not use it per [Microsoft Docs](https://docs.microsoft.com/en-us/windows/desktop/directx-sdk--august-2009-). See [this blog post](http://aka.ms/dxsdk), [The Zombie DirectX SDK](https://walbourn.github.io/the-zombie-directx-sdk/), [DirectX SDK Samples Catalog](https://walbourn.github.io/directx-sdk-samples-catalog/), and [DirectX SDK Tools Catalog](https://walbourn.github.io/directx-sdk-tools-catalog/).
 
 ## Visual Studio 2015
-Be sure to install Visual C++ which requires using the _Custom_ install as it's not part of the _Typical_ install. See the [Visual C++ Team Blog](https://devblogs.microsoft.com/cppblog/setup-changes-in-visual-studio-2015-affecting-c-developers/) for details.
+Be sure to install Visual C++ which requires using the _Custom_ install as it's not part of the _Typical_ install.
+
+![VS C++ Tools](https://github.com/Microsoft/DirectXTK12/wiki/images/VSCppToolsInstall.png)
+
+You also need to select the "Tools and Windows 10 SDK" feature under "Universal Windows App Development Tools" even if you are just planning to build Win32 desktop apps.
+
+![VS Windows 10 Tools](https://github.com/Microsoft/DirectXTK12/wiki/images/VSWindows10ToolsInstall.png)
+
+See the Visual C++ Team Blog posts on the [toolset](https://devblogs.microsoft.com/cppblog/setup-changes-in-visual-studio-2015-affecting-c-developers/) and [Windows 10 SDK](https://devblogs.microsoft.com/cppblog/developing-for-windows-10-with-visual-c-2015/) for further details.
+
 
 ## Visual Studio 2017 / 2019
 When using the [new lightweight installer](https://devblogs.microsoft.com/cppblog/the-lightweight-visual-studio-15-installer/) be sure to select the appropriate workloads. Here are the recommended options to select:
