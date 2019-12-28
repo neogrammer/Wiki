@@ -5,6 +5,7 @@ There is therefore a "DR" variant of each of the Direct3D Game VS template in th
 > The standard Universal Windows Platform app ``DirectXApp`` VS templates make use of a similar ``DeviceResources`` abstraction.
 
 # Creating a new project
+## Visual Studio 2015 / 2017
 * From the drop-down menu, select **File** and then **New** -> **Project...**
 * Select "Visual C++" on the left-hand tree-view.
 * Select "Direct3D Win32 Game DR"  or "Direct3D UWP Game DR".
@@ -14,6 +15,23 @@ There is therefore a "DR" variant of each of the Direct3D Game VS template in th
 
 ![Create New Project](https://github.com/Microsoft/DirectXTK/wiki/images/CreateNewProjectDR.PNG)
 
+## Visual Studio 2019
+* From the drop-down menu, select **File** and then **New** -> **Project...** or on the startup dialog select **Create a new project**
+* Select "Games" on the project types filter. You can optionally type "Win32" or "UWP" in the search box as well.
+* Select "Direct3D Win32 Game" or "Direct3D UWP Game".
+* Select "Next"
+* Fill in the "Project name" and "Location" fields as desired.
+* Optional: Check "Place solution and project in the same directory" to keep the directory structure as bit flatter.
+* Select "Create".
+
+![Create New Project](https://github.com/Microsoft/DirectXTK/wiki/images/CreateNewProject2019.png)
+
+## Windows 10 SDK Selection
+The templates use the Windows 10 SDK, so the project wizard will trigger this dialog to select the Windows 10 SDK version to use. Note that for Win32 Windows desktop apps, the "Minimum version" setting is ignored.
+
+![Windows 10 SDK Selection](https://github.com/Microsoft/DirectXTK/wiki/images/Windows10SDKSelect.png)
+
+## Newly Created Project
 The newly created project contains the following files:
 
 ![Open Game Cpp](https://github.com/Microsoft/DirectXTK/wiki/images/OpenGameCppDR.PNG)
@@ -238,6 +256,10 @@ void Game::Clear()
 }
 ```
 
+### Present
+
+The ``DeviceResources::Present`` method presents the swapchain and checks for "device removed" scenarios.
+
 ## Events
 The template includes a number of message handlers that are called for process state changes: **OnActivated**, **OnDeactivated**, **OnSuspending**, **OnResuming**, and **OnWindowSizeChanged**.
 
@@ -272,6 +294,8 @@ DX::ThrowIfFailed(device->CreateTexture2D(&depthStencilDesc,
 The DR VS template variants include the enhanced version of [[ThrowIfFailed]].
 
 # Tutorial series
+You can interchange the DR and non-DR variants by using these instructions:
+
 When directed to add something to ``CreateDevice``, add it to ``CreateDeviceDependentResources`` instead.
 
 When asked to add something to ``CreateResources``, add it to ``CreateWindowSizeDependentResources`` instead.
