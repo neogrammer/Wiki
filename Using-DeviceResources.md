@@ -116,11 +116,6 @@ The ``backBufferCount`` defaults to 2, but in some cases you may want to overrid
 
 The ``minFeatureLevel`` defaults to 9.1 for PC and 9.3 for UWP. You can specify a higher hardware level if you want to take a hard dependency on additional capabilities. If you want to make use of [[PostProcess]] then you should specify ``D3D_FEATURE_LEVEL_10_0`` or higher.
 
-The ``flags`` options parameter defaults to 0 which is no flags. You can specify one or more of them as or'd values:
-
-* ``c_AllowTearing``: If supported by the system, this enables present 'tearing' for supporting G-Sync/FreeSync displays.
-* ``c_EnableHDR``: If supported by the system, this enables rendering to wide-color gamut displays. See [below](https://github.com/Microsoft/DirectXTK/wiki/DeviceResources#wide-gamut-hdr-rendering) for more information.
-
 ## Initialize
 When the application first starts, execution is passed to the **Initialize** method. The TODO here by default leaves the applications [[StepTimer]] in the 'variable length' mode. You uncomment the code if you want StepTimer in the 'fixed-step' mode. We'll explain this more once we get to ``Update``.
 
