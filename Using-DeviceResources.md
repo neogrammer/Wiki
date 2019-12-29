@@ -70,7 +70,7 @@ While the UWP version will have:
 
 # Running the application
 
-Visual Studio will default to the _Win32_ platform / _Debug_ configuration which builds an x86 (32-bit) application with debugging enabled. The template contains both _Debug_ and _Release_ configurations for both _Win32_ and _x64_ (x64 native 64-bit) platforms, with UWP also including the ARM platforms.
+Visual Studio will default to the _Win32/x86_ platform / _Debug_ configuration which builds an x86 (32-bit) application with debugging enabled. The template contains both _Debug_ and _Release_ configurations for both _x86_ and _x64_ (x64 native 64-bit) platforms, with UWP also including the ARM platforms.
 
 Press F5 to build and run the application It displays the following window:
 
