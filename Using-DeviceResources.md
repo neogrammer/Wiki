@@ -112,9 +112,12 @@ m_deviceResources = std::make_unique<DX::DeviceResources>(DXGI_FORMAT_B8G8R8A8_U
     DXGI_FORMAT_UNKNOWN);
 ```
 
-The ``backBufferCount`` defaults to 2, but in some cases you may want to override it to use 3. Larger numbers would be quite unusual and are not recommended.
+The ``minFeatureLevel`` defaults to 10 for PC and 9.3 for UWP. You can specify a higher hardware level if you want to take a hard dependency on additional capabilities. If you want to make use of [[PostProcess]] then you should specify ``D3D_FEATURE_LEVEL_10_0`` or higher:
 
-The ``minFeatureLevel`` defaults to 9.1 for PC and 9.3 for UWP. You can specify a higher hardware level if you want to take a hard dependency on additional capabilities. If you want to make use of [[PostProcess]] then you should specify ``D3D_FEATURE_LEVEL_10_0`` or higher.
+```cpp
+m_deviceResources = std::make_unique<DX::DeviceResources>(DXGI_FORMAT_B8G8R8A8_UNORM,
+    DXGI_FORMAT_D32_FLOAT, 2, D3D_FEATURE_LEVEL_10_0);
+```
 
 ## Initialize
 When the application first starts, execution is passed to the **Initialize** method. The TODO here by default leaves the applications [[StepTimer]] in the 'variable length' mode. You uncomment the code if you want StepTimer in the 'fixed-step' mode. We'll explain this more once we get to ``Update``.
