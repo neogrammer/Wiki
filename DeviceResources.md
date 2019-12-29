@@ -54,20 +54,41 @@ void Game::Initialize(HWND window, int width, int height)
 
 # Accessors
 
+* **GetOutputSize**: Returns the output size of the presentation window associated with the device.
+
 * **GetD3DDevice**: Returns the Direct3D device.
+
 * **GetD3DDeviceContext**: Returns the Direct3D device context.
+
+* **GetSwapChain**: Returns the DXGI swap chain interface.
+
+* **GetDeviceFeatureLevel**: Returns the Direct3D hardware feature level in use.
+
+* **GetRenderTarget**, **GetDepthStencil**: Returns the texture objects for the swap chain & depth/stencil buffer.
+
 * **GetRenderTargetView**: Returns the render target view for the swap chain back-buffer.
+
 * **GetDepthStencilView**: Returns the depth/stencil buffer created for the back-buffer.
+
+* **GetBackBufferFormat**: Returns the format of the render target returned by ``GetRenderTargetView``.
+
+* **GetDepthBufferFormat**: Returns the format of the depth/stencil buffer returned by ``GetDepthStencilView``.
+
 * **GetScreenViewport**: Returns a viewport for the swap chain back-buffer.
 
-* **GetOutputSize**: Returns the output size of the presentation window associated with the device.
-* **GetSwapChain**: Returns the DXGI swap chain interface.
-* **GetDeviceFeatureLevel**: Returns the Direct3D hardware feature level in use.
-* **GetBackBufferFormat**: Returns the format of the render target returned by ``GetRenderTargetView``.
-* **GetDepthBufferFormat**: Returns the format of the depth/stencil buffer returned by ``GetDepthStencilView``.
 * **GetBackBufferCount**: Returns the number of back-buffers in the swap chain.
-* **GetRenderTarget**, **GetDepthStencil**: Returns the texture objects for the swap chain & depth/stencil buffer.
+
+* **GetColorSpace**: Returns the current color space of the window (used with ``c_EnableHDR``).
+
 * **GetDeviceOptions**: Returns the device options based on the ctor flags. If the system does not support the option, the flag will be cleared.
+
+# Device Options
+
+* ``c_FlipPresent``: Prefer the use of "flip" style swap per [this blog post](https://devblogs.microsoft.com/directx/dxgi-flip-model/) on Windows 10 systems.
+* ``c_AllowTearing``: Enable variable refresh rate (a.k.a. NVIDIA’s G-SYNC, AMD’s FreeSync, and VESA DisplayPort Adaptive-Sync) if supported.
+* ``c_EnableHDR``: Enable HDR10 output if supported. See [below](https://github.com/Microsoft/DirectXTK/wiki/DeviceResources#wide-gamut-hdr-rendering).
+* ``c_FastSemantics`` (Xbox One XDK only): Create the 11.x device with fast semantics enabled.
+* ``c_Enable4K_UHD`` (Xbox One XDK only): Enable 4k swapchain if supported, otherwise use 1080p.
 
 # Threading model
 
