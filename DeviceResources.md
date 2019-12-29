@@ -54,7 +54,7 @@ If ``depthBufferFormat`` is set to ``DXGI_FORMAT_UNKNOWN``, then no depth/stenci
 
 The ``backBufferCount`` defaults to 2, but in some cases you may want to override it to use 3. Larger numbers would be quite unusual and are not recommended.
 
-The ``minFeatureLevel`` defaults to 10 for PC and 9.3 for UWP. You can specify a higher hardware level if you want to take a hard dependency on additional capabilities.
+The ``minFeatureLevel`` defaults to 10 for PC and 9.3 for UWP. You can specify a higher [hardware level](https://docs.microsoft.com/en-us/windows/win32/direct3d11/overviews-direct3d-11-devices-downlevel-intro) if you want to take a hard dependency on additional capabilities.
 
 # Methods
 
