@@ -58,7 +58,17 @@ The ``minFeatureLevel`` defaults to 10 for PC and 9.3 for UWP. You can specify a
 
 # Methods
 
-*TODO*
+* **CreateDeviceResources**: Creates the device.
+
+* **CreateWindowSizeDependentResources**: Creates the resources that depend on the windows size. This function can be called more than once.
+
+* **SetWindow**: Sets the native window handle and initial width/height.
+
+* **WindowSizeChanged**: Sets a new width/height for the window which calls ``CreateWindowSizeDependentResources`` again if the size is different.
+
+* **HandleDeviceLost**, **RegisterDeviceNotify**: Device removed (a.k.a. "Lost device") handling.
+
+* **Present**: Presents the current backbuffer and swaps buffers.
 
 # Accessors
 
