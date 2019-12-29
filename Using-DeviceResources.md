@@ -119,6 +119,8 @@ m_deviceResources = std::make_unique<DX::DeviceResources>(DXGI_FORMAT_B8G8R8A8_U
     DXGI_FORMAT_D32_FLOAT, 2, D3D_FEATURE_LEVEL_10_0);
 ```
 
+Finally, remember that the choice of ``minFeatureLevel`` also impacts which ``backBufferFormat`` and ``depthBufferFormat`` values you can rely on being supported per [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/direct3d11/overviews-direct3d-11-devices-downlevel-intro). For example, to use 9.x feature levels, you must use ``DXGI_FORMAT_D24_UNORM_S8_UINT`` or ``DXGI_FORMAT_D16_UNORM`` for the depth/stencil format instead of the default value of ``DXGI_FORMAT_D32_FLOAT``.
+
 ## Initialize
 When the application first starts, execution is passed to the **Initialize** method. The TODO here by default leaves the applications [[StepTimer]] in the 'variable length' mode. You uncomment the code if you want StepTimer in the 'fixed-step' mode. We'll explain this more once we get to ``Update``.
 
