@@ -70,6 +70,8 @@ The ``minFeatureLevel`` defaults to 10 for PC and 9.3 for UWP. You can specify a
 
 * **Present**: Presents the current backbuffer and swaps buffers.
 
+> For Xbox One fast semantics, there is also a **Prepare** method which must be called at the start of a rendering frame before clearing the render target.
+
 # Accessors
 
 * **GetOutputSize**: Returns the output size of the presentation window associated with the device.
