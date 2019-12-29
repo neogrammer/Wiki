@@ -48,6 +48,14 @@ void Game::Initialize(HWND window, int width, int height)
 }
 ```
 
+The DeviceResources constructor takes a number of defaulted parameters to control ``backBufferFormat``, ``depthBufferFormat``, ``backBufferCount``, ``minFeatureLevel``, and option ``flags``. You can provide specific values to change them as needed.
+
+If ``depthBufferFormat`` is set to ``DXGI_FORMAT_UNKNOWN``, then no depth/stencil buffer is created.
+
+The ``backBufferCount`` defaults to 2, but in some cases you may want to override it to use 3. Larger numbers would be quite unusual and are not recommended.
+
+The ``minFeatureLevel`` defaults to 10 for PC and 9.3 for UWP. You can specify a higher hardware level if you want to take a hard dependency on additional capabilities.
+
 # Methods
 
 *TODO*
