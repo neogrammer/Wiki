@@ -55,6 +55,8 @@ The fixed-step duration can be set by using **SetTargetElapsedTicks** or **SetTa
 
 If a larger than usual delay is expected, the code should call **ResetElapsedTime** to avoid the fixed-step ``Tick`` calling the update method a large number of times to 'catch-up'.
 
+> Note that the overall loop time is limited by the frame rate of ``Present``
+
 # StepTimer
 The class provides the following accessors:
 
@@ -81,7 +83,7 @@ Ticks are stored in unsigned 64-bit integers and second values are stored in ``d
 
 # Source
 
-[StepTimer.h](https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d11game_win32/StepTimer.h)
+[StepTimer.h](https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d12game_win32_dr/StepTimer.h)
 
 # Further reading
 [Understanding GameTime](http://www.shawnhargreaves.com/blog/understanding-gametime.html)  
