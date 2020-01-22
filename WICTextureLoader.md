@@ -18,7 +18,9 @@ This loader does not support array textures, 1D textures, 3D volume textures, cu
 # Initialization
 The library assumes that the client code will have already called ``CoInitialize``, ``CoInitializeEx``, or ``Windows::Foundation::Initialize`` as needed by the application before calling any [Windows Imaging Component](https://docs.microsoft.com/en-us/windows/desktop/wic/-wic-about-windows-imaging-codec) functionality.
 
-For a Universal Windows Platform (UWP) app, the Windows Runtime and COM is initialized by the C/C++ Run-Time. For a classic Windows desktop application you have to do this explicitly:
+For a Universal Windows Platform (UWP) app using ``/ZW``, the Windows Runtime and COM is initialized by the C/C++ Run-Time. For C++/WinRT applications, this is done by calling ``winrt::init_apartment();``.
+
+For a classic Windows desktop application you have to do this explicitly:
 
 ```cpp
 #if (_WIN32_WINNT >= 0x0A00 /*_WIN32_WINNT_WIN10*/)
