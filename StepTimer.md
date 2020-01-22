@@ -55,7 +55,7 @@ The fixed-step duration can be set by using **SetTargetElapsedTicks** or **SetTa
 
 If a larger than usual delay is expected, the code should call **ResetElapsedTime** to avoid the fixed-step ``Tick`` calling the update method a large number of times to 'catch-up'.
 
-> Note that the overall loop time is limited by the frame rate of ``Present``
+> Note that the overall loop time is limited by the frame rate of ``Present`` for standard 'render loop' usage. Otherwise, you can 'Tick' an instance of StepTimer on it's own thread at your own rate limited by the [system timer resolution](https://docs.microsoft.com/en-us/windows/win32/api/timeapi/nf-timeapi-timebeginperiod).
 
 # StepTimer
 The class provides the following accessors:
