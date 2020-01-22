@@ -1,6 +1,6 @@
 The StepTimer class is a helper for managing a timed game loop.
 
-> The standard Universal Windows Platform app, Windows 8.1 Store DirectX, Windows phone 8.1, and Xbox One XDK Visual Studio templates all make use of ``StepTimer`` as well.
+> The standard Universal Windows Platform app, Windows 8.1 Store DirectX, Windows phone 8.1, and Xbox One Visual Studio templates all make use of ``StepTimer`` as well.
 
 # Usage
 
