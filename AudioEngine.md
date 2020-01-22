@@ -8,7 +8,7 @@ This class represents an XAudio2 audio graph, device, and mastering voice
 # Initialization
 This creates an XAudio2 interface, an XAudio2 mastering voice, and other global resources.
 
-XAudio2 requires COM be initialized as a prerequisite using ``Windows::Foundation::Initialize``, ``CoInitialize``, or ``CoInitializeEx``.
+XAudio2 requires COM be initialized as a prerequisite using ``Windows::Foundation::Initialize``, ``winrt::init_apartment``,  ``CoInitialize``, or ``CoInitializeEx``.
 
 ```cpp
 // This is only needed in Win32 desktop apps
