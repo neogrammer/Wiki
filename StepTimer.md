@@ -75,7 +75,7 @@ The class provides the following accessors:
 
 # Platform notes
 
-## Universal Windows Platform (UWP) apps and XBox One XDK
+## Universal Windows Platform (UWP) apps and XBox One
 The ``CoreApplication::Resuming`` handler should call **ResetElapsedTime**.
 
 # Notes
