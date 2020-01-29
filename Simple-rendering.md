@@ -158,6 +158,3 @@ For 'closed' objects, you typically use [backface culling](https://en.wikipedia.
 # Further reading
 
 DirectX Tool Kit docs [[CommonStates]], [[Effects]], [[PrimitiveBatch]], [[VertexTypes]]  
-[FXAA](https://en.wikipedia.org/wiki/Fast_approximate_anti-aliasing)  
-[SMAA](http://www.iryoku.com/smaa/)  
-[Spatial anti-alising](https://en.wikipedia.org/wiki/Spatial_anti-aliasing)
