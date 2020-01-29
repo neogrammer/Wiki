@@ -153,7 +153,7 @@ For 'closed' objects, you typically use [backface culling](https://en.wikipedia.
 
 * PrimitiveBatch is ideally suited for drawing debug displays such as visualizing bounding volumes, collision data, etc. For more on this, see [[DebugDraw]].
 
-**Next lesson:** [[[[Line drawing and anti-aliasing]]]]
+**Next lesson:** [[Line drawing and anti-aliasing]]
 
 # Further reading
 
