@@ -91,6 +91,7 @@ For a quick introduction to DirectX 11 programming, take a look at the [Introduc
 * [[More tricks with sprites]]
 * [[Drawing text]]
 * [[Simple rendering]]
+* [[Line drawing and anti-aliasing]]
 * [[3D shapes]]
 * [[Rendering a model]]
 * [[Using skinned models]]
