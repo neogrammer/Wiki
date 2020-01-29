@@ -1,4 +1,4 @@
-Here we learn how to render a grid in 3D, and enable multi-sampling anti-aliasing (MSAA).
+Here we learn how to render a grid in 3D, and enable multi-sample anti-aliasing (MSAA).
 
 # Setup
 First create a new project using the instructions from the first two lessons: [[The basic game loop]] and
