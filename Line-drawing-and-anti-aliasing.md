@@ -217,6 +217,10 @@ The ability to create an MSAA DXGI swap chain is only supported for the older "b
 
 See the **SimpleMSAA** [Win32](https://github.com/microsoft/Xbox-ATG-Samples/tree/master/PCSamples/IntroGraphics/SimpleMSAA_PC) | [UWP](https://github.com/Microsoft/Xbox-ATG-Samples/tree/master/UWPSamples/IntroGraphics/SimpleMSAA_UWP) sample.
 
+# More to explore
+
+* PrimitiveBatch is ideally suited for drawing debug displays such as visualizing bounding volumes, collision data, etc. For more on this, see [[DebugDraw]].
+
 **Next lesson:** [[3D shapes]]
 
 # Further reading
