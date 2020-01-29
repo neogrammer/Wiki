@@ -149,9 +149,9 @@ For 'closed' objects, you typically use [backface culling](https://en.wikipedia.
 
 > The culling mode does not affect points or lines.
 
-# More to explore
+# Drawing with textures
 
-* PrimitiveBatch is ideally suited for drawing debug displays such as visualizing bounding volumes, collision data, etc. For more on this, see [[DebugDraw]].
+*UNDER CONSTRUCTION*
 
 **Next lesson:** [[Line drawing and anti-aliasing]]
 
