@@ -215,9 +215,9 @@ Build and run to see the shimmering of the lines lessen compared to the first ve
 ### Technical Note
 The ability to create an MSAA DXGI swap chain is only supported for the older "bit-blt" style presentation modes, specifically ``DXGI_SWAP_EFFECT_DISCARD`` or ``DXGI_SWAP_EFFECT_SEQUENTIAL``. The newer "flip" style presentation modes ``DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL`` or ``DXGI_SWAP_EFFECT_FLIP_DISCARD`` required for Universal Windows Platform (UWP) apps don't support creating MSAA swap chains. Instead, you create your own MSAA render target and then explicitly resolve from MSAA to single-sample via ``ResolveSubresource`` to the DXGI back-buffer for presentation. See [Multisampling in Universal Windows Platform (UWP) apps](https://docs.microsoft.com/en-us/windows/uwp/gaming/multisampling--multi-sample-anti-aliasing--in-windows-store-apps) and the [SimpleMSAA]() sample which details how you implement MSAA in these cases.
 
-See the **SimpleMSAA** [Win32](https://github.com/microsoft/Xbox-ATG-Samples/tree/master/PCSamples/IntroGraphics/SimpleMSAA_PC) | [UWP](https://github.com/Microsoft/Xbox-ATG-Samples/tree/master/UWPSamples/IntroGraphics/SimpleMSAA_UWP) sample.
-
 # More to explore
+
+* See the **SimpleMSAA** [Win32](https://github.com/microsoft/Xbox-ATG-Samples/tree/master/PCSamples/IntroGraphics/SimpleMSAA_PC) | [UWP](https://github.com/Microsoft/Xbox-ATG-Samples/tree/master/UWPSamples/IntroGraphics/SimpleMSAA_UWP) sample.
 
 * PrimitiveBatch is ideally suited for drawing debug displays such as visualizing bounding volumes, collision data, etc. For more on this, see [[DebugDraw]].
 
