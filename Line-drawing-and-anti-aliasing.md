@@ -63,7 +63,7 @@ m_batch.reset();
 m_inputLayout.Reset();
 ```
 
-In **Game.cpp**, modify to the TODO of **Render**:
+In **Game.cpp**, add to the TODO of **Render**:
 
 ```cpp
 m_d3dContext->OMSetBlendState( m_states->Opaque(), nullptr, 0xFFFFFFFF );
