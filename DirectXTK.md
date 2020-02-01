@@ -1,3 +1,4 @@
+VisualStudioVersion = 15.0.28307.1000
 # Headers
 Public headers are in the **Inc** folder of the distribution package.
 
@@ -46,7 +47,7 @@ using namespace DirectX;
 * [[XWBTool]] - builds ``.xwb`` XACT-style wave banks for use with WaveBank class
 
 # Building
-This code is designed to build with Visual Studio 2015 or later. It requires the Windows 8.x / Windows 10 SDK for functionality such as the DirectXMath library and the DXGI 1.2 headers. Visual Studio 2015 or later already includes Windows 8.1 / Windows 10 SDK.
+This code is designed to build with Visual Studio 2017 or later. It requires the Windows 8.x / Windows 10 SDK for functionality such as the DirectXMath library and the DXGI 1.2 headers. Visual Studio 2017 or later already includes Windows 10 SDK.
 
 These components are designed to work without requiring any content from the DirectX SDK. For details, see [Where is the DirectX SDK?](https://docs.microsoft.com/en-us/windows/desktop/directx-sdk--august-2009-), [Where is the DirectX SDK (2013 Edition)?](https://walbourn.github.io/where-is-the-directx-sdk-2013-edition/), [Where is the DirectX SDK (2015 Edition)?](https://aka.ms/dxsdk), and [The Zombie DirectX SDK](https://aka.ms/AA4gfea).
 
@@ -112,27 +113,6 @@ In your application's solution, right-click on the Solution and use **Add \ Exis
 
 > For VS 2017, use of the [15.9 update](https://walbourn.github.io/vs-2017-15-9-update/) is recommended.
 
-<table>
- <tr>
-  <td>DirectXTK_Desktop_2015</td>
-  <td>Windows desktop applications for Windows 7 Service Pack 1  or later building with VS 2015 Express for Desktop, VS 2015 Community, VS 2015 Professional or higher.</td>
- </tr>
- <tr>
-  <td>DirectXTK_Desktop_2015_Win10</td>
-  <td>Windows desktop applications for Windows 10 building with VS 2015 Express for Desktop, VS 2015 Community, VS 2015 Professional or higher.<br /><I>Uses XAudio 2.9 and <code>Windows.Gaming.Input</code></I></td>
- </tr>
- <tr>
-  <td>DirectXTK_Windows10_2015</td>
-  <td>Universal Windows Platform (UWP) apps building with VS 2015 with the Windows 10 SDK (14393).<br /></td>
- </tr>
- <tr>
-  <td>DirectXTK_XboxOneXDK_2015</td>
-  <td>Xbox One exclusive apps building with VS 2015 using the Xbox One XDK.</td>
- </tr>
-</table>
-
-> For VS 2015, use of the [Update 3](https://walbourn.github.io/visual-studio-2015-update-3/) is recommended.
-
 In your application's project, right-click on the **Project** and use "References...", then "Add New Reference...", and then check the DirectXTK project name and click OK. For a Universal Windows Platform (UWP) app or Xbox One solution, you may need to set _Reference Assembly Output_ to false since DirectXTK is a static C++ library and not a WinRT component.
 
 ![Settings dialog](https://github.com/Microsoft/DirectXTK/wiki/images/settingsROA.PNG)
@@ -149,7 +129,7 @@ See also the [Visual C+ Team Blog](https://devblogs.microsoft.com/cppblog/flexib
 Alternatively you can use NuGet to install one of the DirectX Tool Kit packages. Use *Project / Manage NuGet Packages...* then select "Online" and search for "DirectXTK".
 
 * Use Id: [directxtk_desktop_2015](https://www.nuget.org/packages/directxtk_desktop_2015/) for Windows desktop C++ applications building with VS 2015, VS 2017, or VS 2019 Community/Professional or higher. _DirectXTK for Audio_ in this package uses XAudio 2.8 and requires Windows 8.x or later.
-* Use id: [directxtk_uwp](https://www.nuget.org/packages/directxtk_uwp/) for Universal Windows Platform apps for Windows 10 building with VS 2015, VS 2017, or VS 2019 Community/Professional or higher. _DirectXTK for Audio_ in this package uses XAudio 2.9 in the Windows 10 SDK.
+* Use id: [directxtk_uwp](https://www.nuget.org/packages/directxtk_uwp/) for Universal Windows Platform apps for Windows 10 building with VS 2017 or VS 2019 Community/Professional or higher. _DirectXTK for Audio_ in this package uses XAudio 2.9 in the Windows 10 SDK.
 
 You should use the NuGet interface to check for updates if you have an older version installed.
 
