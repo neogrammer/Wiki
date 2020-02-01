@@ -18,7 +18,7 @@ If you used NuGet when [[Adding the DirectX Tool Kit]], then you may already hav
  </tr>
 </table>
 
-If you need Windows 7 Service Pack 1 support for audio, then use *Project-to-project references* instead of NuGet.
+If you need Windows 7 Service Pack 1 support for audio, then use *Project-to-project references* instead of NuGet for graphics, input, and audio.
 
 > See [this blog post](https://walbourn.github.io/github-nuget-and-vso/) for details on why it's set up this way.
 
