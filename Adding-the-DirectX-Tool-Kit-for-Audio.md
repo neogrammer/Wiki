@@ -65,7 +65,7 @@ In addition to the reference, you'll need to add the ``Microsoft.XAudio2.Redist`
 * From the drop-down menu, select **Project** / **Manage NuGet Packages...**
 * Select "Browse" on the top tab, and make sure the _Package source_ is set to "nuget.org"
 * In the text search field type "XAudio2" and hit enter to search for the packages
-* Select the package with the id  **[Microsoft.XAudio2.Redist](https://www.nuget.org/packages/Microsoft.XAudio2.Redist/)
+* Select the package with the id  **[Microsoft.XAudio2.Redist](https://www.nuget.org/packages/Microsoft.XAudio2.Redist/)**
 * Select "Install"
 * When finished, close the NuGet Manager
 
