@@ -22,7 +22,9 @@ The first step in using DirectXTK for Audio is to create the AudioEngine, which 
 
 ```cpp
 // This is only needed in Windows desktop apps
-CoInitializeEx( nullptr, COINIT_MULTITHREADED );
+hr = CoInitializeEx( nullptr, COINIT_MULTITHREADED );
+if (FAILED(hr))
+    // error
 
 ...
 
