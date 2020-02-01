@@ -53,6 +53,8 @@ AudioEngine( AUDIO_ENGINE_FLAGS flags = AudioEngine_Default,
 
 > When using XAudio 2.8 or 2.9, this must be a WinRT device identifier, while on XAudio 2.7 this is a [WASAPI](https://docs.microsoft.com/en-us/windows/desktop/CoreAudio/wasapi) audio end-point identifier. If null, it uses the default audio device.
 
+> The XAudio2 Redistributable supports either WASAPI or WinRT device identifiers, as does XAudio 2.9 on Windows 10 (May 2019 Update; Version 1903; Build 18362) or later.
+
 *category*: Specifies the audio end-point category for the XAudio2 mastering voice. On XAudio 2.7, this value is ignored.
 
 # Debugging facilities
