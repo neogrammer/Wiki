@@ -166,7 +166,7 @@ The standard ``DirectXTK.lib`` includes _DirectXTK for Audio_ implemented using 
  </tr>
  <tr>
   <td>DirectXTK_XboxOneXDK_2017</td>
-  <td>Xbox One XDK apps</td>
+  <td>Xbox One XDK apps. <I>This includes support for XMA2 format wave files</I>.</td>
  </tr>
 </table>
 
@@ -176,7 +176,7 @@ To add _DirectXTK for Audio_ support for a Win32 desktop application running on 
 <table>
  <tr>
   <td>DirectXTKAudio_Desktop_2019_Win8<br />DirectXTKAudio_Desktop_2017_Win8</td>
-  <td>When targeting Windows 8.x or later, use <code>DirectXTKAudioWin8.lib</code> which is implemented with XAudio 2.8 included in Windows 8 or later.</td>
+  <td>When targeting Windows 8.x or later, use <code>DirectXTKAudioWin8.lib</code> which is implemented with XAudio 2.8 included in Windows 8 or later. <I>This version does not support xWMA wave files</I>.</td>
  </tr>
  <tr>
   <td>DirectXTKAudio_Desktop_2019_Win7<br />DirectXTKAudio_Desktop_2017_Win7</td>
