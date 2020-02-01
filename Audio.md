@@ -182,7 +182,7 @@ To add _DirectXTK for Audio_ support for a Win32 desktop application running on 
  </tr>
  <tr>
   <td>DirectXTKAudio_Desktop_2019_Win7<br />DirectXTKAudio_Desktop_2017_Win7</td>
-  <td>When targeting Windows 7 Service Pack 1 or later, use <code>DirectXTKAudioWin7.lib</code> which is implemented using the <a href="https://aka.ms/xaudio2redist">XAudio2 Redistribution</a> NuGet package. <I>This is the recommended way to support Windows 7</I>.</td>
+  <td>When targeting Windows 7 Service Pack 1 or later, use <code>DirectXTKAudioWin7.lib</code> which is implemented using the <a href="https://aka.ms/xaudio2redist">XAudio2 Redistribution</a> NuGet package. <I>This is the recommended way to support Windows 7</I>. Using this version requires you add NuGet id [Microsoft.XAudio2.Redist](https://www.nuget.org/packages/Microsoft.XAudio2.Redist/) to your project.</td>
  </tr>
  <tr>
   <td>DirectXTKAudio_Desktop_2017_DXSDK</td>
