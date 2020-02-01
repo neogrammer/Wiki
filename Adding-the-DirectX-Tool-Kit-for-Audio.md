@@ -69,7 +69,7 @@ Complete the steps in **Adding the headers** below.
 See [Microsoft Docs](https://aka.ms/xaudio2redist).
 
 ## XAudio 2.7
-XAudio 2.7 supports Windows 7, Windows Vista, and Windows XP Service Pack 3. It is deployed by the legacy _DirectX End User Runtime_ package and requires the legacy DirectX SDK (June 2010) to develop with. Due to some technical issues, it must be installed to the 'default' location of ``C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)``. To install the legacy DirectX SDK on your development system, see [this post](https://walbourn.github.io/announcement-directx-sdk-june-2010-is-live/) and be sure to read [this article](https://walbourn.github.io/known-issue-directx-sdk-june-2010-setup-and-the-s1023-error/) for a known issue with the installer.
+XAudio 2.7 supports Windows 7 and older operating systems. It is deployed by the legacy _DirectX End User Runtime_ package and requires the legacy DirectX SDK (June 2010) to develop with. Due to some technical issues, it must be installed to the 'default' location of ``C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)``. To install the legacy DirectX SDK on your development system, see [this post](https://walbourn.github.io/announcement-directx-sdk-june-2010-is-live/) and be sure to read [this article](https://walbourn.github.io/known-issue-directx-sdk-june-2010-setup-and-the-s1023-error/) for a known issue with the installer.
 
 1. Right-click on your solution in the Solution Explorer, and select **Add** / **Existing Project...**
 1. Browse into the "DirectXTK\Audio" folder and select ``DirectXTKAudio_Desktop_201x_DXSDK.vcxproj``, click "Open"
@@ -83,7 +83,7 @@ XAudio 2.7 supports Windows 7, Windows Vista, and Windows XP Service Pack 3. It 
 
 Complete the steps in **Adding the headers** below including the additional configuration for XAudio 2.7.
 
-> This option is not recommended, but is included for completeness.
+> This option is not recommended, but is included for completeness. Xaudio 2.7 has a number of known bugs.
 
 # Adding the headers
 Now that we have the _DirectX Tool Kit for Audio_ usable in your project, the next step is to include the library header into your project.
