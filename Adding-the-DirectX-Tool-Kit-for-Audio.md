@@ -124,7 +124,7 @@ If you are using XAudio 2.8, then your application should be built to require Wi
 ```
 
 ## XAudio 2.7
-If you are using XAudio 2.7 for Windows 7 compatibility (``_WIN32_WINNT`` set to ``0x0601``), we also need to add the legacy DirectX SDK include and library paths to your project. First go to **Project** / **Properties** and select "VC++ Directories" on the left. Then set Configuration to "All Configurations" and Platform to "Win32". Add to the _end_ of these paths:
+If you are using XAudio 2.7 for Windows 7 compatibility (``_WIN32_WINNT`` set to ``0x0601``), we also need to add the legacy DirectX SDK include and library paths to your project. First go to **Project** / **Properties** and select "VC++ Directories" on the left. Then set Configuration to "All Configurations" and Platform to "x86". Add to the _end_ of these paths:
 * **Include Directories:** ``;$(DXSDK_DIR)Include``
 * **Library Directories:** ``;$(DXSDK_DIR)Lib\x86``
 
