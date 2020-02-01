@@ -153,32 +153,46 @@ Each instance of a SoundEffectInstance will allocate it's own source voice when 
 See [[AudioEngine]] for more information.
 
 # Platform support
-Windows 8.x, Windows 10, and Xbox One all include XAudio 2.8 or later. Therefore, the standard ``DirectXTK.lib`` includes _DirectXTK for Audio_ for all these platforms:
-* *DirectXTK*_Desktop_201x_Win10*
-* *DirectXTK*_Windows10*
-* *DirectXTK*_Windows10_201x*
-* *DirectXTK*_XboxOneXDK_201x*
+The standard ``DirectXTK.lib`` includes _DirectXTK for Audio_ implemented using XAudio 2.9 which is supported by Windows 10 and Xbox One built into the operating system.
 
-For Windows desktop applications targeting Windows 8.x or later, you can make use of XAudio 2.8. The ``DirectXTKAudioWin8.lib`` contains the XAudio 2.8 version of DirectXTK for Audio, while ``DirectXTK.lib`` for Windows desktop contains only the math/graphics components. To support Windows desktop applications on Windows 7, we must make use XAudio 2.7, the legacy DirectX SDK, and the legacy DirectX End-User Runtime Redistribution packages (aka DirectSetup). The ``DirectXTKAudioDX.lib`` is the XAudio 2.7 version of _DirectXTK for Audio_.
+<table>
+ <tr>
+  <td>DirectXTK_Desktop_2019_Win10<br />DirectXTK_Desktop_2017_Win10</td>
+  <td>Windows desktop applications for Windows 10</td>
+ </tr>
+ <tr>
+  <td>DirectXTK_Windows10_2019<br />DirectXTK_Windows10_2017</td>
+  <td>Universal Windows Platform (UWP) apps</td>
+ </tr>
+ <tr>
+  <td>DirectXTK_XboxOneXDK_2017</td>
+  <td>Xbox One XDK apps</td>
+ </tr>
+</table>
 
-## XAudio 2.7 vs. 2.8
-DirectXTK_Desktop_201x do not include _DirectXTK for Audio_. To add _DirectXTK for Audio_ support for a Win32 desktop application, you must also add one of the following projects from the ``Audio`` folder of the distribution to your solution and **Add a Reference** to it (see [[DirectXTK]] for more details).
+## XAudio Versions
+To add _DirectXTK for Audio_ support for a Win32 desktop application running on Windows 7 or Windows 8.x, you must add one of the following projects from the ``Audio`` folder of the distribution to your solution and **Add a Reference** to it (see [[DirectXTK]] for more details).
 
-When targeting Windows 8.x or later:
-* *DirectXTKAudio_Desktop_2015_Win8* - DirectXTK for Audio using VS 2015 and XAudio 2.8
-* *DirectXTKAudio_Desktop_2017_Win8* - DirectXTK for Audio using VS 2017 and XAudio 2.8
-* *DirectXTKAudio_Desktop_2019_Win8* - DirectXTK for Audio using VS 2019 and XAudio 2.8
+<table>
+ <tr>
+  <td>DirectXTKAudio_Desktop_2019_Win8<br />DirectXTKAudio_Desktop_2017_Win8</td>
+  <td>When targeting Windows 8.x or later, use <code>DirectXTKAudioWin8.lib</code> which is implemented with XAudio 2.8 included in Windows 8 or later.</td>
+ </tr>
+ <tr>
+  <td>DirectXTKAudio_Desktop_2019_Win7<br />DirectXTKAudio_Desktop_2017_Win7</td>
+  <td>When targeting Windows 7 Service Pack 1 or later, use <code>DirectXTKAudioWin7.lib</code> which is implemented using the <a href="https://aka.ms/xaudio2redist">XAudio2 Redistribution</a> NuGet package. <I>This is the recommended way to support Windows 7</I>.</td>
+ </tr>
+ <tr>
+  <td>DirectXTKAudio_Desktop_2017_DXSDK</td>
+  <td>When targeting Windows 7 with the legacy DirectX SDK, use <code>DirectXTKAudioDX.lib</code> which is implemented using XAudio 2.7. <I>Use of the legacy DirectX SDK is not recommended, and requires use the DirectSetup to deploy the XAudio 2.7 DLL to end-user machines</I>.</td>
+ </tr>
+</table>
 
-When targeting Windows 7:
-* *DirectXTKAudio_Desktop_2015_DXSDK* - DirectXTK for Audio project for VS 2015 + Windows 8.1 / 10 SDK + legacy DirectXTK using XAudio 2.7
-* *DirectXTKAudio_Desktop_2017_DXSDK* - DirectXTK for Audio project for VS 2017 + Windows 10 SDK + legacy DirectXTK using XAudio 2.7
+> The NuGet package [directxtk_desktop_2015](https://www.nuget.org/packages/directxtk_desktop_2015/) is designed for Windows 7 compatibility for the main library, but any use of _DirectX Tool Kit for Audio_ uses XAudio 2.8. See [this blog post](https://walbourn.github.io/github-nuget-and-vso/) for details.
 
 [XAudio2 Versions](https://docs.microsoft.com/en-us/windows/desktop/xaudio2/xaudio2-versions)
 
-[KB2728613](http://support.microsoft.com/kb/2728613)
-
-[Where is the DirectX SDK?](https://docs.microsoft.com/en-us/windows/desktop/directx-sdk--august-2009-)
-
+## Legacy DirectX SDK
 DirectXTK makes use of the latest Direct3D 11.1 headers available in the Windows 8.x / 10 SDK, and there are a number of file conflicts between the Windows 8.x / 10 SDK and the legacy DirectX SDK. Therefore, when building for down-level support with XAudio 2.7, ``Audio.h`` explicitly includes the DirectX SDK version of XAudio2 headers with a full path name. These reflect the default install locations, and if you have installed it elsewhere you will need to update this header. The ``*_DXSDK.vcxproj`` files use the ``DXSDK_DIR`` environment variable, so only the ``Audio.h`` references need updating for an alternative location.
 
 ```cpp
@@ -191,7 +205,9 @@ DirectXTK makes use of the latest Direct3D 11.1 headers available in the Windows
 #include <C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\x3daudio.h>
 ```
 
-> The NuGet package [directxtk_desktop_2015](https://www.nuget.org/packages/directxtk_desktop_2015/) is designed for Windows 7 compatibility for the main library, but any use of _DirectX Tool Kit for Audio_ uses XAudio 2.8. See [this blog post](https://walbourn.github.io/github-nuget-and-vso/) for details.
+[KB2728613](http://support.microsoft.com/kb/2728613)
+
+[Where is the DirectX SDK?](https://docs.microsoft.com/en-us/windows/desktop/directx-sdk--august-2009-)
 
 > When using the legacy DirectX SDK you need to set up VC++ Directories paths in your project (particularly your EXE/DLL). For the Windows 8.1 SDK or Windows 10 SDK, you need to set up those paths in _reverse_ order from previous include orders. You really only need a small portion of the legacy DirectX SDK for XAudio 2.7, and want to be using the Windows 8.1 SDK / Windows 10 SDK for everything else. For more details see [The Zombie DirectX SDK](https://aka.ms/AA4gfea).
 
