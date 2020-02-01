@@ -22,19 +22,17 @@ If you need Windows 7 Service Pack 1 support for audio, then use *Project-to-pro
 
 > See [this blog post](https://walbourn.github.io/github-nuget-and-vso/) for details on why it's set up this way.
 
-Complete the steps in **Adding the headers** below.
+Complete the steps in **Adding the headers** below including the additional configuration for XAudio 2.9.
 
 # Project-to-project references
 If you used project-to-project references when [[Adding the DirectX Tool Kit]], then you need to add an additional _DirectX Tool Kit for Audio_ project to your solution. There are four (4) choices depending on your platform target and deployment requirements:
 
 ## XAudio 2.9
-
 XAudio 2.9 is built into Windows 10. Everything required is included in the operating system and the Windows 10 SDK. This version of _DirectX Tool Kit for Audio_ is already included in those projects (``DirectXTK*_Windows10_201x.vcxproj``, ``DirectXTK*_Desktop_201x_Win10.vcxproj``,) and Xbox One (``DirectXTK*_XboxOneXDK_201x.vcxproj``).
 
-Complete the steps in **Adding the headers** below.
+Complete the steps in **Adding the headers** below including the additional configuration for XAudio 2.9.
 
 ## XAudio 2.8
-
 XAudio 2.8 is built into Windows 8.0 or later. Everything required is included in the operating system and the Windows 10 SDK.
 
 1. Right-click on your solution in the Solution Explorer, and select **Add** / **Existing Project...**
@@ -49,7 +47,7 @@ XAudio 2.8 is built into Windows 8.0 or later. Everything required is included i
 
 Complete the steps in **Adding the headers** below including the additional configuration for XAudio 2.8.
 
-## XAudio2 Redistributable 
+## XAudio2 Redistributable
 There is an XAudio 2.9 redistributable package available on [NuGet](https://www.nuget.org/packages/Microsoft.XAudio2.Redist/) that supports Windows 7 SP1, Windows 8, Windows 8.1, and Windows 10 for Win32 desktop applications. The required runtime DLL is included side-by-side with your application, and avoids the need to include any legacy DirectX SDK redist package.
 
 1. Right-click on your solution in the Solution Explorer, and select **Add** / **Existing Project...**
@@ -69,7 +67,7 @@ In addition to the reference, you'll need to add the ``Microsoft.XAudio2.Redist`
 * Select "Install"
 * When finished, close the NuGet Manager
 
-Complete the steps in **Adding the headers** below.
+Complete the steps in **Adding the headers** below including the additional configuration for the XAudio2 Redistributable.
 
 > This is the preferred option for supporting XAudio2 on Windows 7, and is also a good choice if you want xWMA format support on Windows 8.x.
 
@@ -129,6 +127,13 @@ If you are using XAudio 2.8, then your application should be built to require Wi
 #define _WIN32_WINNT 0x0602
 #include <sdkddkver.h>
 ```
+
+## XAudio2 Redistributable
+If you want to support Windows 7, be sure to verify ``_WIN32_WINT`` is set to ``0x0601``.
+
+> _Troubleshooting:_ If you get a compilation error related to DirectX SDK headers, then you likely don't have the ``Microsoft.XAudio2.Redist`` NuGet package set up for the project that is using ``Audio.h``
+
+> _Troubleshooting:_ If you get runtime errors related to not being able to find ``XAUDIO2_9REDIST.DLL``, then you likely don't have the ``Microsoft.XAudio2.Redist`` NuGet package set up for the project that generates the EXE, or you need to include that DLL from the NuGet package in your installer/deployment.
 
 ## XAudio 2.7
 If you are using XAudio 2.7 for Windows 7 compatibility (``_WIN32_WINNT`` set to ``0x0601``), we also need to add the legacy DirectX SDK include and library paths to your project. First go to **Project** / **Properties** and select "VC++ Directories" on the left. Then set Configuration to "All Configurations" and Platform to "x86". Add to the _end_ of these paths:
