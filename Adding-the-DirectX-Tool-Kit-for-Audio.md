@@ -129,4 +129,6 @@ If you are using XAudio 2.7, then your application has a dependency on the _Dire
 # Further reading
 DirectX Tool Kit docs [[Audio]]  
 [DirectX Tool Kit for Audio](https://walbourn.github.io/directx-tool-kit-for-audio/)  
-[XAudio2 and Windows 8](https://walbourn.github.io/xaudio2-and-windows-8/)
+[XAudio2 and Windows 8](https://walbourn.github.io/xaudio2-and-windows-8/)  
+[Twilight for Windows 7](https://walbourn.github.io/twilight-for-windows-7/)
+
