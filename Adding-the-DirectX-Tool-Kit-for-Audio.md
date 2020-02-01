@@ -50,7 +50,7 @@ XAudio 2.8 is built into Windows 8.0 or later. Everything required is included i
 Complete the steps in **Adding the headers** below including the additional configuration for XAudio 2.8.
 
 ## XAudio2 Redistributable 
-There is an XAudio 2.9 redistributable package available on [NuGet](https://www.nuget.org/packages/Microsoft.XAudio2.Redist/) that supports Windows 7 SP1, Windows 8, Windows 8.1, and Windows 10. The required runtime DLL is included side-by-side with your application, and avoids the need to include any legacy DirectX SDK redist package.
+There is an XAudio 2.9 redistributable package available on [NuGet](https://www.nuget.org/packages/Microsoft.XAudio2.Redist/) that supports Windows 7 SP1, Windows 8, Windows 8.1, and Windows 10 for Win32 desktop applications. The required runtime DLL is included side-by-side with your application, and avoids the need to include any legacy DirectX SDK redist package.
 
 1. Right-click on your solution in the Solution Explorer, and select **Add** / **Existing Project...**
 1. Browse into the "DirectXTK\Audio" folder and select ``DirectXTKAudio_Desktop_201x_Win7.vcxproj``, click "Open"
@@ -61,6 +61,13 @@ There is an XAudio 2.9 redistributable package available on [NuGet](https://www.
 1. Select "OK"
 
 In addition to the reference, you'll need to add the ``Microsoft.XAudio2.Redist`` NuGet package to your project(s) to ensure you have the correct XAudio2 headers and link libraries for this option.
+
+* From the drop-down menu, select **Project** / **Manage NuGet Packages...**
+* Select "Browse" on the top tab, and make sure the _Package source_ is set to "nuget.org"
+* In the text search field type "XAudio2" and hit enter to search for the packages
+* Select the package with the id  **[Microsoft.XAudio2.Redist](https://www.nuget.org/packages/Microsoft.XAudio2.Redist/)
+* Select "Install"
+* When finished, close the NuGet Manager
 
 Complete the steps in **Adding the headers** below.
 
