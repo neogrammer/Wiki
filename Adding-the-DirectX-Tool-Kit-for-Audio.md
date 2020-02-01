@@ -10,7 +10,7 @@ If you used NuGet when [[Adding the DirectX Tool Kit]], then you may already hav
 <table>
  <tr>
   <td>directxtk_desktop_2015</td>
-  <td>This package is configured for Windows 7 Service Pack 1 support for graphics & input, but make use of <b>XAudio 2.8</b> for <I>DirectX Tool Kit for Audio</I>. Therefore audio support with NuGet requires Windows 8 or later.</td>
+  <td>This package is configured for Windows 7 Service Pack 1 support for graphics & input, but make use of <b>XAudio 2.8</b> for <I>DirectX Tool Kit for Audio</I>.<br />Therefore audio support with NuGet requires Windows 8 or later, and this version does not support xWMA format wave files.</td>
  </tr>
  <tr>
   <td>directxtk_uwp<br />directxtk12_uwp<br />directxtk12_desktop_2015</td>
