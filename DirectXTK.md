@@ -1,4 +1,4 @@
-VisualStudioVersion = 15.0.28307.1000
+
 # Headers
 Public headers are in the **Inc** folder of the distribution package.
 
