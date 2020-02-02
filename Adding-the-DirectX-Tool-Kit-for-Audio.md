@@ -66,6 +66,8 @@ In addition to the reference, you'll need to add the ``Microsoft.XAudio2.Redist`
 * Select "Install"
 * When finished, close the NuGet Manager
 
+![NuGet Package Manager (Microsoft.XAudio2.Redist)](https://github.com/Microsoft/DirectXTK/wiki/images/nugetxaudio2.png)
+
 Complete the steps in **Adding the headers** below including the additional configuration for the XAudio2 Redistributable.
 
 > This is the preferred option for supporting XAudio2 on Windows 7, and is also a good choice if you want xWMA format support on Windows 8.x.
