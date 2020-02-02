@@ -10,7 +10,7 @@ The easiest way to achieve this is to use the [NuGet package manager](https://ww
 * Select "Install"
 * When finished, close the NuGet Manager
 
-![Manage NuGet Packages (VS 2015)](https://github.com/Microsoft/DirectXTK/wiki/images/nuget2015.png)
+![Manage NuGet Packages](https://github.com/Microsoft/DirectXTK/wiki/images/nuget.png)
 
 You can check for updates to the NuGet package by selecting "Updates/All" in the left-hand tree view. If there are updates, select the "DirectX Tool Kit" package, and click on "Update".
 
@@ -23,8 +23,7 @@ Another option rather than using NuGet is to use Visual Studio's [project-to-pro
 * Right-click on your solution in the Solution Explorer, and select **Add** / **Existing Project...**
 * Browse into the "DirectXTK" folder and select ``DirectXTK_Desktop_201x.vcxproj`` for Win32 -or- ``DirectXTK_Windows10.vcxproj`` for UWP, click "Open"
 * If Visual Studio presents a "Security Warning", select "OK". Optional: Uncheck "Ask me for every project in this solution" first.
-* Right-click on your project in the Solution Explorer, and select **Add** / **References...**
-* Select "Add New Reference..."
+* Right-click on your project in the Solution Explorer, and select **Add** / **Reference...**
 * Check ``DirectXTK`` and select "OK"
 * Click on "Configuration Properties" in the left-hand tree view, then **C/C++** / **General**
 * Select "All Configurations" and "All Platforms"
