@@ -1,8 +1,7 @@
 This lesson covers adding _DirectX Tool Kit for Audio_ to your project.
 
 # Setup
-First create a new project using the instructions from the first two lessons: [[The basic game loop]] and
-[[Adding the DirectX Tool Kit]] which we will use for this lesson.
+After creating a new project in the [[The basic game loop]] or [[Using DeviceResources]], then [[Adding the DirectX Tool Kit]] for this lesson.
 
 # NuGet package manager
 If you used NuGet when [[Adding the DirectX Tool Kit]], then you may already have support for _DirectX Tool Kit for Audio._.
@@ -39,7 +38,6 @@ XAudio 2.8 is built into Windows 8.0 or later. Everything required is included i
 1. Browse into the "DirectXTK\Audio" folder and select ``DirectXTKAudio_Desktop_201x_Win8.vcxproj``, click "Open"
 1. If Visual Studio presents a "Security Warning", select "OK". Optional: Uncheck "Ask me for every project in this solution" first.
 1. Right-click on your project in the Solution Explorer, and select **Add** / **References...**
-1. Select "Add New Reference..."
 1. Check ``DirectXTKAudio_Desktop_201x_Win8.vcxproj`` and select "OK"
 1. Select "OK"
 
@@ -54,9 +52,10 @@ There is an XAudio 2.9 redistributable package available on [NuGet](https://www.
 1. Browse into the "DirectXTK\Audio" folder and select ``DirectXTKAudio_Desktop_201x_Win7.vcxproj``, click "Open"
 1. If Visual Studio presents a "Security Warning", select "OK". Optional: Uncheck "Ask me for every project in this solution" first.
 1. Right-click on your project in the Solution Explorer, and select **Add** / **References...**
-1. Select "Add New Reference..."
 1. Check ``DirectXTKAudio_Desktop_201x_Win7.vcxproj`` and select "OK"
 1. Select "OK"
+
+![Add Reference (Windows 7)](https://github.com/Microsoft/DirectXTK/wiki/images/AddReferenceWin7.png)
 
 In addition to the reference, you'll need to add the ``Microsoft.XAudio2.Redist`` NuGet package to your project(s) to ensure you have the correct XAudio2 headers and link libraries for this option.
 
@@ -80,7 +79,6 @@ XAudio 2.7 supports Windows 7 and older operating systems. It is deployed by the
 1. Browse into the "DirectXTK\Audio" folder and select ``DirectXTKAudio_Desktop_201x_DXSDK.vcxproj``, click "Open"
 1. If Visual Studio presents a "Security Warning", select "OK". Optional: Uncheck "Ask me for every project in this solution" first.
 1. Right-click on your project in the Solution Explorer, and select **Add** / **References...**
-1. Select "Add New Reference..."
 1. Check ``DirectXTKAudio_Desktop_201x_DXSDK.vcxproj`` and select "OK"
 1. Select "OK"
 
