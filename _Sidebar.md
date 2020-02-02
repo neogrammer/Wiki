@@ -9,7 +9,6 @@
 # For Development
 * Visual Studio 2019
 * Visual Studio 2017
-* Visual Studio 2015
 
 # Related Projects
 
