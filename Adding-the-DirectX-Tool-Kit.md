@@ -21,7 +21,7 @@ Another option rather than using NuGet is to use Visual Studio's [project-to-pro
 
 * Extract the [release .zip file](https://github.com/Microsoft/DirectXTK/releases) into a directory relative to the new project you created. For this tutorial, we will assume the ``DirectXTK`` folder is in the same folder as your new project's Visual Studio Solution (``.sln``) file.
 * Right-click on your solution in the Solution Explorer, and select **Add** / **Existing Project...**
-* Browse into the "DirectXTK" folder and select ``DirectXTK_Desktop_201x.vcxproj`` for Win32 -or- ``DirectXTK_Windows10.vcxproj`` for UWP, click "Open"
+* Browse into the "DirectXTK" folder and select ``DirectXTK_Desktop_201x.vcxproj`` for Win32 -or- ``DirectXTK_Windows10_201x.vcxproj`` for UWP, click "Open"
 * If Visual Studio presents a "Security Warning", select "OK". Optional: Uncheck "Ask me for every project in this solution" first.
 * Right-click on your project in the Solution Explorer, and select **Add** / **Reference...**
 * Check ``DirectXTK`` and select "OK"
