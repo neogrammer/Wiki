@@ -392,7 +392,7 @@ In **Game.cpp**, add to **Render** just before the call to ``Present``:
 
 ```cpp
 PostProcess();
-``
+```
 
 In **Game.cpp**, modify **Clear** to use ``m_sceneRT`` instead of ``m_renderTargetView``:
 
