@@ -125,7 +125,7 @@ m_batch->DrawTriangle(v1, v2, v3);
 m_batch->End();
 ```
 
-Build and run to get the same image, but if you resize the window the triangle will not change in the second version.
+Build and run to get the same image, but if you resize the window the triangle will not change in the second version *if* your window size is 800 by 600.
 
 ## Technical notes
 * The BasicEffect family of shader classes uses shader code built in to the ``DirectXTK.lib`` as static data so there's no need to compile shaders at runtime or to load data files from disk.
