@@ -179,7 +179,7 @@ m_texture.Reset();
 
 Build and run to make sure the texture loads fine. Nothing else should be different yet.
 
-Now go back to your **Game.h** and modify the ``VertexType`` alias we used earlier to use [[VertexPositionTexture]].
+Now go back to your **Game.h** and modify the ``VertexType`` alias we used earlier to use [[VertexPositionTexture|VertexTypes]].
 
 ```cpp
 using VertexType = DirectX::VertexPositionTexture;
@@ -188,15 +188,16 @@ using VertexType = DirectX::VertexPositionTexture;
 Then in **Game.cpp** modify **CreateDevice**:
 
 ```cpp
-m_states = std::make_unique<CommonStates>(m_d3dDevice.Get());
+...
 
 m_effect = std::make_unique<BasicEffect>(m_d3dDevice.Get());
 m_effect->SetTextureEnabled(true);
-m_effect->SetTexture(m_texture.Get()); // Make sure you called CreateWICTextureFromFile before this point!
+
+// Make sure you called CreateWICTextureFromFile before this point!
+m_effect->SetTexture(m_texture.Get());
 
 void const* shaderByteCode;
 size_t byteCodeLength;
-
 ...
 ```
 
@@ -228,6 +229,9 @@ m_batch->End();
 Build and run to see a simple textured triangle rendered in 2D.
 
 ![Screenshot of textured triangle](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTriangleTextured.PNG)
+
+## Technical notes
+* Because we are using a texture, we have to set a sampler state object. ``BasicEffect`` uses 
 
 # Drawing with lighting
 
