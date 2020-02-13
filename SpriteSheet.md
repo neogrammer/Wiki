@@ -316,7 +316,7 @@ If using ``DDS`` rather than ``PNG`` and premultiplied alpha for your blending, 
 
 In most cases you won't need mipmap levels generated so specify *-m 1* when converting the ``DDS``. If you do want mipmaps levels and want to support all feature levels (i.e. Feature Levesl 9.x), then in your **TexturePacker** project under _Layout / Size constraints_ set it to "POW (Power of 2)" and do not use *-m 1*.
 
-Open a [Command Prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq), and change to the directory containing Texconv.exe (i.e. ``...\DirectXTex\Texconv\Release``)
+Open a [Command Prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq), and change to the directory containing [Texconv.exe](https://github.com/Microsoft/DirectXTex/releases/latest/download/texconv.exe)
 
 Enter the following command-line after changing to the appropriate directory:
 
