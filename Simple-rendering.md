@@ -210,8 +210,8 @@ m_d3dContext->RSSetState( m_states->CullNone() );
 
 m_effect->Apply(m_d3dContext.Get());
 
-auto linear = m_states->LinearClamp();
-m_d3dContext->PSSetSamplers(0, 1, &linear);
+auto sampler = m_states->LinearClamp();
+m_d3dContext->PSSetSamplers(0, 1, &sampler);
 
 m_d3dContext->IASetInputLayout(m_inputLayout.Get());
 
@@ -231,7 +231,8 @@ Build and run to see a simple textured triangle rendered in 2D.
 ![Screenshot of textured triangle](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTriangleTextured.PNG)
 
 ## Technical notes
-* Because we are using a texture, we have to set a sampler state object. ``BasicEffect`` uses 
+* Because we are using a texture, we have to set a sampler state object. ``BasicEffect`` uses slot 0 of pixel shader by design, so that's the one we need to set.
+* ``PSSetSamplers`` takes an array of pointers to sampler interfaces, which is why we have to create a temporary object ``sampler``.
 
 # Drawing with lighting
 
