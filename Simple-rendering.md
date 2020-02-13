@@ -155,7 +155,7 @@ For 'closed' objects, you typically use [backface culling](https://en.wikipedia.
 
 # Drawing with textures
 
-Start by saving [rocks.jpg](https://github.com/Microsoft/DirectXTK/wiki/rocks.jpg) into your new project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "rocks.jpg" and click "OK".
+Start by saving [rocks.jpg](https://github.com/Microsoft/DirectXTK/wiki/rocks.jpg) into your project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "rocks.jpg" and click "OK".
 
 In the **Game.h** file, add the following variable to the bottom of the Game class's private declarations:
 
