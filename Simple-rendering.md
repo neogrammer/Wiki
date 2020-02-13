@@ -236,7 +236,108 @@ Build and run to see a simple textured triangle rendered in 2D.
 
 # Drawing with lighting
 
-*UNDER CONSTRUCTION*
+Start by saving [rocks_normalmap.dds](https://github.com/Microsoft/DirectXTK/wiki/rocks_normalmap.dds) into your project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "rocks_normalmap.dds" and click "OK".
+
+In the **Game.h** file, add the following variable to the bottom of the Game class's private declarations:
+
+```cpp
+Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_normalMap;
+```
+
+In **Game.cpp**, add to the TODO of **CreateDevice**:
+
+```cpp
+DX::ThrowIfFailed(
+    CreateDDSTextureFromFile(m_d3dDevice.Get(), L"rocks_normalmap.dds", nullptr,
+    m_normalMap.ReleaseAndGetAddressOf()));
+```
+
+In **Game.cpp**, add to the TODO of **OnDeviceLost**:
+
+```cpp
+m_normalMap.Reset();
+```
+
+Build and run to make sure the texture loads fine. Nothing else should be different yet.
+
+Now go back to your **Game.h** and modify the ``VertexType`` alias we used earlier to use [[VertexPositionNormalTexture|VertexTypes]].
+
+```cpp
+using VertexType = DirectX::VertexPositionNormalTexture;
+```
+
+Also change the type of effect. Since we are using a flat 2D triangle, the lighting is not going to be very interesting so we are going to add some simple normal mapping to give the texture some definition.
+
+```cpp
+std::unique_ptr<DirectX::NormalMapEffect> m_effect;
+```
+
+Then in **Game.cpp** modify **CreateDevice**:
+
+```cpp
+...
+
+m_effect = std::make_unique<NormalMapEffect>(m_d3dDevice.Get());
+
+// Make sure you called CreateDDSTextureFromFile and CreateWICTextureFromFile before this point!
+m_effect->SetTexture(m_texture.Get());
+m_effect->SetNormalTexture(m_normalMap.Get());
+
+m_effect->EnableDefaultLighting();
+m_effect->SetLightDiffuseColor(0, Colors::Gray);
+
+void const* shaderByteCode;
+size_t byteCodeLength;
+...
+```
+
+Then in **Game.cpp** add to **Update**:
+
+```cpp
+auto time = static_cast<float>(m_timer.GetTotalSeconds());
+
+float yaw = time * 0.4f;
+float pitch = time * 0.7f;
+float roll = time * 1.1f;
+
+auto quat = Quaternion::CreateFromYawPitchRoll(pitch, yaw, roll);
+
+auto light = XMVector3Rotate(g_XMOne, quat);
+
+m_effect->SetLightDirection(0, light);
+```
+
+In **Game.cpp**, modify the TODO of **Render**:
+
+```cpp
+m_d3dContext->OMSetBlendState( m_states->Opaque(), nullptr, 0xFFFFFFFF );
+m_d3dContext->OMSetDepthStencilState( m_states->DepthNone(), 0 );
+m_d3dContext->RSSetState( m_states->CullNone() );
+
+m_effect->Apply(m_d3dContext.Get());
+
+auto sampler = m_states->LinearClamp();
+m_d3dContext->PSSetSamplers(0, 1, &sampler);
+
+m_d3dContext->IASetInputLayout(m_inputLayout.Get());
+
+m_batch->Begin();
+
+VertexPositionNormalTexture v1(Vector3(400.f, 150.f, 0.f), -Vector3::UnitZ, Vector2(.5f, 0));
+VertexPositionNormalTexture v2(Vector3(600.f, 450.f, 0.f), -Vector3::UnitZ, Vector2(1, 1));
+VertexPositionNormalTexture v3(Vector3(200.f, 450.f, 0.f), -Vector3::UnitZ, Vector2(0, 1));
+
+m_batch->DrawTriangle(v1, v2, v3);
+
+m_batch->End();
+```
+
+Build and run, and you'll see the 2D triangle drawn with dynamic lighting effects.
+
+![Screenshot of lit triangle](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTriangleLit.PNG)
+
+## Technical notes
+* The tangent-space normal map used here was generated from a [height map](https://github.com/Microsoft/DirectXTK/wiki/rocks_NM_height.dds) using [texconv](https://github.com/microsoft/DirectXTex/tree/master/Texconv)'s ``-nmap`` feature.
 
 **Next lesson:** [[Line drawing and anti-aliasing]]
 
