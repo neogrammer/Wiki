@@ -231,7 +231,7 @@ Build and run to see a simple textured triangle rendered in 2D.
 ![Screenshot of textured triangle](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTriangleTextured.PNG)
 
 ## Technical notes
-* Because we are using a texture, we have to set a sampler state object. ``BasicEffect`` uses slot 0 of pixel shader by design, so that's the one we need to set.
+* Because we are using a texture, we have to set a sampler state object. ``BasicEffect`` uses slot 0 of the pixel shader samplers by design, so that's the one we need to set.
 * ``PSSetSamplers`` takes an array of pointers to sampler interfaces, which is why we have to create a temporary object ``sampler``.
 
 # Drawing with lighting
@@ -258,7 +258,7 @@ In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 m_normalMap.Reset();
 ```
 
-Build and run to make sure the texture loads fine. Nothing else should be different yet.
+Build and run to make sure this second texture loads fine. Nothing else should be different yet.
 
 Now go back to your **Game.h** and modify the ``VertexType`` alias we used earlier to use [[VertexPositionNormalTexture|VertexTypes]].
 
@@ -337,7 +337,7 @@ Build and run, and you'll see the 2D triangle drawn with dynamic lighting effect
 ![Screenshot of lit triangle](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTriangleLit.PNG)
 
 ## Technical notes
-* The tangent-space normal map used here was generated from a [height map](https://github.com/Microsoft/DirectXTK/wiki/rocks_NM_height.dds) using [texconv](https://github.com/microsoft/DirectXTex/tree/master/Texconv)'s ``-nmap`` feature.
+* The tangent-space normal map used here was generated from a [height map](https://github.com/Microsoft/DirectXTK/wiki/rocks_NM_height.dds) using [texconv](https://github.com/microsoft/DirectXTex/wiki/Texconv)'s ``-nmap`` feature.
 
 **Next lesson:** [[Line drawing and anti-aliasing]]
 
