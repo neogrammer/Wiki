@@ -22,9 +22,11 @@ Note that since the _input layout_ is the bridge between the _vertex buffer_ dat
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 
 ```cpp
+using VertexType = DirectX::VertexPositionColor;
+
 std::unique_ptr<DirectX::CommonStates> m_states;
 std::unique_ptr<DirectX::BasicEffect> m_effect;
-std::unique_ptr<DirectX::PrimitiveBatch<DirectX::VertexPositionColor>> m_batch;
+std::unique_ptr<DirectX::PrimitiveBatch<VertexType>> m_batch;
 Microsoft::WRL::ComPtr<ID3D11InputLayout> m_inputLayout;
 ```
 
@@ -42,12 +44,12 @@ size_t byteCodeLength;
 m_effect->GetVertexShaderBytecode(&shaderByteCode, &byteCodeLength);
 
 DX::ThrowIfFailed(
-        m_d3dDevice->CreateInputLayout(VertexPositionColor::InputElements,
-            VertexPositionColor::InputElementCount,
+        m_d3dDevice->CreateInputLayout(VertexType::InputElements,
+            VertexType::InputElementCount,
             shaderByteCode, byteCodeLength,
             m_inputLayout.ReleaseAndGetAddressOf()));
 
-m_batch = std::make_unique<PrimitiveBatch<VertexPositionColor>>(m_d3dContext.Get());
+m_batch = std::make_unique<PrimitiveBatch<VertexType>>(m_d3dContext.Get());
 ```
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
@@ -84,6 +86,8 @@ m_batch->End();
 Build and run to see a simple yellow triangle rendered in 2D.
 
 ![Screenshot of triangle](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTriangle.PNG)
+
+> You don't have to use a type alias here like ``VertexType`` and you can just use ``DirectX::VertexPositionColor`` for the header and ``VertexPositionColor`` in the cpp file directly. I use the alias to simplify the tutorial a bit later on.
 
 ## Pixel vs. normalized coordinates
 The image above is drawn using coordinates that are independent of the screen resolution and range from ``-1`` to ``+1``.  Resizing the window will result in the same image scaled to the new window. If instead you want to draw using screen pixel coordinates (which match the coordinate system used by [[SpriteBatch]]), then:
@@ -150,6 +154,28 @@ For 'closed' objects, you typically use [backface culling](https://en.wikipedia.
 > The culling mode does not affect points or lines.
 
 # Drawing with textures
+
+Start by saving [rocks.jpg](https://github.com/Microsoft/DirectXTK/wiki/images/rocks.jpg) into your new project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "rocks.jpg" and click "OK".
+
+In the **Game.h** file, add the following variable to the bottom of the Game class's private declarations:
+
+```cpp
+Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture;
+```
+
+In **Game.cpp**, add to the TODO of **CreateDevice**:
+
+```cpp
+DX::ThrowIfFailed(
+    CreateWICTextureFromFile(m_d3dDevice.Get(), L"rocks.jpg", nullptr,
+    m_texture.ReleaseAndGetAddressOf()));
+```
+
+In **Game.cpp**, add to the TODO of **OnDeviceLost**:
+
+```cpp
+m_texture.Reset();
+```
 
 *UNDER CONSTRUCTION*
 
