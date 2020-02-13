@@ -1,6 +1,6 @@
 http://go.microsoft.com/fwlink/?LinkId=248929
 
-[![GitHub All Releases](https://img.shields.io/github/downloads/Microsoft/DirectXTK/total?style=for-the-badge) ![GitHub Release Date](https://img.shields.io/github/release-date/Microsoft/DirectXTK?style=for-the-badge)](https://github.com/microsoft/DirectXTK/releases/latest)
+[![GitHub All Releases](https://img.shields.io/github/downloads/Microsoft/DirectXTK/total?style=for-the-badge) ![GitHub Release Date](https://img.shields.io/github/release-date/Microsoft/DirectXTK?style=for-the-badge)](https://github.com/microsoft/DirectXTK/releases/latest) [![Nuget](https://img.shields.io/nuget/dt/directxtk_uwp?label=NuGet%20%28UWP%29&style=for-the-badge)](https://www.nuget.org/packages/directxtk_uwp/) [![Nuget](https://img.shields.io/nuget/dt/directxtk_desktop_2015?label=NuGet%20%28Win32%29&style=for-the-badge)](https://www.nuget.org/packages/directxtk_desktop_2015/)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/Microsoft/DirectXTK?style=for-the-badge)
 ![Azure DevOps build](https://img.shields.io/azure-devops/build/mscodehub/ab27a052-7f0e-4cba-9bec-d298c5942ab9/1144?style=for-the-badge)
