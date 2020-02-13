@@ -153,6 +153,10 @@ For 'closed' objects, you typically use [backface culling](https://en.wikipedia.
 
 *UNDER CONSTRUCTION*
 
+# Drawing with lighting
+
+*UNDER CONSTRUCTION*
+
 **Next lesson:** [[Line drawing and anti-aliasing]]
 
 # Further reading
