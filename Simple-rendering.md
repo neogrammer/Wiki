@@ -130,8 +130,8 @@ Build and run to get the same image, but if you resize the window the triangle w
 ## Technical notes
 * The BasicEffect family of shader classes uses shader code built in to the ``DirectXTK.lib`` as static data so there's no need to compile shaders at runtime or to load data files from disk.
 * Internally, both SpriteBatch and PrimitiveBatch make use of a _dynamic_ rather than _static_ vertex buffer object which makes use of special memory shared between the CPU and GPU. Generally, we prefer when possible to use static vertex buffers as they can reside in the video memory directly that is only accessible by the GPU.
-* We are not using textures in our shaders for this lesson, so we don't need to use any sampler state objects.
 * Be sure to call ``SetVertexColorEnabled`` before calling ``GetVertexShaderBytecode`` as this impacts which shader permutation is actually used for rendering. See [[IEffect]] for more details.
+* Since we haven't used any textures yet, we don't need to use any sampler state objects.
 
 # State Objects
 
