@@ -177,7 +177,57 @@ In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 m_texture.Reset();
 ```
 
-*UNDER CONSTRUCTION*
+Build and run to make sure the texture loads fine. Nothing else should be different yet.
+
+Now go back to your **Game.h** and modify the ``VertexType`` alias we used earlier to use [[VertexPositionTexture]].
+
+```cpp
+using VertexType = DirectX::VertexPositionTexture;
+```
+
+Then in **Game.cpp** modify **CreateDevice**:
+
+```cpp
+m_states = std::make_unique<CommonStates>(m_d3dDevice.Get());
+
+m_effect = std::make_unique<BasicEffect>(m_d3dDevice.Get());
+m_effect->SetTextureEnabled(true);
+m_effect->SetTexture(m_texture.Get()); // Make sure you called CreateWICTextureFromFile before this point!
+
+void const* shaderByteCode;
+size_t byteCodeLength;
+
+...
+```
+
+In **Game.cpp**, modify the TODO of **Render**:
+
+```cpp
+m_d3dContext->OMSetBlendState( m_states->Opaque(), nullptr, 0xFFFFFFFF );
+m_d3dContext->OMSetDepthStencilState( m_states->DepthNone(), 0 );
+m_d3dContext->RSSetState( m_states->CullNone() );
+
+m_effect->Apply(m_d3dContext.Get());
+
+auto linear = m_states->LinearClamp();
+m_d3dContext->PSSetSamplers(0, 1, &linear);
+
+m_d3dContext->IASetInputLayout(m_inputLayout.Get());
+
+m_batch->Begin();
+
+VertexPositionTexture v1(Vector3(400.f, 150.f, 0.f), Vector2(.5f, 0));
+VertexPositionTexture v2(Vector3(600.f, 450.f, 0.f), Vector2(1, 1));
+VertexPositionTexture v3(Vector3(200.f, 450.f, 0.f), Vector2(0, 1));
+
+m_batch->DrawTriangle(v1, v2, v3);
+
+m_batch->End();
+```
+
+Build and run to see a simple textured triangle rendered in 2D.
+
+![Screenshot of textured triangle](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTriangleTextured.PNG)
 
 # Drawing with lighting
 
