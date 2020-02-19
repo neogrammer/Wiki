@@ -132,7 +132,7 @@ auto tiny = Model::CreateFromSDKMESH( device, L"tiny.sdkmesh", fx, ModelLoader_C
 
 # Model Loader Flags
 
-The various ``CreateFrom*`` methods have a defaulted parameter to provide additional model loader flags control.
+The various ``CreateFrom*`` methods have a defaulted parameter to provide additional model loader control.
 
 * ``ModelLoader_Clockwise``: Should use a clockwise winding for backface-culling.
 
@@ -142,7 +142,7 @@ The various ``CreateFrom*`` methods have a defaulted parameter to provide additi
 
 * ``ModelLoader_MaterialColorsSRGB``: Material colors specified in the model file should be converted from sRGB to Linear colorspace.
 
-* ``ModelLoader_AllowLargeModels``: Allows models with VBs/IBs that exceed the required resource size support for all Direct3D device indicated by the ``D3D11_REQ_RESOURCE_SIZE_IN_MEGABYTES_EXPRESSION_x_TERM`` constants.
+* ``ModelLoader_AllowLargeModels``: Allows models with VBs/IBs that exceed the required resource size support for all Direct3D devices as indicated by the ``D3D11_REQ_RESOURCE_SIZE_IN_MEGABYTES_EXPRESSION_x_TERM`` constants.
 
 # Feature Level Notes
 If any ModelMeshPart makes use of 32-bit indices (i.e. ModelMeshPart:: indexFormat equals ``DXGI_FORMAT_R32_UINT``) rather than 16-bit indices (``DXGI_FORMAT_R16_UINT``), then that model requires [Feature Level](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/overviews-direct3d-11-devices-downlevel-intro) 9.2 or greater.
