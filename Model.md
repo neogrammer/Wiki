@@ -100,7 +100,7 @@ As noted above, it is also possible to render part or all of a model using a cus
 # Alpha blending
 Proper drawing of alpha-blended models can be a complicated procedure. Each ModelMeshPart has a bool value to indicate if the associated part is fully opaque (_isAlpha_ is false), or has some level of alpha transparency (_isAlpha_ is true). The ``Model::Draw`` routine handles some basic logic for the rendering, first rendering the opaque parts, then rendering the alpha parts.  More detailed control is provided by the ``ModelMesh::Draw`` method which can be used to draw all opaque parts of all meshes first, then go back and draw all alpha parts of all meshes second. See [[ModelMesh]] for an example.
 
-To indicate the use of ‘straight’ alpha vs. ‘premultiplied’ alpha blending modes, _ModelMesh::pmalpha_ is set by the various loaders functions controlled by a default parameter (which defaults false to indicate the texture files are using 'straight' alpha). If you make use of DirectXTex's [texconv](https://github.com/Microsoft/DirectXTex/wiki/Texconv) tool with the ``-pmalpha`` switch, you should use _pmalpha=true_ instead.
+To indicate the use of 'straight' alpha vs. 'premultiplied' alpha blending modes, _ModelMesh::pmalpha_ is set by the various loaders functions controlled by a default parameter (which defaults false to indicate the texture files are using 'straight' alpha). If you make use of DirectXTex's [texconv](https://github.com/Microsoft/DirectXTex/wiki/Texconv) tool with the ``-pmalpha`` switch, you should use _pmalpha=true_ instead.
 
 # Custom render states
 All the various ``Draw`` method provide a _setCustomState_ callback which can be used to change the state just before the geometry is drawn.
@@ -116,19 +116,33 @@ tiny->Draw( context, states, local, view, projection, false, [&]()
 # Coordinate systems
 Meshes are authored in a specific winding order, typically using the standard counter-clockwise winding common in graphics. The choice of viewing handedness (right-handed vs. left-handed coordinates) is largely a matter of preference and convenience, but it impacts how the models are built and/or exported.
 
-The Visual Studio 3D Starter Kit’s ``.CMO`` files assume the developer is using right-handed coordinates. DirectXTK’s default parameters assume you are using right-handed coordinates as well, so the _ccw_ parameter defaults to true. If using a ``.CMO`` with left-handed coordinates, you should pass false for the _ccw_ parameter which will use clockwise winding instead. This makes the geometry visible, but could make textures on the model appear ‘flipped’ in U.
+The Visual Studio 3D Starter Kit's ``.CMO`` files assume the developer is using right-handed coordinates. DirectXTK's default parameters assume you are using right-handed coordinates as well, so the model loader flags default to ``ModelLoader_CounterClockwise``. If using a ``.CMO`` with left-handed coordinates, you should pass ``ModelLoader_Clockwise`` instead which will use clockwise winding. This makes the geometry visible, but could make textures on the model appear 'flipped' in U.
 
 ```cpp
 // When using LH coordinates
-auto teapot = Model::CreateFromCMO( device, L"teapot.cmo", fx, false );
+auto teapot = Model::CreateFromCMO( device, L"teapot.cmo", fx, ModelLoader_Clockwise );
 ```
 
-The legacy DirectX SDK’s ``.SDKMESH`` files assume the developer is using left-handed coordinates. DirectXTK’s default parameters assume you are using right-handed coordinates, so the _ccw_ parameter defaults to false which will use clockwise winding and potentially have the ‘flipped in U’ texture problem. If using a ``.SDKMESH`` with left-handed coordinates, you should pass true for the _ccw_ parameter.
+The legacy DirectX SDK's ``.SDKMESH`` files assume the developer is using left-handed coordinates. DirectXTK's default parameters assume you are using right-handed coordinates, so the model loader flags default to ``ModelLoader_Clockwise`` which will use clockwise winding and potentially have the 'flipped in U' texture problem. If using a ``.SDKMESH`` with left-handed coordinates, you should pass ``ModelLoader_CounterClockwise`` instead.
 
 ```cpp
 // When using LH coordinates
-auto tiny = Model::CreateFromSDKMESH( device, L"tiny.sdkmesh", fx, true );
+auto tiny = Model::CreateFromSDKMESH( device, L"tiny.sdkmesh", fx, ModelLoader_CounterClockwise );
 ```
+
+# Model Loader Flags
+
+The various ``CreateFrom*`` methods have a defaulted parameter to provide additional model loader flags control.
+
+* ``ModelLoader_Clockwise``: Should use a clockwise winding for backface-culling.
+
+* ``ModelLoader_CounterClockwise``: Should use counter-clockwise winding for backface-culling.
+
+* ``ModelLoader_PremultipledAlpha``: Should use premultipled alpha blending instead of 'straight' Alpha
+
+* ``ModelLoader_MaterialColorsSRGB``: Material colors specified in the model file should be converted from sRGB to Linear colorspace.
+
+* ``ModelLoader_AllowLargeModels``: Allows models with VBs/IBs that exceed the required resource size support for all Direct3D device indicated by the ``D3D11_REQ_RESOURCE_SIZE_IN_MEGABYTES_EXPRESSION_x_TERM`` constants.
 
 # Feature Level Notes
 If any ModelMeshPart makes use of 32-bit indices (i.e. ModelMeshPart:: indexFormat equals ``DXGI_FORMAT_R32_UINT``) rather than 16-bit indices (``DXGI_FORMAT_R16_UINT``), then that model requires [Feature Level](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/overviews-direct3d-11-devices-downlevel-intro) 9.2 or greater.
@@ -173,7 +187,7 @@ auto ship = Model::CreateFromVBO( device, L"ship.vbo", effect );
 ```
 
 # Threading model
-The ModelMeshPart is tied to a device, but not a device context. This means that Model creation/loading is ‘free threaded’. Drawing can be done on the immediate context or by a deferred context, but keep in mind device contexts are not ‘free threaded’. See [[EffectFactory]] for some additional notes.
+The ModelMeshPart is tied to a device, but not a device context. This means that Model creation/loading is 'free threaded'. Drawing can be done on the immediate context or by a deferred context, but keep in mind device contexts are not 'free threaded'. See [[EffectFactory]] for some additional notes.
 
 # State management
 
