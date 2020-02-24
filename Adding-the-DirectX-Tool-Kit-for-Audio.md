@@ -8,18 +8,14 @@ If you used NuGet when [[Adding the DirectX Tool Kit]], then you may already hav
 
 <table>
  <tr>
-  <td>directxtk_desktop_2015</td>
-  <td>This package is configured for Windows 7 Service Pack 1 support for graphics & input, but make use of <b>XAudio 2.8</b> for <I>DirectX Tool Kit for Audio</I>.<br />Therefore audio support with NuGet requires Windows 8 or later, and this version does not support xWMA format wave files.</td>
+  <td>directxtk_desktop_2017</td>
+  <td>This package is configured for Windows 7 Service Pack 1 support for graphics & input. <I>DirectX Tool Kit for Audio</I> is configured to use the XAudio2Redist NuGet package to support Windows 7 or later.</td>
  </tr>
  <tr>
-  <td>directxtk_uwp<br />directxtk12_uwp<br />directxtk12_desktop_2015</td>
+  <td>directxtk_desktop_win10<br />directxtk_uwp<br />directxtk12_uwp<br />directxtk12_desktop_2017</td>
   <td>These packages are configured for Windows 10 support for graphics, input, and make use of <b>XAudio 2.9</b> for <I>DirectX Tool Kit for Audio</I>.</td>
  </tr>
 </table>
-
-If you need Windows 7 Service Pack 1 support for audio, then use *Project-to-project references* instead of NuGet for graphics, input, and audio.
-
-> See [this blog post](https://walbourn.github.io/github-nuget-and-vso/) for details on why it's set up this way.
 
 Complete the steps in **Adding the headers** below including the additional configuration for XAudio 2.9.
 
@@ -27,7 +23,7 @@ Complete the steps in **Adding the headers** below including the additional conf
 If you used project-to-project references when [[Adding the DirectX Tool Kit]], then you need to add an additional _DirectX Tool Kit for Audio_ project to your solution. There are four (4) choices depending on your platform target and deployment requirements:
 
 ## XAudio 2.9
-XAudio 2.9 is built into Windows 10. Everything required is included in the operating system and the Windows 10 SDK. This version of _DirectX Tool Kit for Audio_ is already included in those projects (``DirectXTK*_Windows10_201x.vcxproj``, ``DirectXTK*_Desktop_201x_Win10.vcxproj``,) and Xbox One (``DirectXTK*_XboxOneXDK_201x.vcxproj``).
+XAudio 2.9 is built into Windows 10. Everything required is included in the operating system and the Windows 10 SDK. This version of _DirectX Tool Kit for Audio_ is already included in those projects (``DirectXTK*_Windows10_201x.vcxproj``, ``DirectXTK*_Desktop_201x_Win10.vcxproj``) and Xbox One (``DirectXTK*_XboxOneXDK_201x.vcxproj``).
 
 Complete the steps in **Adding the headers** below including the additional configuration for XAudio 2.9.
 
@@ -44,6 +40,8 @@ XAudio 2.8 is built into Windows 8.0 or later. Everything required is included i
 ![Add Reference (Windows 8)](https://github.com/Microsoft/DirectXTK/wiki/images/AddReferenceWin8.png)
 
 Complete the steps in **Adding the headers** below including the additional configuration for XAudio 2.8.
+
+> XAudio 2.8 does not support xWMA
 
 ## XAudio2 Redistributable
 There is an XAudio 2.9 redistributable package available on [NuGet](https://www.nuget.org/packages/Microsoft.XAudio2.Redist/) that supports Windows 7 SP1, Windows 8, Windows 8.1, and Windows 10 for Win32 desktop applications. The required runtime DLL is included side-by-side with your application, and avoids the need to include any legacy DirectX SDK redist package.
