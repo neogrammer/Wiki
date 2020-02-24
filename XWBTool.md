@@ -10,7 +10,7 @@ See [[Audio]], [[WaveBank]]
 
 ``xwbtool.exe`` uses the following command syntax:
 
-    xwbtool [-r] [-s] [-o <filename>] [-h <filename>] [-n] [-c | -nc] [-f]
+    xwbtool [-r] [-s] [-o <filename>] [-h <filename>] [-y] [-c | -nc] [-f]
     [-flist <filename>] <file-name(s)>
 
 The file-name parameter indicates the ``.wav`` file(s) to add to the wave bank.
@@ -25,7 +25,7 @@ The file-name parameter indicates the ``.wav`` file(s) to add to the wave bank.
 
 **-h _filename_**: Generates a C/C++ header file with ``#define`` symbols for each of the sounds in the bank matched to their index
 
-**-n**: Disables the default warning of overwriting an existing ``.xwb`` file
+**-y**: overwrite existing output file if any. By default, the tool will not overwrite a file if it exists.
 
 **-c / -nc**: Forces creation or prevents use of compact wave banks. By default, it will try to use a compact wave bank if possible.
 
