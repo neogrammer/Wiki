@@ -4,7 +4,7 @@ This lesson covers adding _DirectX Tool Kit for Audio_ to your project.
 After creating a new project in the [[The basic game loop]] or [[Using DeviceResources]], then [[Adding the DirectX Tool Kit]] for this lesson.
 
 # NuGet package manager
-If you used NuGet when [[Adding the DirectX Tool Kit]], then you may already have support for _DirectX Tool Kit for Audio._.
+If you used NuGet when [[Adding the DirectX Tool Kit]], then you already have support for _DirectX Tool Kit for Audio._.
 
 <table>
  <tr>
@@ -17,7 +17,7 @@ If you used NuGet when [[Adding the DirectX Tool Kit]], then you may already hav
  </tr>
 </table>
 
-Complete the steps in **Adding the headers** below including the additional configuration for XAudio 2.9.
+Complete the steps in **Adding the headers** below including the additional configuration for *XAudio2 Redistributable* or *XAudio 2.9*.
 
 # Project-to-project references
 If you used project-to-project references when [[Adding the DirectX Tool Kit]], then you need to add an additional _DirectX Tool Kit for Audio_ project to your solution. There are four (4) choices depending on your platform target and deployment requirements:
