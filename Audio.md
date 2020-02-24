@@ -190,7 +190,7 @@ To add _DirectXTK for Audio_ support for a Win32 desktop application running on 
  </tr>
 </table>
 
-> The NuGet package [directxtk_desktop_2015](https://www.nuget.org/packages/directxtk_desktop_2015/) is designed for Windows 7 compatibility for the main library, but any use of _DirectX Tool Kit for Audio_ uses XAudio 2.8. See [this blog post](https://walbourn.github.io/github-nuget-and-vso/) for details.
+> The NuGet package [directxtk_desktop_2017](https://www.nuget.org/packages/directxtk_desktop_2017/) is designed for Windows 7 compatibility for the main library, and the _DirectX Tool Kit for Audio_ uses [XAudio2Redist](https://aka.ms/XAudio2Redist) to support Windows 7 or later.
 
 [XAudio2 Versions](https://docs.microsoft.com/en-us/windows/desktop/xaudio2/xaudio2-versions)
 
