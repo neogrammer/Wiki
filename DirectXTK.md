@@ -135,7 +135,7 @@ Alternatively you can use NuGet to install one of the DirectX Tool Kit packages.
  </tr>
  <tr>
   <td><a href="https://www.nuget.org/packages/directxtk_desktop_win10/">directxtk_desktop_win10</a></td>
-  <td>This NuGet is configured for Windows desktop C++ applications building with VS 2017 or VS 2019 Community/Professional or higher for Windows 10. <I>DirectXTK for Audio</I> in this package uses XAudio 2.9 in the Windows 10 SDK.</td>
+  <td>This NuGet is configured for Windows desktop C++ applications building for Windows 10 with VS 2017 or VS 2019 Community/Professional or higher. <I>DirectXTK for Audio</I> in this package uses XAudio 2.9 in the Windows 10 SDK.</td>
  </tr>
  <tr>
   <td><a href="https://www.nuget.org/packages/directxtk_uwp/">directxtk_uwp</a></td>
