@@ -126,7 +126,7 @@ See [[Audio]] for additional information when setting up Windows desktop project
 See also the [Visual C+ Team Blog](https://devblogs.microsoft.com/cppblog/flexible-project-to-project-references/)
 
 ## Using NuGet package manager
-Alternatively you can use NuGet to install one of the DirectX Tool Kit packages. Use *Project / Manage NuGet Packages...* then select "Online" and search for "DirectXTK".
+Alternatively you can use [NuGet](https://docs.microsoft.com/en-us/nuget/what-is-nuget) to install one of the DirectX Tool Kit packages. Use *Project / Manage NuGet Packages...* then select "Online" and search for "DirectXTK".
 
 <table>
  <tr>
