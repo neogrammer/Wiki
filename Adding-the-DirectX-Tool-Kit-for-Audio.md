@@ -4,7 +4,7 @@ This lesson covers adding _DirectX Tool Kit for Audio_ to your project.
 After creating a new project in the [[The basic game loop]] or [[Using DeviceResources]], then [[Adding the DirectX Tool Kit]] for this lesson.
 
 # NuGet package manager
-If you used NuGet when [[Adding the DirectX Tool Kit]], then you already have support for _DirectX Tool Kit for Audio._.
+If you used [NuGet](https://docs.microsoft.com/en-us/nuget/what-is-nuget) when [[Adding the DirectX Tool Kit]], then you already have support for _DirectX Tool Kit for Audio._.
 
 <table>
  <tr>
