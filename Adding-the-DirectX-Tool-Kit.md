@@ -14,7 +14,7 @@ The easiest way to achieve this is to use the [NuGet package manager](https://do
 
 You can check for updates to the NuGet package by selecting "Updates/All" in the left-hand tree view. If there are updates, select the "DirectX Tool Kit" package, and click on "Update".
 
-> Both **directxtk_desktop_2017** and **directxtk_uwp** support VS 2017 and VS 2019 as well since they are all 'binary compatible'.
+> Both **directxtk_desktop_2017** and **directxtk_uwp** support VS 2019 as well since they are all 'binary compatible'.
 
 # Project-to-project references
 Another option rather than using NuGet is to use Visual Studio's [project-to-project references](https://devblogs.microsoft.com/cppblog/flexible-project-to-project-references/). This approach is a little more setup, but it does ensure that you are building the full DirectX Tool Kit library as part of your solution, and allows you to make changes directly to the tool kit if desired as well.

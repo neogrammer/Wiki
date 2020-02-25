@@ -31,7 +31,8 @@ A version of _DirectX Tool Kit for DirectX 12_ is available on [GitHub](https://
 # NuGet
 DirectXTK is also available on NuGet
 * [Universal Windows Platform apps](https://www.nuget.org/packages/directxtk_uwp)
-* [Windows desktop app using VS 2015, VS 2017, or VS 2019](https://www.nuget.org/packages/directxtk_desktop_2015)
+* [Windows desktop app using VS 2017 or VS 2019](https://www.nuget.org/packages/directxtk_desktop_2017)
+* [Windows desktop app using VS 2017 or VS 2019 for Windows 10](https://www.nuget.org/packages/directxtk_desktop_win10)
 
 ## Archived
 * [Windows desktop app using VS 2013](https://www.nuget.org/packages/directxtk_desktop_2013)
