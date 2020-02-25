@@ -36,6 +36,7 @@ DirectXTK is also available on NuGet
 
 ## Archived
 * [Windows desktop app using VS 2013](https://www.nuget.org/packages/directxtk_desktop_2013)
+* [Windows desktop app using VS 2015](https://www.nuget.org/packages/directxtk_desktop_2015)
 * [Windows 8.1 Store](https://www.nuget.org/packages/directxtk_windowsstore_8_1)
 * [Windows phone 8.1](https://www.nuget.org/packages/directxtk_windowsphone_8_1)
 
