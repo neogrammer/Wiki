@@ -93,10 +93,69 @@ using Microsoft::WRL::ComPtr;
 ...
 ```
 
+# Graphics memory
+
+**This is only required for Xbox One XDK when using DirectX 11.X. It's a no-op otherwise.**
+
+To finish off setup if using Xbox One XDK, in the **Game.h** file, add the following variable to the bottom of the Game class's private declarations:
+
+```cpp
+std::unique_ptr<DirectX::GraphicsMemory> m_graphicsMemory;
+```
+
+In **Game.cpp**, add to the TODO of **CreateDevice**:
+
+```cpp
+m_graphicsMemory = std::make_unique<GraphicsMemory>(m_d3dDevice.Get());
+```
+
+In **Game.cpp**, in **Render** add a call to [[GraphicsMemory]] ``Commit`` right after the present:
+
+```cpp
+void Game::Render()
+{
+    // Don't try to render anything before the first Update.
+    if (m_timer.GetFrameCount() == 0)
+        return;
+
+    Clear();
+
+    // TODO: Add your rendering code here.
+
+    // Show the new frame.
+    Present();
+    m_graphicsMemory->Commit();
+}
+```
+
+In **Game.cpp**, add to the TODO of **OnDeviceLost**:
+
+```cpp
+m_graphicsMemory.reset();
+```
+
+## DeviceResources variant
+If using the [[DeviceResources]] variant of the template, the code above would be for **CreateDeviceDependentResources** instead of **CreateDevice**:
+
+```cpp
+auto device = m_deviceResources->GetD3DDevice();
+m_graphicsMemory = std::make_unique<GraphicsMemory>(device);
+```
+
+and for **Render**:
+
+```cpp
+void Game::Render()
+{
+...
+    // Show the new frame.
+    m_deviceResources->Present();
+    m_graphicsMemory->Commit();
+}
+```
+
 # Platform notes
 
-If you are using the DirectX Tool Kit with the Xbox One XDK, then you have one additional step:
-
-You need to add creation of the [[GraphicsMemory]] singleton to your application and call ``m_graphicsMemory->Commit();`` after calling ``Present();`` / ``m_deviceResources->Present();``
+If you are using the DirectX Tool Kit with the Xbox One XDK, then you may need to build the Xbox One shaders that match your XDK release. Generally this is handled automatically, but if you run into problems you can build them directly from the Xbox One Developer Command prompt using ``CompileShaders.cmd xbox``
 
 **Next lessons:** [[Sprites and textures]], [[Game controller input]], [[Using the SimpleMath library]], [[Adding the DirectX Tool Kit for Audio]]
