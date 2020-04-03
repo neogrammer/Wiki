@@ -154,8 +154,18 @@ The _DirectX Tool Kit_ library assumes your binary is linking with the following
 * ``dxguid.lib``: Provides COM GUID values for ``IID_ID3D11Device``, etc.
 * ``uuid.lib``: Provides COM GUID values for WIC usage such as ``CLSID_WICImagingFactory``, ``CLSID_WICImagingFactory1``, ``CLSID_WICImagingFactory2``, etc.
 
-For "Windows 10" configurations of the GamePad class that use Windows.Gaming.Input, you also need ``runtimeobject.lib``.
+### DirectX Tool Kit for Audio
+For "Windows 8.x" or "Windows 10" configurations of the AudioEngine class, you'll need to use ``xaudio2.lib``.
 
+For XAudio2Redist, the NuGet package provides the ``xaudio2_9redist.lib``.
+
+### GamePad
+For "Windows 10" configurations of the GamePad class that use Windows.Gaming.Input, you need ``runtimeobject.lib`` for Win32 desktop apps. For UWP apps, this is already handled with the umbrella lib ``windowsapp.lib``.
+
+For "Windows 8.x" configurations of the GamePad class using XInput 1.4, you'll need ``xinput.lib``.
+
+For Windows 7 configurations, use ``xinput9_1_0.lib``.
+ 
 # Content pipeline
 To use the Visual Studio graphics assets tools in the build system, be sure to [add them to your project](https://docs.microsoft.com/en-us/visualstudio/designers/using-3-d-assets-in-your-game-or-app).
 
