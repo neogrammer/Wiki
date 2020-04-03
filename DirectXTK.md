@@ -145,6 +145,15 @@ Alternatively you can use [NuGet](https://docs.microsoft.com/en-us/nuget/what-is
 
 You should use the NuGet interface to check for updates if you have an older version installed.
 
+## Dependencies
+
+The _DirectX Tool Kit_ library assumes your binary is linking with the following system libraries:
+
+* ``d3d11.lib``: Provides the Direct3D device creation function ``D3D11CreateDevice``
+* ``dxgi.lib``: Provides the DXGI factory creation function ``CreateDXGIFactory1`` / ``CreateDXGIFactory2``
+* ``dxguid.lib``: Provides COM GUID values for ``IID_ID3D11Device``, etc.
+* ``uuid.lib``: Provides COM GUID values for WIC usage such as ``CLSID_WICImagingFactory``, ``CLSID_WICImagingFactory1``, ``CLSID_WICImagingFactory2``, etc.
+
 # Content pipeline
 To use the Visual Studio graphics assets tools in the build system, be sure to [add them to your project](https://docs.microsoft.com/en-us/visualstudio/designers/using-3-d-assets-in-your-game-or-app).
 
