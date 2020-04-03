@@ -154,6 +154,8 @@ The _DirectX Tool Kit_ library assumes your binary is linking with the following
 * ``dxguid.lib``: Provides COM GUID values for ``IID_ID3D11Device``, etc.
 * ``uuid.lib``: Provides COM GUID values for WIC usage such as ``CLSID_WICImagingFactory``, ``CLSID_WICImagingFactory1``, ``CLSID_WICImagingFactory2``, etc.
 
+For "Windows 10" configurations of the GamePad class that use Windows.Gaming.Input, you also need ``runtimeobject.lib``.
+
 # Content pipeline
 To use the Visual Studio graphics assets tools in the build system, be sure to [add them to your project](https://docs.microsoft.com/en-us/visualstudio/designers/using-3-d-assets-in-your-game-or-app).
 
