@@ -157,7 +157,7 @@ The _DirectX Tool Kit_ library assumes your binary is linking with the following
 ### DirectX Tool Kit for Audio
 For "Windows 8.x" or "Windows 10" configurations of the AudioEngine class, you'll need to use ``xaudio2.lib``.
 
-For XAudio2Redist, the NuGet package provides the ``xaudio2_9redist.lib``.
+For [XAudio2Redist](https://docs.microsoft.com/en-us/windows/win32/xaudio2/xaudio2-redistributable), the [Microsoft.XAudio2.Redist](https://www.nuget.org/packages/Microsoft.XAudio2.Redist/) NuGet package provides the ``xaudio2_9redist.lib``.
 
 ### GamePad
 For "Windows 10" configurations of the GamePad class that use Windows.Gaming.Input, you need ``runtimeobject.lib`` for Win32 desktop apps. For UWP apps, this is already handled with the umbrella lib ``windowsapp.lib``.
