@@ -18,14 +18,14 @@ namespace
     {
         static const XMVECTORF32 s_verts[8] =
         {
-            { -1.f, -1.f, -1.f, 0.f },
-            {  1.f, -1.f, -1.f, 0.f },
-            {  1.f, -1.f,  1.f, 0.f },
-            { -1.f, -1.f,  1.f, 0.f },
-            { -1.f,  1.f, -1.f, 0.f },
-            {  1.f,  1.f, -1.f, 0.f },
-            {  1.f,  1.f,  1.f, 0.f },
-            { -1.f,  1.f,  1.f, 0.f }
+            { { { -1.f, -1.f, -1.f, 0.f } } },
+            { { {  1.f, -1.f, -1.f, 0.f } } },
+            { { {  1.f, -1.f,  1.f, 0.f } } },
+            { { { -1.f, -1.f,  1.f, 0.f } } },
+            { { { -1.f,  1.f, -1.f, 0.f } } },
+            { { {  1.f,  1.f, -1.f, 0.f } } },
+            { { {  1.f,  1.f,  1.f, 0.f } } },
+            { { { -1.f,  1.f,  1.f, 0.f } } }
         };
 
         static const WORD s_indices[] =
@@ -201,7 +201,7 @@ void XM_CALLCONV DX::DrawRing(PrimitiveBatch<VertexPositionColor>* batch,
     XMVECTOR incrementalSin = XMVectorZero();
     static const XMVECTORF32 s_initialCos =
     {
-        1.f, 1.f, 1.f, 1.f
+        { { 1.f, 1.f, 1.f, 1.f } }
     };
     XMVECTOR incrementalCos = s_initialCos.v;
     for (size_t i = 0; i < c_ringSegments; i++)
