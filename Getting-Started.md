@@ -1,4 +1,4 @@
-This is the _Getting Started_ tutorial for _DirectX Tool Kit_ which introduces the reader to programming Direct3D 11 in C++.
+This is the _Getting Started_ tutorial for _DirectX Tool Kit_ which introduces the reader to using the DirectX Tool Kit with DirectX 11 in C++.
 
 > If you are looking to use DirectX 12 and are already familiar with Direct3D 11, the place to start is the _DirectX Tool Kit for DirectX 12_ [tutorials](https://github.com/Microsoft/DirectXTK12/wiki/Getting-Started). Keep in mind that DirectX 12 is an expert API which builds on knowing the ins & outs of DirectX 11, and is an unforgiving API to developers new to Direct3D or graphics in general.
 
