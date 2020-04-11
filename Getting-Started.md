@@ -5,6 +5,7 @@ This is the _Getting Started_ tutorial for _DirectX Tool Kit_ which introduces t
 # Background
 This tutorial assumes the reader is familiar with the basics of C++ programming using Microsoft Visual C++, including writing code, building applications, and basic debugging. Coding conventions here will make use of C++11 language features such as ``nullptr``, ``auto``, simple _lambdas_  (aka anonymous functions), and the standard smart-pointer ``std::unique_ptr`` / ``std::make_unique<T>()``, but will generally be otherwise 'core' C++.
 
+* [Welcome back to C++ - Modern C++](https://docs.microsoft.com/en-us/cpp/cpp/welcome-back-to-cpp-modern-cpp)
 * [C++ Language and Standard Libraries](https://docs.microsoft.com/en-us/cpp/cpp/c-cpp-language-and-standard-libraries)
 * [Tools for Visual C++ Development](https://docs.microsoft.com/en-us/cpp/ide/ide-and-tools-for-visual-cpp-development)
 * [Smart Pointers](https://docs.microsoft.com/en-us/cpp/cpp/smart-pointers-modern-cpp)
@@ -112,3 +113,11 @@ For a quick introduction to DirectX 11 programming, take a look at the [Introduc
 
 [Dual-use Coding Techniques for Games](https://aka.ms/Fo3su4)  
 [C++ Core Guidelines](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md)
+
+# Further reading
+
+Luna, *Introduction to 3D Game Programming with DirectX 11*, Mercury Learning & Information (March 2, 2012)
+
+Varcholik, *Real-Time 3D Rendering with DirectX and HLSL: A Practical Guide to Graphics Programming*, Addison-Wesley (May 31, 2014)
+
+Zink et al, *Practical Rendering and Computation with Direct3D 11*, A K Peters/CRC Press (July 27, 2011)
