@@ -11,9 +11,10 @@ This tutorial assumes the reader is familiar with the basics of C++ programming 
 * [Smart Pointers](https://docs.microsoft.com/en-us/cpp/cpp/smart-pointers-modern-cpp)
 * [[ComPtr]]
 
-This tutorial does not assume prior experience with Direct3D, but the reader should be familiar with the basic graphics concepts for DirectX or OpenGL. That said, you can get a long way using _DirectX Tool Kit_ without much in the way of graphics experience.
+This tutorial does not assume prior experience with Direct3D, but the reader should be familiar with the basic graphics concepts for DirectX or OpenGL. That said, you can get a long way using _DirectX Tool Kit_ without much in the way of graphics experience. You may also find it useful to review the _Programming Guide for Direct3D 11_ on [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/direct3d11/dx-graphics-overviews).
 
 * [Getting Started with Direct3D 11](https://walbourn.github.io/getting-started-with-direct3d-11/)
+* [Migrating to Direct3D 11](https://docs.microsoft.com/en-us/windows/win32/direct3d11/d3d11-programming-guide-migrating)
 
 > Note that Direct3D 11 and _DirectX Tool Kit_ are not Windows Runtime (aka "WinRT") components, so we do not make use of the C++/CX language extensions (a.k.a. ``/ZW`` switch) or C++/WinRT language projections, although it is compatible with both of those programming models. _DirectX Tool Kit_ is a 'pure' C++ library, which is why it's not directly usable by Visual Basic, C# or HTML+JavaScript applications.
 
@@ -59,13 +60,15 @@ When using the [new lightweight installer](https://devblogs.microsoft.com/cppblo
 
 For a quick introduction to DirectX 11 programming, take a look at the [Introductory Graphics](https://github.com/Microsoft/Xbox-ATG-Samples#introductory-graphics) samples on [Xbox-ATG-Samples](https://github.com/Microsoft/Xbox-ATG-Samples).
 
-* Basic drawing: SimpleTriangle
-* Basic texturing: SimpleTexture
-* Basic lighting: SimpleLighting
-* DirectCompute: SimpleCompute
-* Tessellation: SimpleBezier
-* Instancing: SimpleInstancing
-* Multisample Antialiasing: SimpleMSAA
+* Basic drawing: *SimpleTriangle*
+* Basic texturing: *SimpleTexture*
+* Basic lighting: *SimpleLighting*
+* DirectCompute: *SimpleCompute*
+* Tessellation: *SimpleBezier*
+* Instancing: *SimpleInstancing*
+* Multisample Antialiasing: *SimpleMSAA*
+
+The official samples for DirectX 11 were originally shipped in the legacy *DirectX SDK*. There is an unofficial repository of these samples available on [GitHub](https://github.com/walbourn/directx-sdk-samples/wiki) that have been updated to remove most of their legacy dependencies.
 
 # Tutorials
 
