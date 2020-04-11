@@ -14,7 +14,6 @@ This tutorial assumes the reader is familiar with the basics of C++ programming 
 This tutorial does not assume prior experience with Direct3D, but the reader should be familiar with the basic graphics concepts for DirectX or OpenGL. That said, you can get a long way using _DirectX Tool Kit_ without much in the way of graphics experience.
 
 * [Getting Started with Direct3D 11](https://walbourn.github.io/getting-started-with-direct3d-11/)
-* [Book Recommendations](https://walbourn.github.io/book-recommendations/)
 
 > Note that Direct3D 11 and _DirectX Tool Kit_ are not Windows Runtime (aka "WinRT") components, so we do not make use of the C++/CX language extensions (a.k.a. ``/ZW`` switch) or C++/WinRT language projections, although it is compatible with both of those programming models. _DirectX Tool Kit_ is a 'pure' C++ library, which is why it's not directly usable by Visual Basic, C# or HTML+JavaScript applications.
 
@@ -117,6 +116,8 @@ For a quick introduction to DirectX 11 programming, take a look at the [Introduc
 # Further reading
 
 Luna, *Introduction to 3D Game Programming with DirectX 11*, Mercury Learning & Information (March 2, 2012)
+
+Meyers, *Effective Modern C++: 42 Specific Ways to Improve Your Use of C++11 and C++14*, O'Reilly Media (November 2014)
 
 Varcholik, *Real-Time 3D Rendering with DirectX and HLSL: A Practical Guide to Graphics Programming*, Addison-Wesley (May 31, 2014)
 
