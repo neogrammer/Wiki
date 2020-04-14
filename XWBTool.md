@@ -10,7 +10,7 @@ See [[Audio]], [[WaveBank]]
 
 ``xwbtool.exe`` uses the following command syntax:
 
-    xwbtool [-r] [-s] [-o <filename>] [-h <filename>] [-y] [-c | -nc] [-f]
+    xwbtool [-r] [-s] [-o <filename>] [-h <filename>] [-l] [-y] [-c | -nc] [-f]
     [-flist <filename>] <file-name(s)>
 
 The file-name parameter indicates the ``.wav`` file(s) to add to the wave bank.
@@ -24,6 +24,8 @@ The file-name parameter indicates the ``.wav`` file(s) to add to the wave bank.
 **-o _filename_**: Sets output filename for ``.xwb`` file. Otherwise, it defaults to the same base name as the first input ``.wav`` file
 
 **-h _filename_**: Generates a C/C++ header file with ``#define`` symbols for each of the sounds in the bank matched to their index
+
+**-l**: Forces the output path & filename to all lower-case. *Windows file system is case-insensitive by default, but some programs like git are case-sensitive*.
 
 **-y**: overwrite existing output file if any. By default, the tool will not overwrite a file if it exists.
 
