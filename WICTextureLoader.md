@@ -155,7 +155,6 @@ WIC has built-in support for doing pixel format conversions.
 
 * ``GUID_WICPixelFormat32bppRGBE`` is an 8:8:8:8 format, which does not match ``DXGI_FORMAT_R9G9B9E5_SHAREDEXP``. This WIC pixel format is therefore converted to ``GUID_WICPixelFormat128bppRGBAFloat`` and returns as ``DXGI_FORMAT_R32G32B32A32_FLOAT``.
 
-
 # Remarks
 * On a system with the DirectX 11.0 Runtime or lacking WDDM 1.2 drivers, 16bpp pixel formats will be converted to a RGBA 32-bit format.
 
