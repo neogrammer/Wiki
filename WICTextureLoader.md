@@ -147,18 +147,16 @@ DX::ThrowIfFailed(hr);
 # Pixel format conversions
 WIC has built-in support for doing pixel format conversions.
 
-* If the *loadFlags* include ``WIC_LOADER_FORCE_RGBA32``, then the result is always a ``DXGI_FORMAT_R8G8B8A8_UNORM`` texture by converting to ``GUID_WICPixelFormat32bppRGBA``. If ``WIC_LOADER_FORCE_SRGB`` is also set, the result with be set to ``DXGI_FORMAT_R8G8B8A8_UNORM_SRGB``.
+If the *loadFlags* include ``WIC_LOADER_FORCE_RGBA32``, then the result is always a ``DXGI_FORMAT_R8G8B8A8_UNORM`` texture by converting to ``GUID_WICPixelFormat32bppRGBA``. If ``WIC_LOADER_FORCE_SRGB`` is also set, the result with be set to ``DXGI_FORMAT_R8G8B8A8_UNORM_SRGB``.
 
-* The conversion tables are designed so that they prefer to convert to RGB if a conversion is required as a general preferance for DXGI 1.0 supporting formats supported by WDDM 1.0 drivers. The majority of Direct3D 11 devices actually support BGR DXGI 1.1 formats so we use them when they are the best match. For example, ``GUID_WICPixelFormat32bppBGRA`` loads directly as ``DXGI_FORMAT_B8G8R8A8_UNORM``, but ``GUID_WICPixelFormat32bppPBGRA`` converts to ``DXGI_FORMAT_R8G8B8A8_UNORM``.
+The conversion tables are designed so that they prefer to convert to RGB if a conversion is required as a general preferance for DXGI 1.0 supporting formats supported by WDDM 1.0 drivers. The majority of Direct3D 11 devices actually support BGR DXGI 1.1 formats so we use them when they are the best match. For example, ``GUID_WICPixelFormat32bppBGRA`` loads directly as ``DXGI_FORMAT_B8G8R8A8_UNORM``, but ``GUID_WICPixelFormat32bppPBGRA`` converts to ``DXGI_FORMAT_R8G8B8A8_UNORM``.
 
-* ``GUID_WICPixelFormatBlackWhite`` is always converted to a greyscale ``DXGI_FORMAT_R8_UNORM`` since ``DXGI_FORMAT_R1_UNORM`` is not supported by Direct3D.
+``GUID_WICPixelFormatBlackWhite`` is always converted to a greyscale ``DXGI_FORMAT_R8_UNORM`` since ``DXGI_FORMAT_R1_UNORM`` is not supported by Direct3D.
 
-* ``GUID_WICPixelFormat32bppRGBE`` is an 8:8:8:8 format, which does not match ``DXGI_FORMAT_R9G9B9E5_SHAREDEXP``. This WIC pixel format is therefore converted to ``GUID_WICPixelFormat128bppRGBAFloat`` and returns as ``DXGI_FORMAT_R32G32B32A32_FLOAT``.
+``GUID_WICPixelFormat32bppRGBE`` is an 8:8:8:8 format, which does not match ``DXGI_FORMAT_R9G9B9E5_SHAREDEXP``. This WIC pixel format is therefore converted to ``GUID_WICPixelFormat128bppRGBAFloat`` and returns as ``DXGI_FORMAT_R32G32B32A32_FLOAT``.
 
 # Remarks
-* On a system with the DirectX 11.0 Runtime or lacking WDDM 1.2 drivers, 16bpp pixel formats will be converted to a RGBA 32-bit format.
-
-* WICTextureLoader cannot load ``.TGA``/``.HDR`` files unless the system has a 3rd party WIC codec installed. You must use the [DirectXTex library](http://go.microsoft.com/fwlink/?LinkId=248926) for ``TGA``/``HDR`` file format support without relying on an add-on WIC codec.
+WICTextureLoader cannot load ``.TGA``/``.HDR`` files unless the system has a 3rd party WIC codec installed. You must use the [DirectXTex library](http://go.microsoft.com/fwlink/?LinkId=248926) for ``TGA``/``HDR`` file format support without relying on an add-on WIC codec.
 
 # WIC2
 WIC2 is available on Windows 10, Windows 8.x, and on Windows 7 Service Pack 1 with [KB 2670838](http://support.microsoft.com/kb/2670838) installed.
