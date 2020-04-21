@@ -14,10 +14,22 @@
 **Related tutorials:** [[Using the SimpleMath library]], [[Basic game math]], [[Collision detection]], [[Mixing SimpleMath and DirectXMath]]
 
 # Header
+
 ```cpp
 #include <d3d11.h>
 #include "SimpleMath.h"
 ```
+
+```cpp
+#include <d3d12.h>
+#include "SimpleMath.h"
+```
+
+```cpp
+#include "SimpleMath.h"
+// This version does not have interop for Direct3D 11 or Direct3D 12 types
+```
+
 
 > If using _DirectX Tool Kit for DirectX 12_, you'd use ``#include <d3d12.h>`` instead of ``#include <d3d11.h>``.
 
