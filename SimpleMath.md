@@ -27,11 +27,8 @@
 
 ```cpp
 #include "SimpleMath.h"
-// This version does not have interop for Direct3D 11 or Direct3D 12 types
+// This does not have interop for Direct3D 11 or Direct3D 12 types
 ```
-
-
-> If using _DirectX Tool Kit for DirectX 12_, you'd use ``#include <d3d12.h>`` instead of ``#include <d3d11.h>``.
 
 # Namespace
 
