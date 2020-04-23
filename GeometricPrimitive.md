@@ -266,7 +266,7 @@ deviceContext->DrawIndexed(indexCount, 0, 0);
 # Feature Level Notes
 In order to support [all feature levels](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/overviews-direct3d-11-devices-downlevel-intro), the GeometricPrimitive implementation make use of 16-bit indices (``DXGI_FORMAT_R16_UINT``) which limits to a maximum of 65535 vertices.
 
-Feature Level 9.1 is also limited to a maximum of 65535 primitives in a single draw. This rule out using extremely large numbers for the tessellation factor, although the exact limit depends on the shape implementation.
+Feature Level 9.1 is also limited to a maximum of 65535 primitives in a single draw. This rules out using extremely large numbers for the tessellation factor, although the exact limit depends on the shape implementation.
 
 Note that these shapes tend to duplicate rather than share vertices in order to provide the 'face-normal' lighting expected of sharp geometry.
 
