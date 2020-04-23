@@ -144,7 +144,7 @@ Each button is reported by the tracker with a state:
 * ``UP``: This indicates the button has been up both for this ``Update`` and the previous one.
 * ``HELD``: This indicates the button has been held down both for this ``Update`` and the previous one.
 
-> The ``UP`` and ``HELD`` states are for convenience and readability as they provide exactly the same information as the result from ``Mouse::GetState``.
+> The ``UP`` and ``HELD`` states are for convenience and readability as they provide exactly the same information as the result from ``GamePad::GetState``.
 
 You may find that using ``GamePad::ButtonStateTracker::PRESSED`` is a bit verbose. You can simplify the code by doing:
 
