@@ -139,7 +139,14 @@ if ( tracker.rightButton == Mouse::ButtonStateTracker::PRESSED )
     // then pressed again
 ```
 
-Each button is reported by the tracker with a state ``UP``, ``HELD``, ``PRESSED``, or ``RELEASED``.
+Each button is reported by the tracker with a state:
+
+* ``PRESSED``: Indicates that the button was just pushed down since the previous ``Update``.
+* ``RELEASED``: Indicates that the button was just let up since the previous ``Update``.
+* ``UP``: This indicates the button has been up both for this ``Update`` and the previous one.
+* ``HELD``: This indicates the button has been held down both for this ``Update`` and the previous one.
+
+> The ``UP`` and ``HELD`` states are for convenience and readability as they provide exactly the same information as the result from ``Mouse::GetState``.
 
 You may find that using ``Mouse::ButtonStateTracker::PRESSED`` is a bit verbose. You can simplify the code by doing:
 
