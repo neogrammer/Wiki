@@ -182,7 +182,7 @@ If you want to create a vertex format other than ``VertexPositionNormalTexture``
 
 Here's an example that repurposes the generated normal information into a per-vertex color.
 
-```
+```cpp
 Microsoft::WRL::ComPtr<ID3D11InputLayout> inputLayout;
 
 Microsoft::WRL::ComPtr<ID3D11Buffer> vertexBuffer;
@@ -193,7 +193,7 @@ UINT indexCount;
 std::unique_ptr<DirectX::CommonStates> states;
 ```
 
-```
+```cpp
 // Create shape data
 std::vector<VertexPositionNormalTexture> vertices;
 std::vector<uint16_t> indices;
@@ -242,7 +242,7 @@ indexCount = UINT(indices.size());
 states = std::make_unique<CommonStates>(device);
 ```
 
-```
+```cpp
 // Render using our effect
 deviceContext->OMSetBlendState( states->Opaque(), nullptr, 0xFFFFFFFF );
 deviceContext->OMSetDepthStencilState( states->DepthNone(), 0 );
