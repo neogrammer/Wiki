@@ -156,6 +156,8 @@ if ( state.IsConnected() )
 
 > When resuming from a pause or suspend, be sure to call **Reset** on the tracker object to clear the state history.
 
+If you are using multiple controllers, remember each 'player' needs their own instance of the ``GamePad::ButtonStateTracker``.
+
 # Threading model
 The GamePad class provides no special synchronization above the underlying API. XInput on Windows is thread-safe through a internal global lock, so performance is best when only a single thread accesses the controller.
 
