@@ -189,6 +189,8 @@ Microsoft::WRL::ComPtr<ID3D11Buffer> vertexBuffer;
 Microsoft::WRL::ComPtr<ID3D11Buffer> indexBuffer;
 
 UINT indexCount;
+
+std::unique_ptr<DirectX::CommonStates> states;
 ```
 
 ```
@@ -237,14 +239,14 @@ device->CreateInputLayout(
 
 indexCount = UINT(indices.size());
 
-m_states = std::make_unique<CommonStates>(device);
+states = std::make_unique<CommonStates>(device);
 ```
 
 ```
 // Render using our effect
-deviceContext->OMSetBlendState( m_states->Opaque(), nullptr, 0xFFFFFFFF );
-deviceContext->OMSetDepthStencilState( m_states->DepthNone(), 0 );
-deviceContext->RSSetState( m_states->CullNone() );
+deviceContext->OMSetBlendState( states->Opaque(), nullptr, 0xFFFFFFFF );
+deviceContext->OMSetDepthStencilState( states->DepthNone(), 0 );
+deviceContext->RSSetState( states->CullNone() );
 
 effect->Apply(deviceContext);
 deviceContext->IASetInputLayout(inputLayout.Get());
@@ -254,12 +256,13 @@ UINT vertexStride = sizeof(VertexPositionColor);
 UINT vertexOffset = 0;
 
 deviceContext->IASetVertexBuffers(0, 1, &vertexBuffer, &vertexStride, &vertexOffset);
-deviceContext->IASetIndexBuffer(vertexBuffer.Get(), DXGI_FORMAT_R16_UINT, 0);
+deviceContext->IASetIndexBuffer(indexBuffer.Get(), DXGI_FORMAT_R16_UINT, 0);
 
 deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 deviceContext->DrawIndexed(indexCount, 0, 0);
 ```
+
 
 # Feature Level Notes
 In order to support [all feature levels](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/overviews-direct3d-11-devices-downlevel-intro), the GeometricPrimitive implementation make use of 16-bit indices (``DXGI_FORMAT_R16_UINT``) which limits to a maximum of 65535 vertices.
