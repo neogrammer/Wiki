@@ -214,7 +214,7 @@ auto vsize = UINT(newVerts.size() * sizeof(VertexPositionColor));
 auto isize = UINT(indices.size() * sizeof(uint16_t));
 
 auto vdesc = CD3D11_BUFFER_DESC(vsize, D3D11_BIND_VERTEX_BUFFER);
-auto idesc = CD3D11_BUFFER_DESC(vsize, D3D11_BIND_INDEX_BUFFER);
+auto idesc = CD3D11_BUFFER_DESC(isize, D3D11_BIND_INDEX_BUFFER);
 
 D3D11_SUBRESOURCE_DATA initData = { newVerts.data(), vsize, 0 };
 DX::ThrowIfFailed(device->CreateBuffer(&vdesc, &initData,
@@ -251,18 +251,17 @@ deviceContext->RSSetState( states->CullNone() );
 effect->Apply(deviceContext);
 deviceContext->IASetInputLayout(inputLayout.Get());
 
-auto vertexBuffer = vertexBuffer.Get();
+auto vb = vertexBuffer.Get();
 UINT vertexStride = sizeof(VertexPositionColor);
 UINT vertexOffset = 0;
 
-deviceContext->IASetVertexBuffers(0, 1, &vertexBuffer, &vertexStride, &vertexOffset);
+deviceContext->IASetVertexBuffers(0, 1, &vb, &vertexStride, &vertexOffset);
 deviceContext->IASetIndexBuffer(indexBuffer.Get(), DXGI_FORMAT_R16_UINT, 0);
 
 deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 deviceContext->DrawIndexed(indexCount, 0, 0);
 ```
-
 
 # Feature Level Notes
 In order to support [all feature levels](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/overviews-direct3d-11-devices-downlevel-intro), the GeometricPrimitive implementation make use of 16-bit indices (``DXGI_FORMAT_R16_UINT``) which limits to a maximum of 65535 vertices.
