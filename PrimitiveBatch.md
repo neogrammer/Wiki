@@ -64,6 +64,8 @@ device->CreateInputLayout(VertexPositionColor::InputElements,
 ```cpp
 m_states = std::make_unique<CommonStates>(device);
 
+...
+
 deviceContext->OMSetBlendState( m_states->Opaque(), nullptr, 0xFFFFFFFF );
 deviceContext->OMSetDepthStencilState( m_states->DepthNone(), 0 );
 deviceContext->RSSetState( m_states->CullNone() );
