@@ -178,7 +178,7 @@ customBox = GeometricPrimitive::CreateCustom( deviceContext, vertices, indices )
 
 # Custom vertex format
 
-If you want to create a vertex format other than ``VertexPositionNormalTexture``, you can use the ``GeometricPrimitive`` custom geometry methods to generate the shape data, but you'll need implement the creation of the VB/IB and rendering in your own code (i.e. the ``GeometricPrimitive::CreateCustom`` method only supports ``VertexPositionNormalTexture``).
+If you want to create a vertex format other than ``VertexPositionNormalTexture``, you can use the ``GeometricPrimitive`` custom geometry methods to generate the shape data, but you'll need to implement the creation of the VB/IB and rendering in your own code (i.e. the ``GeometricPrimitive::CreateCustom`` method only supports ``VertexPositionNormalTexture``).
 
 Here's an example that repurposes the generated normal information into a per-vertex color.
 
