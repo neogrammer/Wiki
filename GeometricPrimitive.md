@@ -176,6 +176,91 @@ for( auto it = vertices.begin(); it != vertices.end(); ++it )
 customBox = GeometricPrimitive::CreateCustom( deviceContext, vertices, indices ) );
 ```
 
+# Custom vertex format
+
+If you want to create a vertex format other than ``VertexPositionNormalTexture``, you can use the ``GeometricPrimitive`` custom geometry methods to generate the shape data, but you'll need implement the creation of the VB/IB and rendering in your own code (i.e. the ``GeometricPrimitive::CreateCustom`` method only supports ``VertexPositionNormalTexture``).
+
+Here's an example that repurposes the generated normal information into a per-vertex color.
+
+```
+Microsoft::WRL::ComPtr<ID3D11InputLayout> inputLayout;
+
+Microsoft::WRL::ComPtr<ID3D11Buffer> vertexBuffer;
+Microsoft::WRL::ComPtr<ID3D11Buffer> indexBuffer;
+
+UINT indexCount;
+```
+
+```
+// Create shape data
+std::vector<VertexPositionNormalTexture> vertices;
+std::vector<uint16_t> indices;
+GeometricPrimitive::CreateSphere(vertices, indices);
+
+std::vector<VertexPositionColor> newVerts;
+newVerts.reserve(vertices.size());
+for (auto it : vertices)
+{
+    VertexPositionColor v;
+    v.position = it.position;
+    v.color = XMFLOAT4(it.normal.x, it.normal.y, it.normal.z, 1.f);
+    newVerts.emplace_back(v);
+}
+
+// Create VB/IB
+auto vsize = UINT(newVerts.size() * sizeof(VertexPositionColor));
+auto isize = UINT(indices.size() * sizeof(uint16_t));
+
+auto vdesc = CD3D11_BUFFER_DESC(vsize, D3D11_BIND_VERTEX_BUFFER);
+auto idesc = CD3D11_BUFFER_DESC(vsize, D3D11_BIND_INDEX_BUFFER);
+
+D3D11_SUBRESOURCE_DATA initData = { newVerts.data(), vsize, 0 };
+DX::ThrowIfFailed(device->CreateBuffer(&vdesc, &initData,
+    vertexBuffer.ReleaseAndGetAddressOf()));
+
+initData = { indices.data(), isize, 0 };
+DX::ThrowIfFailed(device->CreateBuffer(&idesc, &initData,
+    indexBuffer.ReleaseAndGetAddressOf()));
+
+// Create matching effect & layout for our vertex
+effect = std::make_unique<BasicEffect>(device);
+effect->SetVertexColorEnabled(true);
+
+void const* shaderByteCode;
+size_t byteCodeLength;
+
+effect->GetVertexShaderBytecode(&shaderByteCode, &byteCodeLength);
+
+device->CreateInputLayout(
+    VertexPositionColor::InputElements, VertexPositionColor::InputElementCount,
+    shaderByteCode, byteCodeLength, inputLayout.ReleaseAndGetAddressOf());
+
+indexCount = UINT(indices.size());
+
+m_states = std::make_unique<CommonStates>(device);
+```
+
+```
+// Render using our effect
+deviceContext->OMSetBlendState( m_states->Opaque(), nullptr, 0xFFFFFFFF );
+deviceContext->OMSetDepthStencilState( m_states->DepthNone(), 0 );
+deviceContext->RSSetState( m_states->CullNone() );
+
+effect->Apply(deviceContext);
+deviceContext->IASetInputLayout(inputLayout.Get());
+
+auto vertexBuffer = vertexBuffer.Get();
+UINT vertexStride = sizeof(VertexPositionColor);
+UINT vertexOffset = 0;
+
+deviceContext->IASetVertexBuffers(0, 1, &vertexBuffer, &vertexStride, &vertexOffset);
+deviceContext->IASetIndexBuffer(vertexBuffer.Get(), DXGI_FORMAT_R16_UINT, 0);
+
+deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+deviceContext->DrawIndexed(indexCount, 0, 0);
+```
+
 # Feature Level Notes
 In order to support [all feature levels](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/overviews-direct3d-11-devices-downlevel-intro), the GeometricPrimitive implementation make use of 16-bit indices (``DXGI_FORMAT_R16_UINT``) which limits to a maximum of 65535 vertices.
 
