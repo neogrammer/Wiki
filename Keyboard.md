@@ -128,6 +128,12 @@ if ( tracker.IsKeyReleased( VK_F1 ) )
     // F1 key was just released
 ```
 
+The ``pressed`` member of the state tracker indicates each key that was just pushed down since the previous ``Update``. The helper ``IsKeyPressed`` can be used to check this state.
+
+The ``released`` member of the state tracker indicates each key that was just went up since the previous ``Update``. The helper ``IsKeyReleased`` can be used to check this state.
+
+You can determine which keys are 'down' vs. 'up' by looking at the original ``Keyboard::GetState`` to get the equivalent of the Mouse/GamePad ``HELD`` vs. ``UP`` tracker states.
+
 > When resuming from a pause or suspend, be sure to call **Reset** on the tracker object to clear the state history.
 
 # Threading model
