@@ -194,6 +194,10 @@ Build and run to see earth with more 'space-like' lighting.
 
 ![Screenshot Earth](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotEarth2.PNG)
 
+# More to explore
+
+* The ``GeometricPrimitive`` class is designed for simple rendering, so it always uses the ``VertexPositionNormalTexture`` vertex format. For details on how to utilize the built-in shape generation for other vertex formats, see [[Custom vertex format|GeometricPrimitive#custom-vertex-format]].
+
 **Next lesson:** [[Rendering a model]]
 
 # Further reading
