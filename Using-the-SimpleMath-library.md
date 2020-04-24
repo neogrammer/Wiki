@@ -7,7 +7,7 @@ Consistent with the original XNA Game Framework C# math library, SimpleMath assu
 The operator overloads defined in the SimpleMath library are defined in the ``DirectX::SimpleMath`` C++ namespace. You therefore need to add ``using`` statements to get them to properly resolve:
 
 ```cpp
-using namespace DirectX;;
+using namespace DirectX;
 using namespace DirectX::SimpleMath;
 ```
 
