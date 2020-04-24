@@ -40,8 +40,8 @@ This is the classic 'bounding sphere' collision primitive.
 The **Contains** method provides *sphere contains point*, *sphere contains triangle*, *sphere contains sphere*, *sphere contains box*, and *sphere contains frustum* tests.
 
 ```cpp
-ContainmentType Contains(FXMVECTOR Point) const;
-ContainmentType Contains(FXMVECTOR V0, FXMVECTOR V1, FXMVECTOR V2) const;
+ContainmentType Contains(XMVECTOR Point) const;
+ContainmentType Contains(XMVECTOR V0, XMVECTOR V1, XMVECTOR V2) const;
 ContainmentType Contains(const BoundingSphere& sh) const;
 ContainmentType Contains(const BoundingBox& box) const;
 ContainmentType Contains(const BoundingOrientedBox& box) const;
@@ -51,8 +51,8 @@ ContainmentType Contains(const BoundingFrustum& fr) const;
 The **ContainedBy** method provides *sphere contained by frustum* test.
 
 ```cpp
-ContainmentType ContainedBy(FXMVECTOR Plane0, FXMVECTOR Plane1, FXMVECTOR Plane2,
-    GXMVECTOR Plane3, HXMVECTOR Plane4, HXMVECTOR Plane5) const;
+ContainmentType ContainedBy(XMVECTOR Plane0, XMVECTOR Plane1, XMVECTOR Plane2,
+    XMVECTOR Plane3, XMVECTOR Plane4, XMVECTOR Plane5) const;
 ```
 
 The **Intersects** method provides *sphere/sphere*, *sphere/box*, *sphere/frustum*, *sphere/triangle*, *sphere/plane*, and *ray/sphere* intersection tests.
@@ -62,9 +62,9 @@ bool Intersects(const BoundingSphere& sh) const;
 bool Intersects(const BoundingBox& box) const;
 bool Intersects(const BoundingOrientedBox& box) const;
 bool Intersects(const BoundingFrustum& fr) const;
-bool Intersects(FXMVECTOR V0, FXMVECTOR V1, FXMVECTOR V2) const;
-PlaneIntersectionType Intersects(FXMVECTOR Plane) const;
-bool Intersects(FXMVECTOR Origin, FXMVECTOR Direction, float& Dist) const;
+bool Intersects(XMVECTOR V0, XMVECTOR V1, XMVECTOR V2) const;
+PlaneIntersectionType Intersects(XMVECTOR Plane) const;
+bool Intersects(XMVECTOR Origin, XMVECTOR Direction, float& Dist) const;
 ```
     
 See [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/api/directxcollision/ns-directxcollision-boundingsphere).
@@ -100,19 +100,19 @@ This namespace provides a number of triangle tests not covered by the other boun
 These **Intersects** functions cover *ray/triangle*, *triangle/triangle*, and *plane/triangle* tests.
 
 ```cpp
-bool Intersects(FXMVECTOR Origin, FXMVECTOR Direction,
-    FXMVECTOR V0, GXMVECTOR V1, HXMVECTOR V2, _Out_ float& Dist);
-bool Intersects(FXMVECTOR A0, FXMVECTOR A1, FXMVECTOR A2,
-    GXMVECTOR B0, HXMVECTOR B1, HXMVECTOR B2);
-PlaneIntersectionType Intersects(FXMVECTOR V0, FXMVECTOR V1, FXMVECTOR V2, GXMVECTOR Plane);
+bool Intersects(XMVECTOR Origin, XMVECTOR Direction,
+    XMVECTOR V0, XMVECTOR V1, XMVECTOR V2, float& Dist);
+bool Intersects(XMVECTOR A0, XMVECTOR A1, XMVECTOR A2,
+    XMVECTOR B0, XMVECTOR B1, XMVECTOR B2);
+PlaneIntersectionType Intersects(XMVECTOR V0, XMVECTOR V1, XMVECTOR V2, XMVECTOR Plane);
 ```
 
 The *ContainedBy* function covers *frustum contains triangle*.
 
 ```cpp
-ContainmentType ContainedBy(FXMVECTOR V0, FXMVECTOR V1, FXMVECTOR V2,
-    GXMVECTOR Plane0, HXMVECTOR Plane1, HXMVECTOR Plane2,
-    CXMVECTOR Plane3, CXMVECTOR Plane4, CXMVECTOR Plane5);
+ContainmentType ContainedBy(XMVECTOR V0, XMVECTOR V1, XMVECTOR V2,
+    XMVECTOR Plane0, XMVECTOR Plane1, XMVECTOR Plane2,
+    XMVECTOR Plane3, XMVECTOR Plane4, XMVECTOR Plane5);
 ```
 
 See [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/dxmath/ovw-xnamath-triangletests).
