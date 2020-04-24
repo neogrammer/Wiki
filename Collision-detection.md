@@ -109,7 +109,7 @@ bool Intersects(XMVECTOR A0, XMVECTOR A1, XMVECTOR A2,
 PlaneIntersectionType Intersects(XMVECTOR V0, XMVECTOR V1, XMVECTOR V2, XMVECTOR Plane);
 ```
 
-The *ContainedBy* function covers *frustum contains triangle*.
+The **ContainedBy** function covers *frustum contains triangle*.
 
 ```cpp
 ContainmentType ContainedBy(XMVECTOR V0, XMVECTOR V1, XMVECTOR V2,
