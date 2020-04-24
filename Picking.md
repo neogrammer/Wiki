@@ -8,7 +8,11 @@ First create a new project using the instructions from the first two lessons: [[
 
 > **UNDER CONSTRUCTION**
 
-You can find an older tutorial on 3D picking using ray/object tests at [Rastertek](http://rastertek.com/dx11tut47.html) that uses the deprecated D3DXMath library.
+You can find an older tutorial on 3D picking using ray/object tests at [Rastertek](http://rastertek.com/dx11tut47.html) that uses the deprecated D3DXMath library. Note that instead of a 'roll your own' ``RaySphereIntersect`` you can use [BoundingSphere](https://docs.microsoft.com/en-us/windows/win32/api/directxcollision/ns-directxcollision-boundingsphere) from ``DirectXCollision.h`` with the following method to do the ray-sphere test:
+
+```cpp
+bool Intersects(FXMVECTOR Origin, FXMVECTOR Direction, float& Dist) const;
+```
 
 **Next lesson**: [[Mixing SimpleMath and DirectXMath]]
 
