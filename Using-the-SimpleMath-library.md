@@ -52,7 +52,7 @@ Quaternion c = Quaternion::Slerp(a, b, 0.25f);
 ```
 
 # Bounding Volumes
-The **BoundingBox**, **BoudingOrientedBox**, **BoundingFrustum**, **BoundingSphere**, **Plane**, and **Ray** classes provides for representing simplified versions of geometry for the purpose of efficient collision and hit testing. These classes have methods for checking for intersection and containment with each other
+The **BoundingBox**, **BoudingOrientedBox**, **BoundingFrustum**, **BoundingSphere**, **Plane**, and **Ray** classes provides for representing simplified versions of geometry for the purpose of efficient collision and hit testing. These classes have methods for checking for intersection and containment with each other. See the [[Collision detection]] tutorial for more details.
 
 # Precision and Performance
 The SimpleMath types are single-precision. This means that the primitives and operations contained in this library use 32-bit floating-point numbers to achieve a balance between precision and efficiency when performing large numbers of calculations.
