@@ -1,4 +1,4 @@
-This lesson will show how to read user input from the mouse and keyboard.
+fThis lesson will show how to read user input from the mouse and keyboard.
 
 # Setup
 First create a new project using the instructions from the first two lessons: [[The basic game loop]] and
@@ -281,6 +281,20 @@ In the **Game.h** file, add the following variables  to the bottom of the Game c
 ```cpp
 DirectX::Keyboard::KeyboardStateTracker m_keys;
 DirectX::Mouse::ButtonStateTracker m_mouseButtons;
+
+DirectX::SimpleMath::Color m_roomColor;
+```
+
+In **Game.cpp**, add to the ``Game`` constructor:
+
+```cpp
+m_roomColor = Colors::White;
+```
+
+In **Game.cpp**, modify the TODO of **Render**:
+
+```cpp
+m_room->Draw(Matrix::Identity, view, m_proj, m_roomColor, m_roomTex.Get());
 ```
 
 In **Game.cpp**, add to the TODO of **OnResuming** and **OnActivated**:
@@ -290,13 +304,13 @@ m_keys.Reset();
 m_mouseButtons.Reset();
 ```
 
-In **Game.cpp**, modify the TODO section of *Update*:
+In **Game.cpp**, modify the TODO section of **Update**:
 
 ```cpp
 auto kb = m_keyboard->GetState();
 m_keys.Update(kb);
 
-if ( kb.Escape )
+if (kb.Escape)
 ...
 ```
 
@@ -307,6 +321,24 @@ m_mouseButtons.Update(mouse);
 if (mouse.positionMode == Mouse::MODE_RELATIVE)
 ...
 ```
+
+Add to the end of **Update**:
+
+```cpp
+if (m_keys.pressed.Tab || m_mouseButtons.rightButton == Mouse::ButtonStateTracker::PRESSED)
+{
+    if (m_roomColor == Colors::Red.v)
+        m_roomColor = Colors::Green;
+    else if (m_roomColor == Colors::Green.v)
+        m_roomColor = Colors::Blue;
+   else if (m_roomColor == Colors::Blue.v)
+        m_roomColor = Colors::White;
+   else
+        m_roomColor = Colors::Red;
+}
+```
+
+Build and run. Pressing the ``Tab`` key or the right mouse button will cycle the color of the room through Red, Green, Blue,a and White.
 
 **Next lessons:** [[Using the SimpleMath library]], [[Adding the DirectX Tool Kit for Audio]]
 
