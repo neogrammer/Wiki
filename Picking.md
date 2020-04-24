@@ -14,6 +14,8 @@ You can find an older tutorial on 3D picking using ray/object tests at [Rasterte
 bool Intersects(FXMVECTOR Origin, FXMVECTOR Direction, float& Dist) const;
 ```
 
+Also remember that the default view coordinates for *DirectX Tool Kit* is "right-handed" viewing coordinates and the Rastertek tutorials follow the older DirectX style of "left-handed" viewing coordinates. This requires reversing the Z direction of the ray.
+
 **Next lesson**: [[Mixing SimpleMath and DirectXMath]]
 
 # Further reading
