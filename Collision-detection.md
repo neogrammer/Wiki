@@ -74,7 +74,7 @@ This is an 'axis-aligned bounding box' collision primitive.
 
 The **Contains** method provides *box contains point*, *box contains triangle*, *box contains sphere*, *box contains box*, and *box contains frustum* tests.
 
-The **ContainedBy** method provides *sphere contained by frustum* test.
+The **ContainedBy** method provides *box contained by frustum* test.
 
 The **Intersects** method provides *box/box*, *box/sphere*, *box/frustum*, *box/triangle*, *box/plane* and *ray/box* intersection tests.
 
