@@ -145,6 +145,10 @@ if (state.IsConnected())
         // B was down last frame, it just went up this frame
     }
 }
+else
+{
+    m_buttons.Reset();
+}
 ```
 
 **Next lessons:** [[Mouse and keyboard input]]
