@@ -272,6 +272,42 @@ Build and run. Now in addition to keyboard controls, you can press & hold the le
 
 * This control implementation is very simple, and really only works on a system with fast frame-rate. For a more robust implementation, the ``Update`` code should make use of ``elapsedTime`` to scale the keyboard movement rate values and ``MOVEMENT_GAIN`` adjusted accordingly.
 
+# Detecting button & key transitions
+
+The controls above were all written using 'instantaneous state' where we only cared when a key or mouse button was up or down. For many controls, you want to trigger an event at the moment a key/button is pressed or released. 
+
+In the **Game.h** file, add the following variables  to the bottom of the Game class's private declarations:
+
+```cpp
+DirectX::Keyboard::KeyboardStateTracker m_keys;
+DirectX::Mouse::ButtonStateTracker m_mouseButtons;
+```
+
+In **Game.cpp**, add to the TODO of **OnResuming** and **OnActivated**:
+
+```cpp
+m_keys.Reset();
+m_mouseButtons.Reset();
+```
+
+In **Game.cpp**, modify the TODO section of *Update*:
+
+```cpp
+auto kb = m_keyboard->GetState();
+m_keys.Update(kb);
+
+if ( kb.Escape )
+...
+```
+
+```cpp
+auto mouse = m_mouse->GetState();
+m_mouseButtons.Update(mouse);
+
+if (mouse.positionMode == Mouse::MODE_RELATIVE)
+...
+```
+
 **Next lessons:** [[Using the SimpleMath library]], [[Adding the DirectX Tool Kit for Audio]]
 
 # Further reading
