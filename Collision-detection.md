@@ -45,14 +45,14 @@ ContainmentType Contains(FXMVECTOR V0, FXMVECTOR V1, FXMVECTOR V2) const;
 ContainmentType Contains(const BoundingSphere& sh) const;
 ContainmentType Contains(const BoundingBox& box) const;
 ContainmentType Contains(const BoundingOrientedBox& box) const;
-ContainmentType Contains( _In_ const BoundingFrustum& fr ) const;
+ContainmentType Contains(const BoundingFrustum& fr) const;
 ```
 
 The **ContainedBy** method provides *sphere contained by frustum* test.
 
 ```cpp
 ContainmentType ContainedBy(FXMVECTOR Plane0, FXMVECTOR Plane1, FXMVECTOR Plane2,
-    GXMVECTOR Plane3, HXMVECTOR Plane4, HXMVECTOR Plane5 ) const;
+    GXMVECTOR Plane3, HXMVECTOR Plane4, HXMVECTOR Plane5) const;
 ```
 
 The **Intersects** method provides *sphere/sphere*, *sphere/box*, *sphere/frustum*, *sphere/triangle*, *sphere/plane*, and *ray/sphere* intersection tests.
@@ -102,7 +102,7 @@ These **Intersects** functions cover *ray/triangle*, *triangle/triangle*, and *p
 ```cpp
 bool Intersects(FXMVECTOR Origin, FXMVECTOR Direction, FXMVECTOR V0, GXMVECTOR V1, HXMVECTOR V2, _Out_ float& Dist);
 bool Intersects(FXMVECTOR A0, FXMVECTOR A1, FXMVECTOR A2, GXMVECTOR B0, HXMVECTOR B1, HXMVECTOR B2);
-PlaneIntersectionType Intersects(FXMVECTOR V0, FXMVECTOR V1, FXMVECTOR V2, GXMVECTOR Plane );
+PlaneIntersectionType Intersects(FXMVECTOR V0, FXMVECTOR V1, FXMVECTOR V2, GXMVECTOR Plane);
 ```
 
 The *ContainedBy* function covers *frustum contains triangle*.
