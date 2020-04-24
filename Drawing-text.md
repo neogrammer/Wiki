@@ -215,7 +215,10 @@ Build and run to see our text string centered in the middle of the rendering win
 # More to explore
 
 * If you are wanting to render text similar to how a classic 'console' application does, see [[TextConsole]].
+
 * If you want to render Xbox controller button artwork composed with standard text, see [[ControllerFont]].
+
+* If you want to make use of *DirectWrite* for vector-based fonts on Windows, see [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/directwrite/getting-started-with-directwrite).
 
 **Next lesson:** [[Simple rendering]]
 
