@@ -71,11 +71,11 @@ The SimpleMath wrapper does not include classes for bounding volumes because the
 
 This includes:
 
-* [BoundingSphere](https://msdn.microsoft.com/en-us/library/windows/desktop/microsoft.directx_sdk.directxcollision.boundingsphere.aspx) class
-* [BoundingBox](https://docs.microsoft.com/en-us/windows/desktop/api/directxcollision/ns-directxcollision-boundingbox) class
-* [BoundingOrientedBox](https://msdn.microsoft.com/en-us/library/windows/desktop/microsoft.directx_sdk.directxmath.boundingorientedbox.aspx) class
-* [BoundingFrustum](https://msdn.microsoft.com/en-us/library/windows/desktop/microsoft.directx_sdk.directxmath.boundingfrustum.aspx) class
-* [TriangleTests](https://docs.microsoft.com/en-us/windows/desktop/dxmath/ovw-xnamath-triangletests) namespace
+* [BoundingSphere](https://docs.microsoft.com/en-us/windows/win32/api/directxcollision/ns-directxcollision-boundingsphere) class
+* [BoundingBox](https://docs.microsoft.com/en-us/windows/win32/api/directxcollision/ns-directxcollision-boundingbox) class
+* [BoundingOrientedBox](https://docs.microsoft.com/en-us/windows/win32/api/directxcollision/ns-directxcollision-boundingorientedbox) class
+* [BoundingFrustum](https://docs.microsoft.com/en-us/windows/win32/api/directxcollision/ns-directxcollision-boundingfrustum) class
+* [TriangleTests](https://docs.microsoft.com/en-us/windows/win32/dxmath/ovw-xnamath-triangletests) namespace
 
 These were designed to already be similar to the XNA Game Studio math API bounding types.
 
