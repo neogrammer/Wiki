@@ -100,8 +100,10 @@ This namespace provides a number of triangle tests not covered by the other boun
 These **Intersects** functions cover *ray/triangle*, *triangle/triangle*, and *plane/triangle* tests.
 
 ```cpp
-bool Intersects(FXMVECTOR Origin, FXMVECTOR Direction, FXMVECTOR V0, GXMVECTOR V1, HXMVECTOR V2, _Out_ float& Dist);
-bool Intersects(FXMVECTOR A0, FXMVECTOR A1, FXMVECTOR A2, GXMVECTOR B0, HXMVECTOR B1, HXMVECTOR B2);
+bool Intersects(FXMVECTOR Origin, FXMVECTOR Direction,
+    FXMVECTOR V0, GXMVECTOR V1, HXMVECTOR V2, _Out_ float& Dist);
+bool Intersects(FXMVECTOR A0, FXMVECTOR A1, FXMVECTOR A2,
+    GXMVECTOR B0, HXMVECTOR B1, HXMVECTOR B2);
 PlaneIntersectionType Intersects(FXMVECTOR V0, FXMVECTOR V1, FXMVECTOR V2, GXMVECTOR Plane);
 ```
 
