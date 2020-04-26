@@ -42,7 +42,7 @@ See [[Instance flags|SoundEffectInstance#instance-flags]]
 
 #  Playback control
 
-* **Play** ( bool loop = false ): Starts the playback of the sound. If loops is set to true, it loops continuously either the entire buffer or using the authored loop points (if any). If paused, it resumes playback.
+* **Play** ( bool loop = false ): Starts the playback of the sound. If loops is set to true, it loops continuously. If paused, it resumes playback.
 
 > Note if a source voice limit is in effect (see [[AudioEngine]]), then a C++ exception can be generated from
 > this method if there are too many source voices already allocated.
