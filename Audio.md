@@ -3,6 +3,7 @@ The _DirectXTK for Audio_ components implement a low-level audio API similar to 
 * [[AudioEngine]] - This class represents an XAudio2 audio graph, device, and mastering voice.
 * [[SoundEffect]] - A container class for sound resources which can be loaded from ``.wav`` files.
 * [[SoundEffectInstance]] - Provides a single playing, paused, or stopped instance of a sound
+* [[SoundStreamInstance]] - SoundEffectInstance for playing waves from a streaming XACT-style ``.xwb`` wave bank. 
 * [[DynamicSoundEffectInstance]] - SoundEffectInstance where the application provides the audio data on demand
 * [[WaveBank]] - A container class for sound resources packaged into an XACT-style ``.xwb`` wave bank.
 * [[AudioListener]],  [[AudioEmitter]] - Utility classes used with ``SoundEffectInstance::Apply3D``.
