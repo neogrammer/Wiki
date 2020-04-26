@@ -144,6 +144,18 @@ wb->Play( 2 );
 wb->Play( 6 );
 ```
 
+DirectXTK for Audio's WaveBank class can also be used to create SoundStreamInstances for streaming wave banks.
+
+```cpp
+auto stream = wb->CreateInstance( 10 );
+if ( !stream )
+    // Error (invalid index for wave bank)
+
+...
+
+stream->Play( true );
+```
+
 XACT3-style "wave banks" can be created by using the [[XWBTool]] command-line tool, or they can be authored using XACT3 in the DirectX SDK. Note that the XWBTool will not perform any format conversions or compression, so more full-featured options are better handled with the XACT3 GUI or XACTBLD, or it can be used on ``.wav`` files already compressed by ``adpcmencode.exe``, ``xwmaencode.exe``, ``xma2encode.exe``, etc.
 
     xwbtool -o wavebank.xwb Sound.wav Explosion.wav Music.wav
