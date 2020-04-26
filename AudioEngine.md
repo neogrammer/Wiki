@@ -210,16 +210,16 @@ audEngine = std::make_unique<AudioEngine>( eflags );
 
 # Statistics
 
-The **GetStatistics** function returns information on the number of playing sounds, allocated instances, audio bytes in loaded [[SoundEffect]] and [[WaveBank]] objects, and XAudio2 source voices allocated for various purposes. These values do not rely on debug faculties to be enabled.
+The **GetStatistics** function returns information on the number of playing sounds, allocated instances, audio bytes in loaded [[SoundEffect]] and [[WaveBank]] objects, size of buffers used for streaming in [[SoundStreamInstance]] objects, and XAudio2 source voices allocated for various purposes. These values do not rely on debug faculties to be enabled.
 
 ```cpp
 auto stats = engine->GetStatistics();
-printf( "\nPlaying: %Iu / %Iu; Instances %Iu; Voices %Iu / %Iu / %Iu / %Iu;"
-        "%Iu audio bytes\n",
+printf( "\nPlaying: %zu / %zu; Instances %zu; Voices %zu / %zu / %zu / %zu;"
+        "%zu audio bytes, %zu streaming buffer bytes %\n",
     stats.playingOneShots, stats.playingInstances,
     stats.allocatedInstances, stats.allocatedVoices, stats.allocatedVoices3d,
     stats.allocatedVoicesOneShot, stats.allocatedVoicesIdle,
-    stats.audioBytes );
+    stats.audioBytes, stats.streamingBytes );
 ```
 
 # Properties

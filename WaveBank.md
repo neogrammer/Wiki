@@ -1,8 +1,8 @@
-WaveBank is a container class for an XACT-style wave bank that contains individual waves packaged together for more efficient loading and memory management. Sounds in the wave bank can then be played back as one-shot sounds or via [[SoundEffectInstance]].
+WaveBank is a container class for an XACT-style wave bank that contains individual waves packaged together for more efficient loading and memory management. Sounds in an in-memory wave bank can then be played back as one-shot sounds or via [[SoundEffectInstance]]. Streaming wave banks can be played with [[SoundStreamInstance]] using non-buffering asynchronous I/O.
 
 See [[XWBTool]] for more information on building ``.xwb`` files.
 
-> _DirectXTK for Audio_ uses XAudio2. It does not make use of the legacy XACT Engine, XACT Cue, or XACT SoundBank._
+> _DirectXTK for Audio_ uses XAudio2. It does not make use of the legacy XACT Engine, XACT Cue, or XACT SoundBank.
 
 # Header
 ```cpp
@@ -22,7 +22,7 @@ Note that in-memory banks may still be loading the wave data asynchronously afte
 
 # Play one-shot sounds
 
-To play a sound in the bank as a 'fire and forget' sound:
+To play a sound in a in-memory wave bank as a 'fire and forget' sound:
 
 ```cpp
 wb->Play( index );
@@ -61,7 +61,7 @@ If the specified index or name is not found, then no one-shot is played and ther
 
 # Playing the sound
 
-To play a sound with full control, looping, and dynamic pitch-shifting/volume control/pan settings:
+To play a sound from an in-memory wave bank with full control, looping, and dynamic pitch-shifting/volume control/pan settings:
 
 ```cpp
 auto effect = wb->CreateInstance( 2 );
@@ -111,6 +111,30 @@ Note a C++ exception is thrown if attempting to create a sound instance from a s
 If the specified index or name is not found, then **CreateInstance** returns a 'nullptr'. Client code should be sure to check for this condition. This is done because typically games do not consider missing audio content to be a fatal error during development.
 
 See [[SoundEffectInstance]].
+
+# Play streaming waves
+
+To play waves from a streaming wave bank, create a stream instance:
+
+```cpp
+auto stream = wb->CreateStreamInstance( 2 );
+if ( !stream )
+    // Index not found in wave bank
+```
+
+If the wave bank contains 'entry friendly names', you can also use them to create an stream instance:
+
+```cpp
+auto stream = wb->CreateStreamInstance( "Bang" );
+if ( !stream )
+    // Name not found in wave bank
+```
+
+You can also create the stream instance with 3D effects just as above for sound instances.
+
+Note a C++ exception is thrown if attempting to create a sound stream instance from a in-memory wavebank.
+
+See [[SoundStreamInstance]].
 
 # Properties
 

@@ -1,4 +1,4 @@
-SoundEffectInstance is an instance of a sound from a [[SoundEffect]] or a [[WaveBank]]. It can be played with 3D positional audio effects, volume and panning control, looping, and pause/resume control.
+SoundEffectInstance is an instance of a sound from a [[SoundEffect]] or a in-memory [[WaveBank]]. It can be played with 3D positional audio effects, volume and panning control, looping, and pause/resume control.
 
 Note that the SoundEffectInstance does not copy the wave data and instead refers to the data 'owned' by the SoundEffect / WaveBank. Therefore, the parent object must be kept "live" until all sounds playing from it are finished.
 
@@ -15,7 +15,7 @@ It can be created for an individual sound loaded as a SoundEffect (which is retu
 auto effect = soundEffect->CreateInstance();
 ```
 
-Or created for an entry in a WaveBank (which is returned as a ``std::unique_ptr<SoundEffectInstance>``):
+Or created for an entry in a in-memory WaveBank (which is returned as a ``std::unique_ptr<SoundEffectInstance>``):
 
 ```cpp
 auto effect = wb->CreateInstance( 2 );

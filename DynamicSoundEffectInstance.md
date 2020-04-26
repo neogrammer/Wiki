@@ -55,13 +55,7 @@ effect = std::make_unique<DynamicSoundEffectInstance>( audEngine.get(),
 
 This is a combination of sound effect instance flags. It defaults to ``SoundEffectInstance_Default``.
 
-* ``SoundEffectInstance_Use3D`` - Required to use **Apply3D**
-* ``SoundEffectInstance_ReverbUseFilters`` - Enables additional effects if the audio engine was created with ``AudioEngine_EnvironmentalReverb`` and optionally ``AudioEngine_ReverbUseFilters``.
-* ``SoundEffectInstance_NoSetPitch`` - If set, this instance cannot use **SetPitch**. This is a useful optimization for XAudio2 if you are not making use of pitch-shifting.
-* There is also a ``SoundEffectInstance_UseRedirectLFE`` which is used internally by the library.
-
-> ``SOUND_EFFECT_INSTANCE_FLAGS`` is used as a typed flag enum. Only ``operator|`` is overloaded to combine them,
-> so operations like ``|=`` are not available without additional ``static_cast<>`` statements.
+See [[Instance flags|SoundEffectInstance#instance-flags]]
 
 #  Playback control
 
@@ -145,37 +139,15 @@ void GenerateSineWave( _Out_writes_(sampleRate) int16_t* data,
 
 # Positional 3D audio
 
-DirectXTK for Audio uses [X3DAudio](https://docs.microsoft.com/en-us/windows/desktop/xaudio2/x3daudio)  for positional audio computations. To apply a 3D effect to a sound instance, you call **Apply3D** with the listener location (i.e. where the player/camera is located) and the emitter (i.e. where the sound source is located in 3D dimensions):
+See [[Positional 3D audio|SoundEffectInstance#positional-3d-audio]].
 
-```cpp
-AudioListener listener;
-listener.SetPosition( ... );
+# Voice management
 
-AudioEmitter emitter;
-emitter.SetPosition( ... );
+A SoundStreamInstance will allocate a XAudio2 source voice when played, and will keep that source voice for the life of the object. You can force all SoundStreamInstance that currently have source voices but are not currently playing to release them by calling ``AudioEngine::TrimVoicePool``.
 
-effect->Apply3D( listener, emitter );
-```
+By default the number of XAudio2 source voices that can be allocated is 'unlimited'. You can set a specific limit using ``AudioEngine::SetMaxVoicePool`` which will be enforced by generating a C++ exception if there are too many allocated source voices when ``Play`` is called.
 
-Note if the instance was created without ``SoundEffectInstance_Use3D``, then calls to **Apply3D** will result in a C++ exception being thrown. **Apply3D** will overwrite any ``SetPan`` settings.
-
-See [[AudioListener]], [[AudioEmitter]]
-
-## Coordinate systems
-
-The emitter and listener (based on the XNA Game Studio conventions) use right-handed coordinates. They can be used with left-handed coordinates by setting the _rhcoords_ parameter on the ``Apply3D`` method to 'false' (the parameter defaults to 'true').
-
-```cpp
-AudioListener listener;
-listener.SetPosition( ... );
-listener.SetOrientation( ... );
-
-AudioEmitter emitter;
-emitter.SetPosition( ... );
-emitter.SetOrientation( ... );
-
-effect->Apply3D( listener, emitter, false );
-```
+See [[AudioEngine]] for more details.
 
 # Properties
 
@@ -192,3 +164,7 @@ effect->Apply3D( listener, emitter, false );
 * **GetSampleDurationMS** ( bytes ): Returns duration in milliseconds of a buffer of a given size
 
 * **GetSampleSizeInBytes** ( duration ): Returns size of a buffer for a duration given in milliseconds
+
+# Remarks
+
+Be sure to call ``AudioEngine::Update`` frequently as this class relies on this to manage requesting new buffers and playback submission.
