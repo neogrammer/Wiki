@@ -160,6 +160,8 @@ XACT3-style "wave banks" can be created by using the [[XWBTool]] command-line to
 
     xwbtool -o wavebank.xwb Sound.wav Explosion.wav Music.wav
 
+    xwbtool -s -o streamingwb.xwb Track1.wav Track2.wav Track3.wav Track4.wav 
+
 DirectXTK for Audio does not make use of the XACT engine, nor does it make use of XACT "sound banks" ``.xsb`` or "cues". We only use ``.xwb`` wave banks as a method for packing ``.wav`` data.
 
 # Voice management
