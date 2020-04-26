@@ -147,7 +147,7 @@ wb->Play( 6 );
 DirectXTK for Audio's WaveBank class can also be used to create SoundStreamInstances for streaming wave banks.
 
 ```cpp
-auto stream = wb->CreateInstance( 10 );
+auto stream = wb->CreateStreamInstance( 10 );
 if ( !stream )
     // Error (invalid index for wave bank)
 
