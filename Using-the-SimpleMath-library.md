@@ -98,10 +98,10 @@ When transforming a vector, to get back to true '3D' realspace, you must divide 
 An analogous thing can be done in 2D with a 3x3 transformation matrix and 2 vectors. For this purpose, our existing Matrix class is used with:
 
 ```
-| r   r   0  _14 |
-| r   r   0  _24 |
-| 0   0   1  0   |
-| tx  ty  0  _44 |
+| r   r   0  p |
+| r   r   0  p |
+| 0   0   0  0 |
+| tx  ty  0  p |
 ```
 
 # Bounding Volumes
