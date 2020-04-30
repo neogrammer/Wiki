@@ -34,7 +34,7 @@ float dot = upVector.Dot( leftVector );
 ```
 
 # Matrices
-SimpleMath provides a **Matrix** class for transformation of geometry. The Matrix class uses row-major order to address matrices, which means that the row is specified before the column when describing an element of a two-dimensional matrix. The Matrix class provides methods for performing standard matrix operations such as calculating the determinate or inverse of a matrix. There also are helper methods for creating scale, rotation, and translation matrices.
+SimpleMath provides a **Matrix** class for transformation of geometry. The Matrix class uses *row-major* order to address matrices, which means that the row is specified before the column when describing an element of a two-dimensional matrix. The Matrix class provides methods for performing standard matrix operations such as calculating the determinate or inverse of a matrix. There also are helper methods for creating scale, rotation, and translation matrices.
 
 ```cpp
 Matrix a(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
@@ -49,6 +49,59 @@ The ***Quaternion*** structure to calculate the efficient rotation of a vector b
 Quaternion a(0.707107f, 0, 0, 0.707107f);
 Quaternion (0, 0.707107f, 0, 0.707107f);
 Quaternion c = Quaternion::Slerp(a, b, 0.25f);
+```
+
+# Homogenous Coordinates
+
+Matrix is 4x4 single-precision floating-point and is normally assumed to be [homogenous coordinates](https://en.wikipedia.org/wiki/Homogeneous_coordinates) as per the standard 3D transformation pipeline.
+
+```
+| _11  _12  _13  _14 |
+| _21  _22  _23  _24 |
+| _31  _32  _33  _34 |
+| _41  _42  _43  _44 |
+```
+
+The upper-3x3 matrix is used for 3D scaling & rotation transformations:
+
+```
+| _11  _12  _13  ? |
+| _21  _22  _23  ? |
+| _31  _32  _33  ? |
+| ?    ?    ?    ? |
+```
+
+The last row's first three elements are for translation transformations:
+
+```
+| r    r    r   ? |
+| r    r    r   ? |
+| r    r    r   ? |
+| _41  _42  _43 ? |
+```
+
+And the last column is used for projection transformations:
+
+```
+| r   r   r   _14 |
+| r   r   r   _24 |
+| r   r   r   _34 |
+| tx  ty  tz  _44 |
+```
+
+When transforming a vector, to get back to true '3D' realspace, you must divide through by the 'w' result to get it back to 1 for the x, y, z elements to have physical meaning--if the projection column is 0, 0, 0, 1 then the result is already guaranteed to be a ``w`` of 1.
+
+```
+[x y z w] = [x/w y/w z/w 1]
+```
+
+An analogous thing can be done in 2D with the upper 3x3 Matrix and 2 vectors. For this purpose, our existing Matrix class is used with:
+
+```
+| r   r   0  _14 |
+| r   r   0  _24 |
+| 0   0   1  0   |
+| tx  ty  0  _44 |
 ```
 
 # Bounding Volumes
