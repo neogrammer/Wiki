@@ -95,7 +95,7 @@ When transforming a vector, to get back to true '3D' realspace, you must divide 
 [x y z w] = [x/w y/w z/w 1]
 ```
 
-An analogous thing can be done in 2D with a 3x3 transformation matrix and 2 vectors. For this purpose, our existing Matrix class is used with:
+An analogous thing can be done in 2D with a 3x3 transformation matrix and 2 vectors. For this purpose, our existing Matrix class is used ignoring the 3rd row:
 
 ```
 | r   r   0  p |
