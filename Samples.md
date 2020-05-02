@@ -18,7 +18,7 @@ The DirectX 11 samples on [Xbox-ATG-Samples](https://github.com/Microsoft/Xbox-A
 # Windows Store apps
 [Simple Sample for Windows 8.1](http://code.msdn.microsoft.com/DirectXTK-Simple-Sample-a0b6de36)
 
-[DirectX Tool Kit – native “XNA” for Windows 8](http://www.tonicodes.net/blog/directx-tool-kit-native-xna-for-windows-8/)
+[DirectX Tool Kit - native "XNA" for Windows 8](http://www.tonicodes.net/blog/directx-tool-kit-native-xna-for-windows-8/)
 
 [Windows Store DirectX C++ Sample Base](http://geekswithblogs.net/mikebmcl/archive/2013/01/31/windows-store-directx-c-sample-base.aspx)
 
