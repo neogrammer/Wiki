@@ -155,7 +155,7 @@ For 'closed' objects, you typically use [backface culling](https://en.wikipedia.
 
 # Drawing with textures
 
-Start by saving [rocks.jpg](https://github.com/Microsoft/DirectXTK/wiki/rocks.jpg) into your project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "rocks.jpg" and click "OK".
+Start by saving [rocks.jpg](https://github.com/Microsoft/DirectXTK/wiki/media/rocks.jpg) into your project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "rocks.jpg" and click "OK".
 
 In the **Game.h** file, add the following variable to the bottom of the Game class's private declarations:
 
@@ -236,7 +236,7 @@ Build and run to see a simple textured triangle rendered in 2D.
 
 # Drawing with lighting
 
-Start by saving [rocks_normalmap.dds](https://github.com/Microsoft/DirectXTK/wiki/rocks_normalmap.dds) into your project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "rocks_normalmap.dds" and click "OK".
+Start by saving [rocks_normalmap.dds](https://github.com/Microsoft/DirectXTK/wiki/media/rocks_normalmap.dds) into your project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "rocks_normalmap.dds" and click "OK".
 
 In the **Game.h** file, add the following variable to the bottom of the Game class's private declarations:
 
@@ -337,9 +337,11 @@ Build and run, and you'll see the 2D triangle drawn with dynamic lighting effect
 ![Screenshot of lit triangle](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTriangleLit.PNG)
 
 ## Technical notes
-* The tangent-space normal map used here was generated from a [height map](https://github.com/Microsoft/DirectXTK/wiki/rocks_NM_height.dds) using [texconv](https://github.com/microsoft/DirectXTex/wiki/Texconv)'s ``-nmap`` feature.
+* The tangent-space normal map used here was generated from a [height map](https://github.com/Microsoft/DirectXTK/wiki/media/rocks_NM_height.dds) using [texconv](https://github.com/microsoft/DirectXTex/wiki/Texconv)'s ``-nmap`` feature.
 
-> texconv rocks_NM_height.dds -nmap l -nmapamp 4
+```
+texconv rocks_NM_height.dds -nmap l -nmapamp 4
+```
 
 * Note this last part of the lesson requires Direct3D [hardware feature level](https://walbourn.github.io/direct3d-feature-levels/) 10.0 or better hardware.
 

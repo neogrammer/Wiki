@@ -143,7 +143,7 @@ Then run the following command-line:
 
     texconv cat.png -pmalpha -m 1 -f BC3_UNORM
 
-Then from the top menu in Visual Studio select **Project** / **Add Existing Item...**. Select [cat.dds](https://github.com/Microsoft/DirectXTK/wiki/cat.dds) and click "OK".
+Then from the top menu in Visual Studio select **Project** / **Add Existing Item...**. Select [cat.dds](https://github.com/Microsoft/DirectXTK/wiki/media/cat.dds) and click "OK".
 
 Now will return to **Game.cpp** in the **CreateDevice** and change our use of ``CreateWICTextureFromFile`` to ``CreateDDSTextureFromFile``:
 

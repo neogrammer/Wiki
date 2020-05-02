@@ -122,7 +122,7 @@ private:
 ```
 
 # Example
-This example uses a sprite sheet that has 4 frames of animation ([shipanimated.dds](https://github.com/Microsoft/DirectXTK/wiki/shipanimated.dds))
+This example uses a sprite sheet that has 4 frames of animation ([shipanimated.dds](https://github.com/Microsoft/DirectXTK/wiki/media/shipanimated.dds))
 
 ![Ship Animated](https://github.com/Microsoft/DirectXTK/wiki/images/shipanimated.png)
 

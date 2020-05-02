@@ -320,7 +320,9 @@ Open a [Command Prompt](http://windows.microsoft.com/en-us/windows/command-promp
 
 Enter the following command-line after changing to the appropriate directory:
 
-    texconv.exe SpriteSheetSample.png -f BC3_UNORM -m 1 -pmalpha
+```
+texconv.exe SpriteSheetSample.png -f BC3_UNORM -m 1 -pmalpha
+```
 
 # Further Development
 

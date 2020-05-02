@@ -10,7 +10,7 @@ One approach to creating your own shader is to use a visual designer tool, such 
 To use these with _DirectX Tool Kit_, you can manually create [[DGSLEffect]] instances and use them with [[PrimitiveBatch]]. You can also load them automatically from a CMO using Model when you provide the [[DGSLEffectFactory|EffectFactory]] rather than the standard [[EffectFactory]] as we demonstrated in [[Rendering a model]].
 
 # Rendering a sphere with our effect
-Save the files [MyDGSLShader.dgsl](https://github.com/Microsoft/DirectXTK/wiki/MyDGSLShader.dgsl), [billard15.dds](https://github.com/Microsoft/DirectXTK/wiki/billard15.dds), [envmap.dds](https://github.com/Microsoft/DirectXTK/wiki/envmap.dds), [ReadData.h](https://github.com/Microsoft/DirectXTK/wiki/ReadData.h), and [dgslsphere.inc](https://github.com/Microsoft/DirectXTK/wiki/dgslsphere.inc) to your new project's folder. Using to the top menu and select **Project** / **Add Existing Item...**. Select "MyDGSLShader.dgsl" and hit "OK".  Repeat for each file.
+Save the files [MyDGSLShader.dgsl](https://github.com/Microsoft/DirectXTK/wiki/MyDGSLShader.dgsl), [billard15.dds](https://github.com/Microsoft/DirectXTK/wiki/media/billard15.dds), [envmap.dds](https://github.com/Microsoft/DirectXTK/wiki/media/envmap.dds), [ReadData.h](https://github.com/Microsoft/DirectXTK/wiki/ReadData.h), and [dgslsphere.inc](https://github.com/Microsoft/DirectXTK/wiki/dgslsphere.inc) to your new project's folder. Using to the top menu and select **Project** / **Add Existing Item...**. Select "MyDGSLShader.dgsl" and hit "OK".  Repeat for each file.
 
 Right click on your project in the Solution Explorer. Select **Build Dependencies** / **Build Customizations...**. Check "ShaderGraphContentTask..." and hit "Ok".
 

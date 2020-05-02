@@ -99,7 +99,7 @@ You can also optionally provide an emissive channel texture as ``info.emissiveTe
 
 ```cpp
 Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> srv;
-fxFactory->CreateTexture( L”stone.dds”, nullptr, srv.GetAddressOf() );
+fxFactory->CreateTexture( L"stone.dds", nullptr, srv.GetAddressOf() );
 ```
 
 # Directories

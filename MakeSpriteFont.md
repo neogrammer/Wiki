@@ -36,7 +36,9 @@ The file _xboxController.spritefont_ is generated from the [xboxControllerSprite
 
 **Note:** _The MakeSpriteFont tool only supports importing from ``.bmp``, ``.png``, or ``.gif`` images. If you are using a ``.tga`` source file, then you use should DirectXTex's **texconv** utility to convert it:_
 
-    texconv -ft PNG originalSpriteFont.tga
+```
+texconv -ft PNG originalSpriteFont.tga
+```
 
 # Commandline options
 

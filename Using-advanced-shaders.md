@@ -6,7 +6,7 @@ First create a new project using the instructions from the first two lessons: [[
 
 # Environment mapping
 
-Start by saving [wood.dds](https://github.com/Microsoft/DirectXTK/wiki/wood.DDS) and [cubemap.dds](https://github.com/Microsoft/DirectXTK/wiki/cubemap.dds) into your new project's directory, and then from the top menu select **Project / Add Existing Item....** Select "wood.dds" and click "OK". Repeat for "cubemap.dds"
+Start by saving [wood.dds](https://github.com/Microsoft/DirectXTK/wiki/media/wood.dds) and [cubemap.dds](https://github.com/Microsoft/DirectXTK/wiki/media/cubemap.dds) into your new project's directory, and then from the top menu select **Project / Add Existing Item....** Select "wood.dds" and click "OK". Repeat for "cubemap.dds"
 
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 

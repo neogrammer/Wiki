@@ -105,7 +105,7 @@ private:
 
 # Example
 
-Displays a top-to-bottom scrolling background of a starfield ([starfield..dds](https://github.com/Microsoft/DirectXTK/wiki/starfield..dds))
+Displays a top-to-bottom scrolling background of a starfield ([starfield.dds](https://github.com/Microsoft/DirectXTK/wiki/media/starfield.dds))
 
 ![Starfield](https://github.com/Microsoft/DirectXTK/wiki/images/starfield.png)
 
