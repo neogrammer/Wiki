@@ -111,6 +111,7 @@ The official samples for DirectX 11 were originally shipped in the legacy *Direc
 * [[Adding the DirectX Tool Kit for Audio]]
 * [[Adding audio to your project]]
 * [[Creating and playing sounds]]
+* [[Making use of wave banks]]
 * [[Using positional audio]]
 
 # Resources
