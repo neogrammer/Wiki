@@ -10,7 +10,7 @@ The _DirectXTK for Audio_ components implement a low-level audio API similar to 
 
 > DirectXTK for Audio uses XAudio 2. It does not make use of the legacy XACT Engine, XACT Cue, or XACT SoundBank.
 
-**Related tutorials:** [[Adding the DirectX Tool Kit for Audio]], [[Adding audio to your project]], [[Creating and playing sounds]], [[Using positional audio]]
+**Related tutorials:** [[Adding the DirectX Tool Kit for Audio]], [[Adding audio to your project]], [[Creating and playing sounds]], [[Making use of wave banks]], [[Using positional audio]]
 
 # Header
 
