@@ -2,6 +2,8 @@ AudioEmitter is a helper object derived from [X3DAUDIO_EMITTER](https://docs.mic
 
 See [[AudioListener]].
 
+**Related tutorials:** [[Using positional audio]]
+
 # Header
 ```cpp
 #include <Audio.h>
