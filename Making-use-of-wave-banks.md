@@ -139,7 +139,7 @@ which would generate a ``sounds.h`` file you could use instead of having 'magic'
 ```cpp
 #pragma once
 
-enum XACT_WAVEBANK_SOUNDS
+enum XACT_WAVEBANK_SOUNDS : unsigned int
 {
     XACT_WAVEBANK_SOUNDS_EXPLO1 = 0,
     XACT_WAVEBANK_SOUNDS_EXPLO2 = 1,
