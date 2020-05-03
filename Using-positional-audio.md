@@ -9,3 +9,5 @@ First create a new project using the instructions from these four lessons to ena
 
 # Further reading
 DirectX Tool Kit docs [[AudioListener]], [[AudioEmitter]], [[SoundEffectInstance]]
+
+[XAudio2Sound3D](https://github.com/walbourn/directx-sdk-samples/tree/master/XAudio2/XAudio2Sound3D), [SimplePlay3DSoundUWP](https://github.com/microsoft/Xbox-ATG-Samples/tree/master/UWPSamples/Audio/SimplePlay3DSoundUWP) samples
