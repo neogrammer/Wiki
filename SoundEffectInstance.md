@@ -2,6 +2,8 @@ SoundEffectInstance is an instance of a sound from a [[SoundEffect]] or a in-mem
 
 Note that the SoundEffectInstance does not copy the wave data and instead refers to the data 'owned' by the SoundEffect / WaveBank. Therefore, the parent object must be kept "live" until all sounds playing from it are finished.
 
+**Related tutorials:** [[Creating and playing sounds]], [[Making use of wave banks]]
+
 # Header
 ```cpp
 #include <Audio.h>

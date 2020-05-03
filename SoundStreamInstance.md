@@ -2,6 +2,8 @@ SoundStreamInstance is an instance for playing waves from a streaming [[WaveBank
 
 Note that the SoundStreamInstance refers to data 'owned' by the WaveBank. Therefore, the parent object must be kept "live" until all sounds playing from it are finished.
 
+**Related tutorials:** [[Making use of wave banks]]
+
 # Header
 ```cpp
 #include <Audio.h>

@@ -1,5 +1,7 @@
 This class represents an XAudio2 audio graph, device, and mastering voice
 
+**Related tutorials:** [[Adding audio to your project]]
+
 # Header
 ```cpp
 #include <Audio.h>
