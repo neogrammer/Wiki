@@ -6,6 +6,8 @@ See [[Audio]], [[WaveBank]]
 
 > The command-line tools in the DirectXTK package are only built by the _DirectXTK_Desktop_201x_ solutions since they are Win32 desktop applications.
 
+**Related tutorial**: [[Making use of wave banks]]
+
 # Synax
 
 ``xwbtool.exe`` uses the following command syntax:

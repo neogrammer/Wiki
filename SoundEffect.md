@@ -1,6 +1,6 @@
 SoundEffect is a container class for wave sample data. This data can then be played back as a one-shot sound or via a [[SoundEffectInstance]].
 
-**Related tutorials:** [[Creating and playing sounds]]
+**Related tutorial:** [[Creating and playing sounds]]
 
 # Header
 ```cpp

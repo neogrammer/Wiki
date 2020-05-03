@@ -4,7 +4,7 @@ See [[XWBTool]] for more information on building ``.xwb`` files.
 
 > _DirectXTK for Audio_ uses XAudio2. It does not make use of the legacy XACT Engine, XACT Cue, or XACT SoundBank.
 
-**Related tutorials:** [[Making use of wave banks]]
+**Related tutorial:** [[Making use of wave banks]]
 
 # Header
 ```cpp

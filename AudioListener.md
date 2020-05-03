@@ -2,7 +2,7 @@ AudioListener is a helper object derived from [X3DAUDIO_LISTENER](https://docs.m
 
 See [[AudioEmitter]].
 
-**Related tutorials:** [[Using positional audio]]
+**Related tutorial:** [[Using positional audio]]
 
 # Header
 ```cpp
