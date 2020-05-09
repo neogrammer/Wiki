@@ -75,7 +75,7 @@ The standard routines default to ``D3D11_USAGE_DEFAULT``, ``D3D11_BIND_SHADER_RE
 
 For auto-gen mipmaps, the default binding flags are ``D3D11_BIND_SHADER_RESOURCE`` | ``D3D11_BIND_RENDER_TARGET`` and miscellaneous flags is set to ``D3D11_RESOURCE_MISC_GENERATE_MIPS``.
 
-There is also a _loadFlags_ parameter. The flags are ``WIC_LOADER_DEFAULT``, ``WIC_LOADER_FORCE_SRGB``, ``WIC_LOADER_IGNORE_SRGB``, and ``WIC_LOADER_FORCE_RGBA32``.
+There is also a _loadFlags_ parameter. The flags are ``WIC_LOADER_DEFAULT``, ``WIC_LOADER_FORCE_SRGB``, ``WIC_LOADER_IGNORE_SRGB``, ``WIC_LOADER_FIT_POW2``, ``WIC_LOADER_MAKE_SQUARE``, and/or ``WIC_LOADER_FORCE_RGBA32``.
 
 ```cpp
 HRESULT CreateWICTextureFromMemoryEx( ID3D11Device* d3dDevice,
@@ -108,6 +108,12 @@ HRESULT CreateWICTextureFromFileEx( ID3D11Device* d3dDevice,
    unsigned int loadFlags,
    ID3D11Resource** texture, ID3D11ShaderResourceView** textureView );
 ```
+
+The ``WIC_LOADER_FORCE_SRGB`` and ``WIC_LOADER_IGNORE_SRGB`` flags are detailed below under *sRGB*.
+
+The ``WIC_LOADER_FIT_POW2`` and/or ``WIC_LOADER_MAKE_SQUARE`` flags can be used to force the image to be resized to a power-of-2 size and/or be made a square texture that has width == height. *These flags are most useful for the Direct3D 9 legacy version of WICTextureLoader, but are supported in all versions.*
+
+The ``WIC_LOADER_FORCE_RGBA32`` flag is explained under *Pixel format conversions*.
 
 > The ``loadFlags`` was previously a ``bool forceSRGB``. ``false`` will map to ``WIC_LOADER_DEAULT`` and ``true`` maps to ``WIC_LOADER_FORCE_SRGB``.
 
