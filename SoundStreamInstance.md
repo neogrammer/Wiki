@@ -1,5 +1,7 @@
 SoundStreamInstance is an instance for playing waves from a streaming [[WaveBank]] making use of non-buffered asynchronous I/O. It can be played with 3D positional audio effects, volume and panning control, looping, and pause/resume control.
 
+For each playing stream, only a small portion of memory is required (~3 seconds of audio data) and the stream is constantly refreshed via asynchronous I/O requests from disk. This allows very large audio files to be played without consuming large amounts of memory. This does require that the ``Update`` method for [[AudioEngine]] is called on a regular frequency to allow servicing the stream instances, but no additional CPU threads are created.
+
 Note that the SoundStreamInstance refers to data 'owned' by the WaveBank. Therefore, the parent object must be kept "live" until all sounds playing from it are finished.
 
 **Related tutorial:** [[Making use of wave banks]]
