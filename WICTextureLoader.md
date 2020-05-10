@@ -6,7 +6,7 @@ This loader does not support array textures, 1D textures, 3D volume textures, cu
 
 > On Windows 8.1 and Windows 10, you can load simple 2D textures in BC1, BC2, or BC3 pixel format ``DDS`` files using WIC as there is a basic DDS built-in codec present. All other pixel formats and resource types will fail, and you'll get ``WINCODEC_ERR_COMPONENTNOTFOUND`` on older versions of Windows trying to use WICTextureLoader to load ``DDS`` files. Use [[DDSTextureLoader]] instead.
 
-> A standalone version is included in the [DirectXTex](http://go.microsoft.com/fwlink/?LinkId=248926) package.
+> A standalone version is included in [DirectXTex](https://github.com/microsoft/DirectXTex/tree/master/WICTextureLoader) for Direct3D 9, Direct3D 11, and Direct3D 12.
 
 **Related tutorial:** [[Sprites and textures]]
 
