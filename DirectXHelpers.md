@@ -53,6 +53,7 @@ public:
 
 # Misc helpers
 
+* **IsPowerOf2**: Tests if a value a power of 2.
 * **AlignDown**: Aligns a value down to the next power of 2.
 * **AlignUp**: Aligns a value up to the next power of 2.
 
