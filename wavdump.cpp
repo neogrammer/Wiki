@@ -53,61 +53,64 @@ typedef struct XMA2WAVEFORMATEX
 
 static_assert(sizeof(XMA2WAVEFORMATEX) == 52, "Mismatch of XMA2 type" );
 
-class ScopedMMHandle
+namespace
 {
-public:
-    explicit ScopedMMHandle( HMMIO handle ) noexcept : _handle(handle) {}
-    ~ScopedMMHandle()
+    class ScopedMMHandle
     {
-        if ( _handle != nullptr )
+    public:
+        explicit ScopedMMHandle(HMMIO handle) noexcept : _handle(handle) {}
+        ~ScopedMMHandle()
         {
-            mmioClose( _handle, 0 );
-            _handle = nullptr;
+            if (_handle != nullptr)
+            {
+                mmioClose(_handle, 0);
+                _handle = nullptr;
+            }
+        }
+
+        bool IsValid() const noexcept { return (_handle != nullptr); }
+        HMMIO Get() const noexcept { return _handle; }
+
+    private:
+        HMMIO _handle;
+    };
+
+
+    const char* GetFormatTagName(WORD wFormatTag)
+    {
+        switch (wFormatTag)
+        {
+        case WAVE_FORMAT_PCM: return "PCM";
+        case WAVE_FORMAT_ADPCM: return "MS ADPCM";
+        case WAVE_FORMAT_EXTENSIBLE: return "EXTENSIBLE";
+        case WAVE_FORMAT_IEEE_FLOAT: return "IEEE float";
+        case WAVE_FORMAT_MPEGLAYER3: return "ISO/MPEG Layer3";
+        case WAVE_FORMAT_DOLBY_AC3_SPDIF: return "Dolby Audio Codec 3 over S/PDIF";
+        case WAVE_FORMAT_WMAUDIO2: return "Windows Media Audio";
+        case WAVE_FORMAT_WMAUDIO3: return "Windows Media Audio Pro";
+        case WAVE_FORMAT_WMASPDIF: return "Windows Media Audio over S/PDIF";
+        case 0x165: /*WAVE_FORMAT_XMA*/ return "Xbox 360 XMA";
+        case WAVE_FORMAT_XMA2: return "Xbox 360/Xbox One XMA2";
+        default: return "*UNKNOWN*";
         }
     }
 
-    bool IsValid() const noexcept { return (_handle != nullptr); }
-    HMMIO Get() const noexcept { return _handle; }
-
-private:
-    HMMIO _handle;
-};
-
-
-const char* GetFormatTagName( WORD wFormatTag )
-{
-    switch( wFormatTag )
+    const char* ChannelDesc(DWORD dwChannelMask)
     {
-    case WAVE_FORMAT_PCM: return "PCM";
-    case WAVE_FORMAT_ADPCM: return "MS ADPCM";
-    case WAVE_FORMAT_EXTENSIBLE: return "EXTENSIBLE";
-    case WAVE_FORMAT_IEEE_FLOAT: return "IEEE float";
-    case WAVE_FORMAT_MPEGLAYER3: return "ISO/MPEG Layer3";
-    case WAVE_FORMAT_DOLBY_AC3_SPDIF: return "Dolby Audio Codec 3 over S/PDIF";
-    case WAVE_FORMAT_WMAUDIO2: return "Windows Media Audio";
-    case WAVE_FORMAT_WMAUDIO3: return "Windows Media Audio Pro";
-    case WAVE_FORMAT_WMASPDIF: return "Windows Media Audio over S/PDIF";
-    case 0x165: /*WAVE_FORMAT_XMA*/ return "Xbox 360 XMA";
-    case WAVE_FORMAT_XMA2: return "Xbox 360/Xbox One XMA2";
-    default: return "*UNKNOWN*";
-    }
-}
-
-const char *ChannelDesc( DWORD dwChannelMask )
-{
-    switch( dwChannelMask )
-    {
-    case SPEAKER_MONO: return "Mono";
-    case SPEAKER_STEREO: return "Stereo";
-    case SPEAKER_2POINT1: return "2.1";
-    case SPEAKER_SURROUND: return "Surround";
-    case SPEAKER_QUAD: return "Quad";
-    case SPEAKER_4POINT1: return "4.1";
-    case SPEAKER_5POINT1: return "5.1";
-    case SPEAKER_7POINT1: return "7.1";
-    case SPEAKER_5POINT1_SURROUND: return "Surround5.1";
-    case SPEAKER_7POINT1_SURROUND: return "Surround7.1";
-    default: return "Custom";
+        switch (dwChannelMask)
+        {
+        case SPEAKER_MONO: return "Mono";
+        case SPEAKER_STEREO: return "Stereo";
+        case SPEAKER_2POINT1: return "2.1";
+        case SPEAKER_SURROUND: return "Surround";
+        case SPEAKER_QUAD: return "Quad";
+        case SPEAKER_4POINT1: return "4.1";
+        case SPEAKER_5POINT1: return "5.1";
+        case SPEAKER_7POINT1: return "7.1";
+        case SPEAKER_5POINT1_SURROUND: return "Surround5.1";
+        case SPEAKER_7POINT1_SURROUND: return "Surround7.1";
+        default: return "Custom";
+        }
     }
 }
 

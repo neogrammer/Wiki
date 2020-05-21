@@ -15,11 +15,11 @@
 #include <memory>
 
 //---------------------------------------------------------------------------------
-struct handle_closer { void operator()(HANDLE h) { if (h) CloseHandle(h); } };
+struct handle_closer { void operator()(HANDLE h) noexcept { if (h) CloseHandle(h); } };
 
 using ScopedHandle = std::unique_ptr<void, handle_closer>;
 
-inline HANDLE safe_handle(HANDLE h) { return (h == INVALID_HANDLE_VALUE) ? nullptr : h; }
+inline HANDLE safe_handle(HANDLE h) noexcept { return (h == INVALID_HANDLE_VALUE) ? nullptr : h; }
 
 
 //--------------------------------------------------------------------------------------
@@ -340,47 +340,49 @@ static_assert(sizeof(WaveBank::BANKDATA) == 96, "Mismatch with xact3wb.h");
 
 using namespace WaveBank;
 
-//--------------------------------------------------------------------------------------
-uint32_t GetDuration(uint32_t length, const MINIWAVEFORMAT* miniFmt, const uint32_t* seekTable)
+namespace
 {
-    switch (miniFmt->wFormatTag)
+    uint32_t GetDuration(uint32_t length, const MINIWAVEFORMAT* miniFmt, const uint32_t* seekTable)
     {
-    case MINIWAVEFORMAT::TAG_ADPCM:
-    {
-        uint32_t duration = (length / miniFmt->BlockAlign()) * miniFmt->AdpcmSamplesPerBlock();
-        uint32_t partial = length % miniFmt->BlockAlign();
-        if (partial)
+        switch (miniFmt->wFormatTag)
         {
-            if (partial >= (7 * miniFmt->nChannels))
-                duration += (partial * 2 / miniFmt->nChannels - 12);
-        }
-        return duration;
-    }
-
-    case MINIWAVEFORMAT::TAG_WMA:
-        if (seekTable)
+        case MINIWAVEFORMAT::TAG_ADPCM:
         {
-            uint32_t seekCount = *seekTable;
-            if (seekCount > 0)
+            uint32_t duration = (length / miniFmt->BlockAlign()) * miniFmt->AdpcmSamplesPerBlock();
+            uint32_t partial = length % miniFmt->BlockAlign();
+            if (partial)
             {
-                return seekTable[seekCount] / uint32_t(2 * miniFmt->nChannels);
+                if (partial >= (7 * miniFmt->nChannels))
+                    duration += (partial * 2 / miniFmt->nChannels - 12);
             }
+            return duration;
         }
-        return 0;
 
-    case MINIWAVEFORMAT::TAG_XMA:
-        if (seekTable)
-        {
-            uint32_t seekCount = *seekTable;
-            if (seekCount > 0)
+        case MINIWAVEFORMAT::TAG_WMA:
+            if (seekTable)
             {
-                return seekTable[seekCount];
+                uint32_t seekCount = *seekTable;
+                if (seekCount > 0)
+                {
+                    return seekTable[seekCount] / uint32_t(2 * miniFmt->nChannels);
+                }
             }
-        }
-        return 0;
+            return 0;
 
-    default:
-        return (length * 8) / (miniFmt->BitsPerSample() * miniFmt->nChannels);
+        case MINIWAVEFORMAT::TAG_XMA:
+            if (seekTable)
+            {
+                uint32_t seekCount = *seekTable;
+                if (seekCount > 0)
+                {
+                    return seekTable[seekCount];
+                }
+            }
+            return 0;
+
+        default:
+            return (length * 8) / (miniFmt->BitsPerSample() * miniFmt->nChannels);
+        }
     }
 }
 
