@@ -11,7 +11,8 @@
 #include <mmreg.h>
 
 #include <stdio.h>
-#include <stdint.h>
+
+#include <cstdint>
 #include <memory>
 
 //---------------------------------------------------------------------------------

@@ -49,7 +49,7 @@ namespace DX
 
         void SetDebugOutput(bool debug) { m_debugOutput = debug; }
 
-        void ReleaseDevice()  noexcept;
+        void ReleaseDevice() noexcept;
         void RestoreDevice(_In_ ID3D11DeviceContext* context, _In_z_ const wchar_t* fontName);
 
         void SetViewport(const D3D11_VIEWPORT& viewPort);

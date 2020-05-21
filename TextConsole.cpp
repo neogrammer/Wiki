@@ -10,6 +10,8 @@
 
 #include <assert.h>
 
+#include <algorithm>
+
 using Microsoft::WRL::ComPtr;
 
 using namespace DirectX;

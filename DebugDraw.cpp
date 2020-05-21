@@ -8,6 +8,8 @@
 #include "pch.h"
 #include "DebugDraw.h"
 
+#include <algorithm>
+
 using namespace DirectX;
 
 namespace

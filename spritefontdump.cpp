@@ -10,7 +10,8 @@
 #include <Windows.h>
 #include <stdio.h>
 #include <dxgiformat.h>
-#include <stdint.h>
+
+#include <cstdint>
 #include <memory>
 #include <vector>
 
