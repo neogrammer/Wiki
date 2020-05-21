@@ -16,14 +16,12 @@
 #include <stdio.h>
 #include <stdexcept>
 
-#include <wrl/client.h>
-
 using namespace DirectX;
 using namespace DX;
 
 using Microsoft::WRL::ComPtr;
 
-RenderTexture::RenderTexture(DXGI_FORMAT format) :
+RenderTexture::RenderTexture(DXGI_FORMAT format) noexcept :
     m_format(format),
     m_width(0),
     m_height(0)
@@ -126,7 +124,7 @@ void RenderTexture::SizeResources(size_t width, size_t height)
 }
 
 
-void RenderTexture::ReleaseDevice()
+void RenderTexture::ReleaseDevice() noexcept
 {
     m_renderTargetView.Reset();
     m_shaderResourceView.Reset();

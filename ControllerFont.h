@@ -20,9 +20,12 @@ namespace DX
         LeftThumb = L' ',
         DPad = L'!',
         RightThumb = L'\"',
-        Back = L'#',
-        Guide = L'$',
-        Start = L'%',
+        View = L'#',    // Xbox One name
+        Back = L'#',    // Xbox 360 name
+        Nexus = L'$',   // Xbox One name
+        Guide = L'$',   // Xbox 360 name
+        Menu = L'%',    // Xbox One name
+        Start = L'%',   // Xbox 360 name
         XButton = L'&',
         AButton = L'\'',
         YButton = L'(',
@@ -85,17 +88,17 @@ namespace DX
                     {
                         *button = static_cast<wchar_t>(ControllerFont::DPad);
                     }
-                    else if (_wcsicmp(strBuffer, L"[Back]") == 0)
+                    else if (_wcsicmp(strBuffer, L"[View]") == 0 || _wcsicmp(strBuffer, L"[Back]") == 0)
                     {
-                        *button = static_cast<wchar_t>(ControllerFont::Back);
+                        *button = static_cast<wchar_t>(ControllerFont::View);
                     }
-                    else if (_wcsicmp(strBuffer, L"[Start]") == 0)
+                    else if (_wcsicmp(strBuffer, L"[Menu]") == 0 || _wcsicmp(strBuffer, L"[Start]") == 0)
                     {
-                        *button = static_cast<wchar_t>(ControllerFont::Start);
+                        *button = static_cast<wchar_t>(ControllerFont::Menu);
                     }
-                    else if (_wcsicmp(strBuffer, L"[Guide]") == 0)
+                    else if (_wcsicmp(strBuffer, L"[Nexus]") == 0 || _wcsicmp(strBuffer, L"[Guide]") == 0)
                     {
-                        *button = static_cast<wchar_t>(ControllerFont::Guide);
+                        *button = static_cast<wchar_t>(ControllerFont::Nexus);
                     }
                     else if (_wcsicmp(strBuffer, L"[RThumb]") == 0)
                     {
@@ -237,15 +240,15 @@ namespace DX
                     {
                         *button = static_cast<wchar_t>(ControllerFont::DPad);
                     }
-                    else if (_wcsicmp(strBuffer, L"[View]") == 0)
+                    else if (_wcsicmp(strBuffer, L"[View]") == 0 || _wcsicmp(strBuffer, L"[Back]") == 0)
                     {
                         *button = static_cast<wchar_t>(ControllerFont::View);
                     }
-                    else if (_wcsicmp(strBuffer, L"[Menu]") == 0)
+                    else if (_wcsicmp(strBuffer, L"[Menu]") == 0 || _wcsicmp(strBuffer, L"[Start]") == 0)
                     {
                         *button = static_cast<wchar_t>(ControllerFont::Menu);
                     }
-                    else if (_wcsicmp(strBuffer, L"[Nexus]") == 0)
+                    else if (_wcsicmp(strBuffer, L"[Nexus]") == 0 || _wcsicmp(strBuffer, L"[Guide]") == 0)
                     {
                         *button = static_cast<wchar_t>(ControllerFont::Nexus);
                     }
@@ -279,28 +282,28 @@ namespace DX
                         float bsize = XMVectorGetX(butnFont->MeasureString(button));
                         float offsetX = (bsize * buttonScale / 2.f);
 
-                        if (outPos.x < result.left)
+                        if (outPos.x < float(result.left))
                             result.left = long(outPos.x);
 
-                        if (outPos.y < result.top)
+                        if (outPos.y < float(result.top))
                             result.top = long(outPos.y);
 
                         outPos.x += offsetX;
                         outPos.y -= offsetY;
 
-                        if (outPos.x < result.left)
+                        if (outPos.x < float(result.left))
                             result.left = long(outPos.x);
 
-                        if (outPos.y < result.top)
+                        if (outPos.y < float(result.top))
                             result.top = long(outPos.y);
 
                         outPos.x += bsize * buttonScale;
                         outPos.y += offsetY;
 
-                        if (result.right < outPos.x)
+                        if (float(result.right) < outPos.x)
                             result.right = long(outPos.x);
 
-                        if (result.bottom < outPos.y)
+                        if (float(result.bottom) < outPos.y)
                             result.bottom = long(outPos.y);
                     }
 
@@ -320,18 +323,18 @@ namespace DX
                 case '[':
                     if (*strBuffer)
                     {
-                        if (outPos.x < result.left)
+                        if (outPos.x < float(result.left))
                             result.left = long(outPos.x);
 
-                        if (outPos.y < result.top)
+                        if (outPos.y < float(result.top))
                             result.top = long(outPos.y);
 
                         outPos.x += XMVectorGetX(textFont->MeasureString(strBuffer)) * scale;
 
-                        if (result.right < outPos.x)
+                        if (float(result.right) < outPos.x)
                             result.right = long(outPos.x);
 
-                        if (result.bottom < outPos.y)
+                        if (float(result.bottom) < outPos.y)
                             result.bottom = long(outPos.y);
 
                         memset(strBuffer, 0, sizeof(strBuffer));
@@ -345,18 +348,18 @@ namespace DX
                 case '\n':
                     if (*strBuffer)
                     {
-                        if (outPos.x < result.left)
+                        if (outPos.x < float(result.left))
                             result.left = long(outPos.x);
 
-                        if (outPos.y < result.top)
+                        if (outPos.y < float(result.top))
                             result.top = long(outPos.y);
 
                         outPos.x += XMVectorGetX(textFont->MeasureString(strBuffer)) * scale;
 
-                        if (result.right < outPos.x)
+                        if (float(result.right) < outPos.x)
                             result.right = long(outPos.x);
 
-                        if (result.bottom < outPos.y)
+                        if (float(result.bottom) < outPos.y)
                             result.bottom = long(outPos.y);
 
                         memset(strBuffer, 0, sizeof(strBuffer));
@@ -375,18 +378,18 @@ namespace DX
 
         if (*strBuffer)
         {
-            if (outPos.x < result.left)
+            if (outPos.x < float(result.left))
                 result.left = long(outPos.x);
 
-            if (outPos.y < result.top)
+            if (outPos.y < float(result.top))
                 result.top = long(outPos.y);
 
             outPos.x += XMVectorGetX(textFont->MeasureString(strBuffer)) * scale;
 
-            if (result.right < outPos.x)
+            if (float(result.right) < outPos.x)
                 result.right = long(outPos.x);
 
-            if (result.bottom < outPos.y)
+            if (float(result.bottom) < outPos.y)
                 result.bottom = long(outPos.y);
         }
 

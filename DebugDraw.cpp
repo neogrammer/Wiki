@@ -65,9 +65,9 @@ void XM_CALLCONV DX::Draw(PrimitiveBatch<VertexPositionColor>* batch,
 
     const float radius = sphere.Radius;
 
-    XMVECTOR xaxis = g_XMIdentityR0 * radius;
-    XMVECTOR yaxis = g_XMIdentityR1 * radius;
-    XMVECTOR zaxis = g_XMIdentityR2 * radius;
+    XMVECTOR xaxis = XMVectorScale(g_XMIdentityR0, radius);
+    XMVECTOR yaxis = XMVectorScale(g_XMIdentityR1, radius);
+    XMVECTOR zaxis = XMVectorScale(g_XMIdentityR2, radius);
 
     DrawRing(batch, origin, xaxis, zaxis, color);
     DrawRing(batch, origin, xaxis, yaxis, color);
@@ -211,8 +211,8 @@ void XM_CALLCONV DX::DrawRing(PrimitiveBatch<VertexPositionColor>* batch,
         XMStoreFloat3(&verts[i].position, pos);
         XMStoreFloat4(&verts[i].color, color);
         // Standard formula to rotate a vector.
-        XMVECTOR newCos = incrementalCos * cosDelta - incrementalSin * sinDelta;
-        XMVECTOR newSin = incrementalCos * sinDelta + incrementalSin * cosDelta;
+        XMVECTOR newCos = XMVectorSubtract(XMVectorMultiply(incrementalCos, cosDelta), XMVectorMultiply(incrementalSin, sinDelta));
+        XMVECTOR newSin = XMVectorAdd(XMVectorMultiply(incrementalCos, sinDelta), XMVectorMultiply(incrementalSin, cosDelta));
         incrementalCos = newCos;
         incrementalSin = newSin;
     }

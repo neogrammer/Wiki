@@ -1,0 +1,85 @@
+﻿# DirectX Tool Kit for DirectX 11 Wiki Source Tester
+#
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+#
+# http://go.microsoft.com/fwlink/?LinkID=615561
+
+cmake_minimum_required (VERSION 3.11)
+
+project (wikitest LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin/CMake")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin/CMake")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin/CMake")
+
+if(MSVC)
+    # Use max Warning Level 
+    string(REPLACE "/W3 " "/Wall " CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
+    string(REPLACE "/W3 " "/Wall " CMAKE_CXX_FLAGS_DEBUG ${CMAKE_CXX_FLAGS_DEBUG})
+    string(REPLACE "/W3 " "/Wall " CMAKE_CXX_FLAGS_RELEASE ${CMAKE_CXX_FLAGS_RELEASE})
+endif()
+
+add_executable(${PROJECT_NAME}
+    wikitest.cpp
+    ../DebugDraw.cpp
+    ../RenderTexture.cpp
+    ../TextConsole.cpp
+    pch.h)
+
+add_executable(spritefontdump ../spritefontdump.cpp)
+add_executable(wavdump ../wavdump.cpp)
+add_executable(xwbdump ../xwbdump.cpp)
+
+add_subdirectory(${CMAKE_SOURCE_DIR}/../../../DirectXTK ${CMAKE_BINARY_DIR}/bin/CMake/DirectXTK)
+target_link_libraries(${PROJECT_NAME} DirectXTK)
+
+target_include_directories(${PROJECT_NAME} PUBLIC ./ ../ ../../inc)
+target_include_directories(spritefontdump PUBLIC ../../../DirectXTex/DirectXTex)
+
+if(MSVC)
+    if (${CMAKE_SIZEOF_VOID_P} EQUAL "4")
+        target_compile_options(${PROJECT_NAME} PRIVATE /arch:SSE2)
+        target_compile_options(spritefontdump PRIVATE /arch:SSE2)
+        target_compile_options(wavdump PRIVATE /arch:SSE2)
+        target_compile_options(xwbdump PRIVATE /arch:SSE2)
+    endif()
+endif()
+
+if ( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
+    set(WarningsEXE "-Wpedantic" "-Wextra" "-Wno-c++98-compat" "-Wno-c++98-compat-pedantic" "-Wno-gnu-anonymous-struct" "-Wno-language-extension-token" "-Wno-missing-prototypes" "-Wno-missing-variable-declarations" "-Wno-nested-anon-types")
+    target_compile_options(${PROJECT_NAME} PRIVATE ${WarningsEXE})
+    target_compile_options(spritefontdump PRIVATE ${WarningsEXE})
+    target_compile_options(wavdump PRIVATE ${WarningsEXE})
+    target_compile_options(xwbdump PRIVATE ${WarningsEXE})
+endif()
+if ( CMAKE_CXX_COMPILER_ID MATCHES "MSVC" )
+    target_compile_options(${PROJECT_NAME} PRIVATE /permissive- /Zc:__cplusplus)
+    target_compile_options(spritefontdump PRIVATE /permissive- /Zc:__cplusplus)
+    target_compile_options(wavdump PRIVATE /permissive- /Zc:__cplusplus)
+    target_compile_options(xwbdump PRIVATE /permissive- /Zc:__cplusplus)
+
+    if (CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL 19.26)
+        target_compile_options(${PROJECT_NAME} PRIVATE /Zc:preprocessor /wd5105)
+        target_compile_options(spritefontdump PRIVATE /Zc:preprocessor /wd5105)
+        target_compile_options(wavdump PRIVATE /Zc:preprocessor /wd5105)
+        target_compile_options(xwbdump PRIVATE /Zc:preprocessor /wd5105)
+    endif()
+
+    set(WarningsEXE "/wd4061" "/wd4365" "/wd4514" "/wd4571" "/wd4668" "/wd4710" "/wd4820" "/wd5031" "/wd5032" "/wd5039" "/wd5045")
+    target_compile_options(${PROJECT_NAME} PRIVATE ${WarningsEXE})
+    target_compile_options(spritefontdump PRIVATE ${WarningsEXE})
+    target_compile_options(wavdump PRIVATE ${WarningsEXE})
+    target_compile_options(xwbdump PRIVATE ${WarningsEXE})
+endif()
+
+if(WIN32)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE _UNICODE UNICODE _WIN32_WINNT=0x0602)
+    target_compile_definitions(spritefontdump PRIVATE _UNICODE UNICODE _WIN32_WINNT=0x0601)
+    target_compile_definitions(wavdump PRIVATE _UNICODE UNICODE _WIN32_WINNT=0x0602)
+    target_compile_definitions(xwbdump PRIVATE _UNICODE UNICODE _WIN32_WINNT=0x0601)
+endif()

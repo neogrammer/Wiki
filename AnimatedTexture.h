@@ -13,10 +13,12 @@
 #include <stdexcept>
 #include <SpriteBatch.h>
 
+#include <wrl/client.h>
+
 class AnimatedTexture
 {
 public:
-    AnimatedTexture() :
+    AnimatedTexture() noexcept :
         mPaused(false),
         mFrame(0),
         mFrameCount(0),
@@ -24,17 +26,17 @@ public:
         mTextureHeight(0),
         mTimePerFrame(0.f),
         mTotalElapsed(0.f),
-        mRotation(0.f),
-        mScale(1.f,1.f),
         mDepth(0.f),
-        mOrigin(0.f,0.f)
+        mRotation(0.f),
+        mOrigin{},
+        mScale(1.f, 1.f)
     {
     }
 
-    AnimatedTexture( const DirectX::XMFLOAT2& origin,
-                     float rotation,
-                     float scale,
-                     float depth ) :
+    AnimatedTexture(const DirectX::XMFLOAT2& origin,
+        float rotation,
+        float scale,
+        float depth) noexcept :
         mPaused(false),
         mFrame(0),
         mFrameCount(0),
@@ -42,17 +44,23 @@ public:
         mTextureHeight(0),
         mTimePerFrame(0.f),
         mTotalElapsed(0.f),
-        mRotation( rotation ),
-        mScale( scale, scale ),
-        mDepth( depth ),
-        mOrigin( origin )
+        mDepth(depth),
+        mRotation(rotation),
+        mOrigin(origin),
+        mScale(scale, scale)
     {
     }
 
-    void Load( ID3D11ShaderResourceView* texture, int frameCount, int framesPerSecond )
+    AnimatedTexture(AnimatedTexture&&) = default;
+    AnimatedTexture& operator= (AnimatedTexture&&) = default;
+
+    AnimatedTexture(AnimatedTexture const&) = default;
+    AnimatedTexture& operator= (AnimatedTexture const&) = default;
+
+    void Load(ID3D11ShaderResourceView* texture, int frameCount, int framesPerSecond)
     {
-        if ( frameCount < 0 || framesPerSecond <= 0 )
-            throw std::invalid_argument( "AnimatedTexture" );
+        if (frameCount < 0 || framesPerSecond <= 0)
+            throw std::invalid_argument("AnimatedTexture");
 
         mPaused = false;
         mFrame = 0;
@@ -61,36 +69,36 @@ public:
         mTotalElapsed = 0.f;
         mTexture = texture;
 
-        if ( texture )
+        if (texture)
         {
             Microsoft::WRL::ComPtr<ID3D11Resource> resource;
-            texture->GetResource( resource.GetAddressOf() );
+            texture->GetResource(resource.GetAddressOf());
 
             D3D11_RESOURCE_DIMENSION dim;
-            resource->GetType( &dim );
+            resource->GetType(&dim);
 
-            if ( dim != D3D11_RESOURCE_DIMENSION_TEXTURE2D )
-                throw std::exception( "AnimatedTexture expects a Texture2D" );
+            if (dim != D3D11_RESOURCE_DIMENSION_TEXTURE2D)
+                throw std::exception("AnimatedTexture expects a Texture2D");
 
             Microsoft::WRL::ComPtr<ID3D11Texture2D> tex2D;
-            resource.As( &tex2D );
+            resource.As(&tex2D);
 
             D3D11_TEXTURE2D_DESC desc;
-            tex2D->GetDesc( &desc );
+            tex2D->GetDesc(&desc);
 
-            mTextureWidth = int( desc.Width );
-            mTextureHeight = int( desc.Height );
+            mTextureWidth = int(desc.Width);
+            mTextureHeight = int(desc.Height);
         }
     }
 
-    void Update( float elapsed )
+    void Update(float elapsed)
     {
-        if ( mPaused )
+        if (mPaused)
             return;
 
         mTotalElapsed += elapsed;
 
-        if ( mTotalElapsed > mTimePerFrame )
+        if (mTotalElapsed > mTimePerFrame)
         {
             ++mFrame;
             mFrame = mFrame % mFrameCount;
@@ -98,12 +106,12 @@ public:
         }
     }
 
-    void Draw( DirectX::SpriteBatch* batch, const DirectX::XMFLOAT2& screenPos ) const
+    void Draw(DirectX::SpriteBatch* batch, const DirectX::XMFLOAT2& screenPos) const
     {
-        Draw( batch, mFrame, screenPos );
+        Draw(batch, mFrame, screenPos);
     }
 
-    void Draw( DirectX::SpriteBatch* batch, int frame, const DirectX::XMFLOAT2& screenPos ) const
+    void Draw(DirectX::SpriteBatch* batch, int frame, const DirectX::XMFLOAT2& screenPos) const
     {
         int frameWidth = mTextureWidth / mFrameCount;
 
@@ -113,8 +121,8 @@ public:
         sourceRect.right = sourceRect.left + frameWidth;
         sourceRect.bottom = mTextureHeight;
 
-        batch->Draw( mTexture.Get(), screenPos, &sourceRect, DirectX::Colors::White,
-                     mRotation, mOrigin, mScale, DirectX::SpriteEffects_None, mDepth );
+        batch->Draw(mTexture.Get(), screenPos, &sourceRect, DirectX::Colors::White,
+            mRotation, mOrigin, mScale, DirectX::SpriteEffects_None, mDepth);
     }
 
     void Reset()

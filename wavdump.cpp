@@ -7,7 +7,7 @@
 // Licensed under the MIT License.
 //--------------------------------------------------------------------------------------
 
-#include <windows.h>
+#include <Windows.h>
 
 #include <stdio.h>
 #include <mmsystem.h>
@@ -56,18 +56,18 @@ static_assert(sizeof(XMA2WAVEFORMATEX) == 52, "Mismatch of XMA2 type" );
 class ScopedMMHandle
 {
 public:
-    explicit ScopedMMHandle( HMMIO handle ) : _handle(handle) {}
+    explicit ScopedMMHandle( HMMIO handle ) noexcept : _handle(handle) {}
     ~ScopedMMHandle()
     {
-        if ( _handle != 0 )
+        if ( _handle != nullptr )
         {
             mmioClose( _handle, 0 );
-            _handle = 0;
+            _handle = nullptr;
         }
     }
 
-    bool IsValid() const { return (_handle != 0); }
-    HMMIO Get() const { return _handle; }
+    bool IsValid() const noexcept { return (_handle != nullptr); }
+    HMMIO Get() const noexcept { return _handle; }
 
 private:
     HMMIO _handle;
@@ -111,214 +111,214 @@ const char *ChannelDesc( DWORD dwChannelMask )
     }
 }
 
-int main(int argc, const char** argv)
+int wmain(int argc, const wchar_t** argv)
 {
-    if ( argc < 2 || argc > 2 )
+    if (argc < 2 || argc > 2)
     {
         printf("Usage: wavdump <filename.wav>\n");
         return 0;
     }
 
-    ScopedMMHandle h( mmioOpen( (LPSTR)argv[1], nullptr, MMIO_ALLOCBUF | MMIO_READ ) );
-    if ( !h.IsValid() )
+    ScopedMMHandle h(mmioOpenW(const_cast<LPWSTR>(argv[1]), nullptr, MMIO_ALLOCBUF | MMIO_READ));
+    if (!h.IsValid())
     {
-        printf("Failed opening %s\n", argv[1] );
+        printf("Failed opening %ls\n", argv[1]);
         return 1;
     }
 
     // Validate file is a WAVE
     MMCKINFO riff = {};
 
-    if ( mmioDescend( h.Get(), &riff, nullptr, 0 ) != MMSYSERR_NOERROR )
+    if (mmioDescend(h.Get(), &riff, nullptr, 0) != MMSYSERR_NOERROR)
     {
-        printf("Failed validating file %s\n", argv[1] );
+        printf("Failed validating file %ls\n", argv[1]);
         return 1;
     }
 
-    if ( (riff.ckid != FOURCC_RIFF)
-         || ( ( riff.fccType != mmioFOURCC( 'W', 'A', 'V','E' ) ) && ( riff.fccType != mmioFOURCC( 'X', 'W', 'M','A' ) ) ) )
+    if ((riff.ckid != FOURCC_RIFF)
+        || ((riff.fccType != mmioFOURCC('W', 'A', 'V', 'E')) && (riff.fccType != mmioFOURCC('X', 'W', 'M', 'A'))))
     {
-        printf("Not a wave file: %s\n", argv[1] );
+        printf("Not a wave file: %ls\n", argv[1]);
         return 1;
     }
 
-    bool xwma = riff.fccType == mmioFOURCC( 'X', 'W', 'M','A' );
+    bool xwma = riff.fccType == mmioFOURCC('X', 'W', 'M', 'A');
 
     std::unique_ptr<BYTE> chunk;
 
     // find 'fmt ' chunk
     MMCKINFO c = {};
 
-    c.ckid = mmioFOURCC( 'f', 'm', 't', ' ' );
-    if ( mmioDescend( h.Get(), &c, &riff, MMIO_FINDCHUNK ) != MMSYSERR_NOERROR )
+    c.ckid = mmioFOURCC('f', 'm', 't', ' ');
+    if (mmioDescend(h.Get(), &c, &riff, MMIO_FINDCHUNK) != MMSYSERR_NOERROR)
     {
-        printf("Failed to find 'fmt ' chunk in wave file %s\n", argv[1] );
+        printf("Failed to find 'fmt ' chunk in wave file %ls\n", argv[1]);
         return 1;
     }
 
-    if ( c.cksize < sizeof( WAVEFORMAT ) )
+    if (c.cksize < sizeof(WAVEFORMAT))
     {
-        printf("Header size is only %u bytes for wave file %s\n", c.cksize, argv[1] );
+        printf("Header size is only %lu bytes for wave file %ls\n", c.cksize, argv[1]);
         return 1;
     }
 
-    chunk.reset( new (std::nothrow) BYTE[c.cksize] );
-    if ( !chunk )
+    chunk.reset(new (std::nothrow) BYTE[c.cksize]);
+    if (!chunk)
     {
-        printf("Out of memory loading %u bytes", c.cksize);
+        printf("Out of memory loading %lu bytes", c.cksize);
         return 1;
     }
 
-    if ( (ULONG)mmioRead( h.Get(), (HPSTR)chunk.get(), c.cksize ) != c.cksize )
+    if (static_cast<DWORD>(mmioRead(h.Get(), reinterpret_cast<HPSTR>(chunk.get()), static_cast<LONG>(c.cksize))) != c.cksize)
     {
-        printf("Failed reading %u header bytes from wave file %s\n", c.cksize, argv[1] );
+        printf("Failed reading %lu header bytes from wave file %ls\n", c.cksize, argv[1]);
         return 1;
     }
 
-    printf("WAVE file %s\n", argv[1] );
-    printf("riff '%s', chunk 'fmt ', %u bytes\n", (xwma) ? "XWMA" : "WAVE", c.cksize);
+    printf("WAVE file %ls\n", argv[1]);
+    printf("riff '%s', chunk 'fmt ', %lu bytes\n", (xwma) ? "XWMA" : "WAVE", c.cksize);
 
-    auto header = reinterpret_cast<const WAVEFORMAT*>( chunk.get() );
+    auto header = reinterpret_cast<const WAVEFORMAT*>(chunk.get());
 
-    printf("format tag %04u (%s)\n", header->wFormatTag, GetFormatTagName(header->wFormatTag) );
+    printf("format tag %04u (%s)\n", header->wFormatTag, GetFormatTagName(header->wFormatTag));
 
-    printf("number of channels %u\n", header->nChannels );
-    if ( header->nChannels < 1 || header->nChannels > 64 )
+    printf("number of channels %u\n", header->nChannels);
+    if (header->nChannels < 1 || header->nChannels > 64)
         printf("ERROR: Expected between 1..64 channels\n");
 
-    printf("samples per second %u\n", header->nSamplesPerSec );
-    if ( header->nSamplesPerSec < 1000 || header->nSamplesPerSec > 200000 )
+    printf("samples per second %lu\n", header->nSamplesPerSec);
+    if (header->nSamplesPerSec < 1000 || header->nSamplesPerSec > 200000)
         printf("ERROR: Expected between 1..200kHZ\n");
 
-    printf("avg bytes per second %u\n", header->nAvgBytesPerSec );
-    printf("sample block size %u bytes\n", header->nBlockAlign );
+    printf("avg bytes per second %lu\n", header->nAvgBytesPerSec);
+    printf("sample block size %u bytes\n", header->nBlockAlign);
 
-    switch( header->wFormatTag )
+    switch (header->wFormatTag)
     {
     case WAVE_FORMAT_PCM:
     case WAVE_FORMAT_IEEE_FLOAT:
-        if ( c.cksize < sizeof(PCMWAVEFORMAT) )
+        if (c.cksize < sizeof(PCMWAVEFORMAT))
         {
-            printf("Header is too small to be valid in wave file %s\n", argv[1] );
+            printf("Header is too small to be valid in wave file %ls\n", argv[1]);
             return 1;
         }
-        else if ( c.cksize < sizeof(WAVEFORMATEX) )
+        else if (c.cksize < sizeof(WAVEFORMATEX))
         {
-            auto pcm = reinterpret_cast<const PCMWAVEFORMAT*>( chunk.get() );
-            printf("bits per sample %u\n", pcm->wBitsPerSample );
+            auto pcm = reinterpret_cast<const PCMWAVEFORMAT*>(chunk.get());
+            printf("bits per sample %u\n", pcm->wBitsPerSample);
         }
         else
         {
-            auto wfx = reinterpret_cast<const WAVEFORMATEX*>( chunk.get() );
-            printf("bits per sample %u\n", wfx->wBitsPerSample );
-            printf("extra bytes %u\n", wfx->cbSize );
+            auto wfx = reinterpret_cast<const WAVEFORMATEX*>(chunk.get());
+            printf("bits per sample %u\n", wfx->wBitsPerSample);
+            printf("extra bytes %u\n", wfx->cbSize);
         }
         break;
 
     case WAVE_FORMAT_ADPCM:
-        if ( c.cksize < sizeof(ADPCMWAVEFORMAT) )
+        if (c.cksize < sizeof(ADPCMWAVEFORMAT))
         {
-            printf("Header is too small to be valid in wave file %s\n", argv[1] );
+            printf("Header is too small to be valid in wave file %ls\n", argv[1]);
             return 1;
         }
         else
         {
-            auto adpcm = reinterpret_cast<const ADPCMWAVEFORMAT*>( chunk.get() );
-            printf("bits per sample %u\n", adpcm->wfx.wBitsPerSample );
-            printf("extra bytes %u\n", adpcm->wfx.cbSize );
-            printf("samples per block %u\n", adpcm->wSamplesPerBlock );
-            printf("number of coefficients %u\n", adpcm->wNumCoef );
-            if ( adpcm->wNumCoef != 7 )
-               printf("ERROR: MS ADPCM expected to have 7 coefficients\n");
+            auto adpcm = reinterpret_cast<const ADPCMWAVEFORMAT*>(chunk.get());
+            printf("bits per sample %u\n", adpcm->wfx.wBitsPerSample);
+            printf("extra bytes %u\n", adpcm->wfx.cbSize);
+            printf("samples per block %u\n", adpcm->wSamplesPerBlock);
+            printf("number of coefficients %u\n", adpcm->wNumCoef);
+            if (adpcm->wNumCoef != 7)
+                printf("ERROR: MS ADPCM expected to have 7 coefficients\n");
         }
         break;
 
     case WAVE_FORMAT_XMA2:
-        if ( c.cksize < sizeof(XMA2WAVEFORMATEX) )
+        if (c.cksize < sizeof(XMA2WAVEFORMATEX))
         {
-            printf("Header is too small to be valid in wave file %s\n", argv[1] );
+            printf("Header is too small to be valid in wave file %ls\n", argv[1]);
             return 1;
         }
         else
         {
-            auto xma = reinterpret_cast<const XMA2WAVEFORMATEX*>( chunk.get() );
-            printf("number of streams %u\n", xma->NumStreams );
-            printf("xma channel mask %u (%s)\n", xma->ChannelMask, ChannelDesc( xma->ChannelMask ) );
-            printf("samples encoded %u\n", xma->SamplesEncoded );
-            printf("bytes per block %u\n", xma->BytesPerBlock );
-            printf("play [%u, %u]\n", xma->PlayBegin, xma->PlayLength );
-            printf("loop [%u, %u] %u\n", xma->LoopBegin, xma->LoopLength, xma->LoopCount );
-            printf("encoder version %u\n", xma->EncoderVersion );
-            printf("block count %u\n", xma->BlockCount );
+            auto xma = reinterpret_cast<const XMA2WAVEFORMATEX*>(chunk.get());
+            printf("number of streams %u\n", xma->NumStreams);
+            printf("xma channel mask %lu (%s)\n", xma->ChannelMask, ChannelDesc(xma->ChannelMask));
+            printf("samples encoded %lu\n", xma->SamplesEncoded);
+            printf("bytes per block %lu\n", xma->BytesPerBlock);
+            printf("play [%lu, %lu]\n", xma->PlayBegin, xma->PlayLength);
+            printf("loop [%lu, %lu] %u\n", xma->LoopBegin, xma->LoopLength, xma->LoopCount);
+            printf("encoder version %u\n", xma->EncoderVersion);
+            printf("block count %u\n", xma->BlockCount);
         }
         break;
 
     case WAVE_FORMAT_EXTENSIBLE:
-        if ( c.cksize < sizeof(WAVEFORMATEXTENSIBLE) )
+        if (c.cksize < sizeof(WAVEFORMATEXTENSIBLE))
         {
-            printf("Header is too small to be valid in wave file %s\n", argv[1] );
+            printf("Header is too small to be valid in wave file %ls\n", argv[1]);
             return 1;
         }
         else
         {
-            auto ext = reinterpret_cast<const WAVEFORMATEXTENSIBLE*>( chunk.get() );
-            printf("bits per sample %u\n", ext->Format.wBitsPerSample );
-            printf("extra bytes %u\n", ext->Format.cbSize );
-            printf("valid bits-per-sample / samples per block / reserved %u\n", ext->Samples.wReserved );
-            printf("channel mask %08X (%s)\n", ext->dwChannelMask, ChannelDesc( ext->dwChannelMask ) );
-            printf("Subformat GUID %08X-%04X-%04X-%02X%02X%02X%02X%02X%02X%02X%02X", ext->SubFormat.Data1, ext->SubFormat.Data2, ext->SubFormat.Data3, 
-                   ext->SubFormat.Data4[0], ext->SubFormat.Data4[1], ext->SubFormat.Data4[2], ext->SubFormat.Data4[3], 
-                   ext->SubFormat.Data4[4], ext->SubFormat.Data4[5], ext->SubFormat.Data4[6], ext->SubFormat.Data4[7] );
+            auto ext = reinterpret_cast<const WAVEFORMATEXTENSIBLE*>(chunk.get());
+            printf("bits per sample %u\n", ext->Format.wBitsPerSample);
+            printf("extra bytes %u\n", ext->Format.cbSize);
+            printf("valid bits-per-sample / samples per block / reserved %u\n", ext->Samples.wReserved);
+            printf("channel mask %08lX (%s)\n", ext->dwChannelMask, ChannelDesc(ext->dwChannelMask));
+            printf("Subformat GUID %08lX-%04X-%04X-%02X%02X%02X%02X%02X%02X%02X%02X", ext->SubFormat.Data1, ext->SubFormat.Data2, ext->SubFormat.Data3,
+                ext->SubFormat.Data4[0], ext->SubFormat.Data4[1], ext->SubFormat.Data4[2], ext->SubFormat.Data4[3],
+                ext->SubFormat.Data4[4], ext->SubFormat.Data4[5], ext->SubFormat.Data4[6], ext->SubFormat.Data4[7]);
 
-            static const GUID s_wfexBase = {0x00000000, 0x0000, 0x0010, 0x80, 0x00, 0x00, 0xAA, 0x00, 0x38, 0x9B, 0x71};
+            static const GUID s_wfexBase = { 0x00000000, 0x0000, 0x0010, { 0x80, 0x00, 0x00, 0xAA, 0x00, 0x38, 0x9B, 0x71} };
 
-            if ( memcmp( reinterpret_cast<const BYTE*>(&ext->SubFormat) + sizeof(DWORD),
-                         reinterpret_cast<const BYTE*>(&s_wfexBase) + sizeof(DWORD), sizeof(GUID) - sizeof(DWORD) ) == 0 )
+            if (memcmp(reinterpret_cast<const BYTE*>(&ext->SubFormat) + sizeof(DWORD),
+                reinterpret_cast<const BYTE*>(&s_wfexBase) + sizeof(DWORD), sizeof(GUID) - sizeof(DWORD)) == 0)
             {
-                printf(" (%s)\n", GetFormatTagName( static_cast<WORD>(ext->SubFormat.Data1) ) );
+                printf(" (%s)\n", GetFormatTagName(static_cast<WORD>(ext->SubFormat.Data1)));
             }
             else
                 printf("\n");
         }
         break;
 
-     default:
-        if ( c.cksize < sizeof(WAVEFORMATEX) )
+    default:
+        if (c.cksize < sizeof(WAVEFORMATEX))
         {
-            printf("Header is is too small for a WAVEFORMATEX in wave file %s\n", argv[1] );
+            printf("Header is is too small for a WAVEFORMATEX in wave file %ls\n", argv[1]);
             return 1;
         }
         else
         {
-            auto wfx = reinterpret_cast<const WAVEFORMATEX*>( chunk.get() );
-            printf("bits per sample %u\n", wfx->wBitsPerSample );
-            printf("extra bytes %u\n", wfx->cbSize );
+            auto wfx = reinterpret_cast<const WAVEFORMATEX*>(chunk.get());
+            printf("bits per sample %u\n", wfx->wBitsPerSample);
+            printf("extra bytes %u\n", wfx->cbSize);
         }
         break;
     }
 
-    if ( mmioAscend( h.Get(), &c, 0 ) != MMSYSERR_NOERROR )
+    if (mmioAscend(h.Get(), &c, 0) != MMSYSERR_NOERROR)
     {
-        printf("Failed to exit 'fmt ' chunk in wave file %s\n", argv[1] );
+        printf("Failed to exit 'fmt ' chunk in wave file %ls\n", argv[1]);
         return 1;
     }
 
     // find optional 'wsmp' chunk
-    if ( mmioSeek( h.Get(), riff.dwDataOffset + 4, SEEK_SET ) == -1 )
+    if (mmioSeek(h.Get(), static_cast<LONG>(riff.dwDataOffset + 4u), SEEK_SET) == -1)
     {
-        printf("Failed to reset seek\n" );
+        printf("Failed to reset seek\n");
         return 1;
     }
 
     MMCKINFO cwsmp = {};
 
-    cwsmp.ckid = mmioFOURCC( 'w', 's', 'm', 'p' );
-    if ( mmioDescend( h.Get(), &cwsmp, &riff, MMIO_FINDCHUNK ) == MMSYSERR_NOERROR )
+    cwsmp.ckid = mmioFOURCC('w', 's', 'm', 'p');
+    if (mmioDescend(h.Get(), &cwsmp, &riff, MMIO_FINDCHUNK) == MMSYSERR_NOERROR)
     {
-        static const uint32_t LOOP_TYPE_FORWARD = 0x00000000;
-        static const uint32_t LOOP_TYPE_RELEASE = 0x00000001;
-        static const uint32_t OPTIONS_NOTRUNCATION = 0x00000001;
-        static const uint32_t OPTIONS_NOCOMPRESSION = 0x00000002;
+        //static const uint32_t LOOP_TYPE_FORWARD = 0x00000000;
+        //static const uint32_t LOOP_TYPE_RELEASE = 0x00000001;
+        //static const uint32_t OPTIONS_NOTRUNCATION = 0x00000001;
+        //static const uint32_t OPTIONS_NOCOMPRESSION = 0x00000002;
 
         struct DLSLoop
         {
@@ -339,65 +339,65 @@ int main(int argc, const char** argv)
             uint32_t    loopCount;
         };
 
-        if ( cwsmp.cksize < sizeof( DLSSample ) )
+        if (cwsmp.cksize < sizeof(DLSSample))
         {
-            printf("wsmp chunk size is only %u bytes\n", cwsmp.cksize );
+            printf("wsmp chunk size is only %lu bytes\n", cwsmp.cksize);
             return 1;
         }
 
-        chunk.reset( new (std::nothrow) BYTE[cwsmp.cksize] );
-        if ( !chunk )
+        chunk.reset(new (std::nothrow) BYTE[cwsmp.cksize]);
+        if (!chunk)
         {
-            printf("Out of memory loading %u bytes", cwsmp.cksize);
+            printf("Out of memory loading %lu bytes", cwsmp.cksize);
             return 1;
         }
 
-        if ( (ULONG)mmioRead( h.Get(), (HPSTR)chunk.get(), cwsmp.cksize ) != cwsmp.cksize )
-        { 
-            printf("Failed reading %u bytes of wsmp chunk from wave file %s\n", cwsmp.cksize, argv[1] );
+        if (static_cast<DWORD>(mmioRead(h.Get(), reinterpret_cast<HPSTR>(chunk.get()), static_cast<LONG>(cwsmp.cksize))) != cwsmp.cksize)
+        {
+            printf("Failed reading %lu bytes of wsmp chunk from wave file %ls\n", cwsmp.cksize, argv[1]);
             return 1;
         }
 
-        auto dlsSample = reinterpret_cast<const DLSSample*>( chunk.get() );
+        auto dlsSample = reinterpret_cast<const DLSSample*>(chunk.get());
 
-        if ( cwsmp.cksize >= ( dlsSample->size + dlsSample->loopCount * sizeof(DLSLoop) ) )
+        if (cwsmp.cksize >= (dlsSample->size + dlsSample->loopCount * sizeof(DLSLoop)))
         {
-            printf( "Found DLS Sample WSMP chunk\n");
+            printf("Found DLS Sample WSMP chunk\n");
 
-            printf("\tFound %u loop points\n", dlsSample->loopCount );
-            auto loops = reinterpret_cast<const DLSLoop*>( chunk.get() + dlsSample->size );
-            for( uint32_t j = 0; j < dlsSample->loopCount; ++j )
+            printf("\tFound %u loop points\n", dlsSample->loopCount);
+            auto loops = reinterpret_cast<const DLSLoop*>(chunk.get() + dlsSample->size);
+            for (uint32_t j = 0; j < dlsSample->loopCount; ++j)
             {
-                printf("\tType %u, start %u, length %u\n", loops[j].loopType, loops[j].loopStart, loops[j].loopLength );
+                printf("\tType %u, start %u, length %u\n", loops[j].loopType, loops[j].loopStart, loops[j].loopLength);
             }
         }
         else
         {
-            printf( "ERROR: Found DLS Sample WSMP chunk, but it's too small to be valid\n");
+            printf("ERROR: Found DLS Sample WSMP chunk, but it's too small to be valid\n");
         }
 
-        if ( mmioAscend( h.Get(), &cwsmp, 0 ) != MMSYSERR_NOERROR )
+        if (mmioAscend(h.Get(), &cwsmp, 0) != MMSYSERR_NOERROR)
         {
-            printf("Failed to exit 'wsmp' chunk in wave file %s\n", argv[1] );
+            printf("Failed to exit 'wsmp' chunk in wave file %ls\n", argv[1]);
             return 1;
         }
     }
 
     // find optional 'smpl' chunk
-    if ( mmioSeek( h.Get(), riff.dwDataOffset + 4, SEEK_SET ) == -1 )
+    if (mmioSeek(h.Get(), static_cast<LONG>(riff.dwDataOffset + 4u), SEEK_SET) == -1)
     {
-        printf("Failed to reset seek\n" );
+        printf("Failed to reset seek\n");
         return 1;
     }
 
     MMCKINFO csmpl = {};
 
-    csmpl.ckid = mmioFOURCC( 's', 'm', 'p', 'l' );
-    if ( mmioDescend( h.Get(), &csmpl, &riff, MMIO_FINDCHUNK ) == MMSYSERR_NOERROR )
+    csmpl.ckid = mmioFOURCC('s', 'm', 'p', 'l');
+    if (mmioDescend(h.Get(), &csmpl, &riff, MMIO_FINDCHUNK) == MMSYSERR_NOERROR)
     {
-        static const uint32_t LOOP_TYPE_FORWARD     = 0x00000000;
-        static const uint32_t LOOP_TYPE_ALTERNATING = 0x00000001;
-        static const uint32_t LOOP_TYPE_BACKWARD    = 0x00000002;
+        //static const uint32_t LOOP_TYPE_FORWARD     = 0x00000000;
+        //static const uint32_t LOOP_TYPE_ALTERNATING = 0x00000001;
+        //static const uint32_t LOOP_TYPE_BACKWARD    = 0x00000002;
 
         struct MIDILoop
         {
@@ -422,141 +422,141 @@ int main(int argc, const char** argv)
             uint32_t        samplerData;
         };
 
-        if ( csmpl.cksize < sizeof( MIDISample ) )
+        if (csmpl.cksize < sizeof(MIDISample))
         {
-            printf("smpl chunk size is only %u bytes\n", csmpl.cksize );
+            printf("smpl chunk size is only %lu bytes\n", csmpl.cksize);
             return 1;
         }
 
-        chunk.reset( new (std::nothrow) BYTE[csmpl.cksize] );
-        if ( !chunk )
+        chunk.reset(new (std::nothrow) BYTE[csmpl.cksize]);
+        if (!chunk)
         {
-            printf("Out of memory loading %u bytes", csmpl.cksize);
+            printf("Out of memory loading %lu bytes", csmpl.cksize);
             return 1;
         }
 
-        if ( (ULONG)mmioRead( h.Get(), (HPSTR)chunk.get(), csmpl.cksize ) != csmpl.cksize )
-        { 
-            printf("Failed reading %u bytes of smpl chunk from wave file %s\n", csmpl.cksize, argv[1] );
+        if (static_cast<DWORD>(mmioRead(h.Get(), reinterpret_cast<HPSTR>(chunk.get()), static_cast<LONG>(csmpl.cksize))) != csmpl.cksize)
+        {
+            printf("Failed reading %lu bytes of smpl chunk from wave file %ls\n", csmpl.cksize, argv[1]);
             return 1;
         }
 
-        auto midiSample = reinterpret_cast<const MIDISample*>( chunk.get() );
+        auto midiSample = reinterpret_cast<const MIDISample*>(chunk.get());
 
-        if ( csmpl.cksize >= ( sizeof(MIDISample) + midiSample->loopCount * sizeof(MIDILoop) ) )
+        if (csmpl.cksize >= (sizeof(MIDISample) + midiSample->loopCount * sizeof(MIDILoop)))
         {
-            printf( "Found MIDI Sample SMPL chunk\n");
-            printf("\tFound %u loop points\n", midiSample->loopCount );
-            auto loops = reinterpret_cast<const MIDILoop*>( chunk.get() + sizeof(MIDISample) );
-            for( uint32_t j = 0; j < midiSample->loopCount; ++j )
+            printf("Found MIDI Sample SMPL chunk\n");
+            printf("\tFound %u loop points\n", midiSample->loopCount);
+            auto loops = reinterpret_cast<const MIDILoop*>(chunk.get() + sizeof(MIDISample));
+            for (uint32_t j = 0; j < midiSample->loopCount; ++j)
             {
-                printf("\tType %u, start %u, end %u\n", loops[j].type, loops[j].start, loops[j].end );
+                printf("\tType %u, start %u, end %u\n", loops[j].type, loops[j].start, loops[j].end);
             }
         }
         else
         {
-            printf( "ERROR: Found MIDI Sample SMPL chunk, but it's too small to be valid\n");
+            printf("ERROR: Found MIDI Sample SMPL chunk, but it's too small to be valid\n");
         }
 
-        if ( mmioAscend( h.Get(), &csmpl, 0 ) != MMSYSERR_NOERROR )
+        if (mmioAscend(h.Get(), &csmpl, 0) != MMSYSERR_NOERROR)
         {
-            printf("Failed to exit 'smpl' chunk in wave file %s\n", argv[1] );
+            printf("Failed to exit 'smpl' chunk in wave file %ls\n", argv[1]);
             return 1;
         }
     }
 
     // find optional 'dpds' chunk
-    if ( mmioSeek( h.Get(), riff.dwDataOffset + 4, SEEK_SET ) == -1 )
+    if (mmioSeek(h.Get(), static_cast<LONG>(riff.dwDataOffset + 4u), SEEK_SET) == -1)
     {
-        printf("Failed to reset seek\n" );
+        printf("Failed to reset seek\n");
         return 1;
     }
 
     MMCKINFO cdpds = {};
 
-    cdpds.ckid = mmioFOURCC( 'd', 'p', 'd', 's' );
-    if ( mmioDescend( h.Get(), &cdpds, &riff, MMIO_FINDCHUNK ) == MMSYSERR_NOERROR )
+    cdpds.ckid = mmioFOURCC('d', 'p', 'd', 's');
+    if (mmioDescend(h.Get(), &cdpds, &riff, MMIO_FINDCHUNK) == MMSYSERR_NOERROR)
     {
-        printf("chunk 'dpds', %u bytes", cdpds.cksize);
+        printf("chunk 'dpds', %lu bytes", cdpds.cksize);
 
-        if ( cdpds.cksize > 0 )
+        if (cdpds.cksize > 0)
         {
-            chunk.reset( new (std::nothrow) BYTE[cdpds.cksize] );
-            if ( !chunk )
+            chunk.reset(new (std::nothrow) BYTE[cdpds.cksize]);
+            if (!chunk)
             {
-                printf("\nOut of memory loading %u bytes", cdpds.cksize);
+                printf("\nOut of memory loading %lu bytes", cdpds.cksize);
                 return 1;
             }
 
-            if ( (ULONG)mmioRead( h.Get(), (HPSTR)chunk.get(), cdpds.cksize ) != cdpds.cksize )
-            { 
-                printf("\nFailed reading %u bytes of dpds chunk from wave file %s\n", cdpds.cksize, argv[1] );
+            if (static_cast<DWORD>(mmioRead(h.Get(), reinterpret_cast<HPSTR>(chunk.get()), static_cast<LONG>(cdpds.cksize))) != cdpds.cksize)
+            {
+                printf("\nFailed reading %lu bytes of dpds chunk from wave file %ls\n", cdpds.cksize, argv[1]);
                 return 1;
             }
 
-            auto table = reinterpret_cast<const uint32_t*>( chunk.get() );
-            for( size_t k = 0; k < (cdpds.cksize / 4); ++k )
+            auto table = reinterpret_cast<const uint32_t*>(chunk.get());
+            for (size_t k = 0; k < (cdpds.cksize / 4); ++k)
             {
-                if ( ( k % 6 ) == 0 )
-                    printf( "\n\t");
-                printf( "%u ", table[ k ] );
+                if ((k % 6) == 0)
+                    printf("\n\t");
+                printf("%u ", table[k]);
             }
         }
 
         printf("\n");
 
-        if ( mmioAscend( h.Get(), &cdpds, 0 ) != MMSYSERR_NOERROR )
+        if (mmioAscend(h.Get(), &cdpds, 0) != MMSYSERR_NOERROR)
         {
-            printf("Failed to exit 'dpds' chunk in wave file %s\n", argv[1] );
+            printf("Failed to exit 'dpds' chunk in wave file %ls\n", argv[1]);
             return 1;
         }
     }
 
     // find optional 'seek' chunk
-    if ( mmioSeek( h.Get(), riff.dwDataOffset + 4, SEEK_SET ) == -1 )
+    if (mmioSeek(h.Get(), static_cast<LONG>(riff.dwDataOffset + 4u), SEEK_SET) == -1)
     {
-        printf("Failed to reset seek\n" );
+        printf("Failed to reset seek\n");
         return 1;
     }
 
     MMCKINFO cseek = {};
 
-    cseek.ckid = mmioFOURCC( 's', 'e', 'e', 'k' );
-    if ( mmioDescend( h.Get(), &cseek, &riff, MMIO_FINDCHUNK ) == MMSYSERR_NOERROR )
+    cseek.ckid = mmioFOURCC('s', 'e', 'e', 'k');
+    if (mmioDescend(h.Get(), &cseek, &riff, MMIO_FINDCHUNK) == MMSYSERR_NOERROR)
     {
-        printf("chunk 'seek', %u bytes", cseek.cksize);
+        printf("chunk 'seek', %lu bytes", cseek.cksize);
 
-        if ( cseek.cksize > 0 )
+        if (cseek.cksize > 0)
         {
-            chunk.reset( new (std::nothrow) BYTE[cseek.cksize] );
-            if ( !chunk )
+            chunk.reset(new (std::nothrow) BYTE[cseek.cksize]);
+            if (!chunk)
             {
-                printf("\nOut of memory loading %u bytes", cseek.cksize);
+                printf("\nOut of memory loading %lu bytes", cseek.cksize);
                 return 1;
             }
 
-            if ( (ULONG)mmioRead( h.Get(), (HPSTR)chunk.get(), cseek.cksize ) != cseek.cksize )
-            { 
-                printf("\nFailed reading %u bytes of seek chunk from wave file %s\n", cseek.cksize, argv[1] );
+            if (static_cast<DWORD>(mmioRead(h.Get(), reinterpret_cast<HPSTR>(chunk.get()), static_cast<LONG>(cseek.cksize))) != cseek.cksize)
+            {
+                printf("\nFailed reading %lu bytes of seek chunk from wave file %ls\n", cseek.cksize, argv[1]);
                 return 1;
             }
 
-            auto table = reinterpret_cast<const uint32_t*>( chunk.get() );
-            for( size_t k = 0; k < (cseek.cksize / 4); ++k )
-            { 
-                if ( ( k % 6 ) == 0 )
-                    printf( "\n\t");
-                printf( "%u ", _byteswap_ulong( table[ k  ] ) ); // seek chunk entries are BigEndian
+            auto table = reinterpret_cast<const uint32_t*>(chunk.get());
+            for (size_t k = 0; k < (cseek.cksize / 4); ++k)
+            {
+                if ((k % 6) == 0)
+                    printf("\n\t");
+                printf("%lu ", _byteswap_ulong(table[k])); // seek chunk entries are BigEndian
             }
         }
 
         printf("\n");
 
-        if ( mmioAscend( h.Get(), &cseek, 0 ) != MMSYSERR_NOERROR )
+        if (mmioAscend(h.Get(), &cseek, 0) != MMSYSERR_NOERROR)
         {
-            printf("Failed to exit 'seek' chunk in wave file %s\n", argv[1] );
+            printf("Failed to exit 'seek' chunk in wave file %ls\n", argv[1]);
             return 1;
         }
     }
-
 }
+
