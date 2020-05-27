@@ -7,7 +7,7 @@ Helpers functions for creating Direct3D resources from CPU data.
 
 # Creating vertex/index buffers
 
-The ``CreateStaticBuffer`` helper is used to create Direct3D buffer type resources such as vertex buffers or index buffers.
+The **CreateStaticBuffer** helper is used to create Direct3D buffer type resources such as vertex buffers or index buffers.
 
 
 ```cpp
@@ -77,7 +77,7 @@ See [[Model]] for creating vertex buffers/index buffers from disk files.
 
 # Creating textures
 
-The ``CreateTextureFromMemory`` helpers can be used to create 1D, 2D, or 3D Direct3D texture resources. For the 2D version, you can enable auto-generation of mipmaps.
+The **CreateTextureFromMemory** helpers can be used to create Direct3D 1D, 2D, or 3D texture resources. For the 2D version, you can enable auto-generation of mipmaps.
 
 ```cpp
 HRESULT CreateTextureFromMemory(ID3D11Device* device,
@@ -120,7 +120,7 @@ To create a 'default' texture (i.e. a 1x1 white pixel):
 ```cpp
 const uint32_t s_pixel = 0xffffffff;
 
-D3D11_SUBRESOURCE_DATA initData = { &s_pixels, sizeof(uint32_t), 0 };
+D3D11_SUBRESOURCE_DATA initData = { &s_pixel, sizeof(uint32_t), 0 };
 
 ComPtr<ID3D11ShaderResourceView> defaultTex;
 DX::ThrowIfFailed(
