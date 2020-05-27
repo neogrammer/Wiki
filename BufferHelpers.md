@@ -133,7 +133,7 @@ See [[DDSTextureLoader]] and [[WICTextureLoader]] for creating textures from dis
 
 # Constant buffers
 
-The ``ConstantBuffer`` template class is a strongly-typed helper for managing constant buffers.
+The **ConstantBuffer** template class is a strongly-typed helper for managing constant buffers.
 
 ```cpp
 struct MyCB
@@ -159,4 +159,16 @@ auto buffer = cbuffer.GetBuffer();
 
 deviceContext->VSSetConstantBuffers(0, 1, &buffer);
 deviceContext->PSSetConstantBuffers(0, 1, &buffer);
+```
+
+For Xbox One XDK, the ``ConstantBuffer`` class supports "11.X fast semantics", requiring a slightly different calling pattern when rendering. Each time you call ``SetData`` the [[GraphicsMemory]] class is used to allocate video memory.
+
+```cpp
+void *grfxMemory;
+cbuffer.SetData(deviceContext, constants, &grfxMemory);
+
+auto buffer = cbuffer.GetBuffer();
+
+deviceContextX->VSSetPlacementConstantBuffer(0, buffer, grfxMemory);
+deviceContextX->PSSetPlacementConstantBuffer(0, buffer, grfxMemory);
 ```
