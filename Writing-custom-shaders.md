@@ -251,7 +251,6 @@ DX::ThrowIfFailed(m_d3dDevice->CreatePixelShader( blob.data(), blob.size(),
         D3D11_BIND_CONSTANT_BUFFER);
     D3D11_SUBRESOURCE_DATA initData;
     initData.pSysMem = &g_BloomPresets[g_Bloom];
-    initData.SysMemPitch = sizeof(VS_BLOOM_PARAMETERS);
     DX::ThrowIfFailed(m_d3dDevice->CreateBuffer(&cbDesc, &initData,
         m_bloomParams.ReleaseAndGetAddressOf()));
 }
