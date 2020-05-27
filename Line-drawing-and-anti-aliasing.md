@@ -42,6 +42,24 @@ DX::ThrowIfFailed(
 m_batch = std::make_unique<PrimitiveBatch<VertexPositionColor>>(m_d3dContext.Get());
 ```
 
+*Optional*: You can simplify the last part using [[DirectXHelpers]]:
+
+```cpp
+m_world = Matrix::Identity;
+
+m_states = std::make_unique<CommonStates>(m_d3dDevice.Get());
+
+m_effect = std::make_unique<BasicEffect>(m_d3dDevice.Get());
+m_effect->SetVertexColorEnabled(true);
+
+DX::ThrowIfFailed(
+    CreateInputLayoutFromEffect<VertexPositionColor>(m_d3dDevice.Get(), m_effect.get(),
+        m_inputLayout.ReleaseAndGetAddressOf()
+    );
+
+m_batch = std::make_unique<PrimitiveBatch<VertexPositionColor>>(m_d3dContext.Get());
+```
+
 In **Game.cpp**, add to the TODO of **CreateResources**:
 
 ```cpp
