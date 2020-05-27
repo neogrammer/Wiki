@@ -41,14 +41,41 @@ Modern C++ development strongly encourages use of the [RAII](http://en.wikipedia
 class MapGuard : public D3D11_MAPPED_SUBRESOURCE
 {
 public:
-    MapGuard( ID3D11DeviceContext* context, ID3D11Resource *resource,
-              UINT subresource, D3D11_MAP mapType, UINT mapFlags );
+    MapGuard( ID3D11DeviceContext* context, ID3D11Resource* resource,
+        unsigned int subresource, D3D11_MAP mapType,
+        unsigned int mapFlags );
     ~MapGuard();
     uint8_t* get() const;
     uint8_t* get(size_t slice) const;
     uint8_t* scanline(size_t row) const;
     uint8_t* scanline(size_t slice, size_t row) const;
 }
+```
+
+# Create input layout helper
+
+The **CreateInputLayoutFromEffect** helper is used to create an input layout from the shader blob within an ``IEffect``.
+
+```cpp
+static const D3D11_INPUT_ELEMENT_DESC s_inputElementDesc[2] =
+{
+    { "SV_Position", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 0,  D3D11_INPUT_PER_VERTEX_DATA,  0 },
+    { "COLOR",       0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 16, D3D11_INPUT_PER_VERTEX_DATA , 0 },
+};
+
+ComPtr<ID3D11InputLayout> il;
+DX::ThrowIfFailed(
+  CreateInputLayoutFromEffect(device, effect, s_inputElementDesc, _countof(s_inputElementDesc), &il)
+)
+```
+
+A template form is convenient when used in combination with [[VertexTypes]]:
+
+```cpp
+ComPtr<ID3D11InputLayout> il;
+DX::ThrowIfFailed(
+  CreateInputLayoutFromEffect<VertexPositionColor>(device, effect, &il)
+)
 ```
 
 # Misc helpers
