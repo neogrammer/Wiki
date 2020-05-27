@@ -53,6 +53,7 @@ General advice for C++ projects is that you should only add the headers you actu
 
 ...
 
+#include "BufferHelpers.h"
 #include "CommonStates.h"
 #include "DDSTextureLoader.h"
 #include "DirectXHelpers.h"
