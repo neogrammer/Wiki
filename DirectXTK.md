@@ -14,6 +14,7 @@ using namespace DirectX;
 # Modules
 * [[Audio]] - low-level audio API using XAudio2
      * [[AudioEngine]], [[SoundEffect]], [[SoundEffectInstance]], [[SoundStreamInstance]], [[DynamicSoundEffectInstance]], [[WaveBank]], [[AudioListener]], [[AudioEmitter]]
+* [[BufferHelpers]] - C++ helpers for creating D3D resources from CPU data
 * [[CommonStates]] - factory providing commonly used D3D state objects
 * [[DDSTextureLoader]] - light-weight DDS file texture loader
 * [[DirectXHelpers]] - misc C++ helpers for D3D programming
