@@ -82,7 +82,7 @@ HRESULT CreateWICTextureFromMemoryEx( ID3D11Device* d3dDevice,
    const uint8_t* wicData, size_t wicDataSize,
    size_t maxsize, D3D11_USAGE usage, unsigned int bindFlags,
    unsigned int cpuAccessFlags, unsigned int miscFlags,
-   unsigned int loadFlags,
+   WIC_LOADER_FLAGS loadFlags,
    ID3D11Resource** texture, ID3D11ShaderResourceView** textureView );
 
 HRESULT CreateWICTextureFromMemoryEx( ID3D11Device* d3dDevice,
@@ -90,14 +90,14 @@ HRESULT CreateWICTextureFromMemoryEx( ID3D11Device* d3dDevice,
    const uint8_t* wicData, size_t wicDataSize,
    size_t maxsize, D3D11_USAGE usage, unsigned int bindFlags,
    unsigned int cpuAccessFlags, unsigned int miscFlags,
-   unsigned int loadFlags,
+   WIC_LOADER_FLAGS loadFlags,
    ID3D11Resource** texture, ID3D11ShaderResourceView** textureView );
 
 HRESULT CreateWICTextureFromFileEx( ID3D11Device* d3dDevice,
    const wchar_t* szFileName,
    size_t maxsize, D3D11_USAGE usage, unsigned int bindFlags,
    unsigned int cpuAccessFlags, unsigned int miscFlags,
-   unsigned int loadFlags,
+   WIC_LOADER_FLAGS loadFlags,
    ID3D11Resource** texture, ID3D11ShaderResourceView** textureView );
 
 HRESULT CreateWICTextureFromFileEx( ID3D11Device* d3dDevice,
@@ -105,7 +105,7 @@ HRESULT CreateWICTextureFromFileEx( ID3D11Device* d3dDevice,
    const wchar_t* szFileName,
    size_t maxsize, D3D11_USAGE usage, unsigned int bindFlags,
    unsigned int cpuAccessFlags, unsigned int miscFlags,
-   unsigned int loadFlags,
+   WIC_LOADER_FLAGS loadFlags,
    ID3D11Resource** texture, ID3D11ShaderResourceView** textureView );
 ```
 
@@ -115,7 +115,7 @@ The ``WIC_LOADER_FIT_POW2`` and/or ``WIC_LOADER_MAKE_SQUARE`` flags can be used 
 
 The ``WIC_LOADER_FORCE_RGBA32`` flag is explained under *Pixel format conversions*.
 
-> The ``loadFlags`` was previously a ``bool forceSRGB``. ``false`` will map to ``WIC_LOADER_DEAULT`` and ``true`` maps to ``WIC_LOADER_FORCE_SRGB``.
+> The ``loadFlags`` was previously a ``bool forceSRGB``.
 
 # Parameters
 Either _texture_ or _textureView_ can be nullptr, but not both. In most use cases for rendering, you only need the shader resource view (SRV) _textureView_ interface.
