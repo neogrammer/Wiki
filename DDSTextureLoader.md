@@ -121,6 +121,8 @@ The last optional parameter _alphaMode_ is a pointer to return the _alpha mode_ 
 * ``DDS_ALPHA_MODE_OPAQUE`` (3) - This indicates that the alpha channel if present is fully opaque for all pixels. Viewers can assume there is no alpha blending.
 * ``DDS_ALPHA_MODE_CUSTOM`` (4) - This indicates the alpha channel if present does not contain transparency (neither straight or premultiplied alpha) and instead is encoding some other channel of information. Viewers should not use the alpha channel for blending, and should instead view it as a distinct image channel.
 
+For the ``Ex`` versions, the _usage_ is a [D3D11_USAGE](https://docs.microsoft.com/en-us/windows/win32/api/d3d11/ne-d3d11-d3d11_usage), typically ``D3D11_USAGE_DEFAULT``. The *bindFlags* parameter is one or more [D3D11_BIND_FLAG](https://docs.microsoft.com/en-us/windows/win32/api/d3d11/ne-d3d11-d3d11_bind_flag) values, typically ``D3D11_BIND_SHADER_RESOURCE`` for textures. The _cpuAccessFlags_ parameter is ``D3D11_CPU_ACCESS_FLAG`` typically 0 for default usage textures. The _miscFlags_ parameter is a [D3D11_RESOURCE_MISC_FLAG](https://docs.microsoft.com/en-us/windows/win32/api/d3d11/ne-d3d11-d3d11_resource_misc_flag) value, usually 0.
+
 # Example
 
 This example creates a shader resource view on the Direct3D 11 device which can be used for rendering.

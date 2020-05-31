@@ -124,6 +124,8 @@ For all these functions above, the _maxsize_ parameter provides an upper limit o
 
 If a _d3dContext_ is given to these functions, they will attempt to use the auto-generation of mipmaps features in the Direct3D 11 API if supported for the pixel format. Note the quality of auto-gen mipmaps is up to the driver, so can vary widely. Also if a context is passed, the function is not thread safe. If _d3dContext_ is nullptr, then it functions the same as the version which does not take a context.
 
+For the ``Ex`` versions, the _usage_ is a [D3D11_USAGE](https://docs.microsoft.com/en-us/windows/win32/api/d3d11/ne-d3d11-d3d11_usage), typically ``D3D11_USAGE_DEFAULT``. The *bindFlags* parameter is one or more [D3D11_BIND_FLAG](https://docs.microsoft.com/en-us/windows/win32/api/d3d11/ne-d3d11-d3d11_bind_flag) values, typically ``D3D11_BIND_SHADER_RESOURCE`` for textures. The _cpuAccessFlags_ parameter is ``D3D11_CPU_ACCESS_FLAG`` typically 0 for default usage textures. The _miscFlags_ parameter is a [D3D11_RESOURCE_MISC_FLAG](https://docs.microsoft.com/en-us/windows/win32/api/d3d11/ne-d3d11-d3d11_resource_misc_flag) value, usually 0.
+
 # Example
 
 This example creates a shader resource view on the Direct3D device which can be used for rendering. It also makes use of the immediate device context to auto-gen mipmaps if supported.
