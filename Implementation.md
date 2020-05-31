@@ -26,6 +26,18 @@ To provide type-safe bitmask flags, we make use of the ``DEFINE_ENUM_FLAG_OPERAT
 
 The impact to client code is minimal, but mostly means you can't pass a ``0`` literal and must use the defined default value like ``WIC_LOADER_DEFAULT``.
 
+We generally use ``enum`` rather than ``class enum`` because it simplifies testing the bitflags. For example, this converts a standard ``enum`` to a bool based on a bit-test:
+
+```
+... = (myFlags & MYFLAGS_BIT2) != 0;
+```
+
+To do the same thing with a ``class enum`` requires:
+
+```
+... = (myFlags & MYFLAGS_BIT2) == MYFLAGS_BIT2;
+```
+
 > Direct3D 11 does *not* make use of the strongly-type enum bitmask flags, but Direct3D 12 does.
 
 # Unicode
