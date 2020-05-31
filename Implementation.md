@@ -20,6 +20,14 @@ The use of Standard C++ types is preferred including the fundamental types suppl
 
 Avoid using Windows "portability" types except when dealing directly with Win32 APIs: ``VOID``, ``UINT``, ``INT``, ``DWORD``, ``FLOAT``, ``BOOL``, ``TRUE``/``FALSE``, ``WCHAR``, ``CONST``, etc.
 
+# Strongly-typed enum bitmask flags
+
+To provide type-safe bitmask flags, we make use of the ``DEFINE_ENUM_FLAG_OPERATORS`` macro (in winnt.h) to make an enum work as you'd expect for bitmask flags based on recommendations in the [C+ standard](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2012/n3485.pdf) under *17.5.2.1.3 Bitmask types*.
+
+The impact to client code is minimal, but mostly means you can't pass a ``0`` literal and must use the defined default value like ``WIC_LOADER_DEFAULT``.
+
+> Direct3D 11 does *not* make use of the strongly-type enum bitmask flags, but Direct3D 12 does.
+
 # Unicode
 
 The Modern C++ recommendation is to use [UTF-8 Everywhere](http://utf8everywhere.org/) except where specifically interacting with Win32 or Windows Runtime APIs which require converting to ``wchar_t`` (UTF-16LE).
