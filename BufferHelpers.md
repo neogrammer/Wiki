@@ -13,22 +13,26 @@ The **CreateStaticBuffer** helper is used to create Direct3D buffer type resourc
 ```cpp
 HRESULT CreateStaticBuffer(ID3D11Device* device,
     const void* ptr, size_t count, size_t stride,
-    D3D11_BIND_FLAG bindFlags,
+    unsigned int bindFlags,
     ID3D11Buffer** pBuffer);
 
 template<typename T>
 HRESULT CreateStaticBuffer(ID3D11Device* device,
     T const* data,
     size_t count,
-    D3D11_BIND_FLAG bindFlags,
+    unsigned int bindFlags,
     ID3D11Buffer** pBuffer);
 
 template<typename T>
 HRESULT CreateStaticBuffer(ID3D11Device* device,
     T const& data,
-    D3D11_BIND_FLAG bindFlags,
+    unsigned int bindFlags,
     ID3D11Buffer** pBuffer);
 ```
+
+## Parameters
+
+*bindFlags* is one or more [D3D11_BIND_FLAG](https://docs.microsoft.com/en-us/windows/win32/api/d3d11/ne-d3d11-d3d11_bind_flag) values. Typically ``D3D11_BIND_VERTEX_BUFFER`` for vertex buffers, or ``D3D11_BIND_INDEX_BUFFER`` for an index buffer.
 
 ## Examples
 
@@ -86,7 +90,7 @@ HRESULT CreateTextureFromMemory(ID3D11Device* device,
     const D3D11_SUBRESOURCE_DATA& initData,
     ID3D11Texture1D** texture,
     ID3D11ShaderResourceView** textureView,
-    D3D11_BIND_FLAG bindFlags = D3D11_BIND_SHADER_RESOURCE);
+    unsigned int bindFlags = D3D11_BIND_SHADER_RESOURCE);
 
 HRESULT CreateTextureFromMemory(ID3D11Device* device,
     size_t width, size_t height,
@@ -94,7 +98,7 @@ HRESULT CreateTextureFromMemory(ID3D11Device* device,
     const D3D11_SUBRESOURCE_DATA& initData,
     ID3D11Texture2D** texture,
     ID3D11ShaderResourceView** textureView,
-    D3D11_BIND_FLAG bindFlags = D3D11_BIND_SHADER_RESOURCE);
+    unsigned int bindFlags = D3D11_BIND_SHADER_RESOURCE);
 
 HRESULT  CreateTextureFromMemory(ID3D11Device* device,
     ID3D11DeviceContext* d3dContext,
@@ -110,8 +114,16 @@ HRESULT CreateTextureFromMemory(ID3D11Device* device,
     const D3D11_SUBRESOURCE_DATA& initData,
     ID3D11Texture3D** texture,
     ID3D11ShaderResourceView** textureView,
-    D3D11_BIND_FLAG bindFlags = D3D11_BIND_SHADER_RESOURCE);
+    unsigned int bindFlags = D3D11_BIND_SHADER_RESOURCE);
 ```
+
+## Parameters
+
+*bindFlags* is one or more [D3D11_BIND_FLAG](https://docs.microsoft.com/en-us/windows/win32/api/d3d11/ne-d3d11-d3d11_bind_flag) values. Typically ``D3D11_BIND_SHADER_RESOURCE`` textures.
+
+Either _texture_ or _textureView_ can be nullptr, but not both. In most use cases for rendering, you only need the shader resource view (SRV) _textureView_ interface.
+
+The version that takes a _d3dContext_ will attempt to use the auto-generation of mipmaps features in the Direct3D 11 API if supported for the pixel format. Note the quality of auto-gen mipmaps is up to the driver, so can vary widely. Also if a context is passed, the function is not thread safe.
 
 ## Examples
 
