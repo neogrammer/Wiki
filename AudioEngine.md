@@ -47,7 +47,7 @@ AudioEngine( AUDIO_ENGINE_FLAGS flags = AudioEngine_Default,
 * ``AudioEngine_DisableVoiceReuse`` - By default, _DirectXTK for Audio_ will reuse XAudio2 source voices for one-shots if possible. If using this flag, voice reuse is disabled and one-shot sounds will create and destroy source voices on every Play.
 
 * ``AudioEngine_ThrowOnNoAudioHW`` - By default, if there is no audio hardware available _DirectXTK for Audio_ will automatically enter 'silent mode'. If this flag is provided, a C++ exception is generated instead.
-: Note: ``AUDIO_ENGINE_FLAGS`` is used as a typed flag enum. Only operator| is overloaded to combine them, so operations like |= are not available without additional static_cast<> statements.
+: Note: ``AUDIO_ENGINE_FLAGS`` is used as a typed flag enum.
 
 *wfx*: Specifies the output format for the XAudio2 mastering voice (primarily the channel count and sample rate). If null, it uses the device defaults. See [[Wave Formats]].
 
