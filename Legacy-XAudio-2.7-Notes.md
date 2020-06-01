@@ -43,4 +43,14 @@ It is important that the legacy DirectX SDK paths be after the existing path sin
 
 If you are using XAudio 2.7, then your application has a dependency on the _DirectX End-User Runtime_. See [Not So DirectSetup](https://aka.ms/dxsetup) for information on using this package. *Again, this is not recommended for use.*
 
+# Troubleshooting
+When using the debug version of XAudio 2.7 on Windows 7, you can get a break-point exception thrown even with a valid device. The debug output window message will be the following. You can safely ignore this and click "Continue".
+
+```
+################################################################################
+### XAUDIO2: enginerendererconnection.cpp:334:
+### ASSERT FAILED: FramesToLeapTime(uOutputBufferFramesObtained, m_pOutputFormat, RoundUp) >= rtRequestedBufferDuration
+################################################################################
+```
+
 See [[Adding the DirectX Tool Kit for Audio]]
