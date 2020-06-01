@@ -199,34 +199,13 @@ To add _DirectXTK for Audio_ support for a Win32 desktop application running on 
   <td>DirectXTKAudio_Desktop_2019_Win7<br />DirectXTKAudio_Desktop_2017_Win7</td>
   <td>When targeting Windows 7 Service Pack 1 or later, use <code>DirectXTKAudioWin7.lib</code> which is implemented using the <a href="https://aka.ms/xaudio2redist">XAudio2 Redistribution</a> NuGet package. <I>This is the recommended way to support Windows 7</I>. Using this version requires you add NuGet package <a href="https://www.nuget.org/packages/Microsoft.XAudio2.Redist/">Microsoft.XAudio2.Redist</a> to your project.</td>
  </tr>
- <tr>
-  <td>DirectXTKAudio_Desktop_2017_DXSDK</td>
-  <td>When targeting Windows 7 with the legacy DirectX SDK, use <code>DirectXTKAudioDX.lib</code> which is implemented using XAudio 2.7. <I>Use of the legacy DirectX SDK is not recommended, and requires use the DirectSetup to deploy the XAudio 2.7 DLL to end-user machines</I>.</td>
- </tr>
 </table>
 
 > The NuGet package [directxtk_desktop_2017](https://www.nuget.org/packages/directxtk_desktop_2017/) is designed for Windows 7 compatibility for the main library, and the _DirectX Tool Kit for Audio_ uses [XAudio2Redist](https://aka.ms/XAudio2Redist) to support Windows 7 or later.
 
-[XAudio2 Versions](https://docs.microsoft.com/en-us/windows/desktop/xaudio2/xaudio2-versions)
+See the [[Adding the DirectX Tool Kit for Audio]] tutorial for a walk-through of configuring different [XAudio2 Versions](https://docs.microsoft.com/en-us/windows/desktop/xaudio2/xaudio2-versions).
 
-## Legacy DirectX SDK
-DirectXTK makes use of the latest Direct3D 11.1 headers available in the Windows 8.x / 10 SDK, and there are a number of file conflicts between the Windows 8.x / 10 SDK and the legacy DirectX SDK. Therefore, when building for down-level support with XAudio 2.7, ``Audio.h`` explicitly includes the DirectX SDK version of XAudio2 headers with a full path name. These reflect the default install locations, and if you have installed it elsewhere you will need to update this header. The ``*_DXSDK.vcxproj`` files use the ``DXSDK_DIR`` environment variable, so only the ``Audio.h`` references need updating for an alternative location.
-
-```cpp
-// Using XAudio 2.7 requires the DirectX SDK
-#include <C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\comdecl.h>
-#include <C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xaudio2.h>
-#include <C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xaudio2fx.h>
-#pragma warning(push)
-#pragma warning( disable : 4005 )
-#include <C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\x3daudio.h>
-```
-
-[KB2728613](http://support.microsoft.com/kb/2728613)
-
-[Where is the DirectX SDK?](https://docs.microsoft.com/en-us/windows/desktop/directx-sdk--august-2009-)
-
-> When using the legacy DirectX SDK you need to set up VC++ Directories paths in your project (particularly your EXE/DLL). For the Windows 8.1 SDK or Windows 10 SDK, you need to set up those paths in _reverse_ order from previous include orders. You really only need a small portion of the legacy DirectX SDK for XAudio 2.7, and want to be using the Windows 8.1 SDK / Windows 10 SDK for everything else. For more details see [The Zombie DirectX SDK](https://aka.ms/AA4gfea).
+> It's recommended that you use XAudio 2.9, XAudio 2.8, or the XAudio2Redist. Use of [[XAudio 2.7|Legacy XAudio 2.7 Notes]] and the legacy DirectX SDK is not recommended, and support for this configuration is removed as of the June 2020 release.
 
 # Content Pipeline
 **Note:** When adding ``.xwb`` files to your Universal Windows Platform app or Xbox One XDK project, you need to manually set the file properties to "Content: Yes" for all configurations to have these files included in your AppX package. ``.wav`` files are automatically detected as a media file and are included as content by default.
