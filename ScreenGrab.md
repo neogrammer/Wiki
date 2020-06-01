@@ -24,7 +24,7 @@ For a classic Windows desktop application you have to do this explicitly:
     if (FAILED(initialize))
         // error
 #else
-    HRESULT hr = CoInitializeEx(nullptr, COINITBASE_MULTITHREADED);
+    HRESULT hr = CoInitializeEx(nullptr, COINIT_MULTITHREADED);
     if (FAILED(hr))
         // error
 #endif
