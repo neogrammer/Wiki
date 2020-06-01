@@ -42,3 +42,5 @@ It is important that the legacy DirectX SDK paths be after the existing path sin
 # Deployment
 
 If you are using XAudio 2.7, then your application has a dependency on the _DirectX End-User Runtime_. See [Not So DirectSetup](https://aka.ms/dxsetup) for information on using this package. *Again, this is not recommended for use.*
+
+See [[Adding the DirectX Tool Kit for Audio]]
