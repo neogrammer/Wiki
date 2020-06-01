@@ -85,7 +85,7 @@ m_mouse->SetWindow(reinterpret_cast<ABI::Windows::UI::Core::ICoreWindow*>(window
 Be sure you call ``Mouse::SetDpi(m_DPI);`` from **Main.cpp** at the bottom of ``SetWindow`` and ``OnDpiChanged``. The ``Mouse`` class returns position information in pixels, while the UWP platform specifies mouse location in "device-independent pixels" (DIPs) so this value is needed for the scaling conversion.
 
 # Adding a simple scene
-Start by saving [roomtexturez](https://github.com/Microsoft/DirectXTK/wiki/media/roomtexture.dds) into your new project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "roomtexture.dds" and click "OK".
+Start by saving [roomtexture.dds](https://github.com/Microsoft/DirectXTK/wiki/media/roomtexture.dds) into your new project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "roomtexture.dds" and click "OK".
 
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 
