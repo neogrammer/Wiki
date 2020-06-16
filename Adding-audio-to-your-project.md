@@ -16,7 +16,7 @@ In **Game.cpp**, add to the end of **Initialize**:
 ```cpp
 AUDIO_ENGINE_FLAGS eflags = AudioEngine_Default;
 #ifdef _DEBUG
-eflags = eflags | AudioEngine_Debug;
+eflags |= AudioEngine_Debug;
 #endif
 m_audEngine = std::make_unique<AudioEngine>(eflags);
 ```
