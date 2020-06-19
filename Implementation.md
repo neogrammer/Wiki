@@ -26,13 +26,13 @@ To provide type-safe bitmask flags, we make use of the ``DEFINE_ENUM_FLAG_OPERAT
 
 The impact to client code is minimal, but mostly means you can't pass a ``0`` literal and must use the defined default value like ``WIC_LOADER_DEFAULT``.
 
-We generally use ``enum`` rather than ``class enum`` because it simplifies testing the bitflags. For example, the following works with ``enum``:
+We generally use ``enum`` rather than ``enum class`` because it simplifies testing the bitflags. For example, the following works with ``enum``:
 
 ```
 if ((myFlags & MYFLAGS_BIT2) != 0)
 ```
 
-To do the same thing with a ``class enum`` requires:
+To do the same thing with a ``enum class`` requires:
 
 ```
 if ((myFlags & MYFLAGS_BIT2) == MYFLAGS_BIT2)
