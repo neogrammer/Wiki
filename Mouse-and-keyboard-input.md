@@ -178,6 +178,8 @@ Build and run, and you should get the following screen:
 
 > _Troubleshooting:_ If you get a runtime exception, then you may have the "roomtexture.dds" in the wrong folder, have modified the "Working Directory" in the "Debugging" configuration settings, or otherwise changed the expected paths at runtime of the application. You should set a break-point on ``CreateDDSTextureFromFile`` and step into the code to find the exact problem.
 
+> If using DirectX 12, you will also need a BasicEffect, CommonStates, and DescriptorHeap. See the [3D Shapes](https://github.com/microsoft/DirectXTK12/wiki/3D-shapes) tutorial for more details.
+
 # Adding keyboard controls
 
 In **Game.cpp**, modify to the TODO of **Update**:
