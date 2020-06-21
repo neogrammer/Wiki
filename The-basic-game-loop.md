@@ -79,6 +79,8 @@ Press F5 to build and run the application It displays the following window:
 
 > **Xbox One**: the background color may be slightly oversaturated. This is because the basic Xbox One XDK template uses a backBufferFormat of ``DXGI_FORMAT_B8G8R8A8_UNORM_SRGB``. The DirectXMath Colors values are defined using standard [sRGB](https://en.wikipedia.org/wiki/SRGB) colorspace which is slightly different. All the colors defines need to be adjusted slightly for the linear RGB colorspace (aka gamma correct rendering) via ``XMColorSRGBToRGB``.
 
+> **ARM64**: With the ARM64 compiler installed targeting a Windows 10 on ARM64 device such as a *Microsoft Surface X*, you can build using the ARM64 platform for desktop as well.
+
 # Tour of the code
 For now, we'll focus on the content of ``Game.cpp`` (which is open by default).
 
@@ -129,7 +131,7 @@ void Game::CreateResources()
 }
 ```
 
-> Universal Windows Platform (UWP) apps require the use of 'flip' style swap effects, either ``DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL`` or ``DXGI_SWAP_EFFECT_FLIP_DISCARD``. These DXGI swap chains cannot be created with an ``DXGI_FORMAT_x_UNORM_SRGB`` format or use MSAA (aka ``SampleDesc.Count`` > 1). Both sRGB gamma-correction and MSAA require special handling. See [[DeviceResources]] for more details.
+> Universal Windows Platform (UWP) apps require the use of 'flip' style swap effects, either ``DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL`` or ``DXGI_SWAP_EFFECT_FLIP_DISCARD``. These DXGI swap chains cannot be created with an ``DXGI_FORMAT_x_UNORM_SRGB`` format or use MSAA (aka ``SampleDesc.Count`` > 1). Both sRGB gamma-correction and MSAA require special handling. Use of these newer 'flip' style modes are also recommended for Win32 desktop applications on Windows 10 (see [this blog post](https://devblogs.microsoft.com/directx/dxgi-flip-model/)). See [[DeviceResources]] for more details.
 
 ## Update
 The **Update** method is intended to handle game-world state modification which is typically driven by time passing, simulation, and/or user-input. By default, ``Update`` is called once per 'frame' and can have an arbitrary delta-time. This is called a 'variable-step' mode.
