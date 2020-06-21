@@ -184,18 +184,19 @@ Build and run. The left thumb stick on the gmaepad can be used to adjust the vie
 In **Game.cpp**, modify the TODO section of **Update**:
 
 ```cpp
-auto state = m_gamePad->GetState(0);
+auto pad = m_gamePad->GetState(0);
 
-if (state.IsConnected())
+if (pad.IsConnected())
 {
-    if (state.IsViewPressed())
+    if (pad.IsViewPressed())
     {
         ExitGame();
     }
-    else
+...
+
     {
-        float left = (state.IsAPressed()) ? 1.f : 0;
-        float right = (state.IsBPressed()) ? 1.f : 0;
+        float left = (pad.IsAPressed()) ? 1.f : 0;
+        float right = (pad.IsBPressed()) ? 1.f : 0;
 
         m_gamePad->SetVibration(0, left, right);
     }
@@ -204,36 +205,54 @@ if (state.IsConnected())
 
 Build and run. If you press and hold A or B, you get vibration motors of the controller to activate.
 
-# Reading game controller position
-
-In this version, we tie the left and right triggers to the vibration which provides an example of reading position information from a game controller.
-
+## Scaling vibration
 In **Game.cpp**, modify the TODO section of **Update**:
 
 ```cpp
-if (state.IsConnected())
+if (pad.IsConnected())
 {
     if (state.IsViewPressed())
     {
         ExitGame();
     }
-    else
-    {
-        m_gamePad->SetVibration( 0, state.triggers.left, state.triggers.right );
-    }
+...
+
+    m_gamePad->SetVibration( 0, pad.triggers.left, pad.triggers.right );
 }
 ```
 
 Build and run. Slowly depress the left and right triggers to feel the vibration motor change intensity.
 
-# Detecting single button presses
+# Detecting button transitions
 
-Because we are checking the button states each frame, you need to track the button state to track transitions like "the button just went down" rather than "the button is down now".
+The use of gamepad above is all written using 'instantaneous state' where we only care about the position or state at the time we read the gamepad. For many controls, you want to trigger an event at the moment a button is pressed or released.
 
-In the **Game.h** file, add the following variable to the bottom of the Game class's private declarations:
+In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 
 ```cpp
 DirectX::GamePad::ButtonStateTracker m_buttons;
+
+DirectX::SimpleMath::Color m_roomColor;
+```
+
+In **Game.cpp**, add to the ``Game`` constructor:
+
+```cpp
+Game::Game() noexcept(false) :
+    m_pitch(0),
+    m_yaw(0),
+    m_cameraPos(START_POSITION),
+    m_roomColor(Colors::White)
+{
+    m_deviceResources = std::make_unique<DX::DeviceResources>();
+    m_deviceResources->RegisterDeviceNotify(this);
+}
+```
+
+In **Game.cpp**, modify the TODO of **Render**:
+
+```cpp
+m_room->Draw(Matrix::Identity, view, m_proj, m_roomColor, m_roomTex.Get());
 ```
 
 In **Game.cpp**, add to the TODO of **OnResuming** and **OnActivated**:
@@ -245,27 +264,39 @@ m_buttons.Reset();
 In **Game.cpp**, modify the TODO section of *Update*:
 
 ```cpp
-if (state.IsConnected())
+auto pad = m_gamePad->GetState(0);
+if (pad.IsConnected())
 {
-    if (state.IsViewPressed())
+    m_buttons.Update(pad);
+
+    if (pad.IsViewPressed())
     {
         ExitGame();
     }
-    m_buttons.Update(state);
-    if (m_buttons.a == GamePad::ButtonStateTracker::PRESSED)
-    {
-        // A was up last frame, it just went down this frame
-    }
-    if (m_buttons.b == GamePad::ButtonStateTracker::RELEASED)
-    {
-        // B was down last frame, it just went up this frame
-    }
+
+...
 }
 else
 {
     m_buttons.Reset();
 }
+
+...
+
+if (m_buttons.a == GamePad::ButtonStateTracker::PRESSED)
+{
+    if (m_roomColor == Colors::Red.v)
+        m_roomColor = Colors::Green;
+    else if (m_roomColor == Colors::Green.v)
+        m_roomColor = Colors::Blue;
+   else if (m_roomColor == Colors::Blue.v)
+        m_roomColor = Colors::White;
+   else
+        m_roomColor = Colors::Red;
+}
 ```
+
+Build and run. Pressing the A button button will cycle the color of the room through Red, Green, Blue, and White. Holding down the A button does not flash though the colors with the framerate.
 
 **Next lessons:** [[Mouse and keyboard input]]
 
