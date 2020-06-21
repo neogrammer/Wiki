@@ -276,7 +276,7 @@ Build and run. Now in addition to keyboard controls, you can press & hold the le
 * The view can never be exactly straight up or straight down to avoid a problem known as
 [gimbal lock](https://en.wikipedia.org/wiki/Gimbal_lock) which can cause the camera view to flip unexpectedly or tumble uncontrollably.
 
-* This control implementation is very simple, and really only works on a system with fast frame-rate. For a more robust implementation, the ``Update`` code should make use of ``elapsedTime`` to scale the keyboard movement rate values and ``MOVEMENT_GAIN`` adjusted accordingly.
+* This control implementation is very simple, and really only works on a system with fast frame-rate. For a more robust implementation, the ``Update`` code should make use of ``elapsedTime`` to scale the keyboard movement rate values and ``ROTATION_GAIN`` / ``MOVEMENT_GAIN`` adjusted accordingly.
 
 # Detecting button & key transitions
 
