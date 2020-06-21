@@ -5,6 +5,7 @@ This provides a set of helpers that use [[PrimitiveBatch]] to draw common debug 
 [DebugDraw.h](https://github.com/Microsoft/DirectXTK/wiki/DebugDraw.h)
 
  ```cpp
+#include <DirectXColors.h>
 #include <DirectXCollision.h>
 
 void XM_CALLCONV Draw(DirectX::PrimitiveBatch<DirectX::VertexPositionColor>* batch,
