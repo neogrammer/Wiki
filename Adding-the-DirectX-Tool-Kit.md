@@ -38,6 +38,28 @@ For more information see [[DirectXTK]] under _Adding to a VS solution_.
 
 > For Xbox One XDK apps, you have to use project-to-project references instead of NuGet to ensure the built library matches the XDK edition specific headers and shader generation.
 
+## CMake projects
+
+If using a CMake project, you should download the *DirectX Tool Kit* and place it into a folder (for this example I'm assuming it's put under the project directory as ``./DirectXTK``).
+
+Then add to the new project's ``CMakeLists.txt`` after the ``add_executable`` statement.
+
+```
+add_subdirectory(${CMAKE_SOURCE_DIR}/DirectXTK ${CMAKE_BINARY_DIR}/bin/CMake/DirectXTK)
+```
+
+Also add the ``DirectXTK`` library to the ``target_link_libraries`` statement:
+
+```
+target_link_libraries(${PROJECT_NAME} PRIVATE
+    d3d11.lib dxgi.lib dxguid.lib uuid.lib
+    kernel32.lib user32.lib
+    comdlg32.lib advapi32.lib shell32.lib
+    ole32.lib oleaut32.lib
+    DirectXTK
+)
+```
+
 # Adding the headers
 Now that we have the _DirectX Tool Kit_ usable in your project, the next step is to include the library headers into your project.
 
