@@ -206,19 +206,10 @@ if (pad.IsConnected())
 Build and run. If you press and hold A or B, you get vibration motors of the controller to activate.
 
 ## Scaling vibration
-In **Game.cpp**, modify the TODO section of **Update**:
+In **Game.cpp**, modify the TODO section of **Update** to replace the use of ``SetVibration`` above with:
 
 ```cpp
-if (pad.IsConnected())
-{
-    if (state.IsViewPressed())
-    {
-        ExitGame();
-    }
-...
-
-    m_gamePad->SetVibration( 0, pad.triggers.left, pad.triggers.right );
-}
+m_gamePad->SetVibration( 0, pad.triggers.left, pad.triggers.right);
 ```
 
 Build and run. Slowly depress the left and right triggers to feel the vibration motor change intensity.
