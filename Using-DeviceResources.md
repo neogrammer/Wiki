@@ -84,6 +84,8 @@ Press F5 to build and run the application It displays the following window:
 > versions of Windows. Second if it runs fine in _Release_ but fails in _Debug_, then you likely do not have the
 > [proper DirectX Debug Device](https://walbourn.github.io/direct3d-sdk-debug-layer-tricks/) installed for your operating system. Finally, if you are on Windows 7, you need to have the [KB2670838](https://walbourn.github.io/directx-11-1-and-windows-7-update/) installed.
 
+> **ARM64**: With the ARM64 compiler installed targeting a Windows 10 on ARM64 device such as a *Microsoft Surface X*, you can build using the ARM64 platform for desktop as well.
+
 # Tour of the code
 
 ## Constructor
