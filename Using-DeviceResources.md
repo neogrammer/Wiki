@@ -68,6 +68,10 @@ While the UWP version will have:
 * Assets
   * logo PNG files
 
+## CMake projects
+
+If you prefer to make use of VS 2019's integrated [CMake](https://docs.microsoft.com/en-us/cpp/build/cmake-projects-in-visual-studio?view=vs-2019) support and/or the *clang/LLVM* for Windows compiler, there are ``CMakeLists.txt`` and ``CMakeSettings.json`` files available for download on [directx-vs-templates](https://github.com/walbourn/directx-vs-templates/wiki#cmake-projects).
+
 # Running the application
 Visual Studio will default to the _x64_ platform / _Debug_ configuration which builds an x64 (64-bit) application with debugging enabled. The template contains both _Debug_ and _Release_ configurations for both _x86_ (32-bit) and _x64_ (x64 native 64-bit) platforms, with UWP also including the ARM platforms.
 
