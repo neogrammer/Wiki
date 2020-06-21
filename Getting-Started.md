@@ -41,8 +41,8 @@ These tutorials are written with game development in mind as the target applicat
 For learning purposes, these instructions are going to focus on the following setup:
 
 * Visual Studio 2017 ([15.9 update](https://walbourn.github.io/vs-2017-15-9-update/)) or VS 2019 Community, Professional, Premium, or Ultimate
-* Windows 10 SDK ([18362](https://walbourn.github.io/windows-10-may-2019-update/) is recommended)
-* Windows 7 Service Pack 1, Windows 8.1, or Windows 10 (November 2019 Update a.k.a. Version 1909 is recommended)
+* Windows 10 SDK ([19041](https://walbourn.github.io/windows-10-may-2020-update-sdk/) is recommended)
+* Windows 7 Service Pack 1, Windows 8.1, or Windows 10 (May 2020 Update a.k.a. Version 2004 is recommended)
 
 We will be using a Win32 desktop application project template in order to support developers using Windows 7, but all these techniques and APIs apply to Universal Windows Platform apps and Xbox One as well.
 
