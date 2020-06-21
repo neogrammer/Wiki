@@ -171,4 +171,6 @@ Build and run. The looping night ambient sound will slowly decrease and increase
 
 # Further reading
 
-DirectX Tool Kit docs [[SoundEffect]], [[SoundEffectInstance]]
+DirectX Tool Kit docs [[SoundEffect]], [[SoundEffectInstance]]  
+
+[XAudio2BasicSound](https://github.com/walbourn/directx-sdk-samples/tree/master/XAudio2/XAudio2BasicSound), [SimplePlaySoundUWP](https://github.com/microsoft/Xbox-ATG-Samples/tree/master/UWPSamples/Audio/SimplePlaySoundUWP) samples
