@@ -66,7 +66,7 @@ While the UWP version will have:
 
 ## CMake projects
 
-If you prefer to make use of VS 2019's integrated [CMake](https://docs.microsoft.com/en-us/cpp/build/cmake-projects-in-visual-studio?view=vs-2019) support and/or the *clang/LLVM* for Windows compiler, there are ``CMakeLists.txt`` files available for download on [directx-vs-templates](https://github.com/walbourn/directx-vs-templates/wiki#cmake-projects).
+If you prefer to make use of VS 2019's integrated [CMake](https://docs.microsoft.com/en-us/cpp/build/cmake-projects-in-visual-studio?view=vs-2019) support and/or the *clang/LLVM* for Windows compiler, there are ``CMakeLists.txt`` and ``CMakeSettings.json`` files available for download on [directx-vs-templates](https://github.com/walbourn/directx-vs-templates/wiki#cmake-projects).
 
 # Running the application
 
