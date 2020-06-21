@@ -1,7 +1,7 @@
 This lesson covers the basics of adding the use of audio engine to your project.
 
 # Setup
-After creating a new project in the [[The basic game loop]] or [[Using DeviceResources]], then [[Adding the DirectX Tool Kit]] and finally [[Adding the DirectX Tool Kit for Audio]] which we will use for this lesson.
+First create a new project in the [[The basic game loop]] or [[Using DeviceResources]], then [[Adding the DirectX Tool Kit]] and finally [[Adding the DirectX Tool Kit for Audio]] which we will use for this lesson.
 
 # The basic game loop with the audio engine
 
