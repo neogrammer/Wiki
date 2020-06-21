@@ -352,7 +352,7 @@ if (m_keys.pressed.Tab || m_mouseButtons.rightButton == Mouse::ButtonStateTracke
 }
 ```
 
-Build and run. Pressing the ``Tab`` key or the right mouse button will cycle the color of the room through Red, Green, Blue, and White.
+Build and run. Pressing the ``Tab`` key or the right mouse button will cycle the color of the room through Red, Green, Blue, and White. Holding down the Tab or mouse button does not flash though the colors with the framerate.
 
 **Next lessons:** [[Using the SimpleMath library]], [[Adding the DirectX Tool Kit for Audio]]
 
