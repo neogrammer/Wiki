@@ -20,7 +20,7 @@ If you used [NuGet](https://docs.microsoft.com/en-us/nuget/what-is-nuget) when [
 Complete the steps in **Adding the headers** below including the additional configuration for *XAudio2 Redistributable* or *XAudio 2.9*.
 
 # Project-to-project references
-If you used project-to-project references when [[Adding the DirectX Tool Kit]], then you need to add an additional _DirectX Tool Kit for Audio_ project to your solution. There are four (4) choices depending on your platform target and deployment requirements:
+If you used project-to-project references when [[Adding the DirectX Tool Kit]], then you need to add an additional _DirectX Tool Kit for Audio_ project to your solution. There are three (3) choices depending on your platform target and deployment requirements:
 
 ## XAudio 2.9
 XAudio 2.9 is built into Windows 10. Everything required is included in the operating system and the Windows 10 SDK. This version of _DirectX Tool Kit for Audio_ is already included in those projects (``DirectXTK*_Windows10_201x.vcxproj``, ``DirectXTK*_Desktop_201x_Win10.vcxproj``) and Xbox One (``DirectXTK*_XboxOneXDK_201x.vcxproj``).
@@ -71,6 +71,12 @@ Complete the steps in **Adding the headers** below including the additional conf
 > This is the preferred option for supporting XAudio2 on Windows 7, and is also a good choice if you want xWMA format support on Windows 8.x.
 
 See [Microsoft Docs](https://aka.ms/xaudio2redist).
+
+# CMake projects
+
+The *DirectX Tool Kit* CMake projects have a build option for XAudio 2.9 (``BUILD_XAUDIO_WIN10``). The *DirectX Tool Kit for DX11* CMake project also has a build option for XAudio 2.8 (``BUILD_XAUDIO_WIN8``).
+
+To utilize the *XAudio2Redist* you will need to integrate the NuGet package for your project and the *DirectX Tool Kit for DX11* CMake projects. If you use the *Visual Studio* generator and CMake 3.15 or later, you can utilize [VS_PACKAGE_REFERENCES](https://cmake.org/cmake/help/latest/prop_tgt/VS_PACKAGE_REFERENCES.html).
 
 # Adding the headers
 Now that we have the _DirectX Tool Kit for Audio_ usable in your project, the next step is to include the library header into your project.
