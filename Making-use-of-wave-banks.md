@@ -2,7 +2,7 @@ This lesson covers the basics of playing sounds with _DirectX Tool Kit for Audio
 
 # Setup
 
-First create a new project using the instructions from these four lessons to enable the audio engine for _DirectX Tool Kit for Audio_: [[The basic game loop]], [[Adding the DirectX Tool Kit]], [[Adding the DirectX Tool Kit for Audio]], and [[Adding audio to your project]]. We'll be using the result of that process for this lesson.
+First create a new project in the [[The basic game loop]] or [[Using DeviceResources]], then [[Adding the DirectX Tool Kit]] and finally [[Adding the DirectX Tool Kit for Audio]] which we will use for this lesson.
 
 # Background
 
