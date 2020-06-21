@@ -76,7 +76,7 @@ See [Microsoft Docs](https://aka.ms/xaudio2redist).
 
 The *DirectX Tool Kit* CMake projects have a build option for XAudio 2.9 (``BUILD_XAUDIO_WIN10``). The *DirectX Tool Kit for DX11* CMake project also has a build option for XAudio 2.8 (``BUILD_XAUDIO_WIN8``).
 
-To utilize the *XAudio2Redist* you will need to integrate the NuGet package for your project and the *DirectX Tool Kit for DX11* CMake projects. If you use the *Visual Studio* generator and CMake 3.15 or later, you can utilize [VS_PACKAGE_REFERENCES](https://cmake.org/cmake/help/latest/prop_tgt/VS_PACKAGE_REFERENCES.html).
+To utilize the *XAudio2Redist* you will need to integrate the NuGet package into your project and the *DirectX Tool Kit for DX11* ``CMakeLists.txt``. If you use the *Visual Studio* generator (rather than the Ninja generator used by VS 2019 by default) and have CMake 3.15 or later, you can utilize [VS_PACKAGE_REFERENCES](https://cmake.org/cmake/help/latest/prop_tgt/VS_PACKAGE_REFERENCES.html).
 
 # Adding the headers
 Now that we have the _DirectX Tool Kit for Audio_ usable in your project, the next step is to include the library header into your project.
