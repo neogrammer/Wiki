@@ -1,8 +1,7 @@
 This lesson will show how to read user input from the mouse and keyboard.
 
 # Setup
-First create a new project using the instructions from the first two lessons: [[The basic game loop]] and
-[[Adding the DirectX Tool Kit]] which we will use for this lesson.
+First create a new project. For this lesson, use the [[DeviceResources]] variant described in [[Using DeviceResources]], then use the instructions in [[Adding the DirectX Tool Kit]].
 
 # Adding use of mouse and keyboard
 
@@ -62,10 +61,17 @@ case WM_MOUSEHOVER:
     break;
 
 case WM_KEYDOWN:
-case WM_SYSKEYDOWN:
 case WM_KEYUP:
 case WM_SYSKEYUP:
     Keyboard::ProcessMessage(message, wParam, lParam);
+    break;
+
+case WM_SYSKEYDOWN:
+    Keyboard::ProcessMessage(message, wParam, lParam);
+    if (wParam == VK_RETURN && (lParam & 0x60000000) == 0x20000000)
+    {
+        ...
+    }
     break;
 ```
 
@@ -113,35 +119,35 @@ namespace
 In **Game.cpp** file, modify the **Game** constructor to initialize our variables:
 
 ```cpp
-Game::Game() :
-    m_window(0),
-    m_outputWidth(800),
-    m_outputHeight(600),
-    m_featureLevel(D3D_FEATURE_LEVEL_9_1),
+Game::Game() noexcept(false) :
     m_pitch(0),
-    m_yaw(0)
+    m_yaw(0),
+    m_cameraPos(START_POSITION)
 {
-    m_cameraPos = START_POSITION.v;
+    m_deviceResources = std::make_unique<DX::DeviceResources>();
+    m_deviceResources->RegisterDeviceNotify(this);
 }
 ```
 
-In **Game.cpp**, add to the TODO of **CreateDevice**:
+In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
 
 ```cpp
-m_room = GeometricPrimitive::CreateBox(m_d3dContext.Get(),
+auto context = m_deviceResources->GetD3DDeviceContext();
+m_room = GeometricPrimitive::CreateBox(context,
     XMFLOAT3(ROOM_BOUNDS[0], ROOM_BOUNDS[1], ROOM_BOUNDS[2]),
     false, true);
 
 DX::ThrowIfFailed(
-    CreateDDSTextureFromFile(m_d3dDevice.Get(), L"roomtexture.dds",
-    nullptr, m_roomTex.ReleaseAndGetAddressOf()));
+    CreateDDSTextureFromFile(device, L"roomtexture.dds",
+        nullptr, m_roomTex.ReleaseAndGetAddressOf()));
 ```
 
-In **Game.cpp**, add to the TODO of **CreateResources**:
+In **Game.cpp**, add to the TODO of **CreateWindowSizeDependentResources**:
 
 ```cpp
-  m_proj = Matrix::CreatePerspectiveFieldOfView(XMConvertToRadians(70.f),
-      float(backBufferWidth) / float(backBufferHeight), 0.01f, 100.f);
+auto size = m_deviceResources->GetOutputSize();
+m_proj = Matrix::CreatePerspectiveFieldOfView(XMConvertToRadians(70.f),
+    float(size.right) / float(size.bottom), 0.01f, 100.f);
 ```
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
@@ -288,7 +294,15 @@ DirectX::SimpleMath::Color m_roomColor;
 In **Game.cpp**, add to the ``Game`` constructor:
 
 ```cpp
-m_roomColor = Colors::White;
+Game::Game() noexcept(false) :
+    m_pitch(0),
+    m_yaw(0),
+    m_cameraPos(START_POSITION),
+    m_roomColor(Colors::White)
+{
+    m_deviceResources = std::make_unique<DX::DeviceResources>();
+    m_deviceResources->RegisterDeviceNotify(this);
+}
 ```
 
 In **Game.cpp**, modify the TODO of **Render**:
