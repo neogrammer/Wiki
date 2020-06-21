@@ -124,4 +124,4 @@ See [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/dxmath/ovw-x
 # Further reading
 
 [DirectXMath Programmer's Reference](https://docs.microsoft.com/en-us/windows/desktop/dxmath/ovw-xnamath-reference)  
-[DirectXMath Collision sample](https://github.com/walbourn/directx-sdk-samples/tree/master/Collision)
+DirectXMath Collision sample [Win32](https://github.com/walbourn/directx-sdk-samples/tree/master/Collision) or [UWP](https://github.com/microsoft/Xbox-ATG-Samples/tree/master/UWPSamples/System/CollisionUWP)
