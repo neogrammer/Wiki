@@ -153,7 +153,7 @@ if (pad.IsConnected())
     }
     else
     {
-        m_yaw += -ad.thumbSticks.leftX * ROTATION_GAIN;
+        m_yaw += -pad.thumbSticks.leftX * ROTATION_GAIN;
         m_pitch += pad.thumbSticks.leftY * ROTATION_GAIN;
     }
 }
