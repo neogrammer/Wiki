@@ -2,6 +2,8 @@ This is a native Direct3D 11 implementation of the built-in EnvironmentMapEffect
 
 See also [[Effects]]
 
+**Related tutorials:** [[Using advanced shaders]]
+
 # Header
 ```cpp
 #include <Effects.h>
