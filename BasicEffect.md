@@ -105,6 +105,12 @@ When dealing with lost device (if required):
 basicEffect.reset();
 ```
 
+# Remarks
+
+This effect implements the classic diffuse [Lambertian](https://en.wikipedia.org/wiki/Lambertian_reflectance) shading with [Phong](https://en.wikipedia.org/wiki/Phong_reflection_model) specular highlights lighting model.
+
+See [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/direct3d9/lights-and-materials)
+
 # Further reading
 
 [BasicEffect optimizations in XNA Game Studio 4.0](http://www.shawnhargreaves.com/blog/basiceffect-optimizations-in-xna-game-studio-4-0.html)  
