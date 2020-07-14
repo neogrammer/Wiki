@@ -59,10 +59,31 @@ This effect always performs texturing, so if 'untextured' rendering is desired y
 
 This effect requires a texture sampler in both slots 0 and 1. [[GeometricPrimitive]] and [[SpriteBatch]] only set a texture sampler in slot 0 by default, [[Model]] sets a sampler in slots 0 and 1.
 
+## Cubic Environment Map
+
+![Cubic Environment Map](https://github.com/Microsoft/DirectXTK/wiki/images/cubicenvmap.png)
+
+See [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/direct3d9/cubic-environment-mapping)
+
+## Spherical Environment Map
+
+![Sphere Environment Map](https://github.com/Microsoft/DirectXTK/wiki/images/sphereenvmap.png)
+
+See [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/direct3d9/spherical-environment-mapping)
+
 # Feature Level Notes
 
 This effect uses Shader Model 4.0 when using dual-parabolic mapping, and requires Direct3D hardware feature level 10.0 or greater for this mode.
 
 # Further reading
 
-[EnvironmentMapEffect]( http://www.shawnhargreaves.com/blog/environmentmapeffect.html)  
+[EnvironmentMapEffect]( http://www.shawnhargreaves.com/blog/environmentmapeffect.html)
+
+Blinn & Newell, "Texture and Reflection in Computer Generated Images", _Communications of the ACM_. 1976.
+[link](https://www.microsoft.com/en-us/research/wp-content/uploads/1976/10/p542-blinn.pdf)
+
+Greene, "Environment Mapping and Other Applications of World Projections", _IEEE Computer Graphics and Applications_., 1986. [link](https://ieeexplore.ieee.org/document/4056759)
+
+Heidrich & Seidel, “View-independent Environment Maps”, _Eurographics Workshop on Graphics Hardware_, 1998. [link](https://diglib.eg.org/bitstream/handle/10.2312/EGGH.EGGH98.039-045/039-045.pdf)
+
+
