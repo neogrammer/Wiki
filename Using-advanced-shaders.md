@@ -106,6 +106,8 @@ Build and run to see the effect of animating the Fresnel factor.
 
 # More to explore
 
+* The [[EnvironmentMapEffect]] also supports spherical environment maps (a [DirectX 9](https://docs.microsoft.com/en-us/windows/win32/direct3d9/spherical-environment-mapping) feature) and dual-parabolic environment maps.
+
 * The [[NormalMapEffect]] is similar to the [[BasicEffect]] with the addition of a [normal texture map](https://en.wikipedia.org/wiki/Normal_mapping) and an optional [specular texture map](https://en.wikipedia.org/wiki/Specularity).
 
 * [[PBREffect]] is a Disney-style [Physically-Based Rendering](https://en.wikipedia.org/wiki/Physically_based_rendering) effect which uses albedo maps, normal map, and roughness/metalness/ambient-occlusion map along with two cubemaps for Image-Based Lighting.
