@@ -40,6 +40,18 @@ This effect requires ``SV_Position``, ``NORMAL`` and ``TEXCOORD``.
 
 * **SetMode**: Sets the environment mapping mode. Defaults to ``Mapping_Cube`` for cubic environment maps.
 
+<table>
+ <tr>
+ <td>Mapping_Cube</td><td>Cubic environment mapping</td>
+ </tr>
+ <tr>
+ <td>Mapping_Sphere</td><td>Spherical environment mapping</td>
+ </tr>
+ <tr>
+ <td>Mapping_DualParabola</td><td>Dual-parabolic environment mapping</td>
+ </tr>
+</table>
+
 * **SetEnvironmentMap**: Associates the environment texture and sampler descriptor with the effect. For the cubic mapping (``Mapping_Cube``), this should be a cubemap. For sphere mapping (``Mapping_Sphere``), this is a single texture. For dual-parabolic mapping (``Mapping_DualParabola``), this is a 2D texture array with two items: front and back. Can be set to nullptr to remove a reference.
 
 * **SetEnvironmentMapAmount**: Controls the diffuse vs. environment map blending percentage, and ranges from 0 to 1. It defaults to 1.
