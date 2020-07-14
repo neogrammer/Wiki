@@ -1,4 +1,4 @@
-This is a native Direct3D 11 implementation of the built-in EnvironmentMapEffect from XNA Game Studio 4 (``Microsoft.Xna.Framework.Graphics.EnvironmentMapEffect``) which supports cubic environment mapping with texture mapping, vertex or per-pixel lighting, and fogging.
+This is a native Direct3D 11 implementation of the built-in EnvironmentMapEffect from XNA Game Studio 4 (``Microsoft.Xna.Framework.Graphics.EnvironmentMapEffect``) which supports environment mapping with texture mapping, vertex or per-pixel lighting, and fogging.
 
 See also [[Effects]]
 
@@ -36,7 +36,9 @@ This effect requires ``SV_Position``, ``NORMAL`` and ``TEXCOORD``.
 
 * **SetTexture**: Associates a texture shader resource view with the effect for the diffuse layer. Can be set to nullptr to remove a reference. Can optionally include an alpha channel as well.
 
-* **SetEnvironmentMap**: Associates the cubemap shader resource view with the effect. Can be set to nullptr to remove a reference.
+* **SetMode**: Sets the environment mapping mode. Defaults to ``Mapping_Cube`` for cubic environment maps.
+
+* **SetEnvironmentMap**: Associates the environment texture and sampler descriptor with the effect. For the cubic mapping (``Mapping_Cube``), this should be a cubemap. For sphere mapping (``Mapping_Sphere``), this is a single texture. For dual-parabolic mapping (``Mapping_DualParabola``), this is a 2D texture array with two items: front and back. Can be set to nullptr to remove a reference.
 
 * **SetEnvironmentMapAmount**: Controls the diffuse vs. environment map blending percentage, and ranges from 0 to 1. It defaults to 1.
 
@@ -49,9 +51,15 @@ This effect requires ``SV_Position``, ``NORMAL`` and ``TEXCOORD``.
 # Remarks
 EnvironmentMapEffect computes all specular effects using the cubemap and specular factor, and always performs vertex or per-pixel lighting.
 
+For the sphere and dual-parabolic mapping modes, per-pixel lighting is always in effect.
+
 This effect always performs texturing, so if 'untextured' rendering is desired you must provide texture coordinates, a sampler in slot 0, and a 1x1 texture with white (1,1,1,1).
 
 This effect requires a texture sampler in both slots 0 and 1. [[GeometricPrimitive]] and [[SpriteBatch]] only set a texture sampler in slot 0 by default, [[Model]] sets a sampler in slots 0 and 1.
+
+# Feature Level Notes
+
+This effect uses Shader Model 4.0 when using dual-parabolic mapping, and requires Direct3D hardware feature level 10.0 or greater for this mode.
 
 # Further reading
 
