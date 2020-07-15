@@ -48,10 +48,16 @@ This effect requires a texture sampler in both slots 0 and 1. [[GeometricPrimiti
 
 [[GeometricPrimitive]], [[Model]] loaded from ``VBO`` or ``CMO``, and [[SpriteBatch]] only define a single set of texture coordinates in their vertex buffers so they can't be used with DualTextureEffect.
 
-## Lightmap
-
-![Diffuse texture map](https://github.com/Microsoft/DirectXTK/wiki/images/diffusemap.png)
-![Lightmap](https://github.com/Microsoft/DirectXTK/wiki/images/lightmap.png)
+<table border=0>
+ <tr>
+  <td>Diffuse map</td>
+  <td>Light map</td>
+ </tr>
+ <tr>
+  <td><img src="https://github.com/Microsoft/DirectXTK/wiki/images/diffusemap.png"></td>
+  <td><img src="https://github.com/Microsoft/DirectXTK/wiki/images/lightmap.png"></td>
+ <tr>
+</table>
 
 # Further reading
 
