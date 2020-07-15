@@ -36,4 +36,4 @@ This effect requires ``SV_Position`` and ``TEXCOORD0``. It also requires ``COLOR
 
 # Remarks
 
-This effect is primarily used to implement techniques that relied on legacy Direct3D 9 alpha testing render state. This effect is independent of the depth/stencil tests set in ``D3D11_DEPTH_STENCIL_DESC.DepthFunc`` and ``StencilFunc``.
+This effect is primarily used to implement techniques that relied on legacy [Direct3D 9 alpha testing](https://docs.microsoft.com/en-us/windows/win32/direct3d9/alpha-testing-state) render state. This effect is independent of the depth/stencil tests set in ``D3D11_DEPTH_STENCIL_DESC.DepthFunc`` and ``StencilFunc``.
