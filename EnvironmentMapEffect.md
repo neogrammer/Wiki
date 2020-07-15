@@ -2,6 +2,8 @@ This is a native Direct3D 11 implementation of the built-in EnvironmentMapEffect
 
 See also [[Effects]]
 
+![Environment map](https://github.com/Microsoft/DirectXTK/wiki/images/EnvMapEffect.png)
+
 **Related tutorials:** [[Using advanced shaders]]
 
 # Header
