@@ -63,6 +63,34 @@ The lighting modeling for PBR does not make use of an ambient or specular term a
 
 This effect requires a texture sampler in both slots 0 and 1. [[GeometricPrimitive]] and [[SpriteBatch]] only set a texture sampler in slot 0 by default, [[Model]] sets a sampler in slots 0 and 1.
 
+<table border=0>
+ <tr>
+  <td>Albedo (base color) map</td>
+  <td>Normal map</td>
+  <td>Emissive map</td>
+ </tr>
+ <tr>
+  <td><img src="https://github.com/Microsoft/DirectXTK/wiki/images/pbreffect_albedo.png"></td>
+  <td><img src="https://github.com/Microsoft/DirectXTK/wiki/images/pbreffect_normal.png"></td>
+  <td><img src="https://github.com/Microsoft/DirectXTK/wiki/images/pbreffect_emissive.png"></td>
+ <tr>
+</table>
+
+<table border=0>
+ <tr>
+  <td>Metalness (blue)</td>
+  <td>Roughness (green)</td>
+  <td>Ambient Occlusion (red)</td>
+  <td>Roughness/Metalness/Ambient-Occlusion map</td>
+ </tr>
+ <tr>
+  <td><img src="https://github.com/Microsoft/DirectXTK/wiki/images/pbreffect_metal.png"></td>
+  <td><img src="https://github.com/Microsoft/DirectXTK/wiki/images/pbreffect_roughness.png"></td>
+  <td><img src="https://github.com/Microsoft/DirectXTK/wiki/images/pbreffect_ao.png"></td>
+  <td><img src="https://github.com/Microsoft/DirectXTK/wiki/images/pbreffect_orm.png"></td>
+ <tr>
+</table>
+
 # Feature Level Notes
 
 This effect uses Shader Model 4.0 so requires Direct3D hardware feature level 10.0 or greater.
