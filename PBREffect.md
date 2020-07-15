@@ -2,6 +2,8 @@ This effect implements a Disney-style (Roughness/Metalness workflow) Physically-
 
 See also [[Effects]], [[PBREffectFactory|EffectFactory]]
 
+![PBR effect](https://github.com/Microsoft/DirectXTK/wiki/images/pbreffect.png)
+
 # Header
 ```cpp
 #include <Effects.h>
