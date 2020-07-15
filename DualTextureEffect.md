@@ -2,7 +2,7 @@ This is a native Direct3D 11 implementation of the built-in DualTextureEffect fr
 
 See also [[Effects]]
 
-![Diffuse texture map](https://github.com/Microsoft/DirectXTK/wiki/images/DualTextureEffect.png)
+![Dual texture map](https://github.com/Microsoft/DirectXTK/wiki/images/DualTextureEffect.png)
 
 # Header
 ```cpp
