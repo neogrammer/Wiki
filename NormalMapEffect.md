@@ -68,17 +68,18 @@ This effect always performs per-pixel lighting. Calls to ``SetLightingEnabled(fa
 
 This effect always performs texturing, so if 'untextured' diffuse rendering is desired you must provide a 1x1 texture with white (1,1,1,1).
 
-## Diffuse map
-
-![Diffuse texture map](https://github.com/Microsoft/DirectXTK/wiki/images/diffusemap.png)
-
-## Normal map
-
-![Normal map](https://github.com/Microsoft/DirectXTK/wiki/images/normalmap.png)
-
-## Specular map
-
-![Specular map](https://github.com/Microsoft/DirectXTK/wiki/images/specularmap.png)
+<table border=0>
+ <tr>
+  <td>Diffuse map</td>
+  <td>Normal map</td>
+  <td>Specular map</td>
+ </tr>
+ <tr>
+  <td><img src="https://github.com/Microsoft/DirectXTK/wiki/images/diffusemap.png"></td>
+  <td><img src="https://github.com/Microsoft/DirectXTK/wiki/images/normalmap.png"></td>
+  <td><img src="https://github.com/Microsoft/DirectXTK/wiki/images/specularmap.png"></td>
+ <tr>
+</table>
 
 # Feature Level Notes
 
