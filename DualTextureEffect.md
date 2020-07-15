@@ -2,6 +2,8 @@ This is a native Direct3D 11 implementation of the built-in DualTextureEffect fr
 
 See also [[Effects]]
 
+![Diffuse texture map](https://github.com/Microsoft/DirectXTK/wiki/images/DualTextureEffect.png)
+
 # Header
 ```cpp
 #include <Effects.h>
@@ -45,6 +47,11 @@ This effect requires ``SV_Position``, ``TEXCOORD0``, and  ``TEXCOORD1``. It requ
 This effect requires a texture sampler in both slots 0 and 1. [[GeometricPrimitive]] and [[SpriteBatch]] only set a texture sampler in slot 0 by default, [[Model]] sets a sampler in slots 0 and 1.
 
 [[GeometricPrimitive]], [[Model]] loaded from ``VBO`` or ``CMO``, and [[SpriteBatch]] only define a single set of texture coordinates in their vertex buffers so they can't be used with DualTextureEffect.
+
+## Lightmap
+
+![Diffuse texture map](https://github.com/Microsoft/DirectXTK/wiki/images/diffusemap.png)
+![Lightmap](https://github.com/Microsoft/DirectXTK/wiki/images/lightmap.png)
 
 # Further reading
 
