@@ -68,7 +68,7 @@ DX::ThrowIfFailed(
 m_batch = std::make_unique<PrimitiveBatch<VertexType>>(m_d3dContext.Get());
 ```
 
-
+> *Technical note*: The input layout object needs to contain all the correct per-vertex elements needed for drawing. Therefore, it is important that you configure the ``BasicEffect`` before you call ``GetVertexShaderBytecode`` so it can return the proper shader. Hence why we called ``SetVertexColorEnabled`` where we did.
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
@@ -218,6 +218,8 @@ void const* shaderByteCode;
 size_t byteCodeLength;
 ...
 ```
+
+> *Technical note*: Again, the input layout object needs to contain all the correct per-vertex elements needed for drawing. We do not use any per-vertex color so we do not call ``SetVertexColorEnabled`` and instead we call ``SetTextureEnabled``. See the [[BasicEffect]] for more information on the various shader/input layout configurations.
 
 In **Game.cpp**, modify the TODO of **Render**:
 
