@@ -298,7 +298,6 @@ Then in **Game.cpp** modify **CreateDevice**:
 ...
 
 m_effect = std::make_unique<NormalMapEffect>(m_d3dDevice.Get());
-m_effect->SetTextureEnabled(true);
 
 // Make sure you called CreateDDSTextureFromFile and CreateWICTextureFromFile before this point!
 m_effect->SetTexture(m_texture.Get());
