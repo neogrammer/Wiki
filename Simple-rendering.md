@@ -68,8 +68,8 @@ DX::ThrowIfFailed(
 m_batch = std::make_unique<PrimitiveBatch<VertexType>>(m_d3dContext.Get());
 ```
 
-> *Technical note*: The input layout object needs to contain all the correct per-vertex elements needed for drawing. Therefore, it is important that you configure the ``BasicEffect`` before you call ``GetVertexShaderBytecode`` so it can return the proper shader. Hence why we called ``SetVertexColorEnabled`` to ensure we get ``SV_Position`` and ``COLOR``.
-
+> *Technical note*: The input layout object needs to contain all the correct per-vertex elements needed for drawing. Therefore, it is important that you configure the ``BasicEffect`` before you call ``GetVertexShaderBytecode`` so it can return the proper shader. Hence why we called ``SetVertexColorEnabled`` to ensure we get ``SV_Position`` and ``COLOR``. See the [[BasicEffect]] for more information on the various shader/input layout configurations.
+ 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
 ```cpp
@@ -312,7 +312,7 @@ size_t byteCodeLength;
 ...
 ```
 
-> *Technical note*: We change how the input layout is created one more time. This time we want to ensure we have ``SV_Position``, ``NORMAL``, and ``TEXCOORD0``. You can associate the texture and normal map SRVs at any point, so we just do it here for convenience. See the [[BasicEffect]] for more information on the various shader/input layout configurations.
+> *Technical note*: We change how the input layout is created one more time. This time we want to ensure we have ``SV_Position``, ``NORMAL``, and ``TEXCOORD0``. You can associate the texture and normal map SRVs at any point, so we just do it here for convenience. See the [[NormalMapEffect]] for more information on the various shader/input layout configurations.
 
 Then in **Game.cpp** add to **Update**:
 
