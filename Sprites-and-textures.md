@@ -41,6 +41,7 @@ DirectX::SimpleMath::Vector2 m_screenPos;
 DirectX::SimpleMath::Vector2 m_origin;
 ```
 
+For the original load of our sprite, we only need a ``ID3D11ResourceShaderView`` object as that's all you require to render. This time, however, we also want to obtain the pixel size of the image which is done by requesting the reader return the ``ID3D11Resource`` interface as well as the SRV. In
 In **Game.cpp**, modify TODO of **CreateDevice** to be:
 
 ```cpp
