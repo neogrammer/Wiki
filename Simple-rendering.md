@@ -311,7 +311,7 @@ size_t byteCodeLength;
 ...
 ```
 
-> *Technical note*: We change how the input layout is created one more time. This time we want to ensure we have ``SV_Position``, ``NORMAL``, and ``TEXCOORD0``. You can associate the texture and normal map SRVs at any point, so we just do it here for convenience. See the [[NormalMapEffect]] for more information on the various shader/input layout configurations.
+> *Technical note*: We change how the input layout is created one more time. This time we want to ensure we have ``SV_Position``, ``NORMAL``, and ``TEXCOORD0``. Unlike ``BasicEffect``, texture coordinates are always required for ``NormalMapEffect`` so there is no ``SetTextureEnable`` method. You can associate the texture and normal map SRVs at any point, so we just do it here for convenience. See the [[NormalMapEffect]] for more information on the various shader/input layout configurations.
 
 Then in **Game.cpp** add to **Update**:
 
