@@ -59,6 +59,8 @@ device->CreateInputLayout(VertexPositionColor::InputElements,
                           inputLayout.GetAddressOf() );
 ```
 
+> Note that we enabled ``SetVertexColorEnabled`` on the [[BasicEffect]] before we created our input layout. This ensures the effect itself selects a shader that actually uses the per vertex color element of ``VertexPositionColor``.
+
 # Drawing
 
 ```cpp
