@@ -93,6 +93,30 @@ Build and run and you will see our cup model rendered with default lighting:
 
 > _Troubleshooting:_ If you get a runtime exception, then you may have the "cup.jpg" or "cup.cmo" in the wrong folder, have modified the "Working Directory" in the "Debugging" configuration settings, or otherwise changed the expected paths at runtime of the application. You should set a break-point on ``Model::CreateFromCMO`` and step into the code to find the exact problem.
 
+# Rendering with different states
+
+The standard ``Draw`` method for model takes a [[CommonStates]] object that it uses to set rendering states. If you want to render the model in wireframe, there's a specific defaulted parameter available.
+
+In **Game.cpp**, modify the TODO of **Render**:
+
+```cpp
+m_model->Draw(m_d3dContext.Get(), *m_states, m_world, m_view, m_proj, true);
+```
+
+Build and run and you will see our cup model rendered with default lighting in wireframe mode:
+
+![Screenshot of wire cup model](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotCupWireframe.PNG)
+
+For more custom rendering state, you can use the defaulted callback:
+
+```cpp
+m_model->Draw(m_d3dContext.Get(), *m_states, m_world, m_view, m_proj, false, [&]() -> void
+{
+    auto sampler = m_states->PointClamp();
+    m_d3dContext->PSSetSamplers(0, 1, &sampler);
+});
+```
+
 # Updating effects settings in a model
 
 The Model class creates effects automatically for the loaded materials which are set to default lighting parameters. To update them, you use the **Model::UpdateEffects** method. Because the effects system is flexible, we must first enable [C++ Run-Time Type Information](https://docs.microsoft.com/en-us/cpp/cpp/run-time-type-information) (RTTI) in order to safely discover the various interfaces supported at runtime. From the drop-down menu, select **Project** / **Properties**. Set to "All Configurations" / "All Platforms". On the left-hand tree view select **``C/C++``** / **Language**. Then set "Enable Run-Time Type Information" to "Yes". Click "OK".
@@ -124,6 +148,12 @@ m_model->UpdateEffects([](IEffect* effect)
         fog->SetFogEnd(4.f);
     }
 });
+```
+
+In **Game.cpp**, modify the TODO of **Render**:
+
+```cpp
+m_model->Draw(m_d3dContext.Get(), *m_states, m_world, m_view, m_proj);
 ```
 
 Build and run to get our cup with a colored light, per-pixel rather than vertex lighting, and fogging enabled.
