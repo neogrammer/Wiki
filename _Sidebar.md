@@ -28,5 +28,5 @@
 
 [Content Exporter](https://github.com/walbourn/contentexporter)
 
-[DxCapsViewer](https://walbourn.github.io/directx-caps-viewer-update/)
+[DxCapsViewer](https://github.com/microsoft/DxCapsViewer)
 
