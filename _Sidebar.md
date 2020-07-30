@@ -27,3 +27,6 @@
 [Test Suite](https://github.com/walbourn/directxtktest/wiki)
 
 [Content Exporter](https://github.com/walbourn/contentexporter)
+
+[DxCapsViewer](https://walbourn.github.io/directx-caps-viewer-update/)
+
