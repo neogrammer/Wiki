@@ -79,7 +79,7 @@ This includes:
 
 These were designed to already be similar to the XNA Game Studio math API bounding types.
 
-> Note: Currently the ``BoundingFrustum`` class is not compatible with Right-Handed coordinates.
+> Note: The ``BoundingFrustum`` class's ``CreateFromMatrix`` function assumed Left-Handed coordinates. In [DirectXMath 3.16](https://github.com/microsoft/DirectXMath/releases) or later, there's a defaulted parameter you can use for Right-Handed projection matrices: ``BoundingFrustum::CreateFromMatrix(fr, matrix, true);``
 
 # Coordinate Systems
 
