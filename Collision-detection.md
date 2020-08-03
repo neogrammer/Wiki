@@ -96,6 +96,8 @@ The **Intersects** method provides *frustum/sphere*, *frustum/box*, *frustum/fru
 
 See [MicrosoftDocs](https://docs.microsoft.com/en-us/windows/win32/api/directxcollision/ns-directxcollision-boundingfrustum).
 
+> Note: The ``BoundingFrustum`` class's ``CreateFromMatrix`` function assumed Left-Handed coordinates. In [DirectXMath 3.16](https://github.com/microsoft/DirectXMath/releases) or later, there's a defaulted parameter you can use for Right-Handed projection matrices: ``BoundingFrustum::CreateFromMatrix(fr, matrix, true);``
+
 ## TriangleTests namespace
 This namespace provides a number of triangle tests not covered by the other bounding classes.
 
