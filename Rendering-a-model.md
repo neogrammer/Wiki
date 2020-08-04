@@ -189,6 +189,10 @@ Build and run. If you still have the **UpdateEffects** code in place, you'll see
 
 The lack of fog is because our "cup.cmo" makes use of the default built-in DGSL shaders _lambert_ and _phong_ which do not implement fog. The ``DGSLEffectFactory`` allows you to use ``Model`` and the [[IEffect]] interface with the more complex custom DGSL shaders supported by the Visual Studio CMO pipeline where you use a [visual editor to build pixel shaders](https://docs.microsoft.com/en-us/visualstudio/designers/working-with-shaders).
 
+# More to explore
+
+* The Model class can also be used with a Physically-Based Rendering pipeline via [[PBREffectFactory|EffectFactory]]
+
 **Next lesson:** [[Using skinned models]]
 
 # Further reading
