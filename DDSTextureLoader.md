@@ -1,10 +1,10 @@
 This is a simple light-weight DirectDraw Surface (``.dds``) file loader. This is the traditional texture file container for DirectX. This loader performs no pixel data conversions (see _Remarks_ for more details). This is ideal for runtime usage, and supports the full complement of Direct3D 11 texture resources (1D, 2D, volume maps, cubemaps, mipmap levels, texture arrays, cubemap arrays, Block Compressed formats, etc.). It supports both legacy ``DDPIXELFORMAT`` and 'DX10' ``DXGI_FORMAT`` extension header format ``.dds`` files.
 
-> A standalone version is included in [DirectXTex](https://github.com/microsoft/DirectXTex/tree/master/DDSTextureLoader) for Direct3D 9, Direct3D 11, and Direct3D 12. To load legacy files that require runtime format conversion (i.e. 24bpp RGB files), use _DirectXTex_ or convert them with the [texconv](https://github.com/Microsoft/DirectXTex/wiki/Texconv) utility.
+> A standalone version is included in [DirectXTex](https://github.com/microsoft/DirectXTex/tree/master/DDSTextureLoader) for Direct3D 9, Direct3D 11, and Direct3D 12. Be sure to add both the ``h`` and ``cpp`` file to your project.
+
+> To load legacy files that require runtime format conversion (i.e. 24bpp RGB files), use _DirectXTex_ or convert them with the [texconv](https://github.com/Microsoft/DirectXTex/wiki/Texconv) utility.
 
 > To load FourCC "XBOX" variant ``.DDS`` files, use [[XboxDDSTextureLoader]], which is supported by the [xtexconv](https://aka.ms/atgsplxtexconv) utility.
-
-This code is based on the legacy DirectX SDK sample [DDSWithoutD3DX](https://walbourn.github.io/ddswithoutd3dx-sample-update/) texture loading code for Direct3D 9 / Direct3D 11. This version does not support Direct3D 9 or earlier.
 
 **Related tutorial:** [[Sprites and textures]]
 
@@ -157,6 +157,8 @@ Be sure to review the various format limitations for the different feature level
 On Windows 8 with WDDM 1.2 drivers or later, all feature levels support 16bpp formats as well ``DXGI_FORMAT_B5G6R5_UNORM``, ``DXGI_FORMAT_B5G5R5A1_UNORM``, and ``DXGI_FORMAT_B4G4R4A4_UNORM``.
 
 # Remarks
+
+This code is based on the legacy DirectX SDK sample [DDSWithoutD3DX](https://walbourn.github.io/ddswithoutd3dx-sample-update/) texture loading code for Direct3D 9 / Direct3D 11.
 
 When applying _maxsize_ and 'stripping' mipmaps on a BC compressed texture, the function may fail if the appropriately sized mipchain is not a muliple-of-4 in width & height as required by Direct3D. The only way to ensure that any given mip meets this requirement is if the top-most level is both a multiple-of-4 and a power-of-2.
 
