@@ -53,26 +53,7 @@ This code is designed to build with Visual Studio 2017 or later. It requires the
 These components are designed to work without requiring any content from the DirectX SDK. For details, see [Where is the DirectX SDK?](https://docs.microsoft.com/en-us/windows/desktop/directx-sdk--august-2009-), [Where is the DirectX SDK (2013 Edition)?](https://walbourn.github.io/where-is-the-directx-sdk-2013-edition/), [Where is the DirectX SDK (2015 Edition)?](https://aka.ms/dxsdk), and [The Zombie DirectX SDK](https://aka.ms/AA4gfea).
 
 ## HLSL shaders
-The distribution package comes with a set of `Src\Shader\*.inc` files containing the compiled HLSL shaders which are included into the DirectXTK static library. They can be rebuilt if using a newer HLSL ``FXC.EXE`` or if the ``.fx`` or ``.hlsl`` files in the library are modified.
-
-Open a Developer [Command Prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq) (installed with Visual Studio), and change to the directory containing ``compileShaders.cmd`` (i.e. `...\DirectXTK\Src\Shaders`)
-
-Enter the following command-line after changing to the appropriate directory:
-
-    CompileShaders
-
-Then rebuild the DirectXTK library to update with the latest version of the shaders.
-
-## Xbox One XDK
-Xbox One exclusive application developers using the [Xbox One XDK](https://developer.xboxlive.com/) need to generate the `Src\Shaders\Compiled\XboxOne*.inc` files to build the library as they are not included in the distribution package. They should be generated with the matching FXC compiler from the Xbox One XDK. While they will continue to work if outdated, a mismatch will cause runtime compilation overhead that would otherwise be avoided.
-
-Open a Xbox One XDK _Command Prompt_, and change to the directory containing ``CompileShaders.cmd`` (i.e. `...\DirectXTK\Src\Shaders`)
-
-Enter the following command-line after changing to the appropriate directory:
-
-    CompileShaders xbox
-
-Then build the Xbox One XDK version of the DirectXTK library.
+The required Direct3D shaders are built as headers in `Src\Shader\Compiled\*.inc` and included into the DirectXTK static library. They are automatically built by the Visual Studio project if they are not present, and cleared by a Clean. They can also be manually rebuilt using the ``CompileShaders.cmd`` script (i.e. `...\DirectXTK\Src\Shaders`)
 
 # Adding to a VS solution
 ## Using project-to-project references
