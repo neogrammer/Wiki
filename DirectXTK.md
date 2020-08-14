@@ -93,6 +93,8 @@ In your application's solution, right-click on the Solution and use **Add \ Exis
  </tr>
 </table>
 
+> For VS 2019, use of the latest update is recommended.
+
 <table>
  <tr>
   <td>DirectXTK_Desktop_2017</td>
