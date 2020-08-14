@@ -110,7 +110,7 @@ In your application's solution, right-click on the Solution and use **Add \ Exis
  </tr>
  <tr>
   <td>DirectXTK_XboxOneXDK_2017</td>
-  <td>Xbox One exclusive apps building with VS 2017 using the Xbox One XDK (<I>June 2017 QFE 4 or later recommended</I>).</td>
+  <td>Xbox One games building with VS 2017 using the Xbox One XDK (<I>June 2017 QFE 4 or later recommended</I>).</td>
  </tr>
 </table>
 
