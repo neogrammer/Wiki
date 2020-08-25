@@ -4,6 +4,8 @@ These pre-tiled resources are stored in a variant of the ``.DDS`` file format ma
 
 > To load legacy ``DDPIXELFORMAT`` or FourCC "DX10" ``DXGI_FORMAT`` variant DDS files, use [[DDSTextureLoader]]
 
+This function is only usable by [Xbox registered developers](https://www.xbox.com/en-US/developers) via the Xbox One XDK.
+
 # Header
 ```cpp
 #include <XboxDDSTextureLoader.h>
