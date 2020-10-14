@@ -91,7 +91,7 @@ Wireframe() is a wireframe rendering mode and shows both sides of the geometry.
 
 ## Typical usage
 
-Usually LinearClamp() is the standard setting, and covers a large number of cases. For improved mipmap filtering quality use the Ansiotropic settings.
+Usually LinearClamp() is the standard setting, and covers a large number of cases. For improved mipmap filtering quality use the Anisotropic settings.
 
 Remember that ??SetSamplers() actually takes an _array_ of sampler state objects, rather than a pointer directly to the sampler state object, since there can be multiple textures in use at the same time.
 
