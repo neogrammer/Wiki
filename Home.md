@@ -22,6 +22,8 @@ See this [blog post](https://walbourn.github.io/directxtk/).
 
 [[Resources]]
 
+[[Utilities]]
+
 # DirectX 11
 _DirectX Tool Kit for DirectX 11_ was formerly hosted on [CodePlex](https://directxtk.codeplex.com/). DirectX 11 is supported on Windows  7, Windows 8.x, and Windows 10. Use of DirectX 11 for beginners, indies, small projects, and small teams is highly recommended.
 
