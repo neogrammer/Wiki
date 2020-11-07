@@ -182,8 +182,10 @@ The ``backBufferFormat`` for PC/UWP should be ``DXGI_FORMAT_R10G10B10A2_UNORM`` 
 See the tutorial [[Using HDR rendering]] for example usage.
 
 # Further reading
-[Direct3D Win32 Game Visual Studio template (Redux)](https://walbourn.github.io/direct3d-game-visual-studio-templates-redux/)  
+[The Care and Feeding of Modern Swap Chains](https://walbourn.github.io/care-and-feeding-of-modern-swapchains/)   
 [Anatomy of Direct3D 11 Create Device](https://walbourn.github.io/anatomy-of-direct3d-11-create-device/)  
+
+[Direct3D Win32 Game Visual Studio template (Redux)](https://walbourn.github.io/direct3d-game-visual-studio-templates-redux/)  
 [Visual Studio 2013 Windows Store DirectX Templates](http://blogs.msdn.com/b/ianhu/archive/2014/03/07/visual-studio-2013-windows-store-directx-templates.aspx)  
 
 [Linear-Space Lighting (i.e. Gamma)](http://filmicworlds.com/blog/linear-space-lighting-i-e-gamma/)   
