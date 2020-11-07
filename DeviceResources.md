@@ -186,7 +186,6 @@ See the tutorial [[Using HDR rendering]] for example usage.
 [Anatomy of Direct3D 11 Create Device](https://walbourn.github.io/anatomy-of-direct3d-11-create-device/)  
 
 [Direct3D Win32 Game Visual Studio template (Redux)](https://walbourn.github.io/direct3d-game-visual-studio-templates-redux/)  
-[Visual Studio 2013 Windows Store DirectX Templates](http://blogs.msdn.com/b/ianhu/archive/2014/03/07/visual-studio-2013-windows-store-directx-templates.aspx)  
 
 [Linear-Space Lighting (i.e. Gamma)](http://filmicworlds.com/blog/linear-space-lighting-i-e-gamma/)   
 [Chapter 24. The Importance of Being Linear](https://developer.nvidia.com/gpugems/gpugems3/part-iv-image-effects/chapter-24-importance-being-linear), GPU Gems 3   
