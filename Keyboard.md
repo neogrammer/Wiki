@@ -75,6 +75,12 @@ void ViewProvider::SetWindow(winrt::Windows::UI::Core::CoreWindow window window)
 keyboard->SetWindow(reinterpret_cast<ABI::Windows::UI::Core::ICoreWindow*>(winrt::get_abi(window)));
 ```
 
+## Xbox
+
+For Microsoft GDK, no additional integration is required.
+
+For the Xbox One XDK, you follow the pattern above for *Universal Windows Platform (UWP) apps*
+
 # Basic use
 
 **GetState** queries the current state of the keyboard.
