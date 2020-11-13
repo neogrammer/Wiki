@@ -79,7 +79,7 @@ keyboard->SetWindow(reinterpret_cast<ABI::Windows::UI::Core::ICoreWindow*>(winrt
 
 For Microsoft GDK using GameCore on Xbox, no additional integration is required.
 
-For the Xbox One XDK, you follow the pattern above for *Universal Windows Platform (UWP) apps*
+For the Xbox One XDK, you follow the pattern above for *Universal Windows Platform (UWP) apps*.
 
 # Basic use
 
