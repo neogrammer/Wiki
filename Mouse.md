@@ -25,7 +25,7 @@ For exception safety, it is recommended you make use of the C++ [RAII](http://en
 The application needs to call **SetWindow** and make calls during the main ``WndProc`` message processing to **ProcessMessage**:
 
 ```cpp
-#include <windows.h>
+#include <Windows.h>
 #include "Mouse.h"
 
 mouse->SetWindow(hWnd);
@@ -104,6 +104,52 @@ void ViewProvider::OnDpiChanged(DisplayInformation const & sender, IInspectable 
 ```cpp
 mouse->SetWindow(reinterpret_cast<ABI::Windows::UI::Core::ICoreWindow*>(winrt::get_abi(window)));
 ```
+
+## Xbox
+
+For Microsoft GDK using GameCore on Xbox, you follow the pattern above for *Windows desktop*, although only a subset of Win32 messages are required (i.e. it does not use ``WM_INPUT`` or ``WM_MOUSEHOVER``), and there is no use of ``SetWindow``:
+
+```cpp
+#include <Windows.h>
+#include "Mouse.h"
+
+...
+
+LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+{
+    switch (message)
+    {
+    case WM_ACTIVATEAPP:
+    case WM_MOUSEMOVE:
+    case WM_LBUTTONDOWN:
+    case WM_LBUTTONUP:
+    case WM_RBUTTONDOWN:
+    case WM_RBUTTONUP:
+    case WM_MBUTTONDOWN:
+    case WM_MBUTTONUP:
+    case WM_MOUSEWHEEL:
+    case WM_XBUTTONDOWN:
+    case WM_XBUTTONUP:
+        Mouse::ProcessMessage(message, wParam, lParam);
+        break;
+    }
+
+    return DefWindowProc(hWnd, message, wParam, lParam);
+}
+```
+
+If using 4k instead of 1080p, be sure to call *SetResolution* as well:
+
+```cpp
+Mouse::SetResolution((width == 3840) ? true : false);
+```
+
+For the Xbox One XDK, you follow the pattern above for *Universal Windows Platform (UWP) apps*. You need to use **SetDpi** for 4k instead of 1080p:
+
+```cpp
+Mouse::SetDpi((width == 3840) ? 192.f : 96.f);
+```
+
 # Basic use
 
 **GetState** queries the current state of the mouse.
