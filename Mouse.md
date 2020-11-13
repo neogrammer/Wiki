@@ -138,7 +138,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 }
 ```
 
-If using 4k instead of 1080p, be sure to call *SetResolution* as well:
+If using 4k instead of 1080p, be sure to call **SetResolution** as well:
 
 ```cpp
 Mouse::SetResolution((width == 3840) ? true : false);
