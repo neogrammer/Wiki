@@ -37,14 +37,17 @@ For debugging exceptions thrown by the _DirectX Tool Kit_, you should enable the
 # Audience
 These tutorials are written with game development in mind as the target application since games are an excellent fit for the 'immersive DirectX app' model. Keep in mind, however, that the majority of the functionality in the _DirectX Tool Kit_ is applicable to DirectX graphics programming in general for both game and non-game applications.
 
-# Software Setup
+# System requirements
+The DirectX Tool Kit for DirectX 11 tutorials assume you are using Windows 7 Service Pack 1, Windows 8.1, or Windows 10. The *DirectX Tool Kit* supports ``D3D_FEATURE_LEVEL_9_1`` Direct3D hardware feature level or greater. Any use of 32-bit index buffers (``DXGI_FORMAT_R32_UINT``) requires at least ``D3D_FEATURE_LEVEL_9_2``. A few features such as [[DGSLEffect]], [[DebugEffect]], [[NormalMapEffect]], [[PBREffect]], [[PostProcess]], and dual-parabolic environment maps require ``D3D_FEATURE_LEVEL_10_0`` or better. 
+
+# Software setup
 For learning purposes, these instructions are going to focus on the following setup:
 
 * Visual Studio 2017 ([15.9 update](https://walbourn.github.io/vs-2017-15-9-update/)) or VS 2019 Community, Professional, Premium, or Ultimate
 * Windows 10 SDK ([19041](https://walbourn.github.io/windows-10-may-2020-update-sdk/) is recommended)
 * Windows 7 Service Pack 1, Windows 8.1, or Windows 10 (May 2020 Update a.k.a. Version 2004 is recommended)
 
-We will be using a Win32 desktop application project template in order to support developers using Windows 7, but all these techniques and APIs apply to Universal Windows Platform apps and Xbox One as well.
+We will be using a Win32 desktop application project template in order to support developers using Windows 7, but all these techniques and APIs apply to Universal Windows Platform apps and Xbox as well.
 
 > There is no need to install the legacy DirectX SDK to use DirectX Tool Kit. The DirectX SDK is deprecated and you should not use it per [Microsoft Docs](https://docs.microsoft.com/en-us/windows/desktop/directx-sdk--august-2009-). See [this blog post](http://aka.ms/dxsdk), [The Zombie DirectX SDK](https://walbourn.github.io/the-zombie-directx-sdk/), [DirectX SDK Samples Catalog](https://walbourn.github.io/directx-sdk-samples-catalog/), and [DirectX SDK Tools Catalog](https://walbourn.github.io/directx-sdk-tools-catalog/).
 
