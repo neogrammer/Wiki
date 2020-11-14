@@ -120,7 +120,7 @@ The built-in effects work equally well for both right-handed and left-handed coo
 # Feature Level Notes
 Most built-in shaders are compiled using the ``vs_4_0_level_9_1`` and ``ps_4_0_level_9_1`` profiles to support all feature levels.
 
-The [[PostProcess]], [[DebugEffect]], [[NormalMapEffect]], and [[PBREffect]] use ``vs_4_0`` and ``ps_4_0`` profiles and therefore require Direct3D hardware feature level 10.0 or better.
+The [[PostProcess]], [[DebugEffect]], [[NormalMapEffect]], and [[PBREffect]] use ``vs_4_0`` and ``ps_4_0`` profiles and therefore require Direct3D hardware feature level 10.0 or better. Dual-parabolic environment map support in [[EnvironmentMapEffect]] requires 10.0 or better due to the use of texture arrays.
 
 The compiled shaders are integrated into the DirectXTK library to avoid the need for runtime compilation, shader reflection, or deploying compiled shader binary files (``.cso``).
 
