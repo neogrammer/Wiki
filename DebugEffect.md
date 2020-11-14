@@ -53,7 +53,7 @@ This effect requires ``SV_Position``, ``NORMAL``, and ``TEXCOORD0``. If per-vert
 
 # Feature Level Notes
 
-This effect uses Shader Model 4.0 so requires Direct3D hardware feature level 10.0 or greater. For this reason, the Windows Phone 8.1 projects do not include the source for the debug effect implementation as Windows Phone 8.1 hardware only supports Feature level 9.3.
+This effect uses Shader Model 4.0 so requires Direct3D hardware feature level 10.0 or greater.
 
 [Direct3D feature levels](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/overviews-direct3d-11-devices-downlevel-intro)
 
