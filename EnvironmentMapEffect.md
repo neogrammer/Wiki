@@ -87,7 +87,7 @@ See [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/direct3d9/sp
 
 # Feature Level Notes
 
-This effect uses Shader Model 4.0 when using dual-parabolic mapping, and requires Direct3D hardware feature level 10.0 or greater for this mode.
+This effect uses Shader Model 4.0 when using dual-parabolic mapping, and requires Direct3D hardware feature level 10.0 or greater for this mode. Otherwise it supports all feature levels.
 
 # Further reading
 
