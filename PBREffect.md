@@ -97,6 +97,8 @@ This effect requires a texture sampler in both slots 0 and 1. [[GeometricPrimiti
 
 This effect uses Shader Model 4.0 so requires Direct3D hardware feature level 10.0 or greater.
 
+> Note this means you can also count on ``DXGI_FORMAT_BC5_UNORM`` texture compression hardware support for your normal maps.
+
 [Direct3D feature levels](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/overviews-direct3d-11-devices-downlevel-intro)
 
 # Further reading
