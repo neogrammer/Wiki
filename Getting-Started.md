@@ -40,6 +40,8 @@ These tutorials are written with game development in mind as the target applicat
 # System requirements
 The DirectX Tool Kit for DirectX 11 tutorials assume you are using Windows 7 Service Pack 1, Windows 8.1, or Windows 10. The *DirectX Tool Kit* supports ``D3D_FEATURE_LEVEL_9_1`` Direct3D hardware feature level or greater. Any use of 32-bit index buffers (``DXGI_FORMAT_R32_UINT``) requires at least ``D3D_FEATURE_LEVEL_9_2``. A few features such as [[DGSLEffect]], [[DebugEffect]], [[NormalMapEffect]], [[PBREffect]], [[PostProcess]], and dual-parabolic environment maps require ``D3D_FEATURE_LEVEL_10_0`` or better. 
 
+> Older versions of the tool kit supported Windows phone 8 and Windows Vista.
+
 # Software setup
 For learning purposes, these instructions are going to focus on the following setup:
 
