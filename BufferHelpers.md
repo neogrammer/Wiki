@@ -77,6 +77,8 @@ DX::ThrowIfFailed(
   );
 ```
 
+> Note that using ``std::vector<uint32_t> indices;`` requires Direct3D Feature level 9.2 or better.
+
 See [[Model]] for creating vertex buffers/index buffers from disk files.
 
 # Creating textures
