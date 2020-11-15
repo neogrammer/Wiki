@@ -23,7 +23,7 @@ interface IDeviceNotify
 
 The ``Game`` class derives from this interface, and you should call **RegisterDeviceNotify** to provide the instance to the DR abstraction.
 
-> Xbox One XDK applications do not encounter "device removed" or "lost device" scenarios, so that version of DeviceResources does not have this interface.
+> Xbox titles do not encounter "device removed" or "lost device" scenarios, so that version of DeviceResources does not have this interface. [UWP on Xbox](https://walbourn.github.io/directx-and-uwp-on-xbox-one/) still requires supporting this scenario.
 
 # Initialization
 
@@ -50,11 +50,13 @@ void Game::Initialize(HWND window, int width, int height)
 
 The DeviceResources constructor takes a number of defaulted parameters to control ``backBufferFormat``, ``depthBufferFormat``, ``backBufferCount``, ``minFeatureLevel``, and option ``flags``. You can provide specific values to change them as needed.
 
-If ``depthBufferFormat`` is set to ``DXGI_FORMAT_UNKNOWN``, then no depth/stencil buffer is created.
+If ``depthBufferFormat`` is set to ``DXGI_FORMAT_UNKNOWN``, then no depth/stencil buffer is created. It usually defaults to ``DXGI_FORMAT_D32_FORMAT``, but for UWP it defaults to ``D24_UNORM_S8_UINT`` to support 9.x Direct3D hardware feature levels.
 
 The ``backBufferCount`` defaults to 2, but in some cases you may want to override it to use 3. Larger numbers would be quite unusual and are not recommended.
 
 The ``minFeatureLevel`` defaults to 10 for PC and 9.3 for UWP. You can specify a higher [hardware level](https://docs.microsoft.com/en-us/windows/win32/direct3d11/overviews-direct3d-11-devices-downlevel-intro) if you want to take a hard dependency on additional capabilities.
+
+The ``flags`` parameter is covered below in *Device Options*.
 
 # Methods
 
@@ -100,7 +102,7 @@ The ``minFeatureLevel`` defaults to 10 for PC and 9.3 for UWP. You can specify a
 
 * **GetColorSpace**: Returns the current color space of the window (used with ``c_EnableHDR``).
 
-* **GetDeviceOptions**: Returns the device options based on the ctor flags. If the system does not support the option, the flag will be cleared.
+* **GetDeviceOptions**: Returns the device options based on the ctor *flags*. If the system does not support the option, the flag will be cleared.
 
 # Device Options
 
