@@ -264,7 +264,7 @@ m_toneMap->Process(context);
 
 # More to explore
 
-* The same technique used here for HDR10 color conversion can be used for other post-processing effects such as bloom. See [[PostProcess]] and [[DualPostProcess]].
+* The same technique used here for teon-mapping and HDR10 color conversion can be used for other post-processing effects such as bloom. See [[PostProcess]] and [[DualPostProcess]].
 
 **Next lessons:** [[Game controller input]], [[Using the SimpleMath library]], [[Adding the DirectX Tool Kit for Audio]]
 
