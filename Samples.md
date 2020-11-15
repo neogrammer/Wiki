@@ -4,8 +4,6 @@ Here is a list of various samples and articles for making use of DirectXTK.
 
 * SimpleSampleWin32
 * SimpleSampleWindows10
-* SimpleSampleWindows81
-* SimpleSampleWindowsPhone81
 
 See also [DirectXTK Model Viewer](https://github.com/walbourn/directxtkmodelviewer).
 
