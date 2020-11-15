@@ -117,7 +117,9 @@ m_deviceResources = std::make_unique<DX::DeviceResources>(DXGI_FORMAT_B8G8R8A8_U
     DXGI_FORMAT_UNKNOWN);
 ```
 
-The ``minFeatureLevel`` defaults to 10 for PC and 9.3 for UWP. See [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/direct3d11/overviews-direct3d-11-devices-downlevel-intro) for the definitions of Direct3D hardware feature levels. You can specify a higher hardware level if you want to take a hard dependency on additional capabilities. If you want to make use of [[PostProcess]] then you should specify ``D3D_FEATURE_LEVEL_10_0`` or higher:
+The ``minFeatureLevel`` defaults to 10 for PC and 9.3 for UWP. See [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/direct3d11/overviews-direct3d-11-devices-downlevel-intro) for the definitions of Direct3D hardware feature levels. You can specify a higher hardware level if you want to take a hard dependency on additional capabilities.
+
+If you want to make use of [[DebugEffect], [[DGSLEffect]], [[NormalMapEffect]], [[PBREffect]], [[PostProcess]], or dual-parabolic environment maps then you need ``D3D_FEATURE_LEVEL_10_0`` or higher:
 
 ```cpp
 m_deviceResources = std::make_unique<DX::DeviceResources>(DXGI_FORMAT_B8G8R8A8_UNORM,
@@ -126,8 +128,15 @@ m_deviceResources = std::make_unique<DX::DeviceResources>(DXGI_FORMAT_B8G8R8A8_U
 
 Finally, remember that the choice of ``minFeatureLevel`` also impacts which ``backBufferFormat`` and ``depthBufferFormat`` values you can rely on being supported per [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/direct3d11/overviews-direct3d-11-devices-downlevel-intro). For example, to use 9.x feature levels, you must use ``DXGI_FORMAT_D24_UNORM_S8_UINT`` or ``DXGI_FORMAT_D16_UNORM`` for the depth/stencil format instead of the default value of ``DXGI_FORMAT_D32_FLOAT``.
 
+```cpp
+m_deviceResources = std::make_unique<DX::DeviceResources>(DXGI_FORMAT_B8G8R8A8_UNORM,
+    DXGI_FORMAT_D24_UNORM_S8_UINT, 2, D3D_FEATURE_LEVEL_9_1);
+```
+
+> There is one more defaulted parameter for enabling additional features such as such as [variable refresh rate](https://docs.microsoft.com/en-us/windows/win32/direct3ddxgi/variable-refresh-rate-displays) or [HDR10](https://docs.microsoft.com/en-us/windows/win32/direct3darticles/high-dynamic-range) output. See [[DeviceResources]] for details and usage.
+
 ## Initialize
-When the application first starts, execution is passed to the **Initialize** method. The TODO here by default leaves the applications [[StepTimer]] in the 'variable length' mode. You uncomment the code if you want StepTimer in the 'fixed-step' mode. We'll explain this more once we get to ``Update``.
+When the application first starts, execution is passed to the **Initialize** method. The TODO here by default leaves the applications [[StepTimer]] in the 'variable length' mode. You uncomment the code if you want **StepTimer** in the 'fixed-step' mode. We'll explain this more once we get to ``Update``.
 
 ```cpp
 void Game::Initialize(HWND window, int width, int height)
@@ -266,7 +275,9 @@ void Game::Clear()
 The ``DeviceResources::Present`` method presents the swapchain and checks for "device removed" scenarios.
 
 ## Events
-The template includes a number of message handlers that are called for process state changes: **OnActivated**, **OnDeactivated**, **OnSuspending**, **OnResuming**, and **OnWindowSizeChanged**.
+The template includes a number of message handlers that are called for process state changes: **OnActivated**, **OnDeactivated**, **OnSuspending**, **OnResuming**, and **OnWindowSizeChanged**. The UWP version also includes **ValidateDevice**, and display orientation is provided long with the window size.
+
+> For Win32 desktop, the **OnSuspending** / **OnResuming** messages are triggered when (a) the window is minimized/unminimized or (b) in reaction to the ``WM_POWERBROADCAST`` message. On other platforms, this is driven by Process Lifecycle Management ([PLM](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/app-lifecycle)).
 
 Since we are using [[ComPtr]], most cleanup is automatic when the Game class is destroyed. If ``Present`` encounters a device-removed or device-reset, then the application needs to release all Direct3D objects and recreate the device, swapchain, and all Direct3D objects again. Therefore, the TODO in **OnDeviceLost** should be updated to release your application's Direct3D objects.
 
@@ -282,12 +293,12 @@ void Game::OnDeviceLost()
 > You will not get "device lost" all that often. In legacy Direct3D 9, you would routinely get a 'device lost' if you just ALT+TAB away from the application because the GPU used to be an 'exclusive' rather than 'shared' resource. The situation where you'd get ``DXGI_ERROR_DEVICE_RESET`` is if the driver crashes or the video hardware hangs. You get ``DXGI_ERROR_DEVICE_REMOVED`` if a new driver is installed while your application is running, or if you are running on a 'GPU is in the dock' style laptop and the laptop is undocked. You can test this case by opening the *Developer Command Prompt for Visual Studio* as an administrator, and typing ``dxcap -forcetdr`` which will immediately cause all currently running Direct3D apps to get a ``DXGI_ERROR_DEVICE_REMOVED`` event.
 
 # Smart-pointer
-We make use of the ``Microsoft::WRL::ComPtr`` smart-pointer for managing the lifetime of the Direct3D 11 COM objects. See [[ComPtr]] for more information and usage.
+We make use of the ``Microsoft::WRL::ComPtr`` smart-pointer for managing the lifetime of the Direct3D 11 COM objects, which is why we make use of ``.Get()`` in the code above. See [ComPtr](https://github.com/Microsoft/DirectXTK/wiki/ComPtr) and [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/prog-dx-with-com) for more information and usage.
 
 # Error handling
 Many Direct3D functions return an ``HRESULT`` which is the standard for COM APIs. For robustness and easier debugging, it is important that you always check the result of every function that return an ``HRESULT``. If you really can safely assume there is no error condition for a particular function, the function itself will return ``void`` instead of ``HRESULT``.
 
-The Win32 game template makes use of the helper function [[ThrowIfFailed]] in the ``DX`` C++ namespace. This is the same helper that is used by the Windows Store and Windows phone VS templates. This helper throws a C++ exception if the standard ``FAILED`` macro returns true for a given ``HRESULT``.
+The Win32 game template makes use of the helper function [[ThrowIfFailed]] in the ``DX`` C++ namespace declared in ``pch.h``. This is the same helper that is used by the Windows Store and Windows phone VS templates. This helper throws a C++ exception if the standard ``FAILED`` macro returns true for a given ``HRESULT``. This is used for [fail fast](https://en.wikipedia.org/wiki/Fail-fast) error handling.
 
 ```cpp
 DX::ThrowIfFailed(device->CreateTexture2D(&depthStencilDesc,
@@ -297,6 +308,9 @@ DX::ThrowIfFailed(device->CreateTexture2D(&depthStencilDesc,
 > Do not use ``hr == S_OK`` to check for success. Use ``SUCCEEDED(hr)`` instead.
 
 The DR VS template variants include the enhanced version of [[ThrowIfFailed]].
+
+# Gamma
+The DeviceResources implementation supports using ``DXGI_FORMAT_*_SRGB`` formats for the backbuffer, using the method compatible with modern and legacy swap effects. See [The Care and Feeding of Modern Swap Chains](https://walbourn.github.io/care-and-feeding-of-modern-swapchains/) for more details.
 
 # Tutorial series
 You can interchange the DR and non-DR variants by using these instructions:
@@ -334,5 +348,6 @@ When asked to use ``backBufferCount``, use ``m_deviceResources->GetBackBufferCou
 # Further reading
 [Direct3D Win32 Game Visual Studio template](https://walbourn.github.io/direct3d-win32-game-visual-studio-template/)  
 [Direct3D Game Visual Studio templates (Redux)](https://walbourn.github.io/direct3d-game-visual-studio-templates-redux/)  
+[Anatomy of Direct3D 11 Create Device](https://walbourn.github.io/anatomy-of-direct3d-11-create-device/)   
 [Manifest Madness](https://aka.ms/I6kdnw)  
 [64-bit programming for Game Developers](https://docs.microsoft.com/en-us/windows/desktop/DxTechArts/sixty-four-bit-programming-for-game-developers)
