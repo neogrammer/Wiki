@@ -84,6 +84,8 @@ The ``flags`` parameter is covered below in *Device Options*.
 
 * **GetSwapChain**: Returns the DXGI swap chain interface.
 
+* **GetDXGIFactory**: Returns the DXGI factory interface.
+
 * **GetDeviceFeatureLevel**: Returns the Direct3D hardware feature level in use.
 
 * **GetRenderTarget**, **GetDepthStencil**: Returns the texture objects for the swap chain & depth/stencil buffer.
@@ -107,8 +109,8 @@ The ``flags`` parameter is covered below in *Device Options*.
 # Device Options
 
 * ``c_FlipPresent``: Prefer the use of "flip" style swap per [this blog post](https://devblogs.microsoft.com/directx/dxgi-flip-model/) on Windows 10 systems.
-* ``c_AllowTearing``: Enable variable refresh rate (a.k.a. NVIDIA’s G-SYNC, AMD’s FreeSync, and VESA DisplayPort Adaptive-Sync) if supported.
-* ``c_EnableHDR``: Enable HDR10 output if supported. See [below](https://github.com/Microsoft/DirectXTK/wiki/DeviceResources#wide-gamut-hdr-rendering).
+* ``c_AllowTearing``: Enable [variable refresh rate](https://docs.microsoft.com/en-us/windows/win32/direct3ddxgi/variable-refresh-rate-displays) (a.k.a. NVIDIA’s G-SYNC, AMD’s FreeSync, and VESA DisplayPort Adaptive-Sync) if supported.
+* ``c_EnableHDR``: Enable [HDR10 output](https://docs.microsoft.com/en-us/windows/win32/direct3darticles/high-dynamic-range) if supported. See [below](https://github.com/Microsoft/DirectXTK/wiki/DeviceResources#wide-gamut-hdr-rendering).
 * ``c_FastSemantics`` (Xbox One XDK only): Create the 11.x device with fast semantics enabled.
 * ``c_Enable4K_UHD`` (Xbox One XDK only): Enable 4k swapchain if supported, otherwise use 1080p.
 
