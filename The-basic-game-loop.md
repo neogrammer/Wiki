@@ -272,5 +272,6 @@ For these tutorials, we make use of the ``DXGI_FORMAT_B8G8R8A8_UNORM`` backbuffe
 # Further reading
 [Direct3D Win32 Game Visual Studio template](https://walbourn.github.io/direct3d-win32-game-visual-studio-template/)  
 [Direct3D Game Visual Studio templates (Redux)](https://walbourn.github.io/direct3d-game-visual-studio-templates-redux/)  
+[The Care and Feeding of Modern Swap Chains](https://walbourn.github.io/care-and-feeding-of-modern-swapchains/)   
 [Manifest Madness](https://aka.ms/I6kdnw)  
 [64-bit programming for Game Developers](https://docs.microsoft.com/en-us/windows/desktop/DxTechArts/sixty-four-bit-programming-for-game-developers)
