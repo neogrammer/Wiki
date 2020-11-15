@@ -262,6 +262,10 @@ m_toneMap->Process(context);
 
 > If you have difficulty getting HDR10 output to work on your system, be sure to read [HDR and WCG color settings in Windows 10](https://support.microsoft.com/en-us/help/4040263/windows-10-hdr-advanced-color-settings)
 
+# More to explore
+
+* The same technique used here for HDR10 color conversion can be used for other post-processing effects such as bloom. See [[PostProcess]] and [[DualPostProcess]].
+
 **Next lessons:** [[Game controller input]], [[Using the SimpleMath library]], [[Adding the DirectX Tool Kit for Audio]]
 
 # Further reading
