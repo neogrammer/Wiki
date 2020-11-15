@@ -310,7 +310,12 @@ DX::ThrowIfFailed(device->CreateTexture2D(&depthStencilDesc,
 The DR VS template variants include the enhanced version of [[ThrowIfFailed]].
 
 # Gamma
-The DeviceResources implementation supports using ``DXGI_FORMAT_*_SRGB`` formats for the backbuffer, using the method compatible with modern and legacy swap effects. See [The Care and Feeding of Modern Swap Chains](https://walbourn.github.io/care-and-feeding-of-modern-swapchains/) for more details.
+
+The DeviceResources implementation supports using ``DXGI_FORMAT_*_SRGB`` formats for the backbuffer using the method compatible with modern and legacy swap effects. See [The Care and Feeding of Modern Swap Chains](https://walbourn.github.io/care-and-feeding-of-modern-swapchains/) for more details.
+
+# Fullscreen
+
+The Win32 desktop and UWP templates implement [immersive fullscreen](https://walbourn.github.io/care-and-feeding-of-modern-swap-chains-3/). You can toggle this using the traditional hotkey ``ALT+Enter``. If you want to default to full-screen at startup, see the ``TODO`` comments in ``Main.cpp``.
 
 # Tutorial series
 You can interchange the DR and non-DR variants by using these instructions:
