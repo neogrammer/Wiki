@@ -74,7 +74,7 @@ If you prefer to make use of VS 2019's integrated [CMake](https://docs.microsoft
 
 ## COM
 
-The Win32 and UWP templates ensure that COM is initialized. This is required for *DirectX Tool Kit* when using Windows Imaging Component ([WIC](https://docs.microsoft.com/en-us/windows/win32/wic/-wic-lh)) functionality. The Win32 and UWP templates also initialize the Windows Runtime, which is required to use ``Windows.Gaming.Input``.
+The Win32 and UWP templates ensure that COM is initialized. This is required for *DirectX Tool Kit* when using Windows Imaging Component ([WIC](https://docs.microsoft.com/en-us/windows/win32/wic/-wic-lh)) functionality. The UWP template also initialize the Windows Runtime, which is required to use ``Windows.Gaming.Input``.
 
 # Running the application
 Visual Studio will default to the _x64_ platform / _Debug_ configuration which builds an x64 (64-bit) application with debugging enabled. The template contains both _Debug_ and _Release_ configurations for both _x86_ (32-bit) and _x64_ (x64 native 64-bit) platforms, with UWP also including the ARM platforms.
