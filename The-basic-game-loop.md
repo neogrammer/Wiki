@@ -268,6 +268,10 @@ For these tutorials, we make use of the ``DXGI_FORMAT_B8G8R8A8_UNORM`` backbuffe
 [Gamma-correct rendering](https://blog.molecular-matters.com/2011/11/21/gamma-correct-rendering/)   
 [The Care and Feeding of Modern Swap Chains](https://walbourn.github.io/care-and-feeding-of-modern-swapchains/)
 
+# Fullscreen
+
+The Win32 desktop and UWP templates implement [immersive fullscreen](https://walbourn.github.io/care-and-feeding-of-modern-swap-chains-3/). You can toggle this using the traditional hotkey ``ALT+Enter`. If you want to default to full-screen at startup, see the ``TODO`` comments in ``Main.cpp``.
+
 **Next lesson**: [[Using DeviceResources]]
 
 # Further reading
