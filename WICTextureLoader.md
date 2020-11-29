@@ -126,7 +126,7 @@ If a _d3dContext_ is given to these functions, they will attempt to use the auto
 
 For the ``Ex`` versions, the _usage_ is a [D3D11_USAGE](https://docs.microsoft.com/en-us/windows/win32/api/d3d11/ne-d3d11-d3d11_usage), typically ``D3D11_USAGE_DEFAULT``. The *bindFlags* parameter is one or more [D3D11_BIND_FLAG](https://docs.microsoft.com/en-us/windows/win32/api/d3d11/ne-d3d11-d3d11_bind_flag) values, typically ``D3D11_BIND_SHADER_RESOURCE`` for textures. The _cpuAccessFlags_ parameter is ``D3D11_CPU_ACCESS_FLAG`` typically 0 for default usage textures. The _miscFlags_ parameter is a [D3D11_RESOURCE_MISC_FLAG](https://docs.microsoft.com/en-us/windows/win32/api/d3d11/ne-d3d11-d3d11_resource_misc_flag) value, usually 0.
 
-# Example
+# Examples
 
 This example creates a shader resource view on the Direct3D device which can be used for rendering. It also makes use of the immediate device context to auto-gen mipmaps if supported.
 
@@ -137,6 +137,19 @@ using namespace Microsoft::WRL;
 ComPtr<ID3D11ShaderResourceView> srv;
 HRESULT hr = CreateWICTextureFromFile( d3dDevice.Get(), immContext.Get(),
      L"LOGO.BMP", nullptr, srv.GetAddressOf() );
+DX::ThrowIfFailed(hr);
+```
+
+Here's an example loading a texture forcing use of ``DXGI_FORMAT_*_SRGB`` via a loader flag:
+
+```cpp
+ComPtr<ID3D11ShaderResourceView> srv;
+HRESULT hr = CreateWICTextureFromFileEx( d3dDevice.Get(), immContext.Get(),
+     L"LOGO.BMP",
+     0,
+     D3D11_USAGE_DEFAULT, D3D11_BIND_SHADER_RESOURCE, 0, 0,
+     WIC_LOADER_FORCE_SRGB,
+     nullptr, srv.GetAddressOf() );
 DX::ThrowIfFailed(hr);
 ```
 
