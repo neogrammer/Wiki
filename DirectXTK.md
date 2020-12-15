@@ -136,6 +136,12 @@ The _DirectX Tool Kit_ is also available through the [vcpkg](https://github.com/
 .\vcpkg\vcpkg install directxtk
 ```
 
+For the 64-bit version of the library, use:
+
+```
+.\vcpkg\vcpkg install directxtk:x64-windows
+```
+
 ## Dependencies
 
 The _DirectX Tool Kit_ library assumes your binary is linking with the following system libraries:
