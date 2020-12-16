@@ -129,6 +129,15 @@ Alternatively you can use [NuGet](https://docs.microsoft.com/en-us/nuget/what-is
 
 You should use the NuGet interface to check for updates if you have an older version installed.
 
+### Archived
+These NuGet packages are no longer supported.
+
+* [Windows desktop app using VS 2015](https://www.nuget.org/packages/directxtk_desktop_2015)
+* [Windows desktop app using VS 2013](https://www.nuget.org/packages/directxtk_desktop_2013)
+* [Windows 8.1 Store](https://www.nuget.org/packages/directxtk_windowsstore_8_1)
+* [Windows phone 8.1](https://www.nuget.org/packages/directxtk_windowsphone_8_1)
+* [Windows phone 8](https://www.nuget.org/packages/directxtk_windowsphone_8)
+
 ## Using the vcpkg C++ library manager
 The _DirectX Tool Kit_ is also available through the [vcpkg](https://github.com/microsoft/vcpkg) C++ Library Manager.
 
