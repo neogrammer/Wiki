@@ -142,6 +142,13 @@ For the 64-bit version of the library, use:
 .\vcpkg\vcpkg install directxtk:x64-windows
 ```
 
+For the Universal Windows Platform (UWP) versions, use:
+
+```
+.\vcpkg\vcpkg install directxtk:x86-uwp
+.\vcpkg\vcpkg install directxtk:x64-uwp
+```
+
 ## Dependencies
 
 The _DirectX Tool Kit_ library assumes your binary is linking with the following system libraries:
