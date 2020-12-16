@@ -30,19 +30,6 @@ _DirectX Tool Kit for DirectX 11_ was formerly hosted on [CodePlex](https://dire
 # DirectX 12
 A version of _DirectX Tool Kit for DirectX 12_ is available on [GitHub](https://github.com/Microsoft/DirectXTK12). DirectX 12 is an expert API for Windows 10 which builds on knowing the ins & outs of DirectX 11. DirectX 12 is an extremely low-level API designed for graphic experts who have a solid understanding of the architecture of modern GPU hardware, and can essentially write the DirectX 11 Runtime from scratch. Both DirectX 11 and DirectX 12 provide access to the same hardware features on Windows 10, but drive the hardware in different ways which can allow a well-optimized DirectX 12 engine to achieve much lower CPU overhead than in DirectX 11.
 
-# NuGet
-DirectXTK is also available on NuGet
-* [Universal Windows Platform apps](https://www.nuget.org/packages/directxtk_uwp)
-* [Windows desktop app using VS 2017 or VS 2019](https://www.nuget.org/packages/directxtk_desktop_2017)
-* [Windows desktop app using VS 2017 or VS 2019 for Windows 10](https://www.nuget.org/packages/directxtk_desktop_win10)
-
-## Archived
-* [Windows desktop app using VS 2015](https://www.nuget.org/packages/directxtk_desktop_2015)
-* [Windows desktop app using VS 2013](https://www.nuget.org/packages/directxtk_desktop_2013)
-* [Windows 8.1 Store](https://www.nuget.org/packages/directxtk_windowsstore_8_1)
-* [Windows phone 8.1](https://www.nuget.org/packages/directxtk_windowsphone_8_1)
-* [Windows phone 8](https://www.nuget.org/packages/directxtk_windowsphone_8)
-
 # Porting from D3DX
 See [this post](https://aka.ms/Kfsdiu) for a complete listing of D3DX equivalents.
 
