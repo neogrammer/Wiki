@@ -154,9 +154,10 @@ For the 64-bit version of the library, use:
 For the Universal Windows Platform (UWP) versions, use:
 
 ```
-.\vcpkg\vcpkg install directxtk:x86-uwp
 .\vcpkg\vcpkg install directxtk:x64-uwp
 ```
+
+> ``arm``, ``arm64``, ``x86``, ``x64``, ``windows``, and ``uwp`` triplets are supported.
 
 ## Dependencies
 
