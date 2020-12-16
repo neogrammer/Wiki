@@ -129,7 +129,7 @@ Alternatively you can use [NuGet](https://docs.microsoft.com/en-us/nuget/what-is
 
 You should use the NuGet interface to check for updates if you have an older version installed.
 
-## vcpkg
+## Using the vcpkg C++ library manager
 The _DirectX Tool Kit_ is also available through the [vcpkg](https://github.com/microsoft/vcpkg) C++ Library Manager.
 
 ```
