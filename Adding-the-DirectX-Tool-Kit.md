@@ -40,23 +40,17 @@ For more information see [[DirectXTK]] under _Adding to a VS solution_.
 
 ## CMake projects
 
-If using a CMake project, you should download the *DirectX Tool Kit* and place it into a folder (for this example I'm assuming it's put under the project directory as ``./DirectXTK``).
-
-Then add to the new project's ``CMakeLists.txt`` after the ``add_executable`` statement.
+For a CMake project, the *DirectX Tool Kit* is available as a CMake package. You can either obtain it from [vcpkg](https://github.com/Microsoft/vcpkg) and add the ``CMAKE_TOOLCHAIN_FILE`` path to ``vcpkg.cmake`` -or- you can provide a pointer to the individual installed package per-configuration for ``directxtk_DIR``.
 
 ```
-add_subdirectory(${CMAKE_SOURCE_DIR}/DirectXTK ${CMAKE_BINARY_DIR}/bin/CMake/DirectXTK)
-```
+find_package(directxtk CONFIG REQUIRED)
 
-Also add the ``DirectXTK`` library to the ``target_link_libraries`` statement:
-
-```
 target_link_libraries(${PROJECT_NAME} PRIVATE
     d3d11.lib dxgi.lib dxguid.lib uuid.lib
     kernel32.lib user32.lib
     comdlg32.lib advapi32.lib shell32.lib
     ole32.lib oleaut32.lib
-    DirectXTK
+    Microsoft::DirectXTK
 )
 ```
 
