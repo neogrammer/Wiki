@@ -159,6 +159,18 @@ For the Universal Windows Platform (UWP) versions, use:
 
 > ``arm``, ``arm64``, ``x86``, ``x64``, ``windows``, and ``uwp`` triplets are supported.
 
+## CMake
+
+You can reference the *DirectX Tool Kit* CMake package using:
+
+```
+find_package(directxtk CONFIG)
+
+target_link_libraries(foo Microsoft::DirectXTK)
+```
+
+> If using vcpkg, then you add the ``CMAKE_TOOLCHAIN_FILE`` path to ``vcpkg.cmake`` -or- you need to provide a path to the installed package per-configuration in the ``directxtk_DIR`` variable. Otherwise the ``find_package`` will fail.
+
 ## Dependencies
 
 The _DirectX Tool Kit_ library assumes your binary is linking with the following system libraries:
