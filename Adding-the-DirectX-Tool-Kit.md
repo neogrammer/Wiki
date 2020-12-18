@@ -40,7 +40,7 @@ For more information see [[DirectXTK]] under _Adding to a VS solution_.
 
 ## CMake projects
 
-For a CMake project, the *DirectX Tool Kit* is available as a CMake package. You can either obtain it from [vcpkg](https://github.com/Microsoft/vcpkg) and add the ``CMAKE_TOOLCHAIN_FILE`` path to ``vcpkg.cmake`` -or- you can provide a pointer to the individual installed package per-configuration for ``directxtk_DIR``.
+For a CMake project, the *DirectX Tool Kit* is available as a CMake package. You can either obtain it from [vcpkg](https://github.com/Microsoft/vcpkg) and add the ``CMAKE_TOOLCHAIN_FILE`` path to ``vcpkg.cmake`` -or- you can provide a path to the individual installed package per-configuration in the ``directxtk_DIR`` variable.
 
 ```
 find_package(directxtk CONFIG REQUIRED)
