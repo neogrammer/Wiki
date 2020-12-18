@@ -54,6 +54,8 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 )
 ```
 
+![Setting cmake installed package path](https://github.com/Microsoft/DirectXTK/wiki/images/cmakepkg.png)
+
 # Adding the headers
 Now that we have the _DirectX Tool Kit_ usable in your project, the next step is to include the library headers into your project.
 
