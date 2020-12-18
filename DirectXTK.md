@@ -164,7 +164,7 @@ For the Universal Windows Platform (UWP) versions, use:
 You can reference the *DirectX Tool Kit* CMake package using:
 
 ```
-find_package(directxtk CONFIG)
+find_package(directxtk CONFIG REQUIRED)
 
 target_link_libraries(foo Microsoft::DirectXTK)
 ```
