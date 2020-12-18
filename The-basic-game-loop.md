@@ -69,7 +69,7 @@ While the UWP version will have:
 
 If you prefer to make use of VS 2019's integrated [CMake](https://docs.microsoft.com/en-us/cpp/build/cmake-projects-in-visual-studio?view=vs-2019) support or a standalone install of CMake, there are ``CMakeLists.txt`` and ``CMakeSettings.json`` files available for download on [directx-vs-templates](https://github.com/walbourn/directx-vs-templates/wiki#cmake-projects).
 
-The simplest way to use these is to open up PowerShell, change to the ``directx-vs-templates/VSIX`` directory, and run the following which will create a fresh instance of the template set up for CMake development:
+The simplest way to use these is to open up PowerShell, change to the ``directx-vs-templates/VSIX`` directory, and run the following script which will create a fresh instance of the template set up for CMake development:
 
 ```
 .\createcmake.ps1 ../d3d11game_win32 Direct3DGame $Env:USERPROFILE\source\Direct3DGame
