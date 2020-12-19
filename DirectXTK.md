@@ -169,7 +169,9 @@ find_package(directxtk CONFIG REQUIRED)
 target_link_libraries(foo Microsoft::DirectXTK)
 ```
 
-> If using vcpkg, then you add the ``CMAKE_TOOLCHAIN_FILE`` path to ``vcpkg.cmake`` -or- you need to provide a path to the installed package per-configuration in the ``directxtk_DIR`` variable. Otherwise the ``find_package`` will fail.
+If using *vcpkg C++ Package Manager*, then you add the ``CMAKE_TOOLCHAIN_FILE`` path to ``vcpkg\scripts\buildsystems\vcpkg.cmake``. If not using *vcpkg*, you need to provide a per-configuration path to the installed location in the ``directxtk_DIR`` variable. Otherwise the ``find_package`` will fail.
+
+![vcpkg toolchain setting](https://github.com/Microsoft/DirectXTK/wiki/images/cmakevcpkg.png)
 
 ## Dependencies
 
