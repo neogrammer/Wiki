@@ -9,6 +9,7 @@
 # For Development
 * Visual Studio 2019
 * Visual Studio 2017
+* clang for Windows v9, v10, v11
 
 # Related Projects
 
