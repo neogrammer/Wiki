@@ -166,7 +166,7 @@ Because WRL is a pure C++ template library, it has no particular platform suppor
 
 > The Windows 8.0 SDK and later that includes WRL does not support targeting Windows XP / Windows Server 2003. For these older operating systems you have to make use of the Windows 7.1A SDK instead. See [this blog post](https://walbourn.github.io/visual-studio-2012-update-1/) for more details.
 
-The **DirectX-Headers** [GitHub](https://github.com/microsoft/DirectX-Headers) includes an implementation of ``Microsoft::WRL::ComPtr`` that is for use on non-Win32 platforms like [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) via ``wrl/client.h``.
+The **DirectX-Headers** [GitHub](https://github.com/microsoft/DirectX-Headers) includes an implementation of ``Microsoft::WRL::ComPtr`` that is for use on non-Win32 platforms like [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) via ``wrl/client.h``. This version does not include support for ``WeakRef``, but I avoid using that class in general.
 
 # Remarks
 
