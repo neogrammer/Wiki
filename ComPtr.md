@@ -1,4 +1,4 @@
-``Microsoft::WRL::ComPtr`` is a C++ template smart-pointer for COM objects that is used extensively in Windows Runtime (WinRT) C++ programming. It works in Win32 desktop applications as well, and will work on Windows 7. It is similar to ATL's ``CComPtr`` with some useful improvements. ``Microsoft::WRL:::ComPtr`` is in the Windows 8.x SDK and Windows 10 SDK, which, unlike ATL, is available when using the Express versions of Visual Studio. It is used extensively in _DirectX Tool Kit_ to properly handle COM reference counting maintenance.
+``Microsoft::WRL::ComPtr`` is a C++ template smart-pointer for COM objects that is used extensively in Windows Runtime (WinRT) C++ programming. It works in Win32 desktop applications as well, and will work on Windows 7. It is similar to ATL's ``CComPtr`` with some useful improvements. ``Microsoft::WRL:::ComPtr`` is in the Windows 8.x SDK and Windows 10 SDK, which, unlike ATL, is available when using the Express versions of Visual Studio. It is used extensively in _DirectX Tool Kit_ and _DirectXTex_ to properly handle COM reference counting maintenance.
 
 # Header
 
@@ -160,11 +160,13 @@ ComPtr goes through some lengths to hide the base IUnknown methods ``AddRef``, `
 > It is asking for serious trouble if you try to circumvent this by doing something like ``object.Get()->Release()``.
 
 # Platform notes
-The bulk of the Windows Runtime Template Library (WRL) is intended to make it easier to use the new WinRT style APIs introduced with Windows Store and Universal Windows Platform apps. It is a pure C++ template library and does not make use of the C++/CX language extensions, which are themselves another way to consume WinRT APIs from C++. You can, however, mix usage of the two easily and most C++/CX programs will use at least ``Microsoft::WRL::ComPtr`` for managing COM objects for non-WinRT APIs such as Direct3D.
+The bulk of the **Windows Runtime Template Library (WRL)** is intended to make it easier to use the new WinRT style APIs introduced with Windows Store and Universal Windows Platform apps. It is a pure C++ template library and does not make use of the C++/CX language extensions, which are themselves another way to consume WinRT APIs from C++. You can, however, mix usage of the two easily and most C++/CX programs will use at least ``Microsoft::WRL::ComPtr`` for managing COM objects for non-WinRT APIs such as Direct3D.
 
 Because WRL is a pure C++ template library, it has no particular platform support requirements beyond being in the Windows 8.x or Windows 10 SDKs. You can therefore freely use it in Windows desktop applications built for Windows 7, Windows 8.x, or Windows 10 as well as in Windows Store, Windows phone, Xbox One, and Universal Windows Platform apps.
 
 > The Windows 8.0 SDK and later that includes WRL does not support targeting Windows XP / Windows Server 2003. For these older operating systems you have to make use of the Windows 7.1A SDK instead. See [this blog post](https://walbourn.github.io/visual-studio-2012-update-1/) for more details.
+
+The **DirectX-Headers** [GitHub](https://github.com/microsoft/DirectX-Headers) includes an implementation of ``Microsoft::WRL::ComPtr`` that is for use on non-Win32 platforms like [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) via ``wrl/client.h``.
 
 # Remarks
 
