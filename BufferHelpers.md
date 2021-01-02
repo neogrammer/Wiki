@@ -48,7 +48,7 @@ ComPtr<ID3D11Buffer> vb;
 DX::ThrowIfFailed(
   CreateStaticBuffer(device,
     s_vertexData,                // const void *ptr
-    _countof(s_vertexData),      // size_t count
+    std::size(s_vertexData),     // size_t count
     sizeof(VertexPositionColor), // size_t stride
     D3D11_BIND_VERTEX_BUFFER, &vb)
   );
@@ -59,7 +59,7 @@ When creating from an array using [[VertexTypes]], a template simplifies this to
 ```cpp
 ComPtr<ID3D11Buffer> vb;
 DX::ThrowIfFailed(
-  CreateStaticBuffer(device, s_vertexData, _countof(s_vertexData),
+  CreateStaticBuffer(device, s_vertexData, std::size(s_vertexData),
     D3D11_BIND_VERTEX_BUFFER, &vb)
   );
 ```

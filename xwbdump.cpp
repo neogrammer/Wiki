@@ -174,7 +174,7 @@ namespace WaveBank
                 };
 
                 uint32_t dwBlockAlignIndex = wBlockAlign & 0x1F;
-                if (dwBlockAlignIndex < _countof(aWMABlockAlign))
+                if (dwBlockAlignIndex < std::size(aWMABlockAlign))
                     return aWMABlockAlign[dwBlockAlignIndex];
             }
             break;
@@ -215,7 +215,7 @@ namespace WaveBank
                 // bitrate = entry * 8
 
                 uint32_t dwBytesPerSecIndex = wBlockAlign >> 5;
-                if (dwBytesPerSecIndex < _countof(aWMAAvgBytesPerSec))
+                if (dwBytesPerSecIndex < std::size(aWMAAvgBytesPerSec))
                     return aWMAAvgBytesPerSec[dwBytesPerSecIndex];
             }
             break;

@@ -54,7 +54,7 @@ namespace
             XMStoreFloat4(&verts[i].color, color);
         }
 
-        batch->DrawIndexed(D3D_PRIMITIVE_TOPOLOGY_LINELIST, s_indices, _countof(s_indices), verts, 8);
+        batch->DrawIndexed(D3D_PRIMITIVE_TOPOLOGY_LINELIST, s_indices, static_cast<UINT>(std::size(s_indices)), verts, 8);
     }
 }
 
@@ -138,12 +138,12 @@ void XM_CALLCONV DX::Draw(PrimitiveBatch<VertexPositionColor>* batch,
     verts[22].position = corners[7];
     verts[23].position = corners[4];
 
-    for (size_t j = 0; j < _countof(verts); ++j)
+    for (size_t j = 0; j < std::size(verts); ++j)
     {
         XMStoreFloat4(&verts[j].color, color);
     }
 
-    batch->Draw(D3D_PRIMITIVE_TOPOLOGY_LINELIST, verts, _countof(verts));
+    batch->Draw(D3D_PRIMITIVE_TOPOLOGY_LINELIST, verts, static_cast<UINT>(std::size(verts)));
 }
 
 

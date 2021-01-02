@@ -49,7 +49,7 @@ If building an array of Direct3D interface pointers, you should build one as a l
 
 ```cpp
 ID3D11SamplerState* samplers[] = { sampler1.Get(), sampler2.Get() };
-context->PSSetSamplers(0, _countof(samplers), samplers);
+context->PSSetSamplers(0, static_cast<UINT>(std::size(samplers)), samplers);
 ```
 
 # Initialization

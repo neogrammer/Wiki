@@ -65,7 +65,7 @@ static const D3D11_INPUT_ELEMENT_DESC s_inputElementDesc[2] =
 
 ComPtr<ID3D11InputLayout> il;
 DX::ThrowIfFailed(
-  CreateInputLayoutFromEffect(device, effect, s_inputElementDesc, _countof(s_inputElementDesc), &il)
+  CreateInputLayoutFromEffect(device, effect, s_inputElementDesc, std::size(s_inputElementDesc), &il)
 )
 ```
 
