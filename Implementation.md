@@ -4,6 +4,8 @@ For Visual C++, the projects make use of the default C++11/C++14 mode rather tha
 
 For clang/LLVM for Windows, there is a ``CMakeList.txt`` provided to validate the code and ensure a high-level of conformance. This primarily means addressing warnings generated using ``/Wall -Wpedantic -Wextra``.
 
+> A few of the implementation modules and headers support *Windows Subsystem for Linux* via GNUC, so in those cases we leverage C++17 mode to get it to build. For example, the ``std::size`` helper is in Visual C++ 2015 Update 3 or later even in the default C++11/C++14 mode, but for GNUC it's only there with C++17 mode enabled.  Another example is ``std::aligned_alloc`` which is a C++17 portable function for allocated aligned memory, but it's not supported with Windows. Instead you have to continue to use ``_aligned_malloc`` / ``_aligned_free``.
+
 # Naming conventions
 
 While the _DirectX Tool Kit_ design is heavily influenced by the XNA Game Studio framework C# object design, it uses C++ conventions consistent with modern Win32 APIs rather than the strict .NET use of [PascalCase](https://en.wikipedia.org/wiki/CamelCase) as enforced by FXCop.
