@@ -10,9 +10,9 @@
 #include <Windows.h>
 #include <mmreg.h>
 
-#include <stdio.h>
-
 #include <cstdint>
+#include <cstdio>
+#include <cwchar>
 #include <memory>
 
 //---------------------------------------------------------------------------------
