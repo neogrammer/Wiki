@@ -4,6 +4,10 @@ For Visual C++, the projects make use of the default C++11/C++14 mode rather tha
 
 For clang/LLVM for Windows, there is a ``CMakeList.txt`` provided to validate the code and ensure a high-level of conformance. This primarily means addressing warnings generated using ``/Wall -Wpedantic -Wextra``.
 
+> A few of the implementation modules and headers support *Windows Subsystem for Linux* via GNUC, so in those cases we leverage C++17 mode to get it to build. For example, the ``std::size`` helper is in Visual C++ 2015 Update 3 or later even in the default C++11/C++14 mode, but for GNUC it's only there with C++17 mode enabled.
+
+> Another example is ``std::aligned_alloc`` which is a C++17 portable function for allocated aligned memory, but it's not supported with Windows. Instead you have to continue to use ``_aligned_malloc`` / ``_aligned_free``. For aligned structures, we use DirectXMath's ``XM_ALIGNED_STRUCT(x)`` macro. In DirectXMath 3.15 or later, this supports Visual C++, clang/LLVM for Windows, and GNUC compilers.
+
 # Naming conventions
 
 While the _DirectX Tool Kit_ design is heavily influenced by the XNA Game Studio framework C# object design, it uses C++ conventions consistent with modern Win32 APIs rather than the strict .NET use of [PascalCase](https://en.wikipedia.org/wiki/CamelCase) as enforced by FXCop.
@@ -50,6 +54,41 @@ The Modern C++ recommendation is to use [UTF-8 Everywhere](http://utf8everywhere
 * Do not rely on the macros to select "W" vs. "A", but always build with ``UNICODE`` and ``_UNICODE`` defined for safety.
 
 Most functions in _DirectX Tool Kit_ take ``wchar_t*`` since they are passed directly along to Win32 types. [[SpriteFont]] provides both UTF-8 ``char*`` and UTF-16LE ``wchar_t*`` methods.
+
+# Error reporting
+
+*DirectX Tool Kit* uses a mix of Win32-style ``HRESULT`` error codes and C++ exception handling. Since the library is modeled after XNA API designs, it uses C++ exception handling for errors in most places for failures that really should never happen at runtime in a debugged program. *DirectX Tool Kit* also leverages a number of Standard C++ Library (STL) classes that all use C++ exceptions for error handling.
+
+``HRESULT`` return codes are used by **DDSTextureLoader**, **ScreenGrab**, and **WICTextureLoader** since that code is kept in sync for use 'standalone' where exception handling may not be desired. ``HRESULT`` is also used in a few of the helpers in ``BufferHelpers.h`` and ``DirectXHelpers.h`` to simplify cut & paste use in other contexts.
+
+For the remainder of the APIs, they use C++ exception handling leveraging C++11 ``exception``, ``stdexcept`` and ``system_error``. In these cases, the method usually returns ``void``.
+
+* For COM API exceptional failures, we throw a custom ``com_exception`` derived from ``std::exception`` implemented in ``PlatformHelpers.h`` via [[DX::ThrowIfFailed|ThrowIfFailed]].
+
+* For cases where you would use ``E_INVALIDARG`` for ``HRESULT``, we throw ``std::invalid_argument`` with a simple what string.
+
+```
+throw std::invalid_argument("Invalid texture for Draw");
+```
+
+* For Win32 APIs that return an extended error via ``GetLastError``, we use ``std::system_error``.
+
+```
+throw std::system_error(std::error_code(static_cast<int>(GetLastError()), std::system_category()), "CreateEventEx");
+```
+
+* In a few places where improper use is detected, we use ``std::logic_error``, typically as a safety for ``Begin``/``End`` patterns.
+
+* For a few cases where the error is related to a value being out of range is reported via ``std::out_of_range``.
+
+```
+if ((sampleRate < XAUDIO2_MIN_SAMPLE_RATE) || (sampleRate > XAUDIO2_MAX_SAMPLE_RATE))
+   throw std::out_of_range("Default sample rate is out of range");
+```
+
+* For other exceptional failures, throw ``std::runtime_error``.
+
+> In the past we used ``throw std::exception("what string");`` but this pattern is not portable or conformant: the ctor for ``std::exception`` that takes a *what* string is Microsoft-specific extension. You can use ``throw std::exception();``, but this is generally only used in sample code.
 
 # SAL annotation
 The _DirectX Toolkit_ library makes extensive use of SAL2 annotations (``_In_``, ``_Outptr_opt_``, etc.) which greatly improves the accuracy of the Visual C++ static code analysis (also known as PREFAST). The standard Windows headers ``#define`` them all to empty strings if not building with ``/analyze``, so they have no effect on code-generation.
