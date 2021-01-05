@@ -59,9 +59,9 @@ Most functions in _DirectX Tool Kit_ take ``wchar_t*`` since they are passed dir
 
 ``HRESULT`` return codes are used by **DDSTextureLoader**, **ScreenGrab**, and **WICTextureLoader** since that code is kept in sync for use 'standalone' where exception handling may not be desired. ``HRESULT`` is also used in a few of the helpers in ``BufferHelpers.h`` and ``DirectXHelpers.h`` to simplify cut & paste use in other contexts.
 
-For the remainder of the APIs, they use C++ exception handling leveraging C++11 ``exception``, ``stdexcept`` and ``system_error``:
+For the remainder of the APIs, they use C++ exception handling leveraging C++11 ``exception``, ``stdexcept`` and ``system_error``. In these cases, the method usually returns ``void``.
 
-* For COM API exceptional failures, we throw a custom ``com_exception`` derived from ``std::exception`` implemented in ``PlatformHelpers.h`` via ``DX::ThrowIfFailed``.
+* For COM API exceptional failures, we throw a custom ``com_exception`` derived from ``std::exception`` implemented in ``PlatformHelpers.h`` via [[DX::ThrowIfFailed|ThrowIfFailed]].
 
 * For cases where you would use ``E_INVALIDARG`` for ``HRESULT``, we throw ``std::invalid_argument`` with a simple what string.
 
@@ -72,7 +72,7 @@ throw std::invalid_argument("Invalid texture for Draw");
 * For Win32 APIs that return an extended error via ``GetLastError``, we use ``std::system_error``.
 
 ```
-throw std::system_error(std::error_code(static_cast<int>(GetLastError()), std::system_category()), "MultiByteToWideChar");
+throw std::system_error(std::error_code(static_cast<int>(GetLastError()), std::system_category()), "CreateEventEx");
 ```
 
 * In a few places where improper use is detected, we use ``std::logic_error``, typically as a safety for ``Begin``/``End`` patterns.
@@ -86,7 +86,7 @@ if ((sampleRate < XAUDIO2_MIN_SAMPLE_RATE) || (sampleRate > XAUDIO2_MAX_SAMPLE_R
 
 * For other exceptional failures, throw ``std::runtime_error``.
 
-> In the past we used ``throw std::exception("what string");`` but this pattern is not portable or conformant. The ctor for ``std::exception`` that takes a *what* string is Microsoft-specific extension. You can use ``throw std::exception();``, but this is generally only used in sample code.
+> In the past we used ``throw std::exception("what string");`` but this pattern is not portable or conformant: the ctor for ``std::exception`` that takes a *what* string is Microsoft-specific extension. You can use ``throw std::exception();``, but this is generally only used in sample code.
 
 # SAL annotation
 The _DirectX Toolkit_ library makes extensive use of SAL2 annotations (``_In_``, ``_Outptr_opt_``, etc.) which greatly improves the accuracy of the Visual C++ static code analysis (also known as PREFAST). The standard Windows headers ``#define`` them all to empty strings if not building with ``/analyze``, so they have no effect on code-generation.
