@@ -11,7 +11,9 @@
 #pragma once
 
 #include <exception>
-#include <SpriteBatch.h>
+#include <stdexcept>
+
+#include "SpriteBatch.h"
 
 #include <wrl/client.h>
 
@@ -47,7 +49,7 @@ public:
             resource->GetType(&dim);
 
             if (dim != D3D11_RESOURCE_DIMENSION_TEXTURE2D)
-                throw std::exception("ScrollingBackground expects a Texture2D");
+                throw std::runtime_error("ScrollingBackground expects a Texture2D");
 
             Microsoft::WRL::ComPtr<ID3D11Texture2D> tex2D;
             resource.As(&tex2D);

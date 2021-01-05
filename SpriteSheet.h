@@ -12,8 +12,10 @@
 #include <exception>
 #include <fstream>
 #include <map>
+#include <stdexcept>
 #include <string>
-#include <SpriteBatch.h>
+
+#include "SpriteBatch.h"
 
 #include <wrl/client.h>
 
@@ -27,6 +29,15 @@
 class SpriteSheet
 {
 public:
+    SpriteSheet() = default;
+    ~SpriteSheet() = default;
+
+    SpriteSheet(SpriteSheet&&) = default;
+    SpriteSheet& operator= (SpriteSheet&&) = default;
+
+    SpriteSheet(SpriteSheet const&) = delete;
+    SpriteSheet& operator= (SpriteSheet const&) = delete;
+
     struct SpriteFrame
     {
         RECT                sourceRect;
@@ -52,7 +63,7 @@ public:
 
             std::wifstream inFile(szFileName);
             if (!inFile)
-                throw std::exception("SpriteSheet failed to load .txt data");
+                throw std::runtime_error("SpriteSheet failed to load .txt data");
 
             wchar_t strLine[1024] = {};
             for (;;)
@@ -73,58 +84,58 @@ public:
                     wchar_t* context = nullptr;
                     wchar_t* name = wcstok_s(strLine, delim, &context);
                     if (!name || !*name)
-                        throw std::exception("SpriteSheet encountered invalid .txt data");
+                        throw std::runtime_error("SpriteSheet encountered invalid .txt data");
 
                     if (mSprites.find(name) != mSprites.cend())
-                        throw std::exception("SpriteSheet encountered duplicate in .txt data");
+                        throw std::runtime_error("SpriteSheet encountered duplicate in .txt data");
 
                     wchar_t* str = wcstok_s(nullptr, delim, &context);
                     if (!str)
-                        throw std::exception("SpriteSheet encountered invalid .txt data");
+                        throw std::runtime_error("SpriteSheet encountered invalid .txt data");
 
                     SpriteFrame frame;
                     frame.rotated = (_wtoi(str) == 1);
 
                     str = wcstok_s(nullptr, delim, &context);
                     if (!str)
-                        throw std::exception("SpriteSheet encountered invalid .txt data");
+                        throw std::runtime_error("SpriteSheet encountered invalid .txt data");
                     frame.sourceRect.left = _wtol(str);
 
                     str = wcstok_s(nullptr, delim, &context);
                     if (!str)
-                        throw std::exception("SpriteSheet encountered invalid .txt data");
+                        throw std::runtime_error("SpriteSheet encountered invalid .txt data");
                     frame.sourceRect.top = _wtol(str);
 
                     str = wcstok_s(nullptr, delim, &context);
                     if (!str)
-                        throw std::exception("SpriteSheet encountered invalid .txt data");
+                        throw std::runtime_error("SpriteSheet encountered invalid .txt data");
                     LONG dx = _wtol(str);
                     frame.sourceRect.right = frame.sourceRect.left + dx;
 
                     str = wcstok_s(nullptr, delim, &context);
                     if (!str)
-                        throw std::exception("SpriteSheet encountered invalid .txt data");
+                        throw std::runtime_error("SpriteSheet encountered invalid .txt data");
                     LONG dy = +_wtol(str);
                     frame.sourceRect.bottom = frame.sourceRect.top + dy;
 
                     str = wcstok_s(nullptr, delim, &context);
                     if (!str)
-                        throw std::exception("SpriteSheet encountered invalid .txt data");
+                        throw std::runtime_error("SpriteSheet encountered invalid .txt data");
                     frame.size.x = static_cast<float>(_wtof(str));
 
                     str = wcstok_s(nullptr, delim, &context);
                     if (!str)
-                        throw std::exception("SpriteSheet encountered invalid .txt data");
+                        throw std::runtime_error("SpriteSheet encountered invalid .txt data");
                     frame.size.y = static_cast<float>(_wtof(str));
 
                     str = wcstok_s(nullptr, delim, &context);
                     if (!str)
-                        throw std::exception("SpriteSheet encountered invalid .txt data");
+                        throw std::runtime_error("SpriteSheet encountered invalid .txt data");
                     float pivotX = static_cast<float>(_wtof(str));
 
                     str = wcstok_s(nullptr, delim, &context);
                     if (!str)
-                        throw std::exception("SpriteSheet encountered invalid .txt data");
+                        throw std::runtime_error("SpriteSheet encountered invalid .txt data");
                     float pivotY = static_cast<float>(_wtof(str));
 
                     if (frame.rotated)

@@ -78,7 +78,7 @@ public:
             resource->GetType(&dim);
 
             if (dim != D3D11_RESOURCE_DIMENSION_TEXTURE2D)
-                throw std::exception("AnimatedTexture expects a Texture2D");
+                throw std::runtime_error("AnimatedTexture expects a Texture2D");
 
             Microsoft::WRL::ComPtr<ID3D11Texture2D> tex2D;
             resource.As(&tex2D);
