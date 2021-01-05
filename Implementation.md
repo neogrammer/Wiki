@@ -59,7 +59,7 @@ Most functions in _DirectX Tool Kit_ take ``wchar_t*`` since they are passed dir
 
 ``HRESULT`` return codes are used by **DDSTextureLoader**, **ScreenGrab**, and **WICTextureLoader** since that code is kept in sync for use 'standalone' where exception handling may not be desired. ``HRESULT`` is also used in a few of the helpers in ``BufferHelpers.h`` and ``DirectXHelpers.h`` to simplify cut & paste use in other contexts.
 
-For the remainder of the APIs, they use C++ exception handling leveraging ``exception``, ``stdexcept`` and ``system_error``:
+For the remainder of the APIs, they use C++ exception handling leveraging C++11 ``exception``, ``stdexcept`` and ``system_error``:
 
 * For COM API exceptional failures, we throw a custom ``com_exception`` derived from ``std::exception`` implemented in ``PlatformHelpers.h`` via ``DX::ThrowIfFailed``.
 
