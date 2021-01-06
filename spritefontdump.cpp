@@ -8,10 +8,11 @@
 //--------------------------------------------------------------------------------------
 
 #include <Windows.h>
-#include <stdio.h>
 #include <dxgiformat.h>
 
 #include <cstdint>
+#include <cstdio>
+#include <cwchar>
 #include <memory>
 #include <vector>
 
