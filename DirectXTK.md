@@ -142,13 +142,13 @@ These NuGet packages are no longer supported.
 The _DirectX Tool Kit_ is also available through the [vcpkg](https://github.com/microsoft/vcpkg) C++ Library Manager.
 
 ```
-.\vcpkg\vcpkg install directxtk
+vcpkg install directxtk
 ```
 
 For the 64-bit version of the library, use:
 
 ```
-.\vcpkg\vcpkg install directxtk:x64-windows
+vcpkg install directxtk:x64-windows
 ```
 
 For the Universal Windows Platform (UWP) versions, use:
@@ -157,7 +157,9 @@ For the Universal Windows Platform (UWP) versions, use:
 .\vcpkg\vcpkg install directxtk:x64-uwp
 ```
 
-> ``arm``, ``arm64``, ``x86``, ``x64``, ``windows``, and ``uwp`` triplets are supported.
+> ``arm``, ``arm64``, ``x86``, ``x64``, ``windows``, ``windows-static`` and ``uwp`` triplets are supported.
+
+> Windows Subsystem for Linux (i.e. ``arm64-linux`` and ``x64-linux``) is not supported.
 
 ## CMake
 
