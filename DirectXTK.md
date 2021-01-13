@@ -154,7 +154,7 @@ vcpkg install directxtk:x64-windows
 For the Universal Windows Platform (UWP) versions, use:
 
 ```
-.\vcpkg\vcpkg install directxtk:x64-uwp
+vcpkg install directxtk:x64-uwp
 ```
 
 > ``arm``, ``arm64``, ``x86``, ``x64``, ``windows``, ``windows-static`` and ``uwp`` triplets are supported.
