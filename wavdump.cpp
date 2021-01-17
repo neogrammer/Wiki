@@ -9,13 +9,15 @@
 
 #include <Windows.h>
 
-#include <stdio.h>
 #include <mmsystem.h>
 #include <mmreg.h>
 #include <ks.h>
 #include <ksmedia.h>
-#include <memory>
 #include <x3daudio.h>
+
+#include <cstdio>
+#include <memory>
+#include <new>
 
 #pragma comment(lib,"winmm.lib")
 

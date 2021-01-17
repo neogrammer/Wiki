@@ -139,7 +139,7 @@ void RenderTexture::SetWindow(const RECT& output)
 {
     // Determine the render target size in pixels.
     auto width = size_t(std::max<LONG>(output.right - output.left, 1));
-    auto height = size_t(std::max<LONG>(output.bottom - output.top, 1));  
+    auto height = size_t(std::max<LONG>(output.bottom - output.top, 1));
 
     SizeResources(width, height);
 }
