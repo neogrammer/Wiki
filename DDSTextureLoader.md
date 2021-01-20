@@ -207,7 +207,8 @@ create_task(openPicker->PickSingleFileAsync()).then([](StorageFile^ file)
                 DX::ThrowIfFailed(hr);
             }
         });
-    });
+    }
+});
 ```
 
 ## C++/WinRT
