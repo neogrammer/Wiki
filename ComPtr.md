@@ -176,6 +176,8 @@ If using [C++/WinRT projections](https://docs.microsoft.com/en-us/windows/uwp/cp
 
 Note that WRL is not supported for Managed C++ (``/clr``) projects. In that case you should make use of ATL's ``CComPtr`` instead keeping in mind the difference in behavior of ``operator&``. See [Microsoft Docs](https://docs.microsoft.com/en-us/cpp/atl/reference/ccomptr-class).
 
+The [Windows Implementation Libraries (WIL)](https://github.com/microsoft/wil/) provides a COM smart-pointer called ``wil::com_ptr``.
+
 # Further reading
 
 [Programming DirectX with COM](https://docs.microsoft.com/en-us/windows/win32/prog-dx-with-com)  
