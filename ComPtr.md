@@ -181,6 +181,7 @@ The [Windows Implementation Libraries (WIL)](https://github.com/microsoft/wil/) 
 # Further reading
 
 [Programming DirectX with COM](https://docs.microsoft.com/en-us/windows/win32/prog-dx-with-com)  
+[Managing Object Lifetimes Through Reference Counting](https://docs.microsoft.com/en-us/windows/win32/com/managing-object-lifetimes-through-reference-counting)  
 [ComPtr on MSDN](https://docs.microsoft.com/en-us/cpp/windows/comptr-class)  
 [COM on MSDN](https://docs.microsoft.com/en-us/windows/desktop/com/the-component-object-model)  
 [Reference Counting (Direct3D 10)](https://docs.microsoft.com/en-us/windows/desktop/direct3d10/d3d10-graphics-programming-guide-api-features-reference-counting)
