@@ -364,7 +364,7 @@ namespace
         memcpy_s(&header.ddspf, sizeof(header.ddspf), &ddpf, sizeof(ddpf));
 
         // Create file and write header
-        ScopedHandle hFile(safe_handle(CreateFileW(szFile, GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, 0, nullptr)));
+        ScopedHandle hFile(safe_handle(CreateFileW(szFile, GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr)));
         if (!hFile)
         {
             return HRESULT_FROM_WIN32(GetLastError());
