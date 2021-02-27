@@ -4,7 +4,7 @@
 // C++ version of the C# example on how to make a scrolling background with SpriteBatch
 // http://msdn.microsoft.com/en-us/library/bb203868.aspx
 //
-// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 //--------------------------------------------------------------------------------------
 
