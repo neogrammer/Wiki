@@ -118,4 +118,4 @@ Christian Schüler, "Normal Mapping without Precomputed Tangents", *ShaderX 5*,
 
 [Art Pipeline for glTF](https://www.khronos.org/blog/art-pipeline-for-gltf)
 
-J.M.P. van Waveren and Ignacio Castaño, "Real-Time Normal Map DXT Compression", id Software, February 2008 [PDF](http://developer.download.nvidia.com/whitepapers/2008/real-time-normal-map-dxt-compression.pdf)
+J.M.P. van Waveren and Ignacio Castaño, "Real-Time Normal Map DXT Compression", id Software, February 2008 [PDF](http://developer.download.nvidia.com/whitepapers/2008/real-time-normal-map-dxt-compression.pdf) (note: BC5 is "tangent-space 3Dc")
