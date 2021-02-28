@@ -93,4 +93,4 @@ This effect uses Shader Model 4.0 so requires Direct3D hardware feature level 10
 
 Christian Schüler, "Normal Mapping without Precomputed Tangents", *ShaderX 5*, Chapter 2.6, pp. 131 – 140 and [this blog post](http://www.thetenthplanet.de/archives/1180)
 
-J.M.P. van Waveren and Ignacio Castaño, "Real-Time Normal Map DXT Compression", id Software, February 2008 [PDF](http://developer.download.nvidia.com/whitepapers/2008/real-time-normal-map-dxt-compression.pdf)
+J.M.P. van Waveren and Ignacio Castaño, "Real-Time Normal Map DXT Compression", id Software, February 2008 [PDF](http://developer.download.nvidia.com/whitepapers/2008/real-time-normal-map-dxt-compression.pdf) (note: BC5 is "tangent-space 3Dc")
