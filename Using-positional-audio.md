@@ -79,6 +79,61 @@ Game::~Game()
 
 Build and run to hear the helicopter sound, which at the moment will be a bit too lound.
 
+# Adding a simple scene
+
+While not strictly required, the 3D audio effect illusion makes more sense with some visuals to go with it, so here we'll add a simple sphere rotation around the user. Later we will "attach" the sound to it's location.
+
+In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
+
+```cpp
+std::unique_ptr<DirectX::GeometricPrimitive> m_ball;
+DirectX::SimpleMath::Matrix m_proj;
+DirectX::SimpleMath::Matrix m_view;
+DirectX::SimpleMath::Vector3 m_position;
+```
+
+At the top of **Game.cpp** after the ``using`` statements, add:
+
+```cpp
+namespace
+{
+   const XMVECTORF32 CAMERA_POSITION = { 0.f, 0.f, -10.f, 0.f };
+}
+```
+
+In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
+
+```cpp
+auto context = m_deviceResources->GetD3DDeviceContext();
+m_ball = GeometricPrimitive::CreateSphere(context);
+```
+
+In **Game.cpp**, add to the TODO of **CreateWindowSizeDependentResources**:
+
+```cpp
+auto size = m_deviceResources->GetOutputSize();
+m_proj = Matrix::CreatePerspectiveFieldOfView(XM_PI / 4.f,
+    float(size.right) / float(size.bottom), 0.1f, 10.f);
+
+m_view = Matrix::CreateLookAt(CAMERA_POSITION.v,
+    Vector3::Zero, Vector3::UnitY);
+```
+
+In **Game.cpp**, add to the TODO of **OnDeviceLost**:
+
+```cpp
+m_ball.reset();
+```
+
+In **Game.cpp**, add to the TODO of **Render**:
+
+```cpp
+XMMATRIX world = XMMatrixTranslation(m_position.x, m_position.y, m_position.z);
+m_ball->Draw(world, m_view, m_proj, Colors::Yellow);
+```
+
+> If using DirectX 12, you will also need a BasicEffect and CommonStates to render this scene. See the [3D Shapes](https://github.com/microsoft/DirectXTK12/wiki/3D-shapes) tutorial for more details.
+
 # Applying a 3D positional effect
 
 > **UNDER CONSTRUCTION**
