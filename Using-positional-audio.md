@@ -81,7 +81,7 @@ Build and run to hear the helicopter sound, which at the moment will be a bit to
 
 # Adding a simple scene
 
-While not strictly required, the 3D audio effect illusion makes more sense with some visuals to go with it, so here we'll add a simple sphere rotation around the user. Later we will "attach" the sound to it's location.
+While not strictly required, the 3D audio effect illusion makes more sense with some visuals to go with it, so here we'll add a simple sphere.
 
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 
@@ -92,12 +92,14 @@ DirectX::SimpleMath::Matrix m_view;
 DirectX::SimpleMath::Vector3 m_position;
 ```
 
-At the top of **Game.cpp** after the ``using`` statements, add:
+In **Game.cpp** file, modify the **Game** constructor to initialize our position variable:
 
 ```cpp
-namespace
+Game::Game() noexcept(false) :
+    m_position(0, 0, -10.f)
 {
-   const XMVECTORF32 CAMERA_POSITION = { 0.f, 0.f, -10.f, 0.f };
+    m_deviceResources = std::make_unique<DX::DeviceResources>();
+    m_deviceResources->RegisterDeviceNotify(this);
 }
 ```
 
@@ -113,10 +115,10 @@ In **Game.cpp**, add to the TODO of **CreateWindowSizeDependentResources**:
 ```cpp
 auto size = m_deviceResources->GetOutputSize();
 m_proj = Matrix::CreatePerspectiveFieldOfView(XM_PI / 4.f,
-    float(size.right) / float(size.bottom), 0.1f, 10.f);
+    float(size.right) / float(size.bottom), 0.1f, 20.f);
 
-m_view = Matrix::CreateLookAt(CAMERA_POSITION.v,
-    Vector3::Zero, Vector3::UnitY);
+m_view = Matrix::CreateLookAt(Vector3::Zero,
+    Vector3::Forward, Vector3::Up);
 ```
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
@@ -140,7 +142,49 @@ Build and run, and you should get the following screen:
 
 # Applying a 3D positional effect
 
-> **UNDER CONSTRUCTION**
+Now we have our sound and a visual cue where to expect the sound from, we now add the 3D audio effect processing.
+
+In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
+
+```cpp
+DirectX::AudioListener m_listener;
+DirectX::AudioEmitter  m_emitter;
+```
+
+Modify **Initialize** in **Game.cpp** so we enable 3D positioning for our instance. The [[AudioListener]] defaults the same position and view direction as our camera, so we don't have to add any explicit initialization.
+
+```cpp
+m_soundSource = m_soundEffect->CreateInstance(SoundEffectInstance_Use3D);
+m_soundSource->Play(true);
+```
+
+In **Game.cpp**, add to the TODO of **Update**:
+
+```cpp
+m_emitter.Update(m_position, Vector3::Up, static_cast<float>(timer.GetElapsedSeconds()));
+if (m_soundSource)
+{
+    m_soundSource->Apply3D(m_listener, m_emitter);
+}
+```
+
+Build and run. The change won't be extreme, but the helicopter sounds will have a slightly lower volume.
+
+Now, the final part of this is to add movement to the sound source. In **Game.cpp**, add to the TODO of **Update** before the call to ``AudioEmitter::Update``:
+
+```cpp
+// Move the object around in a circle.
+objectPos = new Vector3(
+    (float)Math.Cos(gameTime.TotalGameTime.TotalSeconds) / 2,
+    0,
+    (float)Math.Sin(gameTime.TotalGameTime.TotalSeconds));
+```
+
+## Technical Note
+
+We do the audio engine processing and 3D audio computations in **Update** for simplicity, but if [[StepTimer]] were set for for fixed-update timesteps instead of variable-rate, then you may be getting more than one call to **Update** per render frame. In that case, it is better to move the "audio rendering" up into **Tick** so it only happens once per render frame.
+
+# 
 
 # Further reading
 DirectX Tool Kit docs [[AudioListener]], [[AudioEmitter]], [[SoundEffectInstance]]
