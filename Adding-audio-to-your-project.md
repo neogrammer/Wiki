@@ -187,7 +187,7 @@ In **Main.cpp**, modify the **wWinMain** function as follows:
 
     CoUninitialize();
 
-    return (int) msg.wParam;
+    return static_cast<int>(msg.wParam);
 ```
 
 Lastly, in **Main.cpp**, add the following case to the switch statement in **WndProc**:
