@@ -174,17 +174,18 @@ Now, the final part of this is to add movement to the sound source. In **Game.cp
 
 ```cpp
 // Move the object around in a circle.
-objectPos = new Vector3(
-    (float)Math.Cos(gameTime.TotalGameTime.TotalSeconds) / 2,
+double speed = timer.GetTotalSeconds() / 2;
+m_position = Vector3(
+    static_cast<float>(cos(speed)) * 5.f,
     0,
-    (float)Math.Sin(gameTime.TotalGameTime.TotalSeconds));
+    static_cast<float>(sin(speed))) * -5.f;
 ```
+
+Build and run, and the sound will move from left-to-right in front, then right-to-left behind. You'll only see the sphere while in front.
 
 ## Technical Note
 
 We do the audio engine processing and 3D audio computations in **Update** for simplicity, but if [[StepTimer]] were set for for fixed-update timesteps instead of variable-rate, then you may be getting more than one call to **Update** per render frame. In that case, it is better to move the "audio rendering" up into **Tick** so it only happens once per render frame.
-
-# 
 
 # Further reading
 DirectX Tool Kit docs [[AudioListener]], [[AudioEmitter]], [[SoundEffectInstance]]
