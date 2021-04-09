@@ -9,7 +9,7 @@ If you used [NuGet](https://docs.microsoft.com/en-us/nuget/what-is-nuget) when [
 <table>
  <tr>
   <td>directxtk_desktop_2017</td>
-  <td>This package is configured for Windows 7 Service Pack 1 support for graphics & input. <I>DirectX Tool Kit for Audio</I> is configured to use the XAudio2Redist NuGet package to support Windows 7 or later.</td>
+  <td>This package is configured for Windows 7 Service Pack 1 support for graphics & input. <I>DirectX Tool Kit for Audio</I> is configured to use the [XAudio2Redist NuGet package](https://aka.ms/XAudio2Redist) to support Windows 7 or later.</td>
  </tr>
  <tr>
   <td>directxtk_desktop_win10<br />directxtk_uwp<br />directxtk12_uwp<br />directxtk12_desktop_2017</td>
