@@ -183,9 +183,69 @@ m_position = Vector3(
 
 Build and run, and the sound will move from left-to-right in front, then right-to-left behind. You'll only see the sphere while in front.
 
-## Technical Note
+## Technical note
 
 We do the audio engine processing and 3D audio computations in **Update** for simplicity, but if [[StepTimer]] were set for for fixed-update timesteps instead of variable-rate, then you may be getting more than one call to **Update** per render frame. In that case, it is better to move the "audio rendering" up into **Tick** so it only happens once per render frame.
+
+# Environmental effects
+
+Now that we have the basics of the effect running, it's time to turn additional features including an environmental reverb effect.
+
+At the top of **Game.cpp** after the ``using`` statements, add:
+
+```cpp
+namespace
+{
+    constexpr X3DAUDIO_CONE c_listenerCone = {
+        X3DAUDIO_PI * 5.0f / 6.0f, X3DAUDIO_PI * 11.0f / 6.0f, 1.0f, 0.75f, 0.0f, 0.25f, 0.708f, 1.0f
+    };
+    constexpr X3DAUDIO_CONE c_emitterCone = {
+        0.f, 0.f, 0.f, 1.f, 0.f, 1.f, 0.f, 1.f
+    };
+
+    constexpr X3DAUDIO_DISTANCE_CURVE_POINT c_emitter_LFE_CurvePoints[3] = {
+        { 0.0f, 1.0f }, { 0.25f, 0.0f}, { 1.0f, 0.0f }
+    };
+    constexpr X3DAUDIO_DISTANCE_CURVE c_emitter_LFE_Curve = {
+        const_cast<X3DAUDIO_DISTANCE_CURVE_POINT*>(&c_emitter_LFE_CurvePoints[0]), 3
+    };
+
+    constexpr X3DAUDIO_DISTANCE_CURVE_POINT c_emitter_Reverb_CurvePoints[3] = {
+        { 0.0f, 0.5f}, { 0.75f, 1.0f }, { 1.0f, 0.0f }
+    };
+    constexpr X3DAUDIO_DISTANCE_CURVE c_emitter_Reverb_Curve = {
+        const_cast<X3DAUDIO_DISTANCE_CURVE_POINT*>(&c_emitter_Reverb_CurvePoints[0]), 3
+    };
+}
+```
+
+Modify **Initialize** in **Game.cpp** both the audio engine creation:
+
+```cpp
+    AUDIO_ENGINE_FLAGS eflags = AudioEngine_EnvironmentalReverb | AudioEngine_ReverbUseFilters;
+#ifdef _DEBUG
+    eflags |= AudioEngine_Debug;
+#endif
+    m_audEngine = std::make_unique<AudioEngine>(eflags);
+
+    m_audEngine->SetReverb(Reverb_Hangar);
+```
+
+and the sound effect instance creation:
+
+```cpp
+m_soundSource = m_soundEffect->CreateInstance(SoundEffectInstance_Use3D | SoundEffectInstance_ReverbUseFilters);
+m_soundSource->Play(true);
+
+m_listener.pCone = const_cast<X3DAUDIO_CONE*>(&c_listenerCone);
+
+m_emitter.pLFECurve = const_cast<X3DAUDIO_DISTANCE_CURVE*>(&c_emitter_LFE_Curve);
+m_emitter.pReverbCurve = const_cast<X3DAUDIO_DISTANCE_CURVE*>(&c_emitter_Reverb_Curve);
+m_emitter.CurveDistanceScaler = 14.f;
+m_emitter.pCone = const_cast<X3DAUDIO_CONE*>(&c_emitterCone);
+```
+
+Build and run, and now you'll hear some reverb effects as the helicopter sound passes you by.
 
 # Further reading
 DirectX Tool Kit docs [[AudioListener]], [[AudioEmitter]], [[SoundEffectInstance]]
