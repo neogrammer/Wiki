@@ -1,7 +1,7 @@
 This lesson covers the playing sounds with _DirectX Tool Kit for Audio_ using 3D positional audio effects.
 
 # Setup
-First create a new project. For this lesson, use the [[DeviceResources]] variant described in [[Using DeviceResources]], then use the instructions in [[Adding the DirectX Tool Kit]]  and finally [[Adding the DirectX Tool Kit for Audio]].
+First create a new project. For this lesson, use the [[DeviceResources]] variant described in [[Using DeviceResources]], then use the instructions in [[Adding the DirectX Tool Kit]], then [[Adding the DirectX Tool Kit for Audio]], and finally [[Adding audio to your project]] which we will use for this lesson.
 
 # Applying a 3D positional effect
 
