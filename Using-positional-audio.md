@@ -251,6 +251,10 @@ Try setting the reverb to different presets and see how it impacts the sound. Th
 
 > You may want to add ``AudioEngine_UseMasteringLimiter`` to your audio engine flags to avoid potential problems with sounds clipping if they compute to an unusually large volume level.
 
+## Technical note
+
+The [[AudioEmitter]] defaults assume your source sound is mono/single-channel. If you are using a multi-channel sound (stereo, etc.) then you need to set ``m_emitter.ChannelCount``. Also note that ``m_emitter.pCone`` is ignored for multi-channel emitters.
+
 # Further reading
 DirectX Tool Kit docs [[AudioListener]], [[AudioEmitter]], [[SoundEffectInstance]]
 
