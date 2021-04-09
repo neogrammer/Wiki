@@ -255,7 +255,7 @@ Try setting the reverb to different presets and see how it impacts the sound. Th
 
 The [[AudioEmitter]] defaults assume your source sound is mono/single-channel. If you are using a multi-channel sound (stereo, etc.) then you need to set ``m_emitter.ChannelCount``. Also note that ``m_emitter.pCone`` is ignored for multi-channel emitters.
 
-The *DirectX Tool Kit for Audio* implementation uses a submix-voice to apply the reverb, and directs only the 3D audio sources to this location. One-shot voices and other instances are not impacted by the reverb settings.
+The *DirectX Tool Kit for Audio* implementation uses a submix-voice to apply the reverb, and directs only the 3D audio sources to this voice. One-shot voices and other instances are not impacted by the reverb settings.
 
 # Further reading
 DirectX Tool Kit docs [[AudioListener]], [[AudioEmitter]], [[SoundEffectInstance]]
