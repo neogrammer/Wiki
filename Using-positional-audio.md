@@ -8,6 +8,26 @@ Games provide an immersive visual and audio experience, and often use [3D audio 
 
 See [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/xaudio2/x3daudio-overview) for more information on **X3DAudio**.
 
+# Sounds
+
+Save the this file to your new project's folder: [heli.wav](https://github.com/Microsoft/DirectXTK/wiki/media/heli.wav).  Use the top menu and select **Project / Add Existing Item**.... Select the ``heli.wav`` file and hit "OK".
+
+In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
+
+```cpp
+std::unique_ptr<DirectX::SoundEffect> m_soundEffect;
+```
+
+In **Game.cpp**, add to the end of **Initialize**:
+
+```cpp
+m_soundEffect = std::make_unique<SoundEffect>( m_audEngine.get(), L"heli.wav" );
+```
+
+Build and run. No sounds will be heard, but the audio file is loaded.
+
+> _Troubleshooting:_ If you get a runtime exception, then you may have the ``.wav`` file in the wrong folder, have modified the "Working Directory" in the "Debugging" configuration settings, or otherwise changed the expected paths at runtime of the application. You should set a break-point on ``std::make_unique<SoundEffect>`` and step into the code to find the exact problem.
+
 # Applying a 3D positional effect
 
 > **UNDER CONSTRUCTION**
