@@ -117,7 +117,13 @@ If you are using XAudio 2.8, then your application should be built to require Wi
 ```
 
 ## XAudio2 Redistributable
-If you want to support Windows 7, be sure to verify ``_WIN32_WINT`` is set to ``0x0601``.
+If you want to support Windows 7, be sure to verify ``_WIN32_WINT`` is set to ``0x0601`` in *pch.h*:
+
+```cpp
+#include <winsdkver.h>
+#define _WIN32_WINNT 0x0601
+#include <sdkddkver.h>
+```
 
 > _Troubleshooting:_ If you get a compilation error related to DirectX SDK headers, then you likely don't have the ``Microsoft.XAudio2.Redist`` NuGet package set up for the project that is using ``Audio.h``
 
