@@ -247,6 +247,10 @@ m_emitter.pCone = const_cast<X3DAUDIO_CONE*>(&c_emitterCone);
 
 Build and run, and now you'll hear some reverb effects as the helicopter sound passes you by.
 
+Try setting the reverb to different presets and see how it impacts the sound. This includes the full **Interactive 3D Audio Rendering Guidelines Level 2.0** set.
+
+> You may want to add ``AudioEngine_UseMasteringLimiter`` to your audio engine flags to avoid potential problems with sounds clipping if they compute to an unusually large volume level.
+
 # Further reading
 DirectX Tool Kit docs [[AudioListener]], [[AudioEmitter]], [[SoundEffectInstance]]
 
