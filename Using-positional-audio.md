@@ -132,6 +132,10 @@ XMMATRIX world = XMMatrixTranslation(m_position.x, m_position.y, m_position.z);
 m_ball->Draw(world, m_view, m_proj, Colors::Yellow);
 ```
 
+Build and run, and you should get the following screen:
+
+![Screenshot of yellow ball](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotYellowBall.PNG)
+
 > If using DirectX 12, you will also need a BasicEffect and CommonStates to render this scene. See the [3D Shapes](https://github.com/microsoft/DirectXTK12/wiki/3D-shapes) tutorial for more details.
 
 # Applying a 3D positional effect
