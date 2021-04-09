@@ -146,7 +146,7 @@ One last case you need to consider for Windows is if your application starts in 
 In the **Game.h** file, add the following method to public interface of the Game class:
 
 ```cpp
-void OnNewAudioDevice() { m_retryAudio = true; }
+void OnNewAudioDevice() noexcept { m_retryAudio = true; }
 ```
 
 In the **Main.cpp** file after the other includes at the top, add:
