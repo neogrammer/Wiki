@@ -32,9 +32,9 @@ In addition to setting the members of ``X3DAUDIO_EMITTER`` directly, these helpe
 # Multi-channel 3D Audio
 X3DAudio does support multi-channel sound sources for 3D audio (i.e. stereo, quad, etc.). The default constructor for AudioEmitter sets the source up for mono (i.e. single-channel), so to use multi-channel sources, you should set the **ChannelCount** member to match the number of channels in your source, and adjust **ChannelRadius** and the **EmitterAzimuths** array as desired.
 
-pCone is ignored for multi-channel emitters.
+``pCone`` is ignored for multi-channel emitters.
 
-_Note: AudioEmitter includes a EmitterAzimuths array which is pointed to by pChannelAzimuths and defaults to all 0. This is because pChannelAzimuths cannot be a nullptr for multi-channel sound emitters._
+> AudioEmitter includes a EmitterAzimuths array which is pointed to by pChannelAzimuths and defaults to all 0. This is because pChannelAzimuths cannot be a nullptr for multi-channel sound emitters.
 
 # Directional Emitters
 AudioEmitter defaults to an omnidirectional emitter. To create a sound-cone, set the **pCone** member to point to a ``X3DAUDIO_CONE`` structure. The pointer must point to valid memory at the time Apply3D is called.
