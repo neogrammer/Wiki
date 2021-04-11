@@ -57,3 +57,5 @@ The AudioEmitter constructor sets pVolumeCurve, pLFECurve, pLPFDirectCurve, pLPF
 # Further reading
 [X3DAudio](https://docs.microsoft.com/en-us/windows/desktop/xaudio2/x3daudio)  
 [X3DAudioCalculate](https://docs.microsoft.com/en-us/windows/desktop/api/x3daudio/nf-x3daudio-x3daudiocalculate)
+
+[GameFest 2010: The (3D) Sound of Success: X3DAudio and Sound Positioning](https://www.microsoft.com/en-us/download/details.aspx?id=17627)
