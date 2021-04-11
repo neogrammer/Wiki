@@ -257,7 +257,7 @@ The *DirectX Tool Kit for Audio* implementation uses a submix-voice to apply the
 
 # More to explore
 
-* The [[AudioEmitter]] defaults assume your source sound is mono/single-channel. If you are using a multi-channel sound (stereo, etc.) then you need to set ``m_emitter.ChannelCount`` (i.e. something like ``m_emitter.ChannelCount = ``). Also note that ``m_emitter.pCone`` is ignored for multi-channel emitters.
+* The [[AudioEmitter]] defaults assume your source sound is mono/single-channel. If you are using a multi-channel sound (stereo, etc.) then you need to set ``ChannelCount`` (i.e. something like ``m_emitter.ChannelCount = m_soundEffect->GetFormat()->nChannels;``). Also note that ``m_emitter.pCone`` is ignored for multi-channel emitters.
 
 * In addition to [[SoundEffectInstance]], you can also use the ``Apply3D`` method on [[SoundStreamInstance]] and [[DynamicSoundEffectInstance]].
 
