@@ -29,8 +29,20 @@ In addition to setting the members of ``X3DAUDIO_EMITTER`` directly, these helpe
 
 * **Update** (XMVECTOR newPos, XMVECTOR upDir, float dt): Computes a direction and velocity for the emitter based on the existing Position and the newPos, updating the OrientFront/OrientTop to match, and then setting the Position to the newPos. If dt is 0, the update is skipped.
 
+> You must use a distinct instance of ``AudioEmitter`` for each active 3D sound if using the **Update** method. Otherwise, if you reuse the emitter instance for multiple sounds you need to explicitly initialize both the position and velocity before each ``Apply3D`` call.
+
 # Multi-channel 3D Audio
 X3DAudio does support multi-channel sound sources for 3D audio (i.e. stereo, quad, etc.). The default constructor for AudioEmitter sets the source up for mono (i.e. single-channel), so to use multi-channel sources, you should set the **ChannelCount** member to match the number of channels in your source, and adjust **ChannelRadius** and the **EmitterAzimuths** array as desired.
+
+```
+std::unique_ptr<SoundEffect> effect;
+AudioEmitter emitter;
+
+effect = std::make_unique<SoundEffect>( audEngine.get(), L"sound.wav" );
+
+emitter.SetPosition(x, y, z);
+emitter.ChannelCount = effect->GetFormat()->nChannels;
+```
 
 ``pCone`` is ignored for multi-channel emitters.
 
