@@ -71,7 +71,7 @@ See [[Instance flags|SoundEffectInstance#instance-flags]]
 
 # Positional 3D audio
 
-The **Apply3D* method computes and applies positional effects, if the instance was created with ``SoundEffectInstance_Use3D``.
+The **Apply3D** method computes and applies positional effects, if the instance was created with ``SoundEffectInstance_Use3D``.
 
 The **GetChannelCount** method is provided to simplify setting up ``AudioEmitter`` instances for multi-channel sources.
 
