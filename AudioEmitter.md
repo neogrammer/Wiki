@@ -53,7 +53,7 @@ emitter.SetPosition(x, y, z);
 emitter.ChannelCount = effect->GetChannelCount();
 ```
 
-Be aware that ``pCone`` is ignored for multi-channel emitters, and ``OrientTop`` must be valid.
+For multi-channel emitters, ``OrientTop`` must be valid.
 
 AudioEmitter includes an **EmitterAzimuths** array which is pointed to by *pChannelAzimuths* and defaults to all 0. This is because *pChannelAzimuths* cannot be a nullptr for multi-channel sound emitters.
 
@@ -66,6 +66,8 @@ emitter.EnableDefaultMultiChannel(effect->GetChannelCount(), 10.f);
 
 # Directional Emitters
 AudioEmitter defaults to an omnidirectional emitter. To create a sound-cone, set the **pCone** member to point to a ``X3DAUDIO_CONE`` structure. The pointer must point to valid memory at the time Apply3D is called.
+
+Be aware that ``pCone`` is ignored for multi-channel emitters.
 
 # Custom distance curves
 The AudioEmitter constructor sets pVolumeCurve, pLFECurve, pLPFDirectCurve, pLPFReverbCurve, and pReverbCurve to nullptr which uses XAudio2 default curves.  Any custom curve definitions must have a pointer to valid memory at the time Apply3D is called.
