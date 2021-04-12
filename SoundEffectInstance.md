@@ -98,7 +98,11 @@ effect->Apply3D( listener, emitter );
 
 Note if the instance was created without ``SoundEffectInstance_Use3D``, then calls to **Apply3D** will result in a C++ exception being thrown. **Apply3D** will overwrite any ``SetPan`` settings.
 
-The **GetChannelCount** method is provided to simplify setting up ``AudioEmitter`` instances for multi-channel sources.
+The **GetChannelCount** method is provided to simplify setting up ``AudioEmitter`` instances for multi-channel sources:
+
+```cpp
+emitter.EnableDefaultMultiChannel( m_effect->GetChannelCount() );
+```
 
 See [[AudioListener]], [[AudioEmitter]]
 
