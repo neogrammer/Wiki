@@ -139,6 +139,10 @@ void GenerateSineWave( _Out_writes_(sampleRate) int16_t* data,
 
 # Positional 3D audio
 
+The **Apply3D** method computes and applies positional effects, if the instance was created with ``SoundEffectInstance_Use3D``.
+
+The **GetChannelCount** method is provided to simplify setting up ``AudioEmitter`` instances for multi-channel sources.
+
 See [[Positional 3D audio|SoundEffectInstance#positional-3d-audio]].
 
 # Voice management
