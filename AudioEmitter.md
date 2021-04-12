@@ -1,4 +1,4 @@
-AudioEmitter is a helper object derived from [X3DAUDIO_EMITTER](https://docs.microsoft.com/en-us/windows/desktop/api/x3daudio/ns-x3daudio-x3daudio_emitter) used by the **Apply3D** method of [[SoundEffectInstance]], [[SoundStreamInstance]], and [[DynamicSoundEffectInstance]].
+AudioEmitter is a helper object derived from [X3DAUDIO_EMITTER](https://docs.microsoft.com/en-us/windows/desktop/api/x3daudio/ns-x3daudio-x3daudio_emitter) that can be used with the **Apply3D** method of [[SoundEffectInstance]], [[SoundStreamInstance]], and [[DynamicSoundEffectInstance]].
 
 See [[AudioListener]].
 
@@ -32,21 +32,37 @@ In addition to setting the members of ``X3DAUDIO_EMITTER`` directly, these helpe
 > You must use a distinct instance of ``AudioEmitter`` for each active 3D sound if using the **Update** method. Otherwise, if you reuse the emitter instance for multiple sounds you need to explicitly initialize both the position and velocity before each ``Apply3D`` call.
 
 # Multi-channel 3D Audio
-X3DAudio does support multi-channel sound sources for 3D audio (i.e. stereo, quad, etc.). The default constructor for AudioEmitter sets the source up for mono (i.e. single-channel), so to use multi-channel sources, you should set the **ChannelCount** member to match the number of channels in your source, and adjust **ChannelRadius** and the **EmitterAzimuths** array as desired.
+X3DAudio supports multi-channel sound sources for 3D audio (i.e. stereo, quad, etc.). The default constructor for AudioEmitter sets the source up for mono (i.e. single-channel), so to use multi-channel sources, you should set the **ChannelCount** member to match the number of channels in your source, and adjust **ChannelRadius** and the **EmitterAzimuths** array as desired.
 
-```
-std::unique_ptr<SoundEffect> effect;
+```cpp
+std::unique_ptr<SoundEffect> soundEffect;
 AudioEmitter emitter;
 
-effect = std::make_unique<SoundEffect>( audEngine.get(), L"sound.wav" );
+soundEffect = std::make_unique<SoundEffect>( audEngine.get(), L"sound.wav" );
 
 emitter.SetPosition(x, y, z);
-emitter.ChannelCount = effect->GetFormat()->nChannels;
+emitter.ChannelCount = soundEffect->GetFormat()->nChannels;
 ```
 
-``pCone`` is ignored for multi-channel emitters.
+You can also set the channel count from the sound instance:
 
-> AudioEmitter includes a EmitterAzimuths array which is pointed to by pChannelAzimuths and defaults to all 0. This is because pChannelAzimuths cannot be a nullptr for multi-channel sound emitters.
+```cpp
+effect = soundEffect->CreateInstance(SoundEffectInstance_Use3D);
+
+emitter.SetPosition(x, y, z);
+emitter.ChannelCount = effect->GetChannelCount();
+```
+
+Be aware that ``pCone`` is ignored for multi-channel emitters, and ``OrientTop`` must be valid.
+
+AudioEmitter includes an **EmitterAzimuths** array which is pointed to by *pChannelAzimuths* and defaults to all 0. This is because *pChannelAzimuths* cannot be a nullptr for multi-channel sound emitters.
+
+The helper **EnableDefaultMultiChannel** can be used to set up a default set of emitter azimuths based on common speaker configurations for up to 8 channels, and sets the channel radius:
+
+```cpp
+emitter.SetPosition(x, y, z);
+emitter.EnableDefaultMultiChannel(effect->GetChannelCount(), 10.f);
+```
 
 # Directional Emitters
 AudioEmitter defaults to an omnidirectional emitter. To create a sound-cone, set the **pCone** member to point to a ``X3DAUDIO_CONE`` structure. The pointer must point to valid memory at the time Apply3D is called.
