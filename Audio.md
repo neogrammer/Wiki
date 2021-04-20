@@ -1,11 +1,11 @@
 The _DirectXTK for Audio_ components implement a low-level audio API similar to the XNA Game Studio 4 (``Microsoft.Xna.Framework.Audio``) design. This consists of the following classes all declared in the ``Audio.h`` header (in the _Inc_ folder of the distribution):
 
 * [[AudioEngine]] - This class represents an XAudio2 audio graph, device, and mastering voice.
-* [[SoundEffect]] - A container class for sound resources which can be loaded from ``.wav`` files.
-* [[SoundEffectInstance]] - Provides a single playing, paused, or stopped instance of a sound
-* [[SoundStreamInstance]] - SoundEffectInstance for playing waves from a streaming XACT-style ``.xwb`` wave bank. 
-* [[DynamicSoundEffectInstance]] - SoundEffectInstance where the application provides the audio data on demand
-* [[WaveBank]] - A container class for sound resources packaged into an XACT-style ``.xwb`` wave bank.
+* [[SoundEffect]] - A container class for sound resources which can be loaded from ``.wav`` files. These can be played as 'one-shots' managed by the engine, or used to create a *SoundEffectInstance*.
+* [[SoundEffectInstance]] -  Provides a single playing, looped, paused, or stopped instance of a sound. These support 3D positional audio and optionally reverb effects.
+* [[SoundStreamInstance]] - *SoundEffectInstance* for playing waves from a streaming XACT-style ``.xwb`` wave bank. 
+* [[DynamicSoundEffectInstance]] - *SoundEffectInstance* where the application provides the audio data on demand.
+* [[WaveBank]] - A container class for sound resources packaged into an XACT-style ``.xwb`` wave bank, with support for directly playing one-shots and creating *SoundEffectInstance*s that refer to entries in the wave bank.
 * [[AudioListener]],  [[AudioEmitter]] - Utility classes used with ``SoundEffectInstance::Apply3D``.
 
 > DirectXTK for Audio uses XAudio 2. It does not make use of the legacy XACT Engine, XACT Cue, or XACT SoundBank.
@@ -170,7 +170,7 @@ Each instance of a SoundEffectInstance will allocate it's own source voice when 
 See [[AudioEngine]] for more information.
 
 # Platform support
-The standard ``DirectXTK.lib`` includes _DirectXTK for Audio_ implemented using XAudio 2.9 which is supported by Windows 10 and Xbox One built into the operating system.
+The standard ``DirectXTK.lib`` and all versions of ``DirectXTK12.lib`` include _DirectXTK for Audio_ implemented using XAudio 2.9 which is supported by Windows 10 and Xbox built into the operating system.
 
 <table>
  <tr>
@@ -182,8 +182,8 @@ The standard ``DirectXTK.lib`` includes _DirectXTK for Audio_ implemented using 
   <td>Universal Windows Platform (UWP) apps</td>
  </tr>
  <tr>
-  <td>DirectXTK_XboxOneXDK_2017</td>
-  <td>Xbox One XDK apps. <I>This includes support for XMA2 format wave files</I>.</td>
+  <td>DirectXTK_XboxOneXDK_2017<br />DirectXTK_GDK_2017<br />DirectXTK_GDK_2019</td>
+  <td>Xbox apps. <I>This includes support for XMA2 format wave files</I>.</td>
  </tr>
 </table>
 
@@ -197,7 +197,7 @@ To add _DirectXTK for Audio_ support for a Win32 desktop application running on 
  </tr>
  <tr>
   <td>DirectXTKAudio_Desktop_2019_Win7<br />DirectXTKAudio_Desktop_2017_Win7</td>
-  <td>When targeting Windows 7 Service Pack 1 or later, use <code>DirectXTKAudioWin7.lib</code> which is implemented using the <a href="https://aka.ms/xaudio2redist">XAudio2 Redistribution</a> NuGet package. <I>This is the recommended way to support Windows 7</I>. Using this version requires you add NuGet package <a href="https://www.nuget.org/packages/Microsoft.XAudio2.Redist/">Microsoft.XAudio2.Redist</a> to your project.</td>
+  <td>When targeting Windows 7 Service Pack 1 or later, use <code>DirectXTKAudioWin7.lib</code> which is implemented using the <a href="https://aka.ms/xaudio2redist">XAudio2 Redistribution</a> NuGet package. <I>This is the recommended way to support Windows 7</I>. Using this version requires you add NuGet package <a href="https://www.nuget.org/packages/Microsoft.XAudio2.Redist/">Microsoft.XAudio2.Redist</a> to your project. This version also provides xWMA support even on Windows 8.x.</td>
  </tr>
 </table>
 
