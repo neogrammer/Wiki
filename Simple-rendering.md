@@ -62,7 +62,7 @@ m_effect->SetVertexColorEnabled(true);
 
 DX::ThrowIfFailed(
     CreateInputLayoutFromEffect<VertexType>(m_d3dDevice.Get(), m_effect.get(),
-        m_inputLayout.ReleaseAndGetAddressOf()
+        m_inputLayout.ReleaseAndGetAddressOf())
     );
 
 m_batch = std::make_unique<PrimitiveBatch<VertexType>>(m_d3dContext.Get());
