@@ -23,7 +23,7 @@ Model instances can be loaded from either ``.CMO``, ``.SDKMESH``, or ``.VBO`` fi
 Visual Studio 2012 or later include a built-in content pipeline that can generate ``.CMO`` files from an Autodesk ``.FBX``, as well as ``.DDS`` texture files from various bitmap image formats, as part of the build process. See the Visual Studio 3D Starter Kit for details ([Windows 8.1](http://aka.ms/vs3dkitwin), [Windows 8.0](http://aka.ms/vs3dkitwin80)).
 
 ```cpp
-m_fx = std::make_unqiue<DGSLEffectFactory>(device);
+m_fx = std::make_unique<DGSLEffectFactory>(device);
 // Can also use EffectFactory, but will ignore pixel shader material settings
 
 auto teapot = Model::CreateFromCMO( device, L"teapot.cmo", *m_fx );
