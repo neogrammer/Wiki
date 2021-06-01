@@ -150,6 +150,7 @@ Build and run to get the same image, but if you resize the window the triangle w
 * Internally, both SpriteBatch and PrimitiveBatch make use of a _dynamic_ rather than _static_ vertex buffer object which makes use of special memory shared between the CPU and GPU. Generally, we prefer when possible to use static vertex buffers as they can reside in the video memory directly that is only accessible by the GPU.
 * Be sure to call ``SetVertexColorEnabled`` before calling ``GetVertexShaderBytecode`` as this impacts which shader permutation is actually used for rendering. See [[IEffect]] for more details.
 * Since we haven't used any textures yet, we don't need to use any sampler state objects.
+* The basic game loop already includes the ``SetViewport`` state that tells Direct3D how to map the '-1 to +1' coordinates to the pixel size of your render target. The transformation above does the *reverse* of that that transformation.
 
 # State Objects
 
