@@ -239,6 +239,8 @@ The ability to create an MSAA DXGI swap chain is only supported for the older "b
 
 * PrimitiveBatch is ideally suited for drawing debug displays such as visualizing bounding volumes, collision data, etc. For more on this, see [[DebugDraw]].
 
+* This tutorial uses the standard 3D graphics "world -> view -> projection" transformation pipeline. If you are unfamiliar with this pipeline and/or matrix transformations, see the [math tutorial](https://github.com/microsoft/DirectXTK/wiki/Using-the-SimpleMath-library) for additional learning resources.
+
 **Next lesson:** [[3D shapes]]
 
 # Further reading
