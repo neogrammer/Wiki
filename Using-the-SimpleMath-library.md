@@ -1,5 +1,11 @@
 This lesson introduces the reader to the SimpleMath game and graphics math library.
 
+# Background
+
+The *DirectX Tool Kit* tutorials assume a basic understanding of the classic "world -> view -> projection" [graphics pipeline](https://en.wikipedia.org/wiki/Graphics_pipeline), [transformation matricies](https://en.wikipedia.org/wiki/Transformation_matrix), and in particular the classic [affine transformations](https://en.wikipedia.org/wiki/Affine_transformation) of *translation*, *scaling*, and *rotation*.
+
+A great resource for learning more about the essential math of graphics programming, see [Essential Math for Games Programmers](http://www.essentialmath.com/).
+
 # Coordinate system
 Consistent with the original XNA Game Framework C# math library, SimpleMath assumes a [right-handed](https://en.wikipedia.org/wiki/Right-hand_rule) coordinate system, with the positive z-axis pointing toward the observer when the positive x-axis is pointing to the right, and the positive y-axis is pointing up.
 
