@@ -176,6 +176,8 @@ for( auto it = vertices.begin(); it != vertices.end(); ++it )
 customBox = GeometricPrimitive::CreateCustom( deviceContext, vertices, indices ) );
 ```
 
+> You can also use this 'two-stage' creation of the geometric primitive to compute a bounding volume from ``vertices``, although for many geometric primitives (i.e. sphere, box, etc.) you can directly create the bounding volume from the same parameters
+
 # Custom vertex format
 
 If you want to create a vertex format other than ``VertexPositionNormalTexture``, you can use the ``GeometricPrimitive`` custom geometry methods to generate the shape data, but you'll need to implement the creation of the VB/IB and rendering in your own code (i.e. the ``GeometricPrimitive::CreateCustom`` method only supports ``VertexPositionNormalTexture``).
