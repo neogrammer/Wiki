@@ -139,7 +139,7 @@ These NuGet packages are no longer supported.
 * [Windows phone 8](https://www.nuget.org/packages/directxtk_windowsphone_8)
 
 ## Using the vcpkg C++ library manager
-The _DirectX Tool Kit_ is also available through the [vcpkg](https://github.com/microsoft/vcpkg) C++ Library Manager.
+The _DirectX Tool Kit_ is also available through the [vcpkg](https://vcpkg.io/) C++ Library Manager.
 
 ```
 vcpkg install directxtk
