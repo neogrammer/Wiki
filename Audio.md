@@ -207,6 +207,37 @@ See the [[Adding the DirectX Tool Kit for Audio]] tutorial for a walk-through of
 
 > It's recommended that you use XAudio 2.9, XAudio 2.8, or the XAudio2Redist. Use of [[XAudio 2.7|Legacy XAudio 2.7 Notes]] and the legacy DirectX SDK is not recommended, and support for this configuration is removed as of the June 2020 release.
 
+## Using the vcpkg C++ library manager
+The _DirectX Tool Kit for Audio_ is also available through the [vcpkg](https://vcpkg.io/) C++ Library Manager.
+
+For Windows 7 or later support, use:
+
+```
+vcpkg install directxtk[xaudio2redist]
+```
+
+For the 64-bit version of the library, use:
+
+```
+vcpkg install directxtk[xaudio2redist]:x64-windows
+```
+
+To make use of the **xaudio2redist** port, you must also add to your project CMakeLists.txt:
+
+```
+target_compile_definitions(${PROJECT_NAME} PRIVATE USING_XAUDIO2_REDIST)
+if (NOT EXISTS "${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/include/xaudio2redist/xaudio2.h")
+    message(FATAL_ERROR "VCPKG port 'xaudio2redist' required for DirectX Tool Kit for Audio on Windows 7")
+endif()
+target_include_directories(${PROJECT_NAME} PRIVATE ${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/include/xaudio2redist)
+target_link_directories(${PROJECT_NAME} PRIVATE ${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/lib)
+target_link_libraries(${PROJECT_NAME} PRIVATE xaudio2_9redist.lib)
+```
+
+> For the **directxtk** port, there are also ``[xaudio2-9]`` and ``[xaudio2-8]`` features available.
+
+> Audio support is already included when building for any ``*-uwp`` triplet or when using the **directxtk12** port.
+
 # Content Pipeline
 **Note:** When adding ``.xwb`` files to your Universal Windows Platform app or Xbox One XDK project, you need to manually set the file properties to "Content: Yes" for all configurations to have these files included in your AppX package. ``.wav`` files are automatically detected as a media file and are included as content by default.
 
