@@ -108,6 +108,14 @@ In the **Game.h** file, add the following variable to the bottom of the Game cla
 bool m_retryAudio;
 ```
 
+In the **Game** Ctor, add initialization of ``m_retryAudio``:
+
+```cpp
+Game::Game() noexcept(false) :
+    m_retryAudio(false)
+{
+```
+
 In **Initialize**, modify the audio initialization to be:
 
 ```cpp
@@ -116,7 +124,6 @@ AUDIO_ENGINE_FLAGS eflags = AudioEngine_Default;
 eflags |= AudioEngine_Debug;
 #endif
 m_audEngine = std::make_unique<AudioEngine>(eflags);
-m_retryAudio = false;
 ```
 
 In **Update**, modify the audio update to be:
@@ -153,6 +160,7 @@ In the **Main.cpp** file after the other includes at the top, add:
 
 ```cpp
 #include <Dbt.h>
+#include <ksmedia.h>
 ```
 
 In **Main.cpp**, modify the **wWinMain** function as follows:
@@ -183,7 +191,10 @@ In **Main.cpp**, modify the **wWinMain** function as follows:
     g_game.reset();
 
     if (hNewAudio)
+    {
         UnregisterDeviceNotification(hNewAudio);
+        hNewAudio = nullptr;
+    }
 
     CoUninitialize();
 
