@@ -80,19 +80,19 @@ The upper-3x3 matrix is used for 3D scaling (_11, _22, _33) & rotation transform
 The last row's first three elements are for translation transformations:
 
 ```
-| r    r    r   ? |
-| r    r    r   ? |
-| r    r    r   ? |
-| _41  _42  _43 ? |
+| r0*sx  r1     r2     ? |
+| r3     r4*sy  r5     ? |
+| r6     r7     r8*sz  ? |
+| _41    _42    _43    ? |
 ```
 
-And the last column is used for projection transformations (i.e. perspective cameras, simple shadows):
+And the last column is used for projection transformations (i.e. perspective cameras, simple shadows, etc.):
 
 ```
-| r   r   r   _14 |
-| r   r   r   _24 |
-| r   r   r   _34 |
-| tx  ty  tz  _44 |
+| r0*sx  r1     r2     _14 |
+| r3     r4*sy  r5     _24 |
+| r6     r7     r8*sz  _34 |
+| tx     ty     tz     _44 |
 ```
 
 When transforming a vector, to get back to true '3D' realspace, you must divide through by the 'w' result to get it back to 1 for the x, y, z elements to have physical meaning--if the projection column is 0, 0, 0, 1 then the result is already guaranteed to be a ``w`` of 1.
