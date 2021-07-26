@@ -160,7 +160,7 @@ See [[EffectFactory]] for more Feature Level notes.
 See [Geometry formats](https://github.com/Microsoft/DirectXMesh/wiki/Geometry-formats) for more information.
 
 ## SDKMESH
-The ``.SDKMESH`` [Samples Content Exporter](http://go.microsoft.com/fwlink/?LinkId=226208) uses Autodesk FBX 2013.3.1 or later.
+The ``.SDKMESH`` [Samples Content Exporter](https://aka.ms/dxsdkcontentexporter) uses Autodesk FBX 2013.3.1 or later.
 
 ## CMO
 The VS 2012 and 2013 ``.CMO`` exporter uses Autodesk FBX 2013.1. VS 2015 uses Autodesk FBX 2015.1. Recommended settings for exporting an FBX as a CMO include:
