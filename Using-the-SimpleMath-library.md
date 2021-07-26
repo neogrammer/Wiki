@@ -59,7 +59,7 @@ Quaternion c = Quaternion::Slerp(a, b, 0.25f);
 
 # Homogenous Coordinates
 
-Matrix is 4x4 single-precision floating-point and is normally assumed to be [homogenous coordinates](https://en.wikipedia.org/wiki/Homogeneous_coordinates) as per the standard 3D transformation pipeline.
+Matrix is 4x4 single-precision floating-point and is normally assumed to be [homogenous coordinates](https://en.wikipedia.org/wiki/Homogeneous_coordinates) as per the standard 3D transformation pipeline:
 
 ```
 | _11  _12  _13  _14 |
@@ -68,7 +68,7 @@ Matrix is 4x4 single-precision floating-point and is normally assumed to be [hom
 | _41  _42  _43  _44 |
 ```
 
-The upper-3x3 matrix is used for 3D scaling & rotation transformations:
+The upper-3x3 matrix is used for 3D scaling (_11, _22, _33) & rotation transformations (as well as shearing, mirroring, etc.):
 
 ```
 | _11  _12  _13  ? |
@@ -86,7 +86,7 @@ The last row's first three elements are for translation transformations:
 | _41  _42  _43 ? |
 ```
 
-And the last column is used for projection transformations:
+And the last column is used for projection transformations (i.e. perspective cameras, simple shadows):
 
 ```
 | r   r   r   _14 |
