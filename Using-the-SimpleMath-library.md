@@ -68,7 +68,7 @@ Matrix is 4x4 single-precision floating-point and is normally assumed to be [hom
 | _41  _42  _43  _44 |
 ```
 
-The upper-3x3 matrix is used for 3D scaling (_11, _22, _33) & rotation transformations (as well as shearing, mirroring, etc.):
+The upper-3x3 matrix is used for 3D scaling (_11, _22, _33) & rotation transformations (as well as shearing, reflection/mirroring, or other [affine transformation](https://en.wikipedia.org/wiki/Affine_transformation)):
 
 ```
 | _11  _12  _13  ? |
