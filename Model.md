@@ -31,7 +31,7 @@ auto teapot = Model::CreateFromCMO( device, L"teapot.cmo", *m_fx );
 
 For exception safety, the loaders return a ``std::unique_ptr``.
 
-The [Samples Content Exporter](http://go.microsoft.com/fwlink/?LinkId=226208) will generate ``.SDKMESH`` files from an Autodesk ``.FBX``.
+The [Samples Content Exporter](https://aka.ms/dxsdkcontentexporter) will generate ``.SDKMESH`` files from an Autodesk ``.FBX``.
 
 ```cpp
 m_fx = std::make_unique<EffectFactory>(device);
