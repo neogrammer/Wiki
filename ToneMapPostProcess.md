@@ -45,6 +45,8 @@ The electro-optical transfer function is controlled by calling ``TransferFunctio
 
 * ``SetST2084Parameter`` sets the nits level for paper white when applying the ST.2084 display curve. Reference paper white is 80 nits for a cinema setup, but defaults to 200.0 which is good for typical CRT viewing conditions.
 
+* ``SetColorRotation`` sets the colorspace transformation matrix used for HDR10 output. It defaults to rotating HDTV (Rec.709) color primaries into UHDTV (Rec.2020). There are two overloads of this function: One takes an enum with a few predefined matrices; the other takes a custom matrix.
+
 # Further reading
 
 Reinhard et al. "Photographic Tone Reproduction for Digital Images" [PDF](http://www.cs.utah.edu/~reinhard/cdrom/tonemap.pdf)  
