@@ -2,6 +2,8 @@ These built-in post-processing shaders are designed to perform tone-mapping of H
 
 See also [[PostProcess]]
 
+**Related tutorial:** [[Using HDR rendering]]
+
 # Header
 ```cpp
 #include "PostProcess.h"
