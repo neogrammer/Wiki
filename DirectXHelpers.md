@@ -126,7 +126,7 @@ if ( FAILED(hr) )
 
 SetDebugObjectName( tex.Get(), "MyTexture" );
 
-MapGuard map( context.Get(), tex.Get(), 0, D3D11_MAP_WRITE, 0 );
+MapGuard map( context.Get(), tex.Get(), 0, MAP_WRITE_DISCARD, 0 );
 
 for( size_t j = 0; j < 128; ++j )
 {
