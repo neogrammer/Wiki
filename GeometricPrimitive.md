@@ -111,7 +111,7 @@ shape->Draw( myeffect, inputLayout.Get(), false, false, [=]
 });
 ```
 
-> GeometricPrimitive shapes define a single set of texture coordinates, which works well with [[BasicEffect]],
+> GeometricPrimitive shapes define a single set of texture coordinates, which works well with [[BasicEffect]], [[DebugEffect]],
 [[EnvironmentMapEffect]], [[NormalMapEffect]], or [[PBREffect]]. They don't include two sets of texture coordinates, so you can't use them with [[DualTextureEffect]]. They do not include tangents or bi-normals, so they don't work with [[DGSLEffect]]. They don't include skinning weights and bone indices, so they aren't suited for use with [[SkinnedEffect]].
 
 # Coordinate systems
@@ -177,6 +177,62 @@ customBox = GeometricPrimitive::CreateCustom( deviceContext, vertices, indices )
 ```
 
 > You can also use this 'two-stage' creation of the geometric primitive to compute a bounding volume from ``vertices``, although for many geometric primitives (i.e. sphere, box, etc.) you can directly create the bounding volume from the same parameters
+
+# Instancing
+
+If you create a [[NormalMapEffect]], [[PBREffect]], or [[DebugEffect]] effect that supports GPU instancing, you can use the following input layout in combination with the **DrawInstanced** method:
+
+```cpp
+static const D3D11_INPUT_ELEMENT_DESC s_InputElements[] =
+{
+    // GeometricPrimitive::VertexType
+    { "SV_Position", 0, DXGI_FORMAT_R32G32B32_FLOAT,    0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA,   0 },
+    { "NORMAL",      0, DXGI_FORMAT_R32G32B32_FLOAT,    0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA,   0 },
+    { "TEXCOORD",    0, DXGI_FORMAT_R32G32_FLOAT,       0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA,   0 },
+    // XMFLOAT3X4
+    { "InstMatrix",  0, DXGI_FORMAT_R32G32B32A32_FLOAT, 1, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_INSTANCE_DATA, 1 },
+    { "InstMatrix",  1, DXGI_FORMAT_R32G32B32A32_FLOAT, 1, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_INSTANCE_DATA, 1 },
+    { "InstMatrix",  2, DXGI_FORMAT_R32G32B32A32_FLOAT, 1, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_INSTANCE_DATA, 1 },
+};
+```
+
+You need to create a custom input layout object:
+
+```
+CreateInputLayoutFromEffect(device, effect,
+    s_InputElements, std::size(s_InputElements),
+    &instancedIL);
+```
+
+Create the per-instance vertex buffer:
+
+```cpp
+XMFLOAT3X4 s_instanceTransforms[c_instanceCount] = { ... };
+
+D3D11_BUFFER_DESC desc = {};
+desc.ByteWidth = static_cast<UINT>(c_instanceCount * sizeof(XMFLOAT3X4));
+desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+desc.Usage = D3D11_USAGE_DYNAMIC;
+desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+
+D3D11_SUBRESOURCE_DATA initData = { s_instanceTransforms, 0, 0 };
+
+DX::ThrowIfFailed(
+    device->CreateBuffer(&desc, &initData, &instancedVB)
+);
+```
+
+You must explicitly bind the per-instance data in a second Vertex Buffer before drawing:
+
+```cpp
+UINT stride = sizeof(XMFLOAT3X4);
+UINT offset = 0;
+context->IASetVertexBuffers(1, 1, instancedVB.GetAddressOf(), &stride, &offset);
+
+...
+
+shape->DrawInstanced(effect, instancedIL.Get(), c_instanceCount);
+```
 
 # Custom vertex format
 
