@@ -9,7 +9,7 @@ This is a native Direct3D 11 implementation of the five built-in effects from XN
 DirectX Tool Kit also includes the following built-in effects:
 * [[NormalMapEffect]] which extends ``BasicEffect`` to support normal maps and optional specular map.
 * [[PBREffect]] which implements a Disney-style (Roughness/Metalness workflow) Physically-Based Renderer effect using image-based lighting.
-* [[DebugEffect]] which implements debugging shaders such as visualization of normals, tangents, and bi-tangents.
+* [[DebugEffect]] which implements debugging shaders such as visualization of normals, tangents, and bi-tangents as well as supporting hemispherical ambient lighting.
 * [[DGSLEffect]] which supports the [Visual Studio Shader Designer](https://docs.microsoft.com/en-us/visualstudio/designers/shader-designer) (DGSL) content pipeline both with and without skinned animation with up to 8 textures.
 
 See also [[EffectFactory]]
@@ -99,6 +99,7 @@ For the built-in effects, the trigger for needing to create a new layout would b
 * Enabling or disabling lighting (which requires a vertex normal)
 * Enabling or disabling per vertex color (which requires a vertex color value)
 * Enabling or disabling textures (which requires vertex texture coordinates)
+* Enabling or disabling GPU instancing
 * Changing effect class (BasicEffect <-> SkinnedEffect or DGSLEffect)
 
 # Interfaces
@@ -116,6 +117,24 @@ The built-in effects support a number of different settings, some of which are o
 # Coordinate systems
 
 The built-in effects work equally well for both right-handed and left-handed coordinate systems. The one difference is that the fog settings start & end for left-handed coordinate systems need to be negated (i.e. ``SetFogStart(6)``, ``SetFogEnd(8)`` for right-handed coordinates becomes ``SetFogStart(-6)``, ``SetFogEnd(-8)`` for left-handed coordinates).
+
+# Instancing
+
+[[NormalMapEffect]], [[PBREffect]], and [[DebugEffect]] optionally support GPU instancing. When enabled, the vertex input layout must include a ``XMFLOAT3X4`` (i.e. a column-major transform matrix which supports affine transformations like translation, rotation, and scaling). Typically, these values are pulled from a second Vertex Buffer with GPU instancing enabled--although the effect shaders do not actually care where the additional vertex data comes from so it can be used in other creative ways as well.
+
+For example, this is an input layout for two Vertex Buffer streams: Slot 0 with ``VertexPositionNormalTexture`` data provided per-vertex, and Slot 1 with ``XMFLOAT3X4`` data provided 'per-instance':
+
+```cpp
+static const D3D11_INPUT_ELEMENT_DESC s_InputElements[] =
+{
+    { "SV_Position", 0, DXGI_FORMAT_R32G32B32_FLOAT,    0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA,   0 },
+    { "NORMAL",      0, DXGI_FORMAT_R32G32B32_FLOAT,    0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA,   0 },
+    { "TEXCOORD",    0, DXGI_FORMAT_R32G32_FLOAT,       0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA,   0 },
+    { "InstMatrix",  0, DXGI_FORMAT_R32G32B32A32_FLOAT, 1, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_INSTANCE_DATA, 1 },
+    { "InstMatrix",  1, DXGI_FORMAT_R32G32B32A32_FLOAT, 1, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_INSTANCE_DATA, 1 },
+    { "InstMatrix",  2, DXGI_FORMAT_R32G32B32A32_FLOAT, 1, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_INSTANCE_DATA, 1 },
+};
+```
 
 # Feature Level Notes
 Most built-in shaders are compiled using the ``vs_4_0_level_9_1`` and ``ps_4_0_level_9_1`` profiles to support all feature levels.
