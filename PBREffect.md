@@ -1,4 +1,4 @@
-This effect implements a Disney-style (Roughness/Metalness workflow) Physically-Based Renderer ([PBR](https://en.wikipedia.org/wiki/Physically_based_rendering)) effect using Image-Based Lighting ([IBL](https://en.wikipedia.org/wiki/Image-based_lighting)) in combination with up to three directional lights.
+This effect implements a Disney-style (Roughness/Metalness workflow) Physically-Based Renderer ([PBR](https://en.wikipedia.org/wiki/Physically_based_rendering)) effect using Image-Based Lighting ([IBL](https://en.wikipedia.org/wiki/Image-based_lighting)) in combination with up to three directional lights. This effect also supports GPU instancing.
 
 See also [[Effects]], [[PBREffectFactory|EffectFactory]]
 
@@ -26,6 +26,14 @@ Fog settings are not supported by this effect.
 
 # Input layout
 This effect requires ``SV_Position``, ``NORMAL``, and ``TEXCOORD0``. It does not support per-vertex color.
+
+If instancing is enabled, this effect also requires these vertex elements:
+
+```
+"InstMatrix",  0, DXGI_FORMAT_R32G32B32A32_FLOAT
+"InstMatrix",  1, DXGI_FORMAT_R32G32B32A32_FLOAT
+"InstMatrix",  2, DXGI_FORMAT_R32G32B32A32_FLOAT
+```
 
 # Properties
 
