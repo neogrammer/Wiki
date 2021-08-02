@@ -61,7 +61,11 @@ If instancing is enabled, this effect also requires these vertex elements:
 
 * **SetBiasedVertexNormals**: Enables support for compressed vertex normals which require ``*2 - 1`` biasing at runtime such as ``DXGI_FORMAT_R10G10B10A2_UNORM``.
 
+* **SetInstancingEnabled**: Enables support for per-vertex instancing by adding a per-vertex ``XMFLOAT3X4`` transform matrix.
+
 * **SetVelocityGeneration**: Enables the generation of a velocity buffer. If set to true, then both a Render Target 0 and Render Target 1 must be bound for rendering.
+
+> This effect does *not* support both instancing and velocity generation at the same time.
 
 * **SetRenderTargetSizeInPixels**: Used to set the pixel size of the render target when generating velocity buffers.
 
