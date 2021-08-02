@@ -1,4 +1,4 @@
-This effect provides a way to visualize normals, tangents, and binormals/bitangents for debugging purposes.
+This effect provides a way to visualize normals, tangents, and binormals/bitangents for debugging purposes. This effect also supports GPU instancing.
 
 See also [[Effects]]
 
@@ -23,6 +23,14 @@ PBREffect supports [[IEffect]] and [[IEffectMatrices]].
 
 # Input layout
 This effect requires ``SV_Position``, ``NORMAL``, and ``TEXCOORD0``. If per-vertex colors are enabled, it also requires ``COLOR``.
+
+If instancing is enabled, this effect also requires these vertex elements:
+
+```
+"InstMatrix",  0, DXGI_FORMAT_R32G32B32A32_FLOAT
+"InstMatrix",  1, DXGI_FORMAT_R32G32B32A32_FLOAT
+"InstMatrix",  2, DXGI_FORMAT_R32G32B32A32_FLOAT
+```
 
 # Properties
 
@@ -50,6 +58,8 @@ This effect requires ``SV_Position``, ``NORMAL``, and ``TEXCOORD0``. If per-vert
 * **SetVertexColorEnabled**: Enables per-vertex color. Defaults to false. Modifying this setting requires recreating associated input layouts, and enabling it requires ``COLOR``.
 
 * **SetBiasedVertexNormals**: Enables support for compressed vertex normals which require ``*2 - 1`` biasing at runtime such as ``DXGI_FORMAT_R10G10B10A2_UNORM``.
+
+* **SetInstancingEnabled**: Enables support for per-vertex instancing by adding a per-vertex ``XMFLOAT3X4`` transform matrix.
 
 # Feature Level Notes
 
