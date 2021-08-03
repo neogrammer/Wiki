@@ -88,7 +88,7 @@ In **Game.cpp**, add to the TODO of **Update**:
 float time = float(timer.GetTotalSeconds());
 
 m_world = Matrix::CreateRotationZ(cosf(time) * 2.f);
-``
+```
 
 Build and run to see the teapot rendered with a fancy material.
 
