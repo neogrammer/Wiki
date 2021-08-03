@@ -129,7 +129,7 @@ m_deviceResources = std::make_unique<DX::DeviceResources>(DXGI_FORMAT_B8G8R8A8_U
 
 The ``minFeatureLevel`` defaults to 10 for PC and 9.3 for UWP. See [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/direct3d11/overviews-direct3d-11-devices-downlevel-intro) for the definitions of Direct3D hardware feature levels. You can specify a higher hardware level if you want to take a hard dependency on additional capabilities.
 
-If you want to make use of [[DebugEffect], [[DGSLEffect]], [[NormalMapEffect]], [[PBREffect]], [[PostProcess]], or dual-parabolic environment maps then you need ``D3D_FEATURE_LEVEL_10_0`` or higher:
+If you want to make use of [[DebugEffect]], [[DGSLEffect]], [[NormalMapEffect]], [[PBREffect]], [[PostProcess]], or dual-parabolic environment maps then you need ``D3D_FEATURE_LEVEL_10_0`` or higher:
 
 ```cpp
 m_deviceResources = std::make_unique<DX::DeviceResources>(DXGI_FORMAT_B8G8R8A8_UNORM,
