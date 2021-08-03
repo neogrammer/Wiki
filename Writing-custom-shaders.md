@@ -486,6 +486,35 @@ Build and run to see a different set of bloom settings in action:
 
 Change the value in **Game.cpp** for ``g_Bloom`` to "None" to render our original scene without bloom.
 
+## CMake
+For this tutorial, we make use of the built-in Visual Studio HLSL build rules which handles building our shaders automatically. If you are using CMake instead, then you need to build the shaders using custom targets.
+
+```
+set(SDKVersion 10.0.19041.0)
+set(FXCToolPath ${WindowsSdkDir}/bin/${SDKVersion}/x64)
+if(NOT EXISTS ${FXCToolPath}/fxc.exe)
+    message(FATAL_ERROR "ERROR: Cannot locate fxc.exe in Windows 10 SDK (${SDKVersion})")
+endif()
+
+# Build HLSL shaders
+add_custom_target(shaders)
+
+set_source_files_properties(BloomCombine.hlsl PROPERTIES ShaderType "ps")
+set_source_files_properties(BloomExtract.hlsl PROPERTIES ShaderType "ps")
+set_source_files_properties(GaussianBlur.hlsl PROPERTIES ShaderType "ps")
+
+foreach(FILE BloomCombine.hlsl BloomExtract.hlsl GaussianBlur.hlsl)
+  get_filename_component(FILE_WE ${FILE} NAME_WE)
+  get_source_file_property(shadertype ${FILE} ShaderType)
+  add_custom_command(TARGET shaders
+                     COMMAND ${FXCToolPath}/fxc.exe /nologo /Emain /T${shadertype}_4_0 $<$<CONFIG:DEBUG>:/Od> /Zi /Fo ${CMAKE_BINARY_DIR}/${FILE_WE}.cso /Fd ${CMAKE_BINARY_DIR}/${FILE_WE}.pdb ${FILE}
+                     MAIN_DEPENDENCY ${FILE}
+                     COMMENT "HLSL ${FILE}"
+                     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+                     VERBATIM)
+endforeach(FILE)
+```
+
 ## Technical notes
 First the original scene is rendered to a hidden render target ``m_sceneTex`` as normal. The only change here was for ``Clear`` to use ``m_sceneRT`` rather than ``m_renderTargetView`` which is our backbuffer render target view.
 
