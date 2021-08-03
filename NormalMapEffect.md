@@ -2,6 +2,8 @@ This effect extends [[BasicEffect]] to support normal-mapping and an optional sp
 
 See also [[Effects]]
 
+**Related tutorials:** [[Using advanced shaders]]
+
 # Header
 ```cpp
 #include <Effects.h>
