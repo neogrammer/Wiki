@@ -104,7 +104,7 @@ Build and run to see the effect of animating the Fresnel factor.
 
 ![Screenshot of teapot](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTeapot2.PNG)
 
-# Normal Map Effect
+# Normal mapping
 
 [[NormalMapEffect]] is similar to the [[BasicEffect]] with the addition of a [normal texture map](https://en.wikipedia.org/wiki/Normal_mapping) and an optional [specular texture map](https://en.wikipedia.org/wiki/Specularity).
 
@@ -151,6 +151,34 @@ m_normalTexture.Reset();
 Build and run to see the normal mapped effect rendering a bumpy teapot:
 
 ![Screenshot of teapot](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTeapot3.PNG)
+
+# Hemisphere lighting
+
+[[DebugEffect]] is intended primarily to visualize normals/tangents, but it also supports hemispherical ambient lighting. This basic form of lighting is useful for seeing 3D shapes, as well as providing a gradient color for skydomes, etc.
+
+> Note that ``DebugEffect`` requires Direct3D hardware feature level 10.0 or higher. It won't run on 9.x feature levels.
+
+Once again, we start with the project from the previous excercises.
+
+In the **Game.h** file, change the definition of **m_effect**:
+
+```cpp
+std::unique_ptr<DirectX::DebugEffect> m_effect;
+```
+
+In **Game.cpp**, change the creation of the effect:
+
+```cpp
+m_effect = std::make_unique<DebugEffect>(m_d3dDevice.Get());
+
+m_effect->SetHemisphericalAmbientColor(Colors::DarkBlue, Colors::Purple);
+```
+
+You'll also need to comment out the calls to* **EnableDefaultLighting**, **SetTexture**, **SetNormalTexture**, **SetEnvironmentMap** and **SetFresnelFactor**.
+
+Build and run to see the debug effect rendering a blue/purple gradient teapot:
+
+![Screenshot of teapot](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTeapot4.PNG)
 
 # More to explore
 
