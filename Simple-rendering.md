@@ -368,7 +368,7 @@ Build and run, and you'll see the 2D triangle drawn with dynamic lighting effect
 texconv rocks_NM_height.dds -nmap l -nmapamp 4
 ```
 
-* Note this last part of the lesson requires Direct3D [hardware feature level](https://walbourn.github.io/direct3d-feature-levels/) 10.0 or better hardware. This is because [[NormalMapEffect]] along with [[DebugEffect]] and [[PBREffect]] make use of Shader Model 4.0.
+* Note this last part of the lesson requires Direct3D [hardware feature level](https://walbourn.github.io/direct3d-feature-levels/) 10.0 or better hardware. This is because [[NormalMapEffect]] along with [[DebugEffect]], [[PBREffect]], and [[PostProcess]] all make use of Shader Model 4.0.
 
 **Next lesson:** [[Line drawing and anti-aliasing]]
 
