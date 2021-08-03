@@ -174,7 +174,7 @@ m_effect = std::make_unique<DebugEffect>(m_d3dDevice.Get());
 m_effect->SetHemisphericalAmbientColor(Colors::DarkBlue, Colors::Purple);
 ```
 
-You'll also need to comment out the calls to* **EnableDefaultLighting**, **SetTexture**, **SetNormalTexture**, **SetEnvironmentMap** and **SetFresnelFactor**.
+You'll also need to comment out the calls to **EnableDefaultLighting**, **SetTexture**, **SetNormalTexture**, **SetEnvironmentMap** and **SetFresnelFactor**.
 
 Build and run to see the debug effect rendering a blue/purple gradient teapot:
 
