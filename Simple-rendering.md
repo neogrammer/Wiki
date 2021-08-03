@@ -293,6 +293,8 @@ Also change the type of effect. Since we are using a flat 2D triangle, the light
 std::unique_ptr<DirectX::NormalMapEffect> m_effect;
 ```
 
+> Note that ``NormalMapEffect`` requires Direct3D hardware feature level 10.0 or higher. It won't run on 9.x feature levels.
+
 Then in **Game.cpp** modify **CreateDevice**:
 
 ```cpp
@@ -366,7 +368,7 @@ Build and run, and you'll see the 2D triangle drawn with dynamic lighting effect
 texconv rocks_NM_height.dds -nmap l -nmapamp 4
 ```
 
-* Note this last part of the lesson requires Direct3D [hardware feature level](https://walbourn.github.io/direct3d-feature-levels/) 10.0 or better hardware.
+* Note this last part of the lesson requires Direct3D [hardware feature level](https://walbourn.github.io/direct3d-feature-levels/) 10.0 or better hardware. This is because [[NormalMapEffect]] along with [[DebugEffect]] and [[PBREffect]] make use of Shader Model 4.0.
 
 **Next lesson:** [[Line drawing and anti-aliasing]]
 
