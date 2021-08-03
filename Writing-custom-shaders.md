@@ -497,6 +497,7 @@ if(NOT EXISTS ${FXCToolPath}/fxc.exe)
 endif()
 
 # Build HLSL shaders
+# Build HLSL shaders
 add_custom_target(shaders)
 
 set_source_files_properties(BloomCombine.hlsl PROPERTIES ShaderType "ps")
@@ -507,12 +508,14 @@ foreach(FILE BloomCombine.hlsl BloomExtract.hlsl GaussianBlur.hlsl)
   get_filename_component(FILE_WE ${FILE} NAME_WE)
   get_source_file_property(shadertype ${FILE} ShaderType)
   add_custom_command(TARGET shaders
-                     COMMAND ${FXCToolPath}/fxc.exe /nologo /Emain /T${shadertype}_4_0 $<$<CONFIG:DEBUG>:/Od> /Zi /Fo ${CMAKE_BINARY_DIR}/${FILE_WE}.cso /Fd ${CMAKE_BINARY_DIR}/${FILE_WE}.pdb ${FILE}
+                     COMMAND fxc.exe /nologo /Emain /T${shadertype}_4_0 $<$<CONFIG:DEBUG>:/Od> /Zi /Fo ${CMAKE_BINARY_DIR}/${FILE_WE}.cso /Fd ${CMAKE_BINARY_DIR}/${FILE_WE}.pdb ${FILE}
                      MAIN_DEPENDENCY ${FILE}
                      COMMENT "HLSL ${FILE}"
                      WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
                      VERBATIM)
 endforeach(FILE)
+
+add_dependencies(${PROJECT_NAME} shaders)
 ```
 
 ## Technical notes
