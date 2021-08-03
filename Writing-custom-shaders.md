@@ -268,7 +268,7 @@ DX::ThrowIfFailed(m_d3dDevice->CreatePixelShader( blob.data(), blob.size(),
 In **Game.cpp**, add to the TODO of **CreateResources**:
 
 ```cpp
-VS_BLUR_PARAMETERS blurData;
+VS_BLUR_PARAMETERS blurData = {};
 blurData.SetBlurEffectParameters(1.f / (backBufferWidth / 2), 0,
     g_BloomPresets[g_Bloom]);
 m_d3dContext->UpdateSubresource(m_blurParamsWidth.Get(), 0, nullptr,
@@ -493,15 +493,17 @@ For this tutorial, we make use of the built-in Visual Studio HLSL build rules wh
 # Build HLSL shaders
 add_custom_target(shaders)
 
-set_source_files_properties(BloomCombine.hlsl PROPERTIES ShaderType "ps")
-set_source_files_properties(BloomExtract.hlsl PROPERTIES ShaderType "ps")
-set_source_files_properties(GaussianBlur.hlsl PROPERTIES ShaderType "ps")
+set(HLSL_SHADER_FILES BloomCombine.hlsl BloomExtract.hlsl GaussianBlur.hlsl)
 
-foreach(FILE BloomCombine.hlsl BloomExtract.hlsl GaussianBlur.hlsl)
+set_source_files_properties(${HLSL_SHADER_FILES} PROPERTIES ShaderType "ps")
+set_source_files_properties(${HLSL_SHADER_FILES} PROPERTIES ShaderModel "4_0_level_9_1")
+
+foreach(FILE ${HLSL_SHADER_FILES})
   get_filename_component(FILE_WE ${FILE} NAME_WE)
   get_source_file_property(shadertype ${FILE} ShaderType)
+  get_source_file_property(shadermodel ${FILE} ShaderModel)
   add_custom_command(TARGET shaders
-                     COMMAND fxc.exe /nologo /Emain /T${shadertype}_4_0 $<$<CONFIG:DEBUG>:/Od> /Zi /Fo ${CMAKE_BINARY_DIR}/${FILE_WE}.cso /Fd ${CMAKE_BINARY_DIR}/${FILE_WE}.pdb ${FILE}
+                     COMMAND fxc.exe /nologo /Emain /T${shadertype}_${shadermodel} $<$<CONFIG:DEBUG>:/Od> /Zi /Fo ${CMAKE_BINARY_DIR}/${FILE_WE}.cso /Fd ${CMAKE_BINARY_DIR}/${FILE_WE}.pdb ${FILE}
                      MAIN_DEPENDENCY ${FILE}
                      COMMENT "HLSL ${FILE}"
                      WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
