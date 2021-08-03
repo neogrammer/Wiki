@@ -487,16 +487,9 @@ Build and run to see a different set of bloom settings in action:
 Change the value in **Game.cpp** for ``g_Bloom`` to "None" to render our original scene without bloom.
 
 ## CMake
-For this tutorial, we make use of the built-in Visual Studio HLSL build rules which handles building our shaders automatically. If you are using CMake instead, then you need to build the shaders using custom targets.
+For this tutorial, we make use of the built-in Visual Studio HLSL build rules which handles building our shaders automatically. If you are using CMake instead, then you need to build the shaders using a custom target.
 
 ```
-set(SDKVersion 10.0.19041.0)
-set(FXCToolPath ${WindowsSdkDir}/bin/${SDKVersion}/x64)
-if(NOT EXISTS ${FXCToolPath}/fxc.exe)
-    message(FATAL_ERROR "ERROR: Cannot locate fxc.exe in Windows 10 SDK (${SDKVersion})")
-endif()
-
-# Build HLSL shaders
 # Build HLSL shaders
 add_custom_target(shaders)
 
