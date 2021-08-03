@@ -90,7 +90,7 @@ float time = float(timer.GetTotalSeconds());
 m_world = Matrix::CreateRotationZ(cosf(time) * 2.f);
 ```
 
-Build and run to see the teapot rendered with a 'glossy' looking teapot:
+Build and run to see the teapot rendered with a 'glossy' material:
 
 ![Screenshot of teapot](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTeapot.PNG)
 
