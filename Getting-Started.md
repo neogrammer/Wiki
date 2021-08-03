@@ -54,14 +54,14 @@ We will be using a Win32 desktop application project template in order to suppor
 > There is no need to install the legacy DirectX SDK to use DirectX Tool Kit. The DirectX SDK is deprecated and you should not use it per [Microsoft Docs](https://docs.microsoft.com/en-us/windows/desktop/directx-sdk--august-2009-). See [this blog post](http://aka.ms/dxsdk), [The Zombie DirectX SDK](https://walbourn.github.io/the-zombie-directx-sdk/), [DirectX SDK Samples Catalog](https://walbourn.github.io/directx-sdk-samples-catalog/), and [DirectX SDK Tools Catalog](https://walbourn.github.io/directx-sdk-tools-catalog/).
 
 ## Visual Studio 2017 / 2019
-When using the [new lightweight installer](https://devblogs.microsoft.com/cppblog/the-lightweight-visual-studio-15-installer/) be sure to select the appropriate workloads. Here are the recommended options to select:
+When using the [new lightweight installer](https://devblogs.microsoft.com/cppblog/the-lightweight-visual-studio-15-installer/) be sure to select the appropriate workloads:
 
-* Workload: _Game development with C++_
-* Workload: _Desktop development with C++_
+* Workload: _Game development with C++_ or _Desktop development with C++_
+
+For UWP apps, include:
+
 * Workload: _Universal Windows Platform development_
 * Optional component: _C++ Universal Windows Platform tools_
-
-> Note that Xbox One XDK developers also need to include the optional component _Windows 8.1 SDK and UCRT SDK_
 
 # Samples
 
