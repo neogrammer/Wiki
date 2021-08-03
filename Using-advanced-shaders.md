@@ -90,7 +90,7 @@ float time = float(timer.GetTotalSeconds());
 m_world = Matrix::CreateRotationZ(cosf(time) * 2.f);
 ```
 
-Build and run to see the teapot rendered with a fancy material.
+Build and run to see the teapot rendered with a 'glossy' looking teapot:
 
 ![Screenshot of teapot](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTeapot.PNG)
 
@@ -110,7 +110,7 @@ Build and run to see the effect of animating the Fresnel factor.
 
 > Note that ``NormalMapEffect`` requires Direct3D hardware feature level 10.0 or higher. It won't run on 9.x feature levels.
 
-Saving [normalMap.dds](https://github.com/Microsoft/DirectXTK/wiki/media/normalMap.dds) into your project's directory, and then from the top menu select **Project / Add Existing Item....** Select "normalMap.dds" and click "OK".
+Starting with the project from the exercise above, download [normalMap.dds](https://github.com/Microsoft/DirectXTK/wiki/media/normalMap.dds) into your project's directory, and then from the top menu select **Project / Add Existing Item....** Select "normalMap.dds" and click "OK".
 
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 
@@ -148,7 +148,7 @@ In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 m_normalTexture.Reset();
 ```
 
-Build and run to see the normal mapped effect running.
+Build and run to see the normal mapped effect rendering a bumpy teapot:
 
 ![Screenshot of teapot](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTeapot3.PNG)
 
