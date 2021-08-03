@@ -2,6 +2,8 @@ This effect provides a way to visualize normals, tangents, and binormals/bitange
 
 See also [[Effects]]
 
+**Related tutorials:** [[Using advanced shaders]]
+
 # Header
 ```cpp
 #include <Effects.h>
