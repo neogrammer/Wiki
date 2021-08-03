@@ -158,7 +158,7 @@ Build and run to see the normal mapped effect rendering a bumpy teapot:
 
 > Note that ``DebugEffect`` requires Direct3D hardware feature level 10.0 or higher. It won't run on 9.x feature levels.
 
-Once again, we start with the project from the previous excercises.
+Once again, we start with the project from the previous exercises.
 
 In the **Game.h** file, change the definition of **m_effect**:
 
