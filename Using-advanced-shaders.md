@@ -104,11 +104,57 @@ Build and run to see the effect of animating the Fresnel factor.
 
 ![Screenshot of teapot](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTeapot2.PNG)
 
+# Normal Map Effect
+
+[[NormalMapEffect]] is similar to the [[BasicEffect]] with the addition of a [normal texture map](https://en.wikipedia.org/wiki/Normal_mapping) and an optional [specular texture map](https://en.wikipedia.org/wiki/Specularity).
+
+> Note that ``NormalMapEffect`` requires Direct3D hardware feature level 10.0 or higher. It won't run on 9.x feature levels.
+
+Saving [normalMap.dds](https://github.com/Microsoft/DirectXTK/wiki/media/normalMap.dds) into your project's directory, and then from the top menu select **Project / Add Existing Item....** Select "normalMap.dds" and click "OK".
+
+In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
+
+```cpp
+Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_normalTexture;
+```
+
+Also change the definition of **m_effect**:
+
+```cpp
+std::unique_ptr<DirectX::NormalMapEffect> m_effect;
+```
+
+In **Game.cpp**, add to the TODO of **CreateDevice**:
+
+```cpp
+DX::ThrowIfFailed(
+    CreateDDSTextureFromFile(m_d3dDevice.Get(), L"normalMap.dds", nullptr,
+        m_normalTexture.ReleaseAndGetAddressOf()));
+
+m_effect->SetNormalTexture(m_normalTexture.Get());
+```
+
+And change the creation of the effect:
+
+```cpp
+m_effect = std::make_unique<NormalMapEffect>(m_d3dDevice.Get());
+```
+
+You'll also need to comment out the calls to **SetEnvironmentMap** and **SetFresnelFactor**.
+
+In **Game.cpp**, add to the TODO of **OnDeviceLost**:
+
+```cpp
+m_normalTexture.Reset();
+```
+
+Build and run to see the normal mapped effect running.
+
+![Screenshot of teapot](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTeapot3.PNG)
+
 # More to explore
 
 * The [[EnvironmentMapEffect]] also supports spherical environment maps (a [DirectX 9](https://docs.microsoft.com/en-us/windows/win32/direct3d9/spherical-environment-mapping) feature) and dual-parabolic environment maps.
-
-* The [[NormalMapEffect]] is similar to the [[BasicEffect]] with the addition of a [normal texture map](https://en.wikipedia.org/wiki/Normal_mapping) and an optional [specular texture map](https://en.wikipedia.org/wiki/Specularity).
 
 * [[PBREffect]] is a Disney-style [Physically-Based Rendering](https://en.wikipedia.org/wiki/Physically_based_rendering) effect which uses albedo maps, normal map, and roughness/metalness/ambient-occlusion map along with two cubemaps for Image-Based Lighting.
 
