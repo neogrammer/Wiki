@@ -97,11 +97,11 @@ In the **Game.h** file, add the following variables to the bottom of the Game cl
 
 ```cpp
 std::unique_ptr<DirectX::GeometricPrimitive> m_room;
-Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_roomTex;
 DirectX::SimpleMath::Matrix m_proj;
 DirectX::SimpleMath::Vector3 m_cameraPos;
 float m_pitch;
 float m_yaw;
+DirectX::SimpleMath::Color m_roomColor;
 ```
 
 At the top of **Game.cpp** after the ``using`` statements, add:
@@ -122,11 +122,30 @@ In **Game.cpp** file, modify the **Game** constructor to initialize our variable
 Game::Game() noexcept(false) :
     m_pitch(0),
     m_yaw(0),
-    m_cameraPos(START_POSITION)
+    m_cameraPos(START_POSITION),
+    m_roomColor(Colors::White)
 {
     m_deviceResources = std::make_unique<DX::DeviceResources>();
     m_deviceResources->RegisterDeviceNotify(this);
 }
+```
+
+In **Game.cpp**, add to the TODO of **CreateWindowSizeDependentResources**:
+
+```cpp
+auto size = m_deviceResources->GetOutputSize();
+m_proj = Matrix::CreatePerspectiveFieldOfView(XMConvertToRadians(70.f),
+    float(size.right) / float(size.bottom), 0.01f, 100.f);
+```
+
+Continue below depending on which version of *DirectX Tool Kit* you are using.
+
+## DirectX 11
+
+In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
+
+```cpp
+Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_roomTex;
 ```
 
 In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
@@ -142,14 +161,6 @@ DX::ThrowIfFailed(
         nullptr, m_roomTex.ReleaseAndGetAddressOf()));
 ```
 
-In **Game.cpp**, add to the TODO of **CreateWindowSizeDependentResources**:
-
-```cpp
-auto size = m_deviceResources->GetOutputSize();
-m_proj = Matrix::CreatePerspectiveFieldOfView(XMConvertToRadians(70.f),
-    float(size.right) / float(size.bottom), 0.01f, 100.f);
-```
-
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
 ```cpp
@@ -162,15 +173,113 @@ In **Game.cpp**, add to the TODO of **Render**:
 ```cpp
 float y = sinf(m_pitch);
 float r = cosf(m_pitch);
-float z = r*cosf(m_yaw);
-float x = r*sinf(m_yaw);
+float z = r * cosf(m_yaw);
+float x = r * sinf(m_yaw);
 
 XMVECTOR lookAt = m_cameraPos + Vector3(x, y, z);
 
 XMMATRIX view = XMMatrixLookAtRH(m_cameraPos, lookAt, Vector3::Up);
 
-m_room->Draw(Matrix::Identity, view, m_proj, Colors::White, m_roomTex.Get());
+m_room->Draw(Matrix::Identity, view, m_proj,
+    m_roomColor, m_roomTex.Get());
 ```
+
+## DirectX 12
+
+> This assumes you've already added *DirectX Tool Kit for 12* support including ``GraphicsMemory`` to your project.
+
+In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
+
+```cpp
+Microsoft::WRL::ComPtr<ID3D12Resource> m_roomTex;
+std::unique_ptr<DirectX::DescriptorHeap> m_resourceDescriptors;
+std::unique_ptr<DirectX::CommonStates> m_states;
+std::unique_ptr<DirectX::BasicEffect> m_roomEffect;
+```
+
+In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
+
+```cpp
+m_resourceDescriptors = std::make_unique<DescriptorHeap>(device, 1);
+
+m_states = std::make_unique<CommonStates>(device);
+
+m_room = GeometricPrimitive::CreateBox(
+    XMFLOAT3(ROOM_BOUNDS[0], ROOM_BOUNDS[1], ROOM_BOUNDS[2]),
+    false, true);
+
+RenderTargetState rtState(m_deviceResources->GetBackBufferFormat(),
+    m_deviceResources->GetDepthBufferFormat());
+
+{
+    EffectPipelineStateDescription pd(
+        &GeometricPrimitive::VertexType::InputLayout,
+        CommonStates::Opaque,
+        CommonStates::DepthDefault,
+        CommonStates::CullNone,
+        rtState);
+
+    m_roomEffect = std::make_unique<BasicEffect>(device,
+        EffectFlags::Lighting | EffectFlags::Texture, pd);
+    m_roomEffect->EnableDefaultLighting();
+}
+
+ResourceUploadBatch resourceUpload(device);
+
+resourceUpload.Begin();
+
+DX::ThrowIfFailed(CreateDDSTextureFromFile(device, resourceUpload,
+    L"roomtexture.dds",
+    m_roomTex.ReleaseAndGetAddressOf()));
+
+CreateShaderResourceView(device, m_roomTex.Get(),
+    m_resourceDescriptors->GetFirstCpuHandle());
+
+m_roomEffect->SetTexture(m_resourceDescriptors->GetFirstGpuHandle(),
+    m_states->LinearClamp());
+
+auto uploadResourcesFinished = resourceUpload.End(
+    m_deviceResources->GetCommandQueue());
+uploadResourcesFinished.wait();
+
+m_deviceResources->WaitForGpu();
+```
+
+In **Game.cpp**, add to the TODO of **OnDeviceLost**:
+
+```cpp
+m_room.reset();
+m_roomTex.Reset();
+m_resourceDescriptors.reset();
+m_states.reset();
+m_roomEffect.reset();
+```
+
+In **Game.cpp**, add to the TODO of **Render**:
+
+```cpp
+float y = sinf(m_pitch);
+float r = cosf(m_pitch);
+float z = r * cosf(m_yaw);
+float x = r * sinf(m_yaw);
+
+XMVECTOR lookAt = m_cameraPos + Vector3(x, y, z);
+
+XMMATRIX view = XMMatrixLookAtRH(m_cameraPos, lookAt, Vector3::Up);
+
+ID3D12DescriptorHeap* heaps[] = {
+    m_resourceDescriptors->Heap(), m_states->Heap()
+};
+commandList->SetDescriptorHeaps(static_cast<UINT>(std::size(heaps)),
+    heaps);
+
+m_roomEffect->SetMatrices(Matrix::Identity, view, m_proj);
+m_roomEffect->SetDiffuseColor(m_roomColor);
+m_roomEffect->Apply(commandList);
+m_room->Draw(commandList);
+```
+
+## Build and run
 
 Build and run, and you should get the following screen:
 
@@ -266,7 +375,8 @@ if (mouse.positionMode == Mouse::MODE_RELATIVE)
     }      
 }
 
-m_mouse->SetMode(mouse.leftButton ? Mouse::MODE_RELATIVE : Mouse::MODE_ABSOLUTE);
+m_mouse->SetMode(mouse.leftButton
+    ? Mouse::MODE_RELATIVE : Mouse::MODE_ABSOLUTE);
 ```
 
 Build and run. Now in addition to keyboard controls, you can press & hold the left mouse button to rotate the view.
@@ -289,28 +399,6 @@ In the **Game.h** file, add the following variables  to the bottom of the Game c
 ```cpp
 DirectX::Keyboard::KeyboardStateTracker m_keys;
 DirectX::Mouse::ButtonStateTracker m_mouseButtons;
-
-DirectX::SimpleMath::Color m_roomColor;
-```
-
-In **Game.cpp**, add to the ``Game`` constructor:
-
-```cpp
-Game::Game() noexcept(false) :
-    m_pitch(0),
-    m_yaw(0),
-    m_cameraPos(START_POSITION),
-    m_roomColor(Colors::White)
-{
-    m_deviceResources = std::make_unique<DX::DeviceResources>();
-    m_deviceResources->RegisterDeviceNotify(this);
-}
-```
-
-In **Game.cpp**, modify the TODO of **Render**:
-
-```cpp
-m_room->Draw(Matrix::Identity, view, m_proj, m_roomColor, m_roomTex.Get());
 ```
 
 In **Game.cpp**, add to the TODO of **OnResuming** and **OnActivated**:
