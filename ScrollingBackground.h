@@ -97,12 +97,18 @@ public:
 
         XMVECTOR textureSize = XMLoadFloat2(&mTextureSize);
 
-        batch->Draw(mTexture.Get(), screenPos - textureSize, nullptr,
+        screenPos -= textureSize;
+
+        batch->Draw(mTexture.Get(), screenPos, nullptr,
             Colors::White, 0.f, origin, g_XMOne, SpriteEffects_None, 0.f);
 
-        if (mTextureHeight < mScreenHeight)
+        int pixels = static_cast<int>(XMVectorGetY(screenPos)) + mTextureHeight;
+        while (pixels < mScreenHeight)
         {
-            batch->Draw(mTexture.Get(), screenPos + textureSize, nullptr,
+            screenPos += textureSize;
+            pixels += mTextureHeight;
+
+            batch->Draw(mTexture.Get(), screenPos, nullptr,
                 Colors::White, 0.f, origin, g_XMOne, SpriteEffects_None, 0.f);
         }
     }
