@@ -45,7 +45,7 @@ private:
 };
 ```
 
-[MSAAHelper.cpp](https://gith.com/Mubicrosoft/DirectXTK/wiki/MSAAHelper.cpp)
+[MSAAHelper.cpp](https://github.com/Microsoft/DirectXTK/wiki/MSAAHelper.cpp)
 
 ```cpp
 #include "MSAAHelper.h"
@@ -239,4 +239,74 @@ void MSAAHelper::SetWindow(const RECT& output)
 
     SizeResources(width, height);
 }
+```
+
+# Example
+
+In your **Game.h** header file, add:
+
+```cpp
+#include "MSAAHelper.h"
+```
+
+And then add a variable declaration to the private section of your **Game** class:
+
+```cpp
+std::unique_ptr<DX::MSAAHelper> m_msaaHelper;
+```
+
+For MSAA rendering, you typically use a MSAA depth/stencil buffer. Therefore, you should create the [[DeviceResources]] instance without a depth buffer (which is non-MSAA) by passing ``DXGI_FORMAT_UNKNOWN`` for the depth-buffer format. In the **Game** constructor:
+
+```cpp
+    // Depth-buffer managed by MSAAHelper.
+    m_deviceResources = std::make_unique<DX::DeviceResources>(
+        DXGI_FORMAT_B8G8R8A8_UNORM,
+        DXGI_FORMAT_UNKNOWN);
+    m_deviceResources->RegisterDeviceNotify(this);
+
+    m_msaaHelper = std::make_unique<DX::MSAAHelper>(
+        m_deviceResources->GetBackBufferFormat(),
+        DXGI_FORMAT_D32_FLOAT,
+        MSAA_COUNT);
+```
+
+In the **CreateDeviceDependentResources** method, add:
+
+```cpp
+// Set the MSAA device. Note this updates GetSampleCount.
+m_msaaHelper->SetDevice(device);
+```
+
+In the **CreateWindowSizeDependentResources** method, call:
+
+```cpp
+auto size = m_deviceResources->GetOutputSize();
+
+// Set window size for MSAA.
+m_msaaHelper->SetWindow(size);
+```
+
+Since you are rendering to the MSAA render target & depth/stencil buffer rather than to the standard DeviceResources instances, update your **Clear** method as follows:
+
+```cpp
+// Clear the views.
+...
+
+auto renderTarget = m_msaaHelper->GetMSAARenderTargetView();
+auto depthStencil = m_msaaHelper->GetMSAADepthStencilView();
+```
+
+The **Render** function should work as written, but the Present call will need updated:
+
+```cpp
+// Show the new frame.
+m_msaaHelper->Resolve(context, m_deviceResources->GetRenderTarget());
+m_deviceResources->Present();
+```
+
+Be sure to add to your **OnDeviceLost**:
+
+```cpp
+// Release MSAA resources.
+m_msaaHelper->ReleaseDevice();
 ```
