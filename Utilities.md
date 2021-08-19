@@ -11,6 +11,9 @@ For samples, I've created a number of utility headers that help fill in gaps bet
  <tr><td><a href="/microsoft/DirectXTK/wiki/DebugDraw.h">DebugDraw.h</a></td>
      <td><a href="/microsoft/DirectXTK/wiki/DebugDraw.cpp">DebugDraw.cpp</a></td>
      <td>Draws outlined 3D shapes for debug use. See <a href="/microsoft/DirectXTK/wiki/DebugDraw">wiki</a>.</td></tr>
+ <tr><td><a href="/microsoft/DirectXTK/wiki/MSAAHelper.h">MSAAHelper.h</a></td>
+     <td><a href="/microsoft/DirectXTK/wiki/MSAAHelper.cpp">MSAAHelper.cpp</a></td>
+     <td>Helper for implementing MSAA rendering.</td></tr>
  <tr><td><a href="/microsoft/DirectXTK/wiki/ReadData.h">ReadData.h</a></td>
      <td>n/a</td>
      <td>Helper for loading custom shaders from compiled cso blobs.</td></tr>
