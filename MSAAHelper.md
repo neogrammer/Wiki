@@ -319,6 +319,7 @@ m_msaaHelper->ReleaseDevice();
 
 This helper class uses the 'default' quality for simplicity.
 
-If the requested sample count isn't supported, it will use the largest value it can. For example, if you request 8, but the device only supports 4 it will use 4x.
+If the requested sample count isn't supported, it will use the largest value that is supported. For example, if you request 8, but the device only supports 4 it will use 4x. If no MSAA sample count is valid for the given formats, it will throw a C++ exception.
+
 
 
