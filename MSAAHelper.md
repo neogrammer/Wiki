@@ -255,7 +255,7 @@ And then add a variable declaration to the private section of your **Game** clas
 std::unique_ptr<DX::MSAAHelper> m_msaaHelper;
 ```
 
-For MSAA rendering, you typically use a MSAA depth/stencil buffer. Therefore, you should create the [[DeviceResources]] instance without a depth buffer (which is non-MSAA) by passing ``DXGI_FORMAT_UNKNOWN`` for the depth-buffer format. In the **Game** constructor:
+For MSAA rendering, you typically use a MSAA depth/stencil buffer. Therefore, you should create the [[DeviceResources]] instance without a depth buffer (which is non-MSAA) by passing ``DXGI_FORMAT_UNKNOWN`` for the depth-buffer format. In the **Game** constructor modify:
 
 ```cpp
     // Depth-buffer managed by MSAAHelper.
@@ -263,7 +263,11 @@ For MSAA rendering, you typically use a MSAA depth/stencil buffer. Therefore, yo
         DXGI_FORMAT_B8G8R8A8_UNORM,
         DXGI_FORMAT_UNKNOWN);
     m_deviceResources->RegisterDeviceNotify(this);
+```
 
+Then add (where ``MSAA_COUNT`` is your target sample count)
+
+```
     m_msaaHelper = std::make_unique<DX::MSAAHelper>(
         m_deviceResources->GetBackBufferFormat(),
         DXGI_FORMAT_D32_FLOAT,
@@ -310,3 +314,11 @@ Be sure to add to your **OnDeviceLost**:
 // Release MSAA resources.
 m_msaaHelper->ReleaseDevice();
 ```
+
+# Remarks
+
+This helper class uses the 'default' quality for simplicity.
+
+If the requested sample count isn't supported, it will use the largest value it can. For example, if you request 8, but the device only supports 4 it will use 4x.
+
+
