@@ -4,6 +4,7 @@
 #include "AnimatedTexture.h"
 #include "ControllerFont.h"
 #include "DebugDraw.h"
+#include "MSAAHelper.h"
 #include "ReadData.h"
 #include "RenderTexture.h"
 #include "ScrollingBackground.h"
