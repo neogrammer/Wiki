@@ -36,6 +36,7 @@ MSAAHelper::MSAAHelper(DXGI_FORMAT backBufferFormat,
     unsigned int sampleCount) noexcept(false) :
         m_backBufferFormat(backBufferFormat),
         m_depthBufferFormat(depthBufferFormat),
+        m_sampleCount(0),
         m_targetSampleCount(sampleCount),
         m_width(0),
         m_height(0)
