@@ -11,6 +11,9 @@ For samples, I've created a number of utility headers that help fill in gaps bet
  <tr><td><a href="/microsoft/DirectXTK/wiki/DebugDraw.h">DebugDraw.h</a></td>
      <td><a href="/microsoft/DirectXTK/wiki/DebugDraw.cpp">DebugDraw.cpp</a></td>
      <td>Draws outlined 3D shapes for debug use. See <a href="/microsoft/DirectXTK/wiki/DebugDraw">wiki</a>.</td></tr>
+ <tr><td><a href="https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d11game_win32_dr/DeviceResources.h">DeviceResources.h</a></td>
+     <td><a href="https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d11game_win32_dr/DeviceResources.cpp">DeviceResources.cpp</a></td>
+     <td>Helper for the Direct3D device & swapchain. See <a href="/microsoft/DirectXTK/wiki/DeviceResources">wiki</a>.</td></tr>
  <tr><td><a href="/microsoft/DirectXTK/wiki/MSAAHelper.h">MSAAHelper.h</a></td>
      <td><a href="/microsoft/DirectXTK/wiki/MSAAHelper.cpp">MSAAHelper.cpp</a></td>
      <td>Helper for implementing MSAA rendering. See <a href="/microsoft/DirectXTK/wiki/MSAAHelper">wiki</a>.</td></tr>
