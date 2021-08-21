@@ -1,7 +1,10 @@
 This lesson will show how to read user input from the mouse and keyboard.
 
 # Setup
-First create a new project. For this lesson, use the [[DeviceResources]] variant described in [[Using DeviceResources]], then use the instructions in [[Adding the DirectX Tool Kit]].
+First create a new project using the instructions from the earlier lessons: [[Using DeviceResources]] and
+[[Adding the DirectX Tool Kit]] which we will use for this lesson.
+
+> If using *DirectX Tool Kit for DX12*, use [Using DeviceResources](https://github.com/microsoft/DirectXTK12/wiki/Using-DeviceResources) and [Adding the DirectX Tool Kit](https://github.com/microsoft/DirectXTK12/wiki/Adding-the-DirectX-Tool-Kit).
 
 # Adding use of mouse and keyboard
 

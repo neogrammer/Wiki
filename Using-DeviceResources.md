@@ -1,4 +1,4 @@
-In [[the basic game loop]] lesson, we made use of the **Direct3D Game** VS template which has all the relevant Direct3D code in the ``Game`` class including creating the device and swap chain. This makes it easy to teach with, and for the reader to see all the code in one place. This, however, does result in a lot of 'boiler-plate' code in the main ``Game`` class which could be distracting.
+In [[the basic game loop]] lesson, we made use of the **Direct3D Game** VS template which has all the relevant Direct3D code in the ``Game`` class including creating the device and swap chain. This makes it easy to see how to create the device & swapchain. This, however, results in a lot of 'boiler-plate' code in the main ``Game`` class which is distracting for the remainder of our tutorial lessons.
 
 There is therefore a "DR" variant of each of the Direct3D Game VS template in the [VS 2017/2019](https://github.com/walbourn/directx-vs-templates/raw/master/VSIX/Direct3DUWPGame.vsix) VSIX package which adds [[DeviceResources]].
 
@@ -72,7 +72,7 @@ While the UWP version will have:
 
 If you prefer to make use of VS 2019's integrated [CMake](https://docs.microsoft.com/en-us/cpp/build/cmake-projects-in-visual-studio?view=vs-2019) support or a standalone install of CMake, there are ``CMakeLists.txt`` and ``CMakeSettings.json`` files available for download on [directx-vs-templates](https://github.com/walbourn/directx-vs-templates/wiki#cmake-projects).
 
-The simplest way to use these is to open up PowerShell, change to the ``directx-vs-templates/VSIX`` directory, and run the following script which will create a fresh instance of the template set up for CMake development:
+The simplest way to use these is to clone *directx-vs-templates*, open up PowerShell, change to the ``directx-vs-templates/VSIX`` directory, and run the following script which will create a fresh instance of the template set up for CMake development:
 
 ```
 .\createcmake.ps1 ../d3d11game_win32_dr Direct3DGame $Env:USERPROFILE\source\Direct3DGameDR
@@ -180,8 +180,6 @@ void Game::CreateDeviceDependentResources()
 }
 ```
 
-> Instead of using the class variable ``m_d3dDevice`` we have to obtain the device interface from the ``DeviceResources`` object. See ``Render`` for how you get the device context from ``DeviceResources``.
-
 The second Game method ``Initialize`` calls is **CreateWindowSizeDependentResources** for creation of objects that depend on the size of the rendering window. Note that this function could be creating these objects for the first time, it could be re-creating already existing objects due to a window-size change, or could be creating 'fresh' objects after a Direct3D device-removed or device-reset case.
 
 ```cpp
@@ -229,8 +227,6 @@ void Game::Render()
     m_deviceResources->Present();
 }
 ```
-
-> Instead of using the class variable ``m_d3dContext`` we have to obtain the device context interface from the ``DeviceResources`` object. See ``CreateDeviceDependentResources`` for how you get the device from ``DeviceResources``.
 
 ### Clear
 The **Clear** method defaults to a background color of the classic "Cornflower blue".
@@ -326,37 +322,6 @@ The DeviceResources implementation supports using ``DXGI_FORMAT_*_SRGB`` formats
 # Fullscreen
 
 The Win32 desktop and UWP templates implement [immersive fullscreen](https://walbourn.github.io/care-and-feeding-of-modern-swap-chains-3/). You can toggle this using the traditional hotkey ``ALT+Enter``. If you want to default to full-screen at startup, see the ``TODO`` comments in ``Main.cpp``.
-
-# Tutorial series
-You can interchange the DR and non-DR variants by using these instructions:
-
-When directed to add something to ``CreateDevice``, add it to ``CreateDeviceDependentResources`` instead.
-
-When asked to add something to ``CreateResources``, add it to ``CreateWindowSizeDependentResources`` instead.
-
-Anywhere you are asked to use ``m_d3dDevice.Get()``, use ``m_deviceResources->GetD3DDevice()`` instead:
-
-```cpp
-auto device = m_deviceResources->GetD3DDevice();
-m_states = std::make_unique<CommonStates>(device);
-```
-
-Anywhere you are asked to use ``m_d3dContext.Get()``, use ``m_deviceResources->GetD3DDeviceContext()`` instead:
-
-```cpp
-auto context = m_deviceResources->GetD3DDeviceContext();
-m_spriteBatch = std::make_unique<SpriteBatch>(context);
-```
-
-When asked to use ``backBufferWidth`` or ``backBufferHeight``, use ``m_deviceResources->GetOutputSize()`` instead:
-
-```cpp
-auto size = m_deviceResources->GetOutputSize();
-m_screenPos.x = size.right / 2.f;
-m_screenPos.y = size.bottom / 2.f;
-```
-
-When asked to use ``backBufferCount``, use ``m_deviceResources->GetBackBufferCount()`` instead.
 
 **Next lesson**: [[Adding the DirectX Tool Kit]]
 

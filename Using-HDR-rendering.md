@@ -1,7 +1,8 @@
 This lesson covers the basics of HDR rendering, tone-mapping, and adding HDR10 wide color gamut rendering with _DirectX Tool Kit_.
 
 # Setup
-First create a new project. For this lesson, use the [[DeviceResources]] variant described in [[Using DeviceResources]], then use the instructions in [[Adding the DirectX Tool Kit]].
+First create a new project using the instructions from the previous lessons: [[Using DeviceResources]] and
+[[Adding the DirectX Tool Kit]] which we will use for this lesson.
 
 # Setting up an HDR render target
 
@@ -152,7 +153,7 @@ m_shape->Draw(m_world, m_view, m_proj, XMVectorSetW(Colors::White * m_colorScale
 In **Game.cpp**, add to the TODO of **Update**:
 
 ```cpp
-float time = float(timer.GetTotalSeconds());
+auto time = static_cast<float>(timer.GetTotalSeconds());
 
 m_world = Matrix::CreateRotationZ(cosf(time) * 2.f);
 

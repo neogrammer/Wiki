@@ -1,7 +1,7 @@
 In this lesson, we will cover the basics of creating a texture from a bitmap file, and then rendering it using a 2D sprite with various drawing options.
 
 # Setup
-First create a new project using the instructions from the first two lessons: [[The basic game loop]] and
+First create a new project using the instructions from the previous lessons: [[Using DeviceResources]] and
 [[Adding the DirectX Tool Kit]] which we will use for this lesson.
 
 # Loading a texture
@@ -13,11 +13,11 @@ In the **Game.h** file, add the following variable to the bottom of the Game cla
 Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture;
 ```
 
-In **Game.cpp**, add to the TODO of **CreateDevice**:
+In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
 
 ```cpp
 DX::ThrowIfFailed(
-    CreateWICTextureFromFile(m_d3dDevice.Get(), L"cat.png", nullptr,
+    CreateWICTextureFromFile(device, L"cat.png", nullptr,
     m_texture.ReleaseAndGetAddressOf()));
 ```
 
@@ -41,15 +41,17 @@ DirectX::SimpleMath::Vector2 m_screenPos;
 DirectX::SimpleMath::Vector2 m_origin;
 ```
 
-For the original load of our sprite, we only need a ``ID3D11ResourceShaderView`` object as that's all you require to render. This time, however, we also want to obtain the pixel size of the image which is done by requesting the reader return the ``ID3D11Resource`` interface as well as the SRV. In
-In **Game.cpp**, modify TODO of **CreateDevice** to be:
+For the original load of our sprite, we only need a ``ID3D11ResourceShaderView`` object as that's all you require to render. This time, however, we also want to obtain the pixel size of the image which is done by requesting the reader return the ``ID3D11Resource`` interface as well as the SRV.
+
+In **Game.cpp**, modify TODO of **CreateDeviceDependentResources** to be:
 
 ```cpp
-m_spriteBatch = std::make_unique<SpriteBatch>(m_d3dContext.Get());
+auto context = m_deviceResources->GetD3DDeviceContext();
+m_spriteBatch = std::make_unique<SpriteBatch>(context);
 
 ComPtr<ID3D11Resource> resource;
 DX::ThrowIfFailed(
-    CreateWICTextureFromFile(m_d3dDevice.Get(), L"cat.png",
+    CreateWICTextureFromFile(device, L"cat.png",
     resource.GetAddressOf(),
     m_texture.ReleaseAndGetAddressOf()));
 
@@ -63,11 +65,12 @@ m_origin.x = float(catDesc.Width / 2);
 m_origin.y = float(catDesc.Height / 2);
 ```
 
-In **Game.cpp**, add to the TODO of **CreateResources**:
+In **Game.cpp**, add to the TODO of **CreateWindowSizeDependentResources**:
 
 ```cpp
-m_screenPos.x = backBufferWidth / 2.f;
-m_screenPos.y = backBufferHeight / 2.f;
+auto size = m_deviceResources->GetOutputSize();
+m_screenPos.x = float(size.right) / 2.f;
+m_screenPos.y = float(size.bottom) / 2.f;
 ```
 
 > If using the UWP template, you also need to add ``m_spriteBatch->SetRotation(m_outputRotation);`` to handle display orientation changes.
@@ -83,8 +86,8 @@ In **Game.cpp**, add to the TODO of **Render**:
 ```cpp
 m_spriteBatch->Begin();
 
-m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr, Colors::White,
-    0.f, m_origin);
+m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr,
+    Colors::White, 0.f, m_origin);
 
 m_spriteBatch->End();
 ```
@@ -102,10 +105,10 @@ In the **Game.h** file, add the following variable to the bottom of the Game cla
 std::unique_ptr<DirectX::CommonStates> m_states;
 ```
 
-In **Game.cpp**, add to the TODO of **CreateDevice**:
+In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
 
 ```cpp
-m_states = std::make_unique<CommonStates>(m_d3dDevice.Get());
+m_states = std::make_unique<CommonStates>(device);
 ```
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
@@ -117,10 +120,10 @@ m_states.reset();
 In **Game.cpp**, modify the TODO of **Render**:
 
 ```cpp
-m_spriteBatch->Begin( SpriteSortMode_Deferred, m_states->NonPremultiplied() );
+m_spriteBatch->Begin(SpriteSortMode_Deferred, m_states->NonPremultiplied());
 
-m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr, Colors::White,
-    0.f, m_origin);
+m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr,
+    Colors::White, 0.f, m_origin);
 
 m_spriteBatch->End();
 ```
@@ -146,11 +149,11 @@ Then run the following command-line:
 
 Then from the top menu in Visual Studio select **Project** / **Add Existing Item...**. Select [cat.dds](https://github.com/Microsoft/DirectXTK/wiki/media/cat.dds) and click "OK".
 
-Now will return to **Game.cpp** in the **CreateDevice** and change our use of ``CreateWICTextureFromFile`` to ``CreateDDSTextureFromFile``:
+Now will return to **Game.cpp** in the **CreateDeviceDependentResources** and change our use of ``CreateWICTextureFromFile`` to ``CreateDDSTextureFromFile``:
 
 ```cpp
 DX::ThrowIfFailed(
-    CreateDDSTextureFromFile(m_d3dDevice.Get(), L"cat.dds",
+    CreateDDSTextureFromFile(device, L"cat.dds",
         resource.GetAddressOf(),
     m_texture.ReleaseAndGetAddressOf()));
 ```
@@ -162,8 +165,8 @@ In **Game.cpp**, modify the TODO of **Render**:
 ```cpp
 m_spriteBatch->Begin();
 
-m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr, Colors::White,
-    0.f, m_origin);
+m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr,
+    Colors::White, 0.f, m_origin);
 
 m_spriteBatch->End();
 ```
@@ -189,8 +192,8 @@ float time = float(m_timer.GetTotalSeconds());
 
 m_spriteBatch->Begin();
 
-m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr, Colors::White,
-    cosf(time) * 4.f, m_origin);
+m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr,
+    Colors::White, cosf(time) * 4.f, m_origin);
 
 m_spriteBatch->End();
 ```
@@ -208,8 +211,8 @@ float time = float(m_timer.GetTotalSeconds());
 
 m_spriteBatch->Begin();
 
-m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr, Colors::White,
-    0.f, m_origin,
+m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr,
+    Colors::White, 0.f, m_origin,
     cosf(time) + 2.f);
 
 m_spriteBatch->End();
@@ -226,8 +229,8 @@ In **Game.cpp**, modify the TODO of **Render**:
 ```cpp
 m_spriteBatch->Begin();
 
-m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr, Colors::Green,
-    0.f, m_origin);
+m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr,
+    Colors::Green, 0.f, m_origin);
 
 m_spriteBatch->End();
 ```
@@ -244,7 +247,7 @@ In the **Game.h** file, add the following variable to the bottom of the Game cla
 RECT m_tileRect;
 ```
 
-In the **Game.cpp** file, modify in the TODO section of **CreateDevice**:
+In the **Game.cpp** file, modify in the TODO section of **CreateDeviceDependentResources**:
 
 change
 
@@ -268,10 +271,11 @@ m_tileRect.bottom = catDesc.Height * 6;
 In the **Game.cpp** file, modify in the TODO section of **Render**:
 
 ```cpp
-m_spriteBatch->Begin(SpriteSortMode_Deferred, nullptr, m_states->LinearWrap());
+m_spriteBatch->Begin(SpriteSortMode_Deferred, nullptr,
+      m_states->LinearWrap());
 
-m_spriteBatch->Draw(m_texture.Get(), m_screenPos, &m_tileRect, Colors::White,
-    0.f, m_origin);
+m_spriteBatch->Draw(m_texture.Get(), m_screenPos, &m_tileRect,
+    Colors::White, 0.f, m_origin);
 
 m_spriteBatch->End();
 ```
@@ -294,13 +298,13 @@ In the **Game.h** file, add the following variable to the bottom of the Game cla
 RECT m_stretchRect;
 ```
 
-In the **Game.cpp** file, add to the TODO section of **CreateResources**:
+In the **Game.cpp** file, add to the TODO section of **CreateWindowSizeDependentResources**:
 
 ```cpp
-m_stretchRect.left = backBufferWidth / 4;
-m_stretchRect.top = backBufferHeight / 4;
-m_stretchRect.right = m_stretchRect.left  + backBufferWidth / 2;
-m_stretchRect.bottom = m_stretchRect.top + backBufferHeight / 2;
+m_stretchRect.left = size.right / 4;
+m_stretchRect.top = size.bottom / 4;
+m_stretchRect.right = m_stretchRect.left  + size.right / 2;
+m_stretchRect.bottom = m_stretchRect.top + size.bottom / 2;
 ```
 
 In the **Game.cpp** file, modify in the TODO section of **Render**:
@@ -308,7 +312,8 @@ In the **Game.cpp** file, modify in the TODO section of **Render**:
 ```cpp
 m_spriteBatch->Begin();
 
-m_spriteBatch->Draw(m_texture.Get(), m_stretchRect, nullptr, Colors::White);
+m_spriteBatch->Draw(m_texture.Get(), m_stretchRect, nullptr,
+    Colors::White);
 
 m_spriteBatch->End();
 ```
@@ -329,21 +334,18 @@ RECT m_fullscreenRect;
 Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_background;
 ```
 
-In **Game.cpp**, add to the TODO of **CreateDevice**:
+In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
 
 ```cpp
 DX::ThrowIfFailed(
-    CreateWICTextureFromFile(m_d3dDevice.Get(), L"sunset.jpg", nullptr,
+    CreateWICTextureFromFile(device, L"sunset.jpg", nullptr,
     m_background.ReleaseAndGetAddressOf()));
 ```
 
-In **Game.cpp**, add to the TODO of **CreateResources**:
+In **Game.cpp**, add to the TODO of **CreateWindowSizeDependentResources**:
 
 ```cpp
-m_fullscreenRect.left = 0;
-m_fullscreenRect.top = 0;
-m_fullscreenRect.right = backBufferWidth;
-m_fullscreenRect.bottom = backBufferHeight;
+m_fullscreenRect = m_deviceResources->GetOutputSize();
 ```
 
 nd then modify the ``m_origin`` initialization back to:
@@ -366,8 +368,8 @@ m_spriteBatch->Begin();
 
 m_spriteBatch->Draw(m_background.Get(), m_fullscreenRect);
 
-m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr, Colors::White,
-    0.f, m_origin);
+m_spriteBatch->Draw(m_texture.Get(), m_screenPos, nullptr,
+    Colors::White, 0.f, m_origin);
 
 m_spriteBatch->End();
 ```

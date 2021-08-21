@@ -1,7 +1,7 @@
-This lesson covers the basics of writing your own shaders and using them with _DirectX Tool Kit_.
+This lesson covers the basics of writing your own [HLSL shaders](https://en.wikipedia.org/wiki/High-Level_Shading_Language) and using them with _DirectX Tool Kit_.
 
 # Setup
-First create a new project using the instructions from the first two lessons: [[The basic game loop]] and
+First create a new project using the instructions from the previous lessons: [[Using DeviceResources]] and
 [[Adding the DirectX Tool Kit]] which we will use for this lesson.
 
 # Creating custom shaders with HLSL
@@ -18,38 +18,54 @@ In the **Game.h** file, add the following variables to the bottom of the Game cl
 std::unique_ptr<DirectX::CommonStates> m_states;
 std::unique_ptr<DirectX::SpriteBatch> m_spriteBatch;
 std::unique_ptr<DirectX::GeometricPrimitive> m_shape;
+
 Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_background;
+
 DirectX::SimpleMath::Matrix m_world;
 DirectX::SimpleMath::Matrix m_view;
 DirectX::SimpleMath::Matrix m_projection;
+
 RECT m_fullscreenRect;
+RECT m_bloomRect;
 ```
 
-In **Game.cpp**, add to the TODO of **CreateDevice**:
+In **Game.cpp**, update the constructor:
 
 ```cpp
-DX::ThrowIfFailed(CreateWICTextureFromFile(m_d3dDevice.Get(),
+Game::Game() noexcept(false) :
+    m_fullscreenRect{},
+    m_bloomRect{}
+{
+    m_deviceResources = std::make_unique<DX::DeviceResources>();
+    m_deviceResources->RegisterDeviceNotify(this);
+}
+```
+
+In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
+
+```cpp
+DX::ThrowIfFailed(CreateWICTextureFromFile(device,
     L"sunset.jpg", nullptr,
     m_background.ReleaseAndGetAddressOf()));
 
-m_states = std::make_unique<CommonStates>(m_d3dDevice.Get());
-m_spriteBatch = std::make_unique<SpriteBatch>(m_d3dContext.Get());
-m_shape = GeometricPrimitive::CreateTorus(m_d3dContext.Get());
+m_states = std::make_unique<CommonStates>(device);
+
+auto context = m_deviceResources->GetD3DDeviceContext();
+m_spriteBatch = std::make_unique<SpriteBatch>(context);
+m_shape = GeometricPrimitive::CreateTorus(context);
 
 m_view = Matrix::CreateLookAt(Vector3(0.f, 3.f, -3.f),
     Vector3::Zero, Vector3::UnitY);
 ```
 
-In **Game.cpp**, add to the TODO of **CreateResources**:
+In **Game.cpp**, add to the TODO of **CreateWindowSizeDependentResources**:
 
 ```cpp
-m_fullscreenRect.left = 0;
-m_fullscreenRect.top = 0;
-m_fullscreenRect.right = backBufferWidth;
-m_fullscreenRect.bottom = backBufferHeight;
+auto size = m_deviceResources->GetOutputSize();
+m_fullscreenRect = size;
 
 m_projection = Matrix::CreatePerspectiveFieldOfView(XM_PIDIV4,
-    float(backBufferWidth) / float(backBufferHeight), 0.01f, 100.f);
+    float(size.right) / float(size.bottom), 0.01f, 100.f);
 ```
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
@@ -64,7 +80,7 @@ m_background.Reset();
 In **Game.cpp**, add to the TODO of **Update**:
 
 ```cpp
-float totalTime = static_cast<float>(timer.GetTotalSeconds());
+auto totalTime = static_cast<float>(timer.GetTotalSeconds());
 
 m_world = Matrix::CreateRotationZ(totalTime / 2.f)
     * Matrix::CreateRotationY(totalTime)
@@ -84,9 +100,9 @@ m_shape->Draw(m_world, m_view, m_projection);
 In **Game.cpp**, modify **Clear** to remove the call to ``ClearRenderTargetView`` since we are drawing a full-screen sprite first which sets every pixel--we still need to clear the depth/stencil buffer of course:
 
 ```cpp
-m_d3dContext->ClearDepthStencilView(m_depthStencilView.Get(),
+context->ClearDepthStencilView(m_depthStencilView.Get(),
     D3D11_CLEAR_DEPTH, 1.0f, 0);
-m_d3dContext->OMSetRenderTargets(1, m_renderTargetView.GetAddressOf(),
+context->OMSetRenderTargets(1, m_renderTargetView.GetAddressOf(),
     m_depthStencilView.Get());
 ```
 
@@ -143,7 +159,7 @@ namespace
 
     struct VS_BLUR_PARAMETERS
     {
-        static const size_t SAMPLE_COUNT = 15;
+        static constexpr size_t SAMPLE_COUNT = 15;
 
         XMFLOAT4 sampleOffsets[SAMPLE_COUNT];
         XMFLOAT4 sampleWeights[SAMPLE_COUNT];
@@ -231,52 +247,53 @@ namespace
 }
 ```
 
-In **Game.cpp**, add to the TODO of **CreateDevice**:
+In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
 
 ```cpp
 auto blob = DX::ReadData( L"BloomExtract.cso" );
-DX::ThrowIfFailed(m_d3dDevice->CreatePixelShader( blob.data(), blob.size(),
+DX::ThrowIfFailed(device->CreatePixelShader( blob.data(), blob.size(),
     nullptr, m_bloomExtractPS.ReleaseAndGetAddressOf()));
 
 blob = DX::ReadData( L"BloomCombine.cso" );
-DX::ThrowIfFailed(m_d3dDevice->CreatePixelShader( blob.data(), blob.size(),
+DX::ThrowIfFailed(device->CreatePixelShader( blob.data(), blob.size(),
     nullptr, m_bloomCombinePS.ReleaseAndGetAddressOf()));
 
 blob = DX::ReadData( L"GaussianBlur.cso" );
-DX::ThrowIfFailed(m_d3dDevice->CreatePixelShader( blob.data(), blob.size(),
+DX::ThrowIfFailed(device->CreatePixelShader( blob.data(), blob.size(),
     nullptr, m_gaussianBlurPS.ReleaseAndGetAddressOf()));
 
 {
     CD3D11_BUFFER_DESC cbDesc(sizeof(VS_BLOOM_PARAMETERS),
         D3D11_BIND_CONSTANT_BUFFER);
-    D3D11_SUBRESOURCE_DATA initData;
-    initData.pSysMem = &g_BloomPresets[g_Bloom];
-    DX::ThrowIfFailed(m_d3dDevice->CreateBuffer(&cbDesc, &initData,
+    D3D11_SUBRESOURCE_DATA initData = { &g_BloomPresets[g_Bloom], 0, 0 };
+    DX::ThrowIfFailed(device->CreateBuffer(&cbDesc, &initData,
         m_bloomParams.ReleaseAndGetAddressOf()));
 }
 
 {
     CD3D11_BUFFER_DESC cbDesc(sizeof(VS_BLUR_PARAMETERS),
         D3D11_BIND_CONSTANT_BUFFER);
-    DX::ThrowIfFailed(m_d3dDevice->CreateBuffer(&cbDesc, nullptr,
+    DX::ThrowIfFailed(device->CreateBuffer(&cbDesc, nullptr,
         m_blurParamsWidth.ReleaseAndGetAddressOf()));
-    DX::ThrowIfFailed(m_d3dDevice->CreateBuffer(&cbDesc, nullptr,
+    DX::ThrowIfFailed(device->CreateBuffer(&cbDesc, nullptr,
         m_blurParamsHeight.ReleaseAndGetAddressOf()));
 }
 ```
 
-In **Game.cpp**, add to the TODO of **CreateResources**:
+In **Game.cpp**, add to the TODO of **CreateWindowSizeDependentResources**:
 
 ```cpp
+auto context = m_deviceResources->GetD3DDeviceContext();
+
 VS_BLUR_PARAMETERS blurData = {};
-blurData.SetBlurEffectParameters(1.f / (backBufferWidth / 2), 0,
+blurData.SetBlurEffectParameters(1.f / (float(size.right) / 2), 0,
     g_BloomPresets[g_Bloom]);
-m_d3dContext->UpdateSubresource(m_blurParamsWidth.Get(), 0, nullptr,
+context->UpdateSubresource(m_blurParamsWidth.Get(), 0, nullptr,
     &blurData, sizeof(VS_BLUR_PARAMETERS), 0);
 
-blurData.SetBlurEffectParameters(0, 1.f / (backBufferHeight / 2),
+blurData.SetBlurEffectParameters(0, 1.f / (float(size.bottom) / 2),
     g_BloomPresets[g_Bloom]);
-m_d3dContext->UpdateSubresource(m_blurParamsHeight.Get(), 0, nullptr,
+context->UpdateSubresource(m_blurParamsHeight.Get(), 0, nullptr,
     &blurData, sizeof(VS_BLUR_PARAMETERS), 0);
 ```
 
@@ -314,8 +331,6 @@ Microsoft::WRL::ComPtr<ID3D11RenderTargetView> m_rt1RT;
 
 Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_rt2SRV;
 Microsoft::WRL::ComPtr<ID3D11RenderTargetView> m_rt2RT;
-
-RECT m_bloomRect;
 ```
 
 Then add the following method to the Game class's private declarations:
@@ -324,7 +339,7 @@ Then add the following method to the Game class's private declarations:
 void PostProcess();
 ```
 
-In **Game.cpp**, modify the section of **CreateResources** just before creating the depth-stencil target as follows changing the local variable ``backBuffer`` to the newly created ``m_backBuffer`` class variable.
+In **Game.cpp**, modify the section of **CreateWindowSizeDependentResources** just before creating the depth-stencil target as follows changing the local variable ``backBuffer`` to the newly created ``m_backBuffer`` class variable.
 
 ```cpp
 // Obtain the backbuffer for this window which will be the final 3D rendertarget.
@@ -332,46 +347,46 @@ DX::ThrowIfFailed(m_swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D),
     &m_backBuffer));
 
 // Create a view interface on the rendertarget to use on bind.
-DX::ThrowIfFailed(m_d3dDevice->CreateRenderTargetView(m_backBuffer.Get(), nullptr,
+DX::ThrowIfFailed(device->CreateRenderTargetView(m_backBuffer.Get(), nullptr,
     m_renderTargetView.ReleaseAndGetAddressOf()));
 ```
 
-In **Game.cpp**, add to the TODO of **CreateResources**:
+In **Game.cpp**, add to the TODO of **CreateWindowSizeDependentResources**:
 
 ```cpp
+auto device = m_deviceResources->GetD3DDevice();
+DXGI_FORMAT backBufferFormat = m_deviceResources->GetBackBufferFormat();
+
 // Full-size render target for scene
-CD3D11_TEXTURE2D_DESC sceneDesc(backBufferFormat, backBufferWidth, backBufferHeight,
+CD3D11_TEXTURE2D_DESC sceneDesc(backBufferFormat, size.right, size.bottom,
     1, 1, D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE);
-DX::ThrowIfFailed(m_d3dDevice->CreateTexture2D(&sceneDesc, nullptr,
+DX::ThrowIfFailed(device->CreateTexture2D(&sceneDesc, nullptr,
     m_sceneTex.GetAddressOf()));
-DX::ThrowIfFailed(m_d3dDevice->CreateRenderTargetView(m_sceneTex.Get(), nullptr,
+DX::ThrowIfFailed(device->CreateRenderTargetView(m_sceneTex.Get(), nullptr,
     m_sceneRT.ReleaseAndGetAddressOf()));
-DX::ThrowIfFailed(m_d3dDevice->CreateShaderResourceView(m_sceneTex.Get(), nullptr,
+DX::ThrowIfFailed(device->CreateShaderResourceView(m_sceneTex.Get(), nullptr,
     m_sceneSRV.ReleaseAndGetAddressOf()));
 
 // Half-size blurring render targets
-CD3D11_TEXTURE2D_DESC rtDesc(backBufferFormat, backBufferWidth / 2, backBufferHeight / 2,
+CD3D11_TEXTURE2D_DESC rtDesc(backBufferFormat, size.right / 2, size.bottom / 2,
     1, 1, D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE);
-Microsoft::WRL::ComPtr<ID3D11Texture2D> rtTexture1;
-DX::ThrowIfFailed(m_d3dDevice->CreateTexture2D(&rtDesc, nullptr,
+ComPtr<ID3D11Texture2D> rtTexture1;
+DX::ThrowIfFailed(device->CreateTexture2D(&rtDesc, nullptr,
     rtTexture1.GetAddressOf()));
-DX::ThrowIfFailed(m_d3dDevice->CreateRenderTargetView(rtTexture1.Get(), nullptr,
+DX::ThrowIfFailed(device->CreateRenderTargetView(rtTexture1.Get(), nullptr,
     m_rt1RT.ReleaseAndGetAddressOf()));
-DX::ThrowIfFailed(m_d3dDevice->CreateShaderResourceView(rtTexture1.Get(), nullptr,
+DX::ThrowIfFailed(device->CreateShaderResourceView(rtTexture1.Get(), nullptr,
     m_rt1SRV.ReleaseAndGetAddressOf()));
 
-Microsoft::WRL::ComPtr<ID3D11Texture2D> rtTexture2;
-DX::ThrowIfFailed(m_d3dDevice->CreateTexture2D(&rtDesc, nullptr,
+ComPtr<ID3D11Texture2D> rtTexture2;
+DX::ThrowIfFailed(device->CreateTexture2D(&rtDesc, nullptr,
     rtTexture2.GetAddressOf()));
-DX::ThrowIfFailed(m_d3dDevice->CreateRenderTargetView(rtTexture2.Get(), nullptr,
+DX::ThrowIfFailed(device->CreateRenderTargetView(rtTexture2.Get(), nullptr,
     m_rt2RT.ReleaseAndGetAddressOf()));
-DX::ThrowIfFailed(m_d3dDevice->CreateShaderResourceView(rtTexture2.Get(), nullptr,
+DX::ThrowIfFailed(device->CreateShaderResourceView(rtTexture2.Get(), nullptr,
     m_rt2SRV.ReleaseAndGetAddressOf()));
 
-m_bloomRect.left = 0;
-m_bloomRect.top = 0;
-m_bloomRect.right = backBufferWidth / 2;
-m_bloomRect.bottom = backBufferHeight / 2;
+m_bloomRect = { 0, 0, size.right / 2, size.bottom / 2 };
 ```
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
@@ -396,9 +411,9 @@ PostProcess();
 In **Game.cpp**, modify **Clear** to use ``m_sceneRT`` instead of ``m_renderTargetView``:
 
 ```cpp
-m_d3dContext->ClearDepthStencilView(m_depthStencilView.Get(),
+context->ClearDepthStencilView(m_depthStencilView.Get(),
     D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
-m_d3dContext->OMSetRenderTargets(1, m_sceneRT.GetAddressOf(),
+context->OMSetRenderTargets(1, m_sceneRT.GetAddressOf(),
     m_depthStencilView.Get());
 ```
 
@@ -407,66 +422,70 @@ In **Game.cpp**, add the new method **PostProcess**
 ```cpp
 void Game::PostProcess()
 {
+    auto context = m_deviceResources->GetD3DDeviceContext();
+
     ID3D11ShaderResourceView* null[] = { nullptr, nullptr };
 
     if (g_Bloom == None)
     {
         // Pass-through test
-        m_d3dContext->CopyResource(m_backBuffer.Get(), m_sceneTex.Get());
+        context->CopyResource(m_deviceResources->GetRenderTarget(),
+            m_sceneTex.Get());
     }
     else
     {
         // scene -> RT1 (downsample)
-        m_d3dContext->OMSetRenderTargets(1, m_rt1RT.GetAddressOf(), nullptr);
+        context->OMSetRenderTargets(1, m_rt1RT.GetAddressOf(), nullptr);
         m_spriteBatch->Begin(SpriteSortMode_Immediate,
             nullptr, nullptr, nullptr, nullptr,
             [=](){
-                m_d3dContext->PSSetConstantBuffers(0, 1, m_bloomParams.GetAddressOf());
-                m_d3dContext->PSSetShader(m_bloomExtractPS.Get(), nullptr, 0);
+                context->PSSetConstantBuffers(0, 1, m_bloomParams.GetAddressOf());
+                context->PSSetShader(m_bloomExtractPS.Get(), nullptr, 0);
             });
         m_spriteBatch->Draw(m_sceneSRV.Get(), m_bloomRect);
         m_spriteBatch->End();
 
         // RT1 -> RT2 (blur horizontal)
-        m_d3dContext->OMSetRenderTargets(1, m_rt2RT.GetAddressOf(), nullptr);
+        context->OMSetRenderTargets(1, m_rt2RT.GetAddressOf(), nullptr);
         m_spriteBatch->Begin(SpriteSortMode_Immediate,
             nullptr, nullptr, nullptr, nullptr,
             [=](){
-                m_d3dContext->PSSetShader(m_gaussianBlurPS.Get(), nullptr, 0);
-                m_d3dContext->PSSetConstantBuffers(0, 1,
+                context->PSSetShader(m_gaussianBlurPS.Get(), nullptr, 0);
+                context->PSSetConstantBuffers(0, 1,
                     m_blurParamsWidth.GetAddressOf());
             });
         m_spriteBatch->Draw(m_rt1SRV.Get(), m_bloomRect);
         m_spriteBatch->End();
 
-        m_d3dContext->PSSetShaderResources(0, 2, null);
+        context->PSSetShaderResources(0, 2, null);
 
         // RT2 -> RT1 (blur vertical)
-        m_d3dContext->OMSetRenderTargets(1, m_rt1RT.GetAddressOf(), nullptr);
+        context->OMSetRenderTargets(1, m_rt1RT.GetAddressOf(), nullptr);
         m_spriteBatch->Begin(SpriteSortMode_Immediate,
             nullptr, nullptr, nullptr, nullptr,
             [=](){
-                m_d3dContext->PSSetShader(m_gaussianBlurPS.Get(), nullptr, 0);
-                m_d3dContext->PSSetConstantBuffers(0, 1,
+                context->PSSetShader(m_gaussianBlurPS.Get(), nullptr, 0);
+                context->PSSetConstantBuffers(0, 1,
                     m_blurParamsHeight.GetAddressOf());
             });
         m_spriteBatch->Draw(m_rt2SRV.Get(), m_bloomRect);
         m_spriteBatch->End();
 
         // RT1 + scene
-        m_d3dContext->OMSetRenderTargets(1, m_renderTargetView.GetAddressOf(), nullptr);
+        auto renderTarget = m_deviceResources->GetRenderTargetView();
+        context->OMSetRenderTargets(1, &renderTarget, nullptr);
         m_spriteBatch->Begin(SpriteSortMode_Immediate,
             nullptr, nullptr, nullptr, nullptr,
             [=](){
-                m_d3dContext->PSSetShader(m_bloomCombinePS.Get(), nullptr, 0);
-                m_d3dContext->PSSetShaderResources(1, 1, m_rt1SRV.GetAddressOf());
-                m_d3dContext->PSSetConstantBuffers(0, 1, m_bloomParams.GetAddressOf());
+                context->PSSetShader(m_bloomCombinePS.Get(), nullptr, 0);
+                context->PSSetShaderResources(1, 1, m_rt1SRV.GetAddressOf());
+                context->PSSetConstantBuffers(0, 1, m_bloomParams.GetAddressOf());
             });
         m_spriteBatch->Draw(m_sceneSRV.Get(), m_fullscreenRect);
         m_spriteBatch->End();
     }
 
-    m_d3dContext->PSSetShaderResources(0, 2, null);
+    context->PSSetShaderResources(0, 2, null);
 }
 ```
 

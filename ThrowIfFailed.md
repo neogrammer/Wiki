@@ -1,7 +1,7 @@
 When programming COM APIs like Direct3D, it is important to always check the ``HRESULT`` return value for success or failure. This can be done using the ``SUCCEEDED`` or ``FAILED`` macros, but can get tedious when making lots of calls especially for proper cleanup on exit of every function.
 
 ```cpp
-hr = m_d3dDevice->CreateTexture2D(&depthStencilDesc, nullptr, &depthStencil));
+hr = device->CreateTexture2D(&depthStencilDesc, nullptr, &depthStencil));
 if (FAILED(hr))
 {
     // Clean up for partial success before here
@@ -12,10 +12,10 @@ if (FAILED(hr))
 > Not all Direct3D functions return ``HRESULT``. Many of them return ``void`` because they can't fail, fail silently, or the failure will be reported on the next ``Present``.
 
 ## Fast Fail
-A simple way to handle always fatal errors is to use C++ exceptions (``/EHsc`` is the default for Visual C++, and has no code impact for x64 native, ARM, or ARM64 platforms). The ``DX::ThrowIfFailed`` helper can be used whenever a failure is fatal and should result in 'fast-fail' of the application. 
+A simple way to handle always fatal errors is to use C++ exceptions (``/EHsc`` is the default for Visual C++, and has no code impact for x64 native, ARM, or ARM64 platforms). The ``DX::ThrowIfFailed`` helper can be used whenever a failure is fatal and should result in 'fast-fail' of the application.
 
 ```cpp
-DX::ThrowIfFailed(m_d3dDevice->CreateTexture2D(&depthStencilDesc,
+DX::ThrowIfFailed(device->CreateTexture2D(&depthStencilDesc,
     nullptr, &depthStencil));
 ```
 
@@ -25,7 +25,7 @@ DX::ThrowIfFailed(m_d3dDevice->CreateTexture2D(&depthStencilDesc,
 Otherwise, traditional ``if FAILED(hr)`` or ``if SUCCEEDED(hr)`` patterns should be used to handle failures that the application can recover from (i.e. are not fatal). If you want to handle a specific HRESULT, then you might do something like:
 
 ```cpp
-HRESULT hr = m_d3dDevice->CreateTexture2D(&depthStencilDesc,
+HRESULT hr = device->CreateTexture2D(&depthStencilDesc,
     nullptr, &depthStencil);
 if (hr == E_INVALIDARG)
 {
@@ -37,7 +37,7 @@ DX::ThrowIfFailed(hr);
 For a case where you want to do the error-handling for an HRESULT yourself, be sure to use the ``SUCCEEDED`` or ``FAILED`` macro:
 
 ```cpp
-HRESULT hr = m_d3dDevice->CreateTexture2D(&depthStencilDesc,
+HRESULT hr = device->CreateTexture2D(&depthStencilDesc,
     nullptr, &depthStencil);
 if (FAILED(hr))
     // Error handling

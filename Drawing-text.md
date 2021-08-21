@@ -1,9 +1,11 @@
 This lesson covers drawing text using bitmap fonts and the sprite renderer.
 
-> With the DirectX 11.1, you can also rely on Direct2D/DirectWrite being available which is recommended for true vector-font features such as high quality across a wide range of scales, for complex layouts, or large-alphabet fonts. SpriteFont is intended for low-overhead bitmap-font rendering using a font that can be captured to a single texture. Note that Windows Phone 8.0 and Xbox One XDK do not support Direct2D/DirectWrite. UWP on the Xbox One device family does support it.
+> With the DirectX 11.1, you can also rely on Direct2D/DirectWrite being available which is recommended for true vector-font features such as high quality across a wide range of scales, for complex layouts, or large-alphabet fonts. SpriteFont is intended for low-overhead bitmap-font rendering using a font that can be captured to a single texture.
+
+> Note that Windows Phone 8.0 and the Xbox XDK/GDK do not support Direct2D/DirectWrite. UWP on the Xbox device family does support it.
 
 # Setup
-First create a new project using the instructions from the first two lessons: [[The basic game loop]] and
+First create a new project using the instructions from the earlier lessons: [[Using DeviceResources]] and
 [[Adding the DirectX Tool Kit]] which we will use for this lesson.
 
 # Creating a font
@@ -19,7 +21,7 @@ Run the following command-line
 
 Then from the top menu in Visual Studio select **Project** / **Add Existing Item...**. Select [myfile.spritefont](https://github.com/Microsoft/DirectXTK/wiki/myfile.spritefont) and click "OK".
 
-> If you are using a Universal Windows Platform (UWP) app, Windows Store, or Xbox One project rather than a Windows desktop app, you need to manually edit the Visual Studio project properties on the ``myfile.spritefont`` file and make sure "Content" is set to "Yes" so the data file will be included in your packaged build.
+> If you are using a Universal Windows Platform (UWP) app, Windows Store, or Xbox project rather than a Windows desktop app, you need to manually edit the Visual Studio project properties on the ``myfile.spritefont`` file and make sure "Content" is set to "Yes" so the data file will be included in your packaged build for *All Configurations* and *All Platforms*.
 
 To get a **Bold** version of the font, run the following command-line:
 
@@ -44,10 +46,10 @@ In the **Game.h** file, add the following variable to the bottom of the Game cla
 std::unique_ptr<DirectX::SpriteFont> m_font;
 ```
 
-In **Game.cpp**, add to the TODO of **CreateDevice**:
+In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
 
 ```cpp
-m_font = std::make_unique<SpriteFont>(m_d3dDevice.Get(), L"myfile.spritefont");
+m_font = std::make_unique<SpriteFont>(device, L"myfile.spritefont");
 ```
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
@@ -69,17 +71,19 @@ DirectX::SimpleMath::Vector2 m_fontPos;
 std::unique_ptr<DirectX::SpriteBatch> m_spriteBatch;
 ```
 
-In **Game.cpp**, add to the TODO of **CreateDevice**:
+In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
 
 ```cpp
-m_spriteBatch = std::make_unique<SpriteBatch>(m_d3dContext.Get());
+auto context = m_deviceResources->GetD3DDeviceContext();
+m_spriteBatch = std::make_unique<SpriteBatch>(context);
 ```
 
-In **Game.cpp**, add to the TODO of **CreateResources**:
+In **Game.cpp**, add to the TODO of **CreateWindowSizeDependentResources**:
 
 ```cpp
-m_fontPos.x = backBufferWidth / 2.f;
-m_fontPos.y = backBufferHeight / 2.f;
+auto size = m_deviceResources->GetOutputSize();
+m_fontPos.x = float(size.right) / 2.f;
+m_fontPos.y = float(size.bottom) / 2.f;
 ```
 
 > If using the UWP template, you also need to add ``m_spriteBatch->SetRotation(m_outputRotation);`` to handle display orientation changes.
@@ -111,6 +115,12 @@ Build and run to see our text string centered in the middle of the rendering win
 
 # Using ``std::wstring`` for text
 
+In **pch.h** after the other ``#include`` statements, add:
+
+```cpp
+#include <string>
+```
+
 In **Game.cpp**, modify the TODO section of **Render** to be:
 
 ```cpp
@@ -133,8 +143,8 @@ Build and run to see our text string centered in the middle of the rendering win
 In **pch.h** after the other ``#include`` statements, add:
 
 ```cpp
-#include <locale>
 #include <codecvt>
+#include <locale>
 ```
 
 In **Game.cpp**, modify the TODO section of **Render** to be:

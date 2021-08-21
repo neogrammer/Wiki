@@ -1,7 +1,7 @@
 This lesson loads and draws models in 3D.
 
 # Setup
-First create a new project using the instructions from the first two lessons: [[The basic game loop]] and
+First create a new project using the instructions from the earlier lessons: [[Using DeviceResources]] and
 [[Adding the DirectX Tool Kit]] which we will use for this lesson.
 
 # Creating a model
@@ -9,7 +9,7 @@ Source assets for models are often stored in Autodesk FBX, Wavefront OBJ, or sim
 
 Visual Studio has a built-in system for converting a Wavefront OBJ or Autodesk FBX as part of the build process to a CMO, which you can read about [here](https://docs.microsoft.com/en-us/visualstudio/designers/using-3-d-assets-in-your-game-or-app).
 
-For this tutorial, we will instead make of use of the [DirectXMesh](http://go.microsoft.com/fwlink/?LinkID=324981) **meshconvert** command-line tool.  Start by saving [cup._obj](https://github.com/Microsoft/DirectXTK/wiki/media/cup._obj), [cup.mtl](https://github.com/Microsoft/DirectXTK/wiki/media/cup.mtl), and [cup.jpg](https://github.com/Microsoft/DirectXTK/wiki/images/cup.jpg) into your new project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "cup.jpg" and click "OK".
+For this tutorial, we will make of use of the [DirectXMesh](http://go.microsoft.com/fwlink/?LinkID=324981) **meshconvert** command-line tool.  Start by saving [cup._obj](https://github.com/Microsoft/DirectXTK/wiki/media/cup._obj), [cup.mtl](https://github.com/Microsoft/DirectXTK/wiki/media/cup.mtl), and [cup.jpg](https://github.com/Microsoft/DirectXTK/wiki/images/cup.jpg) into your new project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "cup.jpg" and click "OK".
 
 1. Download the [Meshconvert.exe](https://github.com/microsoft/DirectXMesh/releases/latest/download/meshconvert.exe) from the _DirectXMesh_ site save the EXE into your project's folder.
 1. Open a [command-prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq) and then change to your project's folder.
@@ -23,8 +23,8 @@ meshconvert cup._obj -cmo -nodds -flipz -y
 Then from the top menu in Visual Studio select **Project** / **Add Existing Item...**. Select [cup.cmo](https://github.com/Microsoft/DirectXTK/wiki/cup.cmo) and click "OK".
 
 ## Technical notes
-* The switch ``-cmo`` selects the Visual Studio Compiled Mesh Object runtime format as the output. The **meshconvert** command-line tool also supports ``-sdkmesh`` and ``-vbo``. See [Geometry formats](https://directxmesh.codeplex.com/wikipage?title=Geometry%20formats) for more information.
-* The switch ``-nods`` causes any texture file name references in the material information of the source file to stay in their original file format (such as ``.png`` or ``.jpg``). Otherwise, it assumes you will be converting all the needed texture files to a ``.dds`` instead.
+* The switch ``-cmo`` selects the Visual Studio Compiled Mesh Object runtime format as the output. The **meshconvert** command-line tool also supports ``-sdkmesh``, ``-sdkmesh2``, and ``-vbo``. See [Geometry formats](https://directxmesh.codeplex.com/wikipage?title=Geometry%20formats) for more information.
+* The switch ``-nodds`` causes any texture file name references in the material information of the source file to stay in their original file format (such as ``.png`` or ``.jpg``). Otherwise, it assumes you will be converting all the needed texture files to a ``.dds`` which can be done via [DirectXTex](http://go.microsoft.com/fwlink/?LinkId=248926) **texconv** command-line tool.
 * The switch ``-flipz`` inverts the z axis. Since [[SimpleMath]] and these tutorials assume we are using _right-handed viewing coordinates_ and the model was created using _left-handed viewing coordinates_ we have to flip them to get the text in the texture to appear correctly.
 * The switch `-y` indicates that it is ok to overwrite the output file in case you run it multiple times.
 
@@ -44,25 +44,26 @@ std::unique_ptr<DirectX::Model> m_model;
 
 > In most cases you'd want to use ``std::unique_ptr<DirectX::EffectFactory> m_fxFactory;`` instead of ``std::unique_ptr<DirectX::IEffectFactory> m_fxFactory;``, but we keep a pointer to the abstract interface in this tutorial instead of to the concrete class to streamline things later on.
 
-In **Game.cpp**, add to the TODO of **CreateDevice**:
+In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
 
-```cpp
-m_states = std::make_unique<CommonStates>(m_d3dDevice.Get());
+```cpp  
+m_states = std::make_unique<CommonStates>(device);
 
-m_fxFactory = std::make_unique<EffectFactory>(m_d3dDevice.Get());
+m_fxFactory = std::make_unique<EffectFactory>(device);
 
-m_model = Model::CreateFromCMO(m_d3dDevice.Get(), L"cup.cmo", *m_fxFactory);
+m_model = Model::CreateFromCMO(device, L"cup.cmo", *m_fxFactory);
 
 m_world = Matrix::Identity;
 ```
 
-In **Game.cpp**, add to the TODO of **CreateResources**:
+In **Game.cpp**, add to the TODO of **CreateWindowSizeDependentResources**:
 
 ```cpp
+auto size = m_deviceResources->GetOutputSize();
 m_view = Matrix::CreateLookAt(Vector3(2.f, 2.f, 2.f),
     Vector3::Zero, Vector3::UnitY);
 m_proj = Matrix::CreatePerspectiveFieldOfView(XM_PI / 4.f,
-    float(backBufferWidth) / float(backBufferHeight), 0.1f, 10.f);
+    float(size.right) / float(size.bottom), 0.1f, 10.f);
 ```
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
@@ -76,7 +77,7 @@ m_model.reset();
 In **Game.cpp**, add to the TODO of **Render**:
 
 ```cpp
-m_model->Draw(m_d3dContext.Get(), *m_states, m_world, m_view, m_proj);
+m_model->Draw(context, *m_states, m_world, m_view, m_proj);
 ```
 
 In **Game.cpp**, add to the TODO of **Update**:
@@ -100,7 +101,7 @@ The standard ``Draw`` method for model takes a [[CommonStates]] object that it u
 In **Game.cpp**, modify the TODO of **Render**:
 
 ```cpp
-m_model->Draw(m_d3dContext.Get(), *m_states, m_world, m_view, m_proj, true);
+m_model->Draw(context, *m_states, m_world, m_view, m_proj, true);
 ```
 
 Build and run and you will see our cup model rendered with default lighting in wireframe mode:
@@ -110,10 +111,10 @@ Build and run and you will see our cup model rendered with default lighting in w
 For more custom rendering state, you can use the defaulted callback:
 
 ```cpp
-m_model->Draw(m_d3dContext.Get(), *m_states, m_world, m_view, m_proj, false, [&]() -> void
+m_model->Draw(context, *m_states, m_world, m_view, m_proj, false, [&]() -> void
 {
     auto sampler = m_states->PointClamp();
-    m_d3dContext->PSSetSamplers(0, 1, &sampler);
+    context->PSSetSamplers(0, 1, &sampler);
 });
 ```
 
@@ -123,7 +124,7 @@ The Model class creates effects automatically for the loaded materials which are
 
 ![Screenshot C++ RTTI settings](https://github.com/Microsoft/DirectXTK/wiki/images/settingsRTTI.PNG)
 
-In **Game.cpp**, add to the TODO of **CreateDevice**:
+In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
 
 ```cpp
 m_model->UpdateEffects([](IEffect* effect)
@@ -153,7 +154,7 @@ m_model->UpdateEffects([](IEffect* effect)
 In **Game.cpp**, modify the TODO of **Render**:
 
 ```cpp
-m_model->Draw(m_d3dContext.Get(), *m_states, m_world, m_view, m_proj);
+m_model->Draw(context, *m_states, m_world, m_view, m_proj);
 ```
 
 Build and run to get our cup with a colored light, per-pixel rather than vertex lighting, and fogging enabled.
@@ -169,16 +170,16 @@ Here we've made use to two C++ concepts:
 
 For this lesson, we made use of [[EffectFactory]] which will create [[BasicEffect]], [[DualTextureEffect]] or [[SkinnedEffect]] instances depending on the content of the loaded model file. With CMOs and the built-in Visual Studio 3D pipeline, you can instead make use of [[DGSLEffect]] by changing ``EffectFactory`` to ``DGSLEffectFactory``.
 
-In **Game.cpp** in the TODO section of **CreateDevice**, change
+In **Game.cpp** in the TODO section of **CreateDeviceDependentResources**, change
 
 ```cpp
-m_fxFactory = std::make_unique<EffectFactory>(m_d3dDevice.Get());
+m_fxFactory = std::make_unique<EffectFactory>(device);
 ```
 
 to
 
 ```cpp
-m_fxFactory = std::make_unique<DGSLEffectFactory>(m_d3dDevice.Get());
+m_fxFactory = std::make_unique<DGSLEffectFactory>(device);
 ```
 
 > This is why we used the abstract interface ``IEffectFactory`` rather than using ``std::unique_ptr<EffectFactory>`` in **Game.h** so that the variable could refer to either type of factory.

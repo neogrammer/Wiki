@@ -1,7 +1,9 @@
 This lesson covers the playing sounds with _DirectX Tool Kit for Audio_ using 3D positional audio effects.
 
 # Setup
-First create a new project. For this lesson, use the [[DeviceResources]] variant described in [[Using DeviceResources]], then use the instructions in [[Adding the DirectX Tool Kit]], then [[Adding the DirectX Tool Kit for Audio]], and finally [[Adding audio to your project]] which we will use for this lesson.
+First create a new project using the instructions from the earlier lessons: [[Using DeviceResources]], then [[Adding the DirectX Tool Kit]], [[Adding the DirectX Tool Kit for Audio]], and finally [[Adding audio to your project]] which we will use for this lesson.
+
+> If using *DirectX Tool Kit for DX12*, use [Using DeviceResources](https://github.com/microsoft/DirectXTK12/wiki/Using-DeviceResources), then [Adding the DirectX Tool Kit](https://github.com/microsoft/DirectXTK12/wiki/Adding-the-DirectX-Tool-Kit), add ``#include <Audio.h>`` to **pch.h**, and finally [[Adding audio to your project]]
 
 # Background
 Games provide an immersive visual and audio experience, and often use [3D audio effects](https://en.wikipedia.org/wiki/3D_audio_effect) to enhance the audio. The effect modifies the speaker position, pitch, and volume of a sound to provide audial cues to place it in the 3D environment. **XAudio2** itself provides the ability to specify a complex per-channel volume mapping, pitch modification, and other parameters to generate these 3D effects, but does not perform the computations. The X3DAudio library is used by *DirectX Tool Kit for Audio* to compute the virtual placement of the sound.
@@ -21,7 +23,7 @@ std::unique_ptr<DirectX::SoundEffect> m_soundEffect;
 In **Game.cpp**, add to the end of **Initialize**:
 
 ```cpp
-m_soundEffect = std::make_unique<SoundEffect>( m_audEngine.get(), L"heli.wav" );
+m_soundEffect = std::make_unique<SoundEffect>(m_audEngine.get(), L"heli.wav");
 ```
 
 Build and run. No sounds will be heard, but the audio file is loaded.
@@ -56,7 +58,7 @@ if (m_retryAudio)
     if (m_audEngine->Reset())
     {
         // TODO: restart any looped sounds here
-        if (  m_soundSource )
+        if (m_soundSource)
              m_soundSource->Play(true);
     }
 }
@@ -73,7 +75,8 @@ Game::~Game()
         m_audEngine->Suspend();
     }
 
-     m_soundSource.reset();
+    m_soundSource.reset();
+    ...
 }
 ```
 
@@ -87,6 +90,7 @@ In the **Game.h** file, add the following variables to the bottom of the Game cl
 
 ```cpp
 std::unique_ptr<DirectX::GeometricPrimitive> m_ball;
+
 DirectX::SimpleMath::Matrix m_proj;
 DirectX::SimpleMath::Matrix m_view;
 DirectX::SimpleMath::Vector3 m_position;
@@ -103,13 +107,6 @@ Game::Game() noexcept(false) :
 }
 ```
 
-In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
-
-```cpp
-auto context = m_deviceResources->GetD3DDeviceContext();
-m_ball = GeometricPrimitive::CreateSphere(context);
-```
-
 In **Game.cpp**, add to the TODO of **CreateWindowSizeDependentResources**:
 
 ```cpp
@@ -119,6 +116,17 @@ m_proj = Matrix::CreatePerspectiveFieldOfView(XM_PI / 4.f,
 
 m_view = Matrix::CreateLookAt(Vector3::Zero,
     Vector3::Forward, Vector3::Up);
+```
+
+Continue below depending on which version of _DirectX Tool Kit_ you are using.
+
+## DirectX 11
+
+In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
+
+```cpp
+auto context = m_deviceResources->GetD3DDeviceContext();
+m_ball = GeometricPrimitive::CreateSphere(context);
 ```
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
@@ -134,11 +142,58 @@ XMMATRIX world = XMMatrixTranslation(m_position.x, m_position.y, m_position.z);
 m_ball->Draw(world, m_view, m_proj, Colors::Yellow);
 ```
 
+## DirectX 12
+
+> This assumes you've already added *DirectX Tool Kit for 12* support including ``GraphicsMemory`` to your project.
+
+In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
+
+```cpp
+std::unique_ptr<DirectX::BasicEffect> m_ballEffect;
+```
+
+In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
+
+```cpp
+m_ball = GeometricPrimitive::CreateSphere();
+
+RenderTargetState rtState(m_deviceResources->GetBackBufferFormat(),
+    m_deviceResources->GetDepthBufferFormat());
+
+{
+    EffectPipelineStateDescription pd(
+        &GeometricPrimitive::VertexType::InputLayout,
+        CommonStates::Opaque,
+        CommonStates::DepthDefault,
+        CommonStates::CullNone,
+        rtState);
+
+    m_ballEffect = std::make_unique<BasicEffect>(device,
+        EffectFlags::Lighting, pd);
+    m_ballEffect->EnableDefaultLighting();
+}
+```
+
+In **Game.cpp**, add to the TODO of **OnDeviceLost**:
+
+```cpp
+m_ball.reset();
+m_ballEffect.reset();
+```
+
+In **Game.cpp**, add to the TODO of **Render**:
+
+```cpp
+XMMATRIX world = XMMatrixTranslation(m_position.x, m_position.y, m_position.z);
+m_ballEffect->SetMatrices(world, m_view, m_proj);
+m_ballEffect->SetDiffuseColor(Colors::Yellow);
+m_ballEffect->Apply(commandList);
+m_ball->Draw(commandList);
+```
+
 Build and run, and you should get the following screen:
 
 ![Screenshot of yellow ball](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotYellowBall.PNG)
-
-> If using DirectX 12, you will also need a BasicEffect and CommonStates to render this scene. See the [3D Shapes](https://github.com/microsoft/DirectXTK12/wiki/3D-shapes) tutorial for more details.
 
 # Applying a 3D positional effect
 

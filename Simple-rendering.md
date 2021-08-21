@@ -1,7 +1,7 @@
-Here we learn how to render a triangle.
+Here we learn how to render a 2D triangle and the use of the built-in basic effects.
 
 # Setup
-First create a new project using the instructions from the first two lessons: [[The basic game loop]] and
+First create a new project using the instructions from the earlier lessons: [[Using DeviceResources]] and
 [[Adding the DirectX Tool Kit]] which we will use for this lesson.
 
 # Background
@@ -30,46 +30,27 @@ std::unique_ptr<DirectX::PrimitiveBatch<VertexType>> m_batch;
 Microsoft::WRL::ComPtr<ID3D11InputLayout> m_inputLayout;
 ```
 
-In **Game.cpp**, add to the TODO of **CreateDevice**:
+In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
 
 ```cpp
-m_states = std::make_unique<CommonStates>(m_d3dDevice.Get());
+m_states = std::make_unique<CommonStates>(device);
 
-m_effect = std::make_unique<BasicEffect>(m_d3dDevice.Get());
-m_effect->SetVertexColorEnabled(true);
-
-void const* shaderByteCode;
-size_t byteCodeLength;
-
-m_effect->GetVertexShaderBytecode(&shaderByteCode, &byteCodeLength);
-
-DX::ThrowIfFailed(
-        m_d3dDevice->CreateInputLayout(VertexType::InputElements,
-            VertexType::InputElementCount,
-            shaderByteCode, byteCodeLength,
-            m_inputLayout.ReleaseAndGetAddressOf()));
-
-m_batch = std::make_unique<PrimitiveBatch<VertexType>>(m_d3dContext.Get());
-```
-
-*Optional*: You can simplify the last part using [[DirectXHelpers]]:
-
-```cpp
-m_states = std::make_unique<CommonStates>(m_d3dDevice.Get());
-
-m_effect = std::make_unique<BasicEffect>(m_d3dDevice.Get());
+m_effect = std::make_unique<BasicEffect>(device);
 m_effect->SetVertexColorEnabled(true);
 
 DX::ThrowIfFailed(
-    CreateInputLayoutFromEffect<VertexType>(m_d3dDevice.Get(), m_effect.get(),
+    CreateInputLayoutFromEffect<VertexType>(device, m_effect.get(),
         m_inputLayout.ReleaseAndGetAddressOf())
     );
 
-m_batch = std::make_unique<PrimitiveBatch<VertexType>>(m_d3dContext.Get());
+auto context = m_deviceResources->GetD3DDeviceContext();
+m_batch = std::make_unique<PrimitiveBatch<VertexType>>(context);
 ```
 
+> For more information on what exactly the **CreateInputLayoutFromEffect** function is doing, see [[DirectXHelpers]]. In short: it just calls the effect's **GetVertexShaderBytecode** method and then calls **CreateInputLayout** to combine the shader with the given vertex format.
+
 > *Technical note*: The input layout object needs to contain all the correct per-vertex elements needed for drawing. Therefore, it is important that you configure the ``BasicEffect`` before you call ``GetVertexShaderBytecode`` so it can return the proper shader. Hence why we called ``SetVertexColorEnabled`` to ensure we get ``SV_Position`` and ``COLOR``. See the [[BasicEffect]] for more information on the various shader/input layout configurations.
- 
+
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
 ```cpp
@@ -82,13 +63,13 @@ m_inputLayout.Reset();
 In **Game.cpp**, add to the TODO of **Render**:
 
 ```cpp
-m_d3dContext->OMSetBlendState( m_states->Opaque(), nullptr, 0xFFFFFFFF );
-m_d3dContext->OMSetDepthStencilState( m_states->DepthNone(), 0 );
-m_d3dContext->RSSetState( m_states->CullNone() );
+context->OMSetBlendState(m_states->Opaque(), nullptr, 0xFFFFFFFF);
+context->OMSetDepthStencilState(m_states->DepthNone(), 0);
+context->RSSetState(m_states->CullNone());
 
-m_effect->Apply(m_d3dContext.Get());
+m_effect->Apply(context);
 
-m_d3dContext->IASetInputLayout(m_inputLayout.Get());
+context->IASetInputLayout(m_inputLayout.Get());
 
 m_batch->Begin();
 
@@ -105,32 +86,36 @@ Build and run to see a simple yellow triangle rendered in 2D.
 
 ![Screenshot of triangle](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTriangle.PNG)
 
-> You don't have to use a type alias here like ``VertexType`` and you can just use ``DirectX::VertexPositionColor`` for the header and ``VertexPositionColor`` in the cpp file directly. I use the alias to simplify the tutorial a bit later on.
+> You don't have to use a type alias here like ``VertexType`` and you can just use ``DirectX::VertexPositionColor`` for the header and ``VertexPositionColor`` in the cpp file directly. I use the alias here to simplify the tutorial a bit later on.
 
 ## Pixel vs. normalized coordinates
 The image above is drawn using coordinates that are independent of the screen resolution and range from ``-1`` to ``+1``.  Resizing the window will result in the same image scaled to the new window. If instead you want to draw using screen pixel coordinates (which match the coordinate system used by [[SpriteBatch]]), then:
 
-In **Game.cpp**, add to the TODO of **CreateResources**:
+In **Game.cpp**, add to the TODO of **CreateWindowSizeDependentResources**:
 
 ```cpp
-Matrix proj = Matrix::CreateScale( 2.f/float(backBufferWidth),
-   -2.f/float(backBufferHeight), 1.f)
+auto size = m_deviceResources->GetOutputSize();
+
+Matrix proj = Matrix::CreateScale( 2.f/float(size.right),
+   -2.f/float(size.bottom), 1.f)
    * Matrix::CreateTranslation( -1.f, 1.f, 0.f );
 m_effect->SetProjection(proj);
 ```
 
 > The projection matrix can also be created with ``Matrix::CreateOrthographicOffCenter(0.f, float(backBufferWidth), float(backBufferHeight), 0.f, 0.f, 1.f);``
 
+If you are not familiar with transformation matrices used in computer graphics, you may want to review [[Using the SimpleMath library]] now and return to this tutorial. In simple terms, all the code above does is create a matrix to: (1) shift the 0,0 origin to the upper-right corner, (2) flip the y-axis so 0 is the top instead of bottom of the screen, and (3) scale the size in pixels to take up the entire -1 to 1 range (i.e. 2) in each axis.
+
 In **Game.cpp**, modify the TODO of **Render**:
 
 ```cpp
-m_d3dContext->OMSetBlendState( m_states->Opaque(), nullptr, 0xFFFFFFFF );
-m_d3dContext->OMSetDepthStencilState( m_states->DepthNone(), 0 );
-m_d3dContext->RSSetState( m_states->CullNone() );
+context->OMSetBlendState(m_states->Opaque(), nullptr, 0xFFFFFFFF);
+context->OMSetDepthStencilState(m_states->DepthNone(), 0);
+context->RSSetState(m_states->CullNone());
 
-m_effect->Apply(m_d3dContext.Get());
+m_effect->Apply(context);
 
-m_d3dContext->IASetInputLayout(m_inputLayout.Get());
+context->IASetInputLayout(m_inputLayout.Get());
 
 m_batch->Begin();
 
@@ -157,13 +142,13 @@ Build and run to get the same image, but if you resize the window the triangle w
 The use of ``CullNone`` for our rasterizer state above allows triangles and quads--which in Direct3D are just two triangles--to be drawn with arbitrary winding order. If you modify **Render** above as follows:
 
 ```cpp
-m_d3dContext->RSSetState( m_states->CullClockwise() );
+context->RSSetState(m_states->CullClockwise());
 ```
 
 Then build & run you run you will see nothing drawn because the triangle winding order was specified in clockwise order. If you changed it again to:
 
 ```cpp
-m_d3dContext->RSSetState( m_states->CullCounterClockwise() );
+context->RSSetState(m_states->CullCounterClockwise());
 ```
 
 Then build & run you will see the triangle reappear.
@@ -171,6 +156,26 @@ Then build & run you will see the triangle reappear.
 For 'closed' objects, you typically use [backface culling](https://en.wikipedia.org/wiki/Back-face_culling) to speed up rendering which can quickly reject triangles that are not facing the viewer and avoids the need to run the pixel shader for those pixels.
 
 > The culling mode does not affect points or lines.
+
+# Drawing with per-vertex colors
+
+In the rendering above, we used 'per-vertex' colors, but we used the same in all three corners. You can also use different colors which will blend smoothly between the vertices.
+
+In **Game.cpp**, modify the TODO of **Render**:
+
+```cpp
+...
+
+VertexPositionColor v1(Vector3(400.f, 150.f, 0.f), Colors::Red);
+VertexPositionColor v2(Vector3(600.f, 450.f, 0.f), Colors::Green);
+VertexPositionColor v3(Vector3(200.f, 450.f, 0.f), Colors::Blue);
+
+...
+```
+
+Build and run to see a simple RGB triangle rendered in 2D.
+
+![Screenshot of triangle](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTriangleRGB.PNG)
 
 # Drawing with textures
 
@@ -182,11 +187,11 @@ In the **Game.h** file, add the following variable to the bottom of the Game cla
 Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture;
 ```
 
-In **Game.cpp**, add to the TODO of **CreateDevice**:
+In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
 
 ```cpp
 DX::ThrowIfFailed(
-    CreateWICTextureFromFile(m_d3dDevice.Get(), L"rocks.jpg", nullptr,
+    CreateWICTextureFromFile(device, L"rocks.jpg", nullptr,
     m_texture.ReleaseAndGetAddressOf()));
 ```
 
@@ -204,19 +209,21 @@ Now go back to your **Game.h** and modify the ``VertexType`` alias we used earli
 using VertexType = DirectX::VertexPositionTexture;
 ```
 
-Then in **Game.cpp** modify **CreateDevice**:
+Then in **Game.cpp** modify **CreateDeviceDependentResources**:
 
 ```cpp
 ...
 
-m_effect = std::make_unique<BasicEffect>(m_d3dDevice.Get());
+m_effect = std::make_unique<BasicEffect>(device);
 m_effect->SetTextureEnabled(true);
 
 // Make sure you called CreateWICTextureFromFile before this point!
 m_effect->SetTexture(m_texture.Get());
 
-void const* shaderByteCode;
-size_t byteCodeLength;
+DX::ThrowIfFailed(
+    CreateInputLayoutFromEffect<VertexType>(device, m_effect.get(),
+        m_inputLayout.ReleaseAndGetAddressOf())
+    );
 ...
 ```
 
@@ -225,16 +232,16 @@ size_t byteCodeLength;
 In **Game.cpp**, modify the TODO of **Render**:
 
 ```cpp
-m_d3dContext->OMSetBlendState( m_states->Opaque(), nullptr, 0xFFFFFFFF );
-m_d3dContext->OMSetDepthStencilState( m_states->DepthNone(), 0 );
-m_d3dContext->RSSetState( m_states->CullNone() );
+context->OMSetBlendState(m_states->Opaque(), nullptr, 0xFFFFFFFF);
+context->OMSetDepthStencilState(m_states->DepthNone(), 0);
+context->RSSetState(m_states->CullNone());
 
-m_effect->Apply(m_d3dContext.Get());
+m_effect->Apply(context);
 
 auto sampler = m_states->LinearClamp();
-m_d3dContext->PSSetSamplers(0, 1, &sampler);
+context->PSSetSamplers(0, 1, &sampler);
 
-m_d3dContext->IASetInputLayout(m_inputLayout.Get());
+context->IASetInputLayout(m_inputLayout.Get());
 
 m_batch->Begin();
 
@@ -265,11 +272,11 @@ In the **Game.h** file, add the following variable to the bottom of the Game cla
 Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_normalMap;
 ```
 
-In **Game.cpp**, add to the TODO of **CreateDevice**:
+In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
 
 ```cpp
 DX::ThrowIfFailed(
-    CreateDDSTextureFromFile(m_d3dDevice.Get(), L"rocks_normalmap.dds", nullptr,
+    CreateDDSTextureFromFile(device, L"rocks_normalmap.dds", nullptr,
     m_normalMap.ReleaseAndGetAddressOf()));
 ```
 
@@ -289,18 +296,20 @@ using VertexType = DirectX::VertexPositionNormalTexture;
 
 Also change the type of effect. Since we are using a flat 2D triangle, the lighting is not going to be very interesting so we are going to add some simple normal mapping to give the texture some definition.
 
+> If you are not familiar with *lighting* (also known as [shading](https://en.wikipedia.org/wiki/Shading)) in the computer graphics sense, you should review some of the basic material on the web or in a standard book. Most of the built-in effects use simple "dot-product" style lighting where the 'light value' is scaled by a value of 0 (not lit) to 1 (fully lit) computed from the angle between the vector to the light (i.e. the inverse of the light direction) and the normal vector at the surface.
+
 ```cpp
 std::unique_ptr<DirectX::NormalMapEffect> m_effect;
 ```
 
 > Note that ``NormalMapEffect`` requires Direct3D hardware feature level 10.0 or higher. It won't run on 9.x feature levels.
 
-Then in **Game.cpp** modify **CreateDevice**:
+Then in **Game.cpp** modify **CreateDeviceDependentResources**:
 
 ```cpp
 ...
 
-m_effect = std::make_unique<NormalMapEffect>(m_d3dDevice.Get());
+m_effect = std::make_unique<NormalMapEffect>(device);
 
 // Make sure you called CreateDDSTextureFromFile and CreateWICTextureFromFile before this point!
 m_effect->SetTexture(m_texture.Get());
@@ -309,8 +318,10 @@ m_effect->SetNormalTexture(m_normalMap.Get());
 m_effect->EnableDefaultLighting();
 m_effect->SetLightDiffuseColor(0, Colors::Gray);
 
-void const* shaderByteCode;
-size_t byteCodeLength;
+DX::ThrowIfFailed(
+    CreateInputLayoutFromEffect<VertexType>(device, m_effect.get(),
+        m_inputLayout.ReleaseAndGetAddressOf())
+    );
 ...
 ```
 
@@ -335,16 +346,16 @@ m_effect->SetLightDirection(0, light);
 In **Game.cpp**, modify the TODO of **Render**:
 
 ```cpp
-m_d3dContext->OMSetBlendState( m_states->Opaque(), nullptr, 0xFFFFFFFF );
-m_d3dContext->OMSetDepthStencilState( m_states->DepthNone(), 0 );
-m_d3dContext->RSSetState( m_states->CullNone() );
+context->OMSetBlendState(m_states->Opaque(), nullptr, 0xFFFFFFFF);
+context->OMSetDepthStencilState(m_states->DepthNone(), 0);
+context->RSSetState(m_states->CullNone());
 
-m_effect->Apply(m_d3dContext.Get());
+m_effect->Apply(context);
 
 auto sampler = m_states->LinearClamp();
-m_d3dContext->PSSetSamplers(0, 1, &sampler);
+context->PSSetSamplers(0, 1, &sampler);
 
-m_d3dContext->IASetInputLayout(m_inputLayout.Get());
+context->IASetInputLayout(m_inputLayout.Get());
 
 m_batch->Begin();
 
@@ -369,6 +380,8 @@ texconv rocks_NM_height.dds -nmap l -nmapamp 4
 ```
 
 * Note this last part of the lesson requires Direct3D [hardware feature level](https://walbourn.github.io/direct3d-feature-levels/) 10.0 or better hardware. This is because [[NormalMapEffect]] along with [[DebugEffect]], [[PBREffect]], and [[PostProcess]] all make use of Shader Model 4.0.
+
+* For the *DirectX Tool Kit* normal map effect above, we did *not* need to provide precomputed per-vertex tangents or bi-tangents. See the **Further Reading** section of the [[NormalMapEffect]] page for details.
 
 **Next lesson:** [[Line drawing and anti-aliasing]]
 

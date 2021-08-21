@@ -1,7 +1,10 @@
-This lesson covers adding _DirectX Tool Kit for Audio_ to your project.
+This lesson covers adding the _DirectX Tool Kit for Audio_ library and headers to your project.
 
 # Setup
-After creating a new project in the [[The basic game loop]] or [[Using DeviceResources]], then [[Adding the DirectX Tool Kit]] for this lesson.
+First create a new project using the instructions from the earlier lessons: [[Using DeviceResources]] and
+[[Adding the DirectX Tool Kit]] which we will use for this lesson.
+
+> If using *DirectX Tool Kit for DX12*, use [Using DeviceResources](https://github.com/microsoft/DirectXTK12/wiki/Using-DeviceResources) and [Adding the DirectX Tool Kit](https://github.com/microsoft/DirectXTK12/wiki/Adding-the-DirectX-Tool-Kit). In this case, the only thing to do in this lesson is adding ``#include <Audio.h>`` to **pch.h**.
 
 # NuGet package manager
 If you used [NuGet](https://docs.microsoft.com/en-us/nuget/what-is-nuget) when [[Adding the DirectX Tool Kit]], then you already have support for _DirectX Tool Kit for Audio._.
@@ -141,4 +144,3 @@ DirectX Tool Kit docs [[Audio]]
 [DirectX Tool Kit for Audio](https://walbourn.github.io/directx-tool-kit-for-audio/)  
 [XAudio2 and Windows 8](https://walbourn.github.io/xaudio2-and-windows-8/)  
 [Twilight for Windows 7](https://walbourn.github.io/twilight-for-windows-7/)
-

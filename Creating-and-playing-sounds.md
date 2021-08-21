@@ -1,9 +1,9 @@
 This lesson covers the basics of playing sounds with _DirectX Tool Kit for Audio_.
 
 # Setup
+First create a new project using the instructions from the earlier lessons: [[Using DeviceResources]], then [[Adding the DirectX Tool Kit]], [[Adding the DirectX Tool Kit for Audio]], and finally [[Adding audio to your project]] which we will use for this lesson.
 
-First create a new project in the [[The basic game loop]] or [[Using DeviceResources]], then [[Adding the DirectX Tool Kit]], then [[Adding the DirectX Tool Kit for Audio]], and finally [[Adding audio to your project]] which we will use for this lesson.
-
+> If using *DirectX Tool Kit for DX12*, use [Using DeviceResources](https://github.com/microsoft/DirectXTK12/wiki/Using-DeviceResources), then [Adding the DirectX Tool Kit](https://github.com/microsoft/DirectXTK12/wiki/Adding-the-DirectX-Tool-Kit), add ``#include <Audio.h>`` to **pch.h**, and finally [[Adding audio to your project]]
 # Sounds
 
 Save the following files to your new project's folder: [Explo1.wav](https://github.com/Microsoft/DirectXTK/wiki/media/Explo1.wav), [Explo2.wav](https://github.com/Microsoft/DirectXTK/wiki/media/Explo2.wav), [Explo3.wav](https://github.com/Microsoft/DirectXTK/wiki/media/Explo3.wav), [Explo4.wav](https://github.com/Microsoft/DirectXTK/wiki/media/Explo4.wav), [NightAmbienceSimple_02.wav](https://github.com/Microsoft/DirectXTK/wiki/media/NightAmbienceSimple_02.wav). Use the top menu and select **Project / Add Existing Item**.... Select each ``.wav`` file in turn and hit "OK".
@@ -20,7 +20,8 @@ std::unique_ptr<DirectX::SoundEffect> m_ambient;
 In **Game.cpp**, add to the end of **Initialize**:
 
 ```cpp
-m_explode = std::make_unique<SoundEffect>( m_audEngine.get(), L"explo1.wav" );
+m_explode = std::make_unique<SoundEffect>( m_audEngine.get(),
+    L"explo1.wav" );
 m_ambient = std::make_unique<SoundEffect>( m_audEngine.get(),
     L"NightAmbienceSimple_02.wav" );
 ```

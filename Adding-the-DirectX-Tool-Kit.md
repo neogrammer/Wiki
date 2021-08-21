@@ -1,4 +1,4 @@
-After creating a new project in the [[The basic game loop]] or [[Using DeviceResources]], the next step is to add the _DirectX Tool Kit_ to the project so we can make use of it in our code.
+After creating a new project in [[Using DeviceResources]], the next step is to add the _DirectX Tool Kit_ library and headers to the project so we can make use of it in our code.
 
 # NuGet package manager
 The easiest way to achieve this is to use the [NuGet package manager](https://docs.microsoft.com/en-us/nuget/what-is-nuget) built into Visual Studio.
@@ -136,10 +136,11 @@ To finish off setup if using Xbox One XDK, in the **Game.h** file, add the follo
 std::unique_ptr<DirectX::GraphicsMemory> m_graphicsMemory;
 ```
 
-In **Game.cpp**, add to the TODO of **CreateDevice**:
+In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
 
 ```cpp
-m_graphicsMemory = std::make_unique<GraphicsMemory>(m_d3dDevice.Get());
+auto device = m_deviceResources->GetD3DDevice();
+m_graphicsMemory = std::make_unique<GraphicsMemory>(device);
 ```
 
 In **Game.cpp**, in **Render** add a call to [[GraphicsMemory]] ``Commit`` right after the present:
@@ -149,14 +150,17 @@ void Game::Render()
 {
     // Don't try to render anything before the first Update.
     if (m_timer.GetFrameCount() == 0)
+    {
         return;
+    }
 
     Clear();
 
+    auto context = m_deviceResources->GetD3DDeviceContext();
     // TODO: Add your rendering code here.
 
     // Show the new frame.
-    Present();
+    m_deviceResources->Present();
     m_graphicsMemory->Commit();
 }
 ```
@@ -165,26 +169,6 @@ In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
 ```cpp
 m_graphicsMemory.reset();
-```
-
-## DeviceResources variant
-If using the [[DeviceResources]] variant of the template, the code above would be for **CreateDeviceDependentResources** instead of **CreateDevice**:
-
-```cpp
-auto device = m_deviceResources->GetD3DDevice();
-m_graphicsMemory = std::make_unique<GraphicsMemory>(device);
-```
-
-and for **Render**:
-
-```cpp
-void Game::Render()
-{
-...
-    // Show the new frame.
-    m_deviceResources->Present();
-    m_graphicsMemory->Commit();
-}
 ```
 
 # Platform notes

@@ -1,7 +1,7 @@
 In this lesson, we will explore more things you can do with sprites.
 
 # Setup
-First create a new project using the instructions from the first two lessons: [[The basic game loop]] and
+First create a new project using the instructions from the earlier lessons: [[Using DeviceResources]] and
 [[Adding the DirectX Tool Kit]] which we will use for this lesson.
 
 # Animating sprites
@@ -26,23 +26,25 @@ Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture;
 DirectX::SimpleMath::Vector2 m_shipPos;
 ```
 
-In **Game.cpp**, add to the TODO of **CreateDevice**:
+In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
 
 ```cpp
-m_spriteBatch = std::make_unique<SpriteBatch>(m_d3dContext.Get());
+auto context = m_deviceResources->GetD3DDeviceContext();
+m_spriteBatch = std::make_unique<SpriteBatch>(context);
 
-DX::ThrowIfFailed(CreateWICTextureFromFile(m_d3dDevice.Get(), L"shipanimated.png",
+DX::ThrowIfFailed(CreateWICTextureFromFile(device3, L"shipanimated.png",
     nullptr, m_texture.ReleaseAndGetAddressOf()));
 
 m_ship = std::make_unique<AnimatedTexture>();
 m_ship->Load(m_texture.Get(), 4, 20);
 ```
 
-In **Game.cpp**, add to the TODO of **CreateResources**:
+In **Game.cpp**, add to the TODO of **CreateWindowSizeDependentResources**:
 
 ```cpp
-m_shipPos.x = float(backBufferWidth / 2);
-m_shipPos.y = float((backBufferHeight / 2) + (backBufferHeight / 4));
+auto size = m_deviceResources->GetOutputSize();
+m_shipPos.x = float(size.right / 2);
+m_shipPos.y = float((size.bottom / 2) + (size.bottom / 4));
 ```
 
 > If using the UWP template, you also need to add ``m_spriteBatch->SetRotation(m_outputRotation);`` to handle display orientation changes.
@@ -96,20 +98,20 @@ std::unique_ptr<ScrollingBackground> m_stars;
 Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_backgroundTex;
 ```
 
-In **Game.cpp**, add to the TODO of **CreateDevice**:
+In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
 
 ```cpp
-DX::ThrowIfFailed(CreateWICTextureFromFile(m_d3dDevice.Get(), L"starfield.png",
+DX::ThrowIfFailed(CreateWICTextureFromFile(device, L"starfield.png",
     nullptr, m_backgroundTex.ReleaseAndGetAddressOf()));
 
 m_stars = std::make_unique<ScrollingBackground>();
 m_stars->Load(m_backgroundTex.Get());
 ```
 
-In **Game.cpp**, add to the TODO of **CreateResources**:
+In **Game.cpp**, add to the TODO of **CreateWindowSizeDependentResources**:
 
 ```cpp
-m_stars->SetWindow(backBufferWidth, backBufferHeight);
+m_stars->SetWindow(size.right, size.bottom);
 ```
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:

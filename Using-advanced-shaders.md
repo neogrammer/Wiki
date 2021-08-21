@@ -1,10 +1,12 @@
-In this lesson we learn about other built-in shader types and some of their uses.
+In this lesson we learn about  additional built-in shader types and some of their uses.
 
 # Setup
-First create a new project using the instructions from the first two lessons: [[The basic game loop]] and
+First create a new project using the instructions from the previous lessons: [[Using DeviceResources]] and
 [[Adding the DirectX Tool Kit]] which we will use for this lesson.
 
 # Environment mapping
+
+Environment mapping (also known as [reflection mapping](https://en.wikipedia.org/wiki/Reflection_mapping)) is a common technique for adding reflections of the surrounding environment to 3D rendered materials using a [cubemap](https://en.wikipedia.org/wiki/Cube_mapping).
 
 Start by saving [wood.dds](https://github.com/Microsoft/DirectXTK/wiki/media/wood.dds) and [cubemap.dds](https://github.com/Microsoft/DirectXTK/wiki/media/cubemap.dds) into your new project's directory, and then from the top menu select **Project / Add Existing Item....** Select "wood.dds" and click "OK". Repeat for "cubemap.dds"
 
@@ -14,34 +16,37 @@ In the **Game.h** file, add the following variables to the bottom of the Game cl
 DirectX::SimpleMath::Matrix m_world;
 DirectX::SimpleMath::Matrix m_view;
 DirectX::SimpleMath::Matrix m_proj;
+
 std::unique_ptr<DirectX::CommonStates> m_states;
 std::unique_ptr<DirectX::GeometricPrimitive> m_shape;
 std::unique_ptr<DirectX::EnvironmentMapEffect> m_effect;
+
 Microsoft::WRL::ComPtr<ID3D11InputLayout> m_inputLayout;
 Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture;
 Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_cubemap;
 ```
 
-In **Game.cpp**, add to the TODO of **CreateDevice**:
+In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
 
 ```cpp
-m_states = std::make_unique<CommonStates>(m_d3dDevice.Get());
+m_states = std::make_unique<CommonStates>(device);
 
-m_effect = std::make_unique<EnvironmentMapEffect>(m_d3dDevice.Get());
+m_effect = std::make_unique<EnvironmentMapEffect>(device);
 m_effect->EnableDefaultLighting();
 
-m_shape = GeometricPrimitive::CreateTeapot(m_d3dContext.Get());
+auto context = m_deviceResources->GetD3DDeviceContext();
+m_shape = GeometricPrimitive::CreateTeapot(context);
 m_shape->CreateInputLayout(m_effect.get(),
     m_inputLayout.ReleaseAndGetAddressOf());
 
 DX::ThrowIfFailed(
-    CreateDDSTextureFromFile(m_d3dDevice.Get(), L"wood.dds", nullptr,
+    CreateDDSTextureFromFile(device, L"wood.dds", nullptr,
     m_texture.ReleaseAndGetAddressOf()));
 
 m_effect->SetTexture(m_texture.Get());
 
 DX::ThrowIfFailed(
-    CreateDDSTextureFromFile(m_d3dDevice.Get(), L"cubemap.dds", nullptr,
+    CreateDDSTextureFromFile(device, L"cubemap.dds", nullptr,
     m_cubemap.ReleaseAndGetAddressOf()));
 
 m_effect->SetEnvironmentMap(m_cubemap.Get());
@@ -49,13 +54,14 @@ m_effect->SetEnvironmentMap(m_cubemap.Get());
 m_world = Matrix::Identity;
 ```
 
-In **Game.cpp**, add to the TODO of **CreateResources**:
+In **Game.cpp**, add to the TODO of **CreateWindowSizeDependentResources**:
 
 ```cpp
+auto size = m_deviceResources->GetOutputSize();
 m_view = Matrix::CreateLookAt(Vector3(2.f, 2.f, 2.f),
     Vector3::Zero, Vector3::UnitY);
 m_proj = Matrix::CreatePerspectiveFieldOfView(XM_PI / 4.f,
-    float(backBufferWidth) / float(backBufferHeight), 0.1f, 10.f);
+    float(size.right) / float(size.bottom), 0.1f, 10.f);
 
 m_effect->SetView(m_view);
 m_effect->SetProjection(m_proj);
@@ -78,7 +84,7 @@ In **Game.cpp**, add to the TODO of **Render**:
 m_effect->SetWorld(m_world);
 m_shape->Draw(m_effect.get(), m_inputLayout.Get(), false, false, [=]{
     auto sampler = m_states->LinearWrap();
-    m_d3dContext->PSSetSamplers( 1, 1, &sampler );
+    context->PSSetSamplers( 1, 1, &sampler );
 });
 ```
 
@@ -104,6 +110,11 @@ Build and run to see the effect of animating the Fresnel factor.
 
 ![Screenshot of teapot](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTeapot2.PNG)
 
+## Technical notes
+The EnvironmentMapEffect shader is computing a 3D reflection vector from the eye direction determined from the view matrix and the normal vector of the pixel. The result is used to index into the cubemap. This results in the 'mirror-like' appearance of the material.
+
+For dynamic environments, you can generate the cubemap at runtime by rendering the scene using six camera directions around a sample-point and capturing the result in a low-resolution cubemap. Since this requires additional rendering passes, this is typically done occasionally rather than every frame.
+
 # Normal mapping
 
 [[NormalMapEffect]] is similar to the [[BasicEffect]] with the addition of a [normal texture map](https://en.wikipedia.org/wiki/Normal_mapping) and an optional [specular texture map](https://en.wikipedia.org/wiki/Specularity).
@@ -124,11 +135,11 @@ Also change the definition of **m_effect**:
 std::unique_ptr<DirectX::NormalMapEffect> m_effect;
 ```
 
-In **Game.cpp**, add to the TODO of **CreateDevice**:
+In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
 
 ```cpp
 DX::ThrowIfFailed(
-    CreateDDSTextureFromFile(m_d3dDevice.Get(), L"normalMap.dds", nullptr,
+    CreateDDSTextureFromFile(device, L"normalMap.dds", nullptr,
         m_normalTexture.ReleaseAndGetAddressOf()));
 
 m_effect->SetNormalTexture(m_normalTexture.Get());
@@ -137,7 +148,7 @@ m_effect->SetNormalTexture(m_normalTexture.Get());
 And change the creation of the effect:
 
 ```cpp
-m_effect = std::make_unique<NormalMapEffect>(m_d3dDevice.Get());
+m_effect = std::make_unique<NormalMapEffect>(device);
 ```
 
 You'll also need to comment out the calls to **SetEnvironmentMap** and **SetFresnelFactor**.
@@ -169,7 +180,7 @@ std::unique_ptr<DirectX::DebugEffect> m_effect;
 In **Game.cpp**, change the creation of the effect:
 
 ```cpp
-m_effect = std::make_unique<DebugEffect>(m_d3dDevice.Get());
+m_effect = std::make_unique<DebugEffect>(device);
 
 m_effect->SetHemisphericalAmbientColor(Colors::DarkBlue, Colors::Purple);
 ```
@@ -184,7 +195,7 @@ Build and run to see the debug effect rendering a blue/purple gradient teapot:
 
 * The [[EnvironmentMapEffect]] also supports spherical environment maps (a [DirectX 9](https://docs.microsoft.com/en-us/windows/win32/direct3d9/spherical-environment-mapping) feature) and dual-parabolic environment maps.
 
-* [[PBREffect]] is a Disney-style [Physically-Based Rendering](https://en.wikipedia.org/wiki/Physically_based_rendering) effect which uses albedo maps, normal map, and roughness/metalness/ambient-occlusion map along with two cubemaps for Image-Based Lighting.
+* [[PBREffect]] is a Disney-style [Physically-Based Rendering](https://en.wikipedia.org/wiki/Physically_based_rendering) effect which uses an albedo map, normal map, and roughness/metalness/ambient-occlusion map along with two cubemaps for [Image-Based Lighting](https://en.wikipedia.org/wiki/Image-based_lighting).
 
 * [[DualTextureEffect]] is used to render a material with two textures applied. This requires the input layout to contain a second set of _texture coordinates_. This does not perform vertex or per-pixel lighting, as the second texture is most often a [lightmap](https://en.wikipedia.org/wiki/Lightmap) with statically computed lighting information.  ``.SDKMESH`` and the [Content Exporter](https://aka.ms/dxsdkcontentexporter) support exporting light-mapped models which utilize this effect (see ``-lightmaps``).
 
