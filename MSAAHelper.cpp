@@ -154,7 +154,6 @@ void MSAAHelper::SizeResources(size_t width, size_t height)
 
     SetDebugObjectName(m_msaaRenderTarget.Get(), "MSAA Render Target");
 
-
     CD3D11_RENDER_TARGET_VIEW_DESC renderTargetViewDesc(D3D11_RTV_DIMENSION_TEXTURE2DMS, m_backBufferFormat);
 
     ThrowIfFailed(m_device->CreateRenderTargetView(

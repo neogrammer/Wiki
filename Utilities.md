@@ -22,7 +22,7 @@ For samples, I've created a number of utility headers that help fill in gaps bet
      <td>Helper for loading custom shaders from compiled cso blobs.</td></tr>
  <tr><td><a href="/microsoft/DirectXTK/wiki/RenderTexture.h">RenderTexture.h</a></td>
      <td><a href="/microsoft/DirectXTK/wiki/RenderTexture.cpp">RenderTexture.cpp</a></td>
-     <td>Helper for implementing render to texture.</td></tr>
+     <td>Helper for implementing render to texture. See <a href="/microsoft/DirectXTK/wiki/RenderTexture">wiki</a>.</td></tr>
  <tr><td><a href="/microsoft/DirectXTK/wiki/ScrollingBackground.h">ScrollingBackground.h</a></td>
      <td>n/a</td>
      <td>Used for a SpriteFont tutorial. See <a href="/microsoft/DirectXTK/wiki/ScrollingBackground">wiki</a>.</td></tr>

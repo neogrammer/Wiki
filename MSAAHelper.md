@@ -26,7 +26,7 @@ public:
     ID3D11RenderTargetView* GetMSAARenderTargetView() const { return m_renderTargetView.Get(); }
     ID3D11DepthStencilView* GetMSAADepthStencilView() const { return m_depthStencilView.Get(); }
 
-    DXGI_FORMAT GetBackBufferFormat() const { return m_backBufferFormat; } 
+    DXGI_FORMAT GetBackBufferFormat() const { return m_backBufferFormat; }
     DXGI_FORMAT GetDepthBufferFormat() const { return m_depthBufferFormat; }
     unsigned int GetSampleCount() const { return m_sampleCount; }
 
@@ -161,8 +161,6 @@ void MSAAHelper::SizeResources(size_t width, size_t height)
         m_msaaRenderTarget.ReleaseAndGetAddressOf()
     ));
 
-    SetDebugObjectName(m_msaaRenderTarget.Get(), "MSAA Render Target");
-
     CD3D11_RENDER_TARGET_VIEW_DESC renderTargetViewDesc(D3D11_RTV_DIMENSION_TEXTURE2DMS, m_backBufferFormat);
 
     ThrowIfFailed(m_device->CreateRenderTargetView(
@@ -170,8 +168,6 @@ void MSAAHelper::SizeResources(size_t width, size_t height)
         &renderTargetViewDesc,
         m_renderTargetView.ReleaseAndGetAddressOf()
     ));
-
-    SetDebugObjectName(m_renderTargetView.Get(), "MSAA Render Target");
 
     if (m_depthBufferFormat != DXGI_FORMAT_UNKNOWN)
     {
@@ -194,8 +190,6 @@ void MSAAHelper::SizeResources(size_t width, size_t height)
             m_msaaDepthStencil.ReleaseAndGetAddressOf()
         ));
 
-        SetDebugObjectName(m_msaaDepthStencil.Get(), "MSAA Depth/Stencil");
-
         CD3D11_DEPTH_STENCIL_VIEW_DESC dsvDesc(D3D11_DSV_DIMENSION_TEXTURE2DMS, m_depthBufferFormat);
 
         ThrowIfFailed(m_device->CreateDepthStencilView(
@@ -203,8 +197,6 @@ void MSAAHelper::SizeResources(size_t width, size_t height)
             &dsvDesc,
             m_depthStencilView.ReleaseAndGetAddressOf()
         ));
-
-        SetDebugObjectName(m_depthStencilView.Get(), "MSAA Depth/Stencil");
     }
 
     m_width = width;
@@ -320,6 +312,3 @@ m_msaaHelper->ReleaseDevice();
 This helper class uses the 'default' quality for simplicity.
 
 If the requested sample count isn't supported, it will use the largest value that is supported. For example, if you request 8, but the device only supports 4 it will use 4x. If no MSAA sample count is valid for the given formats, it will throw a C++ exception.
-
-
-

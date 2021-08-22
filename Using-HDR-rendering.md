@@ -273,4 +273,4 @@ m_toneMap->Process(context);
 
 # Further reading
 
-DirectX Tool Kit docs [[PostProcess]] and [[ToneMapPostProcess]]
+DirectX Tool Kit docs [[PostProcess]], [[ToneMapPostProcess]], and [[RenderTexture]]
