@@ -73,7 +73,7 @@ m_screenPos.x = float(size.right) / 2.f;
 m_screenPos.y = float(size.bottom) / 2.f;
 ```
 
-> If using the UWP template, you also need to add ``m_spriteBatch->SetRotation(m_outputRotation);`` to handle display orientation changes.
+> If using the UWP template, you also need to add ``m_spriteBatch->SetRotation(m_deviceResources->GetRotation());`` to handle display orientation changes.
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
