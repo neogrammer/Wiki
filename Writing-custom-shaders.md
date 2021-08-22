@@ -607,6 +607,10 @@ One final note, because we are using a render target that is larger than our blu
 
 > Note that since this tutorial was written, I've added the [[BasicPostProcess]] / [[DualPostProcess]] classes which already includes the blur and bloom shaders used above. This is still a useful and valid tutorial, but you should check out those classes if you are wanting to add a bloom effect and you are using Direct3D hardware feature level 10.0 or better. For Direct3D hardware feature level 9.x, you should use the code above instead for post-processing.
 
+# More to explore
+
+* See  [[BasicPostProcess]] and [[DualPostProcess]] for additional built-in post-processing effects.
+
 **Next lessons:** [[Using HDR rendering]]
 
 # Further reading
