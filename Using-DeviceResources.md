@@ -1,6 +1,6 @@
 In [[the basic game loop]] lesson, we made use of the **Direct3D Game** VS template which has all the relevant Direct3D code in the ``Game`` class including creating the device and swap chain. This makes it easy to see how to create the device & swapchain. This, however, results in a lot of 'boiler-plate' code in the main ``Game`` class which is distracting for the remainder of our tutorial lessons.
 
-There is therefore a "DR" variant of each of the Direct3D Game VS template in the [VS 2017/2019](https://github.com/walbourn/directx-vs-templates/raw/master/VSIX/Direct3DUWPGame.vsix) VSIX package which adds [[DeviceResources]].
+There is therefore a "DR" variant of each of the Direct3D Game VS template in the [VS 2017/2019/2022](https://github.com/walbourn/directx-vs-templates/raw/master/VSIX/Direct3DUWPGame.vsix) VSIX package which adds [[DeviceResources]].
 
 > The standard Universal Windows Platform app ``DirectXApp`` VS templates make use of a similar ``DeviceResources`` abstraction.
 
@@ -15,7 +15,7 @@ There is therefore a "DR" variant of each of the Direct3D Game VS template in th
 
 ![Create New Project](https://github.com/Microsoft/DirectXTK/wiki/images/CreateNewProjectDR.PNG)
 
-## Visual Studio 2019
+## Visual Studio 2019 / 2022
 * From the drop-down menu, select **File** and then **New** -> **Project...** or on the startup dialog select **Create a new project**
 * Select "Games" on the project types filter. You can optionally type "Win32" or "UWP" in the search box as well.
 * Select "Direct3D Win32 Game" or "Direct3D UWP Game".
@@ -70,7 +70,7 @@ While the UWP version will have:
 
 ## CMake projects
 
-If you prefer to make use of VS 2019's integrated [CMake](https://docs.microsoft.com/en-us/cpp/build/cmake-projects-in-visual-studio?view=vs-2019) support or a standalone install of CMake, there are ``CMakeLists.txt`` and ``CMakeSettings.json`` files available for download on [directx-vs-templates](https://github.com/walbourn/directx-vs-templates/wiki#cmake-projects).
+If you prefer to make use of Visual Studio's integrated [CMake](https://docs.microsoft.com/en-us/cpp/build/cmake-projects-in-visual-studio?view=vs-2019) support or a standalone install of CMake, there are ``CMakeLists.txt`` and ``CMakeSettings.json`` files available for download on [directx-vs-templates](https://github.com/walbourn/directx-vs-templates/wiki#cmake-projects).
 
 The simplest way to use these is to clone *directx-vs-templates*, open up PowerShell, change to the ``directx-vs-templates/VSIX`` directory, and run the following script which will create a fresh instance of the template set up for CMake development:
 
