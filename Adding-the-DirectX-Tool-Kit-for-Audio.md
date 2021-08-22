@@ -23,7 +23,7 @@ If you used [NuGet](https://docs.microsoft.com/en-us/nuget/what-is-nuget) when [
 Complete the steps in **Adding the headers** below including the additional configuration for *XAudio2 Redistributable* or *XAudio 2.9*.
 
 # Project-to-project references
-If you used project-to-project references when [[Adding the DirectX Tool Kit]], then you need to add an additional _DirectX Tool Kit for Audio_ project to your solution. There are three (3) choices depending on your platform target and deployment requirements:
+If you used project-to-project references when [[Adding the DirectX Tool Kit]] for DirectX 11, then you need to add an additional _DirectX Tool Kit for Audio_ project to your solution. There are three (3) choices depending on your platform target and deployment requirements:
 
 ## XAudio 2.9
 XAudio 2.9 is built into Windows 10. Everything required is included in the operating system and the Windows 10 SDK. This version of _DirectX Tool Kit for Audio_ is already included in those projects (``DirectXTK*_Windows10_201x.vcxproj``, ``DirectXTK*_Desktop_201x_Win10.vcxproj``) and Xbox One (``DirectXTK*_XboxOneXDK_201x.vcxproj``).
