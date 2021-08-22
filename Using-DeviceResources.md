@@ -24,7 +24,7 @@ There is therefore a "DR" variant of each of the Direct3D Game VS template in th
 * Optional: Check "Place solution and project in the same directory" to keep the directory structure as bit flatter.
 * Select "Create".
 
-![Create New Project](https://github.com/Microsoft/DirectXTK/wiki/images/CreateNewProject2019.png)
+![Create New Project](https://github.com/Microsoft/DirectXTK/wiki/images/CreateNewProjectDR2019.png)
 
 ## Windows 10 SDK Selection
 The templates use the Windows 10 SDK, so the project wizard will trigger this dialog to select the Windows 10 SDK version to use. Note that for Win32 Windows desktop apps, the "Minimum version" setting is ignored.
