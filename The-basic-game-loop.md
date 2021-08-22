@@ -15,7 +15,7 @@ Our starting point is to use the **Direct3D Win32 Game** or the **Direct3D UWP G
 
 ![Create New Project](https://github.com/Microsoft/DirectXTK/wiki/images/CreateNewProject.png)
 
-## Visual Studio 2019
+## Visual Studio 2019 / 2022
 * From the drop-down menu, select **File** and then **New** -> **Project...** or on the startup dialog select **Create a new project**
 * Select "Games" on the project types filter. You can optionally type "Win32" or "UWP" in the search box as well.
 * Select "Direct3D Win32 Game" or "Direct3D UWP Game".
