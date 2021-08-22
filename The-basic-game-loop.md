@@ -1,7 +1,7 @@
 The first lesson in the [[Getting Started]] guide is to create a basic game loop which creates a Direct3D device, swapchain, and update/render loop.
 
 # Setup
-Our starting point is to use the **Direct3D Win32 Game** or the **Direct3D UWP Game** project template. Install the [VS 2017/2019](https://github.com/walbourn/directx-vs-templates/raw/master/VSIX/Direct3DUWPGame.vsix) VSIX on your development system, and then start (or restart) Visual Studio.
+Our starting point is to use the **Direct3D Win32 Game** or the **Direct3D UWP Game** project template. Install the [VS 2017/2019/2022](https://github.com/walbourn/directx-vs-templates/raw/master/VSIX/Direct3DUWPGame.vsix) VSIX on your development system, and then start (or restart) Visual Studio.
 
 # Creating a new project
 
@@ -67,7 +67,7 @@ While the UWP version will have:
 
 ## CMake projects
 
-If you prefer to make use of VS 2019's integrated [CMake](https://docs.microsoft.com/en-us/cpp/build/cmake-projects-in-visual-studio?view=vs-2019) support or a standalone install of CMake, there are ``CMakeLists.txt`` and ``CMakeSettings.json`` files available for download on [directx-vs-templates](https://github.com/walbourn/directx-vs-templates/wiki#cmake-projects).
+If you prefer to make use of Visual Studio's integrated [CMake](https://docs.microsoft.com/en-us/cpp/build/cmake-projects-in-visual-studio?view=vs-2019) support or a standalone install of CMake, there are ``CMakeLists.txt`` and ``CMakeSettings.json`` files available for download on [directx-vs-templates](https://github.com/walbourn/directx-vs-templates/wiki#cmake-projects).
 
 The simplest way to use these is to clone *directx-vs-templates*, open up PowerShell, change to the ``directx-vs-templates/VSIX`` directory, and run the following script which will create a fresh instance of the template set up for CMake development:
 
