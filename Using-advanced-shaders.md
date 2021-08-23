@@ -199,7 +199,7 @@ Build and run to see the debug effect rendering a blue/purple gradient teapot:
 
 * [[DualTextureEffect]] is used to render a material with two textures applied. This requires the input layout to contain a second set of _texture coordinates_. This does not perform vertex or per-pixel lighting, as the second texture is most often a [lightmap](https://en.wikipedia.org/wiki/Lightmap) with statically computed lighting information.  ``.SDKMESH`` and the [Content Exporter](https://aka.ms/dxsdkcontentexporter) support exporting light-mapped models which utilize this effect (see ``-lightmaps``).
 
-* The [[AlphaTestEffect]] is used to perform pixel rejection based on an alpha reference value and function selection. It's primarily to implement techniques that relied on legacy Direct3D 9 alpha testing render state. This effect is independent of the depth/stencil tests set in ``D3D11_DEPTH_STENCIL_DESC.DepthFunc`` and ``StencilFunc``.
+* The [[AlphaTestEffect]] is used to perform pixel rejection based on an alpha reference value and function selection. It's primarily to implement techniques that relied on [legacy Direct3D 9 alpha testing](https://docs.microsoft.com/en-us/windows/win32/direct3d9/alpha-testing-state) render state. This effect is independent of the depth/stencil tests set in ``D3D11_DEPTH_STENCIL_DESC.DepthFunc`` and ``StencilFunc``.
 
 **Next lesson:** [[Creating custom shaders with DGSL]]
 
