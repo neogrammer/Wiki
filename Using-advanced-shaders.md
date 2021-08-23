@@ -91,7 +91,7 @@ m_shape->Draw(m_effect.get(), m_inputLayout.Get(), false, false, [=]{
 In **Game.cpp**, add to the TODO of **Update**:
 
 ```cpp
-float time = float(timer.GetTotalSeconds());
+auto time = static_cast<float>(timer.GetTotalSeconds());
 
 m_world = Matrix::CreateRotationZ(cosf(time) * 2.f);
 ```
