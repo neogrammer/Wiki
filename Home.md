@@ -37,7 +37,7 @@ See [this post](https://aka.ms/Kfsdiu) for a complete listing of D3DX equivalent
 
 # Credits
 
-The _DirectX Tool Kit_ is the work of Shawn Hargreaves and Chuck Walbourn, with contributions from Aaron Rodriguez Hernandez, and Daniel Roman.
+The _DirectX Tool Kit_ is the work of Shawn Hargreaves and Chuck Walbourn, with contributions from Aaron Rodriguez Hernandez, and Dani Roman.
 
 Thanks to Adrian Tsai for the geodesic sphere implementation.
 
