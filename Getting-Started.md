@@ -77,7 +77,7 @@ For a quick introduction to DirectX 11 programming, take a look at the [Introduc
 * Instancing: *SimpleInstancing*
 * Multisample Antialiasing: *SimpleMSAA*
 
-The official samples for DirectX 11 were originally shipped in the legacy *DirectX SDK*. There is an unofficial repository of these samples available on [GitHub](https://github.com/walbourn/directx-sdk-samples/wiki) that have been updated to remove most of their legacy dependencies.
+The official samples for DirectX 11 were originally shipped in the legacy *DirectX SDK*. There is an unofficial repository of these samples available on [GitHub: directx-sdk-samples](https://github.com/walbourn/directx-sdk-samples/wiki) that have been updated to remove most of their legacy dependencies. There are a few additional DirectX 11 samples on [directx-sdk-legacy-samples](https://github.com/walbourn/directx-sdk-legacy-samples/wiki)
 
 # Tutorials
 
