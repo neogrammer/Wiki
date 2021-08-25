@@ -46,7 +46,7 @@ Note if we are using ``DrawIndexed``, then the same index value is used to retri
 
 In addition to pulling vertex data from multiple streams, the *input assembler* can also 'loop' over some streams to implement a feature called "instancing". Here the same vertex data is drawing multiple times with some per-vertex data changing "once per instance" as it loops over the other data. This allows you to efficiently render a large number of the same object in many locations, such as grass or boulders.
 
-The [[NormalMapEffect]] supports GPU instancing using a per-vertex ``XMFLOAT3X4`` matrix which can include translations, rotations, scales, etc. For example if we were using ``VertexPositionNormalTexture`` model data with instancing, we'd create an input layout as follows:
+The [[NormalMapEffect]] supports GPU instancing using a per-vertex ``XMFLOAT3X4`` matrix which can include translations, rotations, scales, etc. For example if we were using ``VertexPositionNormalTexture`` vertex data with instancing, we'd create an input layout as follows:
 
 ```cpp
 // VertexPositionNormalTexture in VB#0, XMFLOAT3X4 in VB#1
