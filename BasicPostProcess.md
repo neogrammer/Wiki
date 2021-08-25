@@ -42,7 +42,7 @@ BasicPostProcess can be configured to use various pixel shaders by calling ``Set
 
 # Example
 
-If drawing a single texture which fills the render viewport, then using the **Copy** operation above is faster than using [[SpriteBatch]]--assuming you have Direct3D Hardware Feature Level 10 or later.
+If drawing a single texture which fills the render viewport, then using the **Copy** effect above is faster than using [[SpriteBatch]]--assuming you have Direct3D Hardware Feature Level 10 or later.
 
 ```cpp
 std::unique_ptr<BasicPostProcess> postProcess;
