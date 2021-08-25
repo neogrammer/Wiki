@@ -62,6 +62,8 @@ postProcess->Process(context);
 
 In some cases, you will perform several post-processing passes between various off-screen render targets before applying the final pass to the swapchain render target for presentation.
 
+> You can make use of the [[RenderTexture]] helper to manage the offscreen render target.
+
 # Interface
 
 The post-processing system provides a ``IPostProcess`` interface to simplify use. The only method in this interface is ``Process`` which is expected to execute the post-processing pass with the result placed in the currently bound render target.
