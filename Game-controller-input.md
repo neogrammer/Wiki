@@ -1,4 +1,4 @@
-This lesson will show how to read user input from game controllers.
+This lesson will show how to read user input from game controllers, and use it to control a simple 3D camera.
 
 # Setup
 First create a new project using the instructions from the earlier lessons: [[Using DeviceResources]] and
@@ -55,10 +55,14 @@ In the **Game.h** file, add the following variables to the bottom of the Game cl
 
 ```cpp
 std::unique_ptr<DirectX::GeometricPrimitive> m_room;
+
+DirectX::SimpleMath::Matrix m_view;
 DirectX::SimpleMath::Matrix m_proj;
-DirectX::SimpleMath::Vector3 m_cameraPos;
+
 float m_pitch;
 float m_yaw;
+DirectX::SimpleMath::Vector3 m_cameraPos;
+
 DirectX::SimpleMath::Color m_roomColor;
 ```
 
@@ -91,8 +95,37 @@ In **Game.cpp**, add to the TODO of **CreateWindowSizeDependentResources**:
 
 ```cpp
 auto size = m_deviceResources->GetOutputSize();
-m_proj = Matrix::CreatePerspectiveFieldOfView(XMConvertToRadians(70.f),
+m_proj = Matrix::CreatePerspectiveFieldOfView(
+    XMConvertToRadians(70.f),
     float(size.right) / float(size.bottom), 0.01f, 100.f);
+```
+
+In **Game.cpp**, add to the TODO of **Update**:
+
+```cpp
+// limit pitch to straight up or straight down
+constexpr float limit = XM_PIDIV2 - 0.01f;
+m_pitch = std::max(-limit, m_pitch);
+m_pitch = std::min(+limit, m_pitch);
+
+// keep longitude in sane range by wrapping
+if (m_yaw > XM_PI)
+{
+    m_yaw -= XM_2PI;
+}
+else if (m_yaw < -XM_PI)
+{
+    m_yaw += XM_2PI;
+}
+
+float y = sinf(m_pitch);
+float r = cosf(m_pitch);
+float z = r * cosf(m_yaw);
+float x = r * sinf(m_yaw);
+
+XMVECTOR lookAt = m_cameraPos + Vector3(x, y, z);
+
+m_view = XMMatrixLookAtRH(m_cameraPos, lookAt, Vector3::Up);
 ```
 
 Continue below depending on which version of *DirectX Tool Kit* you are using.
@@ -128,16 +161,7 @@ m_roomTex.Reset();
 In **Game.cpp**, add to the TODO of **Render**:
 
 ```cpp
-float y = sinf(m_pitch);
-float r = cosf(m_pitch);
-float z = r * cosf(m_yaw);
-float x = r * sinf(m_yaw);
-
-XMVECTOR lookAt = m_cameraPos + Vector3(x, y, z);
-
-XMMATRIX view = XMMatrixLookAtRH(m_cameraPos, lookAt, Vector3::Up);
-
-m_room->Draw(Matrix::Identity, view, m_proj,
+m_room->Draw(Matrix::Identity, m_view, m_proj,
     m_roomColor, m_roomTex.Get());
 ```
 
@@ -173,7 +197,7 @@ RenderTargetState rtState(m_deviceResources->GetBackBufferFormat(),
         &GeometricPrimitive::VertexType::InputLayout,
         CommonStates::Opaque,
         CommonStates::DepthDefault,
-        CommonStates::CullNone,
+        CommonStates::CullCounterClockwise,
         rtState);
 
     m_roomEffect = std::make_unique<BasicEffect>(device,
@@ -215,22 +239,13 @@ m_roomEffect.reset();
 In **Game.cpp**, add to the TODO of **Render**:
 
 ```cpp
-float y = sinf(m_pitch);
-float r = cosf(m_pitch);
-float z = r * cosf(m_yaw);
-float x = r * sinf(m_yaw);
-
-XMVECTOR lookAt = m_cameraPos + Vector3(x, y, z);
-
-XMMATRIX view = XMMatrixLookAtRH(m_cameraPos, lookAt, Vector3::Up);
-
 ID3D12DescriptorHeap* heaps[] = {
     m_resourceDescriptors->Heap(), m_states->Heap()
 };
 commandList->SetDescriptorHeaps(static_cast<UINT>(std::size(heaps)),
     heaps);
 
-m_roomEffect->SetMatrices(Matrix::Identity, view, m_proj);
+m_roomEffect->SetMatrices(Matrix::Identity, m_view, m_proj);
 m_roomEffect->SetDiffuseColor(m_roomColor);
 m_roomEffect->Apply(commandList);
 m_room->Draw(commandList);
@@ -268,17 +283,8 @@ if (pad.IsConnected())
     }
 }
 
-const float limit = XM_PI / 2.0f - 0.01f;
-m_pitch = std::max(-limit, std::min(+limit, m_pitch));
-
-if (m_yaw > XM_PI)
-{
-    m_yaw -= XM_PI * 2.f;
-}
-else if (m_yaw < -XM_PI)
-{
-    m_yaw += XM_PI * 2.f;
-}
+// limit pitch to straight up or straight down
+...
 ```
 
 Build and run. The left thumb stick on the gamepad can be used to adjust the view. If you click the left-stick, it resets the view.
@@ -376,6 +382,119 @@ if (m_buttons.a == GamePad::ButtonStateTracker::PRESSED)
 ```
 
 Build and run. Pressing the A button will cycle the color of the room through Red, Green, Blue, and White. Holding down the A button does not flash though the colors with the framerate.
+
+# Orbit vs. FPS Style Camera
+
+The code above implements an "First-Person Shooter" (FPS) style look camera. This has the viewpoint at a specific location, and then rotates to look around from there. Another common style of camera is an 'orbit' camera that moves around a point-of-focus, often used for viewing objects. To modify our FPS-style to an Orbit style, follow these instructions.
+
+In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
+
+```cpp
+float m_theta;
+float m_phi;
+float m_radius;
+```
+
+> You should delete or comment out the ``m_pitch``,  ``m_yaw``, and ``m_cameraPos``  declarations.
+
+At the top of **Game.cpp** after the ``using`` statements, modify the anonymous namespace:
+
+```cpp
+namespace
+{
+  const XMVECTORF32 ROOM_BOUNDS = { 8.f, 6.f, 12.f, 0.f };
+  constexpr float ROTATION_GAIN = 0.1f;
+
+  constexpr float c_defaultPhi = XM_2PI / 6.0f;
+  constexpr float c_defaultRadius = 3.3f;
+  constexpr float c_minRadius = 0.1f;
+  constexpr float c_maxRadius = 5.f;
+}
+```
+
+In **Game.cpp** file, modify the **Game** constructor to initialize our new variables:
+
+```cpp
+Game::Game() noexcept(false) :
+    m_theta(0.f),
+    m_phi(c_defaultPhi),
+    m_radius(c_defaultRadius),
+    m_roomColor(Colors::White)
+{
+    m_deviceResources = std::make_unique<DX::DeviceResources>();
+    m_deviceResources->RegisterDeviceNotify(this);
+}
+```
+
+In **Game.cpp**, modify the TODO of **Update**:
+
+```cpp
+auto pad = m_gamePad->GetState(0);
+if (pad.IsConnected())
+{
+    m_buttons.Update(pad);
+
+    if (pad.IsViewPressed())
+    {
+        ExitGame();
+    }
+
+    if (pad.IsLeftStickPressed())
+    {
+        m_theta = 0.f;
+        m_phi = c_defaultPhi;
+        m_radius = c_defaultRadius;
+    }
+    else
+    {
+        m_theta += pad.thumbSticks.rightX * XM_PI * ROTATION_GAIN;
+        m_phi -= pad.thumbSticks.rightY * XM_PI * ROTATION_GAIN;
+        m_radius -= pad.thumbSticks.leftY * 5.f * ROTATION_GAIN;
+    }
+
+    m_gamePad->SetVibration(0, pad.triggers.left, pad.triggers.right);
+}
+else
+{
+    m_buttons.Reset();
+}
+
+// Limit to avoid looking directly up or down
+constexpr float limit = XM_PIDIV2 - 0.01f;
+m_phi = std::max(1e-2f, std::min(limit, m_phi));
+m_radius = std::max(c_minRadius, std::min(c_maxRadius, m_radius));
+
+if (m_theta > XM_PI)
+{
+    m_theta -= XM_2PI;
+}
+else if (m_theta < -XM_PI)
+{
+    m_theta += XM_2PI;
+}
+
+XMVECTOR lookFrom = XMVectorSet(
+    m_radius * sinf(m_phi) * cosf(m_theta),
+    m_radius * cosf(m_phi),
+    m_radius * sinf(m_phi) * sinf(m_theta),
+    0);
+
+m_view = XMMatrixLookAtRH(lookFrom, g_XMZero, Vector3::Up);
+
+if (m_buttons.a == GamePad::ButtonStateTracker::PRESSED)
+{
+    if (m_roomColor == Colors::Red.v)
+        m_roomColor = Colors::Green;
+    else if (m_roomColor == Colors::Green.v)
+        m_roomColor = Colors::Blue;
+    else if (m_roomColor == Colors::Blue.v)
+        m_roomColor = Colors::White;
+    else
+        m_roomColor = Colors::Red;
+}
+```
+
+Build and run. The same controls are present, but now move the camera in an 'orbital' path around the origin with the left stick moving closer/further away to the center.
 
 **Next lessons:** [[Mouse and keyboard input]]
 
