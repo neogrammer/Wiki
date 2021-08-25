@@ -67,9 +67,9 @@ First create a new project using the instructions from the earlier lessons: [[Us
 
 # Instancing
 
-Start by saving [spnza_bricks_a.dds](https://github.com/Microsoft/DirectXTK/wiki/media/media/spnza_bricks_a.DDS),
-[spnza_bricks_a_normal.dds](https://github.com/Microsoft/DirectXTK/wiki/media/media/spnza_bricks_a_normal.DDS),
-[spnza_bricks_a_specular.dds](https://github.com/Microsoft/DirectXTK/wiki/media/media/spnza_bricks_a_specular.DDS) into your new project's directory, and then from the top menu select **Project / Add Existing Item....** Select "spnza_bricks_a.dds" and click "OK". Repeat for the two other files.
+Start by saving [spnza_bricks_a.dds](https://github.com/Microsoft/DirectXTK/wiki/media/spnza_bricks_a.DDS),
+[spnza_bricks_a_normal.dds](https://github.com/Microsoft/DirectXTK/wiki/media/spnza_bricks_a_normal.DDS),
+[spnza_bricks_a_specular.dds](https://github.com/Microsoft/DirectXTK/wiki/media/spnza_bricks_a_specular.DDS) into your new project's directory, and then from the top menu select **Project / Add Existing Item....** Select "spnza_bricks_a.dds" and click "OK". Repeat for the two other files.
 
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 
