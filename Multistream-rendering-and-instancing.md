@@ -264,12 +264,97 @@ Build and run to see the spheres moving individually.
 
 ![Screenshot of many moving sphere](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotInstancing2.PNG)
 
+# Instanced Models
+
+To render **Model** with instancing, you must use custom drawing to update the effect(s) to support instancing, create the proper input layout objects, as well as call ``DrawInstanced`` for each **ModelMeshPart**.
+
+Here's a basic outline of implementing this:
+
+```cpp
+// Loading a model and adding instancing.
+fxFactory->SetSharing(false);
+instancedModel = Model::CreateFromSDKMESH(device, L"mymodel.sdkmesh", fxFactory);
+
+// mymodel.sdkmesh must have normal maps so it uses NormalMapEffect or PBREffect.
+
+static const D3D11_INPUT_ELEMENT_DESC s_instElements[] =
+{
+    // XMFLOAT3X4
+    { "InstMatrix",  0, DXGI_FORMAT_R32G32B32A32_FLOAT, 1, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_INSTANCE_DATA, 1 },
+    { "InstMatrix",  1, DXGI_FORMAT_R32G32B32A32_FLOAT, 1, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_INSTANCE_DATA, 1 },
+    { "InstMatrix",  2, DXGI_FORMAT_R32G32B32A32_FLOAT, 1, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_INSTANCE_DATA, 1 },
+};
+
+instancedModel->UpdateEffects([&](IEffect* effect)
+{
+    auto nmap = dynamic_cast<NormalMapEffect*>(effect);
+    if (nmap)
+    {
+        nmap->SetInstancingEnabled(true);
+    }
+    auto pbr = dynamic_cast<PBREffect*>(effect);
+    if (pbr)
+    {
+        pbr->SetInstancingEnabled(true);
+    }
+});
+
+for (auto mit = instancedModel->meshes.begin(); mit != instancedModel->meshes.end(); ++mit)
+{
+    auto mesh = mit->get();
+    assert(mesh != 0);
+
+    for (auto it = mesh->meshParts.begin(); it != mesh->meshParts.end(); ++it)
+    {
+        auto part = it->get();
+        assert(part != 0);
+        auto il = *part->vbDecl;
+        il.push_back(s_instElements[0]);
+        il.push_back(s_instElements[1]);
+        il.push_back(s_instElements[2]);
+        DX::ThrowIfFailed(
+            CreateInputLayoutFromEffect(device, part->effect.get(),
+                il.data(), il.size(),
+                part->inputLayout.ReleaseAndGetAddressOf()));
+    }
+}
+```
+
+```cpp
+// Drawing the model with instancing
+UINT stride = sizeof(XMFLOAT3X4);
+UINT offset = 0;
+context->IASetVertexBuffers(1, 1, m_instancedVB.GetAddressOf(), &stride, &offset);
+
+for (auto mit = m_cubeInst->meshes.cbegin(); mit != m_cubeInst->meshes.cend(); ++mit)
+{
+    auto mesh = mit->get();
+    assert(mesh != 0);
+
+    mesh->PrepareForRendering(context, *m_states.get());
+
+    for (auto it = mesh->meshParts.cbegin(); it != mesh->meshParts.cend(); ++it)
+    {
+        auto part = it->get();
+        assert(part != 0);
+
+        auto imatrices = dynamic_cast<IEffectMatrices*>(part->effect.get());
+        if (imatrices)
+        {
+            imatrices->SetMatrices(local, m_view, m_projection);
+        }
+
+        part->DrawInstanced(context, part->effect.get(), part->inputLayout.Get(), m_instanceCount);
+    }
+}
+```
+
+> The drawing above assumes an opaque model. If you have alpha-blending, you will need to do the drawing loop twice. See [[ModelMesh]] for details.
+
 # More to explore
 
 * GPU instancing is also supported by [[DebugEffect]] and [[PBREffect]]
 
 * While **BasicEffect** does not support instancing, you can use **NormalMapEffect** to emulate **BasicEffect** by providing a [default 1x1 white](https://github.com/Microsoft/DirectXTK/wiki/media/default.dds) texture (i.e. RGBA32 value ``0xFFFFFFFF``) and/or a [smooth 1x1 normal map](https://github.com/Microsoft/DirectXTK/wiki/media/smoothMap.dds) texture (i.e. RGBA32 value ``0x8080FFFF``).
-
-* To render **Model** with instancing, you must use custom drawing to update the effect(s) to support instancing, create the proper input layout objects, as well as call ``DrawInstanced`` for each **ModelMeshPart**.
 
 **Next lessons:** [[Creating custom shaders with DGSL]]
