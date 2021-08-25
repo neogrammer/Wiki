@@ -96,6 +96,7 @@ The official samples for DirectX 11 were originally shipped in the legacy *Direc
 * [[Rendering a model]]
 * [[Using skinned models]]
 * [[Using advanced shaders]]
+* [[Multistream rendering and instancing]]
 * [[Creating custom shaders with DGSL]]
 * [[Writing custom shaders]]
 * [[Using HDR rendering]]
