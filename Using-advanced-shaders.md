@@ -201,7 +201,7 @@ Build and run to see the debug effect rendering a blue/purple gradient teapot:
 
 * The [[AlphaTestEffect]] is used to perform pixel rejection based on an alpha reference value and function selection. It's primarily to implement techniques that relied on [legacy Direct3D 9 alpha testing](https://docs.microsoft.com/en-us/windows/win32/direct3d9/alpha-testing-state) render state. This effect is independent of the depth/stencil tests set in ``D3D11_DEPTH_STENCIL_DESC.DepthFunc`` and ``StencilFunc``.
 
-**Next lesson:** [[Creating custom shaders with DGSL]]
+**Next lesson:** [[Multistream rendering and instancing]]
 
 # Further reading
 
