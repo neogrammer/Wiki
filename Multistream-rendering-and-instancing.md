@@ -69,7 +69,9 @@ Here the first vertex buffer has enough data for *one* instance, and the second 
 
 # More to explore
 
-GPU instancing is also supported by [[DebugEffect]] and [[PBREffect]]
+* GPU instancing is also supported by [[DebugEffect]] and [[PBREffect]]
+
+* While **BasicEffect** does not support instancing, you can use **NormalMapEffect** to emulate **BasicEffect** by providing a [default 1x1 white](https://github.com/Microsoft/DirectXTK/wiki/media/default.dds) texture (i.e. RGBA32 value ``0xFFFFFFFF``) and/or a [default' 1x1 normal map](https://github.com/Microsoft/DirectXTK/wiki/media/smoothMap.dds) texture (i.e. RGBA32 value ``0x8080FFFF``).
 
 **Next lessons:** [[Creating custom shaders with DGSL]]
 
