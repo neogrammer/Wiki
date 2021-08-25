@@ -128,7 +128,7 @@ using Microsoft::WRL::ComPtr;
 
 # Graphics memory
 
-**This is only required for Xbox One XDK when using DirectX 11.X. It's a no-op otherwise.**
+**This is only required for Xbox One XDK when using DirectX 11.X (or when using [DirectX 12](https://github.com/microsoft/DirectXTK12/wiki)). It's a no-op otherwise.**
 
 To finish off setup if using Xbox One XDK, in the **Game.h** file, add the following variable to the bottom of the Game class's private declarations:
 
