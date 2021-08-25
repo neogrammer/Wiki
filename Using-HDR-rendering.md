@@ -1,4 +1,4 @@
-This lesson covers the basics of HDR rendering, tone-mapping, and optionally adding HDR10 wide color gamut rendering with _DirectX Tool Kit_.
+This lesson covers the basics of HDR rendering, tone-mapping, and optionally adding HDR10 wide color gamut (a.k.a. Ultra HD) rendering with _DirectX Tool Kit_.
 
 # Setup
 First create a new project using the instructions from the previous lessons: [[Using DeviceResources]] and
