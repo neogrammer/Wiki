@@ -1,12 +1,8 @@
 In this lesson we learn how to use multistream rendering to implement GPU instancing.
 
-# Setup
-First create a new project using the instructions from the earlier lessons: [[Using DeviceResources]] and
-[[Adding the DirectX Tool Kit]] which we will use for this lesson.
-
 # Input assembler
 
-For these tutorial lessons, we've been providing a single stream of vertex data to the *input assembler*. Generally the most efficient rendering is single vertex buffer with a stride of 16, 32, or 64 bytes, but there are times when arranging the render data in such a layout is expensive. The Direct3D Input Assembler can therefore pull vertex information from up to 16 (or 32) vertex buffers. This provides a lot of freedom in managing your vertex buffers.
+For these tutorial lessons, we've been providing a single stream of vertex data to the *input assembler*. Generally the most efficient rendering is a single vertex buffer with a stride of 16, 32, or 64 bytes, but there are times when arranging the vertex data in such a layout is expensive. The Direct3D Input Assembler can therefore pull vertex information from up to 16 (or 32 with Hardware Feature Level 11 or better) vertex buffers. This provides a lot of freedom in managing your vertex buffers.
 
 For example, if we return to a case from [[Simple rendering]], here is the 'stock' vertex input layout for ``VertexPositionNormalTexture``:
 
@@ -19,7 +15,7 @@ const D3D11_INPUT_ELEMENT_DESC c_InputElements[] =
 };
 ```
 
-This describes a single vertex stream with three elements. We could arrange this into three VBs as follows:
+This describes a single vertex stream with three elements. We could instead arrange this into three VBs as follows:
 
 ```cpp
 // Position in VB#0, NORMAL in VB#1, TEXCOORD in VB#2
@@ -42,7 +38,7 @@ context->IASetVertexBuffers(0, 3, vbs, strides, offsets);
 
 Note if we are using ``DrawIndexed``, then the same index value is used to retrieve the 'ith' element from each vertex buffer (i.e. there is only one index per vertex, and all VBs must be at least as long as the highest index value).
 
-# Instancing
+## Per-vertex vs. Per-instance
 
 In addition to pulling vertex data from multiple streams, the *input assembler* can also 'loop' over some streams to implement a feature called "instancing". Here the same vertex data is drawing multiple times with some per-vertex data changing "once per instance" as it loops over the other data. This allows you to efficiently render a large number of the same object in many locations, such as grass or boulders.
 
@@ -61,11 +57,212 @@ const D3D11_INPUT_ELEMENT_DESC c_InputElements[] =
 };
 ```
 
-Here the first vertex buffer has enough data for *one* instance, and the second vertex buffer has as many entries as instances.
+Here the first vertex buffer has enough ``VertexPositionNormalTexture`` vertex data for *one* instance, and the second vertex buffer has as many  ``XMFLOAT3X4`` entries as instances.
 
 > GPU instancing is not supported on Direct3D Hardware Feature Level 9.1 or 9.2, and is only partially supported on 9.3. The *DirectX Tool Kit* shaders that support GPU instancing are written for Shader Model 4.0 and require Feature Level 10 or greater.
 
-> **UNDER CONSTRUCTION**
+# Setup
+First create a new project using the instructions from the earlier lessons: [[Using DeviceResources]] and
+[[Adding the DirectX Tool Kit]] which we will use for this lesson.
+
+# Instancing
+
+Start by saving [spnza_bricks_a.dds](https://github.com/Microsoft/DirectXTK/wiki/media/media/spnza_bricks_a.DDS),
+[spnza_bricks_a_normal.dds](https://github.com/Microsoft/DirectXTK/wiki/media/media/spnza_bricks_a_normal.DDS),
+[spnza_bricks_a_specular.dds](https://github.com/Microsoft/DirectXTK/wiki/media/media/spnza_bricks_a_specular.DDS) into your new project's directory, and then from the top menu select **Project / Add Existing Item....** Select "spnza_bricks_a.dds" and click "OK". Repeat for the two other files.
+
+In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
+
+```cpp
+DirectX::SimpleMath::Matrix m_view;
+DirectX::SimpleMath::Matrix m_proj;
+
+std::unique_ptr<DirectX::NormalMapEffect> m_effect;
+std::unique_ptr<DirectX::GeometricPrimitive> m_shape;
+
+Microsoft::WRL::ComPtr<ID3D11InputLayout> m_instanceLayout;
+Microsoft::WRL::ComPtr<ID3D11Buffer> m_instancedVB;
+Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_brickDiffuse;
+Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_brickNormal;
+Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_brickSpecular;
+
+UINT m_instanceCount;
+std::unique_ptr<DirectX::XMFLOAT3X4[]> m_instanceTransforms;
+```
+
+In **Game.cpp** file, modify the **Game** constructor to initialize the new variable:
+
+```cpp
+Game::Game() noexcept(false) :
+    m_instanceCount(0)
+{
+    m_deviceResources = std::make_unique<DX::DeviceResources>();
+    m_deviceResources->RegisterDeviceNotify(this);
+}
+```
+
+In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
+
+```cpp
+auto context = m_deviceResources->GetD3DDeviceContext();
+m_shape = GeometricPrimitive::CreateSphere(context);
+
+DX::ThrowIfFailed(CreateDDSTextureFromFile(device, L"spnza_bricks_a.DDS",
+    nullptr, m_brickDiffuse.ReleaseAndGetAddressOf()));
+
+DX::ThrowIfFailed(CreateDDSTextureFromFile(device, L"spnza_bricks_a_normal.DDS",
+    nullptr, m_brickNormal.ReleaseAndGetAddressOf()));
+
+DX::ThrowIfFailed(CreateDDSTextureFromFile(device, L"spnza_bricks_a_specular.DDS",
+    nullptr, m_brickSpecular.ReleaseAndGetAddressOf()));
+
+m_effect = std::make_unique<NormalMapEffect>(device);
+m_effect->EnableDefaultLighting();
+m_effect->SetTexture(m_brickDiffuse.Get());
+m_effect->SetNormalTexture(m_brickNormal.Get());
+m_effect->SetSpecularTexture(m_brickSpecular.Get());
+m_effect->SetInstancingEnabled(true);
+
+const D3D11_INPUT_ELEMENT_DESC c_InputElements[] =
+{
+    { "SV_Position", 0, DXGI_FORMAT_R32G32B32_FLOAT,    0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA,   0 },
+    { "NORMAL",      0, DXGI_FORMAT_R32G32B32_FLOAT,    0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA,   0 },
+    { "TEXCOORD",    0, DXGI_FORMAT_R32G32_FLOAT,       0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA,   0 },
+    { "InstMatrix",  0, DXGI_FORMAT_R32G32B32A32_FLOAT, 1, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_INSTANCE_DATA, 1 },
+    { "InstMatrix",  1, DXGI_FORMAT_R32G32B32A32_FLOAT, 1, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_INSTANCE_DATA, 1 },
+    { "InstMatrix",  2, DXGI_FORMAT_R32G32B32A32_FLOAT, 1, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_INSTANCE_DATA, 1 },
+};
+
+DX::ThrowIfFailed(
+    CreateInputLayoutFromEffect(device, m_effect.get(),
+        c_InputElements, std::size(c_InputElements),
+        m_instanceLayout.ReleaseAndGetAddressOf()));
+
+// Create instance transforms.
+{
+    size_t j = 0;
+    for (float y = -6.f; y < 6.f; y += 1.5f)
+    {
+        for (float x = -6.f; x < 6.f; x += 1.5f)
+        {
+            ++j;
+        }
+    }
+    m_instanceCount = static_cast<UINT>(j);
+
+    m_instanceTransforms = std::make_unique<XMFLOAT3X4[]>(j);
+
+    constexpr XMFLOAT3X4 s_identity = { 1.f, 0.f, 0.f, 0.f, 0.f, 1.f, 0.f, 0.f, 0.f, 0.f, 1.f, 0.f };
+
+    j = 0;
+    for (float y = -6.f; y < 6.f; y += 1.5f)
+    {
+        for (float x = -6.f; x < 6.f; x += 1.5f)
+        {
+            m_instanceTransforms[j] = s_identity;
+            m_instanceTransforms[j]._14 = x;
+            m_instanceTransforms[j]._24 = y;
+            ++j;
+        }
+    }
+
+    auto desc = CD3D11_BUFFER_DESC(
+        static_cast<UINT>(j * sizeof(XMFLOAT3X4)),
+        D3D11_BIND_VERTEX_BUFFER,
+        D3D11_USAGE_DYNAMIC,
+        D3D11_CPU_ACCESS_WRITE);
+
+    D3D11_SUBRESOURCE_DATA initData = { m_instanceTransforms.get(), 0, 0 };
+
+    DX::ThrowIfFailed(
+        device->CreateBuffer(&desc, &initData,
+            m_instancedVB.ReleaseAndGetAddressOf())
+    );
+}
+```
+
+In **Game.cpp**, add to the TODO of **CreateWindowSizeDependentResources**:
+
+```cpp
+auto size = m_deviceResources->GetOutputSize();
+m_view = Matrix::CreateLookAt(Vector3(0.f, 0.f, 12.f),
+    Vector3::Zero, Vector3::UnitY);
+m_proj = Matrix::CreatePerspectiveFieldOfView(XM_PI / 4.f,
+    float(size.right) / float(size.bottom), 0.1f, 25.f);
+
+m_effect->SetView(m_view);
+m_effect->SetProjection(m_proj);
+```
+
+In **Game.cpp**, add to the TODO of **OnDeviceLost**:
+
+```cpp
+m_effect.reset();
+m_shape.reset();
+m_instanceLayout.Reset();
+m_instancedVB.Reset();
+m_brickDiffuse.Reset();
+m_brickNormal.Reset();
+m_brickSpecular.Reset();
+```
+
+In **Game.cpp**, add to the TODO of **Render**:
+
+```cpp
+m_shape->DrawInstanced(m_effect.get(), m_instanceLayout.Get(), m_instanceCount, false, false, 0, [=]()
+    {
+        UINT stride = sizeof(XMFLOAT3X4);
+        UINT offset = 0;
+        context->IASetVertexBuffers(1, 1, m_instancedVB.GetAddressOf(), &stride, &offset);
+    });
+```
+
+Build and run to see 64 spheres rendered.
+
+![Screenshot of many sphere](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotInstancing.PNG)
+
+# Adding animation
+
+You can provide updated instance data per-frame to animate the locations, while leaving the original vertex data 'static' for best performance.
+
+In **Game.cpp**, add to the TODO of **Update**:
+
+```cpp
+auto time = static_cast<float>(m_timer.GetTotalSeconds());
+
+size_t j = 0;
+for (float y = -6.f; y < 6.f; y += 1.5f)
+{
+    for (float x = -6.f; x < 6.f; x += 1.5f)
+    {
+        XMMATRIX m = XMMatrixTranslation(x,
+            y,
+            cos(time + float(x) * XM_PIDIV4)
+            * sin(time + float(y) * XM_PIDIV4)
+            * 2.f);
+        XMStoreFloat3x4(&m_instanceTransforms[j], m);
+        ++j;
+    }
+}
+
+assert(j == m_instanceCount);
+```
+
+In **Game.cpp**, add to the TODO of **Render** prior to the call to ``DrawInstanced``:
+
+```cpp
+{
+    MapGuard map(context, m_instancedVB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0);
+    memcpy(map.pData, m_instanceTransforms.get(),
+        m_instanceCount * sizeof(XMFLOAT3X4));
+}
+```
+
+> It's important that the ``map`` be in it's own scope since it's an RAII helper class which needs to get destructed before the call to ``DrawInstanced``.
+
+Build and run to see the spheres moving individually.
+
+![Screenshot of many moving sphere](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotInstancing2.PNG)
 
 # More to explore
 
@@ -74,6 +271,3 @@ Here the first vertex buffer has enough data for *one* instance, and the second 
 * While **BasicEffect** does not support instancing, you can use **NormalMapEffect** to emulate **BasicEffect** by providing a [default 1x1 white](https://github.com/Microsoft/DirectXTK/wiki/media/default.dds) texture (i.e. RGBA32 value ``0xFFFFFFFF``) and/or a [smooth 1x1 normal map](https://github.com/Microsoft/DirectXTK/wiki/media/smoothMap.dds) texture (i.e. RGBA32 value ``0x8080FFFF``).
 
 **Next lessons:** [[Creating custom shaders with DGSL]]
-
-# Further reading
-

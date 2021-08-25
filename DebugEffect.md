@@ -2,7 +2,7 @@ This effect provides a way to visualize normals, tangents, and binormals/bitange
 
 See also [[Effects]]
 
-**Related tutorials:** [[Using advanced shaders]]
+**Related tutorials:** [[Using advanced shaders]], [[Multistream rendering and instancing]]
 
 # Header
 ```cpp

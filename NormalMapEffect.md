@@ -2,7 +2,7 @@ This effect extends [[BasicEffect]] to support normal-mapping and an optional sp
 
 See also [[Effects]]
 
-**Related tutorials:** [[Using advanced shaders]]
+**Related tutorials:** [[Using advanced shaders]], [[Multistream rendering and instancing]]
 
 # Header
 ```cpp
