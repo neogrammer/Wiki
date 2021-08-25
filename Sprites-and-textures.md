@@ -382,7 +382,7 @@ Build and run to see our cat drawing over a sunset background.
 
 ## Technical note
 
-If we were only drawing the background (i.e. a single 'sprite' that fills an entire viewport), then using [[BasicPostProcess]]'s Copy operating is faster, but requires Direct3D Hardware Feature Level 10.0 or later.
+If we were only drawing the background (i.e. a single 'sprite' that fills an entire viewport), then using [[BasicPostProcess]]'s Copy operation is faster than ``SpriteBatch``, but requires Direct3D Hardware Feature Level 10.0 or later.
 
 **Next lesson:** [[More tricks with sprites]]
 
