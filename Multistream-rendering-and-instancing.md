@@ -44,6 +44,7 @@ Note if we are using ``DrawIndexed``, then the same index value is used to retri
 
 # Instancing
 
+> GPU instancing is not supported on Feature Level 9.1 or 9.2, and is only partially supported on 9.3. The *DirectX Tool Kit* shaders that support GPU instancing are written for Shader Model 4.0 or later so require Direct3D Hardware Feature Level 10 or greater.
 
 > **UNDER CONSTRUCTION**
 
