@@ -21,7 +21,7 @@ For exception safety, it is recommended you make use of the C++ [RAII](http://en
 
 BasicPostProcess can be configured to use various pixel shaders by calling ``SetEffect``:
 
-* **Copy**: Performs a simple read of the input texture, outputting the same color. _This is mostly useful for debugging._
+* **Copy**: Performs a simple read of the input texture, outputting the same color.
 * **Monochrome**: Converts the input texture pixels to a luminance value.
 * **Sepia**: Implements a sepia-tone effect.
 * **DownScale_2x2**: Downscales each 2x2 block of pixels to an average. This is intended to write to a render target that is half the size of the source texture in each dimension.
@@ -39,3 +39,21 @@ BasicPostProcess can be configured to use various pixel shaders by calling ``Set
 * ``SetBloomExtractParameter`` sets the extract parameter for the *BloomExtract* shader.
 
 * ``SetBloomBlurParameters`` sets the horizontal vs. vertical mode as well as the size and brightness factors for the *BloomBlur* shader.
+
+# Example
+
+If drawing a single texture which fills the render viewport, then using the **Copy** operation above is faster than using [[SpriteBatch]]--assuming you have Direct3D Hardware Feature Level 10 or later.
+
+```cpp
+std::unique_ptr<BasicPostProcess> postProcess;
+postProcess = std::make_unique<BasicPostProcess>(device);
+
+...
+postProcess->SetSourceTexture(m_texture.Get());
+postProcess->SetEffect(BasicPostProcess::Copy);
+
+// Set RSSetViewports to the rectangle you want to fill with the texture
+
+postProcess->Process(context);
+```
+
