@@ -270,6 +270,6 @@ Build and run to see the spheres moving individually.
 
 * While **BasicEffect** does not support instancing, you can use **NormalMapEffect** to emulate **BasicEffect** by providing a [default 1x1 white](https://github.com/Microsoft/DirectXTK/wiki/media/default.dds) texture (i.e. RGBA32 value ``0xFFFFFFFF``) and/or a [smooth 1x1 normal map](https://github.com/Microsoft/DirectXTK/wiki/media/smoothMap.dds) texture (i.e. RGBA32 value ``0x8080FFFF``).
 
-* To render **Model** with instancing, you must use custom drawing to update the effect(s) to support instancing, create the proper input layout object, as well as call ``DrawInstanced`` for each **ModelMeshPart**.
+* To render **Model** with instancing, you must use custom drawing to update the effect(s) to support instancing, create the proper input layout objects, as well as call ``DrawInstanced`` for each **ModelMeshPart**.
 
 **Next lessons:** [[Creating custom shaders with DGSL]]
