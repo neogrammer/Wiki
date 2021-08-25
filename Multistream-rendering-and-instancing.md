@@ -44,9 +44,32 @@ Note if we are using ``DrawIndexed``, then the same index value is used to retri
 
 # Instancing
 
+In addition to pulling vertex data from multiple streams, the *input assembler* can also 'loop' over some streams to implement a feature called "instancing". Here the same vertex data is drawing multiple times with some per-vertex data changing "once per instance" as it loops over the other data. This allows you to efficiently render a large number of the same object in many locations, such as grass or boulders.
+
+The [[NormalMapEffect]] supports GPU instancing using a per-vertex ``XMFLOAT3X4`` matrix which can include translations, rotations, scales, etc. For example if we were using ``VertexPositionNormalTexture`` model data with instancing, we'd create an input layout as follows:
+
+```cpp
+// VertexPositionNormalTexture in VB#0, XMFLOAT3X4 in VB#1
+const D3D11_INPUT_ELEMENT_DESC c_InputElements[] =
+{
+    { "SV_Position", 0, DXGI_FORMAT_R32G32B32_FLOAT,    0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA,   0 },
+    { "NORMAL",      0, DXGI_FORMAT_R32G32B32_FLOAT,    0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA,   0 },
+    { "TEXCOORD",    0, DXGI_FORMAT_R32G32_FLOAT,       0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA,   0 },
+    { "InstMatrix",  0, DXGI_FORMAT_R32G32B32A32_FLOAT, 1, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_INSTANCE_DATA, 1 },
+    { "InstMatrix",  1, DXGI_FORMAT_R32G32B32A32_FLOAT, 1, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_INSTANCE_DATA, 1 },
+    { "InstMatrix",  2, DXGI_FORMAT_R32G32B32A32_FLOAT, 1, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_INSTANCE_DATA, 1 },
+};
+```
+
+Here the first vertex buffer has enough data for *one* instance, and the second vertex buffer has as many entries as instances.
+
 > GPU instancing is not supported on Direct3D Hardware Feature Level 9.1 or 9.2, and is only partially supported on 9.3. The *DirectX Tool Kit* shaders that support GPU instancing are written for Shader Model 4.0 and require Feature Level 10 or greater.
 
 > **UNDER CONSTRUCTION**
+
+# More to explore
+
+GPU instancing is also supported by [[DebugEffect]] and [[PBREffect]]
 
 **Next lessons:** [[Creating custom shaders with DGSL]]
 
