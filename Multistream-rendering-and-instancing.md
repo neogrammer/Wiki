@@ -337,7 +337,7 @@ UINT stride = sizeof(XMFLOAT3X4);
 UINT offset = 0;
 context->IASetVertexBuffers(1, 1, m_instancedVB.GetAddressOf(), &stride, &offset);
 
-for (auto mit = m_cubeInst->meshes.cbegin(); mit != m_cubeInst->meshes.cend(); ++mit)
+for (auto mit = instancedModel->meshes.cbegin(); mit != instancedModel->meshes.cend(); ++mit)
 {
     auto mesh = mit->get();
     assert(mesh != 0);
