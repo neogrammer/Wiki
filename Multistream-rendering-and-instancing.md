@@ -264,6 +264,14 @@ Build and run to see the spheres moving individually.
 
 ![Screenshot of many moving sphere](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotInstancing2.PNG)
 
+## Technical note
+
+The ``XMFLOAT3X4`` data type is a little different than the other **DirectXMath** / [[SimpleMath]] types used in *DirectX Tool Kit*. It's a column-major transformation matrix. Normally we use row-major in DirectX samples, and when moving to a shader we transpose it as we set it into the Constant Buffer to  fit into HLSL's default of column-major.
+
+The ``XMFLOAT3X4`` data type was introduced in [DirectXMath version 3.13](https://walbourn.github.io/directxmath-3-13/) to support DirectX Raytracing which used this column-major form in the API. It's a compact way to encode a '4x3' matrix where the last column is ``0, 0, 0, 1`` (i.e. a matrix which can encode affine 3D transformations like translation, scale, and rotation but *not* perspective projection). We transpose it to column-major and it fits neatly into three ``XMVECTOR`` values as the lost row is implicitly ``0 0 0 1``. As you see above, we build a row-major ``XMMATRIX`` transformation matrix and then you can use ``XMStoreFloat3x4`` which will transpose it as it's written to the buffer.
+
+> The skinning shaders use the same trick of encoding the matrices as three ``XMVECTOR`` values in the column-major form, but the API deals with the transpose when you set the array of ``XMMATRIX`` values. Since the instancing data is driven by the application, it doesn't make sense to try to hide this detail.
+
 # Instanced Models
 
 To render **Model** with instancing, you must use custom drawing to update the effect(s) to support instancing, create the proper input layout objects, as well as call ``DrawInstanced`` for each **ModelMeshPart**.
