@@ -270,7 +270,7 @@ The ``XMFLOAT3X4`` data type is a little different than the other **DirectXMath*
 
 The ``XMFLOAT3X4`` data type was introduced in [DirectXMath version 3.13](https://walbourn.github.io/directxmath-3-13/) to support DirectX Raytracing which used this column-major form in the API. It's a compact way to encode a '4x3' matrix where the last column is ``0, 0, 0, 1`` (i.e. a matrix which can encode affine 3D transformations like translation, scale, and rotation but *not* perspective projection). We transpose it to column-major and it fits neatly into three ``XMVECTOR`` values as the last row is implicitly ``0 0 0 1``. As you see above, we build a row-major ``XMMATRIX`` transformation matrix and then you can use ``XMStoreFloat3x4`` which will transpose it as it's written to the buffer.
 
-If manipulating ``XMFLOAT3X4`` directly, the translation is in ``_14``, ``_24`, ``_34``.
+If manipulating ``XMFLOAT3X4`` directly, the translation is in ``_14``, ``_24``, ``_34``.
 
 > The skinning shaders use the same trick of encoding the bone transformation matrices as three ``XMVECTOR`` values each in the column-major form to allow bones to be packed into smaller space (72 bones instead of 54 in the same amount of space), but the API deals with the transpose when you set the array of ``XMMATRIX`` values. Since the instancing data is driven by the application, it doesn't make sense to try to hide this detail.
 
