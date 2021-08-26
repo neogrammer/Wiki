@@ -285,7 +285,7 @@ Here's a basic outline of implementing this:
 fxFactory->SetSharing(false);
 instancedModel = Model::CreateFromSDKMESH(device, L"mymodel.sdkmesh", fxFactory);
 
-// mymodel.sdkmesh must have normal maps so it uses NormalMapEffect or PBREffect.
+// mymodel.sdkmesh must have vertex normals, vertex texture coordinates, and define normal maps so it uses NormalMapEffect or PBREffect.
 
 static const D3D11_INPUT_ELEMENT_DESC s_instElements[] =
 {
