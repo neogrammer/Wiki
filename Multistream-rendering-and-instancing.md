@@ -315,7 +315,7 @@ for (auto& mit : instancedModel->meshes)
     auto mesh = mit.get();
     assert(mesh != 0);
 
-    for (auto it : mesh->meshParts)
+    for (auto& it : mesh->meshParts)
     {
         auto part = it.get();
         assert(part != 0);
