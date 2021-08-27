@@ -26,15 +26,13 @@ DirectX::SimpleMath::Matrix m_view;
 DirectX::SimpleMath::Matrix m_projection;
 
 RECT m_fullscreenRect;
-RECT m_bloomRect;
 ```
 
 In **Game.cpp**, update the constructor:
 
 ```cpp
 Game::Game() noexcept(false) :
-    m_fullscreenRect{},
-    m_bloomRect{}
+    m_fullscreenRect{}
 {
     m_deviceResources = std::make_unique<DX::DeviceResources>();
     m_deviceResources->RegisterDeviceNotify(this);
@@ -330,6 +328,8 @@ In the **Game.h** file, add the following variables to the bottom of the Game cl
 std::unique_ptr<DX::RenderTexture> m_offscreenTexture;
 std::unique_ptr<DX::RenderTexture> m_renderTarget1;
 std::unique_ptr<DX::RenderTexture> m_renderTarget2;
+
+RECT m_bloomRect;
 ```
 
 Then add the following method to the Game class's private declarations:
