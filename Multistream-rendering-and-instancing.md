@@ -310,12 +310,12 @@ instancedModel->UpdateEffects([&](IEffect* effect)
     }
 });
 
-for (auto& mit : instancedModel->meshes)
+for (const auto& mit : instancedModel->meshes)
 {
     auto mesh = mit.get();
     assert(mesh != 0);
 
-    for (auto& it : mesh->meshParts)
+    for (const auto& it : mesh->meshParts)
     {
         auto part = it.get();
         assert(part != 0);
