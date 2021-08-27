@@ -100,10 +100,9 @@ m_shape->Draw(m_world, m_view, m_projection);
 In **Game.cpp**, modify **Clear** to remove the call to ``ClearRenderTargetView`` since we are drawing a full-screen sprite first which sets every pixel--we still need to clear the depth/stencil buffer of course:
 
 ```cpp
-context->ClearDepthStencilView(m_depthStencilView.Get(),
-    D3D11_CLEAR_DEPTH, 1.0f, 0);
-context->OMSetRenderTargets(1, m_renderTargetView.GetAddressOf(),
-    m_depthStencilView.Get());
+context->ClearDepthStencilView(depthStencil,
+    D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+context->OMSetRenderTargets(1, &renderTarget, depthStencil);
 ```
 
 Build and run to see our initial scene.
@@ -317,20 +316,20 @@ Build and run. The scene is unchanged, but we've loaded our new shaders.
 
 # Implementing a post processing effect
 
+Save the files [RenderTexture.h](https://github.com/Microsoft/DirectXTK/wiki/RenderTexture.h) and [RenderTexture.cpp](https://github.com/Microsoft/DirectXTK/wiki/RenderTexture.cpp) to your new project's folder. Using to the top menu and select **Project** / **Add Existing Item....** Select "RenderTexture.h" and hit "OK". Repeat for "RenderTexture.cpp".
+
+Add to the **Game.h** file to the ``#include`` section:
+
+```cpp
+#include "RenderTexture.h"
+```
+
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 
 ```cpp
-Microsoft::WRL::ComPtr<ID3D11Texture2D> m_backBuffer;
-
-Microsoft::WRL::ComPtr<ID3D11Texture2D> m_sceneTex;
-Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_sceneSRV;
-Microsoft::WRL::ComPtr<ID3D11RenderTargetView> m_sceneRT;
-
-Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_rt1SRV;
-Microsoft::WRL::ComPtr<ID3D11RenderTargetView> m_rt1RT;
-
-Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_rt2SRV;
-Microsoft::WRL::ComPtr<ID3D11RenderTargetView> m_rt2RT;
+std::unique_ptr<DX::RenderTexture> m_offscreenTexture;
+std::unique_ptr<DX::RenderTexture> m_renderTarget1;
+std::unique_ptr<DX::RenderTexture> m_renderTarget2;
 ```
 
 Then add the following method to the Game class's private declarations:
@@ -339,67 +338,49 @@ Then add the following method to the Game class's private declarations:
 void PostProcess();
 ```
 
-In **Game.cpp**, modify the section of **CreateWindowSizeDependentResources** just before creating the depth-stencil target as follows changing the local variable ``backBuffer`` to the newly created ``m_backBuffer`` class variable.
+In **Game.cpp**, update the constructor:
 
 ```cpp
-// Obtain the backbuffer for this window which will be the final 3D rendertarget.
-DX::ThrowIfFailed(m_swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D),
-    &m_backBuffer));
+Game::Game() noexcept(false) :
+    m_fullscreenRect{},
+    m_bloomRect{}
+{
+    m_deviceResources = std::make_unique<DX::DeviceResources>();
+    m_deviceResources->RegisterDeviceNotify(this);
 
-// Create a view interface on the rendertarget to use on bind.
-DX::ThrowIfFailed(device->CreateRenderTargetView(m_backBuffer.Get(), nullptr,
-    m_renderTargetView.ReleaseAndGetAddressOf()));
+    const auto format = m_deviceResources->GetBackBufferFormat();
+    m_offscreenTexture = std::make_unique<DX::RenderTexture>(format);
+    m_renderTarget1 = std::make_unique<DX::RenderTexture>(format);
+    m_renderTarget2 = std::make_unique<DX::RenderTexture>(format);
+}
+```
+
+In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
+
+```cpp
+m_offscreenTexture->SetDevice(device);
+m_renderTarget1->SetDevice(device);
+m_renderTarget2->SetDevice(device);
 ```
 
 In **Game.cpp**, add to the TODO of **CreateWindowSizeDependentResources**:
 
 ```cpp
-auto device = m_deviceResources->GetD3DDevice();
-DXGI_FORMAT backBufferFormat = m_deviceResources->GetBackBufferFormat();
-
-// Full-size render target for scene
-CD3D11_TEXTURE2D_DESC sceneDesc(backBufferFormat, size.right, size.bottom,
-    1, 1, D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE);
-DX::ThrowIfFailed(device->CreateTexture2D(&sceneDesc, nullptr,
-    m_sceneTex.GetAddressOf()));
-DX::ThrowIfFailed(device->CreateRenderTargetView(m_sceneTex.Get(), nullptr,
-    m_sceneRT.ReleaseAndGetAddressOf()));
-DX::ThrowIfFailed(device->CreateShaderResourceView(m_sceneTex.Get(), nullptr,
-    m_sceneSRV.ReleaseAndGetAddressOf()));
+m_offscreenTexture->SetWindow(size);
 
 // Half-size blurring render targets
-CD3D11_TEXTURE2D_DESC rtDesc(backBufferFormat, size.right / 2, size.bottom / 2,
-    1, 1, D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE);
-ComPtr<ID3D11Texture2D> rtTexture1;
-DX::ThrowIfFailed(device->CreateTexture2D(&rtDesc, nullptr,
-    rtTexture1.GetAddressOf()));
-DX::ThrowIfFailed(device->CreateRenderTargetView(rtTexture1.Get(), nullptr,
-    m_rt1RT.ReleaseAndGetAddressOf()));
-DX::ThrowIfFailed(device->CreateShaderResourceView(rtTexture1.Get(), nullptr,
-    m_rt1SRV.ReleaseAndGetAddressOf()));
-
-ComPtr<ID3D11Texture2D> rtTexture2;
-DX::ThrowIfFailed(device->CreateTexture2D(&rtDesc, nullptr,
-    rtTexture2.GetAddressOf()));
-DX::ThrowIfFailed(device->CreateRenderTargetView(rtTexture2.Get(), nullptr,
-    m_rt2RT.ReleaseAndGetAddressOf()));
-DX::ThrowIfFailed(device->CreateShaderResourceView(rtTexture2.Get(), nullptr,
-    m_rt2SRV.ReleaseAndGetAddressOf()));
-
 m_bloomRect = { 0, 0, size.right / 2, size.bottom / 2 };
+
+m_renderTarget1->SetWindow(m_bloomRect);
+m_renderTarget2->SetWindow(m_bloomRect);
 ```
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
 ```cpp
-m_sceneTex.Reset();
-m_sceneSRV.Reset();
-m_sceneRT.Reset();
-m_rt1SRV.Reset();
-m_rt1RT.Reset();
-m_rt2SRV.Reset();
-m_rt2RT.Reset();
-m_backBuffer.Reset();
+m_offscreenTexture->ReleaseDevice();
+m_renderTarget1->ReleaseDevice();
+m_renderTarget2->ReleaseDevice();
 ```
 
 In **Game.cpp**, add to **Render** just before the call to ``Present``:
@@ -408,13 +389,10 @@ In **Game.cpp**, add to **Render** just before the call to ``Present``:
 PostProcess();
 ```
 
-In **Game.cpp**, modify **Clear** to use ``m_sceneRT`` instead of ``m_renderTargetView``:
+In **Game.cpp**, modify **Clear** to use ``m_offscreenTexture`` instead of the swap chain render target view:
 
 ```cpp
-context->ClearDepthStencilView(m_depthStencilView.Get(),
-    D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
-context->OMSetRenderTargets(1, m_sceneRT.GetAddressOf(),
-    m_depthStencilView.Get());
+auto renderTarget = m_offscreenTexture->GetRenderTargetView();
 ```
 
 In **Game.cpp**, add the new method **PostProcess**
@@ -430,23 +408,26 @@ void Game::PostProcess()
     {
         // Pass-through test
         context->CopyResource(m_deviceResources->GetRenderTarget(),
-            m_sceneTex.Get());
+            m_offscreenTexture->GetRenderTarget());
     }
     else
     {
         // scene -> RT1 (downsample)
-        context->OMSetRenderTargets(1, m_rt1RT.GetAddressOf(), nullptr);
+        auto rt1RT = m_renderTarget1->GetRenderTargetView();
+        context->OMSetRenderTargets(1, &rt1RT, nullptr);
         m_spriteBatch->Begin(SpriteSortMode_Immediate,
             nullptr, nullptr, nullptr, nullptr,
             [=](){
                 context->PSSetConstantBuffers(0, 1, m_bloomParams.GetAddressOf());
                 context->PSSetShader(m_bloomExtractPS.Get(), nullptr, 0);
             });
-        m_spriteBatch->Draw(m_sceneSRV.Get(), m_bloomRect);
+        auto rtSRV = m_offscreenTexture->GetShaderResourceView();
+        m_spriteBatch->Draw(rtSRV, m_bloomRect);
         m_spriteBatch->End();
 
         // RT1 -> RT2 (blur horizontal)
-        context->OMSetRenderTargets(1, m_rt2RT.GetAddressOf(), nullptr);
+        auto rt2RT = m_renderTarget2->GetRenderTargetView();
+        context->OMSetRenderTargets(1, &rt2RT, nullptr);
         m_spriteBatch->Begin(SpriteSortMode_Immediate,
             nullptr, nullptr, nullptr, nullptr,
             [=](){
@@ -454,13 +435,13 @@ void Game::PostProcess()
                 context->PSSetConstantBuffers(0, 1,
                     m_blurParamsWidth.GetAddressOf());
             });
-        m_spriteBatch->Draw(m_rt1SRV.Get(), m_bloomRect);
+        m_spriteBatch->Draw(rt1SRV, m_bloomRect);
         m_spriteBatch->End();
 
         context->PSSetShaderResources(0, 2, null);
 
         // RT2 -> RT1 (blur vertical)
-        context->OMSetRenderTargets(1, m_rt1RT.GetAddressOf(), nullptr);
+        context->OMSetRenderTargets(1, &rt1RT, nullptr);
         m_spriteBatch->Begin(SpriteSortMode_Immediate,
             nullptr, nullptr, nullptr, nullptr,
             [=](){
@@ -468,7 +449,8 @@ void Game::PostProcess()
                 context->PSSetConstantBuffers(0, 1,
                     m_blurParamsHeight.GetAddressOf());
             });
-        m_spriteBatch->Draw(m_rt2SRV.Get(), m_bloomRect);
+        auto rt2SRV = m_renderTarget2->GetShaderResourceView();
+        m_spriteBatch->Draw(rt2SRV, m_bloomRect);
         m_spriteBatch->End();
 
         // RT1 + scene
@@ -481,7 +463,7 @@ void Game::PostProcess()
                 context->PSSetShaderResources(1, 1, m_rt1SRV.GetAddressOf());
                 context->PSSetConstantBuffers(0, 1, m_bloomParams.GetAddressOf());
             });
-        m_spriteBatch->Draw(m_sceneSRV.Get(), m_fullscreenRect);
+        m_spriteBatch->Draw(rtSRV, m_fullscreenRect);
         m_spriteBatch->End();
     }
 
