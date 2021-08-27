@@ -3,7 +3,7 @@ This is the _Getting Started_ tutorial for _DirectX Tool Kit_ which introduces t
 > If you are looking to use DirectX 12 and are already familiar with Direct3D 11, the place to start is the _DirectX Tool Kit for DirectX 12_ [tutorials](https://github.com/Microsoft/DirectXTK12/wiki/Getting-Started). Keep in mind that DirectX 12 is an expert API which builds on knowing the ins & outs of DirectX 11, and can be an unforgiving API to developers new to Direct3D or graphics in general.
 
 # Background
-This tutorial assumes the reader is familiar with the basics of C++ programming using Microsoft Visual C++, including writing code, building applications, and basic debugging. Coding conventions here will make use of C++11 language features such as ``nullptr``, ``auto``, simple _lambdas_  (aka anonymous functions), and the standard smart-pointer ``std::unique_ptr`` / ``std::make_unique<T>()``, but will generally be otherwise 'core' C++.
+This tutorial assumes the reader is familiar with the basics of C++ programming using Microsoft Visual C++, including writing code, building applications, and basic debugging. Coding conventions here will make use of C++11 language features such as ``nullptr``, ``auto``, ranged-based ``for`` loop, simple _lambdas_  (aka anonymous functions), and the standard smart-pointer ``std::unique_ptr`` / ``std::make_unique<T>()``, but will generally be otherwise 'core' C++.
 
 * [Welcome back to C++ - Modern C++](https://docs.microsoft.com/en-us/cpp/cpp/welcome-back-to-cpp-modern-cpp)
 * [C++ Language and Standard Libraries](https://docs.microsoft.com/en-us/cpp/cpp/c-cpp-language-and-standard-libraries)
