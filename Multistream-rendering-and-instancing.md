@@ -310,14 +310,14 @@ instancedModel->UpdateEffects([&](IEffect* effect)
     }
 });
 
-for (auto mit = instancedModel->meshes.begin(); mit != instancedModel->meshes.end(); ++mit)
+for (auto& mit : instancedModel->meshes)
 {
-    auto mesh = mit->get();
+    auto mesh = mit.get();
     assert(mesh != 0);
 
-    for (auto it = mesh->meshParts.begin(); it != mesh->meshParts.end(); ++it)
+    for (auto it : mesh->meshParts)
     {
-        auto part = it->get();
+        auto part = it.get();
         assert(part != 0);
         auto il = *part->vbDecl;
         il.push_back(s_instElements[0]);
@@ -337,16 +337,16 @@ UINT stride = sizeof(XMFLOAT3X4);
 UINT offset = 0;
 context->IASetVertexBuffers(1, 1, m_instancedVB.GetAddressOf(), &stride, &offset);
 
-for (auto mit = instancedModel->meshes.cbegin(); mit != instancedModel->meshes.cend(); ++mit)
+for (const auto& mit : instancedModel->meshes)
 {
-    auto mesh = mit->get();
-    assert(mesh != 0);
+    auto mesh = mit.get();
+    assert(mesh != nullptr);
 
     mesh->PrepareForRendering(context, *m_states.get());
 
-    for (auto it = mesh->meshParts.cbegin(); it != mesh->meshParts.cend(); ++it)
+    for (const auto& it = mesh->meshParts)
     {
-        auto part = it->get();
+        auto part = it.get();
         assert(part != 0);
 
         auto imatrices = dynamic_cast<IEffectMatrices*>(part->effect.get());

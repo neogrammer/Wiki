@@ -88,11 +88,11 @@ if ( enumList.empty() )
 }
 else
 {
-   for( auto it = enumList.cbegin(); it != enumList.cend(); ++it )
+   for(const auto& it : enumList)
    {
-       // it->deviceId.c_str() - this is the device/end-point identifier you can
+       // it.deviceId.c_str() - this is the device/end-point identifier you can
        //     pass as a parameter to AudioEngine
-       // it->description.c_str() - this is a textual description
+       // it.description.c_str() - this is a textual description
    }
 }
 ```

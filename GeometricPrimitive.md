@@ -167,10 +167,10 @@ GeometricPrimitive::CreateBox( vertices, indices,
     XMFLOAT3(1.f/2.f, 2.f/2.f, 3.f/2.f) );
 
 // Tile the texture in a 5x5 grid
-for( auto it = vertices.begin(); it != vertices.end(); ++it )
+for(auto& it : vertices)
 {
-    it->textureCoordinate.x *= 5.f;
-    it->textureCoordinate.y *= 5.f;
+    it.textureCoordinate.x *= 5.f;
+    it.textureCoordinate.y *= 5.f;
 }
 
 customBox = GeometricPrimitive::CreateCustom( deviceContext, vertices, indices ) );
@@ -358,4 +358,3 @@ The GeometricPrimitive class assumes you've already set the Render Target view, 
 Tetrahedron, Cube/Hexahedron, Octahedron, Dodecahedron, and Icosahedron comprise the five [Platonic solids](https://en.wikipedia.org/wiki/Platonic_solid).
 
 The *Utah Teapot* (also known as the *Newell Teapot*) is sometimes jokingly referred to as the "Sixth Platonic solid" due to its prevalence in rendering sample images. It was created in 1975 by Martin Newell at the University of Utah. It's become the "Hello, world" of 3D models hence why it's included as a basic geometric primitive shape in *DirectX Tool Kit*.
-

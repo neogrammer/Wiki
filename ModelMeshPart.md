@@ -67,17 +67,17 @@ IEffect* newEffect = ... (device)
 
 // Creating input layouts is expensive, so it shouldn't be done every frame
 std::vector<Microsoft::WRL::ComPtr<ID3D11InputLayout>> newInputLayouts;
-for( auto mit = tiny->meshes.cbegin(); mit != tiny->meshes.cend(); ++mit )
+for(const auto& mit : model->meshes)
 {
-    auto mesh = it->get();
-    assert( mesh != 0 );
+    auto mesh = it.get();
+    assert( mesh != nullptr );
 
     mesh->PrepareForRendering(context, states);
 
-    for( auto it = mesh->meshParts.cbegin(); it != mesh->meshParts.cend(); ++it )
+    for(const auto& it : mesh->meshParts)
     {
-        auto part = it->get();
-        assert( part != 0 );
+        auto part = it.get();
+        assert( part != nullptr );
 
         Microsoft::WRL::ComPtr<ID3D11InputLayout> il;
         part->CreateInputLayout( device.Get(), newEffect, il.GetAddressOf() );
@@ -98,14 +98,14 @@ if ( imatrices )
 }
 
 size_t count = 0;
-for( auto mit = tiny->meshes.cbegin(); mit != tiny->meshes.cend(); ++mit )
+for(const auto& mit : model->meshes)
 {
-    auto mesh = mit->get();
+    auto mesh = mit.get();
     assert( mesh != 0 );
 
-    for( auto it = mesh->meshParts.cbegin(); it != mesh->meshParts.cend(); ++it )
+    for(const auto& it : mesh->meshParts)
     {
-        auto part = it->get();
+        auto part = it.get();
         assert( part != 0 );
 
         // Could call if a custom transformation was desired for each part

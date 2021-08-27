@@ -33,15 +33,15 @@ std::list<std::unique_ptr<Model>> models;
 ...
 
 // Draw opaque parts
-for( auto mit = models.cbegin(); mit != models.cend(); ++mit )
+for(const auto& mit : models)
 {
-    auto model = mit->get();
-    assert( model != 0 );
+    auto model = mit.get();
+    assert( model != nullptr );
 
-    for( auto it = model->meshes.cbegin(); it != model->meshes.cend(); ++it )
+    for(const auto& it : model->meshes)
     {
-        auto mesh = it->get();
-        assert( mesh != 0 );
+        auto mesh = it.get();
+        assert( mesh != nullptr );
 
         mesh->PrepareForRendering( deviceContext, states, false );
 
@@ -52,15 +52,15 @@ for( auto mit = models.cbegin(); mit != models.cend(); ++mit )
 }
 
 // Draw alpha parts (should really be done in back-to-front sorted order)
-for( auto mit = models.cbegin(); mit != models.cend(); ++mit )
+for(const auto& mit : models)
 {
-    auto model = mit->get();
-    assert( model != 0 );
+    auto model = mit.get();
+    assert( model != nullptr );
 
-    for( auto it = model->meshes.cbegin(); it != model->meshes.cend(); ++it )
+    for(const auto& it : model->meshes)
     {
-        auto mesh = it->get();
-        assert( mesh != 0 );
+        auto mesh = it.get();
+        assert( mesh != nullptr );
 
         mesh->PrepareForRendering( deviceContext, states, true );
 
