@@ -30,28 +30,34 @@ Vector2 v(arr);   // Creates a vector [1, 2]
 
 * **InBounds**: Tests if the vector is within the bounds set by the positive and negative of the input bounds.
 
-* **Length**, **LengthSquared**: Compute vector length
-* **Dot**
-* **Cross**
-* **Normalize**
-* **Clamp**
+* **Length**, **LengthSquared**: Compute vector length.
+
+* **Dot**: Returns the dot-product between two 2-vectors.
+
+* **Cross**: Computes the geometric cross-product of two 2-vectors. See [XMVector2Cross](https://docs.microsoft.com/en-us/windows/win32/api/directxmath/nf-directxmath-xmvector2cross).
+
+* **Normalize**: Computes a unit-length vector.
+
+* **Clamp**: Clamps the values of the vector per component between a minimum and a maximum.
 
 # Statics
-* **Distance**, **DistanceSquared**: Compute distance between two vectors
+* **Distance**, **DistanceSquared**: Compute distance between two vectors.
 
-* **Min**, **Max**: Determine minimum/maximum vector elements
+* **Min**, **Max**: Determine minimum/maximum vector elements.
 
-* **Lerp**: Performs a linear interpolation
-* **SmoothStep**: Performs a cube interpolation
-* **Barycentric**: Returns a point in Barycentric coordinates
-* **CatmullRom**: Performs a Catmull-Rom interpolation
-* **Hermite**: Performs a Hermite spline interpolation
+* **Lerp**: Performs a linear interpolation.
+* **SmoothStep**: Performs a cube interpolation.
 
-* **Reflect**: Reflects an incident vector across a normal vector
-* **Refract**: Refracts an incident vector across a normal vector
+* **Barycentric**: Returns a point in Barycentric coordinates.
+* **CatmullRom**: Performs a Catmull-Rom interpolation.
+* **Hermite**: Performs a Hermite spline interpolation.
 
-* **Transform**
-* **TransformNormal**: Transforms the vector by the rotation and scale in the matrix, ignoring translation (rows 2 & 3).
+* **Reflect**: Reflects an incident vector across a normal vector.
+* **Refract**: Refracts an incident vector across a normal vector.
+
+* **Transform**: Transform the vector by the rotation and scale in the matrix or a quaternion. There is also an overload for transforming an array of vectors. See [XMVector2Transform](https://docs.microsoft.com/en-us/windows/win32/api/directxmath/nf-directxmath-xmvector2transform).
+
+* **TransformNormal**: Transforms the vector by the rotation and scale in the matrix, ignoring translation (rows 2 & 3). There is also an overload for transforming an array of vectors. See [XMVector2TransformNormal](https://docs.microsoft.com/en-us/windows/win32/api/directxmath/nf-directxmath-xmvector2transformnormal).
 
 # Constants
 
@@ -61,4 +67,4 @@ Vector2 v(arr);   // Creates a vector [1, 2]
 * **UnitY**: Unit Y vector [0, 1]
 
 # Remark
-Vector2 can freely convert to and from a ``XMFLOAT2`` and ``XMVECTOR`` (the z and w components are lost)
+Vector2 can freely convert to and from a ``XMFLOAT2`` and ``XMVECTOR`` (the z and w components are lost).

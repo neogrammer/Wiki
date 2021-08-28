@@ -31,28 +31,33 @@ Vector3 v(arr);     // Creates a vector [1, 2, 3]
 
 * **InBounds**: Tests if the vector is within the bounds set by the positive and negative of the input bounds.
 
-* **Length**, **LengthSquared**: Compute vector length
-* **Dot**
-* **Cross**
-* **Normalize**
-* **Clamp**
+* **Length**, **LengthSquared**: Compute vector length.
+
+* **Dot**: Returns the dot-product of two 3-vectors.
+
+* **Cross**: Computes the cross product of two 3-vectors.
+
+* **Normalize**: Computes a unit-length vector.
+
+* **Clamp**: Clamps the values of the vector per component between a minimum and a maximum.
 
 # Statics
-* **Distance**, **DistanceSquared**: Compute distance between two vectors
+* **Distance**, **DistanceSquared**: Compute distance between two vectors.
 
-* **Min**, **Max**: Determine minimum/maximum vector elements
+* **Min**, **Max**: Determine minimum/maximum vector elements.
 
-* **Lerp**: Performs a linear interpolation
-* **SmoothStep**: Performs a cube interpolation
-* **Barycentric**: Returns a point in Barycentric coordinates
-* **CatmullRom**: Performs a Catmull-Rom interpolation
-* **Hermite**: Performs a Hermite spline interpolation
+* **Lerp**: Performs a linear interpolation.
+* **SmoothStep**: Performs a cube interpolation.
+* **Barycentric**: Returns a point in Barycentric coordinates.
+* **CatmullRom**: Performs a Catmull-Rom interpolation.
+* **Hermite**: Performs a Hermite spline interpolation.
 
-* **Reflect**: Reflects an incident vector across a normal vector
-* **Refract**: Refracts an incident vector across a normal vector
+* **Reflect**: Reflects an incident vector across a normal vector.
+* **Refract**: Refracts an incident vector across a normal vector.
 
-* **Transform**
-* **TransformNormal**: Transforms the vector by the rotation and scale in the matrix, ignoring translation (row 3).
+* **Transform**: Transform the vector by a matrix or a quaternion. See [XMVector3Transform](https://docs.microsoft.com/en-us/windows/win32/api/directxmath/nf-directxmath-xmvector3transform). There are overloads for returning the homogenous normalized ``Vector3`` result (i.e. ``w = 1``) or the ``Vector4`` result. There is also an overload for transforming an array of vectors.
+
+* **TransformNormal**: Transforms the vector by matrix, ignoring translation (row 3). There is also an overload for transforming an array of vectors. See [XMVector3TransformNormal](https://docs.microsoft.com/en-us/windows/win32/api/directxmath/nf-directxmath-xmvector3transformnormal).
 
 # Constants
 

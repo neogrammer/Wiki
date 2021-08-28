@@ -36,30 +36,48 @@ PrimitiveBatch<T>( ID3D11DeviceContext* deviceContext,
 
 # Effect and Input Layout
 
-Setting up a suitable BasicEffect and input layout:
+Setting up a BasicEffect:
 
 ```cpp
 std::unique_ptr<BasicEffect> basicEffect;
-ComPtr<ID3D11InputLayout> inputLayout;
 
 basicEffect = std::make_unique<BasicEffect>(device);
 
 basicEffect->SetProjection(XMMatrixOrthographicOffCenterRH(0,
     screenWidth, screenHeight, 0, 0, 1));
 basicEffect->SetVertexColorEnabled(true);
+```
+
+Then create the matching input layout object:
+
+```cpp
+ComPtr<ID3D11InputLayout> inputLayout;
 
 void const* shaderByteCode;
 size_t byteCodeLength;
 
 basicEffect->GetVertexShaderBytecode(&shaderByteCode, &byteCodeLength);
 
-device->CreateInputLayout(VertexPositionColor::InputElements,
-                          VertexPositionColor::InputElementCount,
-                          shaderByteCode, byteCodeLength,
-                          inputLayout.GetAddressOf() );
+DX::ThrowIfFailed(
+    device->CreateInputLayout(VertexPositionColor::InputElements,
+        VertexPositionColor::InputElementCount,
+        shaderByteCode,
+        byteCodeLength,
+        inputLayout.ReleaseAndGetAddressOf() ) );
+```
+
+Or use [[CreateInputLayoutFromEffect|DirectXHelpers]] which wraps up this boiler-plate code into a simple template:
+
+```cpp
+ComPtr<ID3D11InputLayout> inputLayout;
+
+DX::ThrowIfFailed(
+     CreateInputLayoutFromEffect<VertexPositionColor>(basicEffect.get(),
+         inputLayout.ReleaseAndGetAddressOf()));
 ```
 
 > Note that we enabled ``SetVertexColorEnabled`` on the [[BasicEffect]] before we created our input layout. This ensures the effect itself selects a shader that actually uses the per vertex color element of ``VertexPositionColor``.
+
 
 # Drawing
 
