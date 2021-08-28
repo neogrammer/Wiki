@@ -515,9 +515,9 @@ add_dependencies(${PROJECT_NAME} shaders)
 ```
 
 ## Technical notes
-First the original scene is rendered to a hidden render target ``m_sceneTex`` as normal. The only change here was for ``Clear`` to use ``m_sceneRT`` rather than ``m_renderTargetView`` which is our backbuffer render target view.
+First the original scene is rendered to a hidden render target ``m_offscreenTexture`` as normal. The only change here was for ``Clear`` to use ``m_offscreenTexture``'s render target view rather than [[DeviceResources]] backbuffer render target view.
 
-Our first past of post-processing is to render the original scene texture as a 'full-screen quad' onto our first half-sized render target using the custom shader in "BloomExtract.hlsl" into ``m_rt1RT``.
+Our first past of post-processing is to render the original scene texture as a 'full-screen quad' onto our first half-sized render target using the custom shader in "BloomExtract.hlsl" into ``m_renderTarget1``.
 
 ```cpp
 float4 main(float4 color : COLOR0, float2 texCoord : TEXCOORD0) : SV_Target0
@@ -529,7 +529,7 @@ float4 main(float4 color : COLOR0, float2 texCoord : TEXCOORD0) : SV_Target0
 
 ![Screenshot of post-processed torus](https://github.com/Microsoft/DirectXTK/wiki/images/postprocessPass1.png)
 
-We take the result of the extract & down-size and then blur it horizontally using "GausianBlur.hlsl" from ``m_rt1SRV`` to ``m_rt2RT``.
+We take the result of the extract & down-size and then blur it horizontally using "GausianBlur.hlsl" from ``m_renderTarget1`` to ``m_renderTarget2``.
 
 ```cpp
 float4 main(float4 color : COLOR0, float2 texCoord : TEXCOORD0) : SV_Target0
@@ -548,11 +548,11 @@ float4 main(float4 color : COLOR0, float2 texCoord : TEXCOORD0) : SV_Target0
 
 ![Screenshot of post-processed torus](https://github.com/Microsoft/DirectXTK/wiki/images/postprocessPass2.png)
 
-We take that result in ``m_rt2SRV`` and then blur it vertically using the same shader--we are using a Gaussian blur which is a separable filter which allows us to do the filter in two simple render passes one for each dimension--back into ``m_rt1RT``.
+We take that result in ``m_renderTarget2`` and then blur it vertically using the same shader--we are using a Gaussian blur which is a separable filter which allows us to do the filter in two simple render passes one for each dimension--back into ``m_renderTarget1``.
 
 ![Screenshot of post-processed torus](https://github.com/Microsoft/DirectXTK/wiki/images/postprocessPass3.png)
 
-And finally we take the result of both blur passes in ``m_rt1SRV`` and combine it with our original scene texture ``m_sceneSRV`` using the "BloomCombine.hlsl" shader to get our final image into ``m_renderTargetView``
+And finally we take the result of both blur passes in ``m_renderTarget1`` and combine it with our original scene texture ``m_offscreenTexture`` using the "BloomCombine.hlsl" shader to get our final image into the presentation swapchain.
 
 ```cpp
 // Helper for modifying the saturation of a color.
