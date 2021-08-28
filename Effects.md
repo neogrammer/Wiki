@@ -16,7 +16,7 @@ See also [[EffectFactory]]
 
 ![Effects Example](https://github.com/Microsoft/DirectXTK/wiki/images/EffectsExample.png)
 
-**Related tutorials:** [[Simple rendering]], [[Using advanced shaders]], [[Creating custom shaders with DGSL]], [[Writing custom shaders]]
+**Related tutorials:** [[Simple rendering]], [[Using advanced shaders]], [[Creating custom shaders with DGSL]], [[Writing custom shaders]], [[Multistream rendering and instancing]]
 
 # Header
 ```cpp
@@ -91,7 +91,15 @@ effect->GetVertexShaderBytecode(&shaderByteCode, &byteCodeLength);
 device->CreateInputLayout(VertexPositionNormalTexture::InputElements,
                           VertexPositionNormalTexture::InputElementCount,
                           shaderByteCode, byteCodeLength,
-                          pInputLayout);
+                          &pInputLayout);
+```
+
+Or use [[CreateInputLayoutFromEffect|DirectXHelpers]] which wraps up this boiler-plate code into a simple template:
+
+```cpp
+DX::ThrowIfFailed(
+     CreateInputLayoutFromEffect<VertexPositionNormalTexture>(effect.get(),
+         &pInputLayout));
 ```
 
 For the built-in effects, the trigger for needing to create a new layout would be:
