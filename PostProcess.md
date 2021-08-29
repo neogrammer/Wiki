@@ -137,9 +137,7 @@ basicPostProcess->Process(context);
 dualPostProcess->SetEffect(DualPostProcess::BloomCombine);
 dualPostProcess->SetBloomCombineParameters(1.25f, 1.f, 1.f, 1.f);
 
-
-// renderTarget is the swapchain backbuffer
-
+auto renderTarget = m_deviceResources->GetRenderTargetView();
 context->OMSetRenderTargets(1, &renderTarget, nullptr);
 
 dualPostProcess->SetSourceTexture(m_sceneSRV.Get());
