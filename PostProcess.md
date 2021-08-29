@@ -21,7 +21,7 @@ postProcess = std::make_unique<BasicPostProcess>(device);
 
 # Usage
 
-To make use of post-processing, you typically render the scene to a offscreen render texture--see [[RenderTexture]] helper.
+To make use of post-processing, you typically render the scene to a offscreen render texture.
 
 ```cpp
 CD3D11_TEXTURE2D_DESC sceneDesc(
