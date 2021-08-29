@@ -2,7 +2,7 @@ This effect implements a Disney-style (Roughness/Metalness workflow) Physically-
 
 See also [[Effects]], [[PBREffectFactory|EffectFactory]]
 
-**Related tutorials:** [[Multistream rendering and instancing]]
+**Related tutorials:** [[Physically-based rendering]], [[Multistream rendering and instancing]]
 
 ![PBR effect](https://github.com/Microsoft/DirectXTK/wiki/images/pbreffect.png)
 
