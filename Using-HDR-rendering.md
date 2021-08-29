@@ -269,7 +269,7 @@ m_toneMap->Process(context);
 
 * For HDR10 output, you can select different colorspace transformations for different color grading effects such as using DCI-P3-D65 instead of Rec.709 colorspace as your source or target color primaries. You can also provide a custom color primary rotation matrix. See [[ToneMapPostProcess]] for details.
 
-**Next lessons:** [[Game controller input]], [[Using the SimpleMath library]], [[Adding the DirectX Tool Kit for Audio]]
+**Next lesson:** [[Physically-based rendering]]
 
 # Further reading
 
