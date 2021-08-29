@@ -587,9 +587,9 @@ float4 main(float4 color : COLOR0, float2 texCoord : TEXCOORD0) : SV_Target0
 
 One final note, because we are using a render target that is larger than our blur buffers, we do not need to use ``RSSetViewports`` as we change render targets. If our intermediate render targets were _larger_ than our backbuffer, then we'd need to call ``RSSetViewports`` after calling ``OMSetRenderTargets`` whenever we changed sizes.
 
-> Note that since this tutorial was written, I've added the [[BasicPostProcess]] / [[DualPostProcess]] classes which already includes the blur and bloom shaders used above. This is still a useful and valid tutorial, but you should check out those classes if you are wanting to add a bloom effect and you are using Direct3D hardware feature level 10.0 or better. For Direct3D hardware feature level 9.x, you should use the code above instead for post-processing.
-
 # More to explore
+
+* See [[PostProcess]] for a Bloom example using the built-in post-processing shaders. *If you are targeting Direct3D Hardware Feature Level 9.x, the PostProcess class is not supported for you so you should use the sprite batch solution above.*
 
 * See  [[BasicPostProcess]] and [[DualPostProcess]] for additional built-in post-processing effects.
 
