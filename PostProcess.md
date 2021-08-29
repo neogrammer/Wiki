@@ -21,7 +21,7 @@ postProcess = std::make_unique<BasicPostProcess>(device);
 
 # Usage
 
-To make use of post-processing, you typically render the scene to a offscreen render texture.
+To make use of post-processing, you typically render the scene to a offscreen render texture--see [[RenderTexture]] helper.
 
 ```cpp
 CD3D11_TEXTURE2D_DESC sceneDesc(
@@ -84,6 +84,67 @@ postProcess->Process(context, [=]
     ID3D11SamplerState* samplerState = states.AnsiotropicClamp();
     deviceContext->PSSetSamplers(0, 1, &samplerState);
 });
+```
+
+# Example
+
+A Bloom or Glow post-processing effect can be achieved with the following series of post-processing passes:
+
+```cpp
+basicPostProcess = std::make_unique<BasicPostProcess>(device);
+
+dualPostProcess = std::make_unique<DualPostProcess>(device);
+
+// Scene is rendered to a render texture that is associated with sceneSRV
+
+// blur1RT, blur1SRV is a render texture typically half-sized
+// in both width & height of the original scene to save memory
+
+// blurRT2, blur2SRV is another half-sized render texture
+
+// Pass 1 (scene->blur1)
+basicPostProcess->SetEffect(BasicPostProcess::BloomExtract);
+basicPostProcess->SetBloomExtractParameter(0.25f);
+
+auto blurRT1 = blur1RT.Get();
+context->OMSetRenderTargets(1, &blurRT1, nullptr);
+
+basicPostProcess->SetSourceTexture(m_sceneSRV.Get());
+basicPostProcess->Process(context);
+
+// Pass 2 (blur1 -> blur2)
+basicPostProcess->SetEffect(BasicPostProcess::BloomBlur);
+basicPostProcess->SetBloomBlurParameters(true, 4.f, 1.f);
+
+auto blurRT2 = blur2RT.Get();
+context->OMSetRenderTargets(1, &blurRT2, nullptr);
+
+basicPostProcess->SetSourceTexture(blur1SRV.Get());
+basicPostProcess->Process(context);
+
+// Pass 3 (blur2 -> blur1)
+basicPostProcess->SetBloomBlurParameters(false, 4.f, 1.f);
+
+ID3D11ShaderResourceView* nullsrv[] = { nullptr, nullptr };
+context->PSSetShaderResources(0, 2, nullsrv);
+
+context->OMSetRenderTargets(1, &blurRT1, nullptr);
+
+basicPostProcess->SetSourceTexture(blur2SRV.Get());
+basicPostProcess->Process(context);
+
+// Pass 4 (scene+blur1 -> rt)
+dualPostProcess->SetEffect(DualPostProcess::BloomCombine);
+dualPostProcess->SetBloomCombineParameters(1.25f, 1.f, 1.f, 1.f);
+
+
+// renderTarget is the swapchain backbuffer
+
+context->OMSetRenderTargets(1, &renderTarget, nullptr);
+
+dualPostProcess->SetSourceTexture(m_sceneSRV.Get());
+dualPostProcess->SetSourceTexture2(blur1SRV.Get());
+dualPostProcess->Process(context);
 ```
 
 # Feature level Notes
