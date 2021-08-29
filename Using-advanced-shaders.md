@@ -195,7 +195,7 @@ Build and run to see the debug effect rendering a blue/purple gradient teapot:
 
 * The [[EnvironmentMapEffect]] also supports spherical environment maps (a [DirectX 9](https://docs.microsoft.com/en-us/windows/win32/direct3d9/spherical-environment-mapping) feature) and dual-parabolic environment maps.
 
-* [[PBREffect]] is a Disney-style [[Physically based rendering]] effect which uses an albedo map, normal map, and roughness/metalness/ambient-occlusion map along with two cubemaps for [Image-Based Lighting](https://en.wikipedia.org/wiki/Image-based_lighting).
+* [[PBREffect]] is a Disney-style [[Physically-based rendering]] effect which uses an albedo map, normal map, and roughness/metalness/ambient-occlusion map along with two cubemaps for [Image-Based Lighting](https://en.wikipedia.org/wiki/Image-based_lighting).
 
 * [[DualTextureEffect]] is used to render a material with two textures applied. This requires the input layout to contain a second set of _texture coordinates_. This does not perform vertex or per-pixel lighting, as the second texture is most often a [lightmap](https://en.wikipedia.org/wiki/Lightmap) with statically computed lighting information.  ``.SDKMESH`` and the [Content Exporter](https://aka.ms/dxsdkcontentexporter) support exporting light-mapped models which utilize this effect (see ``-lightmaps``).
 
