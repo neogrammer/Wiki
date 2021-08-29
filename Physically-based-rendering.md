@@ -28,4 +28,11 @@ DirectX Tool Kit docs [[PBREffect]]
 
 [Physically-Based Rendering wikipedia](https://en.wikipedia.org/wiki/Physically_based_rendering)
 
+[Basic Theory of Physically-Based Rendering](https://www.marmoset.co/toolbag/learn/pbr-theory)
+
+Burley et al. "Physically-Based Shading at Disney", SIGGRAPH 2012 Course: Practical Physically Based Shading in Film and Game Production. [Slides](http://blog.selfshadow.com/publications/s2012-shading-course/burley/s2012_pbs_disney_brdf_slides_v2.pdf) [Notes](https://disney-animation.s3.amazonaws.com/library/s2012_pbs_disney_brdf_notes_v2.pdf)
+
+SIGGRAPH Course: [2012](http://blog.selfshadow.com/publications/s2012-shading-course/) [2013](http://blog.selfshadow.com/publications/s2013-shading-course/) [2014](http://blog.selfshadow.com/2014/08/12/physically-based-shading-at-siggraph-2014/) [2015](http://blog.selfshadow.com/publications/s2015-shading-course/) [2016](http://blog.selfshadow.com/publications/s2016-shading-course/)
+
+[Art Pipeline for glTF](https://www.khronos.org/blog/art-pipeline-for-gltf)
 
