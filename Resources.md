@@ -22,6 +22,16 @@
 [SpriteBatch and BasicEffect for C++ Direct3D 11](http://www.shawnhargreaves.com/blog/spritebatch-and-basiceffect-for-c-direct3d-11.html)
 
 # DirectX SDK and Games for Windows Blog
+[Where is the DirectX SDK (2021 Edition)?](https://walbourn.github.io/where-is-the-directx-sdk-2021-edition/)
+
+[Modern C++ Bitmask types](https://walbourn.github.io/modern-c++-bitmask-types/)
+
+[DirectXTK for Audio updates and a Direct3D 9 footnote](https://walbourn.github.io/directx-tool-kit-for-audio-updates-and-a-direct3d-9-footnote/)
+
+[HDR Lighting and Displays](https://walbourn.github.io/hdr-lighting-and-displays/)
+
+[DirectX Tool Kit and C++/WinRT](https://walbourn.github.io/directx-tool-kit-and-cwinrt/)
+
 [Direct3D Game Visual Studio templates (Redux)](https://walbourn.github.io/direct3d-game-visual-studio-templates-redux/)
 
 [DirectX Tool Kit: Keyboard and Mouse support](https://walbourn.github.io/directx-tool-kit-keyboard-and-mouse-support/)
