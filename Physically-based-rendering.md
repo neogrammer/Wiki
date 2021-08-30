@@ -26,9 +26,22 @@ Add to the **Game.h** file to the ``#include`` section:
 #include "RenderTexture.h"
 ```
 
-In the **Game.h** file, add the following variable to the bottom of the Game class's private declarations:
+In the **Game.h** file, add the following variable to the bottom of the Game class's private declarations (right after where you've added ``m_graphicsMemory``):
 
 ```cpp
+DirectX::SimpleMath::Matrix m_world;
+DirectX::SimpleMath::Matrix m_view;
+DirectX::SimpleMath::Matrix m_proj;
+
+std::unique_ptr<DirectX::CommonStates> m_states;
+std::unique_ptr<DirectX::GeometricPrimitive> m_shape;
+std::unique_ptr<DirectX::PBREffect> m_effect;
+
+Microsoft::WRL::ComPtr<ID3D11InputLayout> m_inputLayout;
+
+Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_radiance;
+Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_irradiance;
+
 std::unique_ptr<DX::RenderTexture> m_hdrScene;
 std::unique_ptr<DirectX::ToneMapPostProcess> m_toneMap;
 ```
@@ -47,25 +60,66 @@ m_hdrScene = std::make_unique<DX::RenderTexture>(DXGI_FORMAT_R16G16B16A16_FLOAT)
 In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
 
 ```cpp
+m_states = std::make_unique<CommonStates>(device);
+m_effect = std::make_unique<PBREffect>(device);
+
+auto context = m_deviceResources->GetD3DDeviceContext();
+m_shape = GeometricPrimitive::CreateTeapot(context);
+m_shape->CreateInputLayout(m_effect.get(),
+    m_inputLayout.ReleaseAndGetAddressOf());
+
+// Image-based lighting cubemaps.
+DX::ThrowIfFailed(
+    CreateDDSTextureFromFile(device, L"SunSubMixer_diffuseIBL.dds",
+        nullptr,
+        m_radiance.ReleaseAndGetAddressOf()));
+
+D3D11_SHADER_RESOURCE_VIEW_DESC desc = {};
+m_radiance->GetDesc(&desc);
+
+DX::ThrowIfFailed(
+    CreateDDSTextureFromFile(device, L"SunSubMixer_specularIBL.dds",
+        nullptr,
+        m_irradiance.ReleaseAndGetAddressOf()));
+
+m_effect->SetIBLTextures(m_radiance.Get(),
+    static_cast<int>(desc.TextureCube.MipLevels),
+    m_irradiance.Get());
+
 m_hdrScene->SetDevice(device);
 
 m_toneMap = std::make_unique<ToneMapPostProcess>(device);
 m_toneMap->SetOperator(ToneMapPostProcess::Reinhard);
 m_toneMap->SetTransferFunction(ToneMapPostProcess::SRGB);
+
+m_world = Matrix::Identity;
 ```
 
 In **Game.cpp**, add to the TODO of **CreateWindowSizeDependentResources**:
 
 ```cpp
 auto size = m_deviceResources->GetOutputSize();
-m_hdrScene->SetWindow(size);
+m_view = Matrix::CreateLookAt(Vector3(2.f, 2.f, 2.f),
+    Vector3::Zero, Vector3::UnitY);
+m_proj = Matrix::CreatePerspectiveFieldOfView(XM_PI / 4.f,
+    float(size.right) / float(size.bottom), 0.1f, 10.f);
 
+m_effect->SetView(m_view);
+m_effect->SetProjection(m_proj);
+
+m_hdrScene->SetWindow(size);
 m_toneMap->SetHDRSourceTexture(m_hdrScene->GetShaderResourceView());
 ```
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
 ```cpp
+m_states.reset();
+m_shape.reset();
+m_effect.reset();
+m_inputLayout.Reset();
+m_radiance.Reset();
+m_irradiance.Reset();
 m_hdrScene->ReleaseDevice();
 m_toneMap.reset();
 ```
@@ -99,6 +153,15 @@ Clear();
 auto context = m_deviceResources->GetD3DDeviceContext();
 
 // TODO: Add your rendering code here.
+m_effect->SetWorld(m_world);
+m_shape->Draw(m_effect.get(), m_inputLayout.Get(), false, false, [=] {
+    ID3D11SamplerState* samplers[] =
+    {
+        m_states->AnisotropicClamp(),
+        m_states->LinearWrap(),
+    };
+    context->PSSetSamplers(0, 2, samplers);
+    });
 
 // Tonemap
 auto renderTarget = m_deviceResources->GetRenderTargetView();
@@ -111,6 +174,7 @@ context->PSSetShaderResources(0, 1, nullsrv);
 
 // Show the new frame.
 m_deviceResources->Present();
+m_graphicsMemory->Commit();
 ```
 
 > **UNDER CONSTRUCTION**
