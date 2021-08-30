@@ -10,7 +10,7 @@ The proponents of PBR rendering have gone back to the foundational [rendering eq
 
 ## Image-Based Lighting (IBL)
 
-Another important aspect of PBR is that real world lighting is not well modeled by trivial point, directional, or spot light sources. Area lighting or other global illumination systems are expensive and/or complex to implement in real-time systems, so for the purposes of *DirectX Tool Kit*'s PBR implementation we make of [image-based lighting](https://en.wikipedia.org/wiki/Image-based_lighting). Specifically the lighting environment consists of two specially formulated cubemaps. You can add some directional lighting as well, but the interesting interactions of light that convey "metalness" or "roughness" require a complex lighting environment.
+Another important aspect of PBR is that real world lighting is not well modeled by trivial point, directional, or spot light sources. Area lighting or other global illumination systems are expensive and/or complex to implement in real-time systems, so for the purposes of *DirectX Tool Kit*'s PBR implementation we make of [image-based lighting](https://en.wikipedia.org/wiki/Image-based_lighting). Specifically the ambient lighting environment consists of two specially formulated cubemaps, in addition to direct lighting from up to 3 directional lights.
 
 # Setup
 First create a new project using the instructions from the previous lessons: [[Using DeviceResources]] and
@@ -66,7 +66,7 @@ m_states = std::make_unique<CommonStates>(device);
 m_effect = std::make_unique<PBREffect>(device);
 
 auto context = m_deviceResources->GetD3DDeviceContext();
-m_shape = GeometricPrimitive::CreateTeapot(context);
+m_shape = GeometricPrimitive::CreateSphere(context);
 m_shape->CreateInputLayout(m_effect.get(),
     m_inputLayout.ReleaseAndGetAddressOf());
 
@@ -183,16 +183,79 @@ In **Game.cpp**, add to the TODO of **Update**:
 ```cpp
 auto time = static_cast<float>(timer.GetTotalSeconds());
 
-m_world = Matrix::CreateRotationZ(cosf(time) * 2.f);
+m_world = Matrix::CreateRotationY(cosf(time) * 2.f);
 ```
 
-Build and run to see the teapot rendered with a reflective metal appearance:
+Build and run to see the sphere rendered with a reflective metal appearance:
 
-![Screenshot of teapot](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTeapotPBR.PNG)
+![Screenshot of sphere](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotSpherePBR.PNG)
+
+# Adding PBR Textures
+
+While **PBREffect** does have a basic 'constant' shader, the real impact of PBR materials requires the use of texture maps. Save the files [Sphere2Mat_baseColor.png](https://github.com/Microsoft/DirectXTK/wiki/media/Sphere2Mat_baseColor.png), [Sphere2Mat_normal.png](https://github.com/Microsoft/DirectXTK/wiki/media/Sphere2Mat_normal.png), [Sphere2Mat_occlusionRoughnessMetallic.png](https://github.com/Microsoft/DirectXTK/wiki/media/Sphere2Mat_occlusionRoughnessMetallic.png), and [Sphere2Mat_emissive.png](https://github.com/Microsoft/DirectXTK/wiki/media/Sphere2Mat_emissive.png) to your project directory and add them to your project.
+
+In the **Game.h** file, add the following variable to the bottom of the Game class's private declarations:
+
+```cpp
+Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_albetoMap;
+Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_normalMap;
+Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_rmaMap;
+Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_emissiveMap;
+```
+
+In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
+
+```cpp
+DX::ThrowIfFailed(
+    CreateWICTextureFromFile(device, L"Sphere2Mat_baseColor.png",
+        nullptr,
+        m_albetoMap.ReleaseAndGetAddressOf()));
+
+DX::ThrowIfFailed(
+    CreateWICTextureFromFile(device, L"Sphere2Mat_normal.png",
+        nullptr,
+        m_normalMap.ReleaseAndGetAddressOf()));
+
+DX::ThrowIfFailed(
+    CreateWICTextureFromFile(device, L"Sphere2Mat_occlusionRoughnessMetallic.png",
+        nullptr,
+        m_rmaMap.ReleaseAndGetAddressOf()));
+
+DX::ThrowIfFailed(
+    CreateWICTextureFromFile(device, L"Sphere2Mat_emissive.png",
+        nullptr,
+        m_emissiveMap.ReleaseAndGetAddressOf()));
+
+m_effect->SetSurfaceTextures(m_albetoMap.Get(), m_normalMap.Get(), m_rmaMap.Get());
+m_effect->SetEmissiveTexture(m_emissiveMap.Get());
+```
+
+In **Game.cpp**, add to the TODO of **OnDeviceLost**:
+
+```cpp
+m_albetoMap.Reset();
+m_normalMap.Reset();
+m_rmaMap.Reset();
+m_emissiveMap.Reset();
+```
+
+Build and run to see the sphere rendered a more complex material.
+
+![Screenshot of textured sphere](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotSphere2PBR.PNG)
+
+## Technical note
+
+The use of the emissive texture is optional. Any textured use of **PBREffect** requires albeto, normal, and roughness/metalness/ambient-occlusion maps.
 
 # Rendering a PBR Model
 
-> **UNDER CONSTRUCTION**
+*DirectX Tool Kit* supports "SDKMESH version 2", which is the venerable DirectX SDK sample mesh file format updated with PBR-style materials information. Follow the instructions from [[Rendering a model]] with these differences:
+
+* The [meshconvert](http://go.microsoft.com/fwlink/?LinkID=324981) and [DirectX SDK Samples Content Exporter](https://github.com/walbourn/contentexporter) utilities both support a ``-sdkmesh2`` command-line switch to generate PBR materials information.
+
+* You need an HDR render setup per [[Using HDR rendering]].
+
+* Make use of **PBREffectFactory** instead of ``EffectFactory`` which will create ``PBREffect`` instances.
 
 **Next lessons:** [[Game controller input]], [[Using the SimpleMath library]], [[Adding the DirectX Tool Kit for Audio]]
 
