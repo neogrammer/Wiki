@@ -186,7 +186,7 @@ auto time = static_cast<float>(timer.GetTotalSeconds());
 m_world = Matrix::CreateRotationZ(cosf(time) * 2.f);
 ```
 
-Build and run to see the teapot rendered with a reflectively metal appearance:
+Build and run to see the teapot rendered with a reflective metal appearance:
 
 ![Screenshot of teapot](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTeapotPBR.PNG)
 
