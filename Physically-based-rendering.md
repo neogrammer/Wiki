@@ -251,11 +251,26 @@ The use of the emissive texture is optional. Any textured use of **PBREffect** r
 
 *DirectX Tool Kit* supports "SDKMESH version 2", which is the venerable DirectX SDK sample mesh file format updated with PBR-style materials information. Follow the instructions from [[Rendering a model]] with these differences:
 
-* The [meshconvert](http://go.microsoft.com/fwlink/?LinkID=324981) and [DirectX SDK Samples Content Exporter](https://github.com/walbourn/contentexporter) utilities both support a ``-sdkmesh2`` command-line switch to generate PBR materials information.
+* The [meshconvert](http://go.microsoft.com/fwlink/?LinkID=324981) and [DirectX SDK Samples Content Exporter](https://github.com/walbourn/contentexporter) utilities both support a ``-sdkmesh2`` command-line switch to export PBR materials information.
 
 * You need an HDR render setup per [[Using HDR rendering]].
 
 * Make use of **PBREffectFactory** instead of ``EffectFactory`` which will create ``PBREffect`` instances.
+
+* Be sure to set the IBL textures before rendering:
+
+```cpp
+model->UpdateEffects([&](IEffect* effect)
+{
+    auto pbr = dynamic_cast<PBREffect*>(effect);
+    if (pbr)
+    {
+        pbr->SetIBLTextures(m_radiance.Get(),
+            static_cast<int>(desc.TextureCube.MipLevels),
+            m_irradiance.Get());
+        }
+    });
+```
 
 **Next lessons:** [[Game controller input]], [[Using the SimpleMath library]], [[Adding the DirectX Tool Kit for Audio]]
 
