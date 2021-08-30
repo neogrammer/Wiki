@@ -272,6 +272,10 @@ model->UpdateEffects([&](IEffect* effect)
     });
 ```
 
+# More to explore
+
+* **PBREffect** supports [[GPU Instancing|Multistream rendering and instancing]].
+
 **Next lessons:** [[Game controller input]], [[Using the SimpleMath library]], [[Adding the DirectX Tool Kit for Audio]]
 
 # Further Reading
@@ -287,4 +291,3 @@ Burley et al. "Physically-Based Shading at Disney", SIGGRAPH 2012 Course: Practi
 SIGGRAPH Course: [2012](http://blog.selfshadow.com/publications/s2012-shading-course/) [2013](http://blog.selfshadow.com/publications/s2013-shading-course/) [2014](http://blog.selfshadow.com/2014/08/12/physically-based-shading-at-siggraph-2014/) [2015](http://blog.selfshadow.com/publications/s2015-shading-course/) [2016](http://blog.selfshadow.com/publications/s2016-shading-course/) [2017](https://blog.selfshadow.com/publications/s2017-shading-course/) [2020](https://blog.selfshadow.com/publications/s2020-shading-course/)
 
 [Art Pipeline for glTF](https://www.khronos.org/blog/art-pipeline-for-gltf)
-
