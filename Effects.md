@@ -169,6 +169,9 @@ The built-in effects make use of the following states:
 * Shader resources (Pixel Shader stage, slots 0, 1, and 2)
 * Vertex shader
 
+[[PBREffect]] adds:
+* Shader resources (Pixel Shader stage, slots 0-5)
+
 [[DGSLEffect]] also uses:
 * Constant buffer (Vertex Shader stage, slots 0-4)
 * Constant buffer (Pixel Shader stage, slots 0-3)
