@@ -18,6 +18,103 @@ First create a new project using the instructions from the previous lessons: [[U
 
 # PBREffect
 
+# Setting up an HDR render target
+
+Save the files [RenderTexture.h](https://github.com/Microsoft/DirectXTK/wiki/RenderTexture.h) and [RenderTexture.cpp](https://github.com/Microsoft/DirectXTK/wiki/RenderTexture.cpp) to your new project's folder. Using to the top menu and select **Project** / **Add Existing Item....** Select "RenderTexture.h" and hit "OK". Repeat for "RenderTexture.cpp".
+
+Add to the **Game.h** file to the ``#include`` section:
+
+```cpp
+#include "RenderTexture.h"
+```
+
+In the **Game.h** file, add the following variable to the bottom of the Game class's private declarations:
+
+```cpp
+std::unique_ptr<DX::RenderTexture> m_hdrScene;
+std::unique_ptr<DirectX::ToneMapPostProcess> m_toneMap;
+```
+
+In the **Game.cpp** file, modify the Game class constructor:
+
+```cpp
+m_deviceResources = std::make_unique<DX::DeviceResources>(
+    DXGI_FORMAT_R10G10B10A2_UNORM,
+    DXGI_FORMAT_D32_FLOAT, 2, D3D_FEATURE_LEVEL_10_0);
+m_deviceResources->RegisterDeviceNotify(this);
+
+m_hdrScene = std::make_unique<DX::RenderTexture>(DXGI_FORMAT_R16G16B16A16_FLOAT);
+```
+
+In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
+
+```cpp
+m_hdrScene->SetDevice(device);
+
+m_toneMap = std::make_unique<ToneMapPostProcess>(device);
+m_toneMap->SetOperator(ToneMapPostProcess::Reinhard);
+m_toneMap->SetTransferFunction(ToneMapPostProcess::SRGB);
+```
+
+In **Game.cpp**, add to the TODO of **CreateWindowSizeDependentResources**:
+
+```cpp
+auto size = m_deviceResources->GetOutputSize();
+m_hdrScene->SetWindow(size);
+
+m_toneMap->SetHDRSourceTexture(m_hdrScene->GetShaderResourceView());
+```
+
+In **Game.cpp**, add to the TODO of **OnDeviceLost**:
+
+```cpp
+m_hdrScene->ReleaseDevice();
+m_toneMap.reset();
+```
+
+In **Game.cpp**, modify **Clear** as follows:
+
+```cpp
+// Clear the views.
+auto context = m_deviceResources->GetD3DDeviceContext();
+
+auto renderTarget = m_hdrScene->GetRenderTargetView();
+auto depthStencil = m_deviceResources->GetDepthStencilView();
+
+XMVECTORF32 color;
+color.v = XMColorSRGBToRGB(Colors::CornflowerBlue);
+context->ClearRenderTargetView(renderTarget, color);
+...
+```
+
+In **Game.cpp**, modify **Render** as follows:
+
+```cpp
+// Don't try to render anything before the first Update.
+if (m_timer.GetFrameCount() == 0)
+{
+    return;
+}
+
+Clear();
+
+auto context = m_deviceResources->GetD3DDeviceContext();
+
+// TODO: Add your rendering code here.
+
+// Tonemap
+auto renderTarget = m_deviceResources->GetRenderTargetView();
+context->OMSetRenderTargets(1, &renderTarget, nullptr);
+
+m_toneMap->Process(context);
+
+ID3D11ShaderResourceView* nullsrv[] = { nullptr };
+context->PSSetShaderResources(0, 1, nullsrv);
+
+// Show the new frame.
+m_deviceResources->Present();
+```
+
 > **UNDER CONSTRUCTION**
 
 # Rendering a PBR Model
