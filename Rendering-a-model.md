@@ -192,7 +192,7 @@ The lack of fog is because our "cup.cmo" makes use of the default built-in DGSL 
 
 # More to explore
 
-* The Model class can also be used with a Physically-Based Rendering pipeline via [[PBREffectFactory|EffectFactory]]
+* The Model class can also be used with a Physically-Based Rendering pipeline via [[PBREffectFactory|EffectFactory]]. See [[Physically-based rendering]] for more information.
 
 **Next lesson:** [[Using skinned models]]
 
