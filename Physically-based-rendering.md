@@ -26,7 +26,7 @@ Add to the **Game.h** file to the ``#include`` section:
 #include "RenderTexture.h"
 ```
 
-In the **Game.h** file, add the following variable to the bottom of the Game class's private declarations (right after where you've added ``m_graphicsMemory``):
+In the **Game.h** file, add the following variable to the bottom of the Game class's private declarations:
 
 ```cpp
 DirectX::SimpleMath::Matrix m_world;
@@ -56,6 +56,8 @@ m_deviceResources->RegisterDeviceNotify(this);
 
 m_hdrScene = std::make_unique<DX::RenderTexture>(DXGI_FORMAT_R16G16B16A16_FLOAT);
 ```
+
+> This tutorial requires Direct3D Hardware Feature Level 10.0 or better since that's required to used **PBREffect**.
 
 In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
 
@@ -174,10 +176,19 @@ context->PSSetShaderResources(0, 1, nullsrv);
 
 // Show the new frame.
 m_deviceResources->Present();
-m_graphicsMemory->Commit();
 ```
 
-> **UNDER CONSTRUCTION**
+In **Game.cpp**, add to the TODO of **Update**:
+
+```cpp
+auto time = static_cast<float>(timer.GetTotalSeconds());
+
+m_world = Matrix::CreateRotationZ(cosf(time) * 2.f);
+```
+
+Build and run to see the teapot rendered with a reflectively metal appearance:
+
+![Screenshot of teapot](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTeapotPBR.PNG)
 
 # Rendering a PBR Model
 
