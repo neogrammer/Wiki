@@ -18,8 +18,6 @@ First create a new project using the instructions from the previous lessons: [[U
 
 # PBREffect
 
-# Setting up an HDR render target
-
 Save the files [RenderTexture.h](https://github.com/Microsoft/DirectXTK/wiki/RenderTexture.h) and [RenderTexture.cpp](https://github.com/Microsoft/DirectXTK/wiki/RenderTexture.cpp) to your new project's folder. Using to the top menu and select **Project** / **Add Existing Item....** Select "RenderTexture.h" and hit "OK". Repeat for "RenderTexture.cpp".
 
 Add to the **Game.h** file to the ``#include`` section:
