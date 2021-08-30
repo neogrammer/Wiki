@@ -50,7 +50,7 @@ using namespace DirectX;
 # Building
 This code is designed to build with Visual Studio 2017 or later. It requires the Windows 8.x / Windows 10 SDK for functionality such as the DirectXMath library and the DXGI 1.2 headers. Visual Studio 2017 or later already includes Windows 10 SDK.
 
-These components are designed to work without requiring any content from the DirectX SDK. For details, see [Where is the DirectX SDK?](https://docs.microsoft.com/en-us/windows/desktop/directx-sdk--august-2009-), [Where is the DirectX SDK (2021 Edition)?](https://walbourn.github.io/where-is-the-directx-sdk-2021-edition/), and [The Zombie DirectX SDK](https://aka.ms/AA4gfea).
+These components are designed to work without requiring any content from the DirectX SDK. For details, see [Where is the DirectX SDK?](https://docs.microsoft.com/en-us/windows/desktop/directx-sdk--august-2009-), [Where is the DirectX SDK (2021 Edition)?](https://aka.ms/dxsdk), and [The Zombie DirectX SDK](https://aka.ms/AA4gfea).
 
 ## HLSL shaders
 The required Direct3D shaders are built as headers in `Src\Shader\Compiled\*.inc` and included into the DirectXTK static library. They are automatically built by the Visual Studio project if they are not present, and cleared by a Clean. They can also be manually rebuilt using the ``CompileShaders.cmd`` script (i.e. `...\DirectXTK\Src\Shaders`)
