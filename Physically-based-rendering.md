@@ -12,6 +12,10 @@ The proponents of PBR rendering have gone back to the foundational [rendering eq
 
 Another important aspect of PBR is that real world lighting is not well modeled by trivial point, directional, or spot light sources. Area lighting or other global illumination systems are expensive and/or complex to implement in real-time systems, so for the purposes of *DirectX Tool Kit*'s PBR implementation we make of [image-based lighting](https://en.wikipedia.org/wiki/Image-based_lighting). Specifically the lighting environment consists of two specially formulated cubemaps. You can add some directional lighting as well, but the interesting interactions of light that convey "metalness" or "roughness" require a complex lighting environment.
 
+# Setup
+First create a new project using the instructions from the previous lessons: [[Using DeviceResources]] and
+[[Adding the DirectX Tool Kit]] which we will use for this lesson.
+
 # PBREffect
 
 > **UNDER CONSTRUCTION**
