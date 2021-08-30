@@ -18,7 +18,7 @@ First create a new project using the instructions from the previous lessons: [[U
 
 # PBREffect
 
-Save the files [RenderTexture.h](https://github.com/Microsoft/DirectXTK/wiki/RenderTexture.h) and [RenderTexture.cpp](https://github.com/Microsoft/DirectXTK/wiki/RenderTexture.cpp) to your new project's folder. Using to the top menu and select **Project** / **Add Existing Item....** Select "RenderTexture.h" and hit "OK". Repeat for "RenderTexture.cpp".
+Save the files [RenderTexture.h](https://github.com/Microsoft/DirectXTK/wiki/RenderTexture.h), [RenderTexture.cpp](https://github.com/Microsoft/DirectXTK/wiki/RenderTexture.cpp), [SunSubMixer_diffuseIBL.dds](https://github.com/Microsoft/DirectXTK/wiki/media/SunSubMixer_diffuseIBL.dds), and [SunSubMixer_specularIBL.dds](https://github.com/Microsoft/DirectXTK/wiki/media/SunSubMixer_specularIBL.dds) to your new project's folder. Using to the top menu and select **Project** / **Add Existing Item....** Select "RenderTexture.h" and hit "OK". Repeat for the other files.
 
 Add to the **Game.h** file to the ``#include`` section:
 
