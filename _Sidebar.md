@@ -9,7 +9,7 @@
 # For Development
 * Visual Studio 2019
 * Visual Studio 2017
-* clang/LLVM v9, v10, v11
+* clang/LLVM v10, v11, v12
 
 # Related Projects
 
