@@ -247,6 +247,8 @@ Build and run to see the sphere rendered a more complex material.
 
 The use of the emissive texture is optional. Any textured use of **PBREffect** requires albedo, normal, and roughness/metalness/ambient-occlusion maps.
 
+> PBR typically refers to the 'base colors' as [albedo](https://en.wikipedia.org/wiki/Albedo) rather than the traditional-lighting texture name 'diffuse'.
+
 # Rendering a PBR Model
 
 *DirectX Tool Kit* supports "SDKMESH version 2", which is the venerable DirectX SDK sample mesh file format updated with PBR-style materials information. Follow the instructions from [[Rendering a model]] with these differences:
