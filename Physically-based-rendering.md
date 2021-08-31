@@ -10,7 +10,7 @@ The proponents of PBR rendering have gone back to the foundational [rendering eq
 
 ## Image-Based Lighting (IBL)
 
-Another important aspect of PBR is that real world lighting is not well modeled by trivial point, directional, or spot light sources. Area lighting or other global illumination systems are expensive and/or complex to implement in real-time systems, so for the purposes of *DirectX Tool Kit*'s PBR implementation we make of [image-based lighting](https://en.wikipedia.org/wiki/Image-based_lighting). Specifically the ambient lighting environment consists of two specially formulated cubemaps, in addition to direct lighting from up to 3 directional lights.
+Another important aspect of PBR is that real world lighting is not well modeled by trivial point, directional, or spot light sources. Area lighting or other global illumination systems are expensive and/or complex to implement in real-time systems, so for the purposes of *DirectX Tool Kit*'s PBR implementation we make use of [image-based lighting](https://en.wikipedia.org/wiki/Image-based_lighting). Specifically the ambient lighting environment consists of two specially formulated cubemaps, in addition to direct lighting from up to 3 directional lights.
 
 # Setup
 First create a new project using the instructions from the previous lessons: [[Using DeviceResources]] and
@@ -197,7 +197,7 @@ While **PBREffect** does have a basic 'constant' shader, the real impact of PBR 
 In the **Game.h** file, add the following variable to the bottom of the Game class's private declarations:
 
 ```cpp
-Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_albetoMap;
+Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_albedoMap;
 Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_normalMap;
 Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_rmaMap;
 Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_emissiveMap;
@@ -209,7 +209,7 @@ In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
 DX::ThrowIfFailed(
     CreateWICTextureFromFile(device, L"Sphere2Mat_baseColor.png",
         nullptr,
-        m_albetoMap.ReleaseAndGetAddressOf()));
+        m_albedoMap.ReleaseAndGetAddressOf()));
 
 DX::ThrowIfFailed(
     CreateWICTextureFromFile(device, L"Sphere2Mat_normal.png",
@@ -226,14 +226,14 @@ DX::ThrowIfFailed(
         nullptr,
         m_emissiveMap.ReleaseAndGetAddressOf()));
 
-m_effect->SetSurfaceTextures(m_albetoMap.Get(), m_normalMap.Get(), m_rmaMap.Get());
+m_effect->SetSurfaceTextures(m_albedoMap.Get(), m_normalMap.Get(), m_rmaMap.Get());
 m_effect->SetEmissiveTexture(m_emissiveMap.Get());
 ```
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
 ```cpp
-m_albetoMap.Reset();
+m_albedoMap.Reset();
 m_normalMap.Reset();
 m_rmaMap.Reset();
 m_emissiveMap.Reset();
@@ -245,7 +245,7 @@ Build and run to see the sphere rendered a more complex material.
 
 ## Technical note
 
-The use of the emissive texture is optional. Any textured use of **PBREffect** requires albeto, normal, and roughness/metalness/ambient-occlusion maps.
+The use of the emissive texture is optional. Any textured use of **PBREffect** requires albedo, normal, and roughness/metalness/ambient-occlusion maps.
 
 # Rendering a PBR Model
 

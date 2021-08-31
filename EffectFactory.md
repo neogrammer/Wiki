@@ -78,7 +78,7 @@ info.name = L"default";
 info.alpha = 1.f;
 
 info.diffuseTexture = L"pbrmaterial_basecolor.png";
-// Albeto (RGB) texture & alpha texture channels
+// Albedo (RGB) texture & alpha texture channels
 
 info.normalTexture = L"pbrmaterial_normal.png";
 // Tangent-space normal map texture
