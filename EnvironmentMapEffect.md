@@ -69,7 +69,7 @@ EnvironmentMapEffect computes all specular effects using the cubemap and specula
 
 For the sphere and dual-parabolic mapping modes, per-pixel lighting is always in effect.
 
-This effect always performs texturing, so if 'untextured' rendering is desired you must provide texture coordinates, and a sampler in slot 0. The class will default to a 1x1 texture with white (1,1,1,1) for the base texture. A cubemap must always be provided.
+This effect always performs texturing, so if 'untextured' rendering is desired you must provide texture coordinates, and a sampler in slot 0. The class will default to a 1x1 texture with white (1,1,1,1) for the base texture. An environment texture map must always be provided.
 
 This effect requires a texture sampler in both slots 0 and 1. [[GeometricPrimitive]] and [[SpriteBatch]] only set a texture sampler in slot 0 by default, [[Model]] sets a sampler in slots 0 and 1.
 
