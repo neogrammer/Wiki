@@ -82,7 +82,7 @@ Calls to ``SetLightingEnabled(false);`` will generate a C++ exception, and calls
 
 This effect always performs texturing, so if 'untextured' diffuse rendering is desired you must provide a 1x1 texture with white (1,1,1,1).
 
-This effect always requires a normal texture, so if 'untextured, smooth' rendering is desired using this effect (i.e. when implementing instancing which is not supported by [[BasicEffect]]), you must provide a 1x1 normal texture with (0.5, 0.5, 1, 1).
+This effect always requires a normal texture, so if 'untextured, smooth' rendering is desired using this effect (i.e. when implementing instancing which is not supported by [[BasicEffect]]), you must provide a 1x1 normal texture with (0.5, 0.5).
 
 <table border=0>
  <tr>
