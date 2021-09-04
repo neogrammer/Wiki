@@ -50,4 +50,4 @@ The ``BLENDINDICES`` and ``BLENDWEIGHT`` elements can hold up to 4 individual bo
 # Remarks
 The effect always performs either vertex or per-pixel lighting.
 
-This effect always performs texturing, so if 'untextured' rendering is desired you must provide texture coordinates, a sampler in slot 0, and a 1x1 texture with white (1,1,1,1).
+This effect always performs texturing, so if 'untextured' rendering is desired you must provide texture coordinates, and a sampler in slot 0. The class will default to a 1x1 texture with white (1,1,1,1).
