@@ -80,7 +80,7 @@ This effect implements the classic diffuse [Lambertian](https://en.wikipedia.org
 
 Calls to ``SetLightingEnabled(false);`` will generate a C++ exception, and calls to **SetPerPixelLighting** are ignored.
 
-This effect always performs texturing, so if 'untextured' rendering is desired you must provide texture coordinates, and a sampler in slot 0. The class will default to a 1x1 texture with white (1,1,1,1) for the texture, and (0.5, 0.5) for the normal. This is useful when using GPU instancing which is not supported by [[BasicEffect]].
+This effect always performs texturing, so if 'untextured' rendering is desired you must provide texture coordinates, and a sampler in slot 0. The class will default to a 1x1 texture with white (1,1,1,1) for the texture, and (0.5, 0.5) for the normal map (i.e. a 'smooth' surface). This is useful when using GPU instancing which is not supported by [[BasicEffect]].
 
 <table border=0>
  <tr>
