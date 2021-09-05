@@ -602,7 +602,6 @@ DirectX Tool Kit docs [[SpriteBatch]]
 [HLSL, FXC, and D3DCompile](https://aka.ms/Tuoxjdx)  
 [What's up with D3DCompiler_xx.dll](https://walbourn.github.io/whats-up-with-d3dcompiler_xx-dll)  
 [Compiling Shaders](https://docs.microsoft.com/en-us/windows/desktop/direct3dhlsl/dx-graphics-hlsl-part1)  
-[Gaussian blur](http://en.wikipedia.org/wiki/Gaussian_blur)
 
 # Credits
 
