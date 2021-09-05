@@ -1,4 +1,4 @@
-This lesson covers the basics of writing your own [HLSL shaders](https://en.wikipedia.org/wiki/High-Level_Shading_Language) and using them with _DirectX Tool Kit_.
+This lesson covers the basics of writing your own [HLSL shaders](https://en.wikipedia.org/wiki/High-Level_Shading_Language) and using them with _DirectX Tool Kit_, in particular to customize **SpriteBatch**.
 
 # Setup
 First create a new project using the instructions from the previous lessons: [[Using DeviceResources]] and
@@ -605,4 +605,5 @@ DirectX Tool Kit docs [[SpriteBatch]]
 [Gaussian blur](http://en.wikipedia.org/wiki/Gaussian_blur)
 
 # Credits
+
 I borrowed heavily from the _XNA Game Studio_ ``Bloom Postprocess`` sample for this lesson.
