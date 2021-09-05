@@ -548,7 +548,7 @@ float4 main(float4 color : COLOR0, float2 texCoord : TEXCOORD0) : SV_Target0
 
 ![Screenshot of post-processed torus](https://github.com/Microsoft/DirectXTK/wiki/images/postprocessPass2.png)
 
-We take that result in ``m_renderTarget2`` and then blur it vertically using the same shader--we are using a Gaussian blur which is a separable filter which allows us to do the filter in two simple render passes one for each dimension--back into ``m_renderTarget1``.
+We take that result in ``m_renderTarget2`` and then blur it vertically using the same shader--we are using a [Gaussian blur](https://en.wikipedia.org/wiki/Gaussian_blur) which is a separable filter which allows us to do the filter in two simple render passes one for each dimension--back into ``m_renderTarget1``.
 
 ![Screenshot of post-processed torus](https://github.com/Microsoft/DirectXTK/wiki/images/postprocessPass3.png)
 
