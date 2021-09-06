@@ -593,7 +593,7 @@ One final note, because we are using a render target that is larger than our blu
 
 * See  [[BasicPostProcess]] and [[DualPostProcess]] for additional built-in post-processing effects.
 
-**Next lessons:** [[Using HDR rendering]]
+**Next lessons:** [[Authoring an Effect]]
 
 # Further reading
 
