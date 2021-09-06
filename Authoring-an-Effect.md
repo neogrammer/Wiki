@@ -61,6 +61,79 @@ Build and run your project. It will have the same blank scene as before, but sho
 
 Save the file [ReadData.h](https://github.com/Microsoft/DirectXTK/wiki/ReadData.h) to your new project's folder. Using to the top menu and select **Project** / **Add Existing Item....** Select "ReadData.h" and hit "OK".
 
+Create a new file **SkyboxEffect.h** in your project:
+
+```cpp
+#include <vector>
+
+class SkyboxEffect : public DirectX::IEffect
+{
+public:
+    explicit SkyboxEffect(ID3D11Device* device);
+
+    virtual void __cdecl Apply(ID3D11DeviceContext* deviceContext) override;
+    virtual void __cdecl GetVertexShaderBytecode(
+        void const** pShaderByteCode,
+        size_t* pByteCodeLength) override;
+
+    void __cdecl SetTexture(ID3D11ShaderResourceView* value);
+
+private:
+    Microsoft::WRL::ComPtr<ID3D11VertexShader> m_vs;
+    Microsoft::WRL::ComPtr<ID3D11PixelShader> m_ps;
+
+    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture;
+    std::vector<uint8_t> m_vsBlob;
+};
+```
+
+Create a new file **SkyboxEffect.cpp** in your project:
+
+```cpp
+#include "pch.h"
+#include "SkyboxEffect.h"
+
+SkyboxEffect::SkyboxEffect(ID3D11Device* device)
+{
+    m_vsBlob = DX::ReadData(L"SkyboxEffect_VS.cso");
+
+    DX::ThrowIfFailed(
+        device->CreateVertexShader(m_vsBlob.data(), m_vsBlob.size(),
+            nullptr, m_vs.ReleaseAndGetAddressOf()));
+
+    auto psBlob = DX::ReadData(L"SkyboxEffect_PS.cso");
+
+    DX::ThrowIfFailed(
+        device->CreatePixelShader(psBlob.data(), psBlob.size(),
+            nullptr, m_ps.ReleaseAndGetAddressOf()));
+}
+
+void SkyboxEffect::Apply(ID3D11DeviceContext* deviceContext)
+{
+    deviceContext->PSSetShaderResources(0, 1, m_texture.GetAddressOf());
+
+    deviceContext->VSSetShader(m_vs.Get(), nullptr, 0);
+    deviceContext->PSSetShader(m_ps.Get(), nullptr, 0);
+}
+void SkyboxEffect::GetVertexShaderBytecode(
+    void const** pShaderByteCode,
+    size_t* pByteCodeLength)
+{
+    assert(pShaderByteCode != nullptr && pByteCodeLength != nullptr);
+    *pShaderByteCode = m_vsBlob.data();
+    *pByteCodeLength = m_vsBlob.size();
+}
+
+void SkyboxEffect::SetTexture(ID3D11ShaderResourceView* value)
+{
+    m_texture = value;
+}
+```
+
+> **UNDER CONSTRUCTION**
+
+# Adding camera settings
+
 > **UNDER CONSTRUCTION**
 
 # Rendering the sky
