@@ -279,7 +279,7 @@ void SkyboxEffect::Apply(ID3D11DeviceContext* deviceContext)
 
 In most effects, we use *world*, *view*, and *projection* matrices. Many built-in effects compute inverse matrices as well as various concatenations from these matrices. For the skybox effect, however, we want unique behavior. The skybox is 'infinitely far away', so no amount of translation of the view should move it. Also, there really is no sense it should be 'scaled' nor does the sky itself need it's own transform. Therefore, we don't use a *world* matrix at all in our effect, and we zero out the translation from the camera *view* matrix.
 
-At this point, build to ensure everything builds and we now have a fully implemented skybox effect.
+At this point, build to ensure everything compiles and we now have a fully implemented skybox effect.
 
 # Rendering the sky
 
