@@ -199,6 +199,44 @@ void SkyboxEffect::SetMatrices(FXMMATRIX /*world*/, CXMMATRIX view, CXMMATRIX pr
 
 # Managing the constant buffer
 
+We have all the data we need now for the constant buffer. In order to compute the *worldViewProj* value, we will need to do a matrix multiply. We'd like to avoid doing this more often than necessary, either keeping it from the previous frame if it's not changed or doing it only once if multiple matrices are updated in a single frame. The built-in effects all use a [dirty bits](https://en.wikipedia.org/wiki/Dirty_bit) design which we will use here.
+
+In **SkyboxEffect.h**, add to the class's private variable declarations:
+
+```cpp
+uint32_t m_dirtyFlags;
+
+struct __declspec(align(16)) SkyboxEffectConstants
+{
+    DirectX::XMMATRIX worldViewProj;
+};
+
+DirectX::ConstantBuffer<SkyboxEffectConstants> m_constantBuffer;
+```
+
+At the top of **SkyboxEffect.cpp** after the ``using`` statements, add:
+
+```cpp
+namespace
+{
+    constexpr uint32_t DirtyConstantBuffer = 0x1;
+    constexpr uint32_t DirtyWVPMatrix = 0x2;
+}
+```
+
+Update the **SkyboxEffect** constructor to initialize the new variables:
+
+```cpp
+SkyboxEffect::SkyboxEffect(ID3D11Device* device) :
+        m_dirtyFlags(uint32_t(-1)),
+        m_constantBuffer(device)
+{
+    static_assert((sizeof(SkyboxEffect::SkyboxEffectConstants) % 16) == 0, "CB size alignment");
+
+    // Get shaders
+...
+```
+
 > **UNDER CONSTRUCTION**
 
 # Rendering the sky
