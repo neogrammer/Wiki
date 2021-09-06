@@ -246,7 +246,7 @@ m_dirtyFlags |= DirtyWVPMatrix;
 Now we revisit **Apply** to handle the constant buffer computation and updating using those 'dirty bits':
 
 ```cpp
-void SkyboxEffect::Apply(_In_ ID3D11DeviceContext* deviceContext)
+void SkyboxEffect::Apply(ID3D11DeviceContext* deviceContext)
 {
     if (m_dirtyFlags & DirtyWVPMatrix)
     {
