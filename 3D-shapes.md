@@ -200,7 +200,7 @@ Build and run to see earth with more 'space-like' lighting.
 
 * The ``GeometricPrimitive`` class is designed for simple rendering, so it always uses the ``VertexPositionNormalTexture`` vertex format. For details on how to utilize the built-in shape generation for other vertex formats, see [[Custom vertex format|GeometricPrimitive#custom-vertex-format]].
 
-* Using a custom shader, you can use the basic box or sphere primitive as a "skybox". See [[Inside vs. Outside|GeometricPrimitive#inside-vs-outside]].
+* Using a custom shader, you can use the basic box or sphere primitive as a "skybox". See [[Authoring an Effect]].
 
 **Next lesson:** [[Rendering a model]]
 
