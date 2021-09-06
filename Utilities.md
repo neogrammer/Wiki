@@ -36,3 +36,5 @@ For samples, I've created a number of utility headers that help fill in gaps bet
      <td><a href="/microsoft/DirectXTK/wiki/TextConsole.cpp">TextConsole.cpp</a></td>
      <td>Helper for a terminal-style printf text output on a graphics surface using SpriteFont. See <a href="/microsoft/DirectXTK/wiki/TextConsole">wiki</a>.</td>
 </table>
+
+See also [Compressing assets](https://github.com/microsoft/DirectXTK12/wiki/Compressing-assets)
