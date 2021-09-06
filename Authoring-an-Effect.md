@@ -94,7 +94,8 @@ Create a new file **SkyboxEffect.cpp** in your project:
 #include "SkyboxEffect.h"
 #include "ReadData.h"
 
-SkyboxEffect::SkyboxEffect(ID3D11Device* device)
+SkyboxEffect::SkyboxEffect(
+    ID3D11Device* device)
 {
     m_vsBlob = DX::ReadData(L"SkyboxEffect_VS.cso");
 
@@ -109,13 +110,15 @@ SkyboxEffect::SkyboxEffect(ID3D11Device* device)
             nullptr, m_ps.ReleaseAndGetAddressOf()));
 }
 
-void SkyboxEffect::Apply(ID3D11DeviceContext* deviceContext)
+void SkyboxEffect::Apply(
+    ID3D11DeviceContext* deviceContext)
 {
     deviceContext->PSSetShaderResources(0, 1, m_texture.GetAddressOf());
 
     deviceContext->VSSetShader(m_vs.Get(), nullptr, 0);
     deviceContext->PSSetShader(m_ps.Get(), nullptr, 0);
 }
+
 void SkyboxEffect::GetVertexShaderBytecode(
     void const** pShaderByteCode,
     size_t* pByteCodeLength)
@@ -125,7 +128,8 @@ void SkyboxEffect::GetVertexShaderBytecode(
     *pByteCodeLength = m_vsBlob.size();
 }
 
-void SkyboxEffect::SetTexture(ID3D11ShaderResourceView* value)
+void SkyboxEffect::SetTexture(
+    ID3D11ShaderResourceView* value)
 {
     m_texture = value;
 }
