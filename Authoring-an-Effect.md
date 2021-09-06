@@ -138,11 +138,66 @@ void SkyboxEffect::SetTexture(
 
 For a *DirectX Tool Kit* effect, only **Apply** and **GetVertexShaderBytecode** are required. We added **SetTexture** as a way to set the texture resource which can be changed dynamically.
 
+Build and make sure it compiles.
+
 > Many of the *DirectX Tool Kit* built-in effects support a number of properties which influence the selection of the VS/PS shader combination. This typically is implemented by creating the ``ID3D11VertexShader`` and ``ID3D11PixelShader`` objects on-demand when **Apply** is called based on current property values. Since our skybox effect has only one set of shaders, we go ahead and create them in the constructor.
 
 # Adding camera settings
 
+While we've implemented the basic effect, we are missing a key bit of information. The *vertex shader* makes use of a constant buffer to provide the transformation matrix. While we could just add another effect-specific method to control this, we will instead add the standard [[IEffectMatrices]] interface to our skybox effect.
 
+In **SkyboxEffect.h**, modify your class's declaration to add the additional interface:
+
+```cpp
+class SkyboxEffect : public DirectX::IEffect, public DirectX::IEffectMatrices
+```
+
+Then add to the ``public`` section:
+
+```cpp
+void XM_CALLCONV SetWorld(DirectX::FXMMATRIX value) override;
+void XM_CALLCONV SetView(DirectX::FXMMATRIX value) override;
+void XM_CALLCONV SetProjection(DirectX::FXMMATRIX value) override;
+void XM_CALLCONV SetMatrices(DirectX::FXMMATRIX world, DirectX::CXMMATRIX view, DirectX::CXMMATRIX projection) override;
+```
+
+And finally add to the ``private`` section (note we have a good reason for not having a ``m_world`` matrix variable which we will get to shortly):
+
+```cpp
+DirectX::SimpleMath::Matrix m_view;
+DirectX::SimpleMath::Matrix m_proj;
+DirectX::SimpleMath::Matrix m_worldViewProj;
+```
+
+In  **SkyboxEffect.cpp**, add these methods:
+
+```cpp
+void SkyboxEffect::SetWorld(FXMMATRIX /*value*/)
+{
+    // Skybox doesn't use the world matrix by design.
+}
+
+void SkyboxEffect::SetView(FXMMATRIX value)
+{
+    m_view = value;
+}
+
+void SkyboxEffect::SetProjection(FXMMATRIX value)
+{
+    m_proj = value;
+}
+
+void SkyboxEffect::SetMatrices(FXMMATRIX /*world*/, CXMMATRIX view, CXMMATRIX projection)
+{
+    // Skybox doesn't use the world matrix by design.
+    m_view = view;
+    m_proj = projection;
+}
+```
+
+> It should be noted that we are very careful in the use of C++ multiple-inheritance only for interfaces. See [C++ Core Guidelines](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#c135-use-multiple-inheritance-to-represent-multiple-distinct-interfaces).
+
+# Managing the constant buffer
 
 > **UNDER CONSTRUCTION**
 
