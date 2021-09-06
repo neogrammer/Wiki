@@ -224,12 +224,12 @@ namespace
 }
 ```
 
-Update the **SkyboxEffect** constructor to initialize the new variables:
+Update the **SkyboxEffect** constructor to initialize the new variables with all 'dirty bits' set:
 
 ```cpp
 SkyboxEffect::SkyboxEffect(ID3D11Device* device) :
-        m_dirtyFlags(uint32_t(-1)),
-        m_constantBuffer(device)
+    m_dirtyFlags(uint32_t(-1)),
+    m_constantBuffer(device)
 {
     static_assert((sizeof(SkyboxEffect::SkyboxEffectConstants) % 16) == 0, "CB size alignment");
 
@@ -237,7 +237,49 @@ SkyboxEffect::SkyboxEffect(ID3D11Device* device) :
 ...
 ```
 
-> **UNDER CONSTRUCTION**
+In each of the camera settings methods **SetView**, **SetProjection**, and **SetMatrices**, set the dirty bit to indicate the matrix changed:
+
+```cpp
+m_dirtyFlags |= DirtyWVPMatrix;
+```
+
+Now we revisit **Apply** to handle the constant buffer computation and updating using those 'dirty bits':
+
+```cpp
+void SkyboxEffect::Apply(_In_ ID3D11DeviceContext* deviceContext)
+{
+    if (m_dirtyFlags & DirtyWVPMatrix)
+    {
+        // Skybox ignores m_world matrix and the translation of m_view
+        XMMATRIX view = m_view;
+        view.r[3] = g_XMIdentityR3;
+        m_worldViewProj = XMMatrixMultiply(view, m_proj);
+
+        m_dirtyFlags &= ~DirtyWVPMatrix;
+        m_dirtyFlags |= DirtyConstantBuffer;
+    }
+
+    if (m_dirtyFlags & DirtyConstantBuffer)
+    {
+        SkyboxEffectConstants constants;
+        constants.worldViewProj = XMMatrixTranspose(m_worldViewProj);
+        m_constantBuffer.SetData(deviceContext, constants);
+
+        m_dirtyFlags &= ~DirtyConstantBuffer;
+    }
+
+    auto cb = m_constantBuffer.GetBuffer();
+    deviceContext->VSSetConstantBuffers(0, 1, &cb);
+    deviceContext->PSSetShaderResources(0, 1, m_texture.GetAddressOf());
+
+    deviceContext->VSSetShader(m_vs.Get(), nullptr, 0);
+    deviceContext->PSSetShader(m_ps.Get(), nullptr, 0);
+}
+```
+
+In most effects, we use *world*, *view*, and *projection* matrices. Many built-in effects compute inverse matrices as well as various concatenations from these matrices. For the skybox effect, however, we want unique behavior. The skybox is 'infinitely far away', so no amount of translation of the view should move it. Also, there really is no sense it should be 'scaled' nor does the sky itself need it's own transform. Therefore, we don't use a *world* matrix at all in our effect, and we zero out the translation from the camera *view* matrix.
+
+At this point, build to ensure everything builds and we now have a fully implemented skybox effect.
 
 # Rendering the sky
 
