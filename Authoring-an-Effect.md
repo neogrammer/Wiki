@@ -92,6 +92,7 @@ Create a new file **SkyboxEffect.cpp** in your project:
 ```cpp
 #include "pch.h"
 #include "SkyboxEffect.h"
+#include "ReadData.h"
 
 SkyboxEffect::SkyboxEffect(ID3D11Device* device)
 {
