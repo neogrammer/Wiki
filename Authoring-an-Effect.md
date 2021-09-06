@@ -49,6 +49,10 @@ float4 main(float3 texCoord : TEXCOORD0) : SV_TARGET0
 
 > **UNDER CONSTRUCTION**
 
+# Implementing the SkyboxEffect
+
+> **UNDER CONSTRUCTION**
+
 # Rendering the sky
 
 > **UNDER CONSTRUCTION**
