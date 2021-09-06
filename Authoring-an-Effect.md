@@ -63,6 +63,8 @@ Build and run your project. It will have the same blank scene as before, but sho
 
 # Rendering the sky
 
+Save the files [lobbycube.dds](https://github.com/Microsoft/DirectXTK/wiki/media/lobbycube.dds) and [ReadData.h](https://github.com/Microsoft/DirectXTK/wiki/ReadData.h) to your new project's folder. Using to the top menu and select **Project** / **Add Existing Item....** Select "lobbycube.dds" and hit "OK". Repeat for "ReadData.h".
+
 > **UNDER CONSTRUCTION**
 
 **Next lessons:** [[Using HDR rendering]]
