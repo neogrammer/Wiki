@@ -47,7 +47,15 @@ float4 main(float3 texCoord : TEXCOORD0) : SV_TARGET0
 }
 ```
 
-> **UNDER CONSTRUCTION**
+Our *vertex shader* only makes use of the vertex position information, and generates the texture coordinates assuming the skybox is centered about the origin (0,0,0). It also sets the ``z`` value so that it's at the view far plane.
+
+Save these three files to your new project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "SkyboxEffect_Common.hlsli", "SkyboxEffect_VS.hlsl", and "SkyboxEffect_PS.hlsl" and add them.
+
+View **Properties** on "SkyboxEffect_VS.hlsl" and for "All Configurations" and "All Platforms", set the "Shader Type" to "Vertex Shader (/ps)" and select "OK".
+
+View **Properties** on "SkyboxEffect_PS.hlsl" and for "All Configurations" and "All Platforms", set the "Shader Type" to "Pixel Shader (/ps)" and select "OK".
+
+Build and run your project. It will have the same blank scene as before, but should have produced ``SkyboxEffect_VS.cso`` and ``SkyboxEffect_PS.cso``.
 
 # Implementing the SkyboxEffect
 
