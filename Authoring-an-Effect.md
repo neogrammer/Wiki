@@ -59,12 +59,18 @@ Build and run your project. It will have the same blank scene as before, but sho
 
 # Implementing the SkyboxEffect
 
+Save the file [ReadData.h](https://github.com/Microsoft/DirectXTK/wiki/ReadData.h) to your new project's folder. Using to the top menu and select **Project** / **Add Existing Item....** Select "ReadData.h" and hit "OK".
+
 > **UNDER CONSTRUCTION**
 
 # Rendering the sky
 
-Save the files [lobbycube.dds](https://github.com/Microsoft/DirectXTK/wiki/media/lobbycube.dds) and [ReadData.h](https://github.com/Microsoft/DirectXTK/wiki/ReadData.h) to your new project's folder. Using to the top menu and select **Project** / **Add Existing Item....** Select "lobbycube.dds" and hit "OK". Repeat for "ReadData.h".
+Save the files [lobbycube.dds](https://github.com/Microsoft/DirectXTK/wiki/media/lobbycube.dds) to your new project's folder. Using to the top menu and select **Project** / **Add Existing Item....** Select "lobbycube.dds" and hit "OK".
 
 > **UNDER CONSTRUCTION**
+
+# More to explore
+
+* Usable versions of the **SkyboxEffect** class can be downloaded from here: [.cpp](https://raw.githubusercontent.com/wiki/microsoft/DirectXTK/SkyboxEffect.cpp) / [.h](https://raw.githubusercontent.com/wiki/microsoft/DirectXTK/SkyboxEffect.h), and you will need the three shader files above as well.
 
 **Next lessons:** [[Using HDR rendering]]
