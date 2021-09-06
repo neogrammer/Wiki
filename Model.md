@@ -186,6 +186,8 @@ effect->SetEnvironmentMap(cubeMap.Get());
 auto ship = Model::CreateFromVBO( device, L"ship.vbo", effect );
 ```
 
+> ``CMO``, ``SDKMESH`` and ``VBO`` are 'uncompressed' formats meaning that all the vertex buffer and index buffer data is the same size on disk as it is in memory. For simple applications, samples, and demos this is perfectly acceptable. For very large models, however, the disk-space usage becomes a concern. For more, see [[Compressing assets]].
+
 # Threading model
 The ModelMeshPart is tied to a device, but not a device context. This means that Model creation/loading is 'free threaded'. Drawing can be done on the immediate context or by a deferred context, but keep in mind device contexts are not 'free threaded'. See [[EffectFactory]] for some additional notes.
 
