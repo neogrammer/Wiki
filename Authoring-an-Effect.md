@@ -71,12 +71,12 @@ class SkyboxEffect : public DirectX::IEffect
 public:
     explicit SkyboxEffect(ID3D11Device* device);
 
-    virtual void __cdecl Apply(ID3D11DeviceContext* deviceContext) override;
-    virtual void __cdecl GetVertexShaderBytecode(
+    virtual void Apply(ID3D11DeviceContext* deviceContext) override;
+    virtual void GetVertexShaderBytecode(
         void const** pShaderByteCode,
         size_t* pByteCodeLength) override;
 
-    void __cdecl SetTexture(ID3D11ShaderResourceView* value);
+    void SetTexture(ID3D11ShaderResourceView* value);
 
 private:
     Microsoft::WRL::ComPtr<ID3D11VertexShader> m_vs;
