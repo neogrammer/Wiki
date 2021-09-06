@@ -23,8 +23,8 @@ namespace DX
     public:
         explicit SkyboxEffect(_In_ ID3D11Device* device);
 
-        SkyboxEffect(SkyboxEffect&&) = default;
-        SkyboxEffect& operator= (SkyboxEffect&&) = default;
+        SkyboxEffect(SkyboxEffect&&) = delete;
+        SkyboxEffect& operator= (SkyboxEffect&&) = delete;
 
         SkyboxEffect(SkyboxEffect const&) = delete;
         SkyboxEffect& operator= (SkyboxEffect const&) = delete;

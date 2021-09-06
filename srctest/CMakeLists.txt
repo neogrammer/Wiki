@@ -29,6 +29,7 @@ add_executable(${PROJECT_NAME}
     ../DebugDraw.cpp
     ../MSAAHelper.cpp
     ../RenderTexture.cpp
+    ../SkyboxEffect.cpp
     ../TextConsole.cpp
     pch.h)
 
