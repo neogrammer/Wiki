@@ -51,7 +51,7 @@ Our *vertex shader* only makes use of the vertex position information, and gener
 
 Save these three files to your new project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "SkyboxEffect_Common.hlsli", "SkyboxEffect_VS.hlsl", and "SkyboxEffect_PS.hlsl" and add them.
 
-View **Properties** on "SkyboxEffect_VS.hlsl" and for "All Configurations" and "All Platforms", set the "Shader Type" to "Vertex Shader (/ps)" and select "OK".
+View **Properties** on "SkyboxEffect_VS.hlsl" and for "All Configurations" and "All Platforms", set the "Shader Type" to "Vertex Shader (/vs)" and select "OK".
 
 View **Properties** on "SkyboxEffect_PS.hlsl" and for "All Configurations" and "All Platforms", set the "Shader Type" to "Pixel Shader (/ps)" and select "OK".
 
@@ -71,7 +71,9 @@ class SkyboxEffect : public DirectX::IEffect
 public:
     explicit SkyboxEffect(ID3D11Device* device);
 
-    virtual void Apply(ID3D11DeviceContext* deviceContext) override;
+    virtual void Apply(
+        ID3D11DeviceContext* deviceContext) override;
+
     virtual void GetVertexShaderBytecode(
         void const** pShaderByteCode,
         size_t* pByteCodeLength) override;
@@ -81,7 +83,6 @@ public:
 private:
     Microsoft::WRL::ComPtr<ID3D11VertexShader> m_vs;
     Microsoft::WRL::ComPtr<ID3D11PixelShader> m_ps;
-
     Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture;
     std::vector<uint8_t> m_vsBlob;
 };
@@ -135,9 +136,13 @@ void SkyboxEffect::SetTexture(
 }
 ```
 
-> **UNDER CONSTRUCTION**
+For a *DirectX Tool Kit* effect, only **Apply** and **GetVertexShaderBytecode** are required. We added **SetTexture** as a way to set the texture resource which can be changed dynamically.
+
+> Many of the *DirectX Tool Kit* built-in effects support a number of properties which influence the selection of the VS/PS shader combination. This typically is implemented by creating the ``ID3D11VertexShader`` and ``ID3D11PixelShader`` objects on-demand when **Apply** is called based on current property values. Since our skybox effect has only one set of shaders, we go ahead and create them in the constructor.
 
 # Adding camera settings
+
+
 
 > **UNDER CONSTRUCTION**
 
