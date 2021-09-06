@@ -111,7 +111,7 @@ Build and run to see our initial scene.
 
 # Compiling and loading shaders
 
-Save the files [Bloom.hlsli](https://github.com/Microsoft/DirectXTK/wiki/Bloom.hlsli), [BloomCombine.hlsl](https://github.com/Microsoft/DirectXTK/wiki/BloomCombine.hlsl), [BloomExtract.hlsl](https://github.com/Microsoft/DirectXTK/wiki/BloomExtract.hlsl), [GaussianBlur.hlsl](https://github.com/Microsoft/DirectXTK/wiki/GaussianBlur.hlsl), and [ReadData.h](https://github.com/Microsoft/DirectXTK/wiki/ReadData.h) to your new project's folder. Using to the top menu and select **Project** / **Add Existing Item....** Select "Bloom.hlsli" and hit "OK". Repeat for "BloomCombine.hlsl", "BloomExtract.hlsl", "GaussianBlur.hlsl", and "ReadData.h".
+Save the files [Bloom.hlsli](https://github.com/Microsoft/DirectXTK/wiki/shaders/Bloom.hlsli), [BloomCombine.hlsl](https://github.com/Microsoft/DirectXTK/wiki/shaders/BloomCombine.hlsl), [BloomExtract.hlsl](https://github.com/Microsoft/DirectXTK/wiki/shaders/BloomExtract.hlsl), [GaussianBlur.hlsl](https://github.com/Microsoft/DirectXTK/wiki/shaders/GaussianBlur.hlsl), and [ReadData.h](https://github.com/Microsoft/DirectXTK/wiki/ReadData.h) to your new project's folder. Using to the top menu and select **Project** / **Add Existing Item....** Select "Bloom.hlsli" and hit "OK". Repeat for "BloomCombine.hlsl", "BloomExtract.hlsl", "GaussianBlur.hlsl", and "ReadData.h".
 
 View **Properties** on each of the three ``.hlsl`` files ("BloomCombine.hlsl", "BloomExtract.hlsl", and "GaussianBlur.hlsl") and for "All Configurations" and "All Platforms", set the "Shader Type" to "Pixel Shader (/ps)" and select "OK".
 
