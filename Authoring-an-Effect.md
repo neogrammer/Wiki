@@ -285,7 +285,173 @@ At this point, build to ensure everything compiles and we now have a fully imple
 
 Save the files [lobbycube.dds](https://github.com/Microsoft/DirectXTK/wiki/media/lobbycube.dds) to your new project's folder. Using to the top menu and select **Project** / **Add Existing Item....** Select "lobbycube.dds" and hit "OK".
 
-> **UNDER CONSTRUCTION**
+Add to the **Game.h** file after the other includes:
+
+```cpp
+#include "SkyboxEffect.h"
+```
+
+In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
+
+```cpp
+std::unique_ptr<DirectX::GamePad> m_gamePad;
+DirectX::SimpleMath::Matrix m_view;
+DirectX::SimpleMath::Matrix m_proj;
+
+float m_pitch;
+float m_yaw;
+
+std::unique_ptr<DirectX::GeometricPrimitive> m_sky;
+std::unique_ptr<DX::SkyboxEffect> m_effect;
+
+Microsoft::WRL::ComPtr<ID3D11InputLayout> m_skyInputLayout;
+Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_cubemap;
+```
+
+In the **Game.cpp** file, modify the constructor to initialize the new variables:
+
+```cpp
+Game::Game() noexcept(false) :
+    m_pitch(0),
+    m_yaw(0)
+{
+    m_deviceResources = std::make_unique<DX::DeviceResources>();
+    m_deviceResources->RegisterDeviceNotify(this);
+}
+```
+
+In the **Initialize** method, add:
+
+```cpp
+m_gamePad = std::make_unique<GamePad>();
+```
+
+In **Game.cpp**, modify TODO of **CreateDeviceDependentResources** to be:
+
+```cpp
+auto context = m_deviceResources->GetD3DDeviceContext();
+m_sky = GeometricPrimitive::CreateGeoSphere(context, 2.f, 3,
+    false /*invert for being inside the shape*/);
+
+m_effect = std::make_unique<DX::SkyboxEffect>(device);
+
+m_sky->CreateInputLayout(m_effect.get(),
+    m_skyInputLayout.ReleaseAndGetAddressOf());
+
+DX::ThrowIfFailed(
+    CreateDDSTextureFromFile(device, L"lobbycube.dds",
+        nullptr, m_cubemap.ReleaseAndGetAddressOf()));
+
+m_effect->SetTexture(m_cubemap.Get());
+```
+
+In **Game.cpp**, add to the TODO of **CreateWindowSizeDependentResources**:
+
+```cpp
+auto size = m_deviceResources->GetOutputSize();
+
+m_proj = Matrix::CreatePerspectiveFieldOfView(XM_PI / 4.f,
+    float(size.right) / float(size.bottom), 0.1f, 10.f);
+
+m_effect->SetProjection(m_proj);
+```
+
+In **Game.cpp**, add to the TODO of **Update**:
+
+```cpp
+auto pad = m_gamePad->GetState(0);
+
+if (pad.IsConnected())
+{
+    if (pad.IsViewPressed())
+    {
+        ExitGame();
+    }
+
+    if (pad.IsLeftStickPressed())
+    {
+        m_yaw = m_pitch = 0.f;
+    }
+    else
+    {
+        constexpr float ROTATION_GAIN = 0.1f;
+        m_yaw += -pad.thumbSticks.leftX * ROTATION_GAIN;
+        m_pitch += pad.thumbSticks.leftY * ROTATION_GAIN;
+    }
+}
+
+// limit pitch to straight up or straight down
+constexpr float limit = XM_PIDIV2 - 0.01f;
+m_pitch = std::max(-limit, m_pitch);
+m_pitch = std::min(+limit, m_pitch);
+
+// keep longitude in sane range by wrapping
+if (m_yaw > XM_PI)
+{
+    m_yaw -= XM_2PI;
+}
+else if (m_yaw < -XM_PI)
+{
+    m_yaw += XM_2PI;
+}
+
+float y = sinf(m_pitch);
+float r = cosf(m_pitch);
+float z = r * cosf(m_yaw);
+float x = r * sinf(m_yaw);
+
+XMVECTORF32 lookAt = { x, y, z, 0.f };
+m_view = XMMatrixLookAtRH(g_XMZero, lookAt, Vector3::Up);
+```
+
+In **Game.cpp**, add to the TODO of both **OnActivated** and **OnResuming**:
+
+```cpp
+m_gamePad->Resume();
+```
+
+In **Game.cpp**, add to the TODO of both **OnDeactivated** and **OnSuspending**:
+
+```cpp
+m_gamePad->Suspend();
+```
+
+In **Game.cpp**, add to the TODO of **OnDeviceLost**:
+
+```cpp
+m_sky.reset();
+m_effect.reset();
+m_skyInputLayout.Reset();
+m_cubemap.Reset();
+```
+
+In **Game.cpp**, add to the TODO of **Render**:
+
+```cpp
+m_effect->SetView(m_view);
+m_sky->Draw(m_effect.get(), m_skyInputLayout.Get());
+```
+
+Build and run to see the skybox. Plug in a Xbox game controller and use the left stick to adjust the view to look around.
+
+> If you prefer to use mouse & keyboard controls, use the control scheme in [[Mouse and keyboard input]].
+
+You may notice that the text in the lobby-cube image appears backwards. The environment mapping in the shader assumes the cubemap 'surrounds' the scene, which means we are looking 'through' it which is what makes it seem backwards. If you want to flip it, just edit the *vertex shader* code in ``SkyboxEffect_VS.hlsl``:
+
+```cpp
+VSOutput main(float4 position : SV_Position)
+{
+    VSOutput vout;
+
+    vout.PositionPS = mul(position, WorldViewProj);
+    vout.PositionPS.z = vout.PositionPS.w; // Draw on far plane
+    
+    vout.TexCoord.x = -position.x;
+    vout.TexCoord.yz = position.yz;
+
+    return vout;
+}
+```
 
 # More to explore
 
