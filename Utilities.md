@@ -29,6 +29,9 @@ For samples, I've created a number of utility headers that help fill in gaps bet
  <tr><td><a href="/microsoft/DirectXTK/wiki/SpriteSheet.h">SpriteSheet.h</a></td>
      <td>n/a</td>
      <td>Used for a SpriteFont tutorial. See <a href="/microsoft/DirectXTK/wiki/SpriteSheet">wiki</a>.</td></tr>
+ <tr><td><a href="/microsoft/DirectXTK/wiki/SkyboxEffect.h">SkyboxEffect.h</a></td>
+     <td><a href="/microsoft/DirectXTK/wiki/SkyboxEffect.cpp">SkyboxEffect.cpp</a></td>
+     <td>Simple 3D skybox (requires <a href="/microsoft/DirectXTK/wiki/shaders/SkyboxEffect_VS.hlsl">VS</a>, <a href="/microsoft/DirectXTK/wiki/shaders/SkyboxEffect_PS.hlsl">PS</a>, and <a href="/microsoft/DirectXTK/wiki/shaders/SkyboxEffect_Common.hlsli">hlsli</a> shader files as well). See the <a href="/microsoft/DirectXTK/wiki/Authoring-an-Effect">wiki</a>.</td></tr>
  <tr><td><a href="/microsoft/DirectXTK/wiki/TextConsole.h">TextConsole.h</a></td>
      <td><a href="/microsoft/DirectXTK/wiki/TextConsole.cpp">TextConsole.cpp</a></td>
      <td>Helper for a terminal-style printf text output on a graphics surface using SpriteFont. See <a href="/microsoft/DirectXTK/wiki/TextConsole">wiki</a>.</td>
