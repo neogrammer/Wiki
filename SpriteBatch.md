@@ -30,13 +30,15 @@ spriteBatch->End();
 The **Draw** method has many overloads with parameters controlling:
 
 * Specify screen position as ``XMFLOAT2``, ``XMVECTOR`` or ``RECT`` (in units of pixels if using default transformation)
-* Optional source rectangle (in units of pixels) for drawing just part of a sprite sheet
-* Tint color
+* Optional source rectangle (in units of pixels) for drawing just part of a texture (i.e. a sprite sheet)
+* Tint color (defaults to 1,1,1,1 which means 'no tinting')
 * Rotation (in radians)
 * Origin point (in units of pixels if using the default transformation): position, scaling and rotation are relative to this
 * Scale
 * SpriteEffects enum (for horizontal or vertical mirroring)
 * Layer depth (for sorting)
+
+> The source rectangle is used to compute the texture coordinates for the sprite on the texture. The position, rotation, origin, and scale are used to compute the sprite triangle's drawing location.
 
 # Sorting
 The first parameter to ``SpriteBatch::Begin`` is a SpriteSortMode enum. For  most efficient rendering, use ``SpriteSortMode_Deferred`` (which batches up sprites, then submits them all to the GPU during the End call), and manually draw everything in texture order. If it is not possible to draw in texture order, the second most efficient approach is to use ``SpriteSortMode_Texture``, which will automatically sort on your behalf.
