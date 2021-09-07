@@ -49,6 +49,12 @@ The electro-optical transfer function is controlled by calling ``TransferFunctio
 
 * ``SetColorRotation`` sets the colorspace transformation matrix used for HDR10 output. It defaults to rotating HDTV (Rec.709) color primaries into UHDTV (Rec.2020). There are two overloads of this function: One takes an enum with a few predefined matrices; the other takes a custom matrix.
 
+enum|Notes
+---|---
+``HDTV_to_UHDTV``|Rec.709 to Rec.2020
+``DCI_P3_D65_to_UHDTV``|DCI-P3-D65 (a.k.a Display P3 or P3D65) to Rec.2020
+``HDTV_to_DCI_P3_D65``|Rec.709 to DCI-P3-D65 (a.k.a Display P3 or P3D65)
+
 # Further reading
 
 Reinhard et al. "Photographic Tone Reproduction for Digital Images" [PDF](http://www.cs.utah.edu/~reinhard/cdrom/tonemap.pdf)  
