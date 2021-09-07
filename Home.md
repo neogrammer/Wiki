@@ -12,7 +12,7 @@ http://go.microsoft.com/fwlink/?LinkId=248929
 
 ![DirectX Logo](https://github.com/Microsoft/DirectXTK/wiki/X_jpg.jpg)The **DirectX Tool Kit** (aka **DirectXTK**) is a collection of helper classes for writing **DirectX 11.x** code in C++.
 
-See this [blog post](https://walbourn.github.io/directxtk/).
+See this [blog post](https://walbourn.github.io/directxtk/) and [this one](https://walbourn.github.io/directxtk-update/).
 
 [[Getting Started]]
 
