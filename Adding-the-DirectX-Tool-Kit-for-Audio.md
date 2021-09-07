@@ -137,9 +137,9 @@ If you are using the XAudio2 Redistributable, then you will need to include the 
 
 **Next lesson:** [[Adding audio to your project]]
 
+# Further reading
 [[Legacy XAudio 2.7 Notes]]
 
-# Further reading
 DirectX Tool Kit docs [[Audio]]  
 [DirectX Tool Kit for Audio](https://walbourn.github.io/directx-tool-kit-for-audio/)  
 [XAudio2 and Windows 8](https://walbourn.github.io/xaudio2-and-windows-8/)  
