@@ -37,6 +37,12 @@ A version of _DirectX Tool Kit for DirectX 12_ is available on [GitHub](https://
 # Porting from D3DX
 See [this post](https://aka.ms/Kfsdiu) for a complete listing of D3DX equivalents.
 
+# Support
+
+For questions, consider using [Stack Overflow](https://stackoverflow.com/questions/tagged/directxtk)  with the *directxtk* tag, or the [DirectX Discord Server](https://discord.gg/directx) in the *dx9-dx11-developer* channel.
+
+For bug reports and feature requests, please use GitHub [issues](https://github.com/microsoft/DirectXTK/issues) in this project.
+
 # Credits
 
 The _DirectX Tool Kit_ is the work of Shawn Hargreaves and Chuck Walbourn, with contributions from Aaron Rodriguez Hernandez, and Dani Roman.
