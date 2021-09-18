@@ -29,7 +29,7 @@ See [this post](https://walbourn.github.io/directx-tool-kit-for-audio/) and [thi
 [[Utilities]]
 
 # DirectX 11
-_DirectX Tool Kit for DirectX 11_ was formerly hosted on [CodePlex](https://directxtk.codeplex.com/). DirectX 11 is supported on Windows  7, Windows 8.x, and Windows 10. Use of DirectX 11 for beginners, indies, small projects, and small teams is highly recommended.
+DirectX 11 is supported on Windows  7, Windows 8.x, and Windows 10. Use of DirectX 11 for beginners, indies, small projects, and small teams is highly recommended.
 
 # DirectX 12
 A version of _DirectX Tool Kit for DirectX 12_ is available on [GitHub](https://github.com/Microsoft/DirectXTK12). DirectX 12 is an expert API for Windows 10 which builds on knowing the ins & outs of DirectX 11. DirectX 12 is an extremely low-level API designed for graphic experts who have a solid understanding of the architecture of modern GPU hardware, and can essentially write the DirectX 11 Runtime from scratch. Both DirectX 11 and DirectX 12 provide access to the same hardware features on Windows 10, but drive the hardware in different ways which can allow a well-optimized DirectX 12 engine to achieve much lower CPU overhead than in DirectX 11.
@@ -39,9 +39,21 @@ See [this post](https://aka.ms/Kfsdiu) for a complete listing of D3DX equivalent
 
 # Support
 
-For questions, consider using [Stack Overflow](https://stackoverflow.com/questions/tagged/directxtk)  with the *directxtk* tag, or the [DirectX Discord Server](https://discord.gg/directx) in the *dx9-dx11-developers* channel.
+For questions, consider using [Stack Overflow](https://stackoverflow.com/questions/tagged/directxtk) with the *directxtk* tag, or the [DirectX Discord Server](https://discord.gg/directx) in the *dx9-dx11-developers* channel.
 
-For bug reports and feature requests, please use GitHub [issues](https://github.com/microsoft/DirectXTK/issues) in this project.
+For bug reports and feature requests, please use GitHub [issues](https://github.com/microsoft/DirectXTK/issues) for this project.
+
+# Contributing
+
+This project welcomes contributions and suggestions. Most contributions require you to agree to a Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
+
+When you submit a pull request, a CLA bot will automatically determine whether you need to provide a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions provided by the bot. You will only need to do this once across all repos using our CLA.
+
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+
+# Trademarks
+
+This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft trademarks or logos is subject to and must follow [Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general). Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship. Any use of third-party trademarks or logos are subject to those third-party's policies.
 
 # Credits
 
