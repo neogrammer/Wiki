@@ -39,7 +39,7 @@ See [this post](https://aka.ms/Kfsdiu) for a complete listing of D3DX equivalent
 
 # Support
 
-For questions, consider using [Stack Overflow](https://stackoverflow.com/questions/tagged/directxtk)  with the *directxtk* tag, or the [DirectX Discord Server](https://discord.gg/directx) in the *dx9-dx11-developer* channel.
+For questions, consider using [Stack Overflow](https://stackoverflow.com/questions/tagged/directxtk)  with the *directxtk* tag, or the [DirectX Discord Server](https://discord.gg/directx) in the *dx9-dx11-developers* channel.
 
 For bug reports and feature requests, please use GitHub [issues](https://github.com/microsoft/DirectXTK/issues) in this project.
 
