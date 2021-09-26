@@ -202,6 +202,8 @@ Build and run to see earth with more 'space-like' lighting.
 
 * Using a custom shader, you can use the basic box or sphere primitive as a "skybox". See [[Authoring an Effect]].
 
+* Methods are provided to get access to the shape data as ``std::vector<>``s of ``VertexType`` and ``uint16_t``, and ``GeometricPrimitive`` also allows you to create drawable instances from such data. See [[Custom geometry|GeometricPrimitive#custom-geometry]]
+
 **Next lesson:** [[Rendering a model]]
 
 # Further reading
