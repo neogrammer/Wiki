@@ -10,6 +10,10 @@ Note that Model uses a collection of ``std::shared_ptr`` instances to ModelMesh 
 # Initialization
 ModelMesh instances are typically created by a Model loader along with the ModelMeshPart instances that make up the mesh.
 
+# Type alias
+
+**ModelMesh::Collection** is an alias for ``std::vector<std::shared_ptr<ModelMesh>>``.
+
 # Simple drawing
 Use the ``Model::Draw`` function which will call **ModelMesh::Draw** on all the meshes it contains. See [[Model]] for an example.
 

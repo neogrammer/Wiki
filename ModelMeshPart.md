@@ -10,6 +10,12 @@ This class is part of the [[Model]] hierarchy. The purpose of this class is to b
 # Initialization
 ModelMeshPart instances are typically created by a Model loader along with the ModelMesh instances that contain the submeshes.
 
+# Type aliases
+
+* **ModelMeshPart::Collection** is an alias for ``std::vector<std::unique_ptr<ModelMeshPart>>``.
+
+* **ModelMeshPart::InputLayoutCollection** is an alias for ``std::vector<D3D11_INPUT_ELEMENT_DESC>``.
+
 # Data
 All members of ModelMeshPart are public to facilitate writing custom model loaders and sophisticated rendering solutions. Care should be taken whenever modifying any of these elements as they have interdependencies, and can ultimately be referenced by numerous instances of Model via shared ModelMesh instances.
 

@@ -54,7 +54,13 @@ For exception safety, the factory functions return a ``std::unique_ptr``.
 
 * **CreateTorus**( deviceContext, float diameter = 1, float thickness = 0.333f, size_t tessellation = 32): Creates a [torus](http://en.wikipedia.org/wiki/Torus) of given diameter, thickness, and tessellation factor.
 
-> Note that ``GeometricPrimitive::VertexType`` is an alias for [[VertexPositionNormalTexture|VertexTypes]]
+# Type aliases
+
+* **GeometricPrimitive::VertexType** is an alias for [[VertexPositionNormalTexture|VertexTypes]]
+
+* **GeometricPrimitive::VertexCollection** is an alias for ``std::vector<VertexType>``.
+
+* **GeometricPrimitive::IndexCollection** is an alias for ``std::vector<uint16_t>``.
 
 # Simple drawing
 Simple solid shape drawing:
@@ -161,8 +167,8 @@ shape->Draw(world, view, projection, Colors::White, catTexture, false, [=]
 There are equivalent static methods for each of the factory methods that return the vertex and index buffer data as ``std::vector``. These values can be modified, and then used to create a customized geometric primitive or drawn through some other mechanism.
 
 ```cpp
-std::vector<VertexPositionNormalTexture> vertices;
-std::vector<uint16_t> indices;
+GeometricPrimitive::VertexCollection vertices;
+GeometricPrimitive::IndexCollection indices;
 GeometricPrimitive::CreateBox( vertices, indices,
     XMFLOAT3(1.f/2.f, 2.f/2.f, 3.f/2.f) );
 
@@ -253,11 +259,11 @@ std::unique_ptr<DirectX::CommonStates> states;
 
 ```cpp
 // Create shape data
-std::vector<VertexPositionNormalTexture> vertices;
-std::vector<uint16_t> indices;
+GeometricPrimitive::VertexCollection vertices;
+GeometricPrimitive::IndexCollection indices;
 GeometricPrimitive::CreateSphere(vertices, indices);
 
-std::vector<VertexPositionColor> newVerts;
+GeometricPrimitive::VertexCollection newVerts;
 newVerts.reserve(vertices.size());
 for (auto it : vertices)
 {
