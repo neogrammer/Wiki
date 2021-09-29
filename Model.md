@@ -62,9 +62,7 @@ tiny->Draw( context, states, local, view, projection );
 There are optional parameters for rendering in wireframe and to provide a custom state override callback.
 
 # Rigid-body animation
-There is an overload of **Draw** which takes an array of transformation matrices. The *boneIndex* in each ModelMesh is used to index into this array to combine with the _world_ matrix for positioning.
-
-This is typically used for rigid-body animation using ModelBone data.
+There is an overload of **Draw** which takes an array of transformation matrices. The *boneIndex* in each ModelMesh is used to index into this array to combine with the _world_ matrix for positioning. This is typically used for rigid-body animation using ModelBone data.
 
 ```cpp
 auto tank = Model::CreateFromSDKMESH(device, L"tank.sdkmesh", *m_fx, ModelLoader_IncludeBones);
@@ -96,6 +94,29 @@ auto bones = ModelBone::MakeArray(nbones);
 tank->CopyAbsoluteBoneTransforms(nbones, animBones.get(), bones.get());
 
 tank->Draw(context, states, nbones, bones.get(), world, view, projection);
+```
+
+# Skinned animation drawing
+The **DrawSkinned** method is used to draw with skinned effects--i.e. with effects that support the [[IEffectSkinning]] interface.
+
+```cpp
+auto soldier = Model::CreateFromSDKMESH(device, L"soldier.sdkmesh", *m_fx, ModelLoader_IncludeBones);
+
+size_t nbones = soldier->bones.size();
+auto animBones = ModelBone::MakeArray(nbones);
+soldier->CopyBoneTransformsTo(nbones, animBones.get());
+
+// Apply local animation for given time to animBones array
+
+auto bones = ModelBone::MakeArray(nbones);
+soldier->CopyAbsoluteBoneTransforms(nbones, animBones.get(), bones.get());
+
+for (size_t j = 0; j < nbones; ++j)
+{
+    bones[j] = XMMatrixMultiply(soldier->invBindPoseMatrices[j], bones[j]);
+}
+
+soldier->DrawSkinned(context, states, nbones, bones.get(), world, view, projection);
 ```
 
 # Advanced drawing
