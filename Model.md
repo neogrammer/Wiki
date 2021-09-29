@@ -67,10 +67,18 @@ There is an overload of **Draw** which takes an array of transformation matrices
 ```cpp
 auto tank = Model::CreateFromSDKMESH(device, L"tank.sdkmesh", *m_fx, ModelLoader_IncludeBones);
 
+uint32_t index = 0;
 for(auto it : tank->bones)
 {
     // Find bone index for the turret model mesh and set a local rotation into
     // matching the boneMatrices array.
+    if (_wcsicmp(L"turret", it.name.c_str()) == 0)
+    {
+        tank->boneMatrices[index] = ...;
+        break;
+    }
+
+    ++index;
 }
 
 size_t nbones = tank->bones.size();
