@@ -97,7 +97,7 @@ tank->Draw(context, states, nbones, bones.get(), world, view, projection);
 ```
 
 # Skinned animation drawing
-The **DrawSkinned** method is used to draw with skinned effects--i.e. with effects that support the [[IEffectSkinning]] interface.
+The **DrawSkinned** method is used to draw with skinned effects--i.e. with effects that support the [[IEffectSkinning]] interface. This is typically used for skinned animation using ModelBone data.
 
 ```cpp
 auto soldier = Model::CreateFromSDKMESH(device, L"soldier.sdkmesh", *m_fx, ModelLoader_IncludeBones);
