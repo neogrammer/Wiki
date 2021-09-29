@@ -46,6 +46,20 @@ These pointers are used to form a tree hierarchy. The 0th bone in a Model is the
 
 > Note that bones must form an [acyclic graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph).
 
+# Working with bones
+
+Even if bones are loaded and defined in a Model, the standard **Draw** methods ignore model bones. You must explicitly pass the fully computed array of bone transformations to the **Draw** or **DrawSkinned** methods to draw using model bones.
+
+The following Model methods exist to support working with ModelBone transformations:
+
+* **CopyAbsoluteBoneTransformsTo**: This computes the final "absolute" transformations using the local transformations defined in *boneMatrices* and the hierarchy defined in *bones*. The result is placed into the transformation array provided as a parameter which must have *nbones* entries.
+
+* **CopyAbsoluteBoneTransforms**: This computes the final "absolute" transformations using the local transformations provided as the transform array and the hierarchy defined in *bones*. The result is placed into the second transformation array. Both arrays must have at least *nbones* entries.
+
+* **CopyBoneTransformsFrom**: This copies data from the transformation array provided into the *boneMatrices* array in the Model.
+
+* **CopyBoneTransformsTo**: This copies data out of the *boneMatrices* array in the Model into the transformation array provided.
+
 # Remarks
 
 The XNA Game Studio ModelBone design relied on the fact that the Content Pipeline always sorted the bone array in a particular way. This uses a more complex tree graph structure to support SDKMESH and CMO which may not meet these sorting requirements.
