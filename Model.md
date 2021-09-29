@@ -106,7 +106,7 @@ size_t nbones = soldier->bones.size();
 auto animBones = ModelBone::MakeArray(nbones);
 soldier->CopyBoneTransformsTo(nbones, animBones.get());
 
-// Apply local animation for given time to animBones array
+// Apply local animation for given time to animBones transforms array
 
 auto bones = ModelBone::MakeArray(nbones);
 soldier->CopyAbsoluteBoneTransforms(nbones, animBones.get(), bones.get());
