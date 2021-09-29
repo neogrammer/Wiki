@@ -1,6 +1,6 @@
 This class is part of the [[Model]] hierarchy. The purpose of this structure is to define a hierarchy of transformation matrices used for rigid-body animation, skinning animation, or as metadata for locations associated with a model for runtime insertion of dynamic lights, particle effects, etc.
 
-The use of ModelBone is optional and the ``Model::bones`` array an therefore be empty.
+The use of ModelBone is optional and the ``Model::bones`` array can therefore be empty, and both ``boneMatrices`` and  ``invBindPoseMatrices`` can be null.
 
 # Header
 ```cpp
@@ -8,7 +8,15 @@ The use of ModelBone is optional and the ``Model::bones`` array an therefore be 
 ```
 
 # Initialization
-The ModelBone array *bones* is typically created by a Model loader along with the ModelMesh instances that contain the submeshes. By default the loader ignores any frames (SDKMESH) or bones (CMO) found in the file. Providing the ``ModelLoader_IncludeBones`` flag will result in any bones present in the model file being loaded.
+The ModelBone array *bones* in Model is typically created by a Model loader along with the ModelMesh instances that contain the submeshes. By default the loader ignores any frames (SDKMESH) or bones (CMO) found in the file. Providing the ``ModelLoader_IncludeBones`` flag will result in any bones present in the model file being loaded.
+
+The Model *boneMatrices* transformation array is initialized to the local transformation for the given bone. The array length is *bones.size()*.
+
+The Model *invBindPoseMatrices* transform array is the "inverse bind pose" absolute transformation. The array length is *bones.size()*.
+
+> For SDKMESH, if a frame is associated with a mesh, the ModelMesh *boneIndex* entry will be set, otherwise it is set to ``ModelBone::c_Invalid``. 
+
+> SDKMESH files can also contain 'influences' which are loaded into ModelMesh *boneInfluences*. Use of influenced-map bones is optional for skinning effect drawing. This allows the model to use more total bones than the maximum bone count per effect of ``IEffectSkinning::MaxBones`` (72).
 
 # Type aliases
 
