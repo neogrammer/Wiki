@@ -1,4 +1,4 @@
-﻿This is a class hierarchy for drawing simple meshes with support for loading models from Visual Studio 3D Starter Kit ``.CMO`` files, legacy DirectX SDK ``.SDKMESH`` files, and ``.VBO`` files. It is an implementation of a mesh renderer similar to the XNA Game Studio 4 (``Microsoft.Xna.Framework.Graphics``) Model, ModelMesh, ModelMeshPart, ModelBone design.
+﻿This is a class hierarchy for drawing meshes with support for loading models from Visual Studio 3D Starter Kit ``.CMO`` files, legacy DirectX SDK ``.SDKMESH`` files, and ``.VBO`` files. It is an implementation of a mesh renderer similar to the XNA Game Studio 4 (``Microsoft.Xna.Framework.Graphics``) Model, ModelMesh, ModelMeshPart, ModelBone design.
 
 A Model consists of one or more [[ModelMesh]] instances. The ModelMesh instances can be shared by multiple instances of Model. A ModelMesh instance consists of one or more ModelMeshPart instances.
 
