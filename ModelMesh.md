@@ -83,3 +83,5 @@ It includes a bool to indicate if the mesh should be rendered using counter-cloc
 A ModelMesh also includes bounding information for culling & collision detection in the form of a [BoundingSphere](http://msdn.microsoft.com/en-us/library/windows/desktop/microsoft.directx_sdk.directxcollision.boundingsphere.aspx) and a [BoundingBox](https://docs.microsoft.com/en-us/windows/desktop/api/directxcollision/ns-directxcollision-boundingbox).
 
 The choice of frame-of-reference for these bounding volumes is up to the Model loader, but is typically in 'local' coordinates.
+
+If the Model contains [[ModelBone]] data, then each ModelMesh can have a ``boneIndex`` value used for rigid-body mesh animation (otherwise the value is ``ModelBone::c_Invalid``). For SDKMESH or other bone-influenced mapped skeletons, the *boneInfluences* array indicates how to map the local bone list for skinning animation to the parent Model's bone array. Otherwise if *boneInfluences* is empty, direct-mapped skinned animation is assumed.
