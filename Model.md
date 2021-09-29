@@ -1,10 +1,10 @@
-﻿This is a class hierarchy for drawing simple meshes with support for loading models from Visual Studio 3D Starter Kit ``.CMO`` files, legacy DirectX SDK ``.SDKMESH`` files, and ``.VBO`` files. It is an implementation of a mesh renderer similar to the XNA Game Studio 4 (``Microsoft.Xna.Framework.Graphics``) Model, ModelMesh, ModelMeshPart design.
-
-> _NOTE: Support for loading keyframe animations is not yet included._
+﻿This is a class hierarchy for drawing simple meshes with support for loading models from Visual Studio 3D Starter Kit ``.CMO`` files, legacy DirectX SDK ``.SDKMESH`` files, and ``.VBO`` files. It is an implementation of a mesh renderer similar to the XNA Game Studio 4 (``Microsoft.Xna.Framework.Graphics``) Model, ModelMesh, ModelMeshPart, ModelBone design.
 
 A Model consists of one or more [[ModelMesh]] instances. The ModelMesh instances can be shared by multiple instances of Model. A ModelMesh instance consists of one or more ModelMeshPart instances.
 
 Each [[ModelMeshPart]] references an index buffer, a vertex buffer, an input layout, an [[Effects]] instance, and includes various metadata for drawing the geometry. Each ModelMeshPart represents a single material to be drawn at the same time (i.e. a submesh).
+
+A Model can optionally have an array of [[ModelBone]] data. This data can be used for rigid-body animation of meshes, skinned animations, and/or for runtime metadata.
 
 ![Screenshot](https://github.com/Microsoft/DirectXTK/wiki/images/ModelExample.png)
 
@@ -130,6 +130,12 @@ The legacy DirectX SDK's ``.SDKMESH`` files assume the developer is using left-h
 auto tiny = Model::CreateFromSDKMESH( device, L"tiny.sdkmesh", fx, ModelLoader_CounterClockwise );
 ```
 
+# Metadata
+
+A Model instance contains a name (a wide-character string) for tracking and application logic. Model can be copied to create a new Model instance which will have shared references to the same set of ModelMesh instances (i.e. a 'shallow' copy).
+
+If the Model contains **ModelBone** data, then it will have a non-empty collection called *bones*. The *boneMatrices* array will be the same length and contain the default local transformation matrix for that bone. The *invBindPoseMatrices* array will contain the inverse bind-pose transformation used for animation. Note that the ModelMesh class also contains optional *boneIndex* and *boneInfluences* related to this information.
+
 # Model Loader Flags
 
 The various ``CreateFrom*`` methods have a defaulted parameter to provide additional model loader control.
@@ -143,6 +149,8 @@ The various ``CreateFrom*`` methods have a defaulted parameter to provide additi
 * ``ModelLoader_MaterialColorsSRGB``: Material colors specified in the model file should be converted from sRGB to Linear colorspace.
 
 * ``ModelLoader_AllowLargeModels``: Allows models with VBs/IBs that exceed the required resource size support for all Direct3D devices as indicated by the ``D3D11_REQ_RESOURCE_SIZE_IN_MEGABYTES_EXPRESSION_x_TERM`` constants.
+
+* ``ModelLoader_IncludeBones``: Indicates that any frames (for SDKMESHes) or bones (for CMOs) should be loaded as **ModelBone** data. This includes *bones*, *boneMatrices*, and *invBindPoseMatrices*.
 
 # Feature Level Notes
 If any ModelMeshPart makes use of 32-bit indices (i.e. ModelMeshPart:: indexFormat equals ``DXGI_FORMAT_R32_UINT``) rather than 16-bit indices (``DXGI_FORMAT_R16_UINT``), then that model requires [Feature Level](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/overviews-direct3d-11-devices-downlevel-intro) 9.2 or greater.
