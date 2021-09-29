@@ -61,6 +61,41 @@ tiny->Draw( context, states, local, view, projection );
 
 There are optional parameters for rendering in wireframe and to provide a custom state override callback.
 
+# Rigid-body animation
+There is an overload of **Draw** which takes an array of transformation matrices. The *boneIndex* in each ModelMesh is used to index into this array to combine with the _world_ matrix for positioning.
+
+This is typically used for rigid-body animation using ModelBone data.
+
+```cpp
+auto tank = Model::CreateFromSDKMESH(device, L"tank.sdkmesh", *m_fx, ModelLoader_IncludeBones);
+
+for(auto it : tank->bones)
+{
+    // Find bone index for the turret model mesh and set a local rotation into
+    // matching the boneMatrices array.
+}
+
+size_t nbones = tank->bones.size();
+auto bones = ModelBone::MakeArray(nbones);
+tank->CopyAbsoluteBoneTransformsTo(nbones, bones.get());
+
+tank->Draw(context, states, nbones, bones.get(), world, view, projection);
+```
+
+You can directly modify the *boneMatrices* in the Model instance, or you can create a distinct transformation array to work with:
+
+```cpp
+size_t nbones = tank->bones.size();
+
+auto animBones = ModelBone::MakeArray(nbones);
+tank->CopyBoneTransformsTo(nbones, animBones.get();
+
+// Modify the appropriate local transforms in animBones
+
+auto bones = ModelBone::MakeArray(nbones);
+tank->CopyAbsoluteBoneTransforms(nbones, animBones.get(), bones.get());
+```
+
 # Advanced drawing
 Rather than using the standard Draw, the ``ModelMesh::Draw`` method can be used on each mesh in turn listed in the _Model::meshes_ collection. ``ModelMesh::Draw`` can be used to draw all the opaque parts or the alpha parts individually. The ``ModelMesh::PrepareForRendering`` method can be used as a helper to setup common render state, or the developer can set up the state directly before calling ``ModelMesh::Draw``. See [[ModelMesh]] for an example.
 
