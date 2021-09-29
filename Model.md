@@ -94,6 +94,8 @@ tank->CopyBoneTransformsTo(nbones, animBones.get();
 
 auto bones = ModelBone::MakeArray(nbones);
 tank->CopyAbsoluteBoneTransforms(nbones, animBones.get(), bones.get());
+
+tank->Draw(context, states, nbones, bones.get(), world, view, projection);
 ```
 
 # Advanced drawing
