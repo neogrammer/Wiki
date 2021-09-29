@@ -15,7 +15,11 @@ ModelMesh instances are typically created by a Model loader along with the Model
 **ModelMesh::Collection** is an alias for ``std::vector<std::shared_ptr<ModelMesh>>``.
 
 # Simple drawing
-Use the ``Model::Draw`` function which will call **ModelMesh::Draw** on all the meshes it contains. See [[Model]] for an example.
+Use the ``Model::Draw`` function which will call **ModelMesh::Draw** on all the meshes it contains.
+
+There is an overload of **Draw** which takes an array of transformation matrices. This is used for drawing with rigid-body animation. The *boneIndex* in each ModelMesh is used to indicate which matrix in the array to use in addition to the *world* matrix for positioning.
+
+See [[Model]] for more details and an example.
 
 # Advanced drawing
 The **ModelMesh::Draw** method draws the mesh in two passes. In the first pass, all 'opaque' ModelMeshPart instances are drawn (i.e. _ModelMeshPart::isAlpha_ is false), and in the second pass all 'alpha' instances are drawn (i.e. _ModelMeshPart::isAlpha_ is true).
@@ -74,6 +78,16 @@ for(const auto& mit : models)
     }
 }
 ```
+
+# Skinned drawing
+
+The ``Model::DrawSkinned`` method takes an array of bone transformation matrices and renders using skinning effects--this is applied if the effect supports the [[IEffectSkinning]] interface.
+
+If the ModelMeshPart's effect supports skinning and the *boneInfluences* array is empty, then direct-mapped skinned animation is used.
+
+If the ModelMeshPart's effect supports skinning and the *boneInfluences* array is non-empty, it will use a subset of bones for the effect.
+
+If the ModelMeshPart's effect does not support skinning, but *boneIndex* is valid, it will use that transformation as the local matrix for that mesh.
 
 # Metadata
 In addition to the list of ModelMeshPart instances that make up the mesh, a ModelMesh also includes a _name_ (a wide-character string) for tracking and application logic.
