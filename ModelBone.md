@@ -16,7 +16,7 @@ The Model *invBindPoseMatrices* transform array is the "inverse bind pose" absol
 
 > For SDKMESH, if a frame is associated with a mesh, the ModelMesh *boneIndex* entry will be set, otherwise it is set to ``ModelBone::c_Invalid``. 
 
-> SDKMESH files can also contain 'influences' which are loaded into ModelMesh *boneInfluences*. Use of influenced-map bones is optional for skinning effect drawing. This allows the model to use more total bones than the maximum bone count per effect of ``IEffectSkinning::MaxBones`` (72).
+> SDKMESH files can also contain 'influences' which are loaded into ModelMesh *boneInfluences*. Use of influenced-map bones is optional for skinning effect drawing. This allows the model to use more total bones than the maximum bone count per effect of ``IEffectSkinning::MaxBones`` (72). Skinned CMO models are always 'direct-mapped' and have an empty *boneInfluences* array.
 
 # Type aliases
 
