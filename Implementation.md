@@ -103,8 +103,8 @@ class SpriteBatch
 public:
     SpriteBatch(...) noexcept(false);
 
-    SpriteBatch(SpriteBatch&& moveFrom) noexcept;
-    SpriteBatch& operator= (SpriteBatch&& moveFrom) noexcept;
+    SpriteBatch(SpriteBatch&&) noexcept;
+    SpriteBatch& operator= (SpriteBatch&&) noexcept;
 
     SpriteBatch(SpriteBatch const&) = delete;
     SpriteBatch& operator=(SpriteBatch const&) = delete;
@@ -125,6 +125,14 @@ This also allows the implementation to allocate the pImpl class internally using
 * The class default constructor can throw an exception since it creates a Impl instance, hence the ``noexcept(false)``.
 
 * The class destructor can't be inline and must be implemented in the ``.cpp`` file since ``unique_ptr`` needs the real ``Impl`` type size.
+
+* The move ctor, move operator, and dtor can be ``=default`` in the ``.cpp`` file as the compiler-generated function bodies are sufficient.
+
+```cpp
+SpriteBatch::SpriteBatch(SpriteBatch&&) noexcept = default;
+SpriteBatch::SpriteBatch& operator= (SpriteBatch&&) noexcept = default;
+SpriteBatch::~SpriteBatch() = default;
+```
 
 # Calling-conventions
 Public methods in the library are explicitly marked ``__cdecl`` to ensure consistent behavior no matter what the client code is using. Internally it is not specified as it's assumed from the default setting except where ``XM_VECTORCALL`` is utilized (see the _DirectXMath_ section below)
