@@ -65,6 +65,6 @@ Thanks to Adrian Tsai for the geodesic sphere implementation.
 
 Thanks to Garrett Serack for his help in creating the NuGet packages for DirectX Tool Kit.
 
-Thanks to Roberto Sonnino for his help with the ``CMO`` and DGSL rendering.
+Thanks to Roberto Sonnino for his help with the ``CMO``, DGSL rendering, and the VS Starter Kit animation.
 
 Thanks to Pete Lewis and Justin Saunders for the normal-mapped and PBR shaders implementation.
