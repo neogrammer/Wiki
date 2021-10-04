@@ -94,6 +94,7 @@ The official samples for DirectX 11 were originally shipped in the legacy *Direc
 * [[Line drawing and anti-aliasing]]
 * [[3D shapes]]
 * [[Rendering a model]]
+* [[Animating using model bones]]
 * [[Using skinned models]]
 * [[Using advanced shaders]]
 * [[Multistream rendering and instancing]]
