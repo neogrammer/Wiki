@@ -2,6 +2,8 @@ This class is part of the [[Model]] hierarchy. The purpose of this structure is 
 
 The use of ModelBone is optional. Therefore the ``Model::bones`` array can be empty, and both ``boneMatrices`` and  ``invBindPoseMatrices`` can be null.
 
+**Related tutorial:** [[Animating using model bones]], [[Using skinned models]]
+
 # Header
 ```cpp
 #include <Model.h>
