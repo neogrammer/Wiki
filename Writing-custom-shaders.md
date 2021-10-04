@@ -605,4 +605,4 @@ DirectX Tool Kit docs [[SpriteBatch]]
 
 # Credits
 
-I borrowed heavily from the _XNA Game Studio_ ``Bloom Postprocess`` sample for this lesson.
+I borrowed heavily from the _XNA Game Studio_ [Bloom Postprocess](https://github.com/SimonDarksideJ/XNAGameStudio/wiki/Bloom-Postprocess) sample for this lesson.

@@ -182,6 +182,11 @@ The built-in effects make use of the following states:
 
 # Further reading
 
-[New built-in effects in XNA Game Studio 4.0](http://www.shawnhargreaves.com/blog/new-built-in-effects-in-xna-game-studio-4-0.html)  
-[Built-in effects, permutations, and performance](http://www.shawnhargreaves.com/blog/built-in-effects-permutations-and-performance.html)  
+[New built-in effects in XNA Game Studio 4.0](http://www.shawnhargreaves.com/blog/new-built-in-effects-in-xna-game-studio-4-0.html)
+
+[Built-in effects, permutations, and performance](http://www.shawnhargreaves.com/blog/built-in-effects-permutations-and-performance.html)
+
 [HLSL, FXC, and D3DCompile](https://aka.ms/Tuoxjdx)
+
+[XNA Game Studio Stock Effects](https://github.com/SimonDarksideJ/XNAGameStudio/wiki/Stock-Effects)
+
