@@ -2,6 +2,8 @@ This is a native Direct3D 11 implementation of the built-in SkinnedEffect from X
 
 See also [[Effects]]
 
+**Related tutorial:** [[Using skinned models]]
+
 # Header
 ```cpp
 #include <Effects.h>
