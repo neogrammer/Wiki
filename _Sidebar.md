@@ -1,6 +1,7 @@
 # For Use
 * Universal Windows Platform apps
 * Windows desktop apps
+* Windows 11
 * Windows 10
 * Windows 8.1
 * Windows 7 Service Pack 1
