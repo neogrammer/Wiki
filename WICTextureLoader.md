@@ -75,7 +75,7 @@ The standard routines default to ``D3D11_USAGE_DEFAULT``, ``D3D11_BIND_SHADER_RE
 
 For auto-gen mipmaps, the default binding flags are ``D3D11_BIND_SHADER_RESOURCE`` | ``D3D11_BIND_RENDER_TARGET`` and miscellaneous flags is set to ``D3D11_RESOURCE_MISC_GENERATE_MIPS``.
 
-There is also a _loadFlags_ parameter. The flags are ``WIC_LOADER_DEFAULT``, ``WIC_LOADER_FORCE_SRGB``, ``WIC_LOADER_IGNORE_SRGB``, ``WIC_LOADER_FIT_POW2``, ``WIC_LOADER_MAKE_SQUARE``, and/or ``WIC_LOADER_FORCE_RGBA32``.
+There is also a _loadFlags_ parameter. The flags are ``WIC_LOADER_DEFAULT``, ``WIC_LOADER_FORCE_SRGB``, ``WIC_LOADER_IGNORE_SRGB``, ``WIC_LOADER_SRGB_DEFAULT``, ``WIC_LOADER_FIT_POW2``, ``WIC_LOADER_MAKE_SQUARE``, and/or ``WIC_LOADER_FORCE_RGBA32``.
 
 ```cpp
 HRESULT CreateWICTextureFromMemoryEx( ID3D11Device* d3dDevice,
@@ -109,7 +109,7 @@ HRESULT CreateWICTextureFromFileEx( ID3D11Device* d3dDevice,
    ID3D11Resource** texture, ID3D11ShaderResourceView** textureView );
 ```
 
-The ``WIC_LOADER_FORCE_SRGB`` and ``WIC_LOADER_IGNORE_SRGB`` flags are detailed below under *sRGB*.
+The ``WIC_LOADER_FORCE_SRGB``, ``WIC_LOADER_IGNORE_SRGB``, and ``WIC_LOADER_SRGB_DEFAULT`` flags are detailed below under *sRGB*.
 
 The ``WIC_LOADER_FIT_POW2`` and/or ``WIC_LOADER_MAKE_SQUARE`` flags can be used to force the image to be resized to a power-of-2 size and/or be made a square texture that has width == height. *These flags are most useful for the Direct3D 9 legacy version of WICTextureLoader, but are supported in all versions.*
 
@@ -162,6 +162,8 @@ DX::ThrowIfFailed(hr);
   * For TIFF this is ``/ifd/exif/{ushort=40961}`` set to 1.
 
 * Setting _loadFlags_ to ``WIC_LOADER_FORCE_SRGB`` will force conversion of the ``DXGI_FORMAT`` to one of ``DXGI_FORMAT_*_SRGB`` formats if it exist. This is useful for loading sRGB content for linearly-correct rendering that lacks the metadata tags to indicate sRGB colorspace. Note that no pixel data conversion takes place.
+
+* By default, the lack of explicit 'sRGB' metadata implies the format is linear (i.e. not sRGB). Setting _loadFlags_ to ``WIC_LOADER_SRGB_DEFAULT`` will reverse this assumption.
 
 * ``gAMA`` chunks in PNGs are ignored. If the ``sRGB`` chunk is found, it is assumed to be gamma 2.2.
 
