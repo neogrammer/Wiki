@@ -138,10 +138,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 }
 ```
 
-If using 4k instead of 1080p, be sure to call **SetResolution** as well:
+If using 4k or 1440p instead of 1080p, be sure to call **SetResolution** as well:
 
 ```cpp
-Mouse::SetResolution((width == 3840) ? true : false);
+float uiScale = 1.f;
+if (height == 2160)  uiScale = 2.f;
+else if (height == 1440)  uiScale = 1.333333f;
+Mouse::SetResolution(uiScale);
 ```
 
 For the Xbox One XDK, you follow the pattern above for *Universal Windows Platform (UWP) apps*. You need to use **SetDpi** for 4k instead of 1080p:
