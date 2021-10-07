@@ -218,6 +218,8 @@ The various ``CreateFrom*`` methods have a defaulted parameter to provide additi
 
 * ``ModelLoader_IncludeBones``: Indicates that any frames (for SDKMESHes) or bones (for CMOs) should be loaded as **ModelBone** data. This includes *bones*, *boneMatrices*, and *invBindPoseMatrices*.
 
+* ``ModelLoader_DisableSkinning``: Normally the presence of bone indices in the model file indicate that skinning effects should be used. If this flag is set, non-skinning effects are always used. *Some legacy SDKMESH models contain more bone influences than ``IEffectSkinning::MaxBones`` (72) can support, and these models render incorrectly. The use of this flag can at least render those as rigid models correctly.*
+
 # Feature Level Notes
 If any ModelMeshPart makes use of 32-bit indices (i.e. ModelMeshPart:: indexFormat equals ``DXGI_FORMAT_R32_UINT``) rather than 16-bit indices (``DXGI_FORMAT_R16_UINT``), then that model requires [Feature Level](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/overviews-direct3d-11-devices-downlevel-intro) 9.2 or greater.
 
