@@ -34,6 +34,8 @@ DirectX 11 is supported on Windows  7, Windows 8.x, and Windows 10. Use of Direc
 # DirectX 12
 A version of _DirectX Tool Kit for DirectX 12_ is available on [GitHub](https://github.com/Microsoft/DirectXTK12). DirectX 12 is an expert API for Windows 10 which builds on knowing the ins & outs of DirectX 11. DirectX 12 is an extremely low-level API designed for graphic experts who have a solid understanding of the architecture of modern GPU hardware, and can essentially write the DirectX 11 Runtime from scratch. Both DirectX 11 and DirectX 12 provide access to the same hardware features on Windows 10, but drive the hardware in different ways which can allow a well-optimized DirectX 12 engine to achieve much lower CPU overhead than in DirectX 11.
 
+> Note that advanced hardware features like Shader Model 6, DirectX Raytracing, Amplification & Mesh Shaders, and other "DirectX Ultimate" features do in fact require DirectX 12 as they are not exposed in DirectX 11. But the statement above is still 100% true for the core graphics functionality used by *DirectX Tool Kit*.
+
 # Porting from D3DX
 See [this post](https://aka.ms/Kfsdiu) for a complete listing of D3DX equivalents.
 
