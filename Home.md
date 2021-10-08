@@ -29,7 +29,7 @@ See [this post](https://walbourn.github.io/directx-tool-kit-for-audio/) and [thi
 [[Utilities]]
 
 # DirectX 11
-DirectX 11 is supported on Windows  7, Windows 8.x, Windows 10, and Windows 11. Use of DirectX 11 for beginners is highly recommended.
+DirectX 11 is supported on Windows  7, Windows 8.1, Windows 10, and Windows 11. Use of DirectX 11 for beginners is highly recommended.
 
 # DirectX 12
 A version of _DirectX Tool Kit for DirectX 12_ is available on [GitHub](https://github.com/Microsoft/DirectXTK12). DirectX 12 is an expert API for Windows 10 / Windows 11 which builds on knowing the ins & outs of DirectX 11. DirectX 12 is an extremely low-level API designed for graphic experts who have a solid understanding of the architecture of modern GPU hardware. Both DirectX 11 and DirectX 12 provide access to the same graphics hardware features, but drive the hardware in different ways which can allow a well-optimized DirectX 12 engine to achieve much lower CPU overhead than in DirectX 11.
