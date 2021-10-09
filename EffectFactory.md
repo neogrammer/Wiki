@@ -133,7 +133,7 @@ fxFactory->ReleaseCache();
 
 > These methods are specific to EffectFactory and are not part of the ``IEffectFactory`` interface.
 
-* **EnableNormalMapEffect** is used to determine if [[NormalMapEffect]] is used for models containing normal-map textures. This defaults to true. If set to false, it will use [[BasicEffect]] instead for these materials.
+* **EnableNormalMapEffect** is used to determine if [[NormalMapEffect]] is used for models containing normal-map textures. This defaults to true (unless the device has a Direct3D 9.x Feature Level). If set to false, it will use [[BasicEffect]] instead for these materials.
 
 * **EnableForceSRGB** is used to determine if textures have "force SRGB" set to true for the loaders or not. This defaults to false.
 
