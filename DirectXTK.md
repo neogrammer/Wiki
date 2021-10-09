@@ -19,7 +19,7 @@ using namespace DirectX;
 * [[DDSTextureLoader]] - light-weight DDS file texture loader
 * [[DirectXHelpers]] - misc C++ helpers for D3D programming
 * [[Effects]] - set of built-in shaders for common rendering tasks
-     * [[IEffectFactory|EffectFactory]]
+     * [[IEffectFactory|EffectFactory]], [[EffectFactory]], [[DGSLEffectFactory|EffectFactory]]
      * [[IEffect]], [[IEffectMatrices]], [[IEffectLights]], [[IEffectFog]], [[IEffectSkinning]]
      * [[AlphaTestEffect]], [[BasicEffect]], [[DualTextureEffect]], [[EnvironmentMapEffect]], [[SkinnedEffect]]
      * [[NormalMapEffect]], [[PBREffect]], [[DebugEffect]]
