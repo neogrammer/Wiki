@@ -1,4 +1,4 @@
-This abstract interface controls skinning animation matrices. Settings for this interface can influence the choice of shader permutation. This interface is implemented by _DGSLEffect_ and _SkinnedEffect_.
+This abstract interface controls skinning animation matrices. Settings for this interface can influence the choice of shader permutation.
 
 Effects that implement this interface typically require ``BLENDINDICES`` and ``BLENDWEIGHT`` semantic data in the vertex input layout.
 
