@@ -11,7 +11,7 @@ This tutorial assumes the reader is familiar with the basics of C++ programming 
 * [Smart Pointers](https://docs.microsoft.com/en-us/cpp/cpp/smart-pointers-modern-cpp)
 * [[ComPtr]]
 
-> If you are more comfortable with C#, then you should consider [SharpDX](http://sharpdx.org/).
+> If you are more comfortable with C#, then you should consider [SharpDX](http://sharpdx.org/) and [this blog post](https://devblogs.microsoft.com/dotnet/choose-a-net-game-engine/).
 
 This tutorial does not assume prior experience with Direct3D, but the reader should be familiar with the basic graphics concepts for DirectX or OpenGL. That said, you can get a long way using _DirectX Tool Kit_ without much in the way of graphics experience. You may also find it useful to review the _Programming Guide for Direct3D 11_ on [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/direct3d11/dx-graphics-overviews).
 
