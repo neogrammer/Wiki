@@ -80,6 +80,8 @@ The red (x) and green (y) channels are loaded from the texture, but blue (z) and
 
 Finally, the green (y) channel is used "as is" in the shader code. Some viewing and materials conventions can require the green channel to be inverted to properly 'push in' or 'push out'. This issue should be handled by modifying the texture content either offline or at load time. _Because the shader reconstructs the z channel, an inverted y channel can result in black pixels on the model if it's backwards._
 
+> In content tools, this setting is usually called "OpenGL" vs. "Direct3D" normal maps. You can also use the [texconv](https://github.com/microsoft/DirectXTex/wiki/Texconv) tool's ``-inverty`` switch.
+
 # Remarks
 
 This effect implements the classic diffuse [Lambertian](https://en.wikipedia.org/wiki/Lambertian_reflectance) shading with [Phong](https://en.wikipedia.org/wiki/Phong_reflection_model) specular highlights lighting model with the addition of per-pixel normals and lighting. Optionally the specular highlights can be implemented as a specular map.
