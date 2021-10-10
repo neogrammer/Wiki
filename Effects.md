@@ -3,7 +3,7 @@ This is a native Direct3D 11 implementation of the five built-in effects from XN
 * [[BasicEffect]] supports texture mapping, vertex coloring, directional lighting, and fog
 * [[AlphaTestEffect]] supports per-pixel alpha testing
 * [[DualTextureEffect]] supports two layer multi-texturing (for light maps or detail textures)
-* [[EnvironmentMapEffect]] supports cubic environment mapping
+* [[EnvironmentMapEffect]] supports cubic environment mapping, as well as spherical and parabolic environment mapping.
 * [[SkinnedEffect]] supports skinned animation with up to 72 bones and 1, 2, or 4 bone influences per vertex.
 
 DirectX Tool Kit also includes the following built-in effects:
