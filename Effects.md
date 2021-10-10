@@ -7,10 +7,11 @@ This is a native Direct3D 11 implementation of the five built-in effects from XN
 * [[SkinnedEffect]] supports skinned animation with up to 72 bones and 1, 2, or 4 bone influences per vertex.
 
 DirectX Tool Kit also includes the following built-in effects:
-* [[NormalMapEffect]] which extends ``BasicEffect`` to support normal maps and optional specular map.
-* [[PBREffect]] which implements a Disney-style (Roughness/Metalness workflow) Physically-Based Renderer effect using image-based lighting.
-* [[DebugEffect]] which implements debugging shaders such as visualization of normals, tangents, and bi-tangents as well as supporting hemispherical ambient lighting.
-* [[DGSLEffect]] which supports the [Visual Studio Shader Designer](https://docs.microsoft.com/en-us/visualstudio/designers/shader-designer) (DGSL) content pipeline both with and without skinned animation with up to 8 textures.
+* [[NormalMapEffect]] which extends ``BasicEffect`` to support normal maps and optional specular map and/or GPU instancing.
+* [[SkinnedNormalMapEffect|NormalMapEffect]] which extends ``SkinnedEffect`` to support normal maps and optional specular map.
+* [[PBREffect]] which implements a Disney-style (Roughness/Metalness workflow) Physically-Based Renderer effect using image-based lighting. This effect also supports GPU instancing.
+* [[DebugEffect]] which implements debugging shaders such as visualization of normals, tangents, and bi-tangents as well as supporting hemispherical ambient lighting. This effect also supports GPU instancing.
+* [[DGSLEffect]] and [[SkinnedDGSLEffect|DGSLEffect]] which support the [Visual Studio Shader Designer](https://docs.microsoft.com/en-us/visualstudio/designers/shader-designer) (DGSL) content pipeline with up to 8 textures.
 
 See also [[EffectFactory]]
 
@@ -118,7 +119,7 @@ The built-in effects support a number of different settings, some of which are o
 * [[IEffectMatrices]] is the interface for setting an effects' world, view, and projection matrices. All the built-in effects support this interface.
 * [[IEffectLights]] is the interface for controlling the effects' lighting computations and settings. This is supported by _BasicEffect_, _EnvironmentMapEffect_, _SkinningEffect_, and _DGSLEffect_
 * [[IEffectFog]] is the interface to control the effects' fog settings. This is supported by _BasicEffect_, _AlphaTestEffect_, _DualTextureEffect_, _EnvironmentMapEffect_, and _SkinnedEffect_.
-* [[IEffectSkinning]] is the interface to control skinned animation settings. This is supported by _DGSLEffect_ and _SkinnedEffect_. This includes setting the bone transform matrices, and optimizing the number of bone influences per vertex to process (1, 2, or 4; defaults to 4).
+* [[IEffectSkinning]] is the interface to control skinned animation settings. This is supported by _DGSLEffect_, _SkinnedEffect_, and _SkinnedNormalMapEffect_. This includes setting the bone transform matrices, and optimizing the number of bone influences per vertex to process (1, 2, or 4; defaults to 4).
 
 > For a UML diagram of the Effects interfaces and classes, see [here](https://raw.githubusercontent.com/wiki/Microsoft/DirectXTK/images/effectsuml.PNG).
 
