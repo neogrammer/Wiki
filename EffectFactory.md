@@ -46,10 +46,12 @@ info.diffuseColor = XMFLOAT3( 0.8f, 0.8f, 0.8f );
 auto effect = fxFactory->CreateEffect( info, deviceContext );
 ```
 
-The standard factory will create instances of [[BasicEffect]]. If _info.enableSkinning_ is true, it returns [[SkinnedEffect]] instances instead. If _info.enableDualTexture_ is true, it returns a [[DualTextureEffect]] instance. If _info.enableNormalMaps_ is true, then it returns a [[NormalMapEffect]] instance. They are kept in distinct 'sharing' lists since they have different input layout requirements.
+The standard factory will create instances of [[BasicEffect]]. If _info.enableSkinning_ is true, it returns [[SkinnedEffect]] or [[SkinnedNormalMapEffect|NormalMapEffect]] instances. If _info.enableDualTexture_ is true, it returns a [[DualTextureEffect]] instance. If _info.enableNormalMaps_ is true, then it returns a [[NormalMapEffect]] instance. They are kept in distinct 'sharing' lists since they have different input layout requirements.
+
+> ``NormalMapEffect`` or ``SkinnedNormalMapEffect`` are only created if the material defines a normal map texture, _info.enableNormalMaps_ is set, and **EnableNormalMapEffect** is true (the default).
 
 # Creating DGSL Effects
-The **DGSLEffectFactory** extends the standard EffectFactory with support for the Visual Studio Shader Designer (DGSL) system used by ``.CMO`` files. It creates instances of [[DGSLEffect]]. It also supports sharing the pixel shader instances required for DGSL shaders through the **CreatePixelShader** method.
+The **DGSLEffectFactory** extends the standard EffectFactory with support for the Visual Studio Shader Designer (DGSL) system used by ``.CMO`` files. It creates instances of [[DGSLEffect]] or [[SkinnedDGSLEffect|DGSLEffect]]. It also supports sharing the pixel shader instances required for DGSL shaders through the **CreatePixelShader** method.
 
 ```cpp
 DGSLEffectFactory::DGSLEffectInfo info;
@@ -67,7 +69,7 @@ Because Visual Studio Shader Designer (DGSL) ``.DGSL.CSO`` files only support Fe
 
 The DGSLEffect built-in supports the three default materials for all feature levels without requiring any ``.CSO`` files: _Unlit_, _Lambert_, and _Phong_.
 
-_DGSLEffect_ instances with and without skinning enable are kept in distinct 'sharing' lists since they have different input layout requirements.
+_DGSLEffect_ instances with and without skinning are kept in distinct 'sharing' lists since they have different input layout requirements.
 
 # Creating PBR Effects
 The **PBREffectFactory** replaces the standard EffectFactory. It creates instances of [[PBREffect]], and is intended for use with the ``.SDKMESH`` version 2 file variant which defines PBR materials.
@@ -133,7 +135,7 @@ fxFactory->ReleaseCache();
 
 > These methods are specific to EffectFactory and are not part of the ``IEffectFactory`` interface.
 
-* **EnableNormalMapEffect** is used to determine if [[NormalMapEffect]] is used for models containing normal-map textures. This defaults to true (unless the device has a Direct3D 9.x Feature Level). If set to false, it will use [[BasicEffect]] instead for these materials.
+* **EnableNormalMapEffect** is used to determine if **NormalMapEffect** or **SkinnedNormalMapEffect** is used for models containing normal-map textures. This defaults to true (unless the device has a Direct3D 9.x Feature Level). If set to false, it will use **BasicEffect** or **SkinnedEffect** instead for these materials.
 
 * **EnableForceSRGB** is used to determine if textures have "force SRGB" set to true for the loaders or not. This defaults to false.
 
