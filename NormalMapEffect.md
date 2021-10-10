@@ -78,7 +78,7 @@ The red (x) and green (y) channels are loaded from the texture, but blue (z) and
 1. You can make use the ``DXGI_FORMAT_BC5_UNORM`` (i.e. [3Dc](https://en.wikipedia.org/wiki/3Dc)) for normal map texture compression without any shader or configuration changes.
 1. Due to quantization effects, the actual unit length of the normal can drift, so this reconstruction can improve quality by effectively renormalizing the value.
 
-Finally, the green (y) channel is used "as is" in the shader code. Some viewing and materials conventions can require the green channel to be inverted to properly 'push in' or 'push out'. This issue should be handled by modifying the texture content either offline or at load time.
+Finally, the green (y) channel is used "as is" in the shader code. Some viewing and materials conventions can require the green channel to be inverted to properly 'push in' or 'push out'. This issue should be handled by modifying the texture content either offline or at load time. _Because the shader reconstructs the z channel, an inverted y channel can result in black pixels on the model if it's backwards._
 
 # Remarks
 
