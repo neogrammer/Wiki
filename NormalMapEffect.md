@@ -1,4 +1,6 @@
-This effect extends [[BasicEffect]] to support normal-mapping and an optional specular map. It supports texture mapping, vertex coloring, directional per-pixel lighting, fog, and GPU instancing.
+**NormalMapEffect** effect extends [[BasicEffect]] to support normal-mapping and an optional specular map. It supports texture mapping, vertex coloring, directional per-pixel lighting, fog, and GPU instancing.
+
+**SkinnedNormalMapEffect** extends ``NormalMapEffect`` to support vertex skinning. The skinned effect does not support per-vertex colors or GPU instancing.
 
 See also [[Effects]]
 
@@ -23,6 +25,8 @@ For exception safety, it is recommended you make use of the C++ [RAII](http://en
 
 NormalMapEffect supports [[IEffect]], [[IEffectMatrices]], [[IEffectLights]], and [[IEffectFog]]
 
+SkinnedNormalMapEffect also supports [[IEffectSkinning]]
+
 # Input layout
 This effect requires ``SV_Position``, ``NORMAL``, and ``TEXCOORD0``. If per-vertex colors are enabled, it also requires ``COLOR``.
 
@@ -33,6 +37,8 @@ If instancing is enabled, this effect also requires these vertex elements:
 "InstMatrix",  1, DXGI_FORMAT_R32G32B32A32_FLOAT
 "InstMatrix",  2, DXGI_FORMAT_R32G32B32A32_FLOAT
 ```
+
+If skinning is used, the vertex layout requires ``BLENDINDICES`` and ``BLENDWEIGHT``.
 
 # Properties
 
