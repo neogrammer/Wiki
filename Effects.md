@@ -169,6 +169,9 @@ The built-in effects make use of the following states:
 * Shader resources (Pixel Shader stage, slots 0, 1, and 2)
 * Vertex shader
 
+[[SkinnedNormalMapEffect|NormalMapEffect]] also uses
+* Constant buffer (Vertex Shader slot 1)
+
 [[PBREffect]] adds:
 * Shader resources (Pixel Shader stage, slots 0-5)
 
