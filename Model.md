@@ -198,7 +198,7 @@ auto tiny = Model::CreateFromSDKMESH( device, L"tiny.sdkmesh", fx, ModelLoader_C
 
 # Depth buffer
 
-The rendering setup assumes you are using a standard z-buffer. If have set up your rendering for a [reverse zbuffer](https://developer.nvidia.com/content/depth-precision-visualized) rendering, be sure to set this class property on ``ModelMesh``:
+The rendering setup assumes you are using a standard z-buffer. If have set up your pipeline for a [reverse zbuffer](https://developer.nvidia.com/content/depth-precision-visualized) rendering, be sure to set this class property on ``ModelMesh``:
 
 ```
 ModelMesh::SetDepthBufferMode(true);
