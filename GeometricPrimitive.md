@@ -131,6 +131,14 @@ shape = GeometricPrimitive::CreateTeapot( deviceContext, 1.f, 8, false ) );
 
 > Using the wrong value for_ rhcoords_ for your viewing setup will result in the objects looking 'inside out'.
 
+# Depth buffer
+
+The rendering setup assumes you are using a standard z-buffer. If have set up your pipeline for [reverse zbuffer](https://developer.nvidia.com/content/depth-precision-visualized) rendering, be sure to set this class property on ``GeometricPrimitive``:
+
+```
+GeometricPrimitive::SetDepthBufferMode(true);
+```
+
 # Inside vs. Outside
 These geometric primitives are intended for view from the 'outside' for efficient back-face culling. However, both spheres and boxes are commonly used to form 'skyboxes' for backgrounds. To support this, you set the _rhcoords_ parameter backwards for your view coordinates, and then set _invertn_ to true.
 
