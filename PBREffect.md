@@ -31,9 +31,9 @@ SkinnedPBREffect also supports [[IEffectSkinning]].
 Fog settings are not supported by these effects.
 
 # Input layout
-This effect requires ``SV_Position``, ``NORMAL``, and ``TEXCOORD0``. It does not support per-vertex color.
+These effects require ``SV_Position``, ``NORMAL``, and ``TEXCOORD0``. It does not support per-vertex color.
 
-If instancing is enabled, this effect also requires these vertex elements:
+If instancing is enabled, ``PBREffect`` also requires these vertex elements:
 
 ```
 "InstMatrix",  0, DXGI_FORMAT_R32G32B32A32_FLOAT
@@ -73,17 +73,17 @@ If skinning is used, the vertex layout requires ``BLENDINDICES`` and ``BLENDWEIG
 
 * **SetVelocityGeneration**: Enables the generation of a velocity buffer. If set to true, then both a Render Target 0 and Render Target 1 must be bound for rendering.
 
-> This effect does *not* support both instancing and velocity generation at the same time.
+> ``PBREffect`` does *not* support both instancing and velocity generation at the same time.
 
 * **SetRenderTargetSizeInPixels**: Used to set the pixel size of the render target when generating velocity buffers.
 
 # Remarks
 
-This effect always performs per-pixel lighting. Calls to ``SetLightingEnabled(false);`` will generate a C++ exception, and calls to **SetPerPixelLighting** are ignored.
+These effects always performs per-pixel lighting. Calls to ``SetLightingEnabled(false);`` will generate a C++ exception, and calls to **SetPerPixelLighting** are ignored.
 
 The lighting modeling for PBR does not make use of an ambient or specular term as these are more directly modeled by the image-based lighting model. Calls to **SetAmbientLightColor** and **SetLightSpecularColor** are ignored.
 
-This effect requires a texture sampler in both slots 0 and 1. [[GeometricPrimitive]] and [[SpriteBatch]] only set a texture sampler in slot 0 by default, [[Model]] sets a sampler in slots 0 and 1.
+These effects requires a texture sampler in both slots 0 and 1. [[GeometricPrimitive]] and [[SpriteBatch]] only set a texture sampler in slot 0 by default, [[Model]] sets a sampler in slots 0 and 1.
 
 <table border=0>
  <tr>
@@ -115,7 +115,7 @@ This effect requires a texture sampler in both slots 0 and 1. [[GeometricPrimiti
 
 # Feature Level Notes
 
-This effect uses Shader Model 4.0 so requires Direct3D hardware feature level 10.0 or greater.
+These effects use Shader Model 4.0 so requires Direct3D hardware feature level 10.0 or greater.
 
 > Note this means you can also count on ``DXGI_FORMAT_BC5_UNORM`` texture compression hardware support for your normal maps.
 
