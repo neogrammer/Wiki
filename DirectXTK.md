@@ -22,7 +22,7 @@ using namespace DirectX;
      * [[IEffectFactory|EffectFactory]], [[EffectFactory]], [[PBREffectFactory|EffectFactory]], [[DGSLEffectFactory|EffectFactory]]
      * [[IEffect]], [[IEffectMatrices]], [[IEffectLights]], [[IEffectFog]], [[IEffectSkinning]]
      * [[AlphaTestEffect]], [[BasicEffect]], [[DualTextureEffect]], [[EnvironmentMapEffect]], [[SkinnedEffect]]
-     * [[NormalMapEffect]], [[SkinnedNormalMapEffect|NormalMapEffect]], [[PBREffect]], [[DebugEffect]]
+     * [[NormalMapEffect]], [[SkinnedNormalMapEffect|NormalMapEffect]], [[PBREffect]], [[SkinnedPBREffect|PBREffect]], [[DebugEffect]]
      * [[DGSLEffect]], [[SkinnedDGSLEffect|DGSLEffect]]
 * [[GamePad]] - gamepad controller helper using XInput
 * [[GeometricPrimitive]] - draws basic shapes such as cubes and spheres
