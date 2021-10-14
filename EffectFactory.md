@@ -46,7 +46,14 @@ info.diffuseColor = XMFLOAT3( 0.8f, 0.8f, 0.8f );
 auto effect = fxFactory->CreateEffect( info, deviceContext );
 ```
 
-The standard factory will create instances of [[BasicEffect]]. If _info.enableSkinning_ is true, it returns [[SkinnedEffect]] or [[SkinnedNormalMapEffect|NormalMapEffect]] instances. If _info.enableDualTexture_ is true, it returns a [[DualTextureEffect]] instance. If _info.enableNormalMaps_ is true, then it returns a [[NormalMapEffect]] instance. They are kept in distinct 'sharing' lists since they have different input layout requirements.
+The standard factory will create instances of [[BasicEffect]].
+
+* If _info.enableSkinning_ is true, it returns a [[SkinnedEffect]] instance.
+* If _info.enableDualTexture_ is true, it returns a [[DualTextureEffect]] instance.
+* If _info.enableNormalMaps_ is true, then it returns a [[NormalMapEffect]] instance.
+* If _info.enableSkinning_  and _info.enableNormalMaps_ are true, then it returns a [[SkinnedNormalMapEffect|NormalMapEffect]] instance.
+
+These are kept in distinct 'sharing' lists since they have different input layout requirements.
 
 > ``NormalMapEffect`` or ``SkinnedNormalMapEffect`` are only created if the material defines a normal map texture, _info.enableNormalMaps_ is set, and **EnableNormalMapEffect** is true (the default).
 
