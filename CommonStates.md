@@ -53,10 +53,12 @@ For multipass rendering, you'd typically use Additive().
 * ID3D11DepthStencilState* **DepthNone**();
 * ID3D11DepthStencilState* **DepthDefault**();
 * ID3D11DepthStencilState* **DepthRead**();
+* ID3D11DepthStencilState* **DepthReverseZ**();
+* ID3D11DepthStencilState* **DepthReadReverseZ**();
 
 ## Typical usage
 
-For standard rendering with a z-buffer, you should use DepthDefault().
+For standard rendering with a z-buffer, you should use DepthDefault(). If using a [reverse z-buffer](https://developer.nvidia.com/content/depth-precision-visualized), then you should use DepthReverseZ().
 
 For drawing alpha blended objects (which is typically done after all opaque objects have been drawn), use DepthRead() which will respect the existing z-buffer values, but will not update them with 'closer' pixels.
 
