@@ -72,7 +72,7 @@ The DGSLEffect built-in supports the three default materials for all feature lev
 _DGSLEffect_ instances with and without skinning are kept in distinct 'sharing' lists since they have different input layout requirements.
 
 # Creating PBR Effects
-The **PBREffectFactory** replaces the standard EffectFactory. It creates instances of [[PBREffect]], and is intended for use with the ``.SDKMESH`` version 2 file variant which defines PBR materials.
+The **PBREffectFactory** replaces the standard EffectFactory. It creates instances of [[PBREffect]], and is intended for use with the ``.SDKMESH`` version 2 file variant which defines PBR materials. If _info.enableSkinning_ is true, it creates instances of [[SkinnedPBREffect|PBREffect]].
 
 ```cpp
 EffectFactory::EffectInfo info;
