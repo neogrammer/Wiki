@@ -159,6 +159,15 @@ desc.DepthFunc = D3D11_COMPARISON_LESS_EQUAL;
 CD3D11_DEPTH_STENCIL_DESC desc(def);
 desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
 desc.DepthFunc = D3D11_COMPARISON_LESS_EQUAL;
+
+// DepthReverseZ
+CD3D11_DEPTH_STENCIL_DESC desc(def);
+desc.DepthFunc = D3D11_COMPARISON_GREATER_EQUAL;
+
+// DepthReadReverseZ
+CD3D11_DEPTH_STENCIL_DESC desc(def);
+desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
+desc.DepthFunc = D3D11_COMPARISON_GREATER_EQUAL;
 ```
 
 ## Rasterizer states
