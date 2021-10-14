@@ -196,6 +196,14 @@ The legacy DirectX SDK's ``.SDKMESH`` files assume the developer is using left-h
 auto tiny = Model::CreateFromSDKMESH( device, L"tiny.sdkmesh", fx, ModelLoader_CounterClockwise );
 ```
 
+# Depth buffer
+
+The rendering setup assumes you are using a standard z-buffer. If have set up your rendering for a [reverse zbuffer](https://developer.nvidia.com/content/depth-precision-visualized) rendering, be sure to set this class property on ``ModelMesh``:
+
+```
+ModelMesh::SetDepthBufferMode(true);
+```
+
 # Metadata
 
 A Model instance contains a name (a wide-character string) for tracking and application logic. Model can be copied to create a new Model instance which will have shared references to the same set of ModelMesh instances (i.e. a 'shallow' copy).
