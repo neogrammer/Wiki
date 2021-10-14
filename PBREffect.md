@@ -1,4 +1,6 @@
-This effect implements a Disney-style (Roughness/Metalness workflow) Physically-Based Renderer ([PBR](https://en.wikipedia.org/wiki/Physically_based_rendering)) effect using Image-Based Lighting ([IBL](https://en.wikipedia.org/wiki/Image-based_lighting)) in combination with up to three directional lights. This effect also supports GPU instancing.
+**PBREffect** implements a Disney-style (Roughness/Metalness workflow) Physically-Based Renderer ([PBR](https://en.wikipedia.org/wiki/Physically_based_rendering)) effect using Image-Based Lighting ([IBL](https://en.wikipedia.org/wiki/Image-based_lighting)) in combination with up to three directional lights. This effect also supports GPU instancing.
+
+**SkinnedPBREffect** extends ``PBREffect`` to support vertex skinning. The skinned effect does not support velocity buffer generation or GPU instancing.
 
 See also [[Effects]], [[PBREffectFactory|EffectFactory]]
 
@@ -24,7 +26,9 @@ For exception safety, it is recommended you make use of the C++ [RAII](http://en
 # Interfaces
 PBREffect supports [[IEffect]], [[IEffectMatrices]], and [[IEffectLights]].
 
-Fog settings are not supported by this effect.
+SkinnedPBREffect also supports [[IEffectSkinning]].
+
+Fog settings are not supported by these effects.
 
 # Input layout
 This effect requires ``SV_Position``, ``NORMAL``, and ``TEXCOORD0``. It does not support per-vertex color.
@@ -36,6 +40,8 @@ If instancing is enabled, this effect also requires these vertex elements:
 "InstMatrix",  1, DXGI_FORMAT_R32G32B32A32_FLOAT
 "InstMatrix",  2, DXGI_FORMAT_R32G32B32A32_FLOAT
 ```
+
+If skinning is used, the vertex layout requires ``BLENDINDICES`` and ``BLENDWEIGHT``.
 
 # Properties
 
