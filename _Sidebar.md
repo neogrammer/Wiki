@@ -28,6 +28,8 @@
 
 [Test Suite](https://github.com/walbourn/directxtktest/wiki)
 
+[Model Viewer](https://github.com/walbourn/directxtkmodelviewer)
+
 [Content Exporter](https://github.com/walbourn/contentexporter)
 
 [DxCapsViewer](https://github.com/microsoft/DxCapsViewer)
