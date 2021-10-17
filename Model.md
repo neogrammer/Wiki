@@ -10,7 +10,7 @@ A Model can optionally have an array of [[ModelBone]] data. This data can be use
 
 See also [[EffectFactory]]
 
-**Related tutorial:** [[Rendering a model]], [[Animating using model bones]], [[Using skinned models]]
+**Related tutorials:** [[Rendering a model]], [[Animating using model bones]], [[Using skinned models]]
 
 # Header
 ```cpp
