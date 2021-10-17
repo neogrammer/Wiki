@@ -28,7 +28,9 @@ DGSLEffect supports [[IEffect]], [[IEffectMatrices]], [[IEffectLights]], [[IEffe
 Fog settings are not supported by this effect, but could be 'baked in' to a given DGSL pixel shader.
 
 # Input layout
-This effect requires ``SV_Position``, ``NORMAL`` , ``TANGENT`` , and ``TEXCOORD0``. If enableSkinning is true, it also requires ``BLENDINDICES`` and ``BLENDWEIGHT``
+This effect requires ``SV_Position``, ``NORMAL`` , ``TANGENT`` , and ``TEXCOORD0``.
+
+If skinning is used, it also requires ``BLENDINDICES`` and ``BLENDWEIGHT``
 
 DGSLEffect is typically used with ``VertexPositionNormalTangentColorTexture``--and SkinnedDGSLEffect with ``VertexPositionNormalTangentColorTextureSkinning``--which match the vertex structures used by ``CMO`` files. See [[VertexTypes]]
 
