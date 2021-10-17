@@ -17,7 +17,7 @@ See also [[EffectFactory]]
 
 ![Effects Example](https://github.com/Microsoft/DirectXTK/wiki/images/EffectsExample.png)
 
-**Related tutorials:** [[Simple rendering]], [[Using advanced shaders]], [[Creating custom shaders with DGSL]], [[Multistream rendering and instancing]], [[Authoring an Effect]]
+**Related tutorials:** [[Simple rendering]], [[Using skinned models]], [[Using advanced shaders]], [[Creating custom shaders with DGSL]], [[Multistream rendering and instancing]], [[Authoring an Effect]]
 
 # Header
 ```cpp
