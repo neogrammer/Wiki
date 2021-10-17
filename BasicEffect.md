@@ -2,6 +2,8 @@ This is a native Direct3D 11 implementation of the built-in BasicEffect from XNA
 
 See also [[Effects]]
 
+**Related tutorials:** [[Simple rendering]], [[Line drawing and anti-aliasing]], [[3D shapes]]
+
 ![BasicEffect image](https://github.com/Microsoft/DirectXTK/wiki/images/BasicEffect.png)
 
 # Header
