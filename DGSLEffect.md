@@ -30,7 +30,9 @@ For exception safety, it is recommended you make use of the C++ [RAII](http://en
 
 # Interfaces
 
-DGSLEffect supports [[IEffect]], [[IEffectMatrices]], [[IEffectLights]], [[IEffectSkinning]]
+DGSLEffect supports [[IEffect]], [[IEffectMatrices]], and [[IEffectLights]].
+
+SkinnedDGSLEffect also supports [[IEffectSkinning]].
 
 Fog settings are not supported by this effect, but could be 'baked in' to a given DGSL pixel shader.
 
