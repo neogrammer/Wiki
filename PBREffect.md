@@ -21,6 +21,11 @@ std::unique_ptr<PBREffect> effect;
 effect = std::make_unique<PBREffect>(device);
 ```
 
+```cpp
+std::unique_ptr<SkinnedPBREffect> effect;
+effect = std::make_unique<SkinnedPBREffect>(device);
+```
+
 For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
 # Interfaces
