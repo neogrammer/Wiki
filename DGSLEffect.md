@@ -30,7 +30,7 @@ Fog settings are not supported by this effect, but could be 'baked in' to a give
 # Input layout
 This effect requires ``SV_Position``, ``NORMAL`` , ``TANGENT`` , and ``TEXCOORD0``. If enableSkinning is true, it also requires ``BLENDINDICES`` and ``BLENDWEIGHT``
 
-DGSLEffect is typically used with ``VertexPositionNormalTangentColorTexture`` or ``VertexPositionNormalTangentColorTextureSkinning`` which match the vertex structures used by ``CMO`` files. See [[VertexTypes]]
+DGSLEffect is typically used with ``VertexPositionNormalTangentColorTexture``--and SkinnedDGSLEffect with ``VertexPositionNormalTangentColorTextureSkinning``--which match the vertex structures used by ``CMO`` files. See [[VertexTypes]]
 
 # Properties
 * **SetAmbientColor**: Sets the ambient color of the material. Defaults to black (0,0,0). _Note that other built-in effects do not make use of the ambient material color assuming they react equally to all ambient light in the scene._
