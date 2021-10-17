@@ -1,5 +1,7 @@
 This abstract interface controls distance fog settings. Settings for this interface can influence the choice of shader permutation. This interface is implemented by _BasicEffect_, _AlphaTestEffect_, _DualTextureEffect_, _EnvironmentMapEffect_, _NormalMapEffect_, and _SkinnedEffect_.
 
+**Related tutorial:** [[Rendering a model]]
+
 # Obtaining the interface
 
 There are two methods used in DirectX Tool Kit. For simple cases, just maintain a reference directly to the desired effect class:
