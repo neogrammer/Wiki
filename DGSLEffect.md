@@ -19,6 +19,11 @@ std::unique_ptr<DGSLEffect> effect;
 effect = std::make_unique<DGSLEffect>(device, pixelShader);
 ```
 
+```cpp
+std::unique_ptr<SkinnedDGSLEffect> effect;
+effect = std::make_unique<SkinnedDGSLEffect>(device, pixelShader);
+```
+
 If the _pixelShader_ instance is null, it uses one of the three built-in default materials: _Unlit_, _Lambert_, and _Phong_. This class assumes the pixel shader provided is signature compatible with the built-in DGSL vertex shader, and will work for the feature level of the device.
 
 For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
