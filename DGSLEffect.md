@@ -4,6 +4,8 @@
 
 See also [[Effects]], [[DGSLEffectFactory|EffectFactory]]
 
+**Related tutorials:** [[Creating custom shaders with DGSL]]
+
 # Header
 ```cpp
 #include <Effects.h>
