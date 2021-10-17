@@ -19,6 +19,11 @@ std::unique_ptr<NormalMapEffect> effect;
 effect = std::make_unique<NormalMapEffect>(device);
 ```
 
+```cpp
+std::unique_ptr<SkinnedNormalMapEffect> effect;
+effect = std::make_unique<SkinnedNormalMapEffect>(device);
+```
+
 For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
 # Interfaces
