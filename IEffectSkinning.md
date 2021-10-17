@@ -2,6 +2,8 @@ This abstract interface controls skinning animation matrices. Settings for this 
 
 Effects that implement this interface typically require ``BLENDINDICES`` and ``BLENDWEIGHT`` semantic data in the vertex input layout.
 
+**Related tutorial:** [[Using skinned models]]
+
 # Obtaining the interface
 There are two methods used in _DirectX Tool Kit_. For simple cases, just maintain a reference directly to the desired effect class:
 
