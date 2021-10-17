@@ -59,9 +59,6 @@ Finally, the **SetWeightsPerVertex** method is used as a way to optimize perform
 
 # Built-in Effect Notes
 
-## BasicEffect, AlphaTestEffect, DualTextureEffect, EnvironmentMapEffect
-These built-in effects do not implement skinning animation.
-
 ## SkinnedDGSLEffect
 This effect implements skinning for the DGSL pipeline.
 
@@ -70,8 +67,8 @@ This effect implements skinning for the DGSL pipeline.
 ## SkinnedEffect
 See [Built-in effects, permutations, and performance](http://www.shawnhargreaves.com/blog/built-in-effects-permutations-and-performance.html) for performance costs of the various shader permutations.
 
-## SkinnedNormalMapEffect
-This built-in effect supports skinning.
+## SkinnedNormalMapEffect, SkinnedPBREffect
+These built-in effects also support skinning.
 
 # Remark
 As an optimization, the skinning effects assume that all the matrices are affine transformations, and that the final column is (0 0 0 1). This means that the value of the last column is effectively ignored when set into the constant buffer containing the bone transformations (i.e. the shaders use ``float4x3``)
