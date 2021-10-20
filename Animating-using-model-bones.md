@@ -9,3 +9,6 @@ First create a new project using the instructions from the previous lessons: [[U
 
 **Next lesson:** [[Using skinned models]]
 
+# Credits
+
+This tutorial lesson is based heavily on the XNA Game Studio [Simple Animation](https://github.com/SimonDarksideJ/XNAGameStudio/wiki/Simple-Animation) sample, including using the Tank assets (MS-PL).
