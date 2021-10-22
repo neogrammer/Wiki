@@ -261,4 +261,4 @@ Now if you build and run, the tank wheels are rolling, the turret is swinging ba
 
 This tutorial lesson is based heavily on the XNA Game Studio [Simple Animation](https://github.com/SimonDarksideJ/XNAGameStudio/wiki/Simple-Animation) sample, including using the Tank assets (MS-PL).
 
-The ``tank.sdkmesh`` model was exported using ``-flipz-`` to keep the text on the tank texture correct in the right-handed view set up for this lesson.
+The ``tank.sdkmesh`` model was exported using ``-flipz-``(i.e. do not invert the Z axis) to keep the text on the tank texture correct in the right-handed view set up for this lesson.
