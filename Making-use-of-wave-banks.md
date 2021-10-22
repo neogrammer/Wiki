@@ -27,7 +27,7 @@ XWBTool -f -o sounds.xwb Explo1.wav Explo2.wav Explo3.wav Explo4.wav NightAmbien
 
 Then from the top menu in Visual Studio select **Project / Add Existing Item**.... Select [sounds.xwb](https://github.com/Microsoft/DirectXTK/wiki/media/sounds.xwb) and click "OK".
 
-If you are using a Universal Windows Platform app or Xbox project rather than a Windows desktop app, you need to manually edit the Visual Studio project properties on the ``sounds.xwb`` file and make sure "Content" is set to "Yes" so the data file will be included in your packaged build.
+> If you are using a Universal Windows Platform app or Xbox project rather than a Windows desktop app, you need to manually edit the Visual Studio project properties on the ``sounds.xwb`` file and make sure "Content" is set to "Yes" so the data file will be included in your packaged build.
 
 > The ``xactbld`` tool from the legacy DirectX SDK can also create the same ``xwb`` files.
 
