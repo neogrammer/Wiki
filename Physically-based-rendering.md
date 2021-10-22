@@ -257,7 +257,7 @@ The use of the emissive texture is optional. Any textured use of **PBREffect** r
 
 * You need an HDR render setup per [[Using HDR rendering]].
 
-* Make use of **PBREffectFactory** instead of ``EffectFactory`` which will create ``PBREffect`` instances.
+* Make use of **PBREffectFactory** instead of ``EffectFactory`` which will create ``PBREffect`` or ``SkinnedPBREffect`` instances.
 
 * Be sure to set the IBL textures before rendering:
 
