@@ -22,6 +22,8 @@ meshconvert cup._obj -cmo -nodds -flipz -y
 
 Then from the top menu in Visual Studio select **Project** / **Add Existing Item...**. Select [cup.cmo](https://github.com/Microsoft/DirectXTK/wiki/cup.cmo) and click "OK".
 
+> If you are using a Universal Windows Platform app or Xbox project rather than a Windows desktop app, you need to manually edit the Visual Studio project properties on the ``cup.cmo`` file and make sure "Content" is set to "Yes" so the data file will be included in your packaged build.
+
 ## Technical notes
 * The switch ``-cmo`` selects the Visual Studio Compiled Mesh Object runtime format as the output. The **meshconvert** command-line tool also supports ``-sdkmesh``, ``-sdkmesh2``, and ``-vbo``. See [Geometry formats](https://directxmesh.codeplex.com/wikipage?title=Geometry%20formats) for more information.
 * The switch ``-nodds`` causes any texture file name references in the material information of the source file to stay in their original file format (such as ``.png`` or ``.jpg``). Otherwise, it assumes you will be converting all the needed texture files to a ``.dds`` which can be done via [DirectXTex](http://go.microsoft.com/fwlink/?LinkId=248926) **texconv** command-line tool.
