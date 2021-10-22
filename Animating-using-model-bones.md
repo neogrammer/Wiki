@@ -85,7 +85,7 @@ Build an run to see... well, something:
 
 The reason the tank doesn't look right is that the individual meshes are set up for rendering with the model bone information. The default ``Draw`` method does not use them, so everything is just dropped around the scene's origin.
 
-So let's add rendering using the model bones. In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
+So now let's add rendering using the model bones. In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 
 ```cpp
 DirectX::ModelBone::TransformArray m_drawBones;
@@ -250,6 +250,8 @@ Now if you build and run, the tank wheels are rolling, the turret is swinging ba
 * The ``ModelBone::TransformArray`` type is just a ``std::unique_ptr`` owning an array of ``XMMATRIX``. This function ``ModelBone::MakeArray`` function ensures the allocated memory is 16-byte aligned to support aligned SIMD operations.
 
 * The ``m_model->boneMatrices`` is a **ModelBone::TransformArray** in the Model that contains the original local transforms loaded from the file. The length of the array is the same as the number of bones (i.e. ``m_model->bones.size()``).
+
+* The ``CopyBoneTransformsTo`` method is a simple helper for copying the entire ``m_model->boneMatrices`` to a another bones matrices array.
 
 * The ``CopyAbsoluteBoneTransforms`` method computes the final matrices using the bone hierarchy given the input local matrices for each bone.
 
