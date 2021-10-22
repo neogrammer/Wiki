@@ -247,7 +247,7 @@ Now if you build and run, the tank wheels are rolling, the turret is swinging ba
 
 ### Technical notes
 
-* The ``ModelBone::TransformArray`` type is just a ``std::unique_ptr`` owning an array of ``XMMATRIX``. This function ``ModelBone::MakeArray`` function ensures the allocated memory is 16-byte aligned to support aligned SIMD operations.
+* The ``ModelBone::TransformArray`` type is just a ``std::unique_ptr`` owning an array of ``XMMATRIX``. The function ``ModelBone::MakeArray`` ensures the allocated memory is 16-byte aligned to support aligned SIMD operations.
 
 * The ``m_model->boneMatrices`` is a **ModelBone::TransformArray** in the Model that contains the original local transforms loaded from the file. The length of the array is the same as the number of bones (i.e. ``m_model->bones.size()``).
 
