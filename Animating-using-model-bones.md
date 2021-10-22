@@ -143,7 +143,7 @@ Now if you build and run, the model is back in the center and actually looks lik
 
 # Moving individual bones
 
-Now that we have our tank drawing correctly with each mesh controlled by individual model bones, we can add the animation. Since it's a hexarchy, we only need to worry about the local changes (i.e. how far is the turret rotated) without having to worry about the global location (i.e. where is the tank body located).
+Now that we have our tank drawing correctly with each mesh controlled by individual model bones, we can add the animation. Since it's a hierarchy, we only need to worry about the local changes (i.e. how far is the turret rotated) without having to worry about the global location (i.e. where is the tank body located).
 
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 
