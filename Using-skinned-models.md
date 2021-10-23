@@ -140,7 +140,7 @@ struct Keyframe
 
 > Because ``CMO`` files can contain multiple clips, the **Load** method takes a defaulted parameter for the name of the clip. Our test file here just has one.
 
-3. The call to the **Bind** method for CMO animation just allocates a ``ModelBone::TransformArray`` (called ``m_animBones`` below).
+3. The call to the **Bind** method for ``CMO`` animation just allocates a ``ModelBone::TransformArray`` (called ``m_animBones`` below).
 
 4. We call the **Update** method to compute the current animation time. In the case of ``CMO`` animation, we also force looping behavior for simplicity.
 
@@ -182,13 +182,123 @@ for (size_t j = 0; j < nbones; ++j)
 
 6. Finally, we draw the model using the ``Model::DrawSkinned`` method with the computed bone transform matrices.
 
-# SDKMESH animation
+# Skinned models with bone influences
+
+The ``CMO`` animation system is an example of 'direct-mapped' bones where the bone indices in the vertex data directly map to the Model's bone array. This is simple, but means that each mesh in the model file is limited to the same set of MaxBones (72). The ``SDKMESH`` animation system uses 'bone-influences' which maps the vertex data index to the model bone index.
 
 Now save [soldier.sdkmesh](https://github.com/Microsoft/DirectXTK/wiki/media/soldier.sdkmesh), [soldier.sdkmesh_anim](https://github.com/Microsoft/DirectXTK/wiki/media/soldier.sdkmesh_anim), [head_diff.dds](https://github.com/Microsoft/DirectXTK/wiki/media/head_diff.dds), [head_norm.dds](https://github.com/Microsoft/DirectXTK/wiki/media/head_norm.dds), [jacket_diff.dds](https://github.com/Microsoft/DirectXTK/wiki/media/jacket_diff.dds), [jacket_norm.dds](https://github.com/Microsoft/DirectXTK/wiki/media/jacket_norm.dds), [pants_diff.dds](https://github.com/Microsoft/DirectXTK/wiki/media/pants_diff.dds), [pants_norm.dds](https://github.com/Microsoft/DirectXTK/wiki/media/pants_norm.dds), [upBody_diff.dds](https://github.com/Microsoft/DirectXTK/wiki/media/upBody_diff.dds), and [upbody_norm.dds](https://github.com/Microsoft/DirectXTK/wiki/media/upbody_norm.dds) into your new project's directory. From the top menu select **Project** / **Add Existing Item...**, then select "soldier.sdkmesh", "soldier.sdkmesh_anim", and the eight  ``DDS`` files followed by "OK".
 
 > If you are using a Universal Windows Platform app or Xbox project rather than a Windows desktop app, you need to manually edit the Visual Studio project properties on the ``soldier.sdkmesh`` and ``soldier.sdkmesh_anim`` files and make sure "Content" is set to "Yes" so the data file will be included in your packaged build.
 
-> **UNDER CONSTRUCTION**
+In the **Game.h** file, modify the type of the ``m_animation`` in the Game class's private declarations:
+
+```cpp
+DX::AnimationSDKMESH m_animation;
+```
+
+ In **Game.cpp**, modify the TODO of **CreateDeviceDependentResources**:
+
+ ```cpp
+ m_model = Model::CreateFromSDKMESH(device, L"soldier.sdkmesh",
+    *m_fxFactory,
+    ModelLoader_Clockwise | ModelLoader_IncludeBones);
+
+DX::ThrowIfFailed(
+    m_animation.Load(L"soldier.sdkmesh_anim")
+);
+m_animation.Bind(*m_model);
+
+m_drawBones = ModelBone::MakeArray(m_model->bones.size());
+ ```
+
+In **Game.cpp**, modify the TODO of **CreateWindowSizeDependentResources**:
+
+```cpp
+static const XMVECTORF32 c_cameraPos = { 0.f, 0.f, 1.5f, 0.f };
+static const XMVECTORF32 c_lookAt = { 0.f, 0.25f, 0.f, 0.f };
+```
+
+Build and run to see a walking "dude" model:
+
+![Screenshot of walking character](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotSoldier.PNG)
+
+# SDKMESH animation
+
+1. For ``SDKMESH`` the animation data is in a distinct file. When we call **Load** it takes the ``.sdkmesh_anim`` file. This is more flexible and allows more animations to be added over time, and potentially 'retargeted' to a different model with the same bone names.
+
+2. The **Bind** method matches up the name of the bones in the animation file with the names in the skeleton, as well as allocating ``m_animBones``.
+
+3. The **Update** method accumulates delta time. There's nothing to do for looping, because ``SDKMESH`` animation assumes looping.
+
+4. The **Apply** method is where the differences really show. In ``SDKMESH`` the animation data is provided at a fixed 'frame-rate', and each key is represented as a Vector3 for translation, a quaternion for rotation, and a Vector3 for scale.
+
+```cpp
+auto tick = static_cast<uint32_t>(
+    static_cast<float>(header->AnimationFPS) * m_animTime);
+tick %= header->NumAnimationKeys;
+
+// Compute local bone transforms
+auto frameData = reinterpret_cast<SDKANIMATION_FRAME_DATA*>(
+    m_animData.get()
+    + header->AnimationDataOffset);
+
+for (size_t j = 0; j < nbones; ++j)
+{
+    if (m_boneToTrack[j] == ModelBone::c_Invalid)
+    {
+        m_animBones[j] = model.boneMatrices[j];
+    }
+    else
+    {
+        auto frame = &frameData[m_boneToTrack[j]];
+        auto data = &frame->pAnimationData[tick];
+
+        XMVECTOR quat = XMVectorSet(
+            data->Orientation.x,
+            data->Orientation.y,
+            data->Orientation.z,
+            data->Orientation.w);
+        if (XMVector4Equal(quat, g_XMZero))
+            quat = XMQuaternionIdentity();
+        else
+            quat = XMQuaternionNormalize(quat);
+
+        XMMATRIX trans = XMMatrixTranslation(
+            data->Translation.x,
+            data->Translation.y,
+            data->Translation.z);
+        XMMATRIX rotation = XMMatrixRotationQuaternion(quat);
+        XMMATRIX scale = XMMatrixScaling(
+            data->Scaling.x,
+            data->Scaling.y,
+            data->Scaling.z);
+
+        m_animBones[j] = XMMatrixMultiply(
+          XMMatrixMultiply(rotation, scale), trans);
+    }
+}
+
+// Compute absolute locations
+model.CopyAbsoluteBoneTransforms(nbones, m_animBones.get(),
+    boneTransforms);
+
+// Adjust for model's bind pose.
+for (size_t j = 0; j < nbones; ++j)
+{
+    boneTransforms[j] = XMMatrixMultiply(model.invBindPoseMatrices[j],
+        boneTransforms[j]);
+}
+```
+
+5. Finally, ``Model::DrawSkinned`` draws the final position.
+
+# Pros and cons
+
+* The ``CMO`` animation system is extremely simple, and has the advantage of being built-in to Visual Studio's Content Pipeline.
+
+* The key limitation of ``CMO`` is that while storing the transformations as a 4x4 matrix is simple, it has a number of problems. First, since animations always contain affine transformations it wastes 25% of the space. Second, by using full matrices, it's complicates *animation blending* and *tweening*. The ``SDKMESH`` use of the individual components is both more compact, and easy to interpolate.
+
+* The main disadvantage of ``SDKMESH`` is that the fixed frame-rate means the animation data is a lot larger than it could be for typical animations.
 
 # More to explore
 
