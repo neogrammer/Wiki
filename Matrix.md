@@ -1,6 +1,6 @@
 A four by four row-major matrix modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Matrix``) math library.
 
-A 4x4 *matrix* is commonly used in 3D graphics for 2D and 3D [transformations](https://en.wikipedia.org/wiki/Transformation_matrix).
+A 4x4 *matrix* is commonly used in computer graphics for 2D and 3D [transformations](https://en.wikipedia.org/wiki/Transformation_matrix).
 
 # Header
 ```cpp
