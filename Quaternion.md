@@ -40,12 +40,22 @@ Quaternion q(arr);                // Creates a quaternion [0, 0, 0, 1]
 * **Dot**
 
 # Statics
-* **CreateFromAxisAngle**
-* **CreateFromYawPitchRoll**
+
+* **CreateFromAxisAngle**: Creates a quaternion representing a rotation of a given angle (in radians) around an arbitrary axis vector.
+
+* **CreateFromYawPitchRoll**: Creates a quaternion representation a rotation from a yaw/pitch/roll.
+
+> The original D3DXmath library took the rotations in the the Yaw, Pitch, Roll order and was replicated in *XNA Game Studio*. In DirectXMath, the order was normalized to Roll (X), Pitch (Y), Yaw (Z).
+
 * **CreateFromRotationMatrix**
+
 * **Lerp**: Linear interpolation
+
 * **Slerp**: Spherical linear interpolation
+
 * **Concatenate**: Concatenates two quaternion rotations. _Note: ``Concatenate(q1,q2)`` is equivalent to ``q2*q1``_.
+
+> For interpolating between arbitrary 3D rotations, the *slerp* is the gold-standard. For small differences, however, *lerp* is much faster and almost identical.
 
 # Constants
 * **Identity**: The identity quaternion [0, 0, 0, 1]
