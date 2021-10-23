@@ -58,11 +58,11 @@ Quaternion q(arr);                // Creates a quaternion [0, 0, 0, 1]
 
 * **CreateFromRotationMatrix**
 
+* **Concatenate**: Concatenates two quaternion rotations. _Note: ``Concatenate(q1,q2)`` is equivalent to ``q2*q1``_.
+
 * **Lerp**: Linear interpolation
 
 * **Slerp**: Spherical linear interpolation
-
-* **Concatenate**: Concatenates two quaternion rotations. _Note: ``Concatenate(q1,q2)`` is equivalent to ``q2*q1``_.
 
 > For interpolating between arbitrary 3D rotations, the *slerp* is the gold-standard. For small differences, however, *lerp* is much faster and almost identical.
 
