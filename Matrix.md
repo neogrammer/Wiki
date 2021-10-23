@@ -1,5 +1,7 @@
 A four by four row-major matrix modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Matrix``) math library.
 
+A 4x4 *matrix* is commonly used in 3D graphics for 2D and 3D [transformations](https://en.wikipedia.org/wiki/Transformation_matrix).
+
 # Header
 ```cpp
 #include <SimpleMath.h>
@@ -54,33 +56,57 @@ Matrix m( arr );           // Creates a matrix [1 2 3 0
 * **Translation**: Returns the translation in the matrix
 
 # Methods
+
 * Comparison operators: ``==`` and ``!=``
+
 * Assignment operators: ``=``, ``+=``, ``-=``, ``*=``, ``/=``
+
 * Unary operators: ``+``, ``-``
+
 * Binary operators: ``+``, ``-``, ``*``, ``/``
+
 * **Decompose**: Decompose the matrix into rotation, scaling, and translation components
+
 * **Transpose**
+
 * **Invert**
+
 * **Determinant**
 
 # Statics
+
 * **CreateBillboard**: Creates a spherical billboard that rotates around a specified object position
+
 * **CreateConstrainedBillboard**: Creates a cylindrical billboard that rotates around a specified axis
+
 * **CreateTranslation**
+
 * **CreateScale**
-* **CreateRotationX**
-* **CreateRotationY**
-* **CreateRotationZ**
+
+* **CreateRotationX**, **CreateRotationY**, **CreateRotationZ**
+
 * **CreateFromAxisAngle**
+
 * **CreatePerspective**, **CreatePerspectiveFieldOfView**, **CreatePerspectiveOffCenter**: Creates perspective projection in right-handed (RH) coordinates
+
 * **CreateOrthographic**, **CreateOrthographicOffCenter**: Creates orthographic projection in right-handed (RH) coordinates
+
 * **CreateLookAt**: Creates a look-at matrix in right-handed (RH) coordinates
+
 * **CreateWorld**
+
 * **CreateFromQuaternion**
+
 * **CreateFromYawPitchRoll**
+
+> The original D3DXmath library took the rotations in the the Yaw, Pitch, Roll order and that order was replicated in *XNA Game Studio*. In DirectXMath, the order was normalized to Roll (X), Pitch (Y), Yaw (Z).
+
 * **CreateShadow**: Creates transform that flattens geometry into a specified [[Plane]] as if casting a shadow from a specified light source
+
 * **CreateReflection**: Creates transform that reflects the coordinate system about a specified [[Plane]].
+
 * **Lerp**: Linearly interpolates two matrices element-wise (useful for blending transformations).
+
 * **Transform**
 
 # Constants
