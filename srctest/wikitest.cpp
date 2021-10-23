@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+#include "Animation.h"
 #include "AnimatedTexture.h"
 #include "ControllerFont.h"
 #include "DebugDraw.h"

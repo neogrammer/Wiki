@@ -5,6 +5,9 @@ For samples, I've created a number of utility headers that help fill in gaps bet
  <tr><td><a href="/microsoft/DirectXTK/wiki/AnimatedTexture.h">AnimatedTexture.h</a></td>
      <td>n/a</td>
      <td>Used for a SpriteFont tutorial. See <a href="/microsoft/DirectXTK/wiki/AnimatedTexture">wiki</a>.</td></tr>
+ <tr><td><a href="/microsoft/DirectXTK/wiki/Animation.h">Animation.h</a></td>
+     <td><a href="/microsoft/DirectXTK/wiki/Animation.cpp">Animation.cpp</a></td>
+     <td>Used for a vertex skinning tutorial. See <a href="/microsoft/DirectXTK/wiki/Using-skinned-models">wiki.</a></td></tr>
  <tr><td><a href="/microsoft/DirectXTK/wiki/ControllerFont.h">ControllerFont.h</a></td>
      <td>n/a</td>
      <td>Helper for using game controller symbols mixed with text. See <a href="/microsoft/DirectXTK/wiki/ControllerFont">wiki</a>.</td></tr>

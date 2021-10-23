@@ -26,6 +26,7 @@ endif()
 
 add_executable(${PROJECT_NAME}
     wikitest.cpp
+    ../Animation.cpp
     ../DebugDraw.cpp
     ../MSAAHelper.cpp
     ../RenderTexture.cpp
