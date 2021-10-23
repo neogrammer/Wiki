@@ -1,6 +1,6 @@
 A rotation represented as a four component vector modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Quaternion``) math library.
 
-A *quaternion* is a very efficient and compact method for working with 3D rotation. A *quaternion* is a 4-dimensional value and only has physical meaning when it's normalized. In computer graphics, they are used to represent 3D rotations as a 4-vector (i.e. 4 float values) instead of requiring a 3x3 matrix (i.e. 9 float values). They are extremely useful implementing cameras and animation where a *quaternion* can smoothly interpolate between 3D rotations.
+A *quaternion* is a very efficient and compact method for working with 3D rotation. A *quaternion* is a 4-dimensional value and only has physical meaning when it's normalized. In computer graphics, they are used to represent 3D rotations as a 4-vector (i.e. 4 float values) instead of requiring a 3x3 matrix (i.e. 9 float values). They are extremely useful implementing cameras and animation where a *quaternion* can smoothly interpolate between 3D rotations while avoiding the [gimbal lock](https://en.wikipedia.org/wiki/Gimbal_lock) problem common to Euler angles.
 
 # Header
 ```cpp
@@ -54,7 +54,7 @@ Quaternion q(arr);                // Creates a quaternion [0, 0, 0, 1]
 
 * **CreateFromYawPitchRoll**: Creates a quaternion representation a rotation from a yaw/pitch/roll.
 
-> The original D3DXmath library took the rotations in the the Yaw, Pitch, Roll order and was replicated in *XNA Game Studio*. In DirectXMath, the order was normalized to Roll (X), Pitch (Y), Yaw (Z).
+> The original D3DXmath library took the rotations in the the Yaw, Pitch, Roll order and that order was replicated in *XNA Game Studio*. In DirectXMath, the order was normalized to Roll (X), Pitch (Y), Yaw (Z).
 
 * **CreateFromRotationMatrix**
 
