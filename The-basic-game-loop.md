@@ -26,8 +26,8 @@ Our starting point is to use the **Direct3D Win32 Game** or the **Direct3D UWP G
 
 ![Create New Project](https://github.com/Microsoft/DirectXTK/wiki/images/CreateNewProject2019.png)
 
-## Windows 10 SDK Selection
-The templates use the Windows 10 SDK, so the project wizard will trigger this dialog to select the Windows 10 SDK version to use. Note that for Win32 Windows desktop apps, the "Minimum version" setting is ignored.
+## Windows 10 / 11 SDK Selection
+The UWP templates use the Windows SDK, so the project wizard will trigger this dialog to select the Windows SDK version to use.
 
 ![Windows 10 SDK Selection](https://github.com/Microsoft/DirectXTK/wiki/images/Windows10SDKSelect.png)
 
