@@ -178,6 +178,10 @@ Since this is implemented using C++ conversion operators, you can at any point u
 
 You can therefore freely mix SimpleMath types with DirectXMath functions at any point.
 
+# Remarks
+
+If you are looking for an equivalent to the D3DXmath ``D3DXCreateMatrixStack`` / ``ID3DXMATRIXStack``, see [DirectXMatrixStack.h](https://github.com/microsoft/DirectXMath/blob/master/MatrixStack/DirectXMatrixStack.h).
+
 # Further Reading
 [DirectXMath](https://github.com/Microsoft/DirectXMath/wiki) project wiki
 
