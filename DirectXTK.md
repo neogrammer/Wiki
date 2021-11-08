@@ -198,7 +198,7 @@ The _DirectX Tool Kit_ library assumes your binary is linking with the following
 
 * ``d3d11.lib``: Provides the Direct3D device creation function ``D3D11CreateDevice``
 * ``dxgi.lib``: Provides the DXGI factory creation function ``CreateDXGIFactory1`` / ``CreateDXGIFactory2``
-* ``dxguid.lib``: Provides COM GUID values for ``IID_ID3D11Device``, etc.
+* ``dxguid.lib``: Provides COM GUID values for ``IID_ID3D11Device``, ``WKPDID_D3DDebugObjectName``, etc.
 * ``windowscodecs.lib`` or ``uuid.lib``: Provides COM GUID values for WIC usage such as ``CLSID_WICImagingFactory``, ``CLSID_WICImagingFactory1``, ``CLSID_WICImagingFactory2``, etc.
 
 ### DirectX Tool Kit for Audio
