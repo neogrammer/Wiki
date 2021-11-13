@@ -105,6 +105,8 @@ m_model->DrawSkinned(context, *m_states, nbones, m_drawBones.get(),
 In **Game.cpp**, add to the TODO of **Update**:
 
 ```cpp
+m_animation.Update(elapsedTime);
+
 float time = float(timer.GetTotalSeconds());
 
 m_world = XMMatrixRotationY(time);
