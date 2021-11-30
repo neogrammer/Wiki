@@ -119,6 +119,8 @@ if ( kb.IsKeyDown( VK_RETURN ) )
 
 The ``Keys`` enumeration and ``State`` structure is a mapping of the virtual keys rather than alphanumeric values, so the number 0 from the keyboard top-row and the 0 on the 10-key keypad are distinct, as are the left shift vs. right shift, etc.
 
+There is no specific virtual key for lower-case (i.e. ``a``) vs. upper-case (i.e. ``A``). You have to determine this from tracking the state of ``CapsLock``, ``LeftShift``, and ``RightShift``.
+
 Due to limitations of C identifiers, the keyboard's top-row digits are ``D0`` through ``D9``. The number keypad digits are ``NumPad0`` through ``NumPad9``.
 
 # Keyboard state tracker
