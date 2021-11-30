@@ -123,6 +123,8 @@ There is no specific virtual key for lower-case (i.e. ``a``) vs. upper-case (i.e
 
 Due to limitations of C identifiers, the keyboard's top-row digits are ``D0`` through ``D9``. The number keypad digits are ``NumPad0`` through ``NumPad9``.
 
+Most of the ``Oem*`` values vary based on country/region, but you can count on ``OemPlus``, ``OemComma``, ``OemMinus``, and ``OemPeriod`` being the same for all layouts.
+
 For more information on virtual keys, see [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes).
 
 # Keyboard state tracker
