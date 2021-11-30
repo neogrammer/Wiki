@@ -117,7 +117,7 @@ if ( kb.IsKeyDown( VK_RETURN ) )
 
 # Key state
 
-The ``Keys`` enumeration and ``State`` structure is a mapping of the physical 'scan codes', so the number 0 from the keyboard top-row and the 0 on the 10-key keypad are distinct, as are the left shift vs. right shift, etc.
+The ``Keys`` enumeration and ``State`` structure is a mapping of the virtual keys rather than alphanumeric values, so the number 0 from the keyboard top-row and the 0 on the 10-key keypad are distinct, as are the left shift vs. right shift, etc.
 
 Due to limitations of C identifiers, the keyboard's top-row digits are ``D0`` through ``D9``. The number keypad digits are ``NumPad0`` through ``NumPad9``.
 
