@@ -123,6 +123,8 @@ There is no specific virtual key for lower-case (i.e. ``a``) vs. upper-case (i.e
 
 Due to limitations of C identifiers, the keyboard's top-row digits are ``D0`` through ``D9``. The number keypad digits are ``NumPad0`` through ``NumPad9``.
 
+For more information on virtual keys, see [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes).
+
 # Keyboard state tracker
 
 A common pattern is to trigger an action when a key is pressed or released, but you don't want to trigger the action every single frame if the key is held down for more than a single frame. This helper class simplifies this.
