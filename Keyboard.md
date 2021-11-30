@@ -115,6 +115,12 @@ if ( kb.IsKeyDown( VK_RETURN ) )
 
 > Since Keyboard is a singleton, you can make use of the static method **Get** if desired: ``auto kb = Keyboard::Get().GetState()``
 
+# Key state
+
+The ``Keys`` enumeration and ``State`` structure is a mapping of the physical 'scan codes', so the number 0 from the keyboard top-row and the 10-key keypad are distinct, as are the left shift vs. right shift, etc.
+
+Due to limitations of C identifiers, the keyboard's top-row digits are ``D0`` through ``D9``. The number keypad digits are ``NumPad0`` through ``NumPad9``.
+
 # Keyboard state tracker
 
 A common pattern is to trigger an action when a key is pressed or released, but you don't want to trigger the action every single frame if the key is held down for more than a single frame. This helper class simplifies this.
