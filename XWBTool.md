@@ -86,7 +86,7 @@ The XACT3 GUI and/or the XACTBLD command-line tool in the legacy DirectX SDK (Di
 # Content support
 XACT-style wave banks support 8-bit and 16-bit PCM (i.e. not 32-bit IEEE float PCM), ADPCM, xWMA, and XMA2 content.
 
-To compress to ADPCM (a variant of MS-ADPCM) .wav files, use ``adpcmencode.exe`` from the Windows SDK, Xbox One XDK, or legacy DirectX SDK.
+To compress to ADPCM (a variant of MS-ADPCM) .wav files, use ``adpcmencode.exe`` from the Windows SDK, Microsoft GDK, Xbox One XDK, or legacy DirectX SDK.
 
 To compress to xWMA .wav files, use ``xwmaencode.exe`` from the Microsoft GDK with Xbox extensions, Xbox One XDK, or legacy DirectX SDK.
 
