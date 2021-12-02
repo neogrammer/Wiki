@@ -16,12 +16,14 @@
 #include <memory>
 
 //---------------------------------------------------------------------------------
-struct handle_closer { void operator()(HANDLE h) noexcept { if (h) CloseHandle(h); } };
+namespace
+{
+    struct handle_closer { void operator()(HANDLE h) { if (h) CloseHandle(h); } };
 
-using ScopedHandle = std::unique_ptr<void, handle_closer>;
+    using ScopedHandle = std::unique_ptr<void, handle_closer>;
 
-inline HANDLE safe_handle(HANDLE h) noexcept { return (h == INVALID_HANDLE_VALUE) ? nullptr : h; }
-
+    inline HANDLE safe_handle(HANDLE h) { return (h == INVALID_HANDLE_VALUE) ? nullptr : h; }
+}
 
 //--------------------------------------------------------------------------------------
 #pragma pack(push, 1)
@@ -30,13 +32,15 @@ inline HANDLE safe_handle(HANDLE h) noexcept { return (h == INVALID_HANDLE_VALUE
 
 namespace WaveBank
 {
+    constexpr size_t DVD_SECTOR_SIZE = 2048;
 
-    static const size_t DVD_SECTOR_SIZE = 2048;
+    // Advanced format (4K native) disk
+    constexpr size_t ALIGNMENT_ADVANCED_FORMAT = 4096;
 
-    static const size_t ALIGNMENT_MIN = 4;
-    static const size_t ALIGNMENT_DVD = DVD_SECTOR_SIZE;
+    constexpr size_t ALIGNMENT_MIN = 4;
+    constexpr size_t ALIGNMENT_DVD = DVD_SECTOR_SIZE;
 
-    static const size_t MAX_COMPACT_DATA_SEGMENT_SIZE = 0x001FFFFF;
+    constexpr size_t MAX_COMPACT_DATA_SEGMENT_SIZE = 0x001FFFFF;
 
     struct REGION
     {
@@ -64,9 +68,9 @@ namespace WaveBank
 
     struct HEADER
     {
-        static const uint32_t SIGNATURE = MAKEFOURCC('D', 'N', 'B', 'W');
-        static const uint32_t BE_SIGNATURE = MAKEFOURCC('W', 'B', 'N', 'D');
-        static const uint32_t VERSION = 44;
+        static constexpr uint32_t SIGNATURE = MAKEFOURCC('W', 'B', 'N', 'D');
+        static constexpr uint32_t BE_SIGNATURE = MAKEFOURCC('D', 'N', 'B', 'W');
+        static constexpr uint32_t VERSION = 44;
 
         enum SEGIDX
         {
@@ -98,15 +102,15 @@ namespace WaveBank
 
     union MINIWAVEFORMAT
     {
-        static const uint32_t TAG_PCM = 0x0;
-        static const uint32_t TAG_XMA = 0x1;
-        static const uint32_t TAG_ADPCM = 0x2;
-        static const uint32_t TAG_WMA = 0x3;
+        static constexpr uint32_t TAG_PCM = 0x0;
+        static constexpr uint32_t TAG_XMA = 0x1;
+        static constexpr uint32_t TAG_ADPCM = 0x2;
+        static constexpr uint32_t TAG_WMA = 0x3;
 
-        static const uint32_t BITDEPTH_8 = 0x0; // PCM only
-        static const uint32_t BITDEPTH_16 = 0x1; // PCM only
+        static constexpr uint32_t BITDEPTH_8 = 0x0; // PCM only
+        static constexpr uint32_t BITDEPTH_16 = 0x1; // PCM only
 
-        static const size_t ADPCM_BLOCKALIGN_CONVERSION_OFFSET = 22;
+        static constexpr size_t ADPCM_BLOCKALIGN_CONVERSION_OFFSET = 22;
 
         struct
         {
@@ -152,7 +156,7 @@ namespace WaveBank
 
             case TAG_WMA:
             {
-                static const uint32_t aWMABlockAlign[] =
+                static const uint32_t aWMABlockAlign[17] =
                 {
                     929,
                     1487,
@@ -202,7 +206,7 @@ namespace WaveBank
 
             case TAG_WMA:
             {
-                static const uint32_t aWMAAvgBytesPerSec[] =
+                static const uint32_t aWMAAvgBytesPerSec[7] =
                 {
                     12000,
                     24000,
@@ -242,17 +246,17 @@ namespace WaveBank
 
     struct BANKDATA
     {
-        static const size_t BANKNAME_LENGTH = 64;
+        static constexpr size_t BANKNAME_LENGTH = 64;
 
-        static const uint32_t TYPE_BUFFER = 0x00000000;
-        static const uint32_t TYPE_STREAMING = 0x00000001;
-        static const uint32_t TYPE_MASK = 0x00000001;
+        static constexpr uint32_t TYPE_BUFFER = 0x00000000;
+        static constexpr uint32_t TYPE_STREAMING = 0x00000001;
+        static constexpr uint32_t TYPE_MASK = 0x00000001;
 
-        static const uint32_t FLAGS_ENTRYNAMES = 0x00010000;
-        static const uint32_t FLAGS_COMPACT = 0x00020000;
-        static const uint32_t FLAGS_SYNC_DISABLED = 0x00040000;
-        static const uint32_t FLAGS_SEEKTABLES = 0x00080000;
-        static const uint32_t FLAGS_MASK = 0x000F0000;
+        static constexpr uint32_t FLAGS_ENTRYNAMES = 0x00010000;
+        static constexpr uint32_t FLAGS_COMPACT = 0x00020000;
+        static constexpr uint32_t FLAGS_SYNC_DISABLED = 0x00040000;
+        static constexpr uint32_t FLAGS_SEEKTABLES = 0x00080000;
+        static constexpr uint32_t FLAGS_MASK = 0x000F0000;
 
         uint32_t        dwFlags;                        // Bank flags
         uint32_t        dwEntryCount;                   // Number of entries in the bank
@@ -278,11 +282,11 @@ namespace WaveBank
 
     struct ENTRY
     {
-        static const uint32_t FLAGS_READAHEAD = 0x00000001;     // Enable stream read-ahead
-        static const uint32_t FLAGS_LOOPCACHE = 0x00000002;     // One or more looping sounds use this wave
-        static const uint32_t FLAGS_REMOVELOOPTAIL = 0x00000004;// Remove data after the end of the loop region
-        static const uint32_t FLAGS_IGNORELOOP = 0x00000008;    // Used internally when the loop region can't be used
-        static const uint32_t FLAGS_MASK = 0x00000008;
+        static constexpr uint32_t FLAGS_READAHEAD = 0x00000001;     // Enable stream read-ahead
+        static constexpr uint32_t FLAGS_LOOPCACHE = 0x00000002;     // One or more looping sounds use this wave
+        static constexpr uint32_t FLAGS_REMOVELOOPTAIL = 0x00000004;// Remove data after the end of the loop region
+        static constexpr uint32_t FLAGS_IGNORELOOP = 0x00000008;    // Used internally when the loop region can't be used
+        static constexpr uint32_t FLAGS_MASK = 0x00000008;
 
         union
         {
@@ -421,7 +425,7 @@ int wmain(int argc, wchar_t* argv[], wchar_t* envp[])
     }
 
     // Dump Header
-    HEADER header;
+    HEADER header = {};
     DWORD bytes;
     if (!ReadFile(hFile.get(), &header, sizeof(header), &bytes, nullptr)
         || bytes != sizeof(header))
@@ -436,7 +440,7 @@ int wmain(int argc, wchar_t* argv[], wchar_t* envp[])
         return 1;
     }
 
-    bool be = (header.dwSignature == HEADER::BE_SIGNATURE);
+    bool be = (header.dwSignature == HEADER::BE_SIGNATURE) ? true : false;
     if (be)
     {
         header.BigEndian();
@@ -448,8 +452,8 @@ int wmain(int argc, wchar_t* argv[], wchar_t* envp[])
         return 1;
     }
 
-    wprintf(L"WAVEBANK - %ls\n%hs\nHeader: File version %u, Tool version %u\n\tBankData %u, length %u\n\tEntryMetadata %u, length %u\n\tSeekTables %u, length %u\n\tEntryNames %u, length %u\n\tEntryWaveData %u, length %u\n",
-        argv[1], (be) ? "BigEndian (Xbox 360 wave bank)" : "LittleEndian (Windows wave bank)",
+    wprintf(L"WAVEBANK - %ls\n%ls\nHeader: File version %u, Tool version %u\n\tBankData %u, length %u\n\tEntryMetadata %u, length %u\n\tSeekTables %u, length %u\n\tEntryNames %u, length %u\n\tEntryWaveData %u, length %u\n",
+        argv[1], (be) ? L"BigEndian (Xbox 360 wave bank)" : L"LittleEndian (Windows wave bank)",
         header.dwHeaderVersion, header.dwVersion,
         header.Segments[HEADER::SEGIDX_BANKDATA].dwOffset, header.Segments[HEADER::SEGIDX_BANKDATA].dwLength,
         header.Segments[HEADER::SEGIDX_ENTRYMETADATA].dwOffset, header.Segments[HEADER::SEGIDX_ENTRYMETADATA].dwLength,
@@ -458,7 +462,7 @@ int wmain(int argc, wchar_t* argv[], wchar_t* envp[])
         header.Segments[HEADER::SEGIDX_ENTRYWAVEDATA].dwOffset, header.Segments[HEADER::SEGIDX_ENTRYWAVEDATA].dwLength);
 
     // Bank Data
-    BANKDATA bank;
+    BANKDATA bank = {};
 
     if (SetFilePointer(hFile.get(), static_cast<LONG>(header.Segments[HEADER::SEGIDX_BANKDATA].dwOffset), nullptr, SEEK_SET) == INVALID_SET_FILE_POINTER)
     {
