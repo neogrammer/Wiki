@@ -12,7 +12,7 @@ See [[Audio]], [[WaveBank]]
 
 ``xwbtool.exe`` uses the following command syntax:
 
-    xwbtool [-r] [-s] [-o <filename>] [-h <filename>] [-l] [-y] [-c | -nc] [-f]
+    xwbtool [-r] [-s] [-o <filename>] [-h <filename>] [-l] [-y] [-c | -nc] [-f] [-af]
     [-flist <filename>] <file-name(s)>
 
 The file-name parameter indicates the ``.wav`` file(s) to add to the wave bank.
@@ -34,6 +34,8 @@ The file-name parameter indicates the ``.wav`` file(s) to add to the wave bank.
 **-c / -nc**: Forces creation or prevents use of compact wave banks. By default, it will try to use a compact wave bank if possible.
 
 **-f**: Includes entry friendly name strings in the wave bank for use with 'string' based versions of WaveBank::Play() and WaveBank::CreateInstance() rather than index-based versions.
+
+**-af**: Indicates that streaming wave banks should use 4K alignment rather than DVD (2K) alignment. This is needed to support Advanced Format (4K native) disks with non-buffered I/O reads if 512e emulation is disabled. See [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/w8cookbook/advanced-format--4k--disk-compatibility-update). ``-c`` is not compatible with ``-af``.
 
 **-flist _filename_**: Uses the provided filename as a text file containing a list of input files (one per line). Ignores lines that begin with ``#`` (used for comments). Does not support providing additional command-line arguments or the use of filename wildcards.
 
