@@ -68,7 +68,7 @@ For streaming wave banks, the layout of the file is purposely designed to suppor
 
 See [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/w8cookbook/advanced-format--4k--disk-compatibility-update) for more information, and the 512e emulation in place for many systems.
 
-Compact wave banks (``-c``) are not compatible with Advanced Format alignment (``-af``), so can't be used together.
+Compact wave banks (``-c``) are not compatible with Advanced Format sector alignment (``-af``), so can't be used together.
 
 # XACT3
 The XACT3 GUI and/or the XACTBLD command-line tool in the legacy DirectX SDK (DirectX SDK) can be used to build ``.xwb`` wave banks that are compatible with _DirectXTK for Audio_ if built for Windows (Little-endian) rather than Xbox 360 (Big-endian). XWBTool is just a simplified way to build them.
