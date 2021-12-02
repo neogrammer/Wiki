@@ -88,9 +88,9 @@ XACT-style wave banks support 8-bit and 16-bit PCM (i.e. not 32-bit IEEE float P
 
 To compress to ADPCM (a variant of MS-ADPCM) .wav files, use ``adpcmencode.exe`` from the Windows SDK, Xbox One XDK, or legacy DirectX SDK.
 
-To compress to xWMA .wav files, use ``xwmaencode.exe`` from the Xbox Xbox One XDK or legacy DirectX SDK.
+To compress to xWMA .wav files, use ``xwmaencode.exe`` from the Microsoft GDK with Xbox extensions, Xbox One XDK, or legacy DirectX SDK.
 
-To compress to XMA2 .wav files, use ``xma2encode.exe`` from the Xbox One XDK.
+To compress to XMA2 .wav files, use ``xma2encode.exe`` from the Microsoft GDK with Xbox extensions or the Xbox One XDK.
 
 # Note
 This tool is also included in the XAudio2 Win32 desktop samples package.
