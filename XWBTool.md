@@ -35,7 +35,7 @@ The file-name parameter indicates the ``.wav`` file(s) to add to the wave bank.
 
 **-f**: Includes entry friendly name strings in the wave bank for use with 'string' based versions of WaveBank::Play() and WaveBank::CreateInstance() rather than index-based versions.
 
-**-af**: Indicates that streaming wave banks should use 4K alignment rather than DVD (2K) alignment. This is needed to support Advanced Format (4K native) disks with non-buffered I/O reads if 512e emulation is disabled. See [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/w8cookbook/advanced-format--4k--disk-compatibility-update). Compact wave banks (``-c``) are not compatible with ``-af``.
+**-af**: Indicates that streaming wave banks should use 4K alignment rather than DVD (2K) alignment. This is needed to support Advanced Format (4K native) disks with non-buffered I/O reads if 512e emulation is disabled. See below for more information.
 
 **-flist _filename_**: Uses the provided filename as a text file containing a list of input files (one per line). Ignores lines that begin with ``#`` (used for comments). Does not support providing additional command-line arguments or the use of filename wildcards.
 
@@ -62,6 +62,13 @@ The _streaming_ form is laid out such that each individual wave in the bank is a
 XACT-style wave banks store meta-data in two forms: standard and compact. In the standard form, the wave-bank metadata is written using a 24-byte record per wave in the bank. In the compact form, they only requires 4-bytes per record. The Compact form requires that all waves in the bank have the same format, and the overall size of the bank's wave data must be less than 8,388,604 (~8 MB) for in-memory wave banks, or 268,433,408 bytes (~256 MBs) for streaming wave banks.
 
 XWBTool will attempt to create a compact wave bank if the input .wav files allow, otherwise it will use the standard form. The ``-c`` and ``-nc`` command line options override this behavior.
+
+# Advanced Format disks
+For streaming wave banks, the layout of the file is purposely designed to support non-buffered asynchronous I/O for the wave data. By default the ``-s`` switch will align the wave data to 2048 bytes which is consistent with DVD sector alignment, and has traditionally been a multiple for all known HDD sector sizes. With the advent of newer Advanced Format (4k native) HDDs, 4096 byte alignment is becoming the norm. By using ``-s -af``, the generated streaming wave bank will use 4K sector alignment.
+
+See [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/w8cookbook/advanced-format--4k--disk-compatibility-update) for more information, and the 512e emulation in place for many systems.
+
+Compact wave banks (``-c``) are not compatible with Advanced Format alignment (``-af``), so can't be used together.
 
 # XACT3
 The XACT3 GUI and/or the XACTBLD command-line tool in the legacy DirectX SDK (DirectX SDK) can be used to build ``.xwb`` wave banks that are compatible with _DirectXTK for Audio_ if built for Windows (Little-endian) rather than Xbox 360 (Big-endian). XWBTool is just a simplified way to build them.
