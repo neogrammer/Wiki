@@ -35,7 +35,7 @@ The file-name parameter indicates the ``.wav`` file(s) to add to the wave bank.
 
 **-f**: Includes entry friendly name strings in the wave bank for use with 'string' based versions of WaveBank::Play() and WaveBank::CreateInstance() rather than index-based versions.
 
-**-af**: Indicates that streaming wave banks should use 4K alignment rather than DVD (2K) alignment. This is needed to support Advanced Format (4K native) disks with non-buffered I/O reads if 512e emulation is disabled. See below for more information.
+**-af**: Indicates that streaming wave banks should use 4K alignment rather than DVD (2K) alignment. This is needed to support Advanced Format (4K native) disks with non-buffered I/O reads if there is no support for "512e". See below for more information.
 
 **-flist _filename_**: Uses the provided filename as a text file containing a list of input files (one per line). Ignores lines that begin with ``#`` (used for comments). Does not support providing additional command-line arguments or the use of filename wildcards.
 
@@ -68,7 +68,7 @@ For streaming wave banks, the layout of the file is purposely designed to suppor
 
 Use of ``-af`` is recommended when creating streaming wave banks for Xbox Series X|S.
 
-See [Wikipedia](https://en.wikipedia.org/wiki/Advanced_Format) and [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/w8cookbook/advanced-format--4k--disk-compatibility-update) for more information, and the 512e emulation in place for many systems.
+See [Wikipedia](https://en.wikipedia.org/wiki/Advanced_Format) and [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/w8cookbook/advanced-format--4k--disk-compatibility-update) for more information.
 
 Compact wave banks (``-c``) are not compatible with Advanced Format sector alignment (``-af``), so can't be used together.
 
