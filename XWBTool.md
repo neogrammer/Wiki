@@ -66,7 +66,7 @@ XWBTool will attempt to create a compact wave bank if the input .wav files allow
 # Advanced Format disks
 For streaming wave banks, the layout of the file is purposely designed to support non-buffered asynchronous I/O for the wave data. By default the ``-s`` switch will align the wave data to 2048 bytes which is consistent with DVD sector alignment, and has traditionally been a multiple for all known HDD sector sizes. With the advent of newer Advanced Format (4k native) HDDs, 4096 byte alignment is becoming the norm. By using ``-s -af``, the generated streaming wave bank will use 4K sector alignment.
 
-Use of ``-af`` is recommended when creating streaming wave banks for Xbox Series X|S.
+Use of ``-af`` is recommended when creating streaming wave banks for Xbox Series X\|S.
 
 See [Wikipedia](https://en.wikipedia.org/wiki/Advanced_Format) and [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/w8cookbook/advanced-format--4k--disk-compatibility-update) for more information.
 
