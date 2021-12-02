@@ -95,4 +95,4 @@ To compress to XMA2 .wav files, use ``xma2encode.exe`` from the Microsoft GDK wi
 # Note
 This tool is also included in the XAudio2 Win32 desktop samples package.
 
-[MSDN Code Gallery](http://code.msdn.microsoft.com/XAudio2-Win32-Samples-024b3933) or [GitHub](https://github.com/walbourn/directx-sdk-samples)
+[GitHub](https://github.com/walbourn/directx-sdk-samples)
