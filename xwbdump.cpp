@@ -115,10 +115,10 @@ namespace WaveBank
         struct
         {
             uint32_t       wFormatTag : 2;        // Format tag
-            uint32_t       nChannels : 3;        // Channel count (1 - 6)
-            uint32_t       nSamplesPerSec : 18;       // Sampling rate
-            uint32_t       wBlockAlign : 8;        // Block alignment.  For WMA, lower 6 bits block alignment index, upper 2 bits bytes-per-second index.
-            uint32_t       wBitsPerSample : 1;        // Bits per sample (8 vs. 16, PCM only); WMAudio2/WMAudio3 (for WMA)
+            uint32_t       nChannels : 3;         // Channel count (1 - 6)
+            uint32_t       nSamplesPerSec : 18;   // Sampling rate
+            uint32_t       wBlockAlign : 8;       // Block alignment.  For WMA, lower 6 bits block alignment index, upper 2 bits bytes-per-second index.
+            uint32_t       wBitsPerSample : 1;    // Bits per sample (8 vs. 16, PCM only); WMAudio2/WMAudio3 (for WMA)
         };
 
         uint32_t           dwValue;
@@ -321,8 +321,8 @@ namespace WaveBank
 
     struct ENTRYCOMPACT
     {
-        uint32_t       dwOffset : 21;       // Data offset, in multiplies of the bank alignment
-        uint32_t       dwLengthDeviation : 11;       // Data length deviation, in bytes
+        uint32_t       dwOffset : 21;          // Data offset, in multiplies of the bank alignment
+        uint32_t       dwLengthDeviation : 11; // Data length deviation, in bytes
 
         void BigEndian()
         {
@@ -509,8 +509,18 @@ int wmain(int argc, wchar_t* argv[], wchar_t* envp[])
     if (*bank.szBankName)
         wprintf(L"\tName \"%hs\"\n", bank.szBankName);
 
-    wprintf(L"\tEntry metadata size %u\n\tEntry name element size %u\n\tEntry alignment %u\n",
-        bank.dwEntryMetaDataElementSize, bank.dwEntryNameElementSize, bank.dwAlignment);
+    const wchar_t* aligndesc = L"";
+    if (bank.dwFlags & BANKDATA::TYPE_STREAMING)
+    {
+        switch(bank.dwAlignment)
+        {
+        case DVD_SECTOR_SIZE: aligndesc = L" (DVD/HDD)"; break;
+        case ALIGNMENT_ADVANCED_FORMAT: aligndesc = L" (4Kn)"; break;
+        }
+    }
+
+    wprintf(L"\tEntry metadata size %u\n\tEntry name element size %u\n\tEntry alignment %u%ls\n",
+        bank.dwEntryMetaDataElementSize, bank.dwEntryNameElementSize, bank.dwAlignment, aligndesc);
 
     if (bank.dwFlags & BANKDATA::FLAGS_COMPACT)
     {
@@ -529,14 +539,16 @@ int wmain(int argc, wchar_t* argv[], wchar_t* envp[])
         }
     }
 
-    if ((bank.dwAlignment < ALIGNMENT_MIN) || (bank.dwAlignment > ALIGNMENT_DVD))
+    if (bank.dwFlags & BANKDATA::TYPE_STREAMING)
+    {
+        if (bank.dwAlignment < DVD_SECTOR_SIZE)
+        {
+            wprintf(L"WARNING: XACT expects streaming buffers to be aligned to DVD sector size\n");
+        }
+    }
+    else if ((bank.dwAlignment < ALIGNMENT_MIN) || (bank.dwAlignment > ALIGNMENT_DVD))
     {
         wprintf(L"WARNING: XACT expects alignment to be in the range %zu...%zu \n", ALIGNMENT_MIN, ALIGNMENT_DVD);
-    }
-
-    if ((bank.dwFlags & BANKDATA::TYPE_STREAMING) && (bank.dwAlignment < DVD_SECTOR_SIZE))
-    {
-        wprintf(L"WARNING: XACT expects streaming buffers to be aligned to DVD sector size\n");
     }
 
     SYSTEMTIME st;
