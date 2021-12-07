@@ -39,7 +39,7 @@ The newly created project contains the following files:
 * Precompiled header files
   * pch.h
   * pch.cpp
-* Main application entry-point
+* Main application entry-point and classic Windows procedure function or CoreWindow class
   * Main.cpp
 * [[Timer|StepTimer]] helper class
   * StepTimer.h
