@@ -18,7 +18,7 @@ There is therefore a "DR" variant of each of the Direct3D Game VS templates in t
 ## Visual Studio 2019 / 2022
 * From the drop-down menu, select **File** and then **New** -> **Project...** or on the startup dialog select **Create a new project**
 * Select "Games" on the project types filter. You can optionally type "Win32" or "UWP" in the search box as well.
-* Select "Direct3D Win32 Game" or "Direct3D UWP Game".
+* Select "Direct3D Win32 Game DR" or "Direct3D UWP Game DR".
 * Select "Next"
 * Fill in the "Project name" and "Location" fields as desired.
 * Optional: Check "Place solution and project in the same directory" to keep the directory structure as bit flatter.
