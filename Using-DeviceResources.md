@@ -39,17 +39,13 @@ The newly created project contains the following files:
 * Precompiled header files
   * pch.h
   * pch.cpp
-* Main application entry-point and classic Windows procedure function
+* Main application entry-point and classic Windows procedure function or CoreWindow class
   * Main.cpp
 * Device resources abstraction
   * DeviceResources.h
   * DeviceResources.cpp
 * [[Timer|StepTimer]] helper class
   * StepTimer.h
-* Resources
-  * directx.ico
-  * resource.rc
-  * settings.manifest
 * The Game class
   * Game.h
   * Game.cpp
