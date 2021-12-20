@@ -148,7 +148,7 @@ Or you can make use of [IMMNotificationClient](https://docs.microsoft.com/en-us/
 You can be informed of new audio devices by using the WinRT class DeviceWatcher in the ``Windows.Device.Enumeration`` namespace.
 
 [Device Enumeration Sample](http://code.msdn.microsoft.com/windowsapps/Device-Enumeration-Sample-a6e45169)  
-[DeviceEnumerationAndPairing](https://github.com/Microsoft/Windows-universal-samples/tree/master/Samples/DeviceEnumerationAndPairing)
+[DeviceEnumerationAndPairing](https://github.com/Microsoft/Windows-universal-samples/tree/main/Samples/DeviceEnumerationAndPairing)
 
 # Per-frame processing
 **Update** should be called often, usually in a per-frame update. This can be done on the main rendering thread, or from a worker thread. This returns false if the audio engine is the 'silent' mode.

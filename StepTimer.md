@@ -83,7 +83,7 @@ Ticks are stored in unsigned 64-bit integers and second values are stored in ``d
 
 # Source
 
-[StepTimer.h](https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d12game_win32_dr/StepTimer.h)
+[StepTimer.h](https://raw.githubusercontent.com/walbourn/directx-vs-templates/main/d3d12game_win32_dr/StepTimer.h)
 
 # Further reading
 [Understanding GameTime](http://www.shawnhargreaves.com/blog/understanding-gametime.html)  

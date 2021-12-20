@@ -128,7 +128,7 @@ The official samples for DirectX 11 were originally shipped in the legacy *Direc
 # Resources
 
 [Dual-use Coding Techniques for Games](https://aka.ms/Fo3su4)  
-[C++ Core Guidelines](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md)
+[C++ Core Guidelines](https://github.com/isocpp/CppCoreGuidelines)
 
 # Further reading
 

@@ -34,7 +34,7 @@ static RECT Union(const RECT& rcta, const RECT& rctb);
 
 For 3D collision implementation, the [DirectXMath](https://docs.microsoft.com/en-us/windows/win32/dxmath/directxmath-portal) bounding classes provide implementations of many 3D test. If desired, you can interop with these using [[SimpleMath]]'s types like ``Vector3``, ``Vector4``, ``Plane``, ``Ray``, etc.
 
-> See the *Collision* ([PC](https://github.com/walbourn/directx-sdk-samples/tree/master/Collision) / [UWP](https://github.com/microsoft/Xbox-ATG-Samples/tree/master/UWPSamples/System/CollisionUWP) / [XDK](https://github.com/microsoft/Xbox-ATG-Samples/tree/master/XDKSamples/System/Collision)) sample for a demonstration of these ``DirectXCollision.h`` types.
+> See the *Collision* ([PC](https://github.com/walbourn/directx-sdk-samples/tree/main/Collision) / [UWP](https://github.com/microsoft/Xbox-ATG-Samples/tree/master/UWPSamples/System/CollisionUWP) / [XDK](https://github.com/microsoft/Xbox-ATG-Samples/tree/master/XDKSamples/System/Collision)) sample for a demonstration of these ``DirectXCollision.h`` types.
 
 ## BoundingSphere class
 This is the classic 'bounding sphere' collision primitive.
@@ -126,4 +126,4 @@ See [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/dxmath/ovw-x
 # Further reading
 
 [DirectXMath Programmer's Reference](https://docs.microsoft.com/en-us/windows/desktop/dxmath/ovw-xnamath-reference)  
-DirectXMath Collision sample [Win32](https://github.com/walbourn/directx-sdk-samples/tree/master/Collision) or [UWP](https://github.com/microsoft/Xbox-ATG-Samples/tree/master/UWPSamples/System/CollisionUWP)
+DirectXMath Collision sample [Win32](https://github.com/walbourn/directx-sdk-samples/tree/main/Collision) or [UWP](https://github.com/microsoft/Xbox-ATG-Samples/tree/master/UWPSamples/System/CollisionUWP)

@@ -123,7 +123,7 @@ The MakeSpriteFont tool will generate warnings if the resulting sprite sheet tex
 
 # SpriteFont files
 
-To aid in debugging, here is a [simple console program](https://raw.githubusercontent.com/wiki/Microsoft/DirectXTK/spritefontdump.cpp) for dumping out the content of a ``.spritefont`` header in a human-readable form along with a ``DDS`` file for the sprite sheet texture. It requires the [dds.h](https://raw.githubusercontent.com/Microsoft/DirectXTK/master/Src/dds.h) header in the DirectXTK library to build.
+To aid in debugging, here is a [simple console program](https://raw.githubusercontent.com/wiki/Microsoft/DirectXTK/spritefontdump.cpp) for dumping out the content of a ``.spritefont`` header in a human-readable form along with a ``DDS`` file for the sprite sheet texture. It requires the [dds.h](https://raw.githubusercontent.com/Microsoft/DirectXTK/main/Src/dds.h) header in the DirectXTK library to build.
 
 # Further reading
 

@@ -180,7 +180,7 @@ You can therefore freely mix SimpleMath types with DirectXMath functions at any 
 
 # Remarks
 
-If you are looking for an equivalent to the D3DXmath ``D3DXCreateMatrixStack`` / ``ID3DXMATRIXStack``, see [DirectXMatrixStack.h](https://github.com/microsoft/DirectXMath/blob/master/MatrixStack/DirectXMatrixStack.h).
+If you are looking for an equivalent to the D3DXmath ``D3DXCreateMatrixStack`` / ``ID3DXMATRIXStack``, see [DirectXMatrixStack.h](https://github.com/microsoft/DirectXMath/blob/main/MatrixStack/DirectXMatrixStack.h).
 
 # Further Reading
 [DirectXMath](https://github.com/Microsoft/DirectXMath/wiki) project wiki

@@ -169,8 +169,8 @@ Since the ``DeviceResources`` class is now in it's own file and no longer direct
 * Rather than always using the default Direct3D device, the DR version will filter out the _Microsoft Basic Render Driver_ adapter as this fallback software device is seldom acceptable performance for games.
 
 # Source
-* Direct3D 11 Win32 version: [DeviceResources.h](https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d11game_win32_dr/DeviceResources.h) / [DeviceResources.cpp](https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d11game_win32_dr/DeviceResources.cpp)
-* Direct3D 11 UWP version: [DeviceResources.h](https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d11game_uwp_dr/DeviceResources.h) / [DeviceResources.cpp](https://raw.githubusercontent.com/walbourn/directx-vs-templates/master/d3d11game_uwp_dr/DeviceResources.cpp)
+* Direct3D 11 Win32 version: [DeviceResources.h](https://raw.githubusercontent.com/walbourn/directx-vs-templates/main/d3d11game_win32_dr/DeviceResources.h) / [DeviceResources.cpp](https://raw.githubusercontent.com/walbourn/directx-vs-templates/main/d3d11game_win32_dr/DeviceResources.cpp)
+* Direct3D 11 UWP version: [DeviceResources.h](https://raw.githubusercontent.com/walbourn/directx-vs-templates/main/d3d11game_uwp_dr/DeviceResources.h) / [DeviceResources.cpp](https://raw.githubusercontent.com/walbourn/directx-vs-templates/main/d3d11game_uwp_dr/DeviceResources.cpp)
 * Direct3D 11 Xbox One XDK version: [DeviceResources.h](https://github.com/walbourn/directx-vs-templates/blob/xbox/d3d11game_xdk_dr/DeviceResources.h) / [DeviceResources.cpp](https://github.com/walbourn/directx-vs-templates/blob/xbox/d3d11game_xdk_dr/DeviceResources.cpp)
 
 # Wide-gamut HDR rendering

@@ -4,7 +4,7 @@ These writers do not support array textures, 1D textures, 3D volume textures, cu
 
 MSAA textures are resolved before being written.
 
-> A standalone version is included in [DirectXTex](https://github.com/microsoft/DirectXTex/tree/master/ScreenGrab) for Direct3D 9, Direct3D 11, and Direct3D 12. Be sure to add both the ``h`` and ``cpp`` file to your project.
+> A standalone version is included in [DirectXTex](https://github.com/microsoft/DirectXTex/tree/main/ScreenGrab) for Direct3D 9, Direct3D 11, and Direct3D 12. Be sure to add both the ``h`` and ``cpp`` file to your project.
 
 # Header
 ```cpp

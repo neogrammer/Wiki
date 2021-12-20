@@ -227,7 +227,7 @@ case WM_DEVICECHANGE:
     return 0;
 ```
 
-> **Universal Windows Platform apps:** Since there is no Win32 message loop for these applications, you'd make use of the WinRT class ``DeviceWatcher`` in the ``Windows.Device.Enumeration`` namespace. See [DeviceEnumerationAndPairing](https://github.com/Microsoft/Windows-universal-samples/tree/master/Samples/DeviceEnumerationAndPairing), and the [DirectX Tool Kit Simple Sample for UWP](https://github.com/walbourn/directxtk-samples/blob/master/SimpleSampleWindows10/Main.cpp)
+> **Universal Windows Platform apps:** Since there is no Win32 message loop for these applications, you'd make use of the WinRT class ``DeviceWatcher`` in the ``Windows.Device.Enumeration`` namespace. See [DeviceEnumerationAndPairing](https://github.com/Microsoft/Windows-universal-samples/tree/main/Samples/DeviceEnumerationAndPairing), and the [DirectX Tool Kit Simple Sample for UWP](https://github.com/walbourn/directxtk-samples/blob/main/SimpleSampleWindows10/Main.cpp)
 
 **Next lesson:** [[Creating and playing sounds]]
 

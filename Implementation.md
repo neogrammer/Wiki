@@ -163,7 +163,7 @@ SpriteBatch(SpriteBatch const&) = delete;
 SpriteBatch& operator= (SpriteBatch const&) = delete;
 ```
 
-Per [C++ Core Guidelines](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md) recommendations, if you declare a copy constructor/assignment operator, you should also defined the move equivalents:
+Per [C++ Core Guidelines](https://github.com/isocpp/CppCoreGuidelines) recommendations, if you declare a copy constructor/assignment operator, you should also defined the move equivalents:
 
 ```cpp
 Rectangle(Rectangle&&) = default;
