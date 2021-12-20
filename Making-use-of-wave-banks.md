@@ -231,6 +231,8 @@ You can create both in-memory and streaming wave banks using ADPCM, xWMA, or XMA
 xwbtool -o music.xwb -y -s Electro_1_xwma.wav
 ```
 
+> For *Xbox* you should use the Advanced Format (4Kn) switch (``-af``)
+
 > _Troubleshooting:_ This will fail to run if you are using XAudio 2.8 which only supports ADPCM, but not xWMA. It will run with XAudio 2.9, XAudio 2.7, or the XAudio2Redist.
 
 **Next lesson:** [[Using positional audio]]
@@ -238,3 +240,5 @@ xwbtool -o music.xwb -y -s Electro_1_xwma.wav
 # Further reading
 
 DirectX Tool Kit docs [[SoundEffectInstance]], [[SoundStreamInstance]], [[WaveBank]]
+
+[XAudio2AsyncStream](https://github.com/walbourn/directx-sdk-samples/tree/main/XAudio2/XAudio2AsyncStream), [SimplePlaySoundStream (UWP)](https://github.com/microsoft/Xbox-ATG-Samples/tree/master/UWPSamples/Audio/SimplePlaySoundStreamUWP), [SimplePlaySoundStream (GDK)](https://github.com/microsoft/Xbox-GDK-Samples/tree/main/Samples/Audio/SimplePlaySoundStream) samples
