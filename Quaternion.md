@@ -48,6 +48,8 @@ Quaternion q(arr);                // Creates a quaternion [0, 0, 0, 1]
 
 * **Dot**
 
+* **ToEuler**: Computes rotation about y-axis (y), then x-axis (x), then z-axis (z). The return value is compatible with one of the overloads of ``CreateFromYawPitchRoll``.
+
 # Statics
 
 * **CreateFromAxisAngle**: Creates a quaternion representing a rotation of a given angle (in radians) around an arbitrary axis vector.
