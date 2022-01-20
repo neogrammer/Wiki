@@ -99,7 +99,7 @@ Matrix m( arr );           // Creates a matrix [1 2 3 0
 
 * **CreateWorld**
 
-* **CreateFromQuaternion**
+* **CreateFromQuaternion**: Converts a quaternion to a matrix.
 
 * **CreateFromYawPitchRoll**: Rotates about y-axis (yaw), then x-axis (pitch), then z-axis (roll) by given angles in radians. There is an overload which takes [[Vector3]] which provides x, y, and z angles in radians.
 
