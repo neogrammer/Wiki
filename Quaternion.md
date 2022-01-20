@@ -94,3 +94,7 @@ David Eberly, "Quaternion Algebra and Calculus" [link](http://www.geometrictools
 Sam Melax, "The Shortest Arc Quaternion", Game Programming Gems, Charles River Media (2000).
 
 Ken Shoemake, "Quaternions", Department of Computer and Information Science, University of Pennsylvania [link](http://www.cs.ucr.edu/~vbz/resources/quatut.pdf)
+
+# See also
+
+[[Vector2]], [[Vector3]], [[Vector4]], [[Matrix]]
