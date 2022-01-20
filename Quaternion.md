@@ -42,11 +42,13 @@ Quaternion q(arr);                // Creates a quaternion [0, 0, 0, 1]
 
 * **Normalize**: Normalizes the quaternion. _Note that only normalized quaternions correspond to 3D rotations._
 
-* **Conjugate**: Computes the conjugate of a quaternion. _This result is ``Quaternion(-x, -y, -z, w)``._
+* **Conjugate**: Computes the conjugate of a quaternion. _This result is ``Quaternion(-x, -y, -z, w)``._ Note for a normalized quaternion, this is the inverse.
 
-* **Inverse**
+* **Inverse**: Computes the inverse of a quaternion including normalization.
 
 * **Dot**
+
+* **RotateTowards**
 
 * **ToEuler**: Computes rotation about y-axis (y), then x-axis (x), then z-axis (z). The return value is compatible with one of the overloads of ``CreateFromYawPitchRoll``.
 
@@ -54,9 +56,9 @@ Quaternion q(arr);                // Creates a quaternion [0, 0, 0, 1]
 
 * **CreateFromAxisAngle**: Creates a quaternion representing a rotation of a given angle (in radians) around an arbitrary axis vector.
 
-* **CreateFromYawPitchRoll**: Creates a quaternion representation a rotation from a yaw/pitch/roll.
+* **CreateFromYawPitchRoll**: Creates a quaternion representation a rotation about y-axis (yaw), then x-axis (pitch), then z-axis (roll) given in radians.
 
-> The original D3DXmath library took the rotations in the the Yaw, Pitch, Roll order and that order was replicated in *XNA Game Studio*. In DirectXMath, the order was normalized to Roll (X), Pitch (Y), Yaw (Z).
+> The original D3DXmath library took the rotations in the the Yaw, Pitch, Roll order and that order was replicated in *XNA Game Studio*. In DirectXMath, the order was normalized to Roll (X), Pitch (Y), Yaw (Z)  for the parameters, but the application of the rotations is in the same order.
 
 * **CreateFromRotationMatrix**
 
@@ -67,6 +69,12 @@ Quaternion q(arr);                // Creates a quaternion [0, 0, 0, 1]
 * **Slerp**: Spherical linear interpolation
 
 > For interpolating between arbitrary 3D rotations, the *slerp* is the gold-standard. For small differences, however, *lerp* is much faster and almost identical.
+
+* **FromToRotation**
+
+* **LookRotation**
+
+* **Angle**: Computes the angle (in radians) between two quaternions (assuming the inputs are normalized).
 
 # Constants
 * **Identity**: The identity quaternion [0, 0, 0, 1]
