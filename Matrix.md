@@ -73,7 +73,7 @@ Matrix m( arr );           // Creates a matrix [1 2 3 0
 
 * **Determinant**: Computes the [determinant](https://en.wikipedia.org/wiki/Determinant) of the matrix.
 
-* **ToEuler**: Computes rotation about y-axis (y), then x-axis (x), then z-axis (z). The return value is compatible with one of the overloads of ``CreateFromYawPitchRoll``. This result is only valid if the input matrix's upper 3x3 contains only rotation (i.e. no scaling).
+* **ToEuler**: Computes rotation about y-axis (y), then x-axis (x), then z-axis (z) as angles in radians. The return value is compatible with one of the overloads of ``CreateFromYawPitchRoll``. This result is only valid if the input matrix's upper 3x3 contains only rotation (i.e. no scaling).
 
 # Statics
 
