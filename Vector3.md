@@ -1,5 +1,7 @@
 Three component vector class modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Vector3``) math library.
 
+See also [[SimpleMath]]
+
 # Header
 ```cpp
 #include <SimpleMath.h>
