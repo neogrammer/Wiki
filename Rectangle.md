@@ -17,7 +17,7 @@ Rectangle r(10, 20, 100, 200);  // Creates a rectangle with upper-left [10,20]
                                 // 100 width, and 200 height
 ```
 
-> For Windows desktop apps, you may find that ``Rectangle`` conflicts with the GDI function of the same name. You can resolve this three ways: Use ``#define NOGDI`` before you include ``<windows.h>``; use ``SimpleMath::Rectangle``, or in local scope use ``using Rectangle = SimpleMath::Rectangle;``.
+> For Windows desktop apps, you may find that ``Rectangle`` conflicts with the GDI function of the same name. You can resolve this three ways: Use ``#define NOGDI`` before you include ``<Windows.h>``; use ``SimpleMath::Rectangle``, or in local scope use ``using Rectangle = SimpleMath::Rectangle;``.
 
 # Fields
 * *x* location of the upper-left corner
