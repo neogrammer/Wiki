@@ -36,6 +36,8 @@ Quaternion q(arr);                // Creates a quaternion [0, 0, 0, 1]
 
 * Binary operators: ``+``, ``-``, ``*``, ``/``
 
+> Keep in mind that quaternion multiplication is *non-commutative*.
+
 * **Length**
 
 * **LengthSquared**
@@ -50,7 +52,7 @@ Quaternion q(arr);                // Creates a quaternion [0, 0, 0, 1]
 
 * **RotateTowards**: Rotates the quaternion towards another target quaternion, but limited by a maximum angle in radians. This is useful for animating rotational changes.
 
-* **ToEuler**: Computes rotation about y-axis (y), then x-axis (x), then z-axis (z). The return value is compatible with one of the overloads of ``CreateFromYawPitchRoll``.
+* **ToEuler**: Computes rotation about y-axis (y), then x-axis (x), then z-axis (z) as angles in radians. The return value is compatible with one of the overloads of ``CreateFromYawPitchRoll``.
 
 # Statics
 
@@ -62,7 +64,7 @@ Quaternion q(arr);                // Creates a quaternion [0, 0, 0, 1]
 
 * **CreateFromRotationMatrix**: Converts the upper 3x3 rotation in a [[Matrix]] to a quaternion.
 
-* **Concatenate**: Concatenates two quaternion rotations. _Note: ``Concatenate(q1,q2)`` is equivalent to ``q2*q1``_. Keep in mind that quaternion multiplication is *non-commutative*.
+* **Concatenate**: Concatenates two quaternion rotations. _Note: ``Concatenate(q1,q2)`` is equivalent to ``q2*q1``_.
 
 * **Lerp**: Linear interpolation
 
