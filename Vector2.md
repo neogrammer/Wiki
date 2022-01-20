@@ -68,3 +68,7 @@ Vector2 v(arr);   // Creates a vector [1, 2]
 
 # Remark
 Vector2 can freely convert to and from a ``XMFLOAT2`` and ``XMVECTOR`` (the z and w components are lost).
+
+# See also
+
+[[Vector3]], [[Vector4]], [[Matrix]]
