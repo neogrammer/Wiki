@@ -2,6 +2,8 @@ A four by four row-major [matrix](https://en.wikipedia.org/wiki/Matrix_(mathemat
 
 A 4x4 *matrix* is commonly used in computer graphics for 2D and 3D [transformations](https://en.wikipedia.org/wiki/Transformation_matrix).
 
+See also [[SimpleMath]]
+
 # Header
 ```cpp
 #include <SimpleMath.h>
