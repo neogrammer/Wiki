@@ -1,4 +1,4 @@
-A rotation represented as a four component vector modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Quaternion``) math library.
+A [rotation represented as a four component vector](https://en.wikipedia.org/wiki/Quaternion) modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Quaternion``) math library.
 
 A *quaternion* is a very efficient and compact method for working with 3D rotation. A *quaternion* is a 4-dimensional value and only has physical meaning when it's normalized. In computer graphics, they are used to represent 3D rotations as a 4-vector (i.e. 4 float values) instead of requiring a 3x3 matrix (i.e. 9 float values). They are extremely useful implementing cameras and animation where a *quaternion* can smoothly interpolate between 3D rotations while avoiding the [gimbal lock](https://en.wikipedia.org/wiki/Gimbal_lock) problem common to Euler angles.
 
