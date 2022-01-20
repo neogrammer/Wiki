@@ -62,6 +62,6 @@ When assigning a color from ``DirectXColors.h`` to a Color, use the ``.v`` union
 Color color = Colors::White.v;
 ```
 
-Color can be copy and assigned from ``DirectX::PackedVector::XMCOLOR`` and ``DirectX::PackedVector::XMUBYTEN4``
+Color can be copy and assigned from ``DirectX::PackedVector::XMCOLOR`` (BGRA Direct3D 9 D3DCOLOR packed color) and ``DirectX::PackedVector::XMUBYTEN4`` (RGBA XNA Game Studio packed color).
 
 Color component values can exceed the 0 to 1 range for High Dynamic Range (HDR) lighting. Alpha values greater than 1 typically don't have a valid meaning.
