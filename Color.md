@@ -1,5 +1,7 @@
 Four component color vector class modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Color``) math library.
 
+See also [[SimpleMath]]
+
 # Header
 ```cpp
 #include <SimpleMath.h>
