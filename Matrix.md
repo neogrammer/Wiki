@@ -121,3 +121,7 @@ Matrix m( arr );           // Creates a matrix [1 2 3 0
 Matrix can freely convert to and from a ``XMFLOAT4X4`` and ``XMMATRIX``.
 
 You can copy or assign a Matrix from a ``XMFLOAT3X3`` or ``XMFLOAT4X3``.
+
+# See also
+
+[[Vector2]], [[Vector3]], [[Vector4]], [[Quaternion]]
