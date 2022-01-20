@@ -29,7 +29,7 @@ Rectangle r(10, 20, 100, 200);  // Creates a rectangle with upper-left [10,20]
 * Comparison operators: ``==`` and ``!=``
 * Assignment operator: ``=``
 
-* **Location**, **Center**: Returns the rectangle position as a Vector2
+* **Location**, **Center**: Returns the rectangle position as a [[Vector2]]
 
 * **IsEmpty**: Returns true if the rectangle is [0, 0, 0, 0]
 
