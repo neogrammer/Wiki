@@ -1,4 +1,4 @@
-A four by four row-major matrix modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Matrix``) math library.
+A four by four row-major [matrix](https://en.wikipedia.org/wiki/Matrix_(mathematics)) modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Matrix``) math library.
 
 A 4x4 *matrix* is commonly used in computer graphics for 2D and 3D [transformations](https://en.wikipedia.org/wiki/Transformation_matrix).
 
@@ -65,13 +65,15 @@ Matrix m( arr );           // Creates a matrix [1 2 3 0
 
 * Binary operators: ``+``, ``-``, ``*``, ``/``
 
-* **Decompose**: Decompose the matrix into rotation, scaling, and translation components
+* **Decompose**: Decomposes the matrix into rotation (a [[Quaternion]]), scaling, and translation components. Returns ``false`` if the matrix can't be decomposed.
 
-* **Transpose**
+* **Transpose**: Computes the [transpose](https://en.wikipedia.org/wiki/Transpose) of the matrix. Note that for a pure rotation matrix, this is the same as the inverse.
 
-* **Invert**
+* **Invert**: Computes the inverse of the matrix using [Cramer's rule](https://en.wikipedia.org/wiki/Cramer%27s_rule). It returns ``false`` if the matrix is not invertible.
 
-* **Determinant**
+* **Determinant**: Computes the [determinant](https://en.wikipedia.org/wiki/Determinant) of the matrix.
+
+* **ToEuler**: Computes rotation about y-axis (y), then x-axis (x), then z-axis (z). The return value is compatible with one of the overloads of ``CreateFromYawPitchRoll``.
 
 # Statics
 
@@ -79,13 +81,13 @@ Matrix m( arr );           // Creates a matrix [1 2 3 0
 
 * **CreateConstrainedBillboard**: Creates a cylindrical billboard that rotates around a specified axis
 
-* **CreateTranslation**
+* **CreateTranslation**: Creates a matrix for translating by the given X, Y, Z offset. Note you can create the inverse of this matrix by passing -X, -Y, -Z.
 
-* **CreateScale**
+* **CreateScale**: Creates a matrix for scaling by the given X, Y, and Z scale factors. Note you can create the inverse of this matrix by passing 1/X, 1/Y, 1/Z.
 
-* **CreateRotationX**, **CreateRotationY**, **CreateRotationZ**
+* **CreateRotationX**, **CreateRotationY**, **CreateRotationZ**: Creates a matrix for rotation about the x-axis / y-axis / z-axis by angle given in [radians](https://en.wikipedia.org/wiki/Radian).
 
-* **CreateFromAxisAngle**
+* **CreateFromAxisAngle**: Creates a matrix a rotation about a given 3-vector axis and an angle given in radians.
 
 * **CreatePerspective**, **CreatePerspectiveFieldOfView**, **CreatePerspectiveOffCenter**: Creates perspective projection in right-handed (RH) coordinates
 
@@ -93,13 +95,15 @@ Matrix m( arr );           // Creates a matrix [1 2 3 0
 
 * **CreateLookAt**: Creates a look-at matrix in right-handed (RH) coordinates
 
+> For Left-Handed (LH) viewing coordinates, you can use the [DirectXMath](https://docs.microsoft.com/en-us/windows/win32/dxmath/ovw-xnamath-reference-functions-matrix) functions directly which interop freely with ``Matrix``.
+
 * **CreateWorld**
 
 * **CreateFromQuaternion**
 
-* **CreateFromYawPitchRoll**
+* **CreateFromYawPitchRoll**: Rotates about y-axis (yaw), then x-axis (pitch), then z-axis (roll) by given angles in radians. There is an overload which takes [[Vector3]] which provides x, y, and z angles in radians.
 
-> The original D3DXmath library took the rotations in the the Yaw, Pitch, Roll order and that order was replicated in *XNA Game Studio*. In DirectXMath, the order was normalized to Roll (X), Pitch (Y), Yaw (Z).
+> The original D3DXmath library took the rotations in the the Yaw, Pitch, Roll order and that order was replicated in *XNA Game Studio*. In DirectXMath, the order was normalized to Roll (X), Pitch (Y), Yaw (Z). for the parameters, but the application of the rotations is in the same order.
 
 * **CreateShadow**: Creates transform that flattens geometry into a specified [[Plane]] as if casting a shadow from a specified light source
 
