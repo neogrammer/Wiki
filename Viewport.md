@@ -1,5 +1,7 @@
 Viewport class modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Viewport``) graphics library.
 
+See also [[SimpleMath]]
+
 # Header
 
 ```cpp
