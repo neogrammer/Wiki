@@ -103,7 +103,7 @@ Matrix m( arr );           // Creates a matrix [1 2 3 0
 
 * **CreateFromYawPitchRoll**: Rotates about y-axis (yaw), then x-axis (pitch), then z-axis (roll) by given angles in radians. There is an overload which takes [[Vector3]] which provides x, y, and z angles in radians.
 
-> The original D3DXmath library took the rotations in the the Yaw, Pitch, Roll order and that order was replicated in *XNA Game Studio*. In DirectXMath, the order was normalized to Roll (X), Pitch (Y), Yaw (Z). for the parameters, but the application of the rotations is in the same order.
+> The original D3DXmath library took the rotations in the the Yaw, Pitch, Roll order and that order was replicated in *XNA Game Studio*. In DirectXMath, the order was normalized to Roll (X), Pitch (Y), Yaw (Z) for the parameters, but the application of the rotations is in the same order.
 
 * **CreateShadow**: Creates transform that flattens geometry into a specified [[Plane]] as if casting a shadow from a specified light source
 
