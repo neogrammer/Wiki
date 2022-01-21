@@ -1,3 +1,6 @@
+|[[DirectXTK]]|
+|---|
+
 A Direct3D 11 2D texture loader that uses Windows Imaging Component (WIC) to load a bitmap (``BMP``, ``JPEG``, ``PNG``, ``TIFF``, ``GIF``, HD Photo, or other WIC supported file container), resize if needed based on the current feature level (or by explicit parameter), format convert to a standard DXGI format if required, and then create a 2D texture. Furthermore, if a Direct3D 11 device context is provided and the current device supports it for the given pixel format, it will auto-generate mipmaps.
 
 This loader does not support array textures, 1D textures, 3D volume textures, cubemaps, or cubemap arrays. For these scenarios, use the ``.DDS`` file format and [[DDSTextureLoader]] instead. For 'multiframe' support like animated GIF files, see [DirectXTex](https://github.com/microsoft/DirectXTex).

@@ -1,8 +1,9 @@
+|[[DirectXTK]]|[[SimpleMath]]|
+|---|---|
+
 A 2D rectangle class modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Rectangle``) math library
 
 > For Universal Windows Platform and Xbox One, similar functionality is provided by the [Windows::Foundation::Rect](https://docs.microsoft.com/en-us/uwp/api/Windows.Foundation.Rect) Windows Runtime structure
-
-See also [[SimpleMath]]
 
 # Header
 ```cpp

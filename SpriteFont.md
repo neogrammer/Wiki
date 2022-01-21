@@ -1,3 +1,6 @@
+|[[DirectXTK]]|
+|---|
+
 This is a native Direct3D 11 implementation of a bitmap font renderer, similar to the SpriteFont type from XNA Game Studio 4 (``Microsoft.Xna.Framework.Graphics.SpriteFont``), plus a command line tool ([[MakeSpriteFont]]) for building fonts into bitmap format. It is less fully featured than Direct2D and DirectWrite, but may be useful for those who want something simpler and lighter weight.
 
 > UWP on Xbox One supports Direct2D/DirectWrite, but Xbox One XDK does not.

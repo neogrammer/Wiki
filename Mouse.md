@@ -1,3 +1,6 @@
+|[[DirectXTK]]|
+|---|
+
 This is a helper for simplified mouse tracking modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Input``) Mouse class.
 
 ![Microsoft Sculpt Mobile Mouse - Blue](https://github.com/Microsoft/DirectXTK/wiki/images/sculptmobilemouse.jpg)

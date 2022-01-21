@@ -1,9 +1,12 @@
+|[[DirectXTK]]|
+|---|
+
 The _DirectXTK for Audio_ components implement a low-level audio API similar to the XNA Game Studio 4 (``Microsoft.Xna.Framework.Audio``) design. This consists of the following classes all declared in the ``Audio.h`` header (in the _Inc_ folder of the distribution):
 
 * [[AudioEngine]] - This class represents an XAudio2 audio graph, device, and mastering voice.
 * [[SoundEffect]] - A container class for sound resources which can be loaded from ``.wav`` files. These can be played as 'one-shots' managed by the engine, or used to create a *SoundEffectInstance*.
 * [[SoundEffectInstance]] -  Provides a single playing, looped, paused, or stopped instance of a sound. These support 3D positional audio and optionally reverb effects.
-* [[SoundStreamInstance]] - *SoundEffectInstance* for playing waves from a streaming XACT-style ``.xwb`` wave bank. 
+* [[SoundStreamInstance]] - *SoundEffectInstance* for playing waves from a streaming XACT-style ``.xwb`` wave bank.
 * [[DynamicSoundEffectInstance]] - *SoundEffectInstance* where the application provides the audio data on demand.
 * [[WaveBank]] - A container class for sound resources packaged into an XACT-style ``.xwb`` wave bank, with support for directly playing one-shots and creating *SoundEffectInstance*s that refer to entries in the wave bank.
 * [[AudioListener]],  [[AudioEmitter]] - Utility classes used with ``SoundEffectInstance::Apply3D``.
@@ -160,7 +163,7 @@ XACT3-style "wave banks" can be created by using the [[XWBTool]] command-line to
 
     xwbtool -o wavebank.xwb Sound.wav Explosion.wav Music.wav
 
-    xwbtool -s -o streamingwb.xwb Track1.wav Track2.wav Track3.wav Track4.wav 
+    xwbtool -s -o streamingwb.xwb Track1.wav Track2.wav Track3.wav Track4.wav
 
 DirectXTK for Audio does not make use of the XACT engine, nor does it make use of XACT "sound banks" ``.xsb`` or "cues". We only use ``.xwb`` wave banks as a method for packing ``.wav`` data.
 

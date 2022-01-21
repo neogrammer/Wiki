@@ -1,3 +1,6 @@
+|[[DirectXTK]]|[[Audio]]|
+|---|---|
+
 AudioListener is a helper object derived from [X3DAUDIO_LISTENER](https://docs.microsoft.com/en-us/windows/desktop/api/x3daudio/ns-x3daudio-x3daudio_listener) that can be used by the **Apply3D** method of [[SoundEffectInstance]], [[SoundStreamInstance]], and [[DynamicSoundEffectInstance]].
 
 See [[AudioEmitter]].

@@ -1,6 +1,7 @@
-Performs basic post-processing with a built-in set of shaders which operate using one input texture.
+|[[DirectXTK]]|[[PostProcess]]|
+|---|---|
 
-See also [[PostProcess]]
+Performs basic post-processing with a built-in set of shaders which operate using one input texture.
 
 # Header
 ```cpp
@@ -56,4 +57,3 @@ postProcess->SetEffect(BasicPostProcess::Copy);
 
 postProcess->Process(context);
 ```
-

@@ -1,3 +1,6 @@
+|[[DirectXTK]]|[[Audio]]|
+|---|---|
+
 AudioEmitter is a helper object derived from [X3DAUDIO_EMITTER](https://docs.microsoft.com/en-us/windows/desktop/api/x3daudio/ns-x3daudio-x3daudio_emitter) that can be used with the **Apply3D** method of [[SoundEffectInstance]], [[SoundStreamInstance]], and [[DynamicSoundEffectInstance]].
 
 See [[AudioListener]].

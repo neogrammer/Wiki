@@ -1,3 +1,6 @@
+|[[DirectXTK]]|
+|---|
+
 This is a simple light-weight DirectDraw Surface (``.dds``) file loader. This is the traditional texture file container for DirectX. This loader performs no pixel data conversions (see _Remarks_ for more details). This is ideal for runtime usage, and supports the full complement of Direct3D 11 texture resources (1D, 2D, volume maps, cubemaps, mipmap levels, texture arrays, cubemap arrays, Block Compressed formats, etc.). It supports both legacy ``DDPIXELFORMAT`` and 'DX10' ``DXGI_FORMAT`` extension header format ``.dds`` files.
 
 > A standalone version is included in [DirectXTex](https://github.com/microsoft/DirectXTex/tree/main/DDSTextureLoader) for Direct3D 9, Direct3D 11, and Direct3D 12. Be sure to add both the ``h`` and ``cpp`` file to your project.

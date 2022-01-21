@@ -1,3 +1,6 @@
+|[[DirectXTK]]|
+|---|
+
 The **VertexTypes.h** header defines these commonly used vertex data structures:
 
 | Structure | Stride |

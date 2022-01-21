@@ -1,3 +1,6 @@
+|[[DirectXTK]]|
+|---|
+
 This is a helper for easily and efficiently drawing dynamically generated geometry using Direct3D 11 such as lines or trianges.
 
 > Dynamic submission is a highly effective pattern for drawing procedural geometry, and convenient for debug rendering, but is not nearly as efficient as static buffers which is more suited to traditional meshes where the VBs and IBs do not change every frame. Excessive dynamic submission is a common source of performance problems in apps. Therefore, you should prefer to use [[Model]], [[GeometricPrimitive]], or your own VB/IB over PrimitiveBatch unless you really need the flexibility to regenerate the topology every frame.

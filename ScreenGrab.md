@@ -1,3 +1,6 @@
+|[[DirectXTK]]|
+|---|
+
 A Direct3D 11 2D texture save routine for generating a "screenshot" from a render target texture. There is a function that will dump the 2D texture to a ``.DDS`` file, and another that will write using WIC (``BMP``, ``JPEG``, ``PNG``, ``TIFF``, ``GIF``, JPEG-XR / HD Photo, or other WIC supported file container).
 
 These writers do not support array textures, 1D textures, 3D volume textures, cubemaps, or cubemap arrays. Mipmaps are also ignored. For those scenarios, use the _DirectXTex_ library functionality. The ScreenGrab module is really designed to make a quick and light-weight solution for capturing screenshots at runtime.

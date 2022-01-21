@@ -1,6 +1,7 @@
-Viewport class modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Viewport``) graphics library.
+|[[DirectXTK]]|[[SimpleMath]]|
+|---|---|
 
-See also [[SimpleMath]]
+Viewport class modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Viewport``) graphics library.
 
 # Header
 

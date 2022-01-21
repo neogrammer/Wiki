@@ -1,3 +1,6 @@
+|[[DirectXTK]]|[[Audio]]|
+|---|---|
+
 DynamicSoundEffectInstance is an instance of a sound which plays buffers submitted from the application. This can be used to implement procedural audio generation or to implement streaming. It can be played with 3D positional audio effects, volume and panning control, and pause/resume control. Looping is not supported.
 
 Note that the DynamicSoundEffectInstance does not copy the wave data and instead refers to the data 'owned' by the application. Therefore, the buffers should be kept "live" until all sounds playing from it are finished.

@@ -1,6 +1,7 @@
-Four component color vector class modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Color``) math library.
+|[[DirectXTK]]|[[SimpleMath]]|
+|---|---|
 
-See also [[SimpleMath]]
+Four component color vector class modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Color``) math library.
 
 # Header
 ```cpp

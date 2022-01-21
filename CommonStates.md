@@ -1,3 +1,6 @@
+|[[DirectXTK]]|
+|---|
+
 The CommonStates class is a factory which simplifies setting the most common combinations of Direct3D rendering states. This is simliar to the XNA Game Studio 4 (``Microsoft.Xna.Framework.Graphics.BlendState``, ``DepthStencilState``, ``RasterizerState``, ``SamplerState``) design.
 
 **Related tutorial:** [[Sprites and textures]]

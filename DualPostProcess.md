@@ -1,6 +1,7 @@
-Performs basic post-processing with a built-in set of shaders which operate using two input textures.
+|[[DirectXTK]]|[[PostProcess]]|
+|---|---|
 
-See also [[PostProcess]]
+Performs basic post-processing with a built-in set of shaders which operate using two input textures.
 
 # Header
 ```cpp

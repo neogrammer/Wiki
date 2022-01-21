@@ -1,3 +1,6 @@
+|[[DirectXTK]]|[[Audio]]|
+|---|---|
+
 SoundEffect is a container class for wave sample data. This data can then be played back as a one-shot sound or via a [[SoundEffectInstance]].
 
 **Related tutorial:** [[Creating and playing sounds]]

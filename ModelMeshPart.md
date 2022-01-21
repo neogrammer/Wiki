@@ -1,3 +1,6 @@
+|[[DirectXTK]]|[[Model]]|
+|---|---|
+
 This class is part of the [[Model]] hierarchy. The purpose of this class is to be container for a 'submesh' which is referenced by an instance of the [[ModelMesh]] class. A 'submesh' is a portion of a mesh that is all drawn using the same 'material' settings as reflected by an [[Effects]] instance. A submesh is drawn in a single Direct3D 11 ``Draw`` call using a single effect.
 
 > ModelMesh uses a collection of ``std::unique_ptr`` instances to ModelMeshPart since submeshes are not typically shared between mesh instances. Submeshes can easily share Direct3D 11 resources (index buffers, vertex buffers, effects, etc.) which are individually reference counted.

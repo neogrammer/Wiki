@@ -1,3 +1,6 @@
+|[[DirectXTK]]|[[Audio]]|
+|---|---|
+
 SoundEffectInstance is an instance of a sound from a [[SoundEffect]] or a in-memory [[WaveBank]]. It can be played with 3D positional audio effects, volume and panning control, looping, and pause/resume control.
 
 Note that the SoundEffectInstance does not copy the wave data and instead refers to the data 'owned' by the SoundEffect / WaveBank. Therefore, the parent object must be kept "live" until all sounds playing from it are finished.

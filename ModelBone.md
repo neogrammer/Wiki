@@ -1,3 +1,6 @@
+|[[DirectXTK]]|[[Model]]|
+|---|---|
+
 This class is part of the [[Model]] hierarchy. The purpose of this structure is to define a hierarchy of transformation matrices used for rigid-body animation, skinning animation, or as metadata for locations associated with a model for runtime insertion of dynamic lights, particle effects, etc.
 
 The use of ModelBone is optional. Therefore the ``Model::bones`` array can be empty, and both ``boneMatrices`` and  ``invBindPoseMatrices`` can be null.

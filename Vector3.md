@@ -1,6 +1,7 @@
-Three component vector class modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Vector3``) math library.
+|[[DirectXTK]]|[[SimpleMath]]|
+|---|---|
 
-See also [[SimpleMath]]
+Three component vector class modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Vector3``) math library.
 
 # Header
 ```cpp

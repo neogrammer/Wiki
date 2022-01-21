@@ -1,3 +1,6 @@
+|[[DirectXTK]]|
+|---|
+
 This is a version of [[DDSTextureLoader]] for use by Xbox One XDK developers. This loads pre-tiled texture resources for use with the ``CreatePlacement`` APIs available to Xbox One exclusive app developers.
 
 These pre-tiled resources are stored in a variant of the ``.DDS`` file format marked with the "XBOX" FourCC pixel format. To generate these ``.DDS`` files, see the [xtexconv](https://aka.ms/atgsplxtexconv).

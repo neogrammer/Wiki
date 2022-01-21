@@ -1,3 +1,6 @@
+|[[DirectXTK]]|[[Model]]|
+|---|---|
+
 This class is part of the [[Model]] hierarchy. The primary purpose of this class is to be a shared container for a list of [[ModelMeshPart]] instances which are referenced by one or more instances of the Model class.
 
 Note that Model uses a collection of ``std::shared_ptr`` instances to ModelMesh since meshes can be shared by multiple instances of Model.

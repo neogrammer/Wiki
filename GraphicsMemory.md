@@ -1,3 +1,6 @@
+|[[DirectXTK]]|
+|---|
+
 This class is used for the Xbox One platform to manage video memory allocations.
 
 **Related tutorial:** [Adding the DirectX Tool Kit](https://github.com/microsoft/DirectXTK/wiki/Adding-the-DirectX-Tool-Kit#graphics-memory)

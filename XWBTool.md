@@ -1,3 +1,6 @@
+|[[DirectXTK]]|
+|---|
+
 [![xwbtool.exe](https://img.shields.io/github/downloads/Microsoft/DirectXTK/latest/xwbtool.exe?style=for-the-badge)](https://github.com/microsoft/DirectXTK/releases/latest/download/xwbtool.exe)
 
 The XWBTool is a command-line utility for building XACT-style wave banks for use with the _DirectXTK for Audio_ Wave Bank class.

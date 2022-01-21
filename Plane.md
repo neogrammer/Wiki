@@ -1,6 +1,7 @@
-An infinite 2D plane represented as a four component vector modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Plane``) math library.
+|[[DirectXTK]]|[[SimpleMath]]|
+|---|---|
 
-See also [[SimpleMath]]
+An infinite 2D plane represented as a four component vector modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Plane``) math library.
 
 # Header
 ```cpp
