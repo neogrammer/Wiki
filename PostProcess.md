@@ -74,7 +74,7 @@ The post-processing system provides a ``IPostProcess`` interface to simplify use
 ```cpp
 void Process(
     ID3D11DeviceContext* deviceContext,
-    std::function<void __cdecl()> setCustomState = nullptr);
+    std::function<void()> setCustomState = nullptr);
 ```
 
 # Custom render states
