@@ -1,3 +1,6 @@
+|[[DirectXTK]]|[DirectXTK12](https://github.com/microsoft/DirectXTK12/wiki/DirectXTK)|
+|---|---|
+
 # Compiler conformance
 
 For Visual C++, the projects make use of the default C++11/C++14 mode rather than ``/std:c++17`` mode, although occasionally run a validation pass to confirm it's fully compatible with C++17 (i.e. avoid all use of ``auto_ptr``, ``random_shuffle``, and other deprecated features). The library does not make use of newer C++17 language & library features such as ``string_view``, ``static_assert`` without a message, etc. although that may change in the future. The projects make use of ``/Wall``, ``/permissive-``, ``/Zc:__cplusplus``, and ``/analyze`` to ensure a high-level of C++ conformance.
@@ -45,6 +48,8 @@ if ((myFlags & MYFLAGS_BIT2) == MYFLAGS_BIT2)
 Direct3D 11 headers do *not* make use of the strongly type enum bitmask flags. For this reason, if you need a parameter such as ``D3D11_BIND_FLAG`` the  proper type is ``unsigned int``.
 
 > Direct3D 12 headers have adopted strongly typed enum bitmask flags. If you need a parameter such as ``D3D12_RESOURCE_FLAGS`` the proper type is ``D3D12_RESOURCE_FLAGS``.
+
+See [this blog post](https://walbourn.github.io/modern-c++-bitmask-types/).
 
 # Unicode
 
