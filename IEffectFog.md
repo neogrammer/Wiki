@@ -1,3 +1,6 @@
+|[[DirectXTK]]|[[Effects]]|
+|---|---|
+
 This abstract interface controls distance fog settings. Settings for this interface can influence the choice of shader permutation. This interface is implemented by _BasicEffect_, _AlphaTestEffect_, _DualTextureEffect_, _EnvironmentMapEffect_, _NormalMapEffect_, and _SkinnedEffect_.
 
 **Related tutorial:** [[Rendering a model]]

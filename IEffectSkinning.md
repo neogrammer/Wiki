@@ -1,3 +1,6 @@
+|[[DirectXTK]]|[[Effects]]|
+|---|---|
+
 This abstract interface controls skinning animation matrices. Settings for this interface can influence the choice of shader permutation.
 
 Effects that implement this interface typically require ``BLENDINDICES`` and ``BLENDWEIGHT`` semantic data in the vertex input layout.
