@@ -1,5 +1,5 @@
-|[[DirectXTK]]|
-|---|
+|[[DirectXTK]]|[DirectXTK12](https://github.com/microsoft/DirectXTK12/wiki/DirectXTK)|
+|---|---|
 
 This is a helper for simplified access to gamepad controllers modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Input``) GamePad class.
 
