@@ -140,7 +140,7 @@ SpriteBatch::~SpriteBatch() = default;
 ```
 
 # Calling-conventions
-Public methods in the library are explicitly marked ``__cdecl`` to ensure consistent behavior no matter what the client code is using. Internally it is not specified as it's assumed from the default setting except where ``XM_VECTORCALL`` is utilized (see the _DirectXMath_ section below)
+Public methods in the library are explicitly marked ``__cdecl`` to ensure consistent behavior no matter what the client code is using. Internally it is not specified as it's assumed from the default setting except where ``XM_VECTORCALL`` is utilized (see the _DirectXMath_ section below). Public ``inline`` functions do not need to be explicitly marked ``__cdecl``.
 
 The ``std::function`` is used for callbacks as a general pattern so that client code can provide function pointers, lambdas, functors, etc. To support building with a mix of calling conventions, we need to annotate the ``std::function`` correctly.
 
