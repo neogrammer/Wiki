@@ -1,8 +1,11 @@
+|[[DirectXTK]]|[[Effects]]|
+|---|---|
+
 **DGSLEffect** is a _DirectX Tool Kit_ implementation of the Visual Studio Shader Designer (DGSL) content pipeline with up to 8 textures.
 
 **SkinnedDGSLEffect** extends ``DGSLEffect`` with vertex skinning.
 
-See also [[Effects]], [[DGSLEffectFactory|EffectFactory]]
+See also [[DGSLEffectFactory|EffectFactory]]
 
 **Related tutorials:** [[Creating custom shaders with DGSL]]
 

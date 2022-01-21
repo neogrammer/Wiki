@@ -1,8 +1,9 @@
+|[[DirectXTK]]|[[Effects]]|
+|---|---|
+
 **NormalMapEffect** effect extends [[BasicEffect]] to support normal-mapping and an optional specular map. It supports texture mapping, vertex coloring, directional per-pixel lighting, fog, and GPU instancing.
 
 **SkinnedNormalMapEffect** extends ``NormalMapEffect`` to support vertex skinning. The skinned effect does not support per-vertex colors or GPU instancing.
-
-See also [[Effects]]
 
 **Related tutorials:** [[Using advanced shaders]], [[Multistream rendering and instancing]]
 

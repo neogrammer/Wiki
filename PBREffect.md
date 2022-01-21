@@ -1,8 +1,11 @@
+|[[DirectXTK]]|[[Effects]]|
+|---|---|
+
 **PBREffect** implements a Disney-style (Roughness/Metalness workflow) Physically-Based Renderer ([PBR](https://en.wikipedia.org/wiki/Physically_based_rendering)) effect using Image-Based Lighting ([IBL](https://en.wikipedia.org/wiki/Image-based_lighting)) in combination with up to three directional lights. This effect also supports GPU instancing.
 
 **SkinnedPBREffect** extends ``PBREffect`` to support vertex skinning. The skinned effect does not support velocity buffer generation or GPU instancing.
 
-See also [[Effects]], [[PBREffectFactory|EffectFactory]]
+See also [[PBREffectFactory|EffectFactory]]
 
 **Related tutorials:** [[Physically-based rendering]], [[Multistream rendering and instancing]]
 

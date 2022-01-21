@@ -1,6 +1,7 @@
-This is a native Direct3D 11 implementation of the built-in SkinnedEffect from XNA Game Studio 4 (``Microsoft.Xna.Framework.Graphics.SkinnedEffect``) which supports skinned animation with up to 72 bones and 1, 2, or 4 bone influences per vertex. It supports texture mapping, directional vertex lighting, directional per-pixel lighting, and fog.
+|[[DirectXTK]]|[[Effects]]|
+|---|---|
 
-See also [[Effects]]
+This is a native Direct3D 11 implementation of the built-in SkinnedEffect from XNA Game Studio 4 (``Microsoft.Xna.Framework.Graphics.SkinnedEffect``) which supports skinned animation with up to 72 bones and 1, 2, or 4 bone influences per vertex. It supports texture mapping, directional vertex lighting, directional per-pixel lighting, and fog.
 
 **Related tutorial:** [[Using skinned models]]
 

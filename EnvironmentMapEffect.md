@@ -1,6 +1,7 @@
-This is a native Direct3D 11 implementation of the built-in EnvironmentMapEffect from XNA Game Studio 4 (``Microsoft.Xna.Framework.Graphics.EnvironmentMapEffect``) which supports environment mapping with texture mapping, vertex or per-pixel lighting, and fogging.
+|[[DirectXTK]]|[[Effects]]|
+|---|---|
 
-See also [[Effects]]
+This is a native Direct3D 11 implementation of the built-in EnvironmentMapEffect from XNA Game Studio 4 (``Microsoft.Xna.Framework.Graphics.EnvironmentMapEffect``) which supports environment mapping with texture mapping, vertex or per-pixel lighting, and fogging.
 
 ![Environment map](https://github.com/Microsoft/DirectXTK/wiki/images/EnvMapEffect.png)
 
@@ -99,5 +100,3 @@ Blinn & Newell, "Texture and Reflection in Computer Generated Images", _Communic
 Greene, "Environment Mapping and Other Applications of World Projections", _IEEE Computer Graphics and Applications_., 1986. [link](https://ieeexplore.ieee.org/document/4056759)
 
 Heidrich & Seidel, “View-independent Environment Maps”, _Eurographics Workshop on Graphics Hardware_, 1998. [link](https://diglib.eg.org/bitstream/handle/10.2312/EGGH.EGGH98.039-045/039-045.pdf)
-
-

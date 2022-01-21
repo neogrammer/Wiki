@@ -1,6 +1,7 @@
-This is a native Direct3D 11 implementation of the built-in BasicEffect from XNA Game Studio 4 (``Microsoft.Xna.Framework.Graphics.BasicEffect``) which supports texture mapping, vertex coloring, directional vertex lighting, directional per-pixel lighting, and fog.
+|[[DirectXTK]]|[[Effects]]|
+|---|---|
 
-See also [[Effects]]
+This is a native Direct3D 11 implementation of the built-in BasicEffect from XNA Game Studio 4 (``Microsoft.Xna.Framework.Graphics.BasicEffect``) which supports texture mapping, vertex coloring, directional vertex lighting, directional per-pixel lighting, and fog.
 
 ![BasicEffect image](https://github.com/Microsoft/DirectXTK/wiki/images/BasicEffect.png)
 

@@ -1,6 +1,7 @@
-This effect provides a way to visualize normals, tangents, and binormals/bitangents for debugging purposes. This effect also supports GPU instancing.
+|[[DirectXTK]]|[[Effects]]|
+|---|---|
 
-See also [[Effects]]
+This effect provides a way to visualize normals, tangents, and binormals/bitangents for debugging purposes. This effect also supports GPU instancing.
 
 **Related tutorials:** [[Using advanced shaders]], [[Multistream rendering and instancing]]
 
