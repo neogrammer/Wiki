@@ -56,7 +56,7 @@ The **ModelMeshPart::Draw** method is used to draw each individual submesh. **Mo
 ```cpp
 void Draw(ID3D11DeviceContext* deviceContext,
     IEffect* ieffect, ID3D11InputLayout* iinputLayout,
-    std::function<void __cdecl()> setCustomState = nullptr) const;
+    std::function<void()> setCustomState = nullptr) const;
 ```
 
 You can also perform instanced drawing, although this scenario requires custom shader state to get interesting results:
@@ -65,7 +65,7 @@ You can also perform instanced drawing, although this scenario requires custom s
 void DrawInstanced(ID3D11DeviceContext* deviceContext,
     IEffect* ieffect, ID3D11InputLayout* iinputLayout,
     uint32_t instanceCount, uint32_t startInstanceLocation = 0,
-    std::function<void __cdecl()> setCustomState = nullptr) const;
+    std::function<void()> setCustomState = nullptr) const;
 ```
 
 To support using custom effect instances, **ModelMeshPart::CreateInputLayout** provides the ability to create a new input layout with a signature that matches the submesh's vertex buffer and the new custom effect instance.
