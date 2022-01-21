@@ -51,7 +51,7 @@ HRESULT SaveWICTextureToFile( ID3D11DeviceContext* pContext,
     REFGUID guidContainerFormat,
     LPCWSTR fileName,
     const GUID* targetFormat = nullptr,
-    std::function<void(IPropertyBag2*)> setCustomProps = nullptr,
+    std::function<void __cdecl(IPropertyBag2*)> setCustomProps = nullptr,
     bool forceSRGB = false );
 ```
 
