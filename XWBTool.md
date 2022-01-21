@@ -1,5 +1,5 @@
-|[[DirectXTK]]|
-|---|
+|[[DirectXTK]]|[DirectXTK12](https://github.com/microsoft/DirectXTK12/wiki/DirectXTK)|
+|---|---|
 
 [![xwbtool.exe](https://img.shields.io/github/downloads/Microsoft/DirectXTK/latest/xwbtool.exe?style=for-the-badge)](https://github.com/microsoft/DirectXTK/releases/latest/download/xwbtool.exe)
 
