@@ -1,5 +1,5 @@
-|[[DirectXTK]]|
-|---|
+|[[DirectXTK]]|[DirectXTK12](https://github.com/microsoft/DirectXTK12/wiki/DirectXTK)|
+|---|---|
 
 This is a helper for simplified keyboard state tracking modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Input``) Keyboard class.
 
