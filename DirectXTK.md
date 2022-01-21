@@ -1,6 +1,3 @@
-|[[Home]]|
-|---|
-
 # Headers
 Public headers are in the **Inc** folder of the distribution package.
 
