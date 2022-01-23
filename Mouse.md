@@ -119,7 +119,7 @@ mouse->SetWindow(reinterpret_cast<ABI::Windows::UI::Core::ICoreWindow*>(winrt::g
 
 ## Xbox
 
-For Microsoft GDKX when targeting Gaming.Xbox.*.x64, you follow the pattern above for *Windows desktop*, although only a subset of Win32 messages are required (i.e. it does not use ``WM_INPUT`` or ``WM_MOUSEHOVER``), and there is no use of ``SetWindow``:
+For Microsoft GDKX when targeting Gaming.Xbox.*.x64, you follow the pattern above for *Windows desktop*, although only a subset of Win32 messages are required (i.e. it does not use ``WM_INPUT``, ``WM_MOUSEHOVER``, or ``WM_MOUSEACTIVATE``), and there is no use of ``SetWindow``:
 
 ```cpp
 #include <Windows.h>
