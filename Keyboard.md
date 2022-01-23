@@ -51,6 +51,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 }
 ```
 
+You also want the following in your ``WndProc`` to avoid getting a 'beep' sound for key inputs assumed to be unsupported menu accelerator keys:
+
+```cpp
+    case WM_MENUCHAR:
+        // A menu is active and the user presses a key that does not correspond
+        // to any mnemonic or accelerator key. Ignore so we don't produce an error beep.
+        return MAKELRESULT(0, MNC_CLOSE);
+```
+
 ## Universal Windows Platform (UWP) apps
 For Universal Windows Platform apps, you need to call **SetWindow** in the appropriate place.
 
@@ -122,9 +131,9 @@ if ( kb.IsKeyDown( VK_RETURN ) )
 
 The ``Keys`` enumeration and ``State`` structure is a mapping of the virtual keys rather than alphanumeric values, so the number 0 from the keyboard top-row and the 0 on the 10-key keypad are distinct, as are the left shift vs. right shift, etc.
 
-There is no specific virtual key for lower-case (i.e. ``a``) vs. upper-case (i.e. ``A``). You have to determine this from tracking the state of ``CapsLock``, ``LeftShift``, and ``RightShift``. The same is true for ``+`` vs. ``=`` based on ``NumLock``, ``LeftShift``, and ``RightShift``.
+There is no specific virtual key for lower-case (i.e. ``a``) vs. upper-case (i.e. ``A``). You have to determine this from tracking the state of <kbd>CapsLock</kbd>, and <kbd>Shift (left/right)</kbd>. The same is true for ``+`` vs. ``=`` based on <kbd>NumLock</kbd> and <kbd>Shift (left/right)</kbd>.
 
-Due to limitations of C identifiers, the keyboard's top-row digits are ``D0`` through ``D9``. The number keypad digits are ``NumPad0`` through ``NumPad9``.
+Due to limitations of C identifiers, the keyboard's top-row digits <kbd>1</kbd> through <kbd>9</kbd> and <kbd>0</kbd> are ``D1`` through ``D9`` and ``D0``. The number keypad digits are ``NumPad0`` through ``NumPad9``.
 
 Most of the ``Oem*`` values vary based on country/region, but you can count on ``OemPlus``, ``OemComma``, ``OemMinus``, and ``OemPeriod`` being the same for all layouts.
 
@@ -163,7 +172,7 @@ The Keyboard class should be thread-safe with the exception of the **ProcessMess
 # Remarks
 This helper is intended for game controls tied to the keyboard. For chat input and editable text, you should use the platform-specific methods for text input.
 
-Due to some quirks of the platform, If you press both Left & Right Shift keys at the same time, they will both appear down until both are released.
+Due to some quirks of the platform, If you press both Left & Right <kbd>Shift</kbd> keys at the same time, they will both appear down until both are released.
 
 The **IsConnected** method can be used to test if a keyboard device is present on the system.
 
