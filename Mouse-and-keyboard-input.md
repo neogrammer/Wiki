@@ -48,6 +48,7 @@ case WM_ACTIVATEAPP:
 
 ...
 
+case WM_ACTIVATE:
 case WM_INPUT:
 case WM_MOUSEMOVE:
 case WM_LBUTTONDOWN:
