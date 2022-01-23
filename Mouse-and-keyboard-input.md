@@ -79,6 +79,14 @@ case WM_SYSKEYDOWN:
     break;
 ```
 
+Depending on how you'd like the application to react to "click activating" the window to regain focus, you may also want to add the following. Generally, this is the right choice, so it ignores that first mouse button that regains focus. If you want to see that even come through Mouse, then don't handle the message or return ``MA_ACTIVATE`` instead.
+
+```cpp
+case WM_MOUSEACTIVATE:
+    // When you click activate the window, we want Mouse to ignore it.
+    return MA_ACTIVATEANDEAT;
+```
+
 Build and run. The application does not display anything other than our cornflower blue screen, but you can use the Escape key to exit.
 
 ## Universal Windows Platform (UWP)
@@ -98,7 +106,7 @@ Be sure you call ``Mouse::SetDpi(m_DPI);`` from **Main.cpp** at the bottom of ``
 
 For the **Gaming.Desktop.x64** platform, follow the instructions for Win32 desktop above.
 
-For the **Gaming.Xbox.*.x64** platforms, the instructions for Win32 desktop for mouse are the same as above although ``WM_INPUT`` and ``WM_MOUSEHOVER`` are not used, and there is no ``SetWindow`` method. If using 4k rendering, call ``Mouse::SetResolution(true);``. Keyboard integration for these platforms do not require hooking any Win32 messages.
+For the **Gaming.Xbox.*.x64** platforms, the instructions for Win32 desktop for mouse are the same as above although ``WM_INPUT``, ``WM_MOUSEHOVER``, and ``WM_MOUSEACTIVATE`` are not used. There is also no ``SetWindow`` method. If using 4k rendering, call ``Mouse::SetResolution(2.f);``. If using 1440p rendering, use ``Mouse::SetResolution(1.3333f);``. Keyboard integration for these platforms do not require hooking any Win32 messages.
 
 # Adding a simple scene
 Start by saving [roomtexture.dds](https://github.com/Microsoft/DirectXTK/wiki/media/roomtexture.dds) into your new project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "roomtexture.dds" and click "OK".
