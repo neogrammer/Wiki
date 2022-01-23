@@ -61,7 +61,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 }
 ```
 
-One additional message is optional depending on desired application behavior. When your applications has lost focus, and the user "click activates" it with the mouse, you will see that first mouse button event come through the Mouse interface. If you want the system to automatically ignore that first mouse button click when reactivating the window this way, add the following to your ``WndProc``:
+One additional message is optional depending on desired application behavior. When your application has lost focus, and the user "click activates" it with the mouse, you will see that first mouse button event come through the Mouse interface. If you want the system to automatically ignore that first mouse button click when reactivating the window this way, add the following to your ``WndProc``:
 
 ```cpp
     case WM_MOUSEACTIVATE:
