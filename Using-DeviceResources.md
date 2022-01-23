@@ -292,7 +292,7 @@ void Game::OnDeviceLost()
 }
 ```
 
-> You will not get "device lost" all that often. In legacy Direct3D 9, you would routinely get a 'device lost' if you just ALT+TAB away from the application because the GPU used to be an 'exclusive' rather than 'shared' resource. The situation where you'd get ``DXGI_ERROR_DEVICE_RESET`` is if the driver crashes or the video hardware hangs. You get ``DXGI_ERROR_DEVICE_REMOVED`` if a new driver is installed while your application is running, or if you are running on a 'GPU is in the dock' style laptop and the laptop is undocked. You can test this case by opening the *Developer Command Prompt for Visual Studio* as an administrator, and typing ``dxcap -forcetdr`` which will immediately cause all currently running Direct3D apps to get a ``DXGI_ERROR_DEVICE_REMOVED`` event.
+> You will not get "device lost" all that often. In legacy Direct3D 9, you would routinely get a 'device lost' if you just <kbd>Alt</kbd>+<kbd>TAB</kbd> away from the application because the GPU used to be an 'exclusive' rather than 'shared' resource. The situation where you'd get ``DXGI_ERROR_DEVICE_RESET`` is if the driver crashes or the video hardware hangs. You get ``DXGI_ERROR_DEVICE_REMOVED`` if a new driver is installed while your application is running, or if you are running on a 'GPU is in the dock' style laptop and the laptop is undocked. You can test this case by opening the *Developer Command Prompt for Visual Studio* as an administrator, and typing ``dxcap -forcetdr`` which will immediately cause all currently running Direct3D apps to get a ``DXGI_ERROR_DEVICE_REMOVED`` event.
 
 # Smart-pointer
 We make use of the ``Microsoft::WRL::ComPtr`` smart-pointer for managing the lifetime of the Direct3D 11 COM objects, which is why we make use of ``.Get()`` in the code above. See [ComPtr](https://github.com/Microsoft/DirectXTK/wiki/ComPtr) and [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/prog-dx-with-com) for more information and usage.
@@ -317,7 +317,7 @@ The DeviceResources implementation supports using ``DXGI_FORMAT_*_SRGB`` formats
 
 # Fullscreen
 
-The Win32 desktop and UWP templates implement [immersive fullscreen](https://walbourn.github.io/care-and-feeding-of-modern-swap-chains-3/). You can toggle this using the traditional hotkey ``ALT+Enter``. If you want to default to full-screen at startup, see the ``TODO`` comments in ``Main.cpp``.
+The Win32 desktop and UWP templates implement [immersive fullscreen](https://walbourn.github.io/care-and-feeding-of-modern-swap-chains-3/). You can toggle this using the traditional hotkey <kbd>Alt</kbd>+<kbd>Enter</kbd>. If you want to default to full-screen at startup, see the ``TODO`` comments in ``Main.cpp``.
 
 **Next lesson**: [[Adding the DirectX Tool Kit]]
 
