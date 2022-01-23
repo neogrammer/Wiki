@@ -253,7 +253,7 @@ else if (tracker.leftButton == Mouse::ButtonStateTracker::ButtonState::RELEASED)
 }
 ```
 
-> When using ``MODE_RELATIVE``, the system cursor is hidden so a user can't navigate away to another monitor or app or even exit. If your game makes use of 'mouse-look' controls, you should ensure that a simple key (like the ESC key) returns to the game's menu/pause screen and that needs to restore ``MODE_ABSOLUTE`` behavior.
+> When using ``MODE_RELATIVE``, the system cursor is hidden so a user can't navigate away to another monitor or app or even exit using the mouse--they can of course use keyboard shortcuts (<kbd>Alt</kbd>+<kbd>TAB</kbd> or <kbd>Alt</kbd>+<kbd>F4</kbd>). If your game makes use of 'mouse-look' controls, you should ensure that a simple key (like the <kbd>Esc</kbd> key) returns to the game's menu/pause screen and that needs to restore ``MODE_ABSOLUTE`` behavior.
 
 # Cursor Visibility
 
