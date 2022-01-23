@@ -87,7 +87,7 @@ case WM_MOUSEACTIVATE:
     return MA_ACTIVATEANDEAT;
 ```
 
-Build and run. The application does not display anything other than our cornflower blue screen, but you can use the <kbd>Escape</kbd> key to exit.
+Build and run. The application does not display anything other than our cornflower blue screen, but you can use the <kbd>Esc</kbd> key to exit.
 
 ## Universal Windows Platform (UWP)
 If using a Windows Universal Platform (UWP) app template, then in your **Initialize**, use:
