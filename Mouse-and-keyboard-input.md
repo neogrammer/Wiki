@@ -79,7 +79,7 @@ case WM_SYSKEYDOWN:
     break;
 ```
 
-Depending on how you'd like the application to react to "click activating" the window to regain focus, you may also want to add the following. Generally, this is the right choice, so it ignores that first mouse button that regains focus. If you want to see that even come through Mouse, then don't handle the message or return ``MA_ACTIVATE`` instead.
+Depending on how you'd like the application to react to "click activating" the window to regain focus, you may also want to add the following. Generally, this is the right choice, so it ignores that first mouse button that regains focus. If you want to see that button click come through Mouse, then don't handle the message or return ``MA_ACTIVATE`` instead.
 
 ```cpp
 case WM_MOUSEACTIVATE:
