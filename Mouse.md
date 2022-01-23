@@ -39,6 +39,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
+    case WM_ACTIVATE:
     case WM_ACTIVATEAPP:
     case WM_INPUT:
     case WM_MOUSEMOVE:
@@ -55,6 +56,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         Mouse::ProcessMessage(message, wParam, lParam);
         break;
     }
+
+    case WM_MOUSEACTIVATE:
+        // When you click activate the window, we want Mouse to ignore that event.
+        //
+        // If you want to see the activate click event, use MA_ACTIVATE instead or
+        // don't handle this message.
+        return MA_ACTIVATEANDEAT;
 
     return DefWindowProc(hWnd, message, wParam, lParam);
 }
