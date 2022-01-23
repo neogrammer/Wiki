@@ -131,11 +131,11 @@ if ( kb.IsKeyDown( VK_RETURN ) )
 
 The ``Keys`` enumeration and ``State`` structure is a mapping of the virtual keys rather than alphanumeric values, so the number 0 from the keyboard top-row and the 0 on the 10-key keypad are distinct, as are the left shift vs. right shift, etc.
 
-There is no specific virtual key for lower-case (i.e. ``a``) vs. upper-case (i.e. ``A``). You have to determine this from tracking the state of <kbd>CapsLock</kbd>, and <kbd>Shift (left/right)</kbd> when you get a <kdb>A</kdb>. The same is true for ``+`` vs. ``=`` based on <kbd>NumLock</kbd> and <kbd>Shift (left/right)</kbd>.
+There is no specific virtual key for lower-case (i.e. ``a``) vs. upper-case (i.e. ``A``). You have to determine this from tracking the state of <kbd>CapsLock</kbd>, and <kbd>Shift (left/right)</kbd> when you get a <kbd>A</kbd>. The same is true for ``+`` vs. ``=`` based on <kbd>NumLock</kbd> and <kbd>Shift (left/right)</kbd>.
 
 Due to limitations of C identifiers, the keyboard's top-row digits <kbd>1</kbd> through <kbd>9</kbd> and <kbd>0</kbd> are ``D1`` through ``D9`` and ``D0``. The number keypad digits are ``NumPad0`` through ``NumPad9``.
 
-Most of the ``Oem*`` values vary based on country/region, but you can count on ``OemPlus``, ``OemComma``, ``OemMinus``, and ``OemPeriod`` being the same for all layouts.
+Most of the ``Oem*`` values vary based on country/region, but you can count on ``OemPlus`` (<kbd>+</kbd>), ``OemComma`` (<kbd>,</kbd>), ``OemMinus`` (<kbd>-</kbd>), and ``OemPeriod``  (<kbd>.</kbd>) being the same for all layouts.
 
 For more information on virtual keys, see [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes).
 
