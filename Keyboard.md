@@ -179,7 +179,7 @@ The **IsConnected** method can be used to test if a keyboard device is present o
 > Note that on some systems, support for a virtual keyboard is reported as 'true' even without a physical keyboard.
 
 # International layouts
-Keep in mind when designing the keyboard controls for your game the different layouts of standard keyboards.  In particularly, note the red keys which are in different locations for international keyboards than the traditional English QWERTY keyboard.
+Keep in mind when designing the keyboard controls for your game the different layouts of standard keyboards.  In particularly, note the red keys which are in different locations for international keyboards than the traditional English <kbd>Q</kbd><kbd>W</kbd><kbd>E</kbd><kbd>R</kbd><kbd>T</kbd><kbd>Y</kbd> keyboard.
 
 ![International Keyboard Layout](https://github.com/Microsoft/DirectXTK/wiki/images/KeyboardInternational.png)
 
