@@ -375,7 +375,7 @@ m_cameraPos = Vector3::Max(m_cameraPos, -halfBound);
 ...
 ```
 
-Build and run. You can use ``Up``, ``Down``, ``Left``, ``Right``, ``PageUp``, ``PageDown``. ``W``, ``A``, ``S``, ``D``, ``X``, and ``Space`` to move through the scene. You can use ``Home`` to return to the start position.
+Build and run. You can use <kbd>&uparrow;</kbd>, <kbd>&downarrow;</kbd>, <kbd>&leftarrow;</kbd>, <kbd>&rightarrow;</kbd>, <kbd>PageUp</kbd>, <kbd>PageDown</kbd>. <kbd>W</kbd>, <kbd>A</kbd>, <kbd>S</kbd>, <kbd>D</kbd>, <kbd>X</kbd>, and <kbd>Space</kbd> to move through the scene. You can use <kbd>Home</kbd> to return to the start position.
 
 # Adding mouse controls
 
@@ -460,7 +460,7 @@ if (m_keys.pressed.Tab || m_mouseButtons.rightButton == Mouse::ButtonStateTracke
 }
 ```
 
-Build and run. Pressing the ``Tab`` key or the right mouse button will cycle the color of the room through Red, Green, Blue, and White. Holding down the Tab or mouse button does not flash though the colors with the framerate.
+Build and run. Pressing the <kbd>Tab</kbd> key or the right mouse button will cycle the color of the room through Red, Green, Blue, and White. Holding down the <kbd>Tab</kbd> or mouse button does not flash though the colors with the framerate.
 
 # Orbit vs. FPS Style Camera
 
