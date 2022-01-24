@@ -257,7 +257,8 @@ Build and run, and you should get the following screen:
 
 ![Screenshot of room](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotRoom.PNG)
 
-> _Troubleshooting:_ If you get a runtime exception, then you may have the "roomtexture.dds" in the wrong folder, have modified the "Working Directory" in the "Debugging" configuration settings, or otherwise changed the expected paths at runtime of the application. You should set a break-point on ``CreateDDSTextureFromFile`` and step into the code to find the exact problem.
+<details><summary><i>Click here for troubleshooting advice</i></summary>
+<p>If you get a runtime exception, then you may have the "roomtexture.dds" in the wrong folder, have modified the "Working Directory" in the "Debugging" configuration settings, or otherwise changed the expected paths at runtime of the application. You should set a break-point on <code>CreateDDSTextureFromFile</code> and step into the code to find the exact problem.</p></details>
 
 # Adding gamepad controls
 
