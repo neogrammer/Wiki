@@ -82,7 +82,7 @@ Press F5 to build and run the application It displays the following window:
 
 ![Running Project ](https://github.com/Microsoft/DirectXTK/wiki/images/RunningProject.png)
 
-<details><summary><i>Troubleshooting advice</i></summary>
+<details><summary><i>Click here for troubleshooting advice</i></summary>
 <p>If the base template fails to start, there are a few possibilities:
 <ul><li>First, if your system doesn't have any Direct3D capable device of any feature level, it will fail.
 This is pretty unlikely on modern versions of Windows.</li>
@@ -93,7 +93,7 @@ for your operating system.</li>
 
 > **Xbox**: the background color may be slightly oversaturated. This is because the basic Xbox template uses a backBufferFormat of ``DXGI_FORMAT_B8G8R8A8_UNORM_SRGB``. The DirectXMath Colors values are defined using standard [sRGB](https://en.wikipedia.org/wiki/SRGB) colorspace which is slightly different. All the colors defines need to be adjusted slightly for the linear RGB colorspace (aka gamma correct rendering) via ``XMColorSRGBToRGB``.
 
-> **ARM64**: With the ARM64 compiler installed targeting a Windows 10 on ARM64 device such as a *Microsoft Surface X*, you can build using the ARM64 platform for desktop as well.
+> **ARM64**: With the ARM64 compiler installed targeting a Windows on ARM64 device such as a *Microsoft Surface X*, you can build using the ARM64 platform for desktop as well.
 
 # Tour of the code
 For now, we'll focus on the content of ``Game.cpp`` (which is open by default).
