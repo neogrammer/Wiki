@@ -94,7 +94,8 @@ Build and run and you will see our cup model rendered with default lighting:
 
 ![Screenshot of cup model](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotCup.PNG)
 
-> _Troubleshooting:_ If you get a runtime exception, then you may have the "cup.jpg" or "cup.cmo" in the wrong folder, have modified the "Working Directory" in the "Debugging" configuration settings, or otherwise changed the expected paths at runtime of the application. You should set a break-point on ``Model::CreateFromCMO`` and step into the code to find the exact problem.
+<details><summary><i>Click here for troubleshooting advice</i></summary>
+<p>If you get a runtime exception, then you may have the "cup.jpg" or "cup.cmo" in the wrong folder, have modified the "Working Directory" in the "Debugging" configuration settings, or otherwise changed the expected paths at runtime of the application. You should set a break-point on <code>Model::CreateFromCMO</code> and step into the code to find the exact problem.</p></details>
 
 # Rendering with different states
 
