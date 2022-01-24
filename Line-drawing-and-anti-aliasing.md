@@ -291,7 +291,8 @@ Build and run to see the shimmering of the lines lessen compared to the first ve
 
 ![Screenshot of the MSAA grid](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotGridMSAA.PNG)
 
-> _Troubleshooting:_ If you get an exception, it may be because your device does not support 4x MSAA--which you can confirm by checking the debug device output at the failure point. Direct3D Feature Level 10.1 or later devices all support 4x MSAA for most render target formats, but some 10.0 and 9.x feature levels do not. You can try setting ``MSAA_COUNT`` to 2 if this happens. If you have a Feature Level 11.0 or later device, you can try using 4 or 8 for ``MSAA_COUNT``. See also [CheckMultisampleQualityLevels](https://docs.microsoft.com/en-us/windows/desktop/api/d3d11/nf-d3d11-id3d11device-checkmultisamplequalitylevels).
+<details><summary><i>Click here for troubleshooting advice</i></summary>
+<p>If you get an exception, it may be because your device does not support 4x MSAA--which you can confirm by checking the debug device output at the failure point. Direct3D Feature Level 10.1 or later devices all support 4x MSAA for most render target formats, but some 10.0 and 9.x feature levels do not. You can try setting <code>MSAA_COUNT</code> to 2 if this happens. If you have a Feature Level 11.0 or later device, you can try using 4 or 8 for <code>MSAA_COUNT</code>. See also <a href="https://docs.microsoft.com/en-us/windows/desktop/api/d3d11/nf-d3d11-id3d11device-checkmultisamplequalitylevels">CheckMultisampleQualityLevels</a></p></details>
 
 > If you are using a Direct3D Feature Level 9.x device, you will also need to use ``DXGI_FORMAT_D24_UNORM_S8_UINT`` instead of ``DXGI_FORMAT_D32_FLOAT`` as the depth/stencil format.
 
