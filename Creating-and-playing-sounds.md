@@ -28,7 +28,8 @@ m_ambient = std::make_unique<SoundEffect>( m_audEngine.get(),
 
 Build and run. No sounds will be heard, but the audio files are loaded.
 
-> _Troubleshooting:_ If you get a runtime exception, then you may have the ``.wav`` files in the wrong folder, have modified the "Working Directory" in the "Debugging" configuration settings, or otherwise changed the expected paths at runtime of the application. You should set a break-point on ``std::make_unique<SoundEffect>`` and step into the code to find the exact problem.
+<details><summary><i>Click here for troubleshooting advice</i></summary>
+<p>If you get a runtime exception, then you may have the <code>.wav</code> files in the wrong folder, have modified the "Working Directory" in the "Debugging" configuration settings, or otherwise changed the expected paths at runtime of the application. You should set a break-point on <code>std::make_unique&lt;SoundEffect&gt;</code> and step into the code to find the exact problem.</p></details>
 
 # Playing a sound
 
