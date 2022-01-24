@@ -224,9 +224,11 @@ if ( tracker.rightButton == ButtonState::PRESSED )
 
 # Absolute vs. Relative Mouse position
 
-By default, the mouse state is returned as a absolute pixel location in the ``x`` and ``y`` values of ``State``. For 'mouse-look' behavior in games, however, relative mouse movement is desired. While there are some older tricks for emulating this with absolute pixel locations and computing deltas, there are better options which are implemented by Mouse.
+By default, the mouse state is returned as an absolute pixel location in the ``x`` and ``y`` values of ``State``. For 'mouse-look' behavior in games, however, relative mouse movement is desired. While there are some older tricks for emulating this with absolute pixel locations and computing deltas, there are better options which are implemented by Mouse.
 
 Control of the mode is set by **SetMode** passing either ``MODE_ABSOLUTE`` (the default) or ``MODE_RELATIVE``. The current mode is returned in ``State`` in the ``positionMode`` value to inform your input code locally the mode of the ``x``, ``y`` values.
+
+> Note: While in the *relative* mode, you should call ``GetState`` only once per frame as this resets the ``x`` and ``y`` values.
 
 Here, we are using relative movement whenever the left mouse button is held down:
 
