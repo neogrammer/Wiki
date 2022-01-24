@@ -120,7 +120,10 @@ Build and run. This is the same as the last tutorial, but this time the sounds a
 
 > ``WaveBank`` must remain in memory as the audio data is played directly from that object. XAudio does _not_ copy the source audio data into it's own buffers, but fetches from the application's memory periodically from a worker thread.
 
-> _Troubleshooting:_ If you get a runtime exception, then you may have the ``sounds.xwb`` file in the wrong folder, have modified the "Working Directory" in the "Debugging" configuration settings, or otherwise changed the expected paths at runtime of the application. You should set a break-point on ``std::make_unique<WaveBank>`` line and step into the code to find the exact problem.
+<details><summary><i>Click here for troubleshooting advice</i></summary>
+<p>If you get a runtime exception, then you may have the "sounds.xwb" file in the wrong folder, have modified the "Working Directory" in the "Debugging" configuration settings, or otherwise changed the expected paths at runtime of the application. You should set a break-point on <code>std::make_unique&lt;WaveBank&gt;</code> line and step into the code to find the exact problem.
+
+</p></details>
 
 ## Technical notes
 We need to ensure that the looping ``SoundEffectInstance`` is destroyed before the object it was created from is released. We therefore added an explicit reset to the Game's destructor to avoid being dependent on the order of destruction in the Game class. We also do this _after_ the audio engine has been explicitly suspended since XAudio2 is multi-threaded and references data directly from the application's objects.
@@ -233,7 +236,7 @@ xwbtool -o music.xwb -y -s Electro_1_xwma.wav
 
 > For *Xbox* you should use the Advanced Format (4Kn) switch (``-af``)
 
-> _Troubleshooting:_ This will fail to run if you are using XAudio 2.8 which only supports ADPCM, but not xWMA. It will run with XAudio 2.9, XAudio 2.7, or the XAudio2Redist.
+> Note: This will fail to run if you are using XAudio 2.8 which only supports ADPCM, but not xWMA. It will run with XAudio 2.9, XAudio 2.7, or the XAudio2Redist.
 
 **Next lesson:** [[Using positional audio]]
 
