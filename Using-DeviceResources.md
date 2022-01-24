@@ -85,12 +85,16 @@ Press F5 to build and run the application It displays the following window:
 
 ![Running Project](https://github.com/Microsoft/DirectXTK/wiki/images/RunningProject.png)
 
-> _Troubleshooting:_ If the base template fails to start, there are a few possibilities. First, if your system
-> doesn't have any Direct3D capable device of any feature level, it will fail. This is pretty unlikely on modern
-> versions of Windows. Second if it runs fine in _Release_ but fails in _Debug_, then you likely do not have the
-> [proper DirectX Debug Device](https://walbourn.github.io/direct3d-sdk-debug-layer-tricks/) installed for your operating system. Finally, if you are on Windows 7, you need to have the [KB2670838](https://walbourn.github.io/directx-11-1-and-windows-7-update/) installed.
+<details><summary><i>Click here for troubleshooting advice</i></summary>
+<p>If the base template fails to start, there are a few possibilities:
+<ul><li>First, if your system doesn't have any Direct3D capable device of any feature level, it will fail.
+This is pretty unlikely on modern versions of Windows.</li>
+<li>Second if it runs fine in <i>Release</i> but fails in <i>Debug</i>, then you likely do not have the
+<a href="https://walbourn.github.io/direct3d-sdk-debug-layer-tricks/">proper DirectX Debug Device</a> installed
+for your operating system.</li>
+<li>Finally, if you are on Windows 7 Service Pack 1, you need to have <a href="https://walbourn.github.io/directx-11-1-and-windows-7-update/">KB2670838</a> installed for DirectX 11.1 support.</li></ul></p></details>
 
-> **ARM64**: With the ARM64 compiler installed targeting a Windows 10 on ARM64 device such as a *Microsoft Surface X*, you can build using the ARM64 platform for desktop as well.
+> **ARM64**: With the ARM64 compiler installed targeting a Windows on ARM64 device such as a *Microsoft Surface X*, you can build using the ARM64 platform for desktop as well.
 
 # Tour of the code
 
