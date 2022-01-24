@@ -29,8 +29,9 @@ m_texture.Reset();
 
 Build and run the application which will still not be displaying anything but the cornflower blue window, but will have a texture loaded.
 
-> _Troubleshooting:_ If you get a runtime exception, then you may have the "cat.png" in the wrong folder, have modified the "Working Directory" in the "Debugging" configuration settings, or otherwise changed the expected paths at runtime of the application. You should set a break-point on ``CreateWICTextureFromFile`` and step into the code to find the exact problem.
-
+<details><summary><i>Click here for troubleshooting advice</i></summary>
+<p>If you get a runtime exception, then you may have the "cat.png" in the wrong folder, have modified the "Working Directory" in the "Debugging" configuration settings, or otherwise changed the expected paths at runtime of the application. You should set a break-point on <code>CreateWICTextureFromFile</code> and step into the code to find the exact problem.</p></details>
+ 
 # Drawing a sprite
 
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
