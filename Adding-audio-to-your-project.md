@@ -66,7 +66,8 @@ Game::~Game()
 
 Build and run. You won't hear anything yet, but we do have XAudio2 up and running.
 
-> _Troubleshooting:_ If you get the link  error 'unresolved external symbol' for ``CreateFX``, ``X3DAudioInitialize``, or ``X3DAudioCalculate``, you may have incorrectly configured the x86 vs. x64 versions of the VC++ Directory library paths in the previous lesson.
+<details><summary><i>Click here for troubleshooting advice</i></summary>
+<p>If you get the link  error 'unresolved external symbol' for <code>CreateFX</code>, <code>X3DAudioInitialize</code>, or <code>X3DAudioCalculate</code>, you may have incorrectly configured the x86 vs. x64 versions of the VC++ Directory library paths in the previous lesson.</p></details>
 
 ## Technical notes
 We have an explicit destructor for Game that ensures the audio engine is suspended because of the multi-threaded nature of XAudio2 which directly uses data owned by the application for playback. This makes the code more robust as otherwise it would be very dependent on the order of destruction of _DirectX Tool Kit for Audio_ objects in our Game class.
