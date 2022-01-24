@@ -228,7 +228,7 @@ By default, the mouse state is returned as an absolute pixel location in the ``x
 
 Control of the mode is set by **SetMode** passing either ``MODE_ABSOLUTE`` (the default) or ``MODE_RELATIVE``. The current mode is returned in ``State`` in the ``positionMode`` value to inform your input code locally the mode of the ``x``, ``y`` values.
 
-> Note: While in the *relative* mode, you should call ``GetState`` only once per frame as this resets the ``x`` and ``y`` values.
+> Note: While in the *relative* mode, you should call ``GetState`` only once per frame as this resets the delta ``x`` and ``y`` values on return.
 
 Here, we are using relative movement whenever the left mouse button is held down:
 
