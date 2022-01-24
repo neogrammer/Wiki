@@ -234,7 +234,7 @@ You can create both in-memory and streaming wave banks using ADPCM, xWMA, or XMA
 xwbtool -o music.xwb -y -s Electro_1_xwma.wav
 ```
 
-> For *Xbox* you should use the Advanced Format (4Kn) switch (``-af``)
+> For *Xbox* you should also use the Advanced Format (4Kn) switch (``-af``)
 
 > Note: This will fail to run if you are using XAudio 2.8 which only supports ADPCM, but not xWMA. It will run with XAudio 2.9, XAudio 2.7, or the XAudio2Redist.
 
