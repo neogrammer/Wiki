@@ -28,7 +28,9 @@ m_soundEffect = std::make_unique<SoundEffect>(m_audEngine.get(), L"heli.wav");
 
 Build and run. No sounds will be heard, but the audio file is loaded.
 
-> _Troubleshooting:_ If you get a runtime exception, then you may have the ``.wav`` file in the wrong folder, have modified the "Working Directory" in the "Debugging" configuration settings, or otherwise changed the expected paths at runtime of the application. You should set a break-point on ``std::make_unique<SoundEffect>`` and step into the code to find the exact problem.
+<details><summary><i>Click here for troubleshooting advice</i></summary>
+<p>If you get a runtime exception, then you may have the <code>.wav</code> file in the wrong folder, have modified the "Working Directory" in the "Debugging" configuration settings, or otherwise changed the expected paths at runtime of the application. You should set a break-point on <code>std::make_unique&lt;SoundEffect&gt;</code> and step into the code to find the exact problem.</p></details>
+
 
 # Play the sound
 
