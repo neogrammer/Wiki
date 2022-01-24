@@ -28,7 +28,7 @@ For exception safety, it is recommended you make use of the C++ [RAII](http://en
 For Windows desktop applications, the application needs to make the appropriate calls during the main **WndProc** message processing:
 
 ```cpp
-#include <windows.h>
+#include <Windows.h>
 #include "Keyboard.h"
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)

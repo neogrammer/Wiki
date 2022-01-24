@@ -7,7 +7,7 @@ The StepTimer class is a helper for managing a timed game loop.
 The typical usage for the StepTimer helper class is to call ``Tick`` once before you render each frame. The ``Tick`` method takes a callback which is invoked to perform time-based updates in your game or application.
 
 ```cpp
-#include <windows.h>
+#include <Windows.h>
 #include "StepTimer.h"
 
 DX::StepTimer s_timer;
