@@ -107,7 +107,8 @@ Build and run to see our initial scene.
 
 ![Screenshot of Torus](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTorus1.PNG)
 
-> _Troubleshooting:_ If you get a runtime exception, then you may have the "sunset.jpg" in the wrong folder, have modified the "Working Directory" in the "Debugging" configuration settings, or otherwise changed the expected paths at runtime of the application. You should set a break-point on ``CreateWICTextureFromFile`` and step into the code to find the exact problem.
+<details><summary><i>Click here for troubleshooting advice</i></summary>
+<p>If you get a runtime exception, then you may have the "sunset.jpg" in the wrong folder, have modified the "Working Directory" in the "Debugging" configuration settings, or otherwise changed the expected paths at runtime of the application. You should set a break-point on <code>CreateWICTextureFromFile</code> and step into the code to find the exact problem.</p></details>
 
 # Compiling and loading shaders
 
@@ -308,7 +309,8 @@ m_blurParamsHeight.Reset();
 
 Build and run. The scene is unchanged, but we've loaded our new shaders.
 
-> _Troubleshooting_: If you get a runtime exception, then the shaders are not getting built as expected by Visual Studio. The ``ReadData`` helper looks in the same directory as the EXE for the compiled shader files (since they are built for each configuration Debug, Release, etc.). See if the files ``BloomExtract.cso``, ``BloomCombine.cso``, and ``GaussianBlur.cso`` are present in the directory where the project's EXE is built. If one or more of them is missing, check the properties on each of the HLSL files as above, and double-check the general settings for those files as well.
+<details><summary><i>Click here for troubleshooting advice</i></summary>
+<p>If you get a runtime exception, then the shaders are not getting built as expected by Visual Studio. The <code>DX::ReadData</code> helper looks in the same directory as the EXE for the compiled shader files (since they are built for each configuration Debug, Release, etc.). See if the files "BloomExtract.cso", "BloomCombine.cso", and "GaussianBlur.cso" are present in the directory where the project's EXE is built. If one or more of them is missing, check the properties on each of the HLSL files as above, and double-check the general settings for those files as well.</p></details>
 
 ![HLSL Compiler Settings](https://github.com/Microsoft/DirectXTK/wiki/images/settingsHLSLg.PNG)
 
