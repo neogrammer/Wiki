@@ -125,10 +125,9 @@ If you want to support Windows 7, be sure to verify ``_WIN32_WINT`` is set to ``
 #define _WIN32_WINNT 0x0601
 #include <sdkddkver.h>
 ```
-
-> _Troubleshooting:_ If you get a compilation error related to DirectX SDK headers, then you likely don't have the ``Microsoft.XAudio2.Redist`` NuGet package set up for the project that is using ``Audio.h``
-
-> _Troubleshooting:_ If you get runtime errors related to not being able to find ``XAUDIO2_9REDIST.DLL``, then you likely don't have the ``Microsoft.XAudio2.Redist`` NuGet package set up for the project that generates the EXE, or you need to include that DLL from the NuGet package in your installer/deployment.
+<details><summary><i>Click here for troubleshooting advice</i></summary>
+<p>If you get a compilation error related to DirectX SDK headers, then you likely don't have the <b>Microsoft.XAudio2.Redist</b> NuGet package set up for the project that is using <code>Audio.h</code></p>
+<p>If you get runtime errors related to not being able to find <code>XAUDIO2_9REDIST.DLL</code>, then you likely don't have the <b>Microsoft.XAudio2.Redist</b> NuGet package set up for the project that generates the EXE, or you need to include that DLL from the NuGet package in your installer/deployment.</p></details>
 
 # Deployment
 If you are using XAudio 2.8, then your application has a dependency on Windows 8.0 or later. If using XAudio 2.9, your application will only run on Windows 10 devices.
