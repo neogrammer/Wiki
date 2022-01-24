@@ -1,3 +1,6 @@
+|[[Getting Started]]|
+|---|
+
 In this lesson, we will explore more things you can do with sprites.
 
 # Setup

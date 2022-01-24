@@ -1,3 +1,6 @@
+|[[Getting Started]]|
+|---|
+
 After creating a new project in [[Using DeviceResources]], the next step is to add the _DirectX Tool Kit_ library and headers to the project so we can make use of it in our code.
 
 # NuGet package manager
@@ -9,6 +12,8 @@ The easiest way to achieve this is to use the [NuGet package manager](https://do
 * Select the package with the id  **[directxtk_desktop_2017](https://www.nuget.org/packages/directxtk_desktop_2017/)** for Win32 or **[directxtk_uwp](https://www.nuget.org/packages/directxtk_uwp/)** for UWP
 * Select "Install"
 * When finished, close the NuGet Manager
+
+
 
 ![Manage NuGet Packages](https://github.com/Microsoft/DirectXTK/wiki/images/nuget.png)
 

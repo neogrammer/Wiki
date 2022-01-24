@@ -1,3 +1,6 @@
+|[[Getting Started]]|
+|---|
+
 In this lesson we learn the basics of Physically-Based Rendering (PBR) as supported by the *DirectX Tool Kit*.
 
 # What does 'Physically-based' mean?

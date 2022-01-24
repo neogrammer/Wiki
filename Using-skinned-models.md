@@ -1,3 +1,6 @@
+|[[Getting Started]]|
+|---|
+
 In this lesson we learn how to render models using skinned vertices for smooth animations.
 
 # Setup
@@ -313,4 +316,3 @@ for (size_t j = 0; j < nbones; ++j)
 The CMO animation was adopted from the [Visual Studio Starter Kit](https://devblogs.microsoft.com/cppblog/developing-an-app-with-the-visual-studio-3d-starter-kit-part-1-of-3/) code written by Roberto Sonnino.
 
 The SDKMESH animation was adopted from the [DXUT](https://github.com/microsoft/DXUT) code written by Shanon Drone.
-

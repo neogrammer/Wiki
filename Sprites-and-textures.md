@@ -1,3 +1,6 @@
+|[[Getting Started]]|
+|---|
+
 In this lesson, we will cover the basics of creating a texture from a bitmap file, and then rendering it using a 2D sprite with various drawing options.
 
 # Setup
@@ -31,7 +34,7 @@ Build and run the application which will still not be displaying anything but th
 
 <details><summary><i>Click here for troubleshooting advice</i></summary>
 <p>If you get a runtime exception, then you may have the "cat.png" in the wrong folder, have modified the "Working Directory" in the "Debugging" configuration settings, or otherwise changed the expected paths at runtime of the application. You should set a break-point on <code>CreateWICTextureFromFile</code> and step into the code to find the exact problem.</p></details>
- 
+
 # Drawing a sprite
 
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:

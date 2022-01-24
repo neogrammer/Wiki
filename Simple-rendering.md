@@ -1,3 +1,6 @@
+|[[Getting Started]]|
+|---|
+
 Here we learn how to render a 2D triangle and the use of the built-in basic effects.
 
 # Setup

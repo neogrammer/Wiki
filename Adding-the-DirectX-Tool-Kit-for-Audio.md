@@ -1,3 +1,6 @@
+|[[Getting Started]] for DX11|[Getting Started](https://github.com/microsoft/DirectXTK12/wiki/Getting-Started) for DX12|
+|---|---|
+
 This lesson covers adding the _DirectX Tool Kit for Audio_ library and headers to your project.
 
 # Setup

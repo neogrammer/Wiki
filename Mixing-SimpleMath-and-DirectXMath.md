@@ -1,3 +1,6 @@
+|[[Getting Started]] for DX11|[Getting Started](https://github.com/microsoft/DirectXTK12/wiki/Getting-Started) for DX12|
+|---|---|
+
 This lesson discusses how to make use of more advanced math functions provided in the DirectXMath library using existing SimpleMath types.
 
 # Coordinate system

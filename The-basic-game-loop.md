@@ -1,3 +1,6 @@
+|[[Getting Started]]|
+|---|
+
 The first lesson in the [[Getting Started]] guide is to create a basic game loop which creates a Direct3D device, swapchain, and update/render loop.
 
 # Setup

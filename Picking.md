@@ -1,3 +1,6 @@
+|[[Getting Started]] for DX11|[Getting Started](https://github.com/microsoft/DirectXTK12/wiki/Getting-Started) for DX12|
+|---|---|
+
 This lesson covers performing picking in 3D.
 
 # Ray casting

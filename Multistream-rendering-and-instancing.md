@@ -1,3 +1,6 @@
+|[[Getting Started]]|
+|---|
+
 In this lesson we learn how to use multistream rendering to implement GPU instancing.
 
 # Input assembler
@@ -366,7 +369,7 @@ for (const auto& mit : instancedModel->meshes)
 
 * GPU instancing is also supported by [[DebugEffect]] and [[PBREffect]]
 
-* While **BasicEffect** does not support instancing, you can use **NormalMapEffect** to emulate **BasicEffect** by providing texture coordinates. The **NormalMapEffect** class will use a 
+* While **BasicEffect** does not support instancing, you can use **NormalMapEffect** to emulate **BasicEffect** by providing texture coordinates. The **NormalMapEffect** class will use a
 [default 1x1 white](https://github.com/Microsoft/DirectXTK/wiki/media/default.dds) texture (i.e. ``DXGI_FORMAT_R8G8B8A8_UNORM`` value ``0xFFFFFFFF``) and/or a [smooth 1x1 normal map](https://github.com/Microsoft/DirectXTK/wiki/media/smoothMap.dds) texture (i.e. ``DXGI_FORMAT_R8G8_UNORM`` value ``0x7F7F``).
 
 **Next lessons:** [[Creating custom shaders with DGSL]]

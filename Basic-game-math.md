@@ -1,3 +1,6 @@
+|[[Getting Started]] for DX11|[Getting Started](https://github.com/microsoft/DirectXTK12/wiki/Getting-Started) for DX12|
+|---|---|
+
 This lesson will cover the basics of 3D transformations for graphics.
 
 # Positioning the camera
@@ -9,6 +12,8 @@ In the Game class we added variables for the projection matrix and the view matr
 DirectX::SimpleMath::Matrix m_view;
 DirectX::SimpleMath::Matrix m_proj;
 ```
+
+
 
 In the **CreateResources** method, we used the backbuffer size to create a simple perspective view:
 

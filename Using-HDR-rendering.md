@@ -1,3 +1,6 @@
+|[[Getting Started]]|
+|---|
+
 This lesson covers the basics of High-Dynamic Range (HDR) rendering, tone-mapping, and optionally adding HDR10 wide color gamut (a.k.a. Ultra HD) rendering with _DirectX Tool Kit_.
 
 # Setup

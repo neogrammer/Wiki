@@ -1,3 +1,6 @@
+|[[Getting Started]] for DX11|[Getting Started](https://github.com/microsoft/DirectXTK12/wiki/Getting-Started) for DX12|
+|---|---|
+
 This lesson covers simple collision detection using rectangles, spheres, and boxes.
 
 # 2D collision detection
@@ -68,7 +71,7 @@ bool Intersects(XMVECTOR V0, XMVECTOR V1, XMVECTOR V2) const;
 PlaneIntersectionType Intersects(XMVECTOR Plane) const;
 bool Intersects(XMVECTOR Origin, XMVECTOR Direction, float& Dist) const;
 ```
-    
+
 See [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/api/directxcollision/ns-directxcollision-boundingsphere).
 
 ## BoundingBox class

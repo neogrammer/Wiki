@@ -1,3 +1,6 @@
+|[[Getting Started]]|
+|---|
+
 In this lesson we learn about  additional built-in shader types and some of their uses.
 
 # Setup

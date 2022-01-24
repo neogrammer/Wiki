@@ -1,3 +1,6 @@
+|[[Getting Started]]|
+|---|
+
 This lesson covers writing your own [[IEffect|Effects]] implementation, specifically a custom effect for rendering a [skybox](https://en.wikipedia.org/wiki/Skybox_%28video_games%29) with a cubemap.
 
 # Setup
@@ -445,7 +448,7 @@ VSOutput main(float4 position : SV_Position)
 
     vout.PositionPS = mul(position, WorldViewProj);
     vout.PositionPS.z = vout.PositionPS.w; // Draw on far plane
-    
+
     vout.TexCoord.x = -position.x;
     vout.TexCoord.yz = position.yz;
 

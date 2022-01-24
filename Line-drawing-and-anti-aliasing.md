@@ -1,3 +1,6 @@
+|[[Getting Started]]|
+|---|
+
 Here we learn how to render a grid in 3D, and enable multi-sample anti-aliasing (MSAA).
 
 # Setup

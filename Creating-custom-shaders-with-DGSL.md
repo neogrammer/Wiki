@@ -1,3 +1,6 @@
+|[[Getting Started]]|
+|---|
+
 This lesson covers creating custom shaders with the Visual Studio DGSL Shader Designer and using them with _DirectX Tool Kit_.
 
 # Setup

@@ -1,3 +1,6 @@
+|[[Getting Started]]|
+|---|
+
 This lesson covers the basics of writing your own [HLSL shaders](https://en.wikipedia.org/wiki/High-Level_Shading_Language) and using them with _DirectX Tool Kit_, in particular to customize **SpriteBatch**.
 
 # Setup

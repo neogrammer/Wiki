@@ -1,3 +1,6 @@
+|[[Getting Started]]|
+|---|
+
 This lesson loads and draws models in 3D.
 
 # Setup

@@ -1,3 +1,6 @@
+|[[Getting Started]] for DX11|[Getting Started](https://github.com/microsoft/DirectXTK12/wiki/Getting-Started) for DX12|
+|---|---|
+
 This lesson covers the basics of adding the use of *DirectX Tool Kit for Audio*'s audio engine to your project.
 
 # Setup

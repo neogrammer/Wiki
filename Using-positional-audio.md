@@ -1,3 +1,6 @@
+|[[Getting Started]] for DX11|[Getting Started](https://github.com/microsoft/DirectXTK12/wiki/Getting-Started) for DX12|
+|---|---|
+
 This lesson covers the playing sounds with _DirectX Tool Kit for Audio_ using 3D positional audio effects.
 
 # Setup

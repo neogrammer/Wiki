@@ -1,3 +1,6 @@
+|[[Getting Started]]|
+|---|
+
 This lesson draws simple shapes in 3D.
 
 # Setup

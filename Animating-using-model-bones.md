@@ -1,3 +1,6 @@
+|[[Getting Started]]|
+|---|
+
 In this lesson we learn how to use model bones for rigid-body animation.
 
 # Setup
