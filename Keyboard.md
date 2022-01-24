@@ -39,8 +39,16 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         Keyboard::ProcessMessage(message, wParam, lParam);
         break;
 
-    case WM_KEYDOWN:
     case WM_SYSKEYDOWN:
+        if (wParam == VK_RETURN && (lParam & 0x60000000) == 0x20000000)
+        {
+            // This is where you'd implement the classic ALT+ENTER hotkey for fullscreen toggle
+            ...
+        }
+        Keyboard::ProcessMessage(message, wParam, lParam);
+        break;
+
+    case WM_KEYDOWN:
     case WM_KEYUP:
     case WM_SYSKEYUP:
         Keyboard::ProcessMessage(message, wParam, lParam);
