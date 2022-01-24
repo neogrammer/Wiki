@@ -172,7 +172,8 @@ Build and run to see the sphere.
 
 ![Screenshot of ball](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotBall.PNG)
 
-> _Troubleshooting_: If you get a runtime exception, then you may have the "billard15.dds" or "envmap.dds" in the wrong folder, have modified the "Working Directory" in the "Debugging" configuration settings, or otherwise changed the expected paths at runtime of the application. You should set a break-point on ``CreateDDSTextureFromFile`` and step into the code to find the exact problem. If you get an exception from  ``DX::ReadData``, then you may not have the "MyDGSLShader.dgsl" file building correctly.
+<details><summary><i>Click here for troubleshooting advice</i></summary>
+<p>If you get a runtime exception, then you may have the "billard15.dds" or "envmap.dds" in the wrong folder, have modified the "Working Directory" in the "Debugging" configuration settings, or otherwise changed the expected paths at runtime of the application. You should set a break-point on <code>CreateDDSTextureFromFile</code> and step into the code to find the exact problem.</p><p>If you get an exception from <code>DX::ReadData</code>, then you may not have the "MyDGSLShader.dgsl" file building correctly.</p></details>
 
 ## Technical notes
 We are not able to use a ``GeometricPrimitive`` because the DGSL rendering pipeline requires per-vertex tangent information. Therefore, we load a custom vertex buffer/index buffer for this lesson that uses the ``VertexPositionNormalTangentColorTexture`` vertex structure with the tangent information. This vertex information is always included with ``CMO`` models.
