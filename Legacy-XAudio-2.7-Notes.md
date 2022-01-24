@@ -62,15 +62,16 @@ Click "Apply".
 
 It is important that the legacy DirectX SDK paths be after the existing path since are making use of the Windows 8.1 / 10 SDK. See [Where is the DirectX SDK?](https://docs.microsoft.com/en-us/windows/desktop/directx-sdk--august-2009-) for more details.
 
-> _Troubleshooting:_ If you get a compilation error indicating you are missing ``comdecl.h``, then you have incorrectly configured your VC++ Directory include paths. If you get a link error indicating you are missing ``x3daudio.lib`` then you incorrectly configured your VC++ Directory library paths.
-
-> _Troubleshooting:_ If you get a compilation error indicating you are missing ``comdecl.h``, then you have incorrectly configured the ``_WIN32_WINNT`` variable. See [Using the Windows Headers](https://docs.microsoft.com/en-us/windows/desktop/WinProg/using-the-windows-headers).
+<details><summary><i>Click here for troubleshooting advice</i></summary>
+<p>If you get a compilation error indicating you are missing "comdecl.h", there are two possible reasons:
+<ul><li>You have incorrectly configured your VC++ Directory include paths. If you get a link error indicating you are missing <code>x3daudio.lib</code>, then you incorrectly configured your VC++ Directory library paths.</li>
+<li>You have incorrectly configured the ``_WIN32_WINNT`` variable. See <a href="https://docs.microsoft.com/en-us/windows/desktop/WinProg/using-the-windows-headers">Using the Windows Headers</a></li></ul></p></details>
 
 # Deployment
 
 If you are using XAudio 2.7, then your application has a dependency on the _DirectX End-User Runtime_. See [Not So DirectSetup](https://aka.ms/dxsetup) for information on using this package. *Again, this is not recommended for use.*
 
-# Troubleshooting
+# Debugging
 When using the debug version of XAudio 2.7 on Windows 7, you can get a break-point exception thrown even with a valid device. The debug output window message will be the following. You can safely ignore this and click "Continue".
 
 ```
