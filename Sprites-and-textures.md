@@ -77,9 +77,9 @@ m_screenPos.x = float(size.right) / 2.f;
 m_screenPos.y = float(size.bottom) / 2.f;
 ```
 
-> If using the UWP template, you also need to add ``m_spriteBatch->SetRotation(m_deviceResources->GetRotation());`` to handle display orientation changes.
+> If using the <abbr title="Universal Windows Platform">UWP</abbr> template, you also need to add ``m_spriteBatch->SetRotation(m_deviceResources->GetRotation());`` to handle display orientation changes.
 
-> If using Xbox fast semantics, you also need to add ``m_spriteBatch->SetViewport(m_deviceResources->GetScreenViewport());``.
+> If using Xbox One DirectX 11.X "fast semantics", you also need to add ``m_spriteBatch->SetViewport(m_deviceResources->GetScreenViewport());``.
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
