@@ -50,7 +50,7 @@ m_shipPos.x = float(size.right / 2);
 m_shipPos.y = float((size.bottom / 2) + (size.bottom / 4));
 ```
 
-> If using the UWP template, you also need to add ``m_spriteBatch->SetRotation(m_outputRotation);`` to handle display orientation changes.
+> If using the <abbr title="Universal Windows Platform">UWP</abbr> template, you also need to add ``m_spriteBatch->SetRotation(m_outputRotation);`` to handle display orientation changes.
 
 In **Game.cpp**, add to the TODO of **OnDeviceLost**:
 
