@@ -71,7 +71,7 @@ If you prefer to make use of Visual Studio's integrated [CMake](https://docs.mic
 The simplest way to use these is to clone *directx-vs-templates*, open up PowerShell, change to the ``directx-vs-templates/VSIX`` directory, and run the following script which will create a fresh instance of the template set up for CMake development:
 
 ```
-.\createcmake.ps1 ../d3d11game_win32 Direct3DGame $Env:USERPROFILE\source\Direct3DGame
+.\createcmake.ps1 d3d11game_win32 Direct3DGame $Env:USERPROFILE\source\Direct3DGame
 ```
 
 ## COM
