@@ -10,7 +10,7 @@ First create a new project using the instructions from the previous lessons: [[U
 
 # Background
 
-Most 3D modeling packages (a.k.a. Digital Content Creation DCC tools) create a relationship between the different parts of 3D models. The process of assigning this hierarchy is  called *rigging* the model for animation. This hierarchy can be exported to runtime geometry formats like ``SDKMESH``, then loaded into *DirectX Tool Kit* as an array of [[ModelBone]] structures that link to the parent, children, and siblings of each bone. There's also a local transformation matrix associated with each bone.
+Most 3D modeling packages (a.k.a. <abbr title="Digital Content Creation">DCC</abbr> tools) create a relationship between the different parts of 3D models. The process of assigning this hierarchy is  called *rigging* the model for animation. This hierarchy can be exported to runtime geometry formats like ``SDKMESH``, then loaded into *DirectX Tool Kit* as an array of [[ModelBone]] structures that link to the parent, children, and siblings of each bone. There's also a local transformation matrix associated with each bone.
 
 These 'bone' locations can be used as simple metadata for placing dynamic lights, collision geometry, or other game-related logic in an art-driven fashion. They can also be used to implement rigid-body animation, which is what we will implement in this lesson.
 
