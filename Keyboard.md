@@ -147,6 +147,8 @@ Most of the ``Oem*`` values vary based on country/region, but you can count on `
 
 > The <kbd>Windows</kbd> logo key is visible in the Keyboard state, but you should avoid using it for your control scheme. <kbd>Windows</kbd> logo key is normally a system-wide hotkey for Windows per [Microsoft Docs](https://support.microsoft.com/en-us/windows/keyboard-shortcuts-in-windows-dcc61a57-8ff0-cffe-9796-cb9706c75eec). In particular on Windows 10 or later, <kbd>Windows</kbd>+<kbd>G</kbd> brings up the [Xbox Game Bar](https://developer.microsoft.com/en-us/games/products/game-bar/), <kbd>Windows</kbd>+<kbd>Alt</kbd>+<kbd>B</kbd> is used to toggle HDR mode, <kbd>Windows</kbd>+<kbd>Alt</kbd>+<kbd>PrtScn</kbd> is used to capture a screenshot, and <kbd>Windows</kbd>+<kbd>Alt</kbd>+<kbd>R</kbd> is used to record a video with *Xbox Game Bar*.
 
+> If accidentally pressing the <kbd>Windows</kbd> key or triggering the Windows Accessibility hotkeys is a common problem for your control scheme, see [Disabling Shortcut Keys in Games](https://docs.microsoft.com/windows/win32/dxtecharts/disabling-shortcut-keys-in-games).
+
 For more information on virtual keys, see [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes).
 
 # Keyboard state tracker
