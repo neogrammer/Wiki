@@ -4,7 +4,7 @@
 The first lesson in the [[Getting Started]] guide is to create a basic game loop which creates a Direct3D device, swapchain, and update/render loop.
 
 # Setup
-Our starting point is to use the **Direct3D Win32 Game** or the **Direct3D UWP Game** project template. Install the [VS 2017/2019/2022](https://github.com/walbourn/directx-vs-templates/raw/main/VSIX/Direct3DUWPGame.vsix) VSIX on your development system, and then start (or restart) Visual Studio.
+Our starting point is to use the **Direct3D Win32 Game** or the **Direct3D <abbr title="Universal Windows Platform">UWP</abbr> Game** project template. Install the [VS 2017/2019/2022](https://github.com/walbourn/directx-vs-templates/raw/main/VSIX/Direct3DUWPGame.vsix) VSIX on your development system, and then start (or restart) Visual Studio.
 
 # Creating a new project
 
@@ -20,7 +20,7 @@ Our starting point is to use the **Direct3D Win32 Game** or the **Direct3D UWP G
 
 ## Visual Studio 2019 / 2022
 * From the drop-down menu, select **File** and then **New** -> **Project...** or on the startup dialog select **Create a new project**
-* Select "Games" on the project types filter. You can optionally type "Win32" or "UWP" in the search box as well.
+* Select "Games" in the project types filter. You can optionally type "Win32" or "UWP" in the search box as well.
 * Select "Direct3D Win32 Game" or "Direct3D UWP Game".
 * Select "Next"
 * Fill in the "Project name" and "Location" fields as desired.
@@ -62,11 +62,11 @@ While the UWP version will have:
 * Package.appxmanifest
 * Name_TemporaryKey.pfx
 * Assets
-  * logo PNG files
+  * logo <abbr title="Portable Network Graphics">PNG</abbr> files
 
 ## CMake projects
 
-If you prefer to make use of Visual Studio's integrated [CMake](https://docs.microsoft.com/en-us/cpp/build/cmake-projects-in-visual-studio?view=vs-2019) support or a standalone install of CMake, there are ``CMakeLists.txt`` and ``CMakeSettings.json`` files available for download on [directx-vs-templates](https://github.com/walbourn/directx-vs-templates/wiki#cmake-projects).
+If you prefer to make use of Visual Studio's integrated [CMake](https://docs.microsoft.com/cpp/build/cmake-projects-in-visual-studio?view=vs-2019) support or a standalone install of CMake, there are ``CMakeLists.txt`` and ``CMakePresets.json`` files available for download on [directx-vs-templates](https://github.com/walbourn/directx-vs-templates/wiki#cmake-projects).
 
 The simplest way to use these is to clone *directx-vs-templates*, open up PowerShell, change to the ``directx-vs-templates/VSIX`` directory, and run the following script which will create a fresh instance of the template set up for CMake development:
 
@@ -76,7 +76,7 @@ The simplest way to use these is to clone *directx-vs-templates*, open up PowerS
 
 ## COM
 
-The Win32 and UWP templates ensure that COM is initialized. This is required for *DirectX Tool Kit* when using Windows Imaging Component ([WIC](https://docs.microsoft.com/en-us/windows/win32/wic/-wic-lh)) functionality. The UWP template also initialize the Windows Runtime, which is required to use ``Windows.Gaming.Input``.
+The Win32 and UWP templates ensure that the <abbr title="Component Object Model">COM</abbr> library is initialized. This is required for *DirectX Tool Kit* when using Windows Imaging Component ([WIC](https://docs.microsoft.com/windows/win32/wic/-wic-lh)) functionality. The UWP template also initialize the Windows Runtime, which is required to use ``Windows.Gaming.Input``.
 
 # Running the application
 Visual Studio will default to the _x64_ platform / _Debug_ configuration which builds an x64 (64-bit) application with debugging enabled. The template contains both _Debug_ and _Release_ configurations for both _x86_ (32-bit) and _x64_ (x64 native 64-bit) platforms, with UWP also including the ARM/ARM64 platforms. The UWP template also initialize the Windows Runtime, which is required to use ``Windows.Gaming.Input``.
@@ -138,7 +138,7 @@ void Game::CreateDevice()
 }
 ```
 
-The other function called by ``Initialize`` is the **CreateResources** function which sets up the swapchain (which defaults to a ``B8G8R8A8_UNORM`` format), and depth buffer (which defaults to ``D24_UNORM_S8_UINT`` which works on all Direct3D hardware feature levels in basic template). The TODO here is for adding the creation of objects that depend on the size of the rendering window. Note that this function could be creating these objects for the first time, it could be re-creating already existing objects due to a window-size change, or could be creating 'fresh' objects after a Direct3D device-removed or device-reset case.
+The other function called by ``Initialize`` is the **CreateResources** function which sets up the swapchain (which defaults to a ``B8G8R8A8_UNORM`` format), and depth/stencil buffer (which defaults to ``D24_UNORM_S8_UINT`` which works on all Direct3D hardware feature levels in basic template). The TODO here is for adding the creation of objects that depend on the size of the rendering window. Note that this function could be creating these objects for the first time, it could be re-creating already existing objects due to a window-size change, or could be creating 'fresh' objects after a Direct3D device-removed or device-reset case.
 
 ```cpp
 void Game::CreateResources()
@@ -148,7 +148,7 @@ void Game::CreateResources()
 }
 ```
 
-> Universal Windows Platform (UWP) apps require the use of 'flip' style swap effects, either ``DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL`` or ``DXGI_SWAP_EFFECT_FLIP_DISCARD``. These DXGI swap chains cannot be created with an ``DXGI_FORMAT_x_UNORM_SRGB`` format or use MSAA (aka ``SampleDesc.Count`` > 1). Both sRGB gamma-correction and MSAA require special handling. Use of these newer 'flip' style modes are also recommended for Win32 desktop applications on Windows 10 (see [this blog post](https://devblogs.microsoft.com/directx/dxgi-flip-model/)). See [this blog series](https://walbourn.github.io/care-and-feeding-of-modern-swapchains/) and [[DeviceResources]] for more details.
+> Universal Windows Platform (UWP) apps require the use of 'flip' style swap effects, either ``DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL`` or ``DXGI_SWAP_EFFECT_FLIP_DISCARD``. These [DXGI](https://docs.microsoft.com/windows/win32/direct3ddxgi/dx-graphics-dxgi) swap chains cannot be created with an ``DXGI_FORMAT_x_UNORM_SRGB`` format or use MSAA (aka ``SampleDesc.Count`` > 1). Both sRGB gamma-correction and MSAA require special handling. Use of these newer 'flip' style modes are also recommended for Win32 desktop applications on Windows 10 (see [this blog post](https://devblogs.microsoft.com/directx/dxgi-flip-model/)). See [this blog series](https://walbourn.github.io/care-and-feeding-of-modern-swapchains/) and [[DeviceResources]] for more details.
 
 ## Update
 The **Update** method is intended to handle game-world state modification which is typically driven by time passing, simulation, and/or user-input. By default, ``Update`` is called once per 'frame' and can have an arbitrary delta-time. This is called a 'variable-step' mode.
@@ -212,7 +212,7 @@ void Game::Clear()
 > frame-to-frame without being reset is a likely source of rendering bugs. Therefore, this template uses the
 > best practice of resetting the viewport state at the start of each frame.
 
-**Xbox One:** For Xbox One fast semantics, it is important to set the render targets at the end of ``Clear`` because clearing the render target unbinds it from the render pipeline. We also explicitly set the viewport every frame as all state is reset between frames.
+**Xbox One:** For Xbox One DirectX 11.X "fast semantics", it is important to set the render targets at the end of ``Clear`` because clearing the render target unbinds it from the render pipeline. We also explicitly set the viewport every frame as all state is reset between frames.
 
 ### Present
 
@@ -243,7 +243,7 @@ void Game::Present()
 ## Events
 The template includes a number of message handlers that are called for process state changes: **OnActivated**, **OnDeactivated**, **OnSuspending**, **OnResuming**, and **OnWindowSizeChanged**. The UWP version also includes **ValidateDevice**, and display orientation is provided long with the window size.
 
-> For Win32 desktop, the **OnSuspending** / **OnResuming** messages are triggered when (a) the window is minimized/unminimized or (b) in reaction to the ``WM_POWERBROADCAST`` message. On other platforms, this is driven by Process Lifecycle Management ([PLM](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/app-lifecycle)).
+> For Win32 desktop, the **OnSuspending** / **OnResuming** messages are triggered when (a) the window is minimized/unminimized or (b) in reaction to the ``WM_POWERBROADCAST`` message. On other platforms, this is driven by Process Lifecycle Management ([PLM](https://docs.microsoft.com/windows/uwp/launch-resume/app-lifecycle)).
 
 Since we are using [[ComPtr]], most cleanup is automatic when the Game class is destroyed. If ``Present`` encounters a device-removed or device-reset, then the application needs to release all Direct3D objects and recreate the device, swapchain, and all Direct3D objects again. Therefore, the TODO in **OnDeviceLost** should be updated to release your application's Direct3D objects.
 
@@ -259,7 +259,7 @@ void Game::OnDeviceLost()
 > You will not get "device lost" all that often. In legacy Direct3D 9, you would routinely get a 'device lost' if you just <kbd>Alt</kbd>+<kbd>TAB</kbd> away from the application because the GPU used to be an 'exclusive' rather than 'shared' resource. The situation where you'd get ``DXGI_ERROR_DEVICE_RESET`` is if the driver crashes or the video hardware hangs. You get ``DXGI_ERROR_DEVICE_REMOVED`` if a new driver is installed while your application is running, or if you are running on a 'GPU is in the dock' style laptop and the laptop is undocked. You can test this case by opening the *Developer Command Prompt for Visual Studio* as an administrator, and typing ``dxcap -forcetdr`` which will immediately cause all currently running Direct3D apps to get a ``DXGI_ERROR_DEVICE_REMOVED`` event.
 
 # Smart-pointer
-We make use of the ``Microsoft::WRL::ComPtr`` smart-pointer for managing the lifetime of the Direct3D 11 COM objects, which is why we make use of ``.Get()`` in the code above. See [[ComPtr]] and [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/prog-dx-with-com) for more information and usage.
+We make use of the ``Microsoft::WRL::ComPtr`` smart-pointer for managing the lifetime of the Direct3D 11 COM objects, which is why we make use of ``.Get()`` in the code above. See [[ComPtr]] and [Microsoft Docs](https://docs.microsoft.com/windows/win32/prog-dx-with-com) for more information and usage.
 
 # Error handling
 Many Direct3D functions return an ``HRESULT`` which is the standard for COM APIs. For robustness and easier debugging, it is important that you always check the result of every function that return an ``HRESULT``. If you really can safely assume there is no error condition for a particular function, the function itself will return ``void`` instead of ``HRESULT``.
@@ -292,4 +292,4 @@ The Win32 desktop and UWP templates implement [immersive fullscreen](https://wal
 [Direct3D Game Visual Studio templates (Redux)](https://walbourn.github.io/direct3d-game-visual-studio-templates-redux/)  
 [Anatomy of Direct3D 11 Create Device](https://walbourn.github.io/anatomy-of-direct3d-11-create-device/)   
 [Manifest Madness](https://aka.ms/I6kdnw)  
-[64-bit programming for Game Developers](https://docs.microsoft.com/en-us/windows/desktop/DxTechArts/sixty-four-bit-programming-for-game-developers)
+[64-bit programming for Game Developers](https://docs.microsoft.com/windows/desktop/DxTechArts/sixty-four-bit-programming-for-game-developers)
