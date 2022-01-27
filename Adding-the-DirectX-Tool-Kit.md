@@ -9,7 +9,7 @@ The easiest way to achieve this is to use the [NuGet package manager](https://do
 * From the drop-down menu, select **Project** / **Manage NuGet Packages...**
 * Select "Browse" on the top tab, and make sure the _Package source_ is set to "nuget.org"
 * In the text search field type "DirectXTK" and hit enter to search for the packages
-* Select the package with the id  **[directxtk_desktop_2017](https://www.nuget.org/packages/directxtk_desktop_2017/)** for Win32 or **[directxtk_uwp](https://www.nuget.org/packages/directxtk_uwp/)** for UWP
+* Select the package with the id  **[directxtk_desktop_2017](https://www.nuget.org/packages/directxtk_desktop_2017/)** for Win32 or **[directxtk_uwp](https://www.nuget.org/packages/directxtk_uwp/)** for <abbr title="Universal Windows Platform">UWP</abbr>
 * Select "Install"
 * When finished, close the NuGet Manager
 
@@ -69,7 +69,20 @@ vcpkg install directxtk:arm64-uwp
 
 Then add the required toolchain reference to ``vcpkg\scripts\buildsystems\vcpkg.cmake``:
 
+If using ``CMakeSettings.json``:
+
 ![Setting cmake toolchain](https://github.com/Microsoft/DirectXTK/wiki/images/cmakevcpkg.png)
+
+If using ``CMakePresets.json``:
+
+```
+"cacheVariables": {
+  CMAKE_TOOLCHAIN_FILE": {
+    value": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+    "type": "FILEPATH"
+  }
+},
+```
 
 If not using **vcpkg**, you have to provide a per-configuration path to the individual installed package in the ``directxtk_DIR`` variable:
 
