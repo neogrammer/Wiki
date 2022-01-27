@@ -73,7 +73,7 @@ If using ``CMakeSettings.json``:
 
 ![Setting cmake toolchain](https://github.com/Microsoft/DirectXTK/wiki/images/cmakevcpkg.png)
 
-If using ``CMakePresets.json``:
+If using ``CMakePresets.json`` set the environment variable ``VCPKG_ROOT`` and add:
 
 ```
 "cacheVariables": {
