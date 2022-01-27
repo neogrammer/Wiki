@@ -72,7 +72,7 @@ The ``flags`` parameter is covered below in *Device Options*.
 
 * **Present**: Presents the current backbuffer and swaps buffers.
 
-> For Xbox One fast semantics, there is also a **Prepare** method which must be called at the start of a rendering frame before clearing the render target.
+> For Xbox One DirectX 11.X "fast semantics", there is also a **Prepare** method which must be called at the start of a rendering frame before clearing the render target.
 
 # Accessors
 
@@ -111,7 +111,7 @@ The ``flags`` parameter is covered below in *Device Options*.
 * ``c_FlipPresent``: Prefer the use of "flip" style swap per [this blog post](https://devblogs.microsoft.com/directx/dxgi-flip-model/) on Windows 10 systems.
 * ``c_AllowTearing``: Enable [variable refresh rate](https://docs.microsoft.com/en-us/windows/win32/direct3ddxgi/variable-refresh-rate-displays) (a.k.a. NVIDIA’s G-SYNC, AMD’s FreeSync, and VESA DisplayPort Adaptive-Sync) if supported.
 * ``c_EnableHDR``: Enable [HDR10 output](https://docs.microsoft.com/en-us/windows/win32/direct3darticles/high-dynamic-range) if supported. See [below](https://github.com/Microsoft/DirectXTK/wiki/DeviceResources#wide-gamut-hdr-rendering).
-* ``c_FastSemantics`` (Xbox One XDK only): Create the 11.x device with fast semantics enabled.
+* ``c_FastSemantics`` (Xbox One XDK only): Create the 11.x device with "fast semantics" enabled.
 * ``c_Enable4K_UHD`` (Xbox One XDK only): Enable 4k swapchain if supported, otherwise use 1080p.
 
 # Threading model
@@ -155,7 +155,7 @@ This platform also uses two additional methods:
 > The version of DeviceResources in the Visual Studio Universal Windows platform "Direct3D 11 App" template is a little different than the one linked above, although the basic design is the same. The primary difference is that the "Direct3D 11 App" template includes Direct2D and explicit WIC factory handling. It also returns the render target view with ``GetBackBufferRenderTargetView`` instead of ``GetRenderTargetView``.
 
 ## Xbox One
-The Xbox One XDK version of **DeviceResources** does not include the 'device lost' handling, and always uses a fixed back-buffer size. There is also a ``Prepare`` method for optional support of Direct3D 11.X Fast Semantics.
+The Xbox One XDK version of **DeviceResources** does not include the 'device lost' handling, and always uses a fixed back-buffer size. There is also a ``Prepare`` method for optional support of Direct3D 11.X "fast semantics".
 
 The DR version for Xbox One also uses ``DXGIX_SWAP_CHAIN_FLAG_QUANTIZATION_RGB_FULL`` rather than ``DXGIX_SWAP_CHAIN_MATCH_XBOX360_AND_PC``.
 
