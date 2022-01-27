@@ -1,7 +1,7 @@
 |[[Getting Started]]|
 |---|
 
-This lesson covers creating custom shaders with the Visual Studio DGSL Shader Designer and using them with _DirectX Tool Kit_.
+This lesson covers creating custom shaders with the Visual Studio <abbr title="Directed Graph Shader Language">DGSL</abbr> Shader Designer and using them with _DirectX Tool Kit_.
 
 # Setup
 First create a new project using the instructions from the previous lessons: [[Using DeviceResources]] and
@@ -10,7 +10,7 @@ First create a new project using the instructions from the previous lessons: [[U
 # Creating custom shaders using DGSL
 One approach to creating your own shader is to use a visual designer tool, such as Visual Studio's DGSL Shader Designer. In this tool, the vertex shader is 'fixed' and the visual tool is used to create the pixel shader. The result of the designer tool is a compiled shader in a ``.DGSL.CSO`` file that can be loaded at runtime. The resulting shaders can be complex and use up to 8 textures at once, perform tangent-space lighting, and many other complex effects.
 
-To use these with _DirectX Tool Kit_, you can manually create [[DGSLEffect]] instances and use them with [[PrimitiveBatch]]. You can also load them automatically from a CMO using Model when you provide the [[DGSLEffectFactory|EffectFactory]] rather than the standard [[EffectFactory]] as we demonstrated in [[Rendering a model]].
+To use these with _DirectX Tool Kit_, you can manually create [[DGSLEffect]] instances and use them with [[PrimitiveBatch]]. You can also load them automatically from a ``.CMO`` using Model when you provide the [[DGSLEffectFactory|EffectFactory]] rather than the standard [[EffectFactory]] as we demonstrated in [[Rendering a model]].
 
 # Rendering a sphere with our effect
 Save the files [MyDGSLShader.dgsl](https://github.com/Microsoft/DirectXTK/wiki/MyDGSLShader.dgsl), [billard15.dds](https://github.com/Microsoft/DirectXTK/wiki/media/billard15.dds), [envmap.dds](https://github.com/Microsoft/DirectXTK/wiki/media/envmap.dds), [ReadData.h](https://github.com/Microsoft/DirectXTK/wiki/ReadData.h), and [dgslsphere.inc](https://github.com/Microsoft/DirectXTK/wiki/dgslsphere.inc) to your new project's folder. Using to the top menu and select **Project** / **Add Existing Item...**. Select "MyDGSLShader.dgsl" and hit "OK".  Repeat for each file.
