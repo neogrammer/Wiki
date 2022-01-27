@@ -115,14 +115,14 @@ Game::Game() noexcept(false)
 
 The DeviceResources constructor takes a number of defaulted parameters to control ``backBufferFormat``, ``depthBufferFormat``, ``backBufferCount``, ``minFeatureLevel``, and option ``flags``. You can provide specific values to change them as needed.
 
-If doing _gamma-correct rendering_, you should use ``DXGI_FORMAT_*_UNORM_SRGB`` or a supported HDR format for the ``backBufferFormat``. Be sure to update ``Clear`` below accordingly to use a linear clear color.
+If doing _gamma-correct rendering_, you should use ``DXGI_FORMAT_*_UNORM_SRGB`` or a supported <abbr title="High Dynamic Range">HDR</abbr> format for the ``backBufferFormat``. Be sure to update ``Clear`` below accordingly to use a linear clear color.
 
 ```cpp
 // Use gamma-correct rendering.
 m_deviceResources = std::make_unique<DX::DeviceResources>(DXGI_FORMAT_B8G8R8A8_UNORM_SRGB);
 ```
 
-If you do not want DeviceResources to create a depth/stencil buffer, you can use ``DXGI_FORMAT_UNKNOWN`` for ``depthBufferFormat``. This is useful for 2D only rendering or when doing MSAA on Universal Windows Platform (UWP) apps which requires handling your own render target and depth buffer with ``Sample.Count`` > 1. Be sure to update ``Clear`` below to avoid referencing a null depth/stencil buffer object.
+If you do not want DeviceResources to create a depth/stencil buffer, you can use ``DXGI_FORMAT_UNKNOWN`` for ``depthBufferFormat``. This is useful for 2D only rendering or when doing [MSAA](https://en.wikipedia.org/wiki/Multisample_anti-aliasing) on Universal Windows Platform (UWP) apps which requires handling your own render target and depth buffer with ``Sample.Count`` > 1. Be sure to update ``Clear`` below to avoid referencing a null depth/stencil buffer object.
 
 ```cpp
 // Renders only 2D, so no need for a depth buffer.
@@ -252,7 +252,7 @@ void Game::Clear()
 }
 ```
 
-If you are using _gamma-correct rendering_ with a sRGB or HDR backbuffer format, you need to ensure you are using a linear RGB clear color. DirectXMath colors are defined in sRGB colorspace since they are [.NET color constants](https://docs.microsoft.com/dotnet/api/system.drawing.color), so you need to replace ``ClearRenderTargetView`` in **Clear** with:
+If you are using _gamma-correct rendering_ with a [sRGB](https://en.wikipedia.org/wiki/SRGB) or HDR backbuffer format, you need to ensure you are using a linear RGB clear color. DirectXMath colors are defined in sRGB colorspace since they are [.NET color constants](https://docs.microsoft.com/dotnet/api/system.drawing.color), so you need to replace ``ClearRenderTargetView`` in **Clear** with:
 
 ```cpp
 // Use linear clear color for gamma-correct rendering.
@@ -261,7 +261,7 @@ color.v = XMColorSRGBToRGB(Colors::CornflowerBlue);
 context->ClearRenderTargetView(renderTarget, color);
 ```
 
-If you chose to not have DeviceResources create a depth-stencil buffer (see the _Constructor_ section), you need to update **Clear** to avoid reference to a null depth buffer object.
+If you chose to not have DeviceResources create a depth/stencil buffer (see the _Constructor_ section), you need to update **Clear** to avoid reference to a null depth/stencil buffer object.
 
 ```cpp
 void Game::Clear()
