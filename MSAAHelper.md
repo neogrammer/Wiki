@@ -1,4 +1,4 @@
-This provides a helper class for managing multisampling render target/depth-stencil buffers.
+This provides a helper class for managing <abbr title="Multisample Anti-aliasing">MSAA</abbr> render target/depth-stencil buffers.
 
 [MSAAHelper.h](https://github.com/Microsoft/DirectXTK/wiki/MSAAHelper.h)
 
