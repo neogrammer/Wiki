@@ -1,7 +1,7 @@
 |[[Getting Started]]|
 |---|
 
-In [[the basic game loop]] lesson, we made use of the **Direct3D Game** VS template which has all the relevant Direct3D code in the ``Game`` class including creating the device and swap chain. This makes it easy to see how to create the device & swapchain. This, however, results in a lot of 'boiler-plate' code in the main ``Game`` class which is distracting for the remainder of our tutorial lessons.
+In [[the basic game loop]] lesson, we made use of the **Direct3D Game** Visual Studio template which has all the relevant Direct3D code in the ``Game`` class including creating the device and swap chain. This makes it easy to see how to create the device & swapchain. This, however, results in a lot of 'boiler-plate' code in the main ``Game`` class which is distracting for the remainder of our tutorial lessons.
 
 There is therefore a "DR" variant of each of the Direct3D Game VS templates in the [VS 2017/2019/2022](https://github.com/walbourn/directx-vs-templates/raw/main/VSIX/Direct3DUWPGame.vsix) VSIX package which adds [[DeviceResources]].
 
