@@ -109,7 +109,7 @@ In **Game.cpp** add the following to the TODO section of **Update**:
 m_effect->SetFresnelFactor(cosf(time * 2.f));
 ```
 
-Build and run to see the effect of animating the Fresnel factor.
+Build and run to see the effect of animating the [Fresnel](https://en.wikipedia.org/wiki/Fresnel_equations) factor.
 
 ![Screenshot of teapot](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTeapot2.PNG)
 
