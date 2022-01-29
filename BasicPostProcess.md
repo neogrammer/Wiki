@@ -57,3 +57,9 @@ postProcess->SetEffect(BasicPostProcess::Copy);
 
 postProcess->Process(context);
 ```
+
+# Remarks
+
+This class in **Copy** mode can be used for "GPU-based format conversion" by using a render-to-texture render-target of the desired target format. This can also be used to achieve GPU-based texture resizing as well. The main limitations are that the source format must be supported as a 2D texture for your Direct3D Hardware Feature Level, and the target format must be supported as a render-target. Since this class already requires Direct3D Hardware Level 10.0, there is always a fairly robust list of supported format combinations. See [Microsoft Docs](https://docs.microsoft.com/windows/win32/direct3ddxgi/format-support-for-direct3d-feature-level-10-0-hardware).
+
+
