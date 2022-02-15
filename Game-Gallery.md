@@ -8,4 +8,6 @@ This is a list of known released games/projects that make use of _DirectX Tool K
 
 [SC2KRender](https://store.steampowered.com/app/1527140/SC2KRender/) (2021). Open source on [GitHub](https://github.com/alekasm/SC2KRender).
 
+**Deathlord-Relorded** (2022). Open source on [GitHub](https://github.com/hasseily/Deathlord-Relorded)
+
 > If you have a shipped game that uses _DirectX Tool Kit_ (DX11 or DX12), please file an issue to get it added here. Be sure to include the product link.
