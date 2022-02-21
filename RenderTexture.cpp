@@ -45,7 +45,7 @@ void RenderTexture::SetDevice(_In_ ID3D11Device* device)
             throw std::runtime_error("CheckFormatSupport");
         }
 
-        UINT32 required = D3D11_FORMAT_SUPPORT_TEXTURE2D | D3D11_FORMAT_SUPPORT_RENDER_TARGET;
+        constexpr UINT32 required = D3D11_FORMAT_SUPPORT_TEXTURE2D | D3D11_FORMAT_SUPPORT_RENDER_TARGET;
         if ((formatSupport & required) != required)
         {
 #ifdef _DEBUG
