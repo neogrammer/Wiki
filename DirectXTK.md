@@ -191,6 +191,8 @@ If using *vcpkg C++ Package Manager*, then you add the ``CMAKE_TOOLCHAIN_FILE`` 
 
 ![vcpkg toolchain setting](https://github.com/Microsoft/DirectXTK/wiki/images/cmakevcpkg.png)
 
+> There are also ``CMakePresets.json`` files available for the CMake projects on [directx-vs-templates](https://github.com/walbourn/directx-vs-templates) that use the ``VCPKG_ROOT`` environment variable to locate the VCPKG install directory.
+
 ## Dependencies
 
 The _DirectX Tool Kit_ library assumes your binary is linking with the following system libraries:
