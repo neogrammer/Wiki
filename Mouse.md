@@ -125,7 +125,7 @@ For Microsoft GDKX when targeting Gaming.Xbox.*.x64, you follow the pattern abov
 #include <Windows.h>
 #include "Mouse.h"
 
-mouse->SetWindow(window);
+mouse->SetWindow(hWnd);
 
 ...
 
