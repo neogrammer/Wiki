@@ -17,7 +17,7 @@ Mouse is a singleton.
 
 ```cpp
 std::unique_ptr<Mouse> mouse;
-mouse = = std::make_unique<Mouse>();
+mouse = std::make_unique<Mouse>();
 ```
 
 For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr``.
@@ -119,11 +119,13 @@ mouse->SetWindow(reinterpret_cast<ABI::Windows::UI::Core::ICoreWindow*>(winrt::g
 
 ## Xbox
 
-For Microsoft GDKX when targeting Gaming.Xbox.*.x64, you follow the pattern above for *Windows desktop*, although only a subset of Win32 messages are required (i.e. it does not use ``WM_INPUT``, ``WM_MOUSEHOVER``, or ``WM_MOUSEACTIVATE``), and there is no use of ``SetWindow``:
+For Microsoft GDKX when targeting Gaming.Xbox.*.x64, you follow the pattern above for *Windows desktop*, although only a subset of Win32 messages are required (i.e. it does not use ``WM_INPUT``, ``WM_MOUSEHOVER``, or ``WM_MOUSEACTIVATE``):
 
 ```cpp
 #include <Windows.h>
 #include "Mouse.h"
+
+mouse->SetWindow(window);
 
 ...
 
