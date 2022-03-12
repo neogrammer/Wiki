@@ -1,6 +1,7 @@
-This is the _Getting Started_ tutorial for _DirectX Tool Kit_ which introduces the reader to using the DirectX Tool Kit with DirectX 11 in C++.
+This is the _Getting Started_ tutorial for _DirectX Tool Kit_ which introduces the reader to using the DirectX Tool Kit with DirectX 11 in C++. This *Getting Started Guide* is a series of tutorial lessons for introducing the various functional parts of the tool kit. If you are just looking for basic integration instructions, see [Adding to a VS solution](https://github.com/microsoft/DirectXTK/wiki/DirectXTK#adding-to-a-vs-solution).
 
 > If you are looking to use DirectX 12 and are already familiar with Direct3D 11, the place to start is the _DirectX Tool Kit for DirectX 12_ [tutorials](https://github.com/Microsoft/DirectXTK12/wiki/Getting-Started). Keep in mind that DirectX 12 is an expert API which builds on knowing the ins & outs of DirectX 11, and can be an unforgiving API to developers new to Direct3D or graphics in general.
+
 
 # Background
 This tutorial assumes the reader is familiar with the basics of C++ programming using Microsoft Visual C++, including writing code, building applications, and basic debugging. Coding conventions here will make use of C++11 language features such as ``nullptr``, ``auto``, ranged-based ``for`` loops, simple _lambdas_  (aka anonymous functions), the standard smart-pointer ``std::unique_ptr`` / ``std::make_unique<T>()``, and ``std::function<>``. Familiarity with the Standard C++ Library ``std::wstring`` and the ``std::vector`` container are required as well.
