@@ -12,6 +12,8 @@ http://go.microsoft.com/fwlink/?LinkId=248929
 
 ![Azure DevOps test suite build](https://img.shields.io/azure-devops/build/mscodehub/ab27a052-7f0e-4cba-9bec-d298c5942ab9/1155?label=BUILD%20%28TEST%20SUITE%29&style=for-the-badge)
 
+![Lines of code](https://img.shields.io/tokei/lines/github/Microsoft/DirectXTK?style=for-the-badge) ![Code size](https://img.shields.io/github/languages/code-size/Microsoft/DirectXTK?style=for-the-badge)
+
 ![DirectX Logo](https://github.com/Microsoft/DirectXTK/wiki/X_jpg.jpg)The **DirectX Tool Kit** (aka **DirectXTK**) is a collection of helper classes for writing **DirectX 11.x** code in C++.
 
 For an overview of the project, see these blog posts: [March 2012](https://walbourn.github.io/directxtk/), [January 2013](https://walbourn.github.io/directxtk-update/), [September 2014](https://walbourn.github.io/directx-tool-kit-now-with-gamepads/), [August 2015](https://walbourn.github.io/directx-tool-kit-keyboard-and-mouse-support/), [July 2016](https://walbourn.github.io/directx-tool-kit-for-directx-12/), [September 2021](https://walbourn.github.io/latest-news-on-directx-tool-kit/), and [October 2021](https://walbourn.github.io/directx-tool-kit-vertex-skinning-update/).
