@@ -19,7 +19,7 @@ The easiest way to achieve this is to use the [NuGet package manager](https://do
 
 You can check for updates to the NuGet package by selecting "Updates/All" in the left-hand tree view. If there are updates, select the "DirectX Tool Kit" package, and click on "Update".
 
-> Both **directxtk_desktop_2017** and **directxtk_uwp** support VS 2019 and VS 2022 Preview as well since they are all [binary compatible](https://docs.microsoft.com/en-us/cpp/porting/binary-compat-2015-2017).
+> Both **directxtk_desktop_2017** and **directxtk_uwp** support VS 2019 and VS 2022 as well since they are all [binary compatible](https://docs.microsoft.com/en-us/cpp/porting/binary-compat-2015-2017).
 
 # Project-to-project references
 Another option rather than using NuGet is to use Visual Studio's [project-to-project references](https://devblogs.microsoft.com/cppblog/flexible-project-to-project-references/). This approach is a little more setup, but it does ensure that you are building the full DirectX Tool Kit library as part of your solution, and allows you to make changes directly to the tool kit if desired as well.
@@ -67,8 +67,6 @@ vcpkg install directxtk:x64-windows
 vcpkg install directxtk:arm64-uwp
 ```
 
-Then add the required toolchain reference to ``vcpkg\scripts\buildsystems\vcpkg.cmake``:
-
 If using ``CMakeSettings.json``:
 
 ![Setting cmake toolchain](https://github.com/Microsoft/DirectXTK/wiki/images/cmakevcpkg.png)
@@ -87,6 +85,8 @@ If using ``CMakePresets.json`` set the environment variable ``VCPKG_ROOT`` and a
 If not using **vcpkg**, you have to provide a per-configuration path to the individual installed package in the ``directxtk_DIR`` variable:
 
 ![Setting cmake installed package path](https://github.com/Microsoft/DirectXTK/wiki/images/cmakepkg.png)
+
+> The `CMakeList.txt` from *directx-vs-templates* for Win32 desktop and UWP C++/WinRT have commented out code to supporting VCPKG integration of *directxtk*.
 
 # Adding the headers
 Now that we have the _DirectX Tool Kit_ usable in your project, the next step is to include the library headers into your project.
