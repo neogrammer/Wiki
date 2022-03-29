@@ -111,7 +111,7 @@ In your application's solution, right-click on the Solution and use **Add \ Exis
  </tr>
 </table>
 
-> For VS 2017, use of the [15.9 update](https://walbourn.github.io/vs-2017-15-9-update/) is recommended.
+> For VS 2017, use of the [15.9 update](https://walbourn.github.io/vs-2017-15-9-update/) is required.
 
 In your application's project, right-click on the **Project** and use "References...", then "Add New Reference...", and then check the DirectXTK project name and click OK. For a Universal Windows Platform (UWP) app or Xbox One solution, you may need to set _Reference Assembly Output_ to false since DirectXTK is a static C++ library and not a WinRT component.
 
