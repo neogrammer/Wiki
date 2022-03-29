@@ -191,7 +191,7 @@ If using *vcpkg C++ Package Manager*, then you add the ``CMAKE_TOOLCHAIN_FILE`` 
 
 ![vcpkg toolchain setting](https://github.com/Microsoft/DirectXTK/wiki/images/cmakevcpkg.png)
 
-> There are also ``CMakePresets.json`` files available for the CMake projects on [directx-vs-templates](https://github.com/walbourn/directx-vs-templates) that use the ``VCPKG_ROOT`` environment variable to locate the VCPKG install directory. See the commented out code in ``CMakeLists.txt``.
+> There are also ``CMakePresets.json`` files available for the CMake projects on [directx-vs-templates](https://github.com/walbourn/directx-vs-templates) that use the ``VCPKG_ROOT`` environment variable to locate the VCPKG install directory. See the commented out code in ``CMakeLists.txt`` as well.
 
 ## Dependencies
 
