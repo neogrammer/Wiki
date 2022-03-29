@@ -90,7 +90,7 @@ In your application's solution, right-click on the Solution and use **Add \ Exis
  </tr>
 </table>
 
-> For VS 2019, use of the latest update is recommended.
+> For VS 2019, use of the latest update is recommended. VS 2019 16.4 or later is required.
 
 <table>
  <tr>
