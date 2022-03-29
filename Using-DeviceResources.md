@@ -326,6 +326,30 @@ The DeviceResources implementation supports using ``DXGI_FORMAT_*_SRGB`` formats
 
 The Win32 desktop and UWP templates implement [immersive fullscreen](https://walbourn.github.io/care-and-feeding-of-modern-swap-chains-3/). You can toggle this using the traditional hotkey <kbd>Alt</kbd>+<kbd>Enter</kbd>. If you want to default to full-screen at startup, see the ``TODO`` comments in ``Main.cpp``.
 
+# Message 'pump'
+
+For the Win32 desktop versions of the template, the ``Main.cpp`` source file contains the **WndProc** and the basic loop:
+
+```
+MSG msg = {};
+while (WM_QUIT != msg.message)
+{
+    if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
+    {
+        TranslateMessage(&msg);
+        DispatchMessage(&msg);
+    }
+    else
+    {
+        g_game->Tick();
+    }
+}
+```
+
+This ensures that all pending Win32 messages are consumed before updating/rendering the next frame. This is critical for maintaining responsiveness.
+
+For UWP, the equivalent thing is done inside the ``ViewProvider`` **Run** method.
+
 **Next lesson**: [[Adding the DirectX Tool Kit]]
 
 # Further reading
