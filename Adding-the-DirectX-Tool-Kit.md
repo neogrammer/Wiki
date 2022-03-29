@@ -67,10 +67,6 @@ vcpkg install directxtk:x64-windows
 vcpkg install directxtk:arm64-uwp
 ```
 
-If using ``CMakeSettings.json``:
-
-![Setting cmake toolchain](https://github.com/Microsoft/DirectXTK/wiki/images/cmakevcpkg.png)
-
 If using ``CMakePresets.json`` set the environment variable ``VCPKG_ROOT`` and add:
 
 ```
