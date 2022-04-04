@@ -11,6 +11,8 @@ MSAA textures are resolved before being written.
 
 # Header
 ```cpp
+#include <wincodec.h> // Optional
+
 #include <ScreenGrab.h>
 ```
 
