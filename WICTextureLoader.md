@@ -15,6 +15,8 @@ This loader does not support array textures, 1D textures, 3D volume textures, cu
 
 # Header
 ```cpp
+#include <wincodec.h> // Optional
+
 #include <WICTextureLoader.h>
 ```
 
