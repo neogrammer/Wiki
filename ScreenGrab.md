@@ -16,6 +16,8 @@ MSAA textures are resolved before being written.
 #include <ScreenGrab.h>
 ```
 
+> You only need to directly include the ``<wincodec.h>`` header if you are providing an explicit *guidContainerFormat* or *targetFormat*. Note you should link with ``uuid.lib`` as well.
+
 # Initialization
 The library assumes that the client code will have already called ``CoInitialize``, ``CoInitializeEx``, or ``Windows::Foundation::Initialize`` as needed by the application before calling any [Windows Imaging Component](https://docs.microsoft.com/en-us/windows/desktop/wic/-wic-about-windows-imaging-codec) functionality.
 
