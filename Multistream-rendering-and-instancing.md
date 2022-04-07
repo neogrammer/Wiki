@@ -367,7 +367,7 @@ for (const auto& mit : instancedModel->meshes)
 
 ## Technical note
 
-If you are trying to instance a model that contains bone indices, you need to use ``ModelLoader_DisableSkinning`` when loading your model to avoid using skinned versions of effects as none of the built-in ones support instancing + skinning.
+If you are trying to instance a model that contains bone indices, you need to use ``ModelLoader_DisableSkinning`` when loading your model to avoid using skinned versions of effects. None of the built-in effects support instancing + skinning.
 
 # More to explore
 
