@@ -365,6 +365,10 @@ for (const auto& mit : instancedModel->meshes)
 
 > The drawing above assumes an opaque model. If you have alpha-blending, you will need to do the drawing loop twice. See [[ModelMesh]] for details.
 
+## Technical note
+
+If you are trying to instance a model that contains bone indices, you need to use ``ModelLoader_DisableSkinning`` when loading your model to avoid using skinned versions of effects as none of the built-in ones support instancing + skinning.
+
 # More to explore
 
 * GPU instancing is also supported by [[DebugEffect]] and [[PBREffect]]
