@@ -77,6 +77,8 @@ void Process(
     std::function<void()> setCustomState = nullptr);
 ```
 
+**Process** relies on the correct render target already being set on the context, as well the correct viewport and scissor rects.
+
 # Custom render states
 
 You modify the render state during post-processing by passing a ``setCustomState`` callback:
