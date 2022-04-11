@@ -53,7 +53,9 @@ postProcess = std::make_unique<BasicPostProcess>(device);
 postProcess->SetSourceTexture(m_texture.Get());
 postProcess->SetEffect(BasicPostProcess::Copy);
 
-// Set RSSetViewports to the rectangle you want to fill with the texture
+// Set RSSetViewports to the rectangle you want to fill with the texture.
+
+// If the viewport is not the full render target, be sure to call RSSetScissors as well.
 
 postProcess->Process(context);
 ```
