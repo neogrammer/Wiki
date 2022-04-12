@@ -177,6 +177,12 @@ vcpkg install directxtk:x64-uwp
 
 > Windows Subsystem for Linux (i.e. ``arm64-linux`` and ``x64-linux``) is not supported.
 
+The **vcpkg** port supports three optional features. The default is to build without *DirectX Tool Kit for Audio* support.
+
+* ``xaudio2-8`` Use XAudio 2.8 for Windows 8.x or later support
+* ``xaudio2-9`` Use XAudio 2.9 for Windows 10/Windows 11
+* ``xaudio2redist`` Use the XAudio2Redist for Windows 7 SP1 or later support
+
 ## CMake
 
 You can reference the *DirectX Tool Kit* CMake package using:
