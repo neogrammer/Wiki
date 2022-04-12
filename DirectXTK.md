@@ -173,7 +173,7 @@ For the Universal Windows Platform (UWP) versions, use:
 vcpkg install directxtk:x64-uwp
 ```
 
-> ``arm``, ``arm64``, ``x86``, ``x64``, ``windows``, ``windows-static`` and ``uwp`` triplets are supported.
+> ``arm``, ``arm64``, ``x86``, ``x64``, ``windows``, ``windows-static``, ``windows-static-md``, and ``uwp`` triplets are supported.
 
 > Windows Subsystem for Linux (i.e. ``arm64-linux`` and ``x64-linux``) is not supported.
 
