@@ -3,20 +3,11 @@
 
 In [[the basic game loop]] lesson, we made use of the **Direct3D Game** Visual Studio template which has all the relevant Direct3D code in the ``Game`` class including creating the device and swap chain. This makes it easy to see how to create the device & swapchain. This, however, results in a lot of 'boiler-plate' code in the main ``Game`` class which is distracting for the remainder of our tutorial lessons.
 
-There is therefore a "DR" variant of each of the Direct3D Game VS templates in the [VS 2017/2019/2022](https://github.com/walbourn/directx-vs-templates/raw/main/VSIX/Direct3DUWPGame.vsix) VSIX package which adds [[DeviceResources]].
+There is therefore a "DR" variant of each of the Direct3D Game VS templates in the [VS 2019/2022](https://github.com/walbourn/directx-vs-templates/raw/main/VSIX/Direct3DUWPGame.vsix) VSIX package which adds [[DeviceResources]].
 
 > The standard Universal Windows Platform app ``DirectXApp`` VS templates make use of a similar ``DeviceResources`` abstraction.
 
 # Creating a new project
-## Visual Studio 2017
-* From the drop-down menu, select **File** and then **New** -> **Project...**
-* Select "Visual C++" on the left-hand tree-view.
-* Select "Direct3D Win32 Game DR"  or "Direct3D UWP Game DR".
-* Fill in the "Name" and "Location" fields as desired.
-* Optional: Uncheck "Create directory for solution" to keep the directory structure as bit flatter.
-* Select "OK".
-
-![Create New Project](https://github.com/Microsoft/DirectXTK/wiki/images/CreateNewProjectDR.PNG)
 
 ## Visual Studio 2019 / 2022
 * From the drop-down menu, select **File** and then **New** -> **Project...** or on the startup dialog select **Create a new project**
