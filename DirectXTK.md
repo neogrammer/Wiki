@@ -49,7 +49,7 @@ using namespace DirectX;
 * [[XWBTool]] - builds ``.xwb`` XACT-style wave banks for use with WaveBank class
 
 # Building
-This code is designed to build with Visual Studio 2017 or later. It requires the Windows 8.x / Windows 10 SDK for functionality such as the DirectXMath library and the DXGI 1.2 headers. Visual Studio 2017 or later already includes Windows 10 SDK.
+This code is designed to build with Visual Studio 2019 or later. It requires the Windows SDK (19041) or later for functionality such as the DirectXMath library and the DXGI 1.2 headers.
 
 These components are designed to work without requiring any content from the DirectX SDK. For details, see [Where is the DirectX SDK?](https://docs.microsoft.com/en-us/windows/desktop/directx-sdk--august-2009-), [Where is the DirectX SDK (2021 Edition)?](https://aka.ms/dxsdk), and [The Zombie DirectX SDK](https://aka.ms/AA4gfea).
 
@@ -90,24 +90,12 @@ In your application's solution, right-click on the Solution and use **Add \ Exis
  </tr>
 </table>
 
-> For VS 2019, use of the 16.4 update or later is required.
+> For VS 2019, use of the 16.7 update or later is required.
 
 <table>
  <tr>
-  <td>DirectXTK_Desktop_2017</td>
-  <td>Windows desktop applications for Windows 7 Service Pack 1 or later building with VS 2017 Community, Professional or higher with the Windows 10 SDK (19041).</td>
- </tr>
- <tr>
-  <td>DirectXTK_Desktop_2017_Win10</td>
-  <td>Windows desktop applications for Windows 10 building with VS 2017 Community, Professional or higher with the Windows 10 SDK (19041). <I>Uses XAudio 2.9 and <code>Windows.Gaming.Input</code></I></td>
- </tr>
- <tr>
-  <td>DirectXTK_Windows10_2017</td>
-  <td>Universal Windows Platform (UWP) apps building with VS 2017 with the Windows 10 SDK (19041).</td>
- </tr>
- <tr>
   <td>DirectXTK_XboxOneXDK_2017</td>
-  <td>Xbox One games building with VS 2017 using the Xbox One XDK (<I>June 2017 QFE 4 or later recommended</I>).</td>
+  <td>Xbox One games building with VS 2017 using the Xbox One XDK (<I>April 2018 XDK or later</I>).</td>
  </tr>
 </table>
 
