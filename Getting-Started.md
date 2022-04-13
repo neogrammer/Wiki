@@ -48,7 +48,7 @@ A few features such as [[DebugEffect]], [[DGSLEffect]], [[NormalMapEffect]], [[P
 # Software setup
 For learning purposes, these instructions are going to focus on the following setup:
 
-* Visual Studio 2017 ([15.9 update](https://walbourn.github.io/vs-2017-15-9-update/)) or VS 2019 Community, Professional, Premium, or Ultimate
+* Visual Studio 2019 (16.7 or later) or VS 2022 Community, Professional, Premium, or Ultimate
 * Windows 10 SDK ([19041](https://walbourn.github.io/windows-10-may-2020-update-sdk/) is the minimum supported version)
 * Windows 7 Service Pack 1, Windows 8.1, Windows 10 (May 2020 Update a.k.a. Version 2004 or later is recommended), or Windows 11.
 
@@ -56,7 +56,7 @@ We will be using a Win32 desktop application project template in order to suppor
 
 > There is no need to install the legacy DirectX SDK to use DirectX Tool Kit. The DirectX SDK is deprecated and you should not use it per [Microsoft Docs](https://docs.microsoft.com/en-us/windows/desktop/directx-sdk--august-2009-). See [this blog post](http://aka.ms/dxsdk), [The Zombie DirectX SDK](https://walbourn.github.io/the-zombie-directx-sdk/), [DirectX SDK Samples Catalog](https://walbourn.github.io/directx-sdk-samples-catalog/), and [DirectX SDK Tools Catalog](https://walbourn.github.io/directx-sdk-tools-catalog/).
 
-## Visual Studio 2017 / 2019 / 2022
+## Visual Studio 2019 / 2022
 When using the [new lightweight installer](https://devblogs.microsoft.com/cppblog/the-lightweight-visual-studio-15-installer/) be sure to select the appropriate workloads:
 
 * Workload: _Game development with C++_ or _Desktop development with C++_
