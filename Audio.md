@@ -177,15 +177,15 @@ The standard ``DirectXTK.lib`` and all versions of ``DirectXTK12.lib`` include _
 
 <table>
  <tr>
-  <td>DirectXTK_Desktop_2019_Win10<br />DirectXTK_Desktop_2017_Win10</td>
-  <td>Windows desktop applications for Windows 10</td>
+  <td>DirectXTK_Desktop_2022_Win10<br />DirectXTK_Desktop_2019_Win10</td>
+  <td>Windows desktop applications for Windows 10/Windows 11</td>
  </tr>
  <tr>
-  <td>DirectXTK_Windows10_2019<br />DirectXTK_Windows10_2017</td>
+  <td>DirectXTK_Windows10_2022<br />DirectXTK_Windows10_2019</td>
   <td>Universal Windows Platform (UWP) apps</td>
  </tr>
  <tr>
-  <td>DirectXTK_XboxOneXDK_2017<br />DirectXTK_GDK_2017<br />DirectXTK_GDK_2019</td>
+  <td>DirectXTK_XboxOneXDK_2017<br />DirectXTK_GDK_2019<br />DirectXTK_GDK_2022</td>
   <td>Xbox apps. <I>This includes support for XMA2 format wave files</I>.</td>
  </tr>
 </table>
@@ -195,11 +195,11 @@ To add _DirectXTK for Audio_ support for a Win32 desktop application running on 
 
 <table>
  <tr>
-  <td>DirectXTKAudio_Desktop_2019_Win8<br />DirectXTKAudio_Desktop_2017_Win8</td>
+  <td>DirectXTKAudio_Desktop_2022_Win8<br />DirectXTKAudio_Desktop_2019_Win8</td>
   <td>When targeting Windows 8.x or later, use <code>DirectXTKAudioWin8.lib</code> which is implemented with XAudio 2.8 included in Windows 8 or later. <I>This version does not support xWMA wave files</I>.</td>
  </tr>
  <tr>
-  <td>DirectXTKAudio_Desktop_2019_Win7<br />DirectXTKAudio_Desktop_2017_Win7</td>
+  <td>DirectXTKAudio_Desktop_2022_Win7<br />DirectXTKAudio_Desktop_2019_Win7</td>
   <td>When targeting Windows 7 Service Pack 1 or later, use <code>DirectXTKAudioWin7.lib</code> which is implemented using the <a href="https://aka.ms/xaudio2redist">XAudio2 Redistribution</a> NuGet package. <I>This is the recommended way to support Windows 7</I>. Using this version requires you add NuGet package <a href="https://www.nuget.org/packages/Microsoft.XAudio2.Redist/">Microsoft.XAudio2.Redist</a> to your project. This version also provides xWMA support even on Windows 8.x.</td>
  </tr>
 </table>
