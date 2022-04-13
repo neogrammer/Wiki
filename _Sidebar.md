@@ -10,7 +10,6 @@
 # For Development
 * Visual Studio 2022
 * Visual Studio 2019
-* Visual Studio 2017
 * clang/LLVM v11, v12, v13
 
 # Related Projects
