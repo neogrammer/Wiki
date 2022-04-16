@@ -165,30 +165,25 @@ This code is based on the legacy DirectX SDK sample [DDSWithoutD3DX](https://wal
 
 When applying _maxsize_ and 'stripping' mipmaps on a BC compressed texture, the function may fail if the appropriately sized mipchain is not a muliple-of-4 in width & height as required by Direct3D. The only way to ensure that any given mip meets this requirement is if the top-most level is both a multiple-of-4 and a power-of-2.
 
-DDSTextureLoader performs no run-time conversions. Therefore, it only loads DDS content that 'directly-map' to DXGI formast:
+DDSTextureLoader performs no run-time conversions. Therefore, it only loads DDS content that directly maps to a DXGI format:
 
 | D3DFMT | DXGI |
 |--------|------|
-| | DXGI_FORMAT_R8G8B8A8_UNORM |
-| | DXGI_FORMAT_B8G8R8A8_UNORM |
-| | DXGI_FORMAT_B8G8R8X8_UNORM |
-| | DXGI_FORMAT_R10G10B10A2_UNORM |
-| | DXGI_FORMAT_R16G16_UNORM |
-| | DXGI_FORMAT_R32_FLOAT |
-| | DXGI_FORMAT_B5G5R5A1_UNORM |
-| | DXGI_FORMAT_B5G6R5_UNORM |
-| | DXGI_FORMAT_B4G4R4A4_UNORM |
-| | DXGI_FORMAT_R8G8_UNORM |
-| | DXGI_FORMAT_R16_UNORM |
-| | DXGI_FORMAT_R8_UNORM |
-| | DXGI_FORMAT_R16_UNORM |
-| | DXGI_FORMAT_R8G8_UNORM |
-| | DXGI_FORMAT_R8_UNORM | 
-| | DXGI_FORMAT_R8G8_UNORM |
-| | DXGI_FORMAT_A8_UNORM |
-| | DXGI_FORMAT_R8G8B8A8_SNORM |
-| | DXGI_FORMAT_R16G16_SNORM |
-| | DXGI_FORMAT_R8G8_SNORM |
+| D3DFMT_A8B8G8R8 | DXGI_FORMAT_R8G8B8A8_UNORM |
+| D3DFMT_A8R8G8B8 | DXGI_FORMAT_B8G8R8A8_UNORM |
+| D3DFMT_X8R8G8B8 | DXGI_FORMAT_B8G8R8X8_UNORM |
+| D3DFMT_A2B10G10R10 | DXGI_FORMAT_R10G10B10A2_UNORM |
+| D3DFMT_G16R16 | DXGI_FORMAT_R16G16_UNORM |
+| D3DFMT_A1R5G5B5 | DXGI_FORMAT_B5G5R5A1_UNORM |
+| D3DFMT_R5G6B5 | DXGI_FORMAT_B5G6R5_UNORM |
+| D3DFMT_A4R4G4B4 | DXGI_FORMAT_B4G4R4A4_UNORM |
+| D3DFMT_A8L8 | DXGI_FORMAT_R8G8_UNORM |
+| D3DFMT_L16 | DXGI_FORMAT_R16_UNORM |
+| D3DFMT_L8 | DXGI_FORMAT_R8_UNORM |
+| D3DFMT_A8 | DXGI_FORMAT_A8_UNORM |
+| D3DFMT_Q8W8V8U8 | DXGI_FORMAT_R8G8B8A8_SNORM |
+| D3DFMT_V16U16 | DXGI_FORMAT_R16G16_SNORM |
+| D3DFMT_V8U8 | DXGI_FORMAT_R8G8_SNORM |
 | "DXT1" | DXGI_FORMAT_BC1_UNORM |
 | "DXT2"<br />"DXT3" | DXGI_FORMAT_BC2_UNORM |
 | "DXT4"<br />"DXT5" | DXGI_FORMAT_BC3_UNORM |
@@ -207,7 +202,7 @@ DDSTextureLoader performs no run-time conversions. Therefore, it only loads DDS 
 | D3DFMT_R32F | DXGI_FORMAT_R32_FLOAT |
 | D3DFMT_G32R32F | DXGI_FORMAT_R32G32_FLOAT |
 | D3DFMT_A32B32G32R32F | DXGI_FORMAT_R32G32B32A32_FLOAT |
-
+| "DX10" | DDS_HEADER_DXT10.dxgiFormat |
 
 If there is not a direct mapping to a DXGI supported format, the function fails. You can make use of the [DirectXTex library](http://go.microsoft.com/fwlink/?LinkId=248926) or ``texconv`` tool to convert legacy Direct3D9 ``.DDS`` files to a supported format. Legacy formats which require conversion include:
 
