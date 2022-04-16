@@ -165,16 +165,64 @@ This code is based on the legacy DirectX SDK sample [DDSWithoutD3DX](https://wal
 
 When applying _maxsize_ and 'stripping' mipmaps on a BC compressed texture, the function may fail if the appropriately sized mipchain is not a muliple-of-4 in width & height as required by Direct3D. The only way to ensure that any given mip meets this requirement is if the top-most level is both a multiple-of-4 and a power-of-2.
 
-DDSTextureLoader performs no run-time conversions. If there is not a direct mapping to a DXGI supported format, the function fails. You can make use of the [DirectXTex library](http://go.microsoft.com/fwlink/?LinkId=248926) or ``texconv`` tool to convert legacy Direct3D9 ``.DDS`` files to a supported format. Legacy formats which require conversion include:
+DDSTextureLoader performs no run-time conversions. Therefore, it only loads DDS content that 'directly-map' to DXGI formast:
 
- * ``D3DFMT_R8G8B8`` (24bpp RGB) - Use a 32bpp format
- * ``D3DFMT_X8B8G8R8`` (32bpp RGBX) - Use BGRX, BGRA, or RGBA
- * ``D3DFMT_A2R10G10B10`` (BGRA 10:10:10:2) - Use RGBA 10:10:10:2
- * ``D3DFMT_X1R5G5B5`` (BGR 5:5:5) - Use BGRA 5:5:5:1 or BGR 5:6:5
- * ``D3DFMT_A8R3G3B2``, ``D3DFMT_R3G3B2`` (BGR 3:3:2) - Expand to a supported format
- * ``D3DFMT_P8``, ``D3DFMT_A8P8`` (8-bit palette) - Expand to a supported format
- * ``D3DFMT_A4L4`` (Luminance 4:4) - Expand to a supported format
- * ``D3DFMT_UYVY`` (YUV 4:2:2 16bpp) - Swizzle to YUY2
+| D3DFMT | DXGI |
+|--------|------|
+| | DXGI_FORMAT_R8G8B8A8_UNORM |
+| | DXGI_FORMAT_B8G8R8A8_UNORM |
+| | DXGI_FORMAT_B8G8R8X8_UNORM |
+| | DXGI_FORMAT_R10G10B10A2_UNORM |
+| | DXGI_FORMAT_R16G16_UNORM |
+| | DXGI_FORMAT_R32_FLOAT |
+| | DXGI_FORMAT_B5G5R5A1_UNORM |
+| | DXGI_FORMAT_B5G6R5_UNORM |
+| | DXGI_FORMAT_B4G4R4A4_UNORM |
+| | DXGI_FORMAT_R8G8_UNORM |
+| | DXGI_FORMAT_R16_UNORM |
+| | DXGI_FORMAT_R8_UNORM |
+| | DXGI_FORMAT_R16_UNORM |
+| | DXGI_FORMAT_R8G8_UNORM |
+| | DXGI_FORMAT_R8_UNORM | 
+| | DXGI_FORMAT_R8G8_UNORM |
+| | DXGI_FORMAT_A8_UNORM |
+| | DXGI_FORMAT_R8G8B8A8_SNORM |
+| | DXGI_FORMAT_R16G16_SNORM |
+| | DXGI_FORMAT_R8G8_SNORM |
+| "DXT1" | DXGI_FORMAT_BC1_UNORM |
+| "DXT2"<br />"DXT3" | DXGI_FORMAT_BC2_UNORM |
+| "DXT4"<br />"DXT5" | DXGI_FORMAT_BC3_UNORM |
+| "ATI1"<br />"BC4U" | DXGI_FORMAT_BC4_UNORM |
+| "BC4S" | DXGI_FORMAT_BC4_SNORM |
+| "ATI2"<br />"BC5U" | DXGI_FORMAT_BC5_UNORM |
+| "BC5S" | DXGI_FORMAT_BC5_SNORM |
+| "RGBG" | DXGI_FORMAT_R8G8_B8G8_UNORM |
+| "GRGB" | DXGI_FORMAT_G8R8_G8B8_UNORM |
+| "YUY2" | DXGI_FORMAT_YUY2 |
+| D3DFMT_A16B16G16R16 | DXGI_FORMAT_R16G16B16A16_UNORM |
+| D3DFMT_Q16W16V16U16 | DXGI_FORMAT_R16G16B16A16_SNORM |
+| D3DFMT_R16F | DXGI_FORMAT_R16_FLOAT |
+| D3DFMT_G16R16F | DXGI_FORMAT_R16G16_FLOAT |
+| D3DFMT_A16B16G16R16F | DXGI_FORMAT_R16G16B16A16_FLOAT |
+| D3DFMT_R32F | DXGI_FORMAT_R32_FLOAT |
+| D3DFMT_G32R32F | DXGI_FORMAT_R32G32_FLOAT |
+| D3DFMT_A32B32G32R32F | DXGI_FORMAT_R32G32B32A32_FLOAT |
+
+
+If there is not a direct mapping to a DXGI supported format, the function fails. You can make use of the [DirectXTex library](http://go.microsoft.com/fwlink/?LinkId=248926) or ``texconv`` tool to convert legacy Direct3D9 ``.DDS`` files to a supported format. Legacy formats which require conversion include:
+
+| D3DFMT | Notes |
+|--------|-------|
+| D3DFMT_R8G8B8 | (24bpp RGB) - Use a 32bpp format |
+| D3DFMT_X8B8G8R8 | (32bpp RGBX) - Use BGRX, BGRA, or RGBA |
+| D3DFMT_A2R10G10B10 | (BGRA 10:10:10:2) - Use RGBA 10:10:10:2 |
+| D3DFMT_X1R5G5B5 | (BGR 5:5:5) - Use BGRA 5:5:5:1 or BGR 5:6:5 |
+| D3DFMT_A8R3G3B2<br />D3DFMT_R3G3B2 | (BGR 3:3:2) - Expand to a supported format |
+| D3DFMT_P8<br />D3DFMT_A8P8 | (8-bit palette) - Expand to a supported format |
+| D3DFMT_A4L4 | (Luminance 4:4) - Expand to a supported format |
+| D3DFMT_UYVY | (YUV 4:2:2 16bpp) - Swizzle to YUY2 |
+
+> There's no DXGI format equivalent or obvious conversion for ``D3DFMT_CxV8U8``, ``D3DFMT_L6V5U5``, ``D3DFMT_X8L8V8U8``, or ``D3DFMT_A2W10V10U10``.
 
 On a system with the DirectX 11.0 Runtime or lacking WDDM 1.2 drivers, attempts to load 16bpp format files (BGR 5:6:5, BGRA 5:5:5:1, and BGRA 4:4:4:4) will fail.
 
