@@ -73,6 +73,10 @@ In your application's solution, right-click on the Solution and use **Add \ Exis
   <td>DirectXTK_Windows10_2022</td>
   <td>Universal Windows Platform (UWP) apps building with VS 2022 with the latest installed Windows 10 SDK.</td>
  </tr>
+ <tr>
+  <td>DirectXTK_GDK_2022</td>
+  <td>Windows 10 games building with VS 2022 using the <a href="http://aka.ms/gamedevdocs">Microsoft GDK</a>.</td>
+ </tr>
 </table>
 
 <table>
@@ -87,6 +91,10 @@ In your application's solution, right-click on the Solution and use **Add \ Exis
  <tr>
   <td>DirectXTK_Windows10_2019</td>
   <td>Universal Windows Platform (UWP) apps building with VS 2019 with the latest installed Windows 10 SDK.</td>
+ </tr>
+ <tr>
+  <td>DirectXTK_GDK_2019</td>
+  <td>Windows 10 games building with VS 2019 using the <a href="http://aka.ms/gamedevdocs">Microsoft GDK</a>.</td>
  </tr>
 </table>
 
