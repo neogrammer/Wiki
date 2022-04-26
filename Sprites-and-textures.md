@@ -3,6 +3,20 @@
 
 In this lesson, we will cover the basics of creating a texture from a bitmap file, and then rendering it using a 2D sprite with various drawing options.
 
+# Background
+
+A [sprite](https://wikipedia.org/wiki/Sprite_(computer_graphics)) is a bitmap rendered at some location on the screen. For Direct3D, this requires making use of:
+
+* A *2D texture resource* which is a surface containing the bitmap image pixel data.
+
+* The *shader resource view* which describes the properties of the texture resource.
+
+> In older versions of Direct3D, the texture resource and shader resource view (SRV) were combined into a single interface. In Direct3D 11, these are distinct objects to allow for different interpretations of the same resource data (such as an array of 2D textures or a cubemap).
+
+* A *sampler state object* which describes how the GPU should handle various aspects of reading the texture data for rendering (such as image filtering and/or tiling of the bitmap).
+
+* A *blend state object* which indicates how the GPU should combine existing information in the render target with the texture data.
+
 # Setup
 First create a new project using the instructions from the previous lessons: [[Using DeviceResources]] and
 [[Adding the DirectX Tool Kit]] which we will use for this lesson.
