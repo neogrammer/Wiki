@@ -13,7 +13,7 @@ The basic rendering setup for Direct3D 11 consists of the following interface ob
 
 > In older versions of Direct3D, the operations for creating objects and drawing were all on the same interface. With Direct3D 11, these were split into two distinct interfaces. The device is 'thread-safe' meaning you can use the same device instance at the same time across multiple threads. The device context is not thread-safe, meaning the application must ensure only a single thread uses that interface object at time.
 
-* The *swap chain* is an interface object that manages 2 or more "back-buffers". These are render target resources where one of them is being displayed on the output monitor (which is referred to as the "front-buffer"), while the other is available for rendering the next frame for display.
+* The *swap chain* is an interface object that manages 2 or more "back-buffers". These are render target resources where one of them is being displayed on the output monitor (which is referred to as the "front-buffer"), while the other is available for rendering the next frame for display. Each time ``Present`` is called, the buffers 'flip' (also known as "buffer rotation") so the next back-buffer is made the front-buffer by being displayed and the previous front-buffer is now available for reuse.
 
 * A *render target view* interface is the object that tells Direct3D the current properties of the render target, i.e. the surface on which graphics output is written.
 
