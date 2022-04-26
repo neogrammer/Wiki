@@ -20,7 +20,7 @@ XAudio2 requires COM be initialized as a prerequisite using ``Windows::Foundatio
 CoInitializeEx( nullptr, COINIT_MULTITHREADED );
 ```
 
-All _DirectXTK for Audio_ components require an AudioEngine instance. For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr``.
+All _DirectXTK for Audio_ components require an AudioEngine instance. For exception safety, it is recommended you make use of the C++ [RAII](http://wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr``.
 
 ```cpp
 std::unique_ptr<AudioEngine> audEngine;
@@ -56,7 +56,7 @@ AudioEngine( AUDIO_ENGINE_FLAGS flags = AudioEngine_Default,
 
 *deviceId*: Specifies the output debug for the XAudio2 mastering voice.
 
-> When using XAudio 2.8 or 2.9, this must be a WinRT device identifier, while on XAudio 2.7 this is a [WASAPI](https://docs.microsoft.com/en-us/windows/desktop/CoreAudio/wasapi) audio end-point identifier. If null, it uses the default audio device.
+> When using XAudio 2.8 or 2.9, this must be a WinRT device identifier, while on XAudio 2.7 this is a [WASAPI](https://docs.microsoft.com/windows/win32/coreaudio/wasapi) audio end-point identifier. If null, it uses the default audio device.
 
 > The XAudio2 Redistributable supports either WASAPI or WinRT device identifiers, as does XAudio 2.9 on Windows 10 (May 2019 Update; Version 1903; Build 18362) or later.
 
@@ -73,7 +73,7 @@ eflags |= AudioEngine_Debug;
 audEngine = std::make_unique<AudioEngine>( eflags );
 ```
 
-[XAudio2 Debugging Facilities](https://docs.microsoft.com/en-us/windows/desktop/xaudio2/xaudio2-debugging-facilities)
+[XAudio2 Debugging Facilities](https://docs.microsoft.com/windows/win32/xaudio2/xaudio2-debugging-facilities)
 
 > With XAudio 2.7, the developer runtime must be installed on the system for the AudioEngine_Debug case to
 >  succeed. With XAudio 2.8 on Windows 8.x or Windows 10, the debug support is built into the OS.
@@ -116,7 +116,7 @@ Parameters to **Reset** are the similar as for the AudioEngine constructor. If t
 > For XAudio 2.7 and XAudio 2.8 (Windows 8.x), this logic also handles the 'lost endpoint' scenario that happens if you unplug speakers or headphones. With XAudio 2.9 (Windows 10), if you use a ``deviceId`` of ``nullptr`` (i.e. the default), then the new Windows 10 WASAPI feature Virtual Audio Client is used which prevents the 'lost endpoint' case from being triggered.
 
 ## Win32 desktop applications
-For Win32 desktop applications, you can be informed of new audio devices in your application with [RegisterDeviceNotification](https://docs.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-registerdevicenotificationa):
+For Win32 desktop applications, you can be informed of new audio devices in your application with [RegisterDeviceNotification](https://docs.microsoft.com/windows/win32/api/winuser/nf-winuser-registerdevicenotificationa):
 
 ```cpp
 #include <dbt.h>
@@ -144,7 +144,7 @@ case WM_DEVICECHANGE:
                     // New audio device
 ```
 
-Or you can make use of [IMMNotificationClient](https://docs.microsoft.com/en-us/windows/desktop/api/mmdeviceapi/nn-mmdeviceapi-immnotificationclient)
+Or you can make use of [IMMNotificationClient](https://docs.microsoft.com/windows/win32/api/mmdeviceapi/nn-mmdeviceapi-immnotificationclient)
 
 ## Universal Windows Platform apps
 
@@ -203,7 +203,7 @@ The XAudio2 audio renderer makes use of single-precision floating-point values, 
 
 Therefore, _DirectXTK for Audio_ supports attaching a _mastering volume limiter_ xAPO to the mastering voice by setting the ``AudioEngine_UseMasteringLimiter`` flag. It uses default settings, which can be modified by calling **SetMasteringLimit**( release, loudness ).
 
-See [FXMASTERINGLIMITER_PARAMETERS](https://docs.microsoft.com/en-us/windows/desktop/api/xapofx/ns-xapofx-fxmasteringlimiter_parameters)
+See [FXMASTERINGLIMITER_PARAMETERS](https://docs.microsoft.com/windows/win32/api/xapofx/ns-xapofx-fxmasteringlimiter_parameters)
 
 ```cpp
 AUDIO_ENGINE_FLAGS eflags = AudioEngine_UseMasteringLimiter;
@@ -250,6 +250,6 @@ The following methods can be used to obtain the low-level XAudio2 interface obje
 
 # Further reading
 
-[XAudio2 APIs](https://docs.microsoft.com/en-us/windows/desktop/xaudio2/xaudio2-apis-portal)  
-[Audio Effects](https://docs.microsoft.com/en-us/windows/desktop/xaudio2/audio-effects)  
-[X3DAudio](https://docs.microsoft.com/en-us/windows/desktop/xaudio2/x3daudio)  
+[XAudio2 APIs](https://docs.microsoft.com/windows/win32/xaudio2/xaudio2-apis-portal)  
+[Audio Effects](https://docs.microsoft.com/windows/win32/xaudio2/audio-effects)  
+[X3DAudio](https://docs.microsoft.com/windows/win32/xaudio2/x3daudio)  

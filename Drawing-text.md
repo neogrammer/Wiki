@@ -16,7 +16,7 @@ First create a new project using the instructions from the earlier lessons: [[Us
 The text renderer in _DirectX Tool Kit_ makes use of bitmap fonts, so the first step is to create a ``.spritefont`` file by capturing a system TrueType font using the **makespritefont** command-line utility.
 
 * Download the [MakeSpriteFont.exe](https://github.com/microsoft/DirectXTK/releases/latest/download/MakeSpriteFont.exe) from the _DirectX Tool Kit_ site save the EXE into your project's folder.
-* Open a [command-prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq) and then change to your project's folder.
+* Open a Command Prompt and then change to your project's folder.
 
 Run the following command-line
 
@@ -232,7 +232,7 @@ Build and run to see our text string centered in the middle of the rendering win
 
 * If you want to render Xbox controller button artwork composed with standard text, see [[ControllerFont]].
 
-* If you want to make use of *DirectWrite* for vector-based fonts on Windows, see [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/directwrite/getting-started-with-directwrite).
+* If you want to make use of *DirectWrite* for vector-based fonts on Windows, see [Microsoft Docs](https://docs.microsoft.com/windows/win32/directwrite/getting-started-with-directwrite).
 
 **Next lesson:** [[Simple rendering]]
 

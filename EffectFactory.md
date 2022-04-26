@@ -32,7 +32,7 @@ std::unique_ptr<PBREffectFactory> fxFactory;
 fxFactory = std::make_unique<PBREffectFactory>( device );
 ```
 
-For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
+For exception safety, it is recommended you make use of the C++ [RAII](http://wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
 # Creating effects
 Fill out the ``EffectInfo`` structure, then call **CreateEffect** to obtain an [[Effects]] instance. If the _info.name_ string is provided then any already created effect from the factory that has the same name will be returned as a shared instance rather than a new instance created. If there is a name match, then all the other parameters in the ``EffectInfo`` are ignored.
@@ -115,7 +115,7 @@ fxFactory->CreateTexture( L"stone.dds", nullptr, srv.GetAddressOf() );
 ```
 
 # Directories
-The **CreateTexture** and **CreatePixelShader** methods both assume the name given is the filename. By default, this is a relative path to the current working directory ([CWD](https://docs.microsoft.com/en-us/windows/desktop/FileIO/changing-the-current-directory)). To cause the factory to look in a specific directory path, use **SetDirectory**.
+The **CreateTexture** and **CreatePixelShader** methods both assume the name given is the filename. By default, this is a relative path to the current working directory ([CWD](https://docs.microsoft.com/windows/win32/fileio/changing-the-current-directory)). To cause the factory to look in a specific directory path, use **SetDirectory**.
 
 ```cpp
 fxFactory->SetDirectory( L".\\Assets" );

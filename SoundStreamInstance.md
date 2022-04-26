@@ -41,7 +41,7 @@ if ( !stream )
     // Index not found in wave bank
 ```
 
-> Only 'streaming' WaveBanks are supported. Attempts to create a SoundStreamInstance from an 'in-memory' wavebank will result in a C++ exception. The 'streaming' Wavebank produced by [[xwbtool]] is properly aligned to allow very efficient [non-buffered](https://docs.microsoft.com/en-us/windows/win32/fileio/file-buffering) [asynchronous I/O](https://docs.microsoft.com/en-us/windows/win32/fileio/synchronous-and-asynchronous-i-o) requests.
+> Only 'streaming' WaveBanks are supported. Attempts to create a SoundStreamInstance from an 'in-memory' wavebank will result in a C++ exception. The 'streaming' Wavebank produced by [[xwbtool]] is properly aligned to allow very efficient [non-buffered](https://docs.microsoft.com/windows/win32/fileio/file-buffering) [asynchronous I/O](https://docs.microsoft.com/windows/win32/fileio/synchronous-and-asynchronous-i-o) requests.
 
 # Instance flags
 

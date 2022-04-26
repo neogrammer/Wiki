@@ -20,7 +20,7 @@ std::unique_ptr<Mouse> mouse;
 mouse = std::make_unique<Mouse>();
 ```
 
-For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr``.
+For exception safety, it is recommended you make use of the C++ [RAII](http://wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr``.
 
 # Integration
 
@@ -277,12 +277,12 @@ The Mouse class should be thread-safe with the exception of the **ProcessMessage
 
 # Platform notes
 
-For Universal Windows Platform apps, touch/pointer devices are captured as [mouse movement](https://docs.microsoft.com/en-us/windows/uwp/gaming/tutorial--adding-touch-controls-to-your-directx-game). Touch/pointer devices do not, however, result in changes to button state. Relative mouse movement is captured per this [Microsoft Docs](https://docs.microsoft.com/en-us/windows/uwp/gaming/relative-mouse-movement) article.
+For Universal Windows Platform apps, touch/pointer devices are captured as [mouse movement](https://docs.microsoft.com/windows/uwp/gaming/tutorial--adding-touch-controls-to-your-directx-game). Touch/pointer devices do not, however, result in changes to button state. Relative mouse movement is captured per this [Microsoft Docs](https://docs.microsoft.com/windows/uwp/gaming/relative-mouse-movement) article.
 
 > For UWP applications on Xbox One, the game controller can be made to emulate a mouse which will provide input through the Mouse class, but the input paradigm is more natural if you use the [[GamePad]] class directly.
 
-For Windows desktop apps, relative mouse movement is captured using "raw input" per the article [Taking Advantage of High-Definition Mouse Movement](https://docs.microsoft.com/en-us/windows/desktop/DxTechArts/taking-advantage-of-high-dpi-mouse-movement). Note that a consequence of this implementation is that relative mouse movement is not available when using the application through Remote Desktop.
+For Windows desktop apps, relative mouse movement is captured using "raw input" per the article [Taking Advantage of High-Definition Mouse Movement](https://docs.microsoft.com/windows/win32/dxtecharts/taking-advantage-of-high-dpi-mouse-movement). Note that a consequence of this implementation is that relative mouse movement is not available when using the application through Remote Desktop.
 
 # Further reading
 [DirectX Tool Kit: Keyboard and Mouse support](https://walbourn.github.io/directx-tool-kit-keyboard-and-mouse-support/)  
-[Mouse Input](https://docs.microsoft.com/en-us/windows/desktop/inputdev/mouse-input)  
+[Mouse Input](https://docs.microsoft.com/windows/win32/inputdev/mouse-input)  

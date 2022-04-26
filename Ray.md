@@ -31,4 +31,4 @@ Ray( Vector3(1,2,3), Vector3(0,1,0 ); // Creates a ray at 1,2,3
 
 # Further reading
 
-[Ray](https://en.wikipedia.org/wiki/Line_%28geometry%29#Ray)  
+[Ray](https://wikipedia.org/wiki/Line_%28geometry%29#Ray)  

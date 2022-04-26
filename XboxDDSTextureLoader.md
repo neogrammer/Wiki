@@ -87,4 +87,4 @@ DDS_HEADER_XBOX
 
 Other ``DDS`` loaders and viewers will fail to recognize this pixel format, and other ``DDS`` creation tools do not support creating it. See the **xtexconv** sample for more information on creating this variant form of DDS files.
 
-[DDS on Microsoft Docs](https://docs.microsoft.com/en-us/windows/desktop/direct3ddds/dx-graphics-dds)
+[DDS on Microsoft Docs](https://docs.microsoft.com/windows/win32/direct3ddds/dx-graphics-dds)

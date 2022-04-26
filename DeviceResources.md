@@ -54,7 +54,7 @@ If ``depthBufferFormat`` is set to ``DXGI_FORMAT_UNKNOWN``, then no depth/stenci
 
 The ``backBufferCount`` defaults to 2, but in some cases you may want to override it to use 3. Larger numbers would be quite unusual and are not recommended.
 
-The ``minFeatureLevel`` defaults to 10 for PC and 9.3 for UWP. You can specify a higher [hardware level](https://docs.microsoft.com/en-us/windows/win32/direct3d11/overviews-direct3d-11-devices-downlevel-intro) if you want to take a hard dependency on additional capabilities.
+The ``minFeatureLevel`` defaults to 10 for PC and 9.3 for UWP. You can specify a higher [hardware level](https://docs.microsoft.com/windows/win32/direct3d11/overviews-direct3d-11-devices-downlevel-intro) if you want to take a hard dependency on additional capabilities.
 
 The ``flags`` parameter is covered below in *Device Options*.
 
@@ -109,24 +109,24 @@ The ``flags`` parameter is covered below in *Device Options*.
 # Device Options
 
 * ``c_FlipPresent``: Prefer the use of "flip" style swap per [this blog post](https://devblogs.microsoft.com/directx/dxgi-flip-model/) on Windows 10 systems.
-* ``c_AllowTearing``: Enable [variable refresh rate](https://docs.microsoft.com/en-us/windows/win32/direct3ddxgi/variable-refresh-rate-displays) (a.k.a. NVIDIA’s G-SYNC, AMD’s FreeSync, and VESA DisplayPort Adaptive-Sync) if supported.
-* ``c_EnableHDR``: Enable [HDR10 output](https://docs.microsoft.com/en-us/windows/win32/direct3darticles/high-dynamic-range) if supported. See [below](https://github.com/Microsoft/DirectXTK/wiki/DeviceResources#wide-gamut-hdr-rendering).
+* ``c_AllowTearing``: Enable [variable refresh rate](https://docs.microsoft.com/windows/win32/direct3ddxgi/variable-refresh-rate-displays) (a.k.a. NVIDIA’s G-SYNC, AMD’s FreeSync, and VESA DisplayPort Adaptive-Sync) if supported.
+* ``c_EnableHDR``: Enable [HDR10 output](https://docs.microsoft.com/windows/win32/direct3darticles/high-dynamic-range) if supported. See [below](https://github.com/Microsoft/DirectXTK/wiki/DeviceResources#wide-gamut-hdr-rendering).
 * ``c_FastSemantics`` (Xbox One XDK only): Create the 11.x device with "fast semantics" enabled.
 * ``c_Enable4K_UHD`` (Xbox One XDK only): Enable 4k swapchain if supported, otherwise use 1080p.
 
 # Threading model
 
-The DeviceResources class methods are intended to be called from the main presenting thread, and not from other threads. The device context associated with DeviceResources is the immediate context, and is intended for use by this 'main' thread. Per the [DirectX Graphics Infrastructure (DXGI): Best Practices](https://docs.microsoft.com/en-us/windows/desktop/direct3darticles/dxgi-best-practices#multithreading_and_dxgi), this presenting thread should also be the same thread as the main window message processing.
+The DeviceResources class methods are intended to be called from the main presenting thread, and not from other threads. The device context associated with DeviceResources is the immediate context, and is intended for use by this 'main' thread. Per the [DirectX Graphics Infrastructure (DXGI): Best Practices](https://docs.microsoft.com/windows/win32/direct3darticles/dxgi-best-practices#multithreading-and-dxgi), this presenting thread should also be the same thread as the main window message processing.
 
 # Platform notes
 
 ## Windows desktop apps
-The **DeviceResources** implementation is designed to support Direct3D 11.1 on [Windows 7 Service Pack 1](https://walbourn.github.io/directx-11-1-and-windows-7/), Windows 8.x, or later which provides [significant improvements](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/direct3d-11-1-features) such as simplified interop with Direct2D/DirectWrite.
+The **DeviceResources** implementation is designed to support Direct3D 11.1 on [Windows 7 Service Pack 1](https://walbourn.github.io/directx-11-1-and-windows-7/), Windows 8.x, or later which provides [significant improvements](https://docs.microsoft.com/windows/win32/direct3d11/direct3d-11-1-features) such as simplified interop with Direct2D/DirectWrite.
 
 > Older versions of this DeviceResources supported Windows Vista Service Pack 2 and Windows 7 RTM with DirectX 11.0. The implementation has since been changed to require DirectX 11.1 to simplify the code. If you need details on the differences, see [this blog post](https://walbourn.github.io/anatomy-of-direct3d-11-create-device/)
 
 ## Universal Windows Platform apps
-The UWP version of **DeviceResources** always uses [DirectX 11.3 interfaces](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/direct3d-11-3-features).
+The UWP version of **DeviceResources** always uses [DirectX 11.3 interfaces](https://docs.microsoft.com/windows/win32/direct3d11/direct3d-11-3-features).
 
 It includes **GetRotation** and **GetOrientationTransform3D** to simplify handling of display orientation.
 
@@ -164,7 +164,7 @@ Since the ``DeviceResources`` class is now in it's own file and no longer direct
 
 * If the SDK Debug Layer is not present on the target system when running ``Debug`` configurations, it will automatically fallback to creating the device without debugging.
 * The DR version always uses ``D3D11_CREATE_DEVICE_BGRA_SUPPORT`` which is required for Direct2D/DirectWrite interop if that's desired.
-* If no hardware device is available, the DR version will fall back to using [WARP](https://docs.microsoft.com/en-us/windows/desktop/direct3darticles/directx-warp) in non-production builds as this is useful for debugging and validation.
+* If no hardware device is available, the DR version will fall back to using [WARP](https://docs.microsoft.com/windows/win32/direct3darticles/directx-warp) in non-production builds as this is useful for debugging and validation.
 * In ``Debug`` configurations, additional diagnostic messages are output to the debug window.
 * Rather than always using the default Direct3D device, the DR version will filter out the _Microsoft Basic Render Driver_ adapter as this fallback software device is seldom acceptable performance for games.
 

@@ -154,7 +154,7 @@ dualPostProcess->Process(context);
 
 The built-in post-processing shaders rely on Direct3D hardware feature level 10.0 or greater. This allows the vertex shader to self-generate a full-screen rectangle without requiring any vertex buffer to be bound using the built-in ``SV_VertexId`` system value.  Applications should either have a minimum supported feature level of 10.0 or greater, or provide a run-time fallback (perhaps turning off post-processing effects or making use of simplified effects via [[SpriteBatch]] instead).
 
-[Direct3D feature levels](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/overviews-direct3d-11-devices-downlevel-intro)
+[Direct3D feature levels](https://docs.microsoft.com/windows/win32/direct3d11/overviews-direct3d-11-devices-downlevel-intro)
 
 # Threading model
 
@@ -178,4 +178,4 @@ Most post-process effects make use of the following states:
 
 # Further reading
 
-[Video post-processing](https://en.wikipedia.org/wiki/Video_post-processing)  
+[Video post-processing](https://wikipedia.org/wiki/Video_post-processing)  

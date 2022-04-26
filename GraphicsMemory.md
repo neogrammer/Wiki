@@ -18,7 +18,7 @@ std::unique_ptr<GraphicsMemory> graphicsMemory;
 graphicsMemory = std::make_unique<GraphicsMemory>(device, backBufferCount);
 ```
 
-For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr``.
+For exception safety, it is recommended you make use of the C++ [RAII](http://wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr``.
 
 # Present
 The graphics memory helper manages memory allocation for 'in-flight' data shared between the CPU and GPU. After each frame is rendered, the application needs to call **Commit** to let the manager know that a frame's worth of video memory has been sent to the GPU. This allows the manager to check to see if a previous frame's data is complete and can be released.

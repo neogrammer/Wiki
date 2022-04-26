@@ -166,24 +166,24 @@ Because WRL is a pure C++ template library, it has no particular platform suppor
 
 > The Windows 8.0 SDK and later that includes WRL does not support targeting Windows XP / Windows Server 2003. For these older operating systems you have to make use of the Windows 7.1A SDK instead. See [this blog post](https://walbourn.github.io/visual-studio-2012-update-1/) for more details.
 
-The **DirectX-Headers** [GitHub](https://github.com/microsoft/DirectX-Headers) includes an implementation of ``Microsoft::WRL::ComPtr`` that is for use on non-Win32 platforms like [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) via ``wrl/client.h``. This version does not include support for ``WeakRef``, but I avoid using that class in general.
+The **DirectX-Headers** [GitHub](https://github.com/microsoft/DirectX-Headers) includes an implementation of ``Microsoft::WRL::ComPtr`` that is for use on non-Win32 platforms like [Windows Subsystem for Linux](https://docs.microsoft.com/windows/wsl/install-win10) via ``wrl/client.h``. This version does not include support for ``WeakRef``, but I avoid using that class in general.
 
 # Remarks
 
 Making use of the older ``_com_ptr_t`` Visual Studio smart-pointer class which was originally intended as a non-ATL option is not recommended.
 
-If using [C++/WinRT projections](https://docs.microsoft.com/en-us/windows/uwp/cpp-and-winrt-apis/), you could also choose to use ``winrt::com_ptr`` instead of ``Microsoft::WRL:ComPtr``. It is similar in design, but not identical. See [Microsoft Docs](https://docs.microsoft.com/en-us/uwp/cpp-ref-for-winrt/com-ptr).
+If using [C++/WinRT projections](https://docs.microsoft.com/windows/uwp/cpp-and-winrt-apis/), you could also choose to use ``winrt::com_ptr`` instead of ``Microsoft::WRL:ComPtr``. It is similar in design, but not identical. See [Microsoft Docs](https://docs.microsoft.com/uwp/cpp-ref-for-winrt/com-ptr).
 
-Note that WRL is not supported for Managed C++ (``/clr``) projects. In that case you should make use of ATL's ``CComPtr`` instead keeping in mind the difference in behavior of ``operator&``. See [Microsoft Docs](https://docs.microsoft.com/en-us/cpp/atl/reference/ccomptr-class).
+Note that WRL is not supported for Managed C++ (``/clr``) projects. In that case you should make use of ATL's ``CComPtr`` instead keeping in mind the difference in behavior of ``operator&``. See [Microsoft Docs](https://docs.microsoft.com/cpp/atl/reference/ccomptr-class).
 
 The [Windows Implementation Libraries (WIL)](https://github.com/microsoft/wil/) provides a COM smart-pointer called ``wil::com_ptr``.
 
 # Further reading
 
-[Microsoft Docs: Programming DirectX with COM](https://docs.microsoft.com/en-us/windows/win32/prog-dx-with-com)  
-[Microsoft Docs: ComPtr](https://docs.microsoft.com/en-us/cpp/windows/comptr-class)  
-[Microsoft Docs: Managing Object Lifetimes Through Reference Counting](https://docs.microsoft.com/en-us/windows/win32/com/managing-object-lifetimes-through-reference-counting)  
-[Microsoft Docs: Rules for Managing Reference Counts](https://docs.microsoft.com/en-us/windows/win32/com/rules-for-managing-reference-counts)  
-[Microsoft Docs: COM](https://docs.microsoft.com/en-us/windows/desktop/com/the-component-object-model)  
-[Microsoft Docs: Reference Counting (Direct3D 10)](https://docs.microsoft.com/en-us/windows/desktop/direct3d10/d3d10-graphics-programming-guide-api-features-reference-counting)  
-[Wikipedia: Reference counting](https://en.wikipedia.org/wiki/Reference_counting)
+[Microsoft Docs: Programming DirectX with COM](https://docs.microsoft.com/windows/win32/prog-dx-with-com)  
+[Microsoft Docs: ComPtr](https://docs.microsoft.com/cpp/windows/comptr-class)  
+[Microsoft Docs: Managing Object Lifetimes Through Reference Counting](https://docs.microsoft.com/windows/win32/com/managing-object-lifetimes-through-reference-counting)  
+[Microsoft Docs: Rules for Managing Reference Counts](https://docs.microsoft.com/windows/win32/com/rules-for-managing-reference-counts)  
+[Microsoft Docs: COM](https://docs.microsoft.com/windows/win32/com/the-component-object-model)  
+[Microsoft Docs: Reference Counting (Direct3D 10)](https://docs.microsoft.com/windows/win32/direct3d10/d3d10-graphics-programming-guide-api-features-reference-counting)  
+[Wikipedia: Reference counting](https://wikipedia.org/wiki/Reference_counting)

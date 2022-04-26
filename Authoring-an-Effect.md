@@ -1,7 +1,7 @@
 |[[Getting Started]]|
 |---|
 
-This lesson covers writing your own [[IEffect|Effects]] implementation, specifically a custom effect for rendering a [skybox](https://en.wikipedia.org/wiki/Skybox_%28video_games%29) with a cubemap.
+This lesson covers writing your own [[IEffect|Effects]] implementation, specifically a custom effect for rendering a [skybox](https://wikipedia.org/wiki/Skybox_%28video_games%29) with a cubemap.
 
 # Setup
 First create a new project using the instructions from the previous lessons: [[Using DeviceResources]] and
@@ -202,7 +202,7 @@ void SkyboxEffect::SetMatrices(FXMMATRIX /*world*/, CXMMATRIX view, CXMMATRIX pr
 
 # Managing the constant buffer
 
-We have all the data we need now for the constant buffer. In order to compute the *worldViewProj* value, we will need to do a matrix multiply. We'd like to avoid doing this more often than necessary, either keeping it from the previous frame if it's not changed or doing it only once if multiple matrices are updated in a single frame. The built-in effects all use a [dirty bits](https://en.wikipedia.org/wiki/Dirty_bit) design which we will use here.
+We have all the data we need now for the constant buffer. In order to compute the *worldViewProj* value, we will need to do a matrix multiply. We'd like to avoid doing this more often than necessary, either keeping it from the previous frame if it's not changed or doing it only once if multiple matrices are updated in a single frame. The built-in effects all use a [dirty bits](https://wikipedia.org/wiki/Dirty_bit) design which we will use here.
 
 In **SkyboxEffect.h**, add to the class's private variable declarations:
 

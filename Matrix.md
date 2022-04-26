@@ -1,9 +1,9 @@
 |[[DirectXTK]]|[[SimpleMath]]|
 |---|---|
 
-A four by four row-major [matrix](https://en.wikipedia.org/wiki/Matrix_(mathematics)) modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Matrix``) math library.
+A four by four row-major [matrix](https://wikipedia.org/wiki/Matrix_(mathematics)) modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Matrix``) math library.
 
-A 4x4 *matrix* is commonly used in computer graphics for 2D and 3D [transformations](https://en.wikipedia.org/wiki/Transformation_matrix).
+A 4x4 *matrix* is commonly used in computer graphics for 2D and 3D [transformations](https://wikipedia.org/wiki/Transformation_matrix).
 
 # Header
 ```cpp
@@ -70,11 +70,11 @@ Matrix m( arr );           // Creates a matrix [1 2 3 0
 
 * **Decompose**: Decomposes the matrix into rotation (a [[Quaternion]]), scaling, and translation components. Returns ``false`` if the matrix can't be decomposed.
 
-* **Transpose**: Computes the [transpose](https://en.wikipedia.org/wiki/Transpose) of the matrix. Note that for a pure rotation matrix, this is the same as the inverse.
+* **Transpose**: Computes the [transpose](https://wikipedia.org/wiki/Transpose) of the matrix. Note that for a pure rotation matrix, this is the same as the inverse.
 
-* **Invert**: Computes the inverse of the matrix using [Cramer's rule](https://en.wikipedia.org/wiki/Cramer%27s_rule). It returns ``false`` if the matrix is not invertible.
+* **Invert**: Computes the inverse of the matrix using [Cramer's rule](https://wikipedia.org/wiki/Cramer%27s_rule). It returns ``false`` if the matrix is not invertible.
 
-* **Determinant**: Computes the [determinant](https://en.wikipedia.org/wiki/Determinant) of the matrix.
+* **Determinant**: Computes the [determinant](https://wikipedia.org/wiki/Determinant) of the matrix.
 
 * **ToEuler**: Computes rotation about y-axis (y), then x-axis (x), then z-axis (z) as angles in radians. The return value is compatible with one of the overloads of ``CreateFromYawPitchRoll``. This result is only valid if the input matrix's upper 3x3 contains only rotation (i.e. no scaling).
 
@@ -88,7 +88,7 @@ Matrix m( arr );           // Creates a matrix [1 2 3 0
 
 * **CreateScale**: Creates a matrix for scaling by the given X, Y, and Z scale factors. Note you can create the inverse of this matrix by passing 1/X, 1/Y, 1/Z.
 
-* **CreateRotationX**, **CreateRotationY**, **CreateRotationZ**: Creates a matrix for rotation about the x-axis / y-axis / z-axis by angle given in [radians](https://en.wikipedia.org/wiki/Radian).
+* **CreateRotationX**, **CreateRotationY**, **CreateRotationZ**: Creates a matrix for rotation about the x-axis / y-axis / z-axis by angle given in [radians](https://wikipedia.org/wiki/Radian).
 
 * **CreateFromAxisAngle**: Creates a matrix a rotation about a given 3-vector axis and an angle given in radians.
 
@@ -98,7 +98,7 @@ Matrix m( arr );           // Creates a matrix [1 2 3 0
 
 * **CreateLookAt**: Creates a look-at matrix in right-handed (RH) coordinates
 
-> For Left-Handed (LH) viewing coordinates, you can use the [DirectXMath](https://docs.microsoft.com/en-us/windows/win32/dxmath/ovw-xnamath-reference-functions-matrix) functions directly which interop freely with ``Matrix``.
+> For Left-Handed (LH) viewing coordinates, you can use the [DirectXMath](https://docs.microsoft.com/windows/win32/dxmath/ovw-xnamath-reference-functions-matrix) functions directly which interop freely with ``Matrix``.
 
 * **CreateWorld**
 

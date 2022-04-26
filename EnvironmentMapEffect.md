@@ -20,7 +20,7 @@ std::unique_ptr<EnvironmentMapEffect> effect;
 effect = std::make_unique<EnvironmentMapEffect>(device);
 ```
 
-For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
+For exception safety, it is recommended you make use of the C++ [RAII](http://wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
 # Interfaces
 
@@ -78,13 +78,13 @@ This effect requires a texture sampler in both slots 0 and 1. [[GeometricPrimiti
 
 ![Cubic Environment Map](https://github.com/Microsoft/DirectXTK/wiki/images/cubicenvmap.png)
 
-See [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/direct3d9/cubic-environment-mapping)
+See [Microsoft Docs](https://docs.microsoft.com/windows/win32/direct3d9/cubic-environment-mapping)
 
 ## Spherical Environment Map
 
 ![Sphere Environment Map](https://github.com/Microsoft/DirectXTK/wiki/images/sphereenvmap.png)
 
-See [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/direct3d9/spherical-environment-mapping)
+See [Microsoft Docs](https://docs.microsoft.com/windows/win32/direct3d9/spherical-environment-mapping)
 
 # Feature Level Notes
 

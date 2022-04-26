@@ -19,7 +19,7 @@ std::unique_ptr<SoundEffect> effect;
 effect = std::make_unique<SoundEffect>( audEngine.get(), L"sound.wav" );
 ```
 
-For exception safety, it is recommended you make use of the C++ C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
+For exception safety, it is recommended you make use of the C++ C++ [RAII](http://wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
 The second takes ownership of a memory buffer containing the wave data. The _wfx_ and _startAudio_ pointers are assumed to point into the same memory buffer owned by _wavData_ since they must remain valid for the life of the SoundEffect object.
 
@@ -148,4 +148,4 @@ To compress to XMA2 ``.wav`` files, use ``xma2encode.exe`` from the Xbox One XDK
 
 To aid in debugging, here is a [simple console program](https://github.com/Microsoft/DirectXTK/wiki/wavdump.cpp) for dumping out the content of a ``.wav`` in a human-readable form.
 
-[Resource Interchange File Format (RIFF)](https://docs.microsoft.com/en-us/windows/desktop/xaudio2/resource-interchange-file-format--riff-)
+[Resource Interchange File Format (RIFF)](https://docs.microsoft.com/windows/win32/xaudio2/resource-interchange-file-format--riff-)

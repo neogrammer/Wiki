@@ -37,7 +37,7 @@ Vector2 v(arr);   // Creates a vector [1, 2]
 
 * **Dot**: Returns the dot-product between two 2-vectors.
 
-* **Cross**: Computes the geometric cross-product of two 2-vectors. See [XMVector2Cross](https://docs.microsoft.com/en-us/windows/win32/api/directxmath/nf-directxmath-xmvector2cross).
+* **Cross**: Computes the geometric cross-product of two 2-vectors. See [XMVector2Cross](https://docs.microsoft.com/windows/win32/api/directxmath/nf-directxmath-xmvector2cross).
 
 * **Normalize**: Computes a unit-length vector.
 
@@ -58,9 +58,9 @@ Vector2 v(arr);   // Creates a vector [1, 2]
 * **Reflect**: Reflects an incident vector across a normal vector.
 * **Refract**: Refracts an incident vector across a normal vector.
 
-* **Transform**: Transform the vector by the rotation and scale in the matrix or a quaternion. There is also an overload for transforming an array of vectors. See [XMVector2Transform](https://docs.microsoft.com/en-us/windows/win32/api/directxmath/nf-directxmath-xmvector2transform).
+* **Transform**: Transform the vector by the rotation and scale in the matrix or a quaternion. There is also an overload for transforming an array of vectors. See [XMVector2Transform](https://docs.microsoft.com/windows/win32/api/directxmath/nf-directxmath-xmvector2transform).
 
-* **TransformNormal**: Transforms the vector by the rotation and scale in the matrix, ignoring translation (rows 2 & 3). There is also an overload for transforming an array of vectors. See [XMVector2TransformNormal](https://docs.microsoft.com/en-us/windows/win32/api/directxmath/nf-directxmath-xmvector2transformnormal).
+* **TransformNormal**: Transforms the vector by the rotation and scale in the matrix, ignoring translation (rows 2 & 3). There is also an overload for transforming an array of vectors. See [XMVector2TransformNormal](https://docs.microsoft.com/windows/win32/api/directxmath/nf-directxmath-xmvector2transformnormal).
 
 # Constants
 

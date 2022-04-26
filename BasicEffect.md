@@ -20,7 +20,7 @@ std::unique_ptr<BasicEffect> effect;
 effect = std::make_unique<BasicEffect>(device);
 ```
 
-For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
+For exception safety, it is recommended you make use of the C++ [RAII](http://wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
 # Interfaces
 
@@ -112,9 +112,9 @@ basicEffect.reset();
 
 # Remarks
 
-This effect implements the classic diffuse [Lambertian](https://en.wikipedia.org/wiki/Lambertian_reflectance) shading with [Phong](https://en.wikipedia.org/wiki/Phong_reflection_model) specular highlights lighting model.
+This effect implements the classic diffuse [Lambertian](https://wikipedia.org/wiki/Lambertian_reflectance) shading with [Phong](https://wikipedia.org/wiki/Phong_reflection_model) specular highlights lighting model.
 
-See [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/direct3d9/lights-and-materials)
+See [Microsoft Docs](https://docs.microsoft.com/windows/win32/direct3d9/lights-and-materials)
 
 # Further reading
 

@@ -44,7 +44,7 @@ The file-name parameter indicates the ``.wav`` file(s) to add to the wave bank.
 
 # Example usage
 
-Open a [Command Prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq), and change to the directory containing ``XWBTool.exe`` (i.e. ``...\DirectXTK\XWBTool\bin\Release``)
+Open a Command Prompt, and change to the directory containing ``XWBTool.exe`` (i.e. ``...\DirectXTK\XWBTool\bin\Release``)
 
 Enter the following command-line after changing to the appropriate directory:
 
@@ -71,7 +71,7 @@ For streaming wave banks, the layout of the file is purposely designed to suppor
 
 Use of ``-af`` is recommended when creating streaming wave banks for Xbox Series X\|S.
 
-See [Wikipedia](https://en.wikipedia.org/wiki/Advanced_Format) and [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/w8cookbook/advanced-format--4k--disk-compatibility-update) for more information.
+See [Wikipedia](https://wikipedia.org/wiki/Advanced_Format) and [Microsoft Docs](https://docs.microsoft.com/windows/win32/w8cookbook/advanced-format--4k--disk-compatibility-update) for more information.
 
 Compact wave banks (``-c``) are not compatible with Advanced Format sector alignment (``-af``), so can't be used together.
 
@@ -84,7 +84,7 @@ The XACT3 GUI and/or the XACTBLD command-line tool in the legacy DirectX SDK (Di
 
 [KB2728613](https://support.microsoft.com/en-us/kb/2728613)
 
-[Where is the DirectX SDK?](https://docs.microsoft.com/en-us/windows/desktop/directx-sdk--august-2009-)
+[Where is the DirectX SDK?](https://docs.microsoft.com/windows/win32/directx-sdk--august-2009-)
 
 **Compact wave banks**: The legacy XACT3 ENGINE only supports 'streaming' compact wave banks not 'in-memory' compact wave banks. The XACT3 GUI / XACTBLD toolset will therefore only create 'standard' in-memory wave banks. There is also a known bug in the DirectX SDK (June 2010) version of the XACT3 GUI / XACTBLD toolsets that will not attempt to create a compact wave bank if the wave data size exceeds 2,097,151 (~2 MB).
 

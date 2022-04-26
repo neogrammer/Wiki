@@ -12,7 +12,7 @@ See [[SpriteFont]]
 **Related tutorial:** [[Drawing text]]
 
 # TrueType
-Open a [Command Prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq), and change to the directory containing ``MakeSpriteFont.exe`` (i.e. ``...\DirectXTK\MakeSpriteFont\bin\Release``)
+Open a Command Prompt, and change to the directory containing ``MakeSpriteFont.exe`` (i.e. ``...\DirectXTK\MakeSpriteFont\bin\Release``)
 
 Enter the following command-line after changing to the appropriate directory:
 
@@ -92,7 +92,7 @@ Examples:
 * Dumps the generated texture to a bitmap file (useful when debugging the MakeSpriteFont tool, not so much if you are just trying to use it).
 
 # Localization
-Since all glyphs specified are captured into a texture, the SpriteFont solution is very effective for smaller character sets. For large character sets such as Chinese, Japanese, or Korean, capturing every possible glyph is extremely slow, and the resulting texture is extremely large possibly exceeding the size supported by your target [Direct3D hardware feature level](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/overviews-direct3d-11-devices-downlevel-intro). For these large character sets, using DirectWrite to render glyphs on-the-fly is a better solution.
+Since all glyphs specified are captured into a texture, the SpriteFont solution is very effective for smaller character sets. For large character sets such as Chinese, Japanese, or Korean, capturing every possible glyph is extremely slow, and the resulting texture is extremely large possibly exceeding the size supported by your target [Direct3D hardware feature level](https://docs.microsoft.com/windows/win32/direct3d11/overviews-direct3d-11-devices-downlevel-intro). For these large character sets, using DirectWrite to render glyphs on-the-fly is a better solution.
 
 For cases where DirectWrite is not supported (such as Windows phone 8.0 and Xbox One exclusive apps) and/or when rendering a set of static localized text, another solution is to scan all your translated text and capture only those character regions actually used by your application's specific display strings.
 
@@ -130,4 +130,4 @@ To aid in debugging, here is a [simple console program](https://raw.githubuserco
 
 # Further reading
 
-[Knapsack problem](http://en.wikipedia.org/wiki/Knapsack_problem)
+[Knapsack problem](http://wikipedia.org/wiki/Knapsack_problem)

@@ -20,7 +20,7 @@ effect->SetFogEnd(8);
 effect->SetFogColor( Colors::CornflowerBlue );
 ```
 
-For more general cases where a number of effect classes can be in use (such as [[Model]] which uses a mix of _BasicEffect_, _DualTextureEffect_, _SkinnedEffect_, and/or _DGSLEffect_), use [Run-Time Type Information](https://en.wikipedia.org/wiki/Run-time_type_information) (RTTI) to obtain the interface.
+For more general cases where a number of effect classes can be in use (such as [[Model]] which uses a mix of _BasicEffect_, _DualTextureEffect_, _SkinnedEffect_, and/or _DGSLEffect_), use [Run-Time Type Information](https://wikipedia.org/wiki/Run-time_type_information) (RTTI) to obtain the interface.
 
 ```cpp
 std::shared_ptr<IEffect> effect;

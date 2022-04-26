@@ -27,7 +27,7 @@ std::unique_ptr<PrimitiveBatch<VertexPositionColor>> primitiveBatch;
 primitiveBatch = std::make_unique<PrimitiveBatch<VertexPositionColor>>(deviceContext);
 ```
 
-For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
+For exception safety, it is recommended you make use of the C++ [RAII](http://wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
 The default values assume that your maximum batch size is 2048 vertices arranged in triangles. If you want to use larger batches, you need to provide the additional constructor parameters (be sure to review the Feature Level limitations below).
 
@@ -127,7 +127,7 @@ Primitive batch is best used for dynamic submission, which is commonly needed fo
 
 # Feature Level Notes
 
-In order to support [all feature levels](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/overviews-direct3d-11-devices-downlevel-intro), PrimitiveBatch only supports 16-bit indices (``DXGI_FORMAT_R16_UINT``) which limits to a maximum of 65535 addressable vertices. This does not apply to non-indexed drawing when the PrimitiveBatch constructor is called with a maxIndices of 0.
+In order to support [all feature levels](https://docs.microsoft.com/windows/win32/direct3d11/overviews-direct3d-11-devices-downlevel-intro), PrimitiveBatch only supports 16-bit indices (``DXGI_FORMAT_R16_UINT``) which limits to a maximum of 65535 addressable vertices. This does not apply to non-indexed drawing when the PrimitiveBatch constructor is called with a maxIndices of 0.
 
 Keep in mind there is a feature-level based limit on the maximum number of primitives in a single draw call, so the overall batch size needs to be under this limit. To support all feature levels, this should be 65535 or less lines or triangles in a single 'draw batch'.
 
@@ -137,7 +137,7 @@ Keep in mind there is a feature-level based limit on the maximum number of primi
 
 Each PrimitiveBatch instance only supports drawing from one thread at a time, but you can simultaneously submit primitives on multiple threads if you create a separate PrimitiveBatch instance per Direct3D 11 deferred context.
 
-[Immediate and Deferred Rendering](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/overviews-direct3d-11-render-multi-thread-render)
+[Immediate and Deferred Rendering](https://docs.microsoft.com/windows/win32/direct3d11/overviews-direct3d-11-render-multi-thread-render)
 
 # State management
 PrimitiveBatch does not save and restore existing state. For efficiency, it simply sets the state it requires to render and assumes that any subsequent rendering after ``primitiveBatch->End()`` will overwrite state that it needs.
@@ -153,5 +153,5 @@ The PrimitiveBatch class assumes you've already set the Render Target view, Dept
 > Be sure that if you set any of the following shaders prior to using ``PrimitiveBatch`` that you clear them: Geometry Shader, Hull Shader, Domain Shader, Compute Shader.
 
 # Further Reading
-[DirectXTK PrimitiveBatch helper makes it easy to draw user primitives with D3D11]( http://www.shawnhargreaves.com/blog/directxtk-primitivebatch-helper-makes-it-easy-to-draw-user-primitives-with-d3d11.html)  
-[How to: Use dynamic resources](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/how-to--use-dynamic-resources)  
+[DirectXTK PrimitiveBatch helper makes it easy to draw user primitives with D3D11](http://www.shawnhargreaves.com/blog/directxtk-primitivebatch-helper-makes-it-easy-to-draw-user-primitives-with-d3d11.html)  
+[How to: Use dynamic resources](https://docs.microsoft.com/windows/win32/direct3d11/how-to--use-dynamic-resources)  

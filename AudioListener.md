@@ -1,7 +1,7 @@
 |[[DirectXTK]]|[[Audio]]|
 |---|---|
 
-AudioListener is a helper object derived from [X3DAUDIO_LISTENER](https://docs.microsoft.com/en-us/windows/desktop/api/x3daudio/ns-x3daudio-x3daudio_listener) that can be used by the **Apply3D** method of [[SoundEffectInstance]], [[SoundStreamInstance]], and [[DynamicSoundEffectInstance]].
+AudioListener is a helper object derived from [X3DAUDIO_LISTENER](https://docs.microsoft.com/windows/win32/api/x3daudio/ns-x3daudio-x3daudio_listener) that can be used by the **Apply3D** method of [[SoundEffectInstance]], [[SoundStreamInstance]], and [[DynamicSoundEffectInstance]].
 
 See [[AudioEmitter]].
 
@@ -32,7 +32,7 @@ In addition to setting the members of ``X3DAUDIO_LISTENER`` directly, these help
 * **Update** (XMVECTOR newPos, XMVECTOR upDir, float dt ): Computes a direction and velocity for the listener based on the existing Position and the newPos, updating the OrientFront/OrientTop to match, and then setting the Position to the newPos. If dt is 0, the update is skipped.
 
 # Further reading
-[X3DAudio](https://docs.microsoft.com/en-us/windows/desktop/xaudio2/x3daudio)  
-[X3DAudioCalculate](https://docs.microsoft.com/en-us/windows/desktop/api/x3daudio/nf-x3daudio-x3daudiocalculate)
+[X3DAudio](https://docs.microsoft.com/windows/win32/xaudio2/x3daudio)  
+[X3DAudioCalculate](https://docs.microsoft.com/windows/win32/api/x3daudio/nf-x3daudio-x3daudiocalculate)
 
 [GameFest 2010: The (3D) Sound of Success: X3DAudio and Sound Positioning](https://www.microsoft.com/en-us/download/details.aspx?id=17627)

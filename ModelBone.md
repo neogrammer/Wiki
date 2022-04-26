@@ -49,7 +49,7 @@ Each bone contains three pointers:
 
 These pointers are used to form a tree hierarchy. The 0th bone in a Model is the root and should have a *parentIndex* of ``ModelBone::c_Invalid``.
 
-> Note that bones must form an [acyclic graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph).
+> Note that bones must form an [acyclic graph](https://wikipedia.org/wiki/Directed_acyclic_graph).
 
 # Working with bones
 

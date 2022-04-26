@@ -87,7 +87,7 @@ This is a combination of sound effect instance flags. It defaults to ``SoundEffe
 
 # Positional 3D audio
 
-DirectXTK for Audio uses [X3DAudio](https://docs.microsoft.com/en-us/windows/desktop/xaudio2/x3daudio) for positional audio computations. To apply a 3D effect to a sound instance, you call **Apply3D** with the listener location (i.e. where the player/camera is located) and the emitter (i.e. where the sound source is located in 3D dimensions):
+DirectXTK for Audio uses [X3DAudio](https://docs.microsoft.com/windows/win32/xaudio2/x3daudio) for positional audio computations. To apply a 3D effect to a sound instance, you call **Apply3D** with the listener location (i.e. where the player/camera is located) and the emitter (i.e. where the sound source is located in 3D dimensions):
 
 ```cpp
 AudioListener listener;

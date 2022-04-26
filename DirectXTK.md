@@ -51,7 +51,7 @@ using namespace DirectX;
 # Building
 This code is designed to build with Visual Studio 2019 or later. It requires the Windows SDK (19041) or later for functionality such as the DirectXMath library and the DXGI 1.2 headers.
 
-These components are designed to work without requiring any content from the DirectX SDK. For details, see [Where is the DirectX SDK?](https://docs.microsoft.com/en-us/windows/desktop/directx-sdk--august-2009-), [Where is the DirectX SDK (2021 Edition)?](https://aka.ms/dxsdk), and [The Zombie DirectX SDK](https://aka.ms/AA4gfea).
+These components are designed to work without requiring any content from the DirectX SDK. For details, see [Where is the DirectX SDK?](https://docs.microsoft.com/windows/win32/directx-sdk--august-2009-), [Where is the DirectX SDK (2021 Edition)?](https://aka.ms/dxsdk), and [The Zombie DirectX SDK](https://aka.ms/AA4gfea).
 
 ## HLSL shaders
 The required Direct3D shaders are built as headers in `Src\Shader\Compiled\*.inc` and included into the DirectXTK static library. They are automatically built by the Visual Studio project if they are not present, and cleared by a Clean. They can also be manually rebuilt using the ``CompileShaders.cmd`` script (i.e. `...\DirectXTK\Src\Shaders`)
@@ -122,7 +122,7 @@ See [[Audio]] for additional information when setting up Windows desktop project
 See also the [Visual C+ Team Blog](https://devblogs.microsoft.com/cppblog/flexible-project-to-project-references/)
 
 ## Using NuGet package manager
-Alternatively you can use [NuGet](https://docs.microsoft.com/en-us/nuget/what-is-nuget) to install one of the DirectX Tool Kit packages. Use *Project / Manage NuGet Packages...* then select "Online" and search for "DirectXTK".
+Alternatively you can use [NuGet](https://docs.microsoft.com/nuget/what-is-nuget) to install one of the DirectX Tool Kit packages. Use *Project / Manage NuGet Packages...* then select "Online" and search for "DirectXTK".
 
 <table>
  <tr>
@@ -207,7 +207,7 @@ The _DirectX Tool Kit_ library assumes your binary is linking with the following
 ### DirectX Tool Kit for Audio
 For "Windows 8.x" or "Windows 10" configurations of the AudioEngine class, you'll need to use ``xaudio2.lib``.
 
-For [XAudio2Redist](https://docs.microsoft.com/en-us/windows/win32/xaudio2/xaudio2-redistributable), the [Microsoft.XAudio2.Redist](https://www.nuget.org/packages/Microsoft.XAudio2.Redist/) NuGet package provides the ``xaudio2_9redist.lib``.
+For [XAudio2Redist](https://docs.microsoft.com/windows/win32/xaudio2/xaudio2-redistributable), the [Microsoft.XAudio2.Redist](https://www.nuget.org/packages/Microsoft.XAudio2.Redist/) NuGet package provides the ``xaudio2_9redist.lib``.
 
 ### GamePad
 For "Windows 10" configurations of the GamePad class that use Windows.Gaming.Input, you need ``runtimeobject.lib`` for Win32 desktop apps. For UWP apps, this is already handled with the umbrella lib ``windowsapp.lib``.
@@ -215,19 +215,19 @@ For "Windows 10" configurations of the GamePad class that use Windows.Gaming.Inp
 For "Windows 8.x" configurations of the GamePad class using XInput 1.4, you'll need ``xinput.lib``.
 
 For Windows 7 configurations, use ``xinput9_1_0.lib``.
- 
+
 # Content pipeline
-To use the Visual Studio graphics assets tools in the build system, be sure to [add them to your project](https://docs.microsoft.com/en-us/visualstudio/designers/using-3-d-assets-in-your-game-or-app).
+To use the Visual Studio graphics assets tools in the build system, be sure to [add them to your project](https://docs.microsoft.com/visualstudio/designers/using-3-d-assets-in-your-game-or-app).
 
 **Note:** When adding ``.spritefont``, ``.sdkmesh``, or ``.xwb`` files to your Universal Windows Platform (UWP) or Xbox One project, you need to manually set the file properties to "Content: Yes" for all configurations to have these files included in your AppX package. ``.dds`` files, other image file formats, and ``.wav`` files are automatically detected as a media file and are included as content by default.
 
 # Error handling
 DirectXTK makes use of C++ exception handling which should be enabled by the application via the `/EHsc` compiler switch. In Visual Studio, this is set in the project settings under "C++ / Code Generation" with Enable C++ Exceptions set to "Yes (/EHsc)" for all configurations.
 
-* [C++ Exception Handling](https://docs.microsoft.com/en-us/cpp/cpp/cpp-exception-handling)
-* [How to: Break When an Exception is Thrown](https://docs.microsoft.com/en-us/visualstudio/debugger/managing-exceptions-with-the-debugger)
+* [C++ Exception Handling](https://docs.microsoft.com/cpp/cpp/cpp-exception-handling)
+* [How to: Break When an Exception is Thrown](https://docs.microsoft.com/visualstudio/debugger/managing-exceptions-with-the-debugger)
 * [Dual-use Coding Techniques for Games](https://aka.ms/Fo3su4)
-* [Resource Acquisition Is Initialization](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization)
+* [Resource Acquisition Is Initialization](http://wikipedia.org/wiki/Resource_Acquisition_Is_Initialization)
 * [[ThrowIfFailed]]
 
 _Visual Studio Express editions have limited exception handling debugging support, so consider using VS Community or Pro+ instead._
@@ -239,10 +239,10 @@ DirectXTK encourages and makes use of a number of smart-pointers to simplify res
 * ``std::shared_ptr`` - A smart-pointer that tracks memory use with reference counting
 * ``Microsoft::WRL::ComPtr`` - A [[COM smart-pointer|ComPtr]] for reference count management very similar to ATL's CComPtr
 
-* [Smart Pointers (Modern C++)](https://docs.microsoft.com/en-us/cpp/cpp/smart-pointers-modern-cpp)
-* [Managing the Lifetime of an Object](https://docs.microsoft.com/en-us/windows/desktop/LearnWin32/managing-the-lifetime-of-an-object)
-* [COM Coding Practices](https://docs.microsoft.com/en-us/windows/desktop/LearnWin32/com-coding-practices#smartptr)
-* [Reference Counting (Direct3D 10)](https://docs.microsoft.com/en-us/windows/desktop/direct3d10/d3d10-graphics-programming-guide-api-features-reference-counting)
+* [Smart Pointers (Modern C++)](https://docs.microsoft.com/cpp/cpp/smart-pointers-modern-cpp)
+* [Managing the Lifetime of an Object](https://docs.microsoft.com/windows/win32/learnwin32/managing-the-lifetime-of-an-object)
+* [COM Coding Practices](https://docs.microsoft.com/windows/win32/learnwin32/com-coding-practices#smartptr)
+* [Reference Counting (Direct3D 10)](https://docs.microsoft.com/windows/win32/direct3d10/d3d10-graphics-programming-guide-api-features-reference-counting)
 
 # Additional information
 [[Implementation]]

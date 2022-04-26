@@ -125,6 +125,6 @@ Build and run to see the camera moving up and down while still looking at the pl
 # Further reading
 
 DirectX Tool Kit docs [[SimpleMath]]  
-[Radian](http://en.wikipedia.org/wiki/Radian)  
-[Graphical projection](http://en.wikipedia.org/wiki/Graphical_projection)  
+[Radian](http://wikipedia.org/wiki/Radian)  
+[Graphical projection](http://wikipedia.org/wiki/Graphical_projection)  
 [Essential Math for Games Programmers (GDC)](http://www.essentialmath.com/)

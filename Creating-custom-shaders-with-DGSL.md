@@ -188,7 +188,7 @@ The main limitation of using the DGSL tool is that it creates only Shader Model 
 
 To support Windows phone, you need feature level 9.3, and to target Surface RT you need feature level 9.1. There is a workaround which is to manually export the DGSL shader to an HLSL file, then compile it using FXC with either the ``ps_4_0_level_9_1`` or ``ps_4_0_level_9_3`` shader profile. It is quite likely you'll need to manually simplify the HLSL shader to successfully get it to compile. [[DGSLEffectFactory|EffectFactory]] implements this workaround by looking for a 'base-name' equivalent of the ``.DGSL.CSO`` file as a ``.CSO`` file when on feature level 9.x devices.
 
-[How to: Export a Shader](https://docs.microsoft.com/en-us/visualstudio/designers/how-to-export-a-shader)
+[How to: Export a Shader](https://docs.microsoft.com/visualstudio/designers/how-to-export-a-shader)
 
 > DGSLEffect is not supported for *DirectX Tool Kit for DirectX 12* since it's specific to Shader Model 4.0.
 
@@ -197,6 +197,6 @@ To support Windows phone, you need feature level 9.3, and to target Surface RT y
 # Further reading
 
 DirectX Tool Kit docs [[Effects]]  
-[Using 3-D Assets in Your Game or App](https://docs.microsoft.com/en-us/visualstudio/designers/using-3-d-assets-in-your-game-or-app)  
-[Working with Shaders](https://docs.microsoft.com/en-us/visualstudio/designers/working-with-shaders)  
+[Using 3-D Assets in Your Game or App](https://docs.microsoft.com/visualstudio/designers/using-3-d-assets-in-your-game-or-app)  
+[Working with Shaders](https://docs.microsoft.com/visualstudio/designers/working-with-shaders)  
 [Visual Studio 3D Starter Kit (Windows 8.1)](http://aka.ms/vs3dkitwin)

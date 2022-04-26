@@ -1,7 +1,7 @@
 |[[Getting Started]]|
 |---|
 
-This lesson covers the basics of writing your own [HLSL shaders](https://en.wikipedia.org/wiki/High-Level_Shading_Language) and using them with _DirectX Tool Kit_, in particular to customize **SpriteBatch**.
+This lesson covers the basics of writing your own [HLSL shaders](https://wikipedia.org/wiki/High-Level_Shading_Language) and using them with _DirectX Tool Kit_, in particular to customize **SpriteBatch**.
 
 # Setup
 First create a new project using the instructions from the previous lessons: [[Using DeviceResources]] and
@@ -553,7 +553,7 @@ float4 main(float4 color : COLOR0, float2 texCoord : TEXCOORD0) : SV_Target0
 
 ![Screenshot of post-processed torus](https://github.com/Microsoft/DirectXTK/wiki/images/postprocessPass2.png)
 
-We take that result in ``m_renderTarget2`` and then blur it vertically using the same shader--we are using a [Gaussian blur](https://en.wikipedia.org/wiki/Gaussian_blur) which is a separable filter which allows us to do the filter in two simple render passes one for each dimension--back into ``m_renderTarget1``.
+We take that result in ``m_renderTarget2`` and then blur it vertically using the same shader--we are using a [Gaussian blur](https://wikipedia.org/wiki/Gaussian_blur) which is a separable filter which allows us to do the filter in two simple render passes one for each dimension--back into ``m_renderTarget1``.
 
 ![Screenshot of post-processed torus](https://github.com/Microsoft/DirectXTK/wiki/images/postprocessPass3.png)
 
@@ -606,7 +606,7 @@ DirectX Tool Kit docs [[SpriteBatch]]
 
 [HLSL, FXC, and D3DCompile](https://aka.ms/Tuoxjdx)  
 [What's up with D3DCompiler_xx.dll](https://walbourn.github.io/whats-up-with-d3dcompiler_xx-dll)  
-[Compiling Shaders](https://docs.microsoft.com/en-us/windows/desktop/direct3dhlsl/dx-graphics-hlsl-part1)  
+[Compiling Shaders](https://docs.microsoft.com/windows/win32/direct3dhlsl/dx-graphics-hlsl-part1)  
 
 # Credits
 

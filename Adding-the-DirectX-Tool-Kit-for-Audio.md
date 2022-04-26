@@ -10,7 +10,7 @@ First create a new project using the instructions from the earlier lessons: [[Us
 > If using *DirectX Tool Kit for DX12*, use [Using DeviceResources](https://github.com/microsoft/DirectXTK12/wiki/Using-DeviceResources) and [Adding the DirectX Tool Kit](https://github.com/microsoft/DirectXTK12/wiki/Adding-the-DirectX-Tool-Kit). In this case, the only thing to do in this lesson is adding ``#include <Audio.h>`` to **pch.h**.
 
 # NuGet package manager
-If you used [NuGet](https://docs.microsoft.com/en-us/nuget/what-is-nuget) when [[Adding the DirectX Tool Kit]], then you already have support for _DirectX Tool Kit for Audio._.
+If you used [NuGet](https://docs.microsoft.com/nuget/what-is-nuget) when [[Adding the DirectX Tool Kit]], then you already have support for _DirectX Tool Kit for Audio._.
 
 <table>
  <tr>

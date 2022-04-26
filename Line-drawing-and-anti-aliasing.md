@@ -127,7 +127,7 @@ m_world = Matrix::CreateRotationY(cosf(static_cast<float>(timer.GetTotalSeconds(
 
 Build and run to see the grid spinning, and notice the slight shimmering of the lines--it will be more obvious if you maximize the window size.    
 
-There are two approaches to addressing this problem, known as [aliasing](https://en.wikipedia.org/wiki/Aliasing).
+There are two approaches to addressing this problem, known as [aliasing](https://wikipedia.org/wiki/Aliasing).
 
 ## Anti-aliased lines
 The first is to enable a special anti-aliasing mode specific to line drawing in Direct3D.
@@ -174,7 +174,7 @@ Build and run to see the shimmering of the lines lessen, although they will appe
 ![Screenshot of the AA grid](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotGridAA.PNG)
 
 ## Multisampling
-A second more general solution is to use [Multisample anti-aliasing](https://en.wikipedia.org/wiki/Multisample_anti-aliasing) (MSAA) which uses more video memory and pixel-fill performance to achieve higher quality rendering results. In this case, we will make use of 4x MSAA where the render target and the depth buffer will be 4 times larger. MSAA can be used with all primitives, not just lines.
+A second more general solution is to use [Multisample anti-aliasing](https://wikipedia.org/wiki/Multisample_anti-aliasing) (MSAA) which uses more video memory and pixel-fill performance to achieve higher quality rendering results. In this case, we will make use of 4x MSAA where the render target and the depth buffer will be 4 times larger. MSAA can be used with all primitives, not just lines.
 
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 
@@ -295,7 +295,7 @@ Build and run to see the shimmering of the lines lessen compared to the first ve
 ![Screenshot of the MSAA grid](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotGridMSAA.PNG)
 
 <details><summary><i>Click here for troubleshooting advice</i></summary>
-<p>If you get an exception, it may be because your device does not support 4x MSAA--which you can confirm by checking the debug device output at the failure point. Direct3D Feature Level 10.1 or later devices all support 4x MSAA for most render target formats, but some 10.0 and 9.x feature levels do not. You can try setting <code>MSAA_COUNT</code> to 2 if this happens. If you have a Feature Level 11.0 or later device, you can try using 4 or 8 for <code>MSAA_COUNT</code>. See also <a href="https://docs.microsoft.com/en-us/windows/desktop/api/d3d11/nf-d3d11-id3d11device-checkmultisamplequalitylevels">CheckMultisampleQualityLevels</a></p></details>
+<p>If you get an exception, it may be because your device does not support 4x MSAA--which you can confirm by checking the debug device output at the failure point. Direct3D Feature Level 10.1 or later devices all support 4x MSAA for most render target formats, but some 10.0 and 9.x feature levels do not. You can try setting <code>MSAA_COUNT</code> to 2 if this happens. If you have a Feature Level 11.0 or later device, you can try using 4 or 8 for <code>MSAA_COUNT</code>. See also <a href="https://docs.microsoft.com/windows/win32/api/d3d11/nf-d3d11-id3d11device-checkmultisamplequalitylevels">CheckMultisampleQualityLevels</a></p></details>
 
 > If you are using a Direct3D Feature Level 9.x device, you will also need to use ``DXGI_FORMAT_D24_UNORM_S8_UINT`` instead of ``DXGI_FORMAT_D32_FLOAT`` as the depth/stencil format.
 
@@ -319,6 +319,6 @@ See [this blog series](https://walbourn.github.io/care-and-feeding-of-modern-swa
 # Further reading
 
 DirectX Tool Kit docs [[CommonStates]], [[Effects]], [[PrimitiveBatch]], [[VertexTypes]]  
-[FXAA](https://en.wikipedia.org/wiki/Fast_approximate_anti-aliasing)  
+[FXAA](https://wikipedia.org/wiki/Fast_approximate_anti-aliasing)  
 [SMAA](http://www.iryoku.com/smaa/)  
-[Spatial anti-alising](https://en.wikipedia.org/wiki/Spatial_anti-aliasing)
+[Spatial anti-alising](https://wikipedia.org/wiki/Spatial_anti-aliasing)

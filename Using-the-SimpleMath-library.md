@@ -5,12 +5,12 @@ This lesson introduces the reader to the SimpleMath game and graphics math libra
 
 # Background
 
-The *DirectX Tool Kit* tutorials assume a basic understanding of the classic "world -> view -> projection" [graphics pipeline](https://en.wikipedia.org/wiki/Graphics_pipeline), [transformation matricies](https://en.wikipedia.org/wiki/Transformation_matrix), and in particular the classic [affine transformations](https://en.wikipedia.org/wiki/Affine_transformation) of *translation*, *scaling*, and *rotation*.
+The *DirectX Tool Kit* tutorials assume a basic understanding of the classic "world -> view -> projection" [graphics pipeline](https://wikipedia.org/wiki/Graphics_pipeline), [transformation matricies](https://wikipedia.org/wiki/Transformation_matrix), and in particular the classic [affine transformations](https://wikipedia.org/wiki/Affine_transformation) of *translation*, *scaling*, and *rotation*.
 
 A great resource for learning more about the essential math of graphics programming, see [Essential Math for Games Programmers](http://www.essentialmath.com/).
 
 # Coordinate system
-Consistent with the original XNA Game Framework C# math library, SimpleMath assumes a [right-handed](https://en.wikipedia.org/wiki/Right-hand_rule) coordinate system, with the positive z-axis pointing toward the observer when the positive x-axis is pointing to the right, and the positive y-axis is pointing up.
+Consistent with the original XNA Game Framework C# math library, SimpleMath assumes a [right-handed](https://wikipedia.org/wiki/Right-hand_rule) coordinate system, with the positive z-axis pointing toward the observer when the positive x-axis is pointing to the right, and the positive y-axis is pointing up.
 
 # Namespace
 The operator overloads defined in the SimpleMath library are defined in the ``DirectX::SimpleMath`` C++ namespace. You therefore need to add ``using`` statements to get them to properly resolve:
@@ -62,7 +62,7 @@ Quaternion c = Quaternion::Slerp(a, b, 0.25f);
 
 # Homogenous Coordinates
 
-Matrix is 4x4 single-precision floating-point and is normally assumed to be [homogenous coordinates](https://en.wikipedia.org/wiki/Homogeneous_coordinates) as per the standard 3D transformation pipeline:
+Matrix is 4x4 single-precision floating-point and is normally assumed to be [homogenous coordinates](https://wikipedia.org/wiki/Homogeneous_coordinates) as per the standard 3D transformation pipeline:
 
 ```
 | _11  _12  _13  _14 |
@@ -71,7 +71,7 @@ Matrix is 4x4 single-precision floating-point and is normally assumed to be [hom
 | _41  _42  _43  _44 |
 ```
 
-The upper-3x3 matrix is used for 3D scaling (_11, _22, _33) & rotation transformations (as well as shearing, reflection/mirroring, or other [affine transformation](https://en.wikipedia.org/wiki/Affine_transformation)):
+The upper-3x3 matrix is used for 3D scaling (_11, _22, _33) & rotation transformations (as well as shearing, reflection/mirroring, or other [affine transformation](https://wikipedia.org/wiki/Affine_transformation)):
 
 ```
 | _11  _12  _13  ? |

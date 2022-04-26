@@ -11,11 +11,11 @@ First create a new project using the instructions from the earlier lessons: [[Us
 In order to do a draw operation with Direct3D 11, we need to provide the following objects and settings:
 
 * A *vertex buffer* containing the vertices of the elements to draw.
-* The *input layout* that [describes](https://docs.microsoft.com/en-us/windows/desktop/api/d3d11/ns-d3d11-d3d11_input_element_desc) the memory layout of the vertices in the _vertex buffer_.
+* The *input layout* that [describes](https://docs.microsoft.com/windows/win32/api/d3d11/ns-d3d11-d3d11_input_element_desc) the memory layout of the vertices in the _vertex buffer_.
 * A *primitive topology* setting that indicates how to interpret the individual vertices (as a point, a line, a triangle, etc.)
 * A compiled *vertex shader* program
 * A compiled *pixel shader* program
-* Set any required *state objects* for [rasterizer state](https://docs.microsoft.com/en-us/windows/desktop/api/d3d11/ns-d3d11-d3d11_rasterizer_desc), [depth/stencil state](https://docs.microsoft.com/en-us/windows/desktop/api/d3d11/ns-d3d11-d3d11_depth_stencil_desc), [blend state](https://docs.microsoft.com/en-us/windows/desktop/api/d3d11/ns-d3d11-d3d11_blend_desc), and [sampler state](https://docs.microsoft.com/en-us/windows/desktop/api/d3d11/ns-d3d11-d3d11_sampler_desc) (if using textures)
+* Set any required *state objects* for [rasterizer state](https://docs.microsoft.com/windows/win32/api/d3d11/ns-d3d11-d3d11_rasterizer_desc), [depth/stencil state](https://docs.microsoft.com/windows/win32/api/d3d11/ns-d3d11-d3d11_depth_stencil_desc), [blend state](https://docs.microsoft.com/windows/win32/api/d3d11/ns-d3d11-d3d11_blend_desc), and [sampler state](https://docs.microsoft.com/windows/win32/api/d3d11/ns-d3d11-d3d11_sampler_desc) (if using textures)
 
 For this lesson, the [[BasicEffect]] object will provide the vertex and pixel shader programs, [[VertexPositionColor|VertexTypes]] will provide the input layout, [[CommonStates]] will provide the 'stock' state objects, and **PrimitiveBatch** will provide the vertex buffer and primitive topology.
 
@@ -156,7 +156,7 @@ context->RSSetState(m_states->CullCounterClockwise());
 
 Then build & run you will see the triangle reappear.
 
-For 'closed' objects, you typically use [backface culling](https://en.wikipedia.org/wiki/Back-face_culling) to speed up rendering which can quickly reject triangles that are not facing the viewer and avoids the need to run the pixel shader for those pixels.
+For 'closed' objects, you typically use [backface culling](https://wikipedia.org/wiki/Back-face_culling) to speed up rendering which can quickly reject triangles that are not facing the viewer and avoids the need to run the pixel shader for those pixels.
 
 > The culling mode does not affect points or lines.
 
@@ -299,7 +299,7 @@ using VertexType = DirectX::VertexPositionNormalTexture;
 
 Also change the type of effect. Since we are using a flat 2D triangle, the lighting is not going to be very interesting so we are going to add some simple normal mapping to give the texture some definition.
 
-> If you are not familiar with *lighting* (also known as [shading](https://en.wikipedia.org/wiki/Shading)) in the computer graphics sense, you should review some of the basic material on the web or in a standard book. Most of the built-in effects use simple "dot-product" style lighting where the 'light value' is scaled by a value of 0 (not lit) to 1 (fully lit) computed from the angle between the vector to the light (i.e. the inverse of the light direction) and the normal vector at the surface.
+> If you are not familiar with *lighting* (also known as [shading](https://wikipedia.org/wiki/Shading)) in the computer graphics sense, you should review some of the basic material on the web or in a standard book. Most of the built-in effects use simple "dot-product" style lighting where the 'light value' is scaled by a value of 0 (not lit) to 1 (fully lit) computed from the angle between the vector to the light (i.e. the inverse of the light direction) and the normal vector at the surface.
 
 ```cpp
 std::unique_ptr<DirectX::NormalMapEffect> m_effect;

@@ -105,6 +105,6 @@ namespace DX
 
 # Further reading
 
-* [C++ Exception Handling](https://docs.microsoft.com/en-us/cpp/cpp/cpp-exception-handling)
-* [Managing Exceptions with the Debugger](https://docs.microsoft.com/en-us/visualstudio/debugger/managing-exceptions-with-the-debugger)
-* [Error Handling in COM](https://docs.microsoft.com/en-us/windows/desktop/LearnWin32/error-handling-in-com)
+* [C++ Exception Handling](https://docs.microsoft.com/cpp/cpp/cpp-exception-handling)
+* [Managing Exceptions with the Debugger](https://docs.microsoft.com/visualstudio/debugger/managing-exceptions-with-the-debugger)
+* [Error Handling in COM](https://docs.microsoft.com/windows/win32/learnwin32/error-handling-in-com)

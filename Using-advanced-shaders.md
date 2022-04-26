@@ -9,7 +9,7 @@ First create a new project using the instructions from the previous lessons: [[U
 
 # Environment mapping
 
-Environment mapping (also known as [reflection mapping](https://en.wikipedia.org/wiki/Reflection_mapping)) is a common technique for adding reflections of the surrounding environment to 3D rendered materials using a [cubemap](https://en.wikipedia.org/wiki/Cube_mapping).
+Environment mapping (also known as [reflection mapping](https://wikipedia.org/wiki/Reflection_mapping)) is a common technique for adding reflections of the surrounding environment to 3D rendered materials using a [cubemap](https://wikipedia.org/wiki/Cube_mapping).
 
 Start by saving [wood.dds](https://github.com/Microsoft/DirectXTK/wiki/media/wood.dds) and [cubemap.dds](https://github.com/Microsoft/DirectXTK/wiki/media/cubemap.dds) into your new project's directory, and then from the top menu select **Project / Add Existing Item....** Select "wood.dds" and click "OK". Repeat for "cubemap.dds"
 
@@ -109,7 +109,7 @@ In **Game.cpp** add the following to the TODO section of **Update**:
 m_effect->SetFresnelFactor(cosf(time * 2.f));
 ```
 
-Build and run to see the effect of animating the [Fresnel](https://en.wikipedia.org/wiki/Fresnel_equations) factor.
+Build and run to see the effect of animating the [Fresnel](https://wikipedia.org/wiki/Fresnel_equations) factor.
 
 ![Screenshot of teapot](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTeapot2.PNG)
 
@@ -120,7 +120,7 @@ For dynamic environments, you can generate the cubemap at runtime by rendering t
 
 # Normal mapping
 
-[[NormalMapEffect]] is similar to the [[BasicEffect]] with the addition of a [normal texture map](https://en.wikipedia.org/wiki/Normal_mapping) and an optional [specular texture map](https://en.wikipedia.org/wiki/Specularity).
+[[NormalMapEffect]] is similar to the [[BasicEffect]] with the addition of a [normal texture map](https://wikipedia.org/wiki/Normal_mapping) and an optional [specular texture map](https://wikipedia.org/wiki/Specularity).
 
 > Note that ``NormalMapEffect`` requires Direct3D hardware feature level 10.0 or higher. It won't run on 9.x feature levels.
 
@@ -196,13 +196,13 @@ Build and run to see the debug effect rendering a blue/purple gradient teapot:
 
 # More to explore
 
-* The [[EnvironmentMapEffect]] also supports spherical environment maps (a [DirectX 9](https://docs.microsoft.com/en-us/windows/win32/direct3d9/spherical-environment-mapping) feature) and dual-parabolic environment maps.
+* The [[EnvironmentMapEffect]] also supports spherical environment maps (a [DirectX 9](https://docs.microsoft.com/windows/win32/direct3d9/spherical-environment-mapping) feature) and dual-parabolic environment maps.
 
-* [[PBREffect]] is a Disney-style [[Physically-based rendering]] effect which uses an albedo map, normal map, and roughness/metalness/ambient-occlusion map along with two cubemaps for [Image-Based Lighting](https://en.wikipedia.org/wiki/Image-based_lighting).
+* [[PBREffect]] is a Disney-style [[Physically-based rendering]] effect which uses an albedo map, normal map, and roughness/metalness/ambient-occlusion map along with two cubemaps for [Image-Based Lighting](https://wikipedia.org/wiki/Image-based_lighting).
 
-* [[DualTextureEffect]] is used to render a material with two textures applied. This requires the input layout to contain a second set of _texture coordinates_. This does not perform vertex or per-pixel lighting, as the second texture is most often a [lightmap](https://en.wikipedia.org/wiki/Lightmap) with statically computed lighting information.  ``.SDKMESH`` and the [Content Exporter](https://aka.ms/dxsdkcontentexporter) support exporting light-mapped models which utilize this effect (see ``-lightmaps``).
+* [[DualTextureEffect]] is used to render a material with two textures applied. This requires the input layout to contain a second set of _texture coordinates_. This does not perform vertex or per-pixel lighting, as the second texture is most often a [lightmap](https://wikipedia.org/wiki/Lightmap) with statically computed lighting information.  ``.SDKMESH`` and the [Content Exporter](https://aka.ms/dxsdkcontentexporter) support exporting light-mapped models which utilize this effect (see ``-lightmaps``).
 
-* The [[AlphaTestEffect]] is used to perform pixel rejection based on an alpha reference value and function selection. It's primarily to implement techniques that relied on [legacy Direct3D 9 alpha testing](https://docs.microsoft.com/en-us/windows/win32/direct3d9/alpha-testing-state) render state. This effect is independent of the depth/stencil tests set in ``D3D11_DEPTH_STENCIL_DESC.DepthFunc`` and ``StencilFunc``.
+* The [[AlphaTestEffect]] is used to perform pixel rejection based on an alpha reference value and function selection. It's primarily to implement techniques that relied on [legacy Direct3D 9 alpha testing](https://docs.microsoft.com/windows/win32/direct3d9/alpha-testing-state) render state. This effect is independent of the depth/stencil tests set in ``D3D11_DEPTH_STENCIL_DESC.DepthFunc`` and ``StencilFunc``.
 
 **Next lesson:** [[Multistream rendering and instancing]]
 

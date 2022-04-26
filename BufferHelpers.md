@@ -35,7 +35,7 @@ HRESULT CreateStaticBuffer(ID3D11Device* device,
 
 ## Parameters
 
-*bindFlags* is one or more [D3D11_BIND_FLAG](https://docs.microsoft.com/en-us/windows/win32/api/d3d11/ne-d3d11-d3d11_bind_flag) values. Typically ``D3D11_BIND_VERTEX_BUFFER`` for vertex buffers, or ``D3D11_BIND_INDEX_BUFFER`` for an index buffer.
+*bindFlags* is one or more [D3D11_BIND_FLAG](https://docs.microsoft.com/windows/win32/api/d3d11/ne-d3d11-d3d11_bind_flag) values. Typically ``D3D11_BIND_VERTEX_BUFFER`` for vertex buffers, or ``D3D11_BIND_INDEX_BUFFER`` for an index buffer.
 
 ## Examples
 
@@ -124,7 +124,7 @@ HRESULT CreateTextureFromMemory(ID3D11Device* device,
 
 ## Parameters
 
-*bindFlags* is one or more [D3D11_BIND_FLAG](https://docs.microsoft.com/en-us/windows/win32/api/d3d11/ne-d3d11-d3d11_bind_flag) values. Typically ``D3D11_BIND_SHADER_RESOURCE`` textures.
+*bindFlags* is one or more [D3D11_BIND_FLAG](https://docs.microsoft.com/windows/win32/api/d3d11/ne-d3d11-d3d11_bind_flag) values. Typically ``D3D11_BIND_SHADER_RESOURCE`` textures.
 
 Either _texture_ or _textureView_ can be nullptr, but not both. In most use cases for rendering, you only need the shader resource view (SRV) _textureView_ interface.
 

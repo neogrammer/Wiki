@@ -30,7 +30,7 @@ WORD  nBlockAlign;
 
 # PCMWAVEFORMAT
 
-The next simplest form is another partial ``WAVEFORMATEX`` version using an older structure (it's only 16 bytes instead of 18 bytes). This is commonly used to encode [PCM](https://en.wikipedia.org/wiki/Pulse-code_modulation) format data using ``WAVE_FORMAT_PCM`` or ``WAVE_FORMAT_IEEE_FLOAT``, although it's recommended you use a complete ``WAVEFORMATEX`` instead.
+The next simplest form is another partial ``WAVEFORMATEX`` version using an older structure (it's only 16 bytes instead of 18 bytes). This is commonly used to encode [PCM](https://wikipedia.org/wiki/Pulse-code_modulation) format data using ``WAVE_FORMAT_PCM`` or ``WAVE_FORMAT_IEEE_FLOAT``, although it's recommended you use a complete ``WAVEFORMATEX`` instead.
 
 ```cpp
 WAVEFORMAT wf;
@@ -45,7 +45,7 @@ XAudio2 only supports a ``wBitsPerSample`` of 32 for WAVE_FORMAT_IEEE_FLOAT.
 
 # ADPCMWAVEFORMAT
 
-A common compressed encoding for audio data is [ADPCM](https://en.wikipedia.org/wiki/Adaptive_differential_pulse-code_modulation) which is indicated with ``WAVE_FORMAT_ADPCM``.
+A common compressed encoding for audio data is [ADPCM](https://wikipedia.org/wiki/Adaptive_differential_pulse-code_modulation) which is indicated with ``WAVE_FORMAT_ADPCM``.
 
 ```cpp
 WAVEFORMATEX    wfx;

@@ -1,7 +1,7 @@
 |[[DirectXTK]]|[[Effects]]|
 |---|---|
 
-**PBREffect** implements a Disney-style (Roughness/Metalness workflow) Physically-Based Renderer ([PBR](https://en.wikipedia.org/wiki/Physically_based_rendering)) effect using Image-Based Lighting ([IBL](https://en.wikipedia.org/wiki/Image-based_lighting)) in combination with up to three directional lights. This effect also supports GPU instancing.
+**PBREffect** implements a Disney-style (Roughness/Metalness workflow) Physically-Based Renderer ([PBR](https://wikipedia.org/wiki/Physically_based_rendering)) effect using Image-Based Lighting ([IBL](https://wikipedia.org/wiki/Image-based_lighting)) in combination with up to three directional lights. This effect also supports GPU instancing.
 
 **SkinnedPBREffect** extends ``PBREffect`` to support vertex skinning. The skinned effect does not support velocity buffer generation or GPU instancing.
 
@@ -29,7 +29,7 @@ std::unique_ptr<SkinnedPBREffect> effect;
 effect = std::make_unique<SkinnedPBREffect>(device);
 ```
 
-For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
+For exception safety, it is recommended you make use of the C++ [RAII](http://wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
 # Interfaces
 PBREffect supports [[IEffect]], [[IEffectMatrices]], and [[IEffectLights]].
@@ -127,7 +127,7 @@ These effects use Shader Model 4.0 so requires Direct3D hardware feature level 1
 
 > Note this means you can also count on ``DXGI_FORMAT_BC5_UNORM`` texture compression hardware support for your normal maps.
 
-[Direct3D feature levels](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/overviews-direct3d-11-devices-downlevel-intro)
+[Direct3D feature levels](https://docs.microsoft.com/windows/win32/direct3d11/overviews-direct3d-11-devices-downlevel-intro)
 
 # Further reading
 [Basic Theory of Physically-Based Rendering](https://marmoset.co/posts/basic-theory-of-physically-based-rendering/)

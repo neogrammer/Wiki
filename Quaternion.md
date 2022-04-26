@@ -1,9 +1,9 @@
 |[[DirectXTK]]|[[SimpleMath]]|
 |---|---|
 
-A [rotation represented as a four component vector](https://en.wikipedia.org/wiki/Quaternion) modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Quaternion``) math library.
+A [rotation represented as a four component vector](https://wikipedia.org/wiki/Quaternion) modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Quaternion``) math library.
 
-A *quaternion* is a very efficient and compact method for working with 3D rotation. A *quaternion* is a 4-dimensional value and only has physical meaning when it's normalized. In computer graphics, they are used to represent 3D rotations as a 4-vector (i.e. 4 float values) instead of requiring a 3x3 matrix (i.e. 9 float values) and are thus more compact. They are extremely useful implementing cameras and animation where a *quaternion* can smoothly interpolate between 3D rotations while avoiding the [gimbal lock](https://en.wikipedia.org/wiki/Gimbal_lock) problem common to [Euler angles](https://en.wikipedia.org/wiki/Euler_angles).
+A *quaternion* is a very efficient and compact method for working with 3D rotation. A *quaternion* is a 4-dimensional value and only has physical meaning when it's normalized. In computer graphics, they are used to represent 3D rotations as a 4-vector (i.e. 4 float values) instead of requiring a 3x3 matrix (i.e. 9 float values) and are thus more compact. They are extremely useful implementing cameras and animation where a *quaternion* can smoothly interpolate between 3D rotations while avoiding the [gimbal lock](https://wikipedia.org/wiki/Gimbal_lock) problem common to [Euler angles](https://wikipedia.org/wiki/Euler_angles).
 
 # Header
 ```cpp
@@ -88,7 +88,7 @@ Quaternion q(arr);                // Creates a quaternion [0, 0, 0, 1]
 Quaternion can freely convert to and from a ``XMFLOAT4`` and ``XMVECTOR``.
 
 # Further Reading
-[Quaternions and spatial rotation](https://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation)  
+[Quaternions and spatial rotation](https://wikipedia.org/wiki/Quaternions_and_spatial_rotation)  
 
 Jonathan Blow, "Understanding Slerp, Then Not Using It", The Inner Product, April 2004 [link](http://number-none.com/product/Understanding%20Slerp,%20Then%20Not%20Using%20It/)
 

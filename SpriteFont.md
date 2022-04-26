@@ -26,7 +26,7 @@ spriteBatch = std::make_unique<SpriteBatch>(deviceContext);
 spriteFont = std::make_unique<SpriteFont>(device, L"myfile.spritefont");
 ```
 
-For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
+For exception safety, it is recommended you make use of the C++ [RAII](http://wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
 > You create one ``SpriteFont`` instance per font style & point-size you want to use to render with. You can use the same ``SpriteBatch`` or use several ``SpriteBatch`` instances if desired. Be sure to read the _Threading model_ notes for [[SpriteBatch]].
 
@@ -101,7 +101,7 @@ The default character region for [[MakeSpriteFont]] from 32 to 127 covers the st
 
 # Extended ASCII
 
-If you are wanting to render an [extended ASCII](http://ascii-table.com/ascii-extended-pc-list.php) string with SpriteFont, you need to capture the full set of characters which are not contiguous in Unicode (see [[MakeSpriteFont]] for details). You then need to convert your 'extended ASCII' string to Unicode using [Code page 437](http://en.wikipedia.org/wiki/Code_page_437) before calling ``DrawString``.
+If you are wanting to render an [extended ASCII](http://ascii-table.com/ascii-extended-pc-list.php) string with SpriteFont, you need to capture the full set of characters which are not contiguous in Unicode (see [[MakeSpriteFont]] for details). You then need to convert your 'extended ASCII' string to Unicode using [Code page 437](http://wikipedia.org/wiki/Code_page_437) before calling ``DrawString``.
 
 ```cpp
 char ascii[...];
@@ -138,7 +138,7 @@ Code for rendering text mixed with the Xbox controller button spritefont, see [[
 
 # Feature Level Notes
 
-The Sprite Font implementation is compatible with all feature levels. The primary limitation is on the size of the sprite sheet texture which should fit into the limits for [known feature levels](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/overviews-direct3d-11-devices-downlevel-intro) (i.e. to support all feature levels, it should be no larger than 2048 x 2048; if you target feature level 9.3 or later you can use 4096 x 4096, etc.).
+The Sprite Font implementation is compatible with all feature levels. The primary limitation is on the size of the sprite sheet texture which should fit into the limits for [known feature levels](https://docs.microsoft.com/windows/win32/direct3d11/overviews-direct3d-11-devices-downlevel-intro) (i.e. to support all feature levels, it should be no larger than 2048 x 2048; if you target feature level 9.3 or later you can use 4096 x 4096, etc.).
 
 > You are of course free to use a larger texture as long as you set your application's minimum supported feature level as appropriate. [[MakeSpriteFont]] will emit warnings if your captured font texture exceeds the various feature level size thresholds.
 

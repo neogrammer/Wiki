@@ -55,4 +55,4 @@ Plane p(arr);                 // Creates a plane in XZ at the origin
 Plane can freely convert to and from a ``XMFLOAT4`` and ``XMVECTOR``
 
 # Further reading
-[Plane](https://en.wikipedia.org/wiki/Plane_(geometry))  
+[Plane](https://wikipedia.org/wiki/Plane_(geometry))  

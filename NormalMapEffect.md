@@ -25,7 +25,7 @@ std::unique_ptr<SkinnedNormalMapEffect> effect;
 effect = std::make_unique<SkinnedNormalMapEffect>(device);
 ```
 
-For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
+For exception safety, it is recommended you make use of the C++ [RAII](http://wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
 # Interfaces
 
@@ -81,7 +81,7 @@ The normal map textures used by this effect are assumed to be ``_UNORM`` formats
 
 The red (x) and green (y) channels are loaded from the texture, but blue (z) and alpha (w) channels are unused. The shader reconstructs the z component of the normal using ``z = sqrt( 1 - dot( xy, xy ) )``. This has two positive benefits:
 
-1. You can make use the ``DXGI_FORMAT_BC5_UNORM`` (i.e. [3Dc](https://en.wikipedia.org/wiki/3Dc)) for normal map texture compression without any shader or configuration changes.
+1. You can make use the ``DXGI_FORMAT_BC5_UNORM`` (i.e. [3Dc](https://wikipedia.org/wiki/3Dc)) for normal map texture compression without any shader or configuration changes.
 1. Due to quantization effects, the actual unit length of the normal can drift, so this reconstruction can improve quality by effectively renormalizing the value.
 
 Finally, the green (y) channel is used "as is" in the shader code. Some viewing and materials conventions can require the green channel to be inverted to properly 'push in' or 'push out'. This issue should be handled by modifying the texture content either offline or at load time. _Because the shader reconstructs the z channel, an inverted y channel can result in black pixels on the model if it's backwards._
@@ -90,7 +90,7 @@ Finally, the green (y) channel is used "as is" in the shader code. Some viewing 
 
 # Remarks
 
-This effect implements the classic diffuse [Lambertian](https://en.wikipedia.org/wiki/Lambertian_reflectance) shading with [Phong](https://en.wikipedia.org/wiki/Phong_reflection_model) specular highlights lighting model with the addition of per-pixel normals and lighting. Optionally the specular highlights can be implemented as a specular map.
+This effect implements the classic diffuse [Lambertian](https://wikipedia.org/wiki/Lambertian_reflectance) shading with [Phong](https://wikipedia.org/wiki/Phong_reflection_model) specular highlights lighting model with the addition of per-pixel normals and lighting. Optionally the specular highlights can be implemented as a specular map.
 
 Calls to ``SetLightingEnabled(false);`` will generate a C++ exception, and calls to **SetPerPixelLighting** are ignored.
 
@@ -115,7 +115,7 @@ This effect uses Shader Model 4.0 so requires Direct3D hardware feature level 10
 
 > Note this means you can also count on ``DXGI_FORMAT_BC5_UNORM`` texture compression hardware support for your normal maps.
 
-[Direct3D feature levels](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/overviews-direct3d-11-devices-downlevel-intro)
+[Direct3D feature levels](https://docs.microsoft.com/windows/win32/direct3d11/overviews-direct3d-11-devices-downlevel-intro)
 
 # Further reading
 

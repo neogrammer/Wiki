@@ -5,7 +5,7 @@ This lesson covers performing picking in 3D.
 
 # Ray casting
 
-You can find an older tutorial on 3D picking using ray/object tests at [Rastertek](http://rastertek.com/dx11tut47.html) that uses the deprecated D3DXMath library. Note that instead of a 'roll your own' ``RaySphereIntersect`` you can use [BoundingSphere](https://docs.microsoft.com/en-us/windows/win32/api/directxcollision/ns-directxcollision-boundingsphere) from ``DirectXCollision.h`` with the following method to do the ray-sphere test:
+You can find an older tutorial on 3D picking using ray/object tests at [Rastertek](http://rastertek.com/dx11tut47.html) that uses the deprecated D3DXMath library. Note that instead of a 'roll your own' ``RaySphereIntersect`` you can use [BoundingSphere](https://docs.microsoft.com/windows/win32/api/directxcollision/ns-directxcollision-boundingsphere) from ``DirectXCollision.h`` with the following method to do the ray-sphere test:
 
 ```cpp
 bool Intersects(FXMVECTOR Origin, FXMVECTOR Direction, float& Dist) const;
@@ -19,5 +19,5 @@ You can also review the Direct3D 10 era "picking" sample from the [legacy Direct
 
 # Further reading
 
-[DirectMath Programmer's Guide](https://docs.microsoft.com/en-us/windows/desktop/dxmath/ovw-xnamath-reference)  
-[DirectXMath Collision sample](https://code.msdn.microsoft.com/DirectXMath-Win32-Sample-f365b9e5)
+[DirectMath Programmer's Guide](https://docs.microsoft.com/windows/win32/dxmath/ovw-xnamath-reference)  
+DirectXMath Collision sample for [Win32](https://github.com/walbourn/directx-sdk-samples/tree/main/Collision), [UWP](https://github.com/microsoft/Xbox-ATG-Samples/tree/main/UWPSamples/System/CollisionUWP), [XDK](https://github.com/microsoft/Xbox-ATG-Samples/tree/main/XDKSamples/System/Collision), [GDK](https://github.com/microsoft/Xbox-GDK-Samples/tree/main/Samples/System/Collision)

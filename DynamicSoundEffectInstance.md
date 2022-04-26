@@ -28,7 +28,7 @@ effect = std::make_unique<DynamicSoundEffectInstance>( audEngine.get(),
     44100, 1 );
 ```
 
-For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr``.
+For exception safety, it is recommended you make use of the C++ [RAII](http://wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr``.
 
 It can optionally support 3D positional audio:
 

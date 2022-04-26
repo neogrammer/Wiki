@@ -27,7 +27,7 @@ m_proj = XMMatrixPerspectiveFovLH( XM_PI / 4.f,
 
 Many 'handed' _DirectX Tool Kit_ functions take a bool parameter _rhcoords_ that defaults to true. You should pass false when using left-handed view coordinates.
 
-[Right-hand Rule](http://en.wikipedia.org/wiki/Right-hand_rule)
+[Right-hand Rule](http://wikipedia.org/wiki/Right-hand_rule)
 
 # Constants
 
@@ -60,7 +60,7 @@ m_view = Matrix::CreateLookAt( s_lookat, Vector3::Zero, Vector3::UnitY);
 
 # Fresnel term
 
-Because of the free conversion of SimpleMath types, you can easily mix existing SimpleMath code with DirectXMath functions. For example, the [XMFresnelTerm](https://docs.microsoft.com/en-us/windows/desktop/api/directxmath/nf-directxmath-xmfresnelterm) function doesn't have a SimpleMath equivalent:
+Because of the free conversion of SimpleMath types, you can easily mix existing SimpleMath code with DirectXMath functions. For example, the [XMFresnelTerm](https://docs.microsoft.com/windows/win32/api/directxmath/nf-directxmath-xmfresnelterm) function doesn't have a SimpleMath equivalent:
 
 ```cpp
 Vector3 fresnel = XMFresnelTerm( Vector4( a1, a2, a3, a4 ),
@@ -87,7 +87,7 @@ for ( size_t h = 0; h < height; ++h )
 }
 ```
 
-[DirectXMath Library Internals](https://docs.microsoft.com/en-us/windows/desktop/dxmath/pg-xnamath-internals)
+[DirectXMath Library Internals](https://docs.microsoft.com/windows/win32/dxmath/pg-xnamath-internals)
 
 **Next lesson:** [[Adding the DirectX Tool Kit for Audio]]
 

@@ -206,7 +206,7 @@ To add _DirectXTK for Audio_ support for a Win32 desktop application running on 
 
 > The NuGet package [directxtk_desktop_2017](https://www.nuget.org/packages/directxtk_desktop_2017/) is designed for Windows 7 compatibility for the main library, and the _DirectX Tool Kit for Audio_ uses [XAudio2Redist](https://aka.ms/XAudio2Redist) to support Windows 7 or later.
 
-See the [[Adding the DirectX Tool Kit for Audio]] tutorial for a walk-through of configuring different [XAudio2 Versions](https://docs.microsoft.com/en-us/windows/desktop/xaudio2/xaudio2-versions).
+See the [[Adding the DirectX Tool Kit for Audio]] tutorial for a walk-through of configuring different [XAudio2 Versions](https://docs.microsoft.com/windows/win32/xaudio2/xaudio2-versions).
 
 > It's recommended that you use XAudio 2.9, XAudio 2.8, or the XAudio2Redist. Use of [[XAudio 2.7|Legacy XAudio 2.7 Notes]] and the legacy DirectX SDK is not recommended, and support for this configuration is removed as of the June 2020 release.
 

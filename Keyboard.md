@@ -20,7 +20,7 @@ std::unique_ptr<Keyboard> keyboard;
 keyboard = std::make_unique<Keyboard>();
 ```
 
-For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr``.
+For exception safety, it is recommended you make use of the C++ [RAII](http://wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr``.
 
 # Integration
 
@@ -150,7 +150,7 @@ Most of the ``Oem*`` values vary based on country/region, but you can count on `
 
 > If accidentally pressing the <kbd>Windows</kbd> key or triggering the Windows Accessibility hotkeys is a common problem for your control scheme, see [Disabling Shortcut Keys in Games](https://docs.microsoft.com/windows/win32/dxtecharts/disabling-shortcut-keys-in-games).
 
-For more information on virtual keys, see [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes).
+For more information on virtual keys, see [Microsoft Docs](https://docs.microsoft.com/windows/win32/inputdev/virtual-key-codes).
 
 # Keyboard state tracker
 
@@ -198,8 +198,8 @@ Keep in mind when designing the keyboard controls for your game the different la
 
 The Keyboard class makes use of virtual keys and not scancodes so your code has to be aware of these layout differences.
 
-[QWERTY](https://en.wikipedia.org/wiki/QWERTY), [QWERTZ](https://en.wikipedia.org/wiki/QWERTZ), [AZERTY](https://en.wikipedia.org/wiki/AZERTY), [QZERTY](https://en.wikipedia.org/wiki/Keyboard_layout#QZERTY)
+[QWERTY](https://wikipedia.org/wiki/QWERTY), [QWERTZ](https://wikipedia.org/wiki/QWERTZ), [AZERTY](https://wikipedia.org/wiki/AZERTY), [QZERTY](https://wikipedia.org/wiki/Keyboard_layout#QZERTY)
 
 # Further reading
 [DirectX Tool Kit: Keyboard and Mouse support](https://walbourn.github.io/directx-tool-kit-keyboard-and-mouse-support/)  
-[Using Keyboard Input](https://docs.microsoft.com/en-us/windows/desktop/inputdev/using-keyboard-input)  
+[Using Keyboard Input](https://docs.microsoft.com/windows/win32/inputdev/using-keyboard-input)  

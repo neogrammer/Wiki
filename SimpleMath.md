@@ -74,11 +74,11 @@ The SimpleMath wrapper does not include classes for bounding volumes because the
 
 This includes:
 
-* [BoundingSphere](https://docs.microsoft.com/en-us/windows/win32/api/directxcollision/ns-directxcollision-boundingsphere) class
-* [BoundingBox](https://docs.microsoft.com/en-us/windows/win32/api/directxcollision/ns-directxcollision-boundingbox) class
-* [BoundingOrientedBox](https://docs.microsoft.com/en-us/windows/win32/api/directxcollision/ns-directxcollision-boundingorientedbox) class
-* [BoundingFrustum](https://docs.microsoft.com/en-us/windows/win32/api/directxcollision/ns-directxcollision-boundingfrustum) class
-* [TriangleTests](https://docs.microsoft.com/en-us/windows/win32/dxmath/ovw-xnamath-triangletests) namespace
+* [BoundingSphere](https://docs.microsoft.com/windows/win32/api/directxcollision/ns-directxcollision-boundingsphere) class
+* [BoundingBox](https://docs.microsoft.com/windows/win32/api/directxcollision/ns-directxcollision-boundingbox) class
+* [BoundingOrientedBox](https://docs.microsoft.com/windows/win32/api/directxcollision/ns-directxcollision-boundingorientedbox) class
+* [BoundingFrustum](https://docs.microsoft.com/windows/win32/api/directxcollision/ns-directxcollision-boundingfrustum) class
+* [TriangleTests](https://docs.microsoft.com/windows/win32/dxmath/ovw-xnamath-triangletests) namespace
 
 These were designed to already be similar to the XNA Game Studio math API bounding types.
 
@@ -123,9 +123,9 @@ Matrix mView = Matrix::CreateConstrainedBillboard( objectPosition,
 ```
 
 # Using with HLSL
-SimpleMath as with DirectXMath uses [row-major ordering](https://en.wikipedia.org/wiki/Row-major_order) for matrices. This means that elements are stored in memory in the following order:``_11``, ``_12``, ``_13``, ``_14``, ``_21``, ``_22``, etc.
+SimpleMath as with DirectXMath uses [row-major ordering](https://wikipedia.org/wiki/Row-major_order) for matrices. This means that elements are stored in memory in the following order:``_11``, ``_12``, ``_13``, ``_14``, ``_21``, ``_22``, etc.
 
-HLSL as noted on [Microsoft Docs](https://docs.microsoft.com/en-us/windows/desktop/direct3dhlsl/dx-graphics-hlsl-per-component-math#Matrix_Ordering) defaults to using _column-major ordering_ as this makes for slightly more efficient shader matrix multiplies. Therefore, if a ``Matrix`` is going to be copied into a HLSL _constant buffer_, it is usually [transposed](https://en.wikipedia.org/wiki/Transpose) to flip the ordering to ``_11``, ``_21``, ``_31``, ``_41_``, ``_12``, ``_22``, etc. as part of updating the constant buffer.
+HLSL as noted on [Microsoft Docs](https://docs.microsoft.com/windows/win32/direct3dhlsl/dx-graphics-hlsl-per-component-math#matrix-ordering) defaults to using _column-major ordering_ as this makes for slightly more efficient shader matrix multiplies. Therefore, if a ``Matrix`` is going to be copied into a HLSL _constant buffer_, it is usually [transposed](https://wikipedia.org/wiki/Transpose) to flip the ordering to ``_11``, ``_21``, ``_31``, ``_41_``, ``_12``, ``_22``, etc. as part of updating the constant buffer.
 
 With the built-in [[Effects]] this is done internally, but if writing your own shaders and managing your own constant buffers, you will need to ensure you pass in your matrix data in the correct order for your HLSL shader settings. This means sticking with the HLSL default by transposing your matrices as you update the constant buffer, using `` #pragma pack_matrix(row_major)`` in your HLSL shader source, or compiling your shaders with ``D3DCOMPILE_PACK_MATRIX_ROW_MAJOR`` / ``/Zpr``.
 

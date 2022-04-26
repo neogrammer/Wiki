@@ -39,7 +39,7 @@ Vector4 v(arr);        // Creates a vector [1, 2, 3, 4]
 
 * **Dot**: Returns the dot-product of two 4-vectors.
 
-* **Cross**: Computes the geometric dot-product of 4-vectors. See [XMVector4Cross](https://docs.microsoft.com/en-us/windows/win32/api/directxmath/nf-directxmath-xmvector4cross).
+* **Cross**: Computes the geometric dot-product of 4-vectors. See [XMVector4Cross](https://docs.microsoft.com/windows/win32/api/directxmath/nf-directxmath-xmvector4cross).
 
 * **Normalize**: Computes a unit-length vector.
 

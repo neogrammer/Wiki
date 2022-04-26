@@ -10,12 +10,12 @@ First create a new project using the instructions from the earlier lessons: [[Us
 # Creating a model
 Source assets for models are often stored in Autodesk FBX, Wavefront OBJ, or similar formats. A build process is used to convert them to a more run-time friendly format that is easier to load and render.
 
-Visual Studio has a built-in system for converting a Wavefront OBJ or Autodesk FBX as part of the build process to a CMO, which you can read about [here](https://docs.microsoft.com/en-us/visualstudio/designers/using-3-d-assets-in-your-game-or-app).
+Visual Studio has a built-in system for converting a Wavefront OBJ or Autodesk FBX as part of the build process to a CMO, which you can read about [here](https://docs.microsoft.com/visualstudio/designers/using-3-d-assets-in-your-game-or-app).
 
 For this tutorial, we will make of use of the [DirectXMesh](http://go.microsoft.com/fwlink/?LinkID=324981) **meshconvert** command-line tool.  Start by saving [cup._obj](https://github.com/Microsoft/DirectXTK/wiki/media/cup._obj), [cup.mtl](https://github.com/Microsoft/DirectXTK/wiki/media/cup.mtl), and [cup.jpg](https://github.com/Microsoft/DirectXTK/wiki/images/cup.jpg) into your new project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "cup.jpg" and click "OK".
 
 1. Download the [Meshconvert.exe](https://github.com/microsoft/DirectXMesh/releases/latest/download/meshconvert.exe) from the _DirectXMesh_ site save the EXE into your project's folder.
-1. Open a [command-prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq) and then change to your project's folder.
+1. Open a Command Prompt and then change to your project's folder.
 
 Run the following command-line
 
@@ -126,7 +126,7 @@ m_model->Draw(context, *m_states, m_world, m_view, m_proj, false, [&]() -> void
 
 # Updating effects settings in a model
 
-The Model class creates effects automatically for the loaded materials which are set to default lighting parameters. To update them, you use the **Model::UpdateEffects** method. Because the effects system is flexible, we must first enable [C++ Run-Time Type Information](https://docs.microsoft.com/en-us/cpp/cpp/run-time-type-information) (RTTI) in order to safely discover the various interfaces supported at runtime. From the drop-down menu, select **Project** / **Properties**. Set to "All Configurations" / "All Platforms". On the left-hand tree view select **``C/C++``** / **Language**. Then set "Enable Run-Time Type Information" to "Yes". Click "OK".
+The Model class creates effects automatically for the loaded materials which are set to default lighting parameters. To update them, you use the **Model::UpdateEffects** method. Because the effects system is flexible, we must first enable [C++ Run-Time Type Information](https://docs.microsoft.com/cpp/cpp/run-time-type-information) (RTTI) in order to safely discover the various interfaces supported at runtime. From the drop-down menu, select **Project** / **Properties**. Set to "All Configurations" / "All Platforms". On the left-hand tree view select **``C/C++``** / **Language**. Then set "Enable Run-Time Type Information" to "Yes". Click "OK".
 
 ![Screenshot C++ RTTI settings](https://github.com/Microsoft/DirectXTK/wiki/images/settingsRTTI.PNG)
 
@@ -194,7 +194,7 @@ Build and run. If you still have the **UpdateEffects** code in place, you'll see
 
 ![Screenshot of DSGL cup model](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotCupNoFog.PNG)
 
-The lack of fog is because our "cup.cmo" makes use of the default built-in DGSL shaders _lambert_ and _phong_ which do not implement fog. The ``DGSLEffectFactory`` allows you to use ``Model`` and the [[IEffect]] interface with the more complex custom DGSL shaders supported by the Visual Studio CMO pipeline where you use a [visual editor to build pixel shaders](https://docs.microsoft.com/en-us/visualstudio/designers/working-with-shaders).
+The lack of fog is because our "cup.cmo" makes use of the default built-in DGSL shaders _lambert_ and _phong_ which do not implement fog. The ``DGSLEffectFactory`` allows you to use ``Model`` and the [[IEffect]] interface with the more complex custom DGSL shaders supported by the Visual Studio CMO pipeline where you use a [visual editor to build pixel shaders](https://docs.microsoft.com/visualstudio/designers/working-with-shaders).
 
 # More to explore
 

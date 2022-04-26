@@ -19,7 +19,7 @@ MSAA textures are resolved before being written.
 > You only need to directly include the ``<wincodec.h>`` header if you are providing an explicit *guidContainerFormat* or *targetFormat*. Note you should link with ``uuid.lib`` as well.
 
 # Initialization
-The library assumes that the client code will have already called ``CoInitialize``, ``CoInitializeEx``, or ``Windows::Foundation::Initialize`` as needed by the application before calling any [Windows Imaging Component](https://docs.microsoft.com/en-us/windows/desktop/wic/-wic-about-windows-imaging-codec) functionality.
+The library assumes that the client code will have already called ``CoInitialize``, ``CoInitializeEx``, or ``Windows::Foundation::Initialize`` as needed by the application before calling any [Windows Imaging Component](https://docs.microsoft.com/windows/win32/wic/-wic-about-windows-imaging-codec) functionality.
 
 For a Universal Windows Platform (UWP) app using ``/ZW``, the Windows Runtime and COM is initialized by the C/C++ Run-Time. For C++/WinRT applications, this is done by calling ``winrt::init_apartment();``.
 
@@ -242,8 +242,8 @@ if (file)
 }
 ```
 
-See [File access and permissions (Windows Runtime apps)](https://docs.microsoft.com/en-us/windows/uwp/files/file-access-permissions),
-[ApplicationData.TemporaryFolder property](https://docs.microsoft.com/en-us/uwp/api/Windows.Storage.ApplicationData#Windows_Storage_ApplicationData_TemporaryFolder)
+See [File access and permissions (Windows Runtime apps)](https://docs.microsoft.com/windows/uwp/files/file-access-permissions),
+[ApplicationData.TemporaryFolder property](https://docs.microsoft.com/uwp/api/Windows.Storage.ApplicationData#Windows_Storage_ApplicationData_TemporaryFolder)
 
 # Xbox One
 When using Direct3D 11.x fast semantics and trying to capture a Render Target, it must be decompressed with ``DecompressResource`` before calling ``SaveDDSTextureToFile`` or ``SaveWICTextureToFile``. The save functions will block until the resource copy is completed, so it should not be used with high frequency.

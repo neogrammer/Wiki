@@ -17,7 +17,7 @@ DirectXTK makes use of the latest Direct3D 11.1 headers available in the Windows
 
 [KB2728613](http://support.microsoft.com/kb/2728613)
 
-[Where is the DirectX SDK?](https://docs.microsoft.com/en-us/windows/desktop/directx-sdk--august-2009-)
+[Where is the DirectX SDK?](https://docs.microsoft.com/windows/win32/directx-sdk--august-2009-)
 
 > When using the legacy DirectX SDK you need to set up VC++ Directories paths in your project (particularly your EXE/DLL). For the Windows 8.1 SDK or Windows 10 SDK, you need to set up those paths in _reverse_ order from previous include orders. You really only need a small portion of the legacy DirectX SDK for XAudio 2.7, and want to be using the Windows 8.1 SDK / Windows 10 SDK for everything else. For more details see [The Zombie DirectX SDK](https://aka.ms/AA4gfea).
 
@@ -60,12 +60,12 @@ Click "Apply".
 
 ![VC++ Directories (x64)](https://github.com/Microsoft/DirectXTK/wiki/images/settingsDXx64.png)
 
-It is important that the legacy DirectX SDK paths be after the existing path since are making use of the Windows 8.1 / 10 SDK. See [Where is the DirectX SDK?](https://docs.microsoft.com/en-us/windows/desktop/directx-sdk--august-2009-) for more details.
+It is important that the legacy DirectX SDK paths be after the existing path since are making use of the Windows 8.1 / 10 SDK. See [Where is the DirectX SDK?](https://docs.microsoft.com/windows/win32/directx-sdk--august-2009-) for more details.
 
 <details><summary><i>Click here for troubleshooting advice</i></summary>
 <p>If you get a compilation error indicating you are missing "comdecl.h", there are two possible reasons:
 <ul><li>You have incorrectly configured your VC++ Directory include paths. If you get a link error indicating you are missing <code>x3daudio.lib</code>, then you incorrectly configured your VC++ Directory library paths.</li>
-<li>You have incorrectly configured the ``_WIN32_WINNT`` variable. See <a href="https://docs.microsoft.com/en-us/windows/desktop/WinProg/using-the-windows-headers">Using the Windows Headers</a></li></ul></p></details>
+<li>You have incorrectly configured the ``_WIN32_WINNT`` variable. See <a href="https://docs.microsoft.com/windows/win32/winprog/using-the-windows-headers">Using the Windows Headers</a></li></ul></p></details>
 
 # Deployment
 

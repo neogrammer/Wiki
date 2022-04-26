@@ -19,7 +19,7 @@ std::unique_ptr<Debugffect> effect;
 effect = std::make_unique<DebugEffect>(device);
 ```
 
-For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
+For exception safety, it is recommended you make use of the C++ [RAII](http://wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
 # Interfaces
 PBREffect supports [[IEffect]] and [[IEffectMatrices]].
@@ -68,7 +68,7 @@ If instancing is enabled, this effect also requires these vertex elements:
 
 This effect uses Shader Model 4.0 so requires Direct3D hardware feature level 10.0 or greater.
 
-[Direct3D feature levels](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/overviews-direct3d-11-devices-downlevel-intro)
+[Direct3D feature levels](https://docs.microsoft.com/windows/win32/direct3d11/overviews-direct3d-11-devices-downlevel-intro)
 
 # Further reading
 

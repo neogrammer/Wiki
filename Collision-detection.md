@@ -35,7 +35,7 @@ static RECT Union(const RECT& rcta, const RECT& rctb);
 
 # 3D collision detection
 
-For 3D collision implementation, the [DirectXMath](https://docs.microsoft.com/en-us/windows/win32/dxmath/directxmath-portal) bounding classes provide implementations of many 3D test. If desired, you can interop with these using [[SimpleMath]]'s types like ``Vector3``, ``Vector4``, ``Plane``, ``Ray``, etc.
+For 3D collision implementation, the [DirectXMath](https://docs.microsoft.com/windows/win32/dxmath/directxmath-portal) bounding classes provide implementations of many 3D test. If desired, you can interop with these using [[SimpleMath]]'s types like ``Vector3``, ``Vector4``, ``Plane``, ``Ray``, etc.
 
 > See the *Collision* ([PC](https://github.com/walbourn/directx-sdk-samples/tree/main/Collision) / [UWP](https://github.com/microsoft/Xbox-ATG-Samples/tree/master/UWPSamples/System/CollisionUWP) / [GDK](https://github.com/microsoft/Xbox-GDK-Samples/tree/main/Samples/System/Collision) / [XDK](https://github.com/microsoft/Xbox-ATG-Samples/tree/master/XDKSamples/System/Collision)) sample for a demonstration of these ``DirectXCollision.h`` types.
 
@@ -72,7 +72,7 @@ PlaneIntersectionType Intersects(XMVECTOR Plane) const;
 bool Intersects(XMVECTOR Origin, XMVECTOR Direction, float& Dist) const;
 ```
 
-See [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/api/directxcollision/ns-directxcollision-boundingsphere).
+See [Microsoft Docs](https://docs.microsoft.com/windows/win32/api/directxcollision/ns-directxcollision-boundingsphere).
 
 ## BoundingBox class
 This is an 'axis-aligned bounding box' collision primitive.
@@ -83,12 +83,12 @@ The **ContainedBy** method provides *box contained by frustum* test.
 
 The **Intersects** method provides *box/box*, *box/sphere*, *box/frustum*, *box/triangle*, *box/plane* and *ray/box* intersection tests.
 
-See [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/api/directxcollision/ns-directxcollision-boundingbox).
+See [Microsoft Docs](https://docs.microsoft.com/windows/win32/api/directxcollision/ns-directxcollision-boundingbox).
 
 ## BoundingOrientedBox class
 This is an 'oriented bounding box' collision primitive. It provides the same **Contains**, **ContainedBy**, and **Intersects** methods as the axis-aligned bounding box.
 
-See [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/api/directxcollision/ns-directxcollision-boundingorientedbox).
+See [Microsoft Docs](https://docs.microsoft.com/windows/win32/api/directxcollision/ns-directxcollision-boundingorientedbox).
 
 ## BoundingFrustum class
 This is a 'view frustum' collision primitive.
@@ -97,7 +97,7 @@ The **Contains** method provides *frustum contains point*, *frustum contains tri
 
 The **Intersects** method provides *frustum/sphere*, *frustum/box*, *frustum/frustum*, *frustum/triangle*, *frustum/plane*, and *ray/frustum* intersection tests.
 
-See [MicrosoftDocs](https://docs.microsoft.com/en-us/windows/win32/api/directxcollision/ns-directxcollision-boundingfrustum).
+See [MicrosoftDocs](https://docs.microsoft.com/windows/win32/api/directxcollision/ns-directxcollision-boundingfrustum).
 
 > Note: The ``BoundingFrustum`` class's ``CreateFromMatrix`` function assumed Left-Handed coordinates. In [DirectXMath 3.16](https://github.com/microsoft/DirectXMath/releases) or later, there's a defaulted parameter you can use for Right-Handed projection matrices: ``BoundingFrustum::CreateFromMatrix(fr, matrix, true);``
 
@@ -122,11 +122,11 @@ ContainmentType ContainedBy(XMVECTOR V0, XMVECTOR V1, XMVECTOR V2,
     XMVECTOR Plane3, XMVECTOR Plane4, XMVECTOR Plane5);
 ```
 
-See [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/dxmath/ovw-xnamath-triangletests).
+See [Microsoft Docs](https://docs.microsoft.com/windows/win32/dxmath/ovw-xnamath-triangletests).
 
 **Next lesson**: [[Picking]]
 
 # Further reading
 
-[DirectXMath Programmer's Reference](https://docs.microsoft.com/en-us/windows/desktop/dxmath/ovw-xnamath-reference)  
+[DirectXMath Programmer's Reference](https://docs.microsoft.com/windows/win32/dxmath/ovw-xnamath-reference)  
 DirectXMath Collision sample [Win32](https://github.com/walbourn/directx-sdk-samples/tree/main/Collision) / [UWP](https://github.com/microsoft/Xbox-ATG-Samples/tree/master/UWPSamples/System/CollisionUWP) / [GDK](https://github.com/microsoft/Xbox-GDK-Samples/tree/main/Samples/System/Collision)

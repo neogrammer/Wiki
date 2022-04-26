@@ -115,7 +115,7 @@ If doing _gamma-correct rendering_, you should use ``DXGI_FORMAT_*_UNORM_SRGB`` 
 m_deviceResources = std::make_unique<DX::DeviceResources>(DXGI_FORMAT_B8G8R8A8_UNORM_SRGB);
 ```
 
-If you do not want DeviceResources to create a depth/stencil buffer, you can use ``DXGI_FORMAT_UNKNOWN`` for ``depthBufferFormat``. This is useful for 2D only rendering or when doing [MSAA](https://en.wikipedia.org/wiki/Multisample_anti-aliasing) on Universal Windows Platform (UWP) apps which requires handling your own render target and depth buffer with ``Sample.Count`` > 1. Be sure to update ``Clear`` below to avoid referencing a null depth/stencil buffer object.
+If you do not want DeviceResources to create a depth/stencil buffer, you can use ``DXGI_FORMAT_UNKNOWN`` for ``depthBufferFormat``. This is useful for 2D only rendering or when doing [MSAA](https://wikipedia.org/wiki/Multisample_anti-aliasing) on Universal Windows Platform (UWP) apps which requires handling your own render target and depth buffer with ``Sample.Count`` > 1. Be sure to update ``Clear`` below to avoid referencing a null depth/stencil buffer object.
 
 ```cpp
 // Renders only 2D, so no need for a depth buffer.
@@ -245,7 +245,7 @@ void Game::Clear()
 }
 ```
 
-If you are using _gamma-correct rendering_ with a [sRGB](https://en.wikipedia.org/wiki/SRGB) or HDR backbuffer format, you need to ensure you are using a linear RGB clear color. DirectXMath colors are defined in sRGB colorspace since they are [.NET color constants](https://docs.microsoft.com/dotnet/api/system.drawing.color), so you need to replace ``ClearRenderTargetView`` in **Clear** with:
+If you are using _gamma-correct rendering_ with a [sRGB](https://wikipedia.org/wiki/SRGB) or HDR backbuffer format, you need to ensure you are using a linear RGB clear color. DirectXMath colors are defined in sRGB colorspace since they are [.NET color constants](https://docs.microsoft.com/dotnet/api/system.drawing.color), so you need to replace ``ClearRenderTargetView`` in **Clear** with:
 
 ```cpp
 // Use linear clear color for gamma-correct rendering.
@@ -300,7 +300,7 @@ We make use of the ``Microsoft::WRL::ComPtr`` smart-pointer for managing the lif
 # Error handling
 Many Direct3D functions return an ``HRESULT`` which is the standard for COM APIs. For robustness and easier debugging, it is important that you always check the result of every function that return an ``HRESULT``. If you really can safely assume there is no error condition for a particular function, the function itself will return ``void`` instead of ``HRESULT``.
 
-The Win32 game template makes use of the helper function [[ThrowIfFailed]] in the ``DX`` C++ namespace declared in ``pch.h``. This is the same helper that is used by the Windows Store and Windows phone VS templates. This helper throws a C++ exception if the standard ``FAILED`` macro returns true for a given ``HRESULT``. This is used for [fail fast](https://en.wikipedia.org/wiki/Fail-fast) error handling.
+The Win32 game template makes use of the helper function [[ThrowIfFailed]] in the ``DX`` C++ namespace declared in ``pch.h``. This is the same helper that is used by the Windows Store and Windows phone VS templates. This helper throws a C++ exception if the standard ``FAILED`` macro returns true for a given ``HRESULT``. This is used for [fail fast](https://wikipedia.org/wiki/Fail-fast) error handling.
 
 ```cpp
 DX::ThrowIfFailed(device->CreateTexture2D(&depthStencilDesc,
@@ -350,4 +350,4 @@ For UWP, the equivalent thing is done inside the ``ViewProvider`` **Run** method
 [Direct3D Game Visual Studio templates (Redux)](https://walbourn.github.io/direct3d-game-visual-studio-templates-redux/)  
 [Anatomy of Direct3D 11 Create Device](https://walbourn.github.io/anatomy-of-direct3d-11-create-device/)   
 [Manifest Madness](https://aka.ms/I6kdnw)  
-[64-bit programming for Game Developers](https://docs.microsoft.com/windows/desktop/DxTechArts/sixty-four-bit-programming-for-game-developers)
+[64-bit programming for Game Developers](https://docs.microsoft.com/windows/win32/dxtecharts/sixty-four-bit-programming-for-game-developers)

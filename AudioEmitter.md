@@ -1,7 +1,7 @@
 |[[DirectXTK]]|[[Audio]]|
 |---|---|
 
-AudioEmitter is a helper object derived from [X3DAUDIO_EMITTER](https://docs.microsoft.com/en-us/windows/desktop/api/x3daudio/ns-x3daudio-x3daudio_emitter) that can be used with the **Apply3D** method of [[SoundEffectInstance]], [[SoundStreamInstance]], and [[DynamicSoundEffectInstance]].
+AudioEmitter is a helper object derived from [X3DAUDIO_EMITTER](https://docs.microsoft.com/windows/win32/api/x3daudio/ns-x3daudio-x3daudio_emitter) that can be used with the **Apply3D** method of [[SoundEffectInstance]], [[SoundStreamInstance]], and [[DynamicSoundEffectInstance]].
 
 See [[AudioListener]].
 
@@ -76,7 +76,7 @@ Be aware that ``pCone`` is ignored for multi-channel emitters.
 The AudioEmitter constructor sets pVolumeCurve, pLFECurve, pLPFDirectCurve, pLPFReverbCurve, and pReverbCurve to nullptr which uses XAudio2 default curves.  Any custom curve definitions must have a pointer to valid memory at the time Apply3D is called.
 
 # Further reading
-[X3DAudio](https://docs.microsoft.com/en-us/windows/desktop/xaudio2/x3daudio)  
-[X3DAudioCalculate](https://docs.microsoft.com/en-us/windows/desktop/api/x3daudio/nf-x3daudio-x3daudiocalculate)
+[X3DAudio](https://docs.microsoft.com/windows/win32/xaudio2/x3daudio)  
+[X3DAudioCalculate](https://docs.microsoft.com/windows/win32/api/x3daudio/nf-x3daudio-x3daudiocalculate)
 
 [GameFest 2010: The (3D) Sound of Success: X3DAudio and Sound Positioning](https://www.microsoft.com/en-us/download/details.aspx?id=17627)

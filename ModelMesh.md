@@ -97,7 +97,7 @@ In addition to the list of ModelMeshPart instances that make up the mesh, a Mode
 
 It includes a bool to indicate if the mesh should be rendered using counter-clockwise winding or clockwise winding (_ccw_), as well as a bool to indicate if the mesh should be rendered with premultiplied alpha blending or 'straight' alpha blending (_pmalpha_).
 
-A ModelMesh also includes bounding information for culling & collision detection in the form of a [BoundingSphere](http://msdn.microsoft.com/en-us/library/windows/desktop/microsoft.directx_sdk.directxcollision.boundingsphere.aspx) and a [BoundingBox](https://docs.microsoft.com/en-us/windows/desktop/api/directxcollision/ns-directxcollision-boundingbox).
+A ModelMesh also includes bounding information for culling & collision detection in the form of a [BoundingSphere](https://docs.microsoft.com/windows/win32/api/directxcollision/ns-directxcollision-boundingsphere) and a [BoundingBox](https://docs.microsoft.com/windows/win32/api/directxcollision/ns-directxcollision-boundingbox).
 
 The choice of frame-of-reference for these bounding volumes is up to the Model loader, but is typically in 'local' coordinates.
 

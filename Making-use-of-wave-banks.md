@@ -12,13 +12,13 @@ First create a new project using the instructions from the earlier lessons: [[Us
 
 In the previous tutorial we loaded the individual sound files as distinct **SoundEffect** objects, but games commonly have hundreds or thousands of distinct sounds, music, and voice recordings. A more efficient way to manage this data is to make of a 'wave bank' which is a single file that contains a collection of ``.wav ``files that can be loaded all at once.
 
-_DirectX Tool Kit for Audio_ supports "wave banks" which were created for the Cross-platform Audio Creation Tool ([XACT](https://en.wikipedia.org/wiki/Cross-platform_Audio_Creation_Tool)) from the legacy DirectX SDK. It makes no use of "sound banks" or "cues".
+_DirectX Tool Kit for Audio_ supports "wave banks" which were created for the Cross-platform Audio Creation Tool ([XACT](https://wikipedia.org/wiki/Cross-platform_Audio_Creation_Tool)) from the legacy DirectX SDK. It makes no use of "sound banks" or "cues".
 
 # Creating wave bank files
 
 1. Download the [XWBTool.exe](https://github.com/microsoft/DirectXTK/releases/latest/download/XWBTool.exe) from the _DirectX Tool Kit_ site and extract the EXE into your project's folder.
 1. Download these media files to your project's folder [Explo1.wav](https://github.com/Microsoft/DirectXTK/wiki/media/Explo1.wav), [Explo2.wav](https://github.com/Microsoft/DirectXTK/wiki/media/Explo2.wav), [Explo3.wav](https://github.com/Microsoft/DirectXTK/wiki/media/Explo3.wav), [Explo4.wav](https://github.com/Microsoft/DirectXTK/wiki/media/Explo4.wav), [NightAmbienceSimple_02.wav](https://github.com/Microsoft/DirectXTK/wiki/media/NightAmbienceSimple_02.wav).
-1. Open a [command-prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq) and then change to your project's folder.
+1. Open a Command Prompt and then change to your project's folder.
 
 > These ``.wav`` files are from the _XNA Game Studio_ [SoundLab](https://github.com/SimonDarksideJ/XNAGameStudio/wiki/SoundLab)  which provides a small collection of sounds under the [MS-PL](http://opensource.org/licenses/MS-PL) license.
 

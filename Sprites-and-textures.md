@@ -3,6 +3,10 @@
 
 In this lesson, we will cover the basics of creating a texture from a bitmap file, and then rendering it using a 2D sprite with various drawing options.
 
+# Setup
+First create a new project using the instructions from the previous lessons: [[Using DeviceResources]] and
+[[Adding the DirectX Tool Kit]] which we will use for this lesson.
+
 # Background
 
 A [sprite](https://wikipedia.org/wiki/Sprite_(computer_graphics)) is a bitmap rendered at some location on the screen. For Direct3D, this requires making use of:
@@ -18,10 +22,6 @@ A [sprite](https://wikipedia.org/wiki/Sprite_(computer_graphics)) is a bitmap re
 * A *blend state object* which indicates how the GPU should combine existing information in the render target with the texture data.
 
 * Additional Direct3D objects are also required (*vertex buffer*, *index buffer*, *rasterizer state object*, *input layout*, *vertex shader*, *pixel shader*, and *constant buffer*), but in this tutorial these are handled by [[SpriteBatch]].
-
-# Setup
-First create a new project using the instructions from the previous lessons: [[Using DeviceResources]] and
-[[Adding the DirectX Tool Kit]] which we will use for this lesson.
 
 # Loading a texture
 Start by saving [cat.png](https://github.com/Microsoft/DirectXTK/wiki/images/cat.png) into your new project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "cat.png" and click "OK".
@@ -158,12 +158,12 @@ Build and run again, and you'll get a nice clean cat:
 
 Rather than use a ``PNG`` and the Windows Imaging Component (WIC) to load the texture, a more efficient thing for us to do is to make use of a ``DDS`` file instead. A ``DDS`` file is a container for all kinds of Direct3D resources including 1D and 2D textures, _cubemaps_, _volume maps_, arrays of 1D or 2D textures or cubemaps each optionally with _mipmaps_. It can contain a wide-array of pixel formats and hardware-supported 'block-compression' schemes to save on video memory usage at runtime.
 
-Visual Studio has a built-in system for converting images to DDS as part of the build process, which you can read about [here](https://docs.microsoft.com/en-us/visualstudio/designers/using-3-d-assets-in-your-game-or-app).
+Visual Studio has a built-in system for converting images to DDS as part of the build process, which you can read about [here](https://docs.microsoft.com/visualstudio/designers/using-3-d-assets-in-your-game-or-app).
 
 For this tutorial, we will instead make of use of the [DirectXTex](http://go.microsoft.com/fwlink/?LinkId=248926) **texconv** command-line tool.
 
 1. Download the [Texconv.exe](https://github.com/Microsoft/DirectXTex/releases/latest/download/texconv.exe) from the _DirectXTex_ site save the EXE into your project's folder.
-1. Open a [command-prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq) and then change to your project's folder.
+1. Open a Command Prompt and then change to your project's folder.
 
 Then run the following command-line:
 

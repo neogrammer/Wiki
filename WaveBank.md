@@ -21,7 +21,7 @@ std::unique_ptr<WaveBank> wb;
 wb = std::make_unique<WaveBank>( audEngine.get(), "wavebank.xwb" ) );
 ```
 
-For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
+For exception safety, it is recommended you make use of the C++ [RAII](http://wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
 Note that in-memory banks may still be loading the wave data asynchronously after the return of this constructor. You can see if the wave data has completed loading by calling **IsPrepared**. If you call **Play** or **CreateInstance** before the wave data has loaded, then the thread will wait until the load is complete before returning.
 

@@ -58,9 +58,9 @@ Vector3 v(arr);     // Creates a vector [1, 2, 3]
 * **Reflect**: Reflects an incident vector across a normal vector.
 * **Refract**: Refracts an incident vector across a normal vector.
 
-* **Transform**: Transform the vector by a matrix or a quaternion. See [XMVector3Transform](https://docs.microsoft.com/en-us/windows/win32/api/directxmath/nf-directxmath-xmvector3transform). There are overloads for returning the homogenous normalized ``Vector3`` result (i.e. ``w = 1``) or the ``Vector4`` result. There is also an overload for transforming an array of vectors.
+* **Transform**: Transform the vector by a matrix or a quaternion. See [XMVector3Transform](https://docs.microsoft.com/windows/win32/api/directxmath/nf-directxmath-xmvector3transform). There are overloads for returning the homogenous normalized ``Vector3`` result (i.e. ``w = 1``) or the ``Vector4`` result. There is also an overload for transforming an array of vectors.
 
-* **TransformNormal**: Transforms the vector by matrix, ignoring translation (row 3). There is also an overload for transforming an array of vectors. See [XMVector3TransformNormal](https://docs.microsoft.com/en-us/windows/win32/api/directxmath/nf-directxmath-xmvector3transformnormal).
+* **TransformNormal**: Transforms the vector by matrix, ignoring translation (row 3). There is also an overload for transforming an array of vectors. See [XMVector3TransformNormal](https://docs.microsoft.com/windows/win32/api/directxmath/nf-directxmath-xmvector3transformnormal).
 
 # Constants
 

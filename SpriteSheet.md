@@ -300,7 +300,7 @@ If you are making use of CodeAndWeb's **TexturePacker** tool, you will be writin
 
 If you are using premultiplied alpha for your blending (the default for SpriteBatch), you should under _Texture \ show advanced_ set the _Premultiply alpha_ check box option.
 
-The default _Pixel format_ of RGBA8888 is suitable for all feature levels, and will be loaded at runtime as ``DXGI_FORMAT_B8G8R8A8_UNORM``. Due to limitations of the [built-in Windows PNG codec](https://docs.microsoft.com/en-us/windows/desktop/wic/-wic-codec-native-pixel-formats#png__native_codec), using other pixel formats does not reduce video memory usage; only disk space usage. For more flexible control over pixel format at runtime, you should convert to a ``.DDS`` instead (see below).
+The default _Pixel format_ of RGBA8888 is suitable for all feature levels, and will be loaded at runtime as ``DXGI_FORMAT_B8G8R8A8_UNORM``. Due to limitations of the [built-in Windows PNG codec](https://docs.microsoft.com/windows/win32/wic/-wic-codec-native-pixel-formats#png-native-codec), using other pixel formats does not reduce video memory usage; only disk space usage. For more flexible control over pixel format at runtime, you should convert to a ``.DDS`` instead (see below).
 
 The default _Max size_ of 2048 x 2048 under _Layout_ is suitable for all feature levels. If your _minimum_ supported feature level is not 9.1 or 9.2, you can set it higher to make use of larger supported texture sizes for more efficient packing.
 * Feature Level 9.1, 9.2 -> 2048 x 2048
@@ -316,7 +316,7 @@ If using ``DDS`` rather than ``PNG`` and premultiplied alpha for your blending, 
 
 In most cases you won't need mipmap levels generated so specify *-m 1* when converting the ``DDS``. If you do want mipmaps levels and want to support all feature levels (i.e. Feature Levesl 9.x), then in your **TexturePacker** project under _Layout / Size constraints_ set it to "POW (Power of 2)" and do not use *-m 1*.
 
-Open a [Command Prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq), and change to the directory containing [Texconv.exe](https://github.com/Microsoft/DirectXTex/releases/latest/download/texconv.exe)
+Open a Command Prompt, and change to the directory containing [Texconv.exe](https://github.com/Microsoft/DirectXTex/releases/latest/download/texconv.exe)
 
 Enter the following command-line after changing to the appropriate directory:
 

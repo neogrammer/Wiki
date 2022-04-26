@@ -15,13 +15,13 @@ For clang/LLVM for Windows, there is a ``CMakeList.txt`` provided to validate th
 
 # Naming conventions
 
-While the _DirectX Tool Kit_ design is heavily influenced by the XNA Game Studio framework C# object design, it uses C++ conventions consistent with modern Win32 APIs rather than the strict .NET use of [PascalCase](https://en.wikipedia.org/wiki/CamelCase) as enforced by FXCop.
+While the _DirectX Tool Kit_ design is heavily influenced by the XNA Game Studio framework C# object design, it uses C++ conventions consistent with modern Win32 APIs rather than the strict .NET use of [PascalCase](https://wikipedia.org/wiki/CamelCase) as enforced by FXCop.
 
 * PascalCase for class names, methods, functions, and enums.
 * camelCase for class member variables, struct members
 * UPPERCASE for preprocessor defines (and nameless enums)
 
-The library does not generally make use of [Hungarian notation](https://en.wikipedia.org/wiki/Hungarian_notation) which as been deprecated for Win32 C++ APIs for many years, with the exception of a few uses of ``p`` for pointers and ``sz`` for strings.
+The library does not generally make use of [Hungarian notation](https://wikipedia.org/wiki/Hungarian_notation) which as been deprecated for Win32 C++ APIs for many years, with the exception of a few uses of ``p`` for pointers and ``sz`` for strings.
 
 # Type usage
 
@@ -101,7 +101,7 @@ if ((sampleRate < XAUDIO2_MIN_SAMPLE_RATE) || (sampleRate > XAUDIO2_MAX_SAMPLE_R
 The _DirectX Toolkit_ library makes extensive use of SAL2 annotations (``_In_``, ``_Outptr_opt_``, etc.) which greatly improves the accuracy of the Visual C++ static code analysis (also known as PREFAST). The standard Windows headers ``#define`` them all to empty strings if not building with ``/analyze``, so they have no effect on code-generation.
 
 # The pImpl idiom
-DirectXTK's implementation makes extensive use of the [pImpl idiom](http://en.wikipedia.org/wiki/Opaque_pointer). This keeps the public headers slim and minimizes inter-module dependencies.
+DirectXTK's implementation makes extensive use of the [pImpl idiom](http://wikipedia.org/wiki/Opaque_pointer). This keeps the public headers slim and minimizes inter-module dependencies.
 
 ```cpp
 // SpriteBatch.h public header
@@ -184,7 +184,7 @@ Rectangle& operator= (Rectangle&&) = default;
 > Note that use of ``= default`` can improve codegen for derived types as well.
 
 # DirectXMath Parameter Conventions
-The library uses the [DirectXMath](https://docs.microsoft.com/en-us/windows/desktop/dxmath/pg-xnamath-internals#Call_Conventions) calling convention types to improve parameter passing of ``XMVECTOR`` and ``XMMATRIX`` types.
+The library uses the [DirectXMath](https://docs.microsoft.com/windows/win32/dxmath/pg-xnamath-internals#Call_Conventions) calling convention types to improve parameter passing of ``XMVECTOR`` and ``XMMATRIX`` types.
 
 # Further Reading
 [Dual-use Coding Techniques for Games](https://aka.ms/Fo3su4)  

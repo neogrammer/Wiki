@@ -14,7 +14,7 @@ DirectX Tool Kit also includes the following built-in effects:
 * [[SkinnedNormalMapEffect|NormalMapEffect]] which extends ``SkinnedEffect`` to support normal maps and optional specular map.
 * [[PBREffect]] which implements a Disney-style (Roughness/Metalness workflow) Physically-Based Renderer effect using image-based lighting. This effect also supports GPU instancing.
 * [[DebugEffect]] which implements debugging shaders such as visualization of normals, tangents, and bi-tangents as well as supporting hemispherical ambient lighting. This effect also supports GPU instancing.
-* [[DGSLEffect]] and [[SkinnedDGSLEffect|DGSLEffect]] which support the [Visual Studio Shader Designer](https://docs.microsoft.com/en-us/visualstudio/designers/shader-designer) (DGSL) content pipeline with up to 8 textures.
+* [[DGSLEffect]] and [[SkinnedDGSLEffect|DGSLEffect]] which support the [Visual Studio Shader Designer](https://docs.microsoft.com/visualstudio/designers/shader-designer) (DGSL) content pipeline with up to 8 textures.
 
 See also [[EffectFactory]]
 
@@ -35,7 +35,7 @@ std::unique_ptr<BasicEffect> effect;
 effect = std::make_unique<BasicEffect>(device);
 ```
 
-For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
+For exception safety, it is recommended you make use of the C++ [RAII](http://wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
 # Set effect parameters
 
@@ -159,7 +159,7 @@ The compiled shaders are integrated into the DirectXTK library to avoid the need
 
 Creation is fully asynchronous, so you can instantiate multiple effect  instances at the same time on different threads. Each instance only supports drawing from one thread at a time, but you can simultaneously draw on multiple threads if you create a separate effect instance per Direct3D 11 deferred context.
 
-[Immediate and Deferred Rendering](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/overviews-direct3d-11-render-multi-thread-render)
+[Immediate and Deferred Rendering](https://docs.microsoft.com/windows/win32/direct3d11/overviews-direct3d-11-render-multi-thread-render)
 
 # State management
 

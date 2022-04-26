@@ -19,7 +19,7 @@ std::unique_ptr<CommonStates> states;
 states = std::make_unique<CommonStates>(device);
 ```
 
-For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
+For exception safety, it is recommended you make use of the C++ [RAII](http://wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
 # Using this helper to set device state
 
@@ -33,8 +33,8 @@ deviceContext->PSSetSamplers(0, 1, &samplerState);
 ```
 
 # Blending State
-[D3D11_BLEND_DESC](https://docs.microsoft.com/en-us/windows/desktop/api/d3d11/ns-d3d11-d3d11_blend_desc)  
-[D3D11_BLEND_DESC1](https://docs.microsoft.com/en-us/windows/desktop/api/d3d11_1/ns-d3d11_1-cd3d11_blend_desc1)  
+[D3D11_BLEND_DESC](https://docs.microsoft.com/windows/win32/api/d3d11/ns-d3d11-d3d11_blend_desc)  
+[D3D11_BLEND_DESC1](https://docs.microsoft.com/windows/win32/api/d3d11_1/ns-d3d11_1-cd3d11_blend_desc1)  
 
 * ID3D11BlendState* **Opaque**();
 * ID3D11BlendState* **AlphaBlend**();
@@ -51,7 +51,7 @@ NonPremultiplied() if using 'straight' alpha.
 For multipass rendering, you'd typically use Additive().
 
 # Depth/Stencil State
-[D3D11_DEPTH_STENCIL_DESC](https://docs.microsoft.com/en-us/windows/desktop/api/d3d11/ns-d3d11-d3d11_depth_stencil_desc)  
+[D3D11_DEPTH_STENCIL_DESC](https://docs.microsoft.com/windows/win32/api/d3d11/ns-d3d11-d3d11_depth_stencil_desc)  
 
 * ID3D11DepthStencilState* **DepthNone**();
 * ID3D11DepthStencilState* **DepthDefault**();
@@ -68,8 +68,8 @@ For drawing alpha blended objects (which is typically done after all opaque obje
 For drawing objects without any depth-sort at all, use DepthNone().
 
 # Rasterizer State
-[D3D11_RASTERIZER_DESC](https://docs.microsoft.com/en-us/windows/desktop/api/d3d11/ns-d3d11-d3d11_rasterizer_desc)  
-[D3D11_RASTERIZER_DESC1](https://docs.microsoft.com/en-us/windows/desktop/api/d3d11_1/ns-d3d11_1-cd3d11_rasterizer_desc1)
+[D3D11_RASTERIZER_DESC](https://docs.microsoft.com/windows/win32/api/d3d11/ns-d3d11-d3d11_rasterizer_desc)  
+[D3D11_RASTERIZER_DESC1](https://docs.microsoft.com/windows/win32/api/d3d11_1/ns-d3d11_1-cd3d11_rasterizer_desc1)
 
 * ID3D11RasterizerState* **CullNone**();
 * ID3D11RasterizerState* **CullClockwise**();
@@ -85,7 +85,7 @@ For "double-sided" geometry, use CullNone(). Keep in mind this is a potentially 
 Wireframe() is a wireframe rendering mode and shows both sides of the geometry.
 
 # Sampler State
-[D3D11_SAMPLER_DESC](https://docs.microsoft.com/en-us/windows/desktop/api/d3d11/ns-d3d11-d3d11_sampler_desc)
+[D3D11_SAMPLER_DESC](https://docs.microsoft.com/windows/win32/api/d3d11/ns-d3d11-d3d11_sampler_desc)
 
 * ID3D11SamplerState* **PointWrap**();
 * ID3D11SamplerState* **PointClamp**();
@@ -104,7 +104,7 @@ Remember that ??SetSamplers() actually takes an _array_ of sampler state objects
 
 All common states work with all feature levels. ``Anisotropic*`` uses a *MaxAnisotropy* of 2 on Feature Level 9.1. On all other feature levels is uses 16 (``D3D11_MAX_MAXANISOTROPY``).
 
-[Direct3D feature levels](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/overviews-direct3d-11-devices-downlevel-intro)
+[Direct3D feature levels](https://docs.microsoft.com/windows/win32/direct3d11/overviews-direct3d-11-devices-downlevel-intro)
 
 # Remarks
 

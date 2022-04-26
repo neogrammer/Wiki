@@ -10,7 +10,7 @@ This is a helper for drawing simple geometric shapes including texture coordinat
 * Icosahedron
 * Octahedron
 * Sphere (uv or geodesic)
-* Teapot (a.k.a. the [Utah teapot](https://en.wikipedia.org/wiki/Utah_teapot))
+* Teapot (a.k.a. the [Utah teapot](https://wikipedia.org/wiki/Utah_teapot))
 * Tetrahedron
 * Torus
 
@@ -35,27 +35,27 @@ For exception safety, the factory functions return a ``std::unique_ptr``.
 
 * **CreateBox**( deviceContext, const XMFLOAT3& size): Creates a box with a non-uniform size.
 
-* **CreateCone**( deviceContext, float diameter = 1, float height = 1, size_t tessellation = 32): Creates a [cone](http://en.wikipedia.org/wiki/Cone) of a given height, diameter, and tessellation factor.
+* **CreateCone**( deviceContext, float diameter = 1, float height = 1, size_t tessellation = 32): Creates a [cone](http://wikipedia.org/wiki/Cone) of a given height, diameter, and tessellation factor.
 
-* **CreateCube**( deviceContext, float size = 1): Creates a [cube](http://en.wikipedia.org/wiki/Cube) (also known as a [hexahedron](http://en.wikipedia.org/wiki/Hexahedron)) of the given size.
+* **CreateCube**( deviceContext, float size = 1): Creates a [cube](http://wikipedia.org/wiki/Cube) (also known as a [hexahedron](http://wikipedia.org/wiki/Hexahedron)) of the given size.
 
-* **CreateCylinder**( deviceContext, float height = 1, float diameter = 1, size_t tessellation = 32): Creates a [cylinder](http://en.wikipedia.org/wiki/Cylinder_(geometry)) of given height, diameter, tessellation factor.
+* **CreateCylinder**( deviceContext, float height = 1, float diameter = 1, size_t tessellation = 32): Creates a [cylinder](http://wikipedia.org/wiki/Cylinder_(geometry)) of given height, diameter, tessellation factor.
 
-* **CreateDodecahedron**( deviceContext, float size = 1): Creates a [dodecahedron](http://en.wikipedia.org/wiki/Dodecahedron) of a given size.
+* **CreateDodecahedron**( deviceContext, float size = 1): Creates a [dodecahedron](http://wikipedia.org/wiki/Dodecahedron) of a given size.
 
-* **CreateGeoSphere**( deviceContext, float diameter = 1, size_t tessellation = 3): Creates a geodesic [sphere](http://en.wikipedia.org/wiki/Sphere) with the given diameter and tessellation factor.
+* **CreateGeoSphere**( deviceContext, float diameter = 1, size_t tessellation = 3): Creates a geodesic [sphere](http://wikipedia.org/wiki/Sphere) with the given diameter and tessellation factor.
 
-* **CreateIcosahedron**( deviceContext, float size = 1): Creates a [icosahedron](http://en.wikipedia.org/wiki/Icosahedron) of a given size.
+* **CreateIcosahedron**( deviceContext, float size = 1): Creates a [icosahedron](http://wikipedia.org/wiki/Icosahedron) of a given size.
 
-* **CreateOctahedron**( deviceContext, float size = 1): Creates a [octahedron](http://en.wikipedia.org/wiki/Octahedron) of a given size.
+* **CreateOctahedron**( deviceContext, float size = 1): Creates a [octahedron](http://wikipedia.org/wiki/Octahedron) of a given size.
 
-* **CreateSphere**( deviceContext, float diameter = 1, size_t tessellation = 16): Creates a uv-[sphere](http://en.wikipedia.org/wiki/Sphere) of given diameter with the given tessellation factor.
+* **CreateSphere**( deviceContext, float diameter = 1, size_t tessellation = 16): Creates a uv-[sphere](http://wikipedia.org/wiki/Sphere) of given diameter with the given tessellation factor.
 
-* **CreateTeapot**( deviceContext, float size = 1, size_t tessellation = 8): Creates the [Utah Teapot](http://en.wikipedia.org/wiki/Utah_teapot) of a given size and tessellation factor.
+* **CreateTeapot**( deviceContext, float size = 1, size_t tessellation = 8): Creates the [Utah Teapot](http://wikipedia.org/wiki/Utah_teapot) of a given size and tessellation factor.
 
-* **CreateTetrahedron**( deviceContext, float size = 1): Creates a [tetrahedron](http://en.wikipedia.org/wiki/Tetrahedron) of given size.
+* **CreateTetrahedron**( deviceContext, float size = 1): Creates a [tetrahedron](http://wikipedia.org/wiki/Tetrahedron) of given size.
 
-* **CreateTorus**( deviceContext, float diameter = 1, float thickness = 0.333f, size_t tessellation = 32): Creates a [torus](http://en.wikipedia.org/wiki/Torus) of given diameter, thickness, and tessellation factor.
+* **CreateTorus**( deviceContext, float diameter = 1, float thickness = 0.333f, size_t tessellation = 32): Creates a [torus](http://wikipedia.org/wiki/Torus) of given diameter, thickness, and tessellation factor.
 
 # Type aliases
 
@@ -339,7 +339,7 @@ deviceContext->DrawIndexed(indexCount, 0, 0);
 ```
 
 # Feature Level Notes
-In order to support [all feature levels](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/overviews-direct3d-11-devices-downlevel-intro), the GeometricPrimitive implementation make use of 16-bit indices (``DXGI_FORMAT_R16_UINT``) which limits to a maximum of 65535 vertices.
+In order to support [all feature levels](https://docs.microsoft.com/windows/win32/direct3d11/overviews-direct3d-11-devices-downlevel-intro), the GeometricPrimitive implementation make use of 16-bit indices (``DXGI_FORMAT_R16_UINT``) which limits to a maximum of 65535 vertices.
 
 Feature Level 9.1 is also limited to a maximum of 65535 primitives in a single draw. This rules out using extremely large numbers for the tessellation factor, although the exact limit depends on the shape implementation.
 
@@ -348,7 +348,7 @@ Note that these shapes tend to duplicate rather than share vertices in order to 
 # Threading model
 Each GeometricPrimitive instance only supports drawing from one thread at a time, but you can simultaneously submit primitives on multiple threads if you create a separate GeometricPrimitive instance per Direct3D 11 deferred context.
 
-[Immediate and Deferred Rendering](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/overviews-direct3d-11-render-multi-thread-render)
+[Immediate and Deferred Rendering](https://docs.microsoft.com/windows/win32/direct3d11/overviews-direct3d-11-render-multi-thread-render)
 
 # State management
 
@@ -372,6 +372,6 @@ GeometricPrimitive makes use of the following states:
 The GeometricPrimitive class assumes you've already set the Render Target view, Depth Stencil view, and Viewport.
 
 # Remark
-Tetrahedron, Cube/Hexahedron, Octahedron, Dodecahedron, and Icosahedron comprise the five [Platonic solids](https://en.wikipedia.org/wiki/Platonic_solid). The surface normals for these shapes are constructed as "face-normals" for faceted shading.
+Tetrahedron, Cube/Hexahedron, Octahedron, Dodecahedron, and Icosahedron comprise the five [Platonic solids](https://wikipedia.org/wiki/Platonic_solid). The surface normals for these shapes are constructed as "face-normals" for faceted shading.
 
 The *Utah Teapot* (also known as the *Newell Teapot*) is sometimes jokingly referred to as the "Sixth Platonic solid" due to its prevalence in rendering sample images. It was created in 1975 by Martin Newell at the University of Utah. It's become the "Hello, world" of 3D models hence why it's included as a basic geometric primitive shape in *DirectX Tool Kit*.

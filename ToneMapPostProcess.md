@@ -18,7 +18,7 @@ std::unique_ptr<ToneMapPostProcess> toneMap;
 toneMap = std::make_unique<ToneMapPostProcess>(device);
 ```
 
-For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
+For exception safety, it is recommended you make use of the C++ [RAII](http://wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
 # Shader selection
 
@@ -59,5 +59,5 @@ enum|Notes
 # Further reading
 
 Reinhard et al. "Photographic Tone Reproduction for Digital Images" [PDF](http://www.cs.utah.edu/~reinhard/cdrom/tonemap.pdf)  
-[Tone mapping](https://en.wikipedia.org/wiki/Tone_mapping)  
-[High-dynamic-range video](https://en.wikipedia.org/wiki/High-dynamic-range_video)  
+[Tone mapping](https://wikipedia.org/wiki/Tone_mapping)  
+[High-dynamic-range video](https://wikipedia.org/wiki/High-dynamic-range_video)  

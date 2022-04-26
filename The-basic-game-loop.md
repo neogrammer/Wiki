@@ -3,6 +3,9 @@
 
 The first lesson in the [[Getting Started]] guide is to create a basic game loop which creates a Direct3D device, swap chain, and update/render loop.
 
+# Setup
+Our starting point is to use the **Direct3D Win32 Game** or the **Direct3D <abbr title="Universal Windows Platform">UWP</abbr> Game** project template. Install the [VS 2019/2022](https://github.com/walbourn/directx-vs-templates/raw/main/VSIX/Direct3DUWPGame.vsix) VSIX on your development system, and then start (or restart) Visual Studio.
+
 # Background
 
 The basic rendering setup for Direct3D 11 consists of the following interface objects:
@@ -20,9 +23,6 @@ The basic rendering setup for Direct3D 11 consists of the following interface ob
 * The *depth buffer* is a graphics resource which contains a "z-buffer" used for Hidden Surface Removal (HSV). This is typically not used for 2D rendering but is essential for 3D rendering to ensure proper sorting of the drawn pixels. This resource can optionally have some space set aside for a *stencil buffer* which can be used for specialized rendering techniques such as generating shadows.
 
 * A *depth/stencil view* interface is the object that tells Direct3D the current properties of the depth/stencil resource.
-
-# Setup
-Our starting point is to use the **Direct3D Win32 Game** or the **Direct3D <abbr title="Universal Windows Platform">UWP</abbr> Game** project template. Install the [VS 2019/2022](https://github.com/walbourn/directx-vs-templates/raw/main/VSIX/Direct3DUWPGame.vsix) VSIX on your development system, and then start (or restart) Visual Studio.
 
 # Creating a new project
 
@@ -104,7 +104,7 @@ This is pretty unlikely on modern versions of Windows.</li>
 for your operating system.</li>
 <li>Finally, if you are on Windows 7 Service Pack 1, you need to have <a href="https://walbourn.github.io/directx-11-1-and-windows-7-update/">KB2670838</a> installed for DirectX 11.1 support.</li></ul></p></details>
 
-> **Xbox**: the background color may be slightly oversaturated. This is because the basic Xbox template uses a backBufferFormat of ``DXGI_FORMAT_B8G8R8A8_UNORM_SRGB``. The DirectXMath Colors values are defined using standard [sRGB](https://en.wikipedia.org/wiki/SRGB) colorspace which is slightly different. All the colors defines need to be adjusted slightly for the linear RGB colorspace (aka gamma correct rendering) via ``XMColorSRGBToRGB``.
+> **Xbox**: the background color may be slightly oversaturated. This is because the basic Xbox template uses a backBufferFormat of ``DXGI_FORMAT_B8G8R8A8_UNORM_SRGB``. The DirectXMath Colors values are defined using standard [sRGB](https://wikipedia.org/wiki/SRGB) colorspace which is slightly different. All the colors defines need to be adjusted slightly for the linear RGB colorspace (aka gamma correct rendering) via ``XMColorSRGBToRGB``.
 
 > **ARM64**: With the ARM64 compiler installed targeting a Windows on ARM64 device such as a *Microsoft Surface X*, you can build using the ARM64 platform for desktop as well.
 
@@ -274,7 +274,7 @@ We make use of the ``Microsoft::WRL::ComPtr`` smart-pointer for managing the lif
 # Error handling
 Many Direct3D functions return an ``HRESULT`` which is the standard for COM APIs. For robustness and easier debugging, it is important that you always check the result of every function that return an ``HRESULT``. If you really can safely assume there is no error condition for a particular function, the function itself will return ``void`` instead of ``HRESULT``.
 
-The Win32 game template makes use of the helper function [[ThrowIfFailed]] in the ``DX`` C++ namespace declared in ``pch.h``. This is the same helper that is used by the Windows Store and Windows phone VS templates. This helper throws a C++ exception if the standard ``FAILED`` macro returns true for a given ``HRESULT``. This is used for [fail fast](https://en.wikipedia.org/wiki/Fail-fast) error handling.
+The Win32 game template makes use of the helper function [[ThrowIfFailed]] in the ``DX`` C++ namespace declared in ``pch.h``. This is the same helper that is used by the Windows Store and Windows phone VS templates. This helper throws a C++ exception if the standard ``FAILED`` macro returns true for a given ``HRESULT``. This is used for [fail fast](https://wikipedia.org/wiki/Fail-fast) error handling.
 
 ```cpp
 DX::ThrowIfFailed(m_d3dDevice->CreateTexture2D(&depthStencilDesc,
@@ -326,4 +326,4 @@ For UWP, the equivalent thing is done inside the ``ViewProvider`` **Run** method
 [Direct3D Game Visual Studio templates (Redux)](https://walbourn.github.io/direct3d-game-visual-studio-templates-redux/)  
 [Anatomy of Direct3D 11 Create Device](https://walbourn.github.io/anatomy-of-direct3d-11-create-device/)   
 [Manifest Madness](https://aka.ms/I6kdnw)  
-[64-bit programming for Game Developers](https://docs.microsoft.com/windows/desktop/DxTechArts/sixty-four-bit-programming-for-game-developers)
+[64-bit programming for Game Developers](https://docs.microsoft.com/windows/win32/dxtecharts/sixty-four-bit-programming-for-game-developers)

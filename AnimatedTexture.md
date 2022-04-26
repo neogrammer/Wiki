@@ -1,4 +1,4 @@
-This is an example of a C++ port of the C# [XNA Game Studio sample](https://docs.microsoft.com/en-us/previous-versions/windows/xna/bb200104(v=xnagamestudio.41)) class for drawing an animated 2D sprite using [[SpriteBatch]]. The sprite animation is assumed to be laid out horizontally.
+This is an example of a C++ port of the C# [XNA Game Studio sample](https://docs.microsoft.com/previous-versions/windows/xna/bb200104(v=xnagamestudio.41)) class for drawing an animated 2D sprite using [[SpriteBatch]]. The sprite animation is assumed to be laid out horizontally.
 
 **Related tutorial**: [[More tricks with sprites]]
 

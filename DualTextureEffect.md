@@ -1,7 +1,7 @@
 |[[DirectXTK]]|[[Effects]]|
 |---|---|
 
-This is a native Direct3D 11 implementation of the built-in DualTextureEffect from XNA Game Studio 4 (``Microsoft.Xna.Framework.Graphics.DualTextureEffect``) which supports two layer multi-texturing (for [light maps](https://en.wikipedia.org/wiki/Lightmap) or detail textures), vertex color, and fogging.
+This is a native Direct3D 11 implementation of the built-in DualTextureEffect from XNA Game Studio 4 (``Microsoft.Xna.Framework.Graphics.DualTextureEffect``) which supports two layer multi-texturing (for [light maps](https://wikipedia.org/wiki/Lightmap) or detail textures), vertex color, and fogging.
 
 ![Dual texture map](https://github.com/Microsoft/DirectXTK/wiki/images/DualTextureEffect.png)
 
@@ -18,7 +18,7 @@ std::unique_ptr<DualTextureEffect> effect;
 effect = std::make_unique<DualTextureEffect>(device);
 ```
 
-For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
+For exception safety, it is recommended you make use of the C++ [RAII](http://wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
 # Interfaces
 

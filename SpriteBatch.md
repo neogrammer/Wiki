@@ -20,7 +20,7 @@ std::unique_ptr<SpriteBatch> spriteBatch;
 spriteBatch = std::make_unique<SpriteBatch>(deviceContext);
 ```
 
-For exception safety, it is recommended you make use of the C++ [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
+For exception safety, it is recommended you make use of the C++ [RAII](http://wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
 # Simple drawing
 
@@ -245,7 +245,7 @@ For more extreme usage scenarios (large particle systems, star fields, etc.), wr
 # Threading model
 Creation is fully asynchronous, so you can instantiate multiple SpriteBatch instances at the same time on different threads. Each SpriteBatch instance only supports drawing from one thread at a time, but you can simultaneously submit sprites on multiple threads if you create a separate SpriteBatch instance per Direct3D 11 deferred context.
 
-[Immediate and Deferred Rendering](https://docs.microsoft.com/en-us/windows/desktop/direct3d11/overviews-direct3d-11-render-multi-thread-render)
+[Immediate and Deferred Rendering](https://docs.microsoft.com/windows/win32/direct3d11/overviews-direct3d-11-render-multi-thread-render)
 
 # Orientation
 For phones, laptops, and tablets the orientation of the display can be changed by the user. For Windows Store apps, DirectX applications are encouraged to handle the rotation internally rather than relying on DXGI's auto-rotation handling.
