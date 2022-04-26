@@ -1,7 +1,25 @@
 |[[Getting Started]]|
 |---|
 
-The first lesson in the [[Getting Started]] guide is to create a basic game loop which creates a Direct3D device, swapchain, and update/render loop.
+The first lesson in the [[Getting Started]] guide is to create a basic game loop which creates a Direct3D device, swap chain, and update/render loop.
+
+# Background
+
+The basic rendering setup for Direct3D 11 consists of the following interface objects:
+
+* The *Direct3D device* is the primary graphics COM interface for creating additional Direct3D resource objects. Each instance of the device is associated with a specific GPU, and in the case of these tutorials we always use the 'default' Direct3D device.
+
+* The *immediate Direct3D device context* is the primary graphics COM interface for drawing. It's also used for mapping/un-mapping resources into a fixed memory location for CPU access such as loading graphics data.
+
+> In older versions of Direct3D, the operations for creating objects and drawing were all on the same interface. With Direct3D 11, these were split into two distinct interfaces. The device is 'thread-safe' meaning you can use the same device instance at the same time across multiple threads. The device context is not thread-safe, meaning the application must ensure only a single thread uses that interface object at time.
+
+* The *swap chain* is an interface object that manages 2 or more "back-buffers". These are render target resources where one of them is being displayed on the output monitor (which is referred to as the "front-buffer"), while the other is available for rendering the next frame for display.
+
+* A *render target view* interface is the object that tells Direct3D the current properties of the render target, i.e. the surface on which graphics output is written.
+
+* The *depth buffer* is a graphics resource which contains a "z-buffer" used for Hidden Surface Removal (HSV). This is typically not used for 2D rendering but is essential for 3D rendering to ensure proper sorting of the drawn pixels. This resource can optionally have some space set aside for a *stencil buffer* which can be used for specialized rendering techniques such as generating shadows.
+
+* A *depth/stencil view* interface is the object that tells Direct3D the current properties of the depth/stencil resource.
 
 # Setup
 Our starting point is to use the **Direct3D Win32 Game** or the **Direct3D <abbr title="Universal Windows Platform">UWP</abbr> Game** project template. Install the [VS 2019/2022](https://github.com/walbourn/directx-vs-templates/raw/main/VSIX/Direct3DUWPGame.vsix) VSIX on your development system, and then start (or restart) Visual Studio.
