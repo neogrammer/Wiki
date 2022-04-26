@@ -4,7 +4,7 @@
 After creating a new project in [[Using DeviceResources]], the next step is to add the _DirectX Tool Kit_ library and headers to the project so we can make use of it in our code.
 
 # NuGet package manager
-The easiest way to achieve this is to use the [NuGet package manager](https://docs.microsoft.com/en-us/nuget/what-is-nuget) built into Visual Studio.
+The easiest way to achieve this is to use the [NuGet package manager](https://docs.microsoft.com/nuget/what-is-nuget) built into Visual Studio.
 
 * From the drop-down menu, select **Project** / **Manage NuGet Packages...**
 * Select "Browse" on the top tab, and make sure the _Package source_ is set to "nuget.org"
@@ -19,7 +19,7 @@ The easiest way to achieve this is to use the [NuGet package manager](https://do
 
 You can check for updates to the NuGet package by selecting "Updates/All" in the left-hand tree view. If there are updates, select the "DirectX Tool Kit" package, and click on "Update".
 
-> Both **directxtk_desktop_2017** and **directxtk_uwp** support VS 2019 and VS 2022 as well since they are all [binary compatible](https://docs.microsoft.com/en-us/cpp/porting/binary-compat-2015-2017).
+> Both **directxtk_desktop_2017** and **directxtk_uwp** support VS 2019 and VS 2022 as well since they are all [binary compatible](https://docs.microsoft.com/cpp/porting/binary-compat-2015-2017).
 
 # Project-to-project references
 Another option rather than using NuGet is to use Visual Studio's [project-to-project references](https://devblogs.microsoft.com/cppblog/flexible-project-to-project-references/). This approach is a little more setup, but it does ensure that you are building the full DirectX Tool Kit library as part of your solution, and allows you to make changes directly to the tool kit if desired as well.
