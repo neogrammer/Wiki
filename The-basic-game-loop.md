@@ -37,10 +37,10 @@ Our starting point is to use the **Direct3D Win32 Game** or the **Direct3D <abbr
 
 ![Create New Project](https://github.com/Microsoft/DirectXTK/wiki/images/CreateNewProject2019.png)
 
-## Windows 10 / 11 SDK Selection
+## Windows SDK Selection
 The UWP templates use the Windows SDK, so the project wizard will trigger this dialog to select the Windows SDK version to use.
 
-![Windows 10 SDK Selection](https://github.com/Microsoft/DirectXTK/wiki/images/Windows10SDKSelect.png)
+![Windows SDK Selection](https://github.com/Microsoft/DirectXTK/wiki/images/Windows10SDKSelect.png)
 
 ## Newly Created Project
 The newly created project contains the following files:
