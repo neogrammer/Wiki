@@ -20,10 +20,12 @@ There is therefore a "DR" variant of each of the Direct3D Game VS templates in t
 
 ![Create New Project](https://github.com/Microsoft/DirectXTK/wiki/images/CreateNewProjectDR2019.PNG)
 
-## Windows 10 / 11 SDK Selection
+## Windows SDK Selection
 The UWP templates use the Windows SDK, so the project wizard will trigger this dialog to select the Windows SDK version to use.
 
-![Windows 10 SDK Selection](https://github.com/Microsoft/DirectXTK/wiki/images/Windows10SDKSelect.png)
+![Windows SDK Selection](https://github.com/Microsoft/DirectXTK/wiki/images/Windows10SDKSelect.png)
+
+For Win32 projects, the default is to use the latest installed Windows SDK.
 
 ## Newly Created Project
 The newly created project contains the following files:
