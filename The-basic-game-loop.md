@@ -42,6 +42,8 @@ The UWP templates use the Windows SDK, so the project wizard will trigger this d
 
 ![Windows SDK Selection](https://github.com/Microsoft/DirectXTK/wiki/images/Windows10SDKSelect.png)
 
+For Win32 projects, the default is to use the latest installed Windows SDK.
+
 ## Newly Created Project
 The newly created project contains the following files:
 
