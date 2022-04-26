@@ -17,7 +17,7 @@ A [sprite](https://wikipedia.org/wiki/Sprite_(computer_graphics)) is a bitmap re
 
 * A *blend state object* which indicates how the GPU should combine existing information in the render target with the texture data.
 
-> Additional Direct3D objects are also required, but in this tutorial these are handled by **SpriteBatch**.
+* Additional Direct3D objects are also required, but in this tutorial these are handled by *SpriteBatch*.
 
 # Setup
 First create a new project using the instructions from the previous lessons: [[Using DeviceResources]] and
