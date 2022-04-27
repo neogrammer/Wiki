@@ -7,6 +7,10 @@ Here we learn how to render a grid in 3D, and enable multi-sample anti-aliasing 
 First create a new project using the instructions from the earlier lessons: [[Using DeviceResources]] and
 [[Adding the DirectX Tool Kit]] which we will use for this lesson.
 
+# Background
+
+In addition to the Direct3D objects we used in [[Simple rendering]], this tutorial makes use of 3D transformations using the [[SimpleMath]] library.
+
 # Drawing a grid
 
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
