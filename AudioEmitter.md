@@ -75,6 +75,18 @@ Be aware that ``pCone`` is ignored for multi-channel emitters.
 # Custom distance curves
 The AudioEmitter constructor sets pVolumeCurve, pLFECurve, pLPFDirectCurve, pLPFReverbCurve, and pReverbCurve to nullptr which uses XAudio2 default curves.  Any custom curve definitions must have a pointer to valid memory at the time Apply3D is called.
 
+# Example
+
+```cpp
+float dt = static_cast<float>(timer.GetElapsedSeconds());
+
+emitter.Update(position, Vector3::Up, dt);
+if (soundSource)
+{
+    soundSource->Apply3D(m_listener, emitter);
+}
+```
+
 # Further reading
 [X3DAudio](https://docs.microsoft.com/windows/win32/xaudio2/x3daudio)  
 [X3DAudioCalculate](https://docs.microsoft.com/windows/win32/api/x3daudio/nf-x3daudio-x3daudiocalculate)
