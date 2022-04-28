@@ -33,8 +33,6 @@ In addition to setting the members of ``X3DAUDIO_LISTENER`` directly, these help
 
 # Example
 
-# Example
-
 ```cpp
 float dt = static_cast<float>(timer.GetElapsedSeconds());
 
