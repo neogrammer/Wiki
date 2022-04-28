@@ -31,6 +31,21 @@ In addition to setting the members of ``X3DAUDIO_LISTENER`` directly, these help
 
 * **Update** (XMVECTOR newPos, XMVECTOR upDir, float dt): Computes a direction and velocity for the listener based on the current Position value, the new position, and the provided delta time (&#916;t). This updates the OrientFront/OrientTop to match, and then sets the Position to the new position. If dt is 0, the update is skipped.
 
+# Example
+
+# Example
+
+```cpp
+float dt = static_cast<float>(timer.GetElapsedSeconds());
+
+emitter.Update(soundPosition, Vector3::Up, dt);
+listener.Update(playerPosiiton, Vector3::Up, dt);
+if (soundSource)
+{
+    soundSource->Apply3D(listener, emitter);
+}
+```
+
 # Further reading
 [X3DAudio](https://docs.microsoft.com/windows/win32/xaudio2/x3daudio)  
 [X3DAudioCalculate](https://docs.microsoft.com/windows/win32/api/x3daudio/nf-x3daudio-x3daudiocalculate)
