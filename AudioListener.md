@@ -29,7 +29,7 @@ In addition to setting the members of ``X3DAUDIO_LISTENER`` directly, these help
 * **SetOrientation** (XMVECTOR forward, XMVECTOR up) or (XMFLOAT3 forward, XMFLOAT3 up)
 * **SetOrientationFromQuaternion** (XMVECTOR): Sets the OrientFront/OrientTop of the listener.
 
-* **Update** (XMVECTOR newPos, XMVECTOR upDir, float dt ): Computes a direction and velocity for the listener based on the existing Position and the newPos, updating the OrientFront/OrientTop to match, and then setting the Position to the newPos. If dt is 0, the update is skipped.
+* **Update** (XMVECTOR newPos, XMVECTOR upDir, float dt): Computes a direction and velocity for the listener based on the current Position value, the new position, and the provided delta time (i.e. &#916;t). This updates the OrientFront/OrientTop to match, and then sets the Position to the newPos. If dt is 0, the update is skipped.
 
 # Further reading
 [X3DAudio](https://docs.microsoft.com/windows/win32/xaudio2/x3daudio)  
