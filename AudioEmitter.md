@@ -80,10 +80,11 @@ The AudioEmitter constructor sets pVolumeCurve, pLFECurve, pLPFDirectCurve, pLPF
 ```cpp
 float dt = static_cast<float>(timer.GetElapsedSeconds());
 
-emitter.Update(position, Vector3::Up, dt);
+emitter.Update(soundPosition, Vector3::Up, dt);
+listener.Update(playerPosiiton, Vector3::Up, dt);
 if (soundSource)
 {
-    soundSource->Apply3D(m_listener, emitter);
+    soundSource->Apply3D(listener, emitter);
 }
 ```
 
