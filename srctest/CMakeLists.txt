@@ -117,6 +117,7 @@ if ( CMAKE_CXX_COMPILER_ID MATCHES "MSVC" )
           target_compile_options(${t} PRIVATE /ZH:SHA_256)
         endforeach()
     endif()
+
     if (CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL 19.26)
         foreach(t IN LISTS TEST_TARGETS)
           target_compile_options(${t} PRIVATE /Zc:preprocessor /wd5105)
