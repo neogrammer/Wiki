@@ -191,12 +191,9 @@ void MSAAHelper::SizeResources(size_t width, size_t height)
 
         SetDebugObjectName(m_msaaDepthStencil.Get(), "MSAA Depth/Stencil");
 
-        const CD3D11_DEPTH_STENCIL_VIEW_DESC dsvDesc(D3D11_DSV_DIMENSION_TEXTURE2DMS,
-            m_depthBufferFormat);
-
         ThrowIfFailed(m_device->CreateDepthStencilView(
             m_msaaDepthStencil.Get(),
-            &dsvDesc,
+            nullptr,
             m_depthStencilView.ReleaseAndGetAddressOf()
         ));
 

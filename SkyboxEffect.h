@@ -56,7 +56,7 @@ namespace DX
         Microsoft::WRL::ComPtr<ID3D11ShaderResourceView>    m_texture;
         std::vector<uint8_t>                                m_vsBlob;
 
-        struct __declspec(align(16)) SkyboxEffectConstants
+        XM_ALIGNED_STRUCT(16) SkyboxEffectConstants
         {
             DirectX::XMMATRIX worldViewProj;
         };

@@ -13,7 +13,11 @@
 #include <mmreg.h>
 #include <ks.h>
 #include <ksmedia.h>
+
+#pragma warning(push)
+#pragma warning(disable : 4619 4616 5246)
 #include <x3daudio.h>
+#pragma warning(pop)
 
 #include <cstdio>
 #include <memory>
@@ -563,5 +567,7 @@ int wmain(int argc, const wchar_t** argv)
             return 1;
         }
     }
+
+    return 0;
 }
 
