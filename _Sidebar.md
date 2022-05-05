@@ -11,6 +11,7 @@
 * Visual Studio 2022
 * Visual Studio 2019
 * clang/LLVM v11, v12, v13
+* GCC/MinGW v11
 
 # Related Projects
 
