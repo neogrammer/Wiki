@@ -54,7 +54,7 @@ add_subdirectory(${CMAKE_SOURCE_DIR}/DirectXTK ${CMAKE_BINARY_DIR}/bin/CMake/Dir
 target_link_libraries(${PROJECT_NAME} PRIVATE DirectXTK)
 ```
 
-## VC++ Package Manager
+## vcpkg C++ Package Manager
 For a CMake project, the *DirectX Tool Kit* is available as a CMake package, which you reference from your ``CMakeLists.txt`` as:
 
 ```
