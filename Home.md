@@ -11,7 +11,9 @@ http://go.microsoft.com/fwlink/?LinkId=248929
 ![Azure DevOps GDK](https://img.shields.io/azure-devops/build/mscodehub/ab27a052-7f0e-4cba-9bec-d298c5942ab9/1993?label=BUILD%20%28GDK%29&style=for-the-badge)
 
 ![Azure DevOps CMake](https://img.shields.io/azure-devops/build/mscodehub/ab27a052-7f0e-4cba-9bec-d298c5942ab9/1664?label=BUILD%20%28CMake%29&style=for-the-badge)
+
 ![Azure DevOps test suite build](https://img.shields.io/azure-devops/build/mscodehub/ab27a052-7f0e-4cba-9bec-d298c5942ab9/1155?label=BUILD%20%28TEST%20SUITE%29&style=for-the-badge)
+![Azure DevOps test suite build VS 2019](https://img.shields.io/azure-devops/build/mscodehub/ab27a052-7f0e-4cba-9bec-d298c5942ab9/2011?label=BUILD%20%28TEST%20SUITE%20VS%202022%29&style=for-the-badge)
 
 ![DirectX Logo](https://github.com/Microsoft/DirectXTK/wiki/X_jpg.jpg)The **DirectX Tool Kit** (aka **DirectXTK**) is a collection of helper classes for writing **DirectX 11.x** code in C++.
 
