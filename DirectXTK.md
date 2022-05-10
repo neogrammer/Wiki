@@ -25,7 +25,7 @@ using namespace DirectX;
      * [[PBREffect]], [[SkinnedPBREffect|PBREffect]]
      * [[DebugEffect]]
      * [[DGSLEffect]], [[SkinnedDGSLEffect|DGSLEffect]]
-* [[GamePad]] - gamepad controller helper using XInput
+* [[GamePad]] - gamepad controller helper using XInput or Windows.Gaming.Input
 * [[GeometricPrimitive]] - draws basic shapes such as cubes and spheres
 * [[GraphicsMemory]] - helper for managing dynamic graphics memory allocation
 * [[Keyboard]] - keyboard state tracking helper
