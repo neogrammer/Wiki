@@ -14,11 +14,11 @@ If you used [NuGet](https://docs.microsoft.com/nuget/what-is-nuget) when [[Addin
 
 <table>
  <tr>
-  <td>directxtk_desktop_2017</td>
+  <td>directxtk_desktop_2019</td>
   <td>This package is configured for Windows 7 Service Pack 1 support for graphics & input. <I>DirectX Tool Kit for Audio</I> is configured to use the <a href="https://aka.ms/XAudio2Redist">XAudio2Redist NuGet package</a> to support Windows 7 or later with <b>XAudio 2.9</b>.</td>
  </tr>
  <tr>
-  <td>directxtk_desktop_win10<br />directxtk_uwp<br />directxtk12_uwp<br />directxtk12_desktop_2017</td>
+  <td>directxtk_desktop_win10<br />directxtk_uwp<br />directxtk12_uwp<br />directxtk12_desktop_2019</td>
   <td>These packages are configured for Windows 10 support for graphics, input, and make use of <b>XAudio 2.9</b> for <I>DirectX Tool Kit for Audio</I>.</td>
  </tr>
 </table>
@@ -29,18 +29,18 @@ Complete the steps in **Adding the headers** below including the additional conf
 If you used project-to-project references when [[Adding the DirectX Tool Kit]] for DirectX 11, then you need to add an additional _DirectX Tool Kit for Audio_ project to your solution. There are three (3) choices depending on your platform target and deployment requirements:
 
 ## XAudio 2.9
-XAudio 2.9 is built into Windows 10. Everything required is included in the operating system and the Windows 10 SDK. This version of _DirectX Tool Kit for Audio_ is already included in those projects (``DirectXTK*_Windows10_201x.vcxproj``, ``DirectXTK*_Desktop_201x_Win10.vcxproj``) and Xbox One (``DirectXTK*_XboxOneXDK_201x.vcxproj``).
+XAudio 2.9 is built into Windows 10, Windows 11, and Xbox. Everything required is included in the operating system and the Windows SDK. This version of _DirectX Tool Kit for Audio_ is already included in those projects (``DirectXTK*_Windows10_20xx.vcxproj``, ``DirectXTK*_Desktop_20xx_Win10.vcxproj``) and Xbox One (``DirectXTK*_XboxOneXDK_20xx.vcxproj``).
 
 Complete the steps in **Adding the headers** below including the additional configuration for XAudio 2.9.
 
 ## XAudio 2.8
-XAudio 2.8 is built into Windows 8.0 or later. Everything required is included in the operating system and the Windows 10 SDK.
+XAudio 2.8 is built into Windows 8.0 or later. Everything required is included in the operating system and the Windows SDK.
 
 1. Right-click on your solution in the Solution Explorer, and select **Add** / **Existing Project...**
-1. Browse into the "DirectXTK\Audio" folder and select ``DirectXTKAudio_Desktop_201x_Win8.vcxproj``, click "Open"
+1. Browse into the "DirectXTK\Audio" folder and select ``DirectXTKAudio_Desktop_20xx_Win8.vcxproj``, click "Open"
 1. If Visual Studio presents a "Security Warning", select "OK". Optional: Uncheck "Ask me for every project in this solution" first.
 1. Right-click on your project in the Solution Explorer, and select **Add** / **References...**
-1. Check ``DirectXTKAudio_Desktop_201x_Win8.vcxproj`` and select "OK"
+1. Check ``DirectXTKAudio_Desktop_20xx_Win8.vcxproj`` and select "OK"
 1. Select "OK"
 
 ![Add Reference (Windows 8)](https://github.com/Microsoft/DirectXTK/wiki/images/AddReferenceWin8.png)
@@ -53,10 +53,10 @@ Complete the steps in **Adding the headers** below including the additional conf
 There is an XAudio 2.9 redistributable package available on [NuGet](https://www.nuget.org/packages/Microsoft.XAudio2.Redist/) that supports Windows 7 SP1, Windows 8, Windows 8.1, and Windows 10 for Win32 desktop applications. The required runtime DLL is included side-by-side with your application, and avoids the need to include any legacy DirectX SDK redist package.
 
 1. Right-click on your solution in the Solution Explorer, and select **Add** / **Existing Project...**
-1. Browse into the "DirectXTK\Audio" folder and select ``DirectXTKAudio_Desktop_201x_Win7.vcxproj``, click "Open"
+1. Browse into the "DirectXTK\Audio" folder and select ``DirectXTKAudio_Desktop_20xx_Win7.vcxproj``, click "Open"
 1. If Visual Studio presents a "Security Warning", select "OK". Optional: Uncheck "Ask me for every project in this solution" first.
 1. Right-click on your project in the Solution Explorer, and select **Add** / **References...**
-1. Check ``DirectXTKAudio_Desktop_201x_Win7.vcxproj`` and select "OK"
+1. Check ``DirectXTKAudio_Desktop_20xx_Win7.vcxproj`` and select "OK"
 1. Select "OK"
 
 ![Add Reference (Windows 7)](https://github.com/Microsoft/DirectXTK/wiki/images/AddReferenceWin7.png)
@@ -101,7 +101,7 @@ Now that we have the _DirectX Tool Kit for Audio_ usable in your project, the ne
 ```
 
 ## XAudio 2.9
-For a desktop application that requires Windows 10, in your *pch.h* modify the following section:
+For a desktop application that requires Windows 10 or Windows 11, in your *pch.h* modify the following section:
 
 ```cpp
 #include <winsdkver.h>
@@ -109,7 +109,7 @@ For a desktop application that requires Windows 10, in your *pch.h* modify the f
 #include <sdkddkver.h>
 ```
 
-> For Windows 10 platforms other than Windows desktop, you do not need to explicitly set ``_WIN32_WINNT`` as it's already set appropriately.
+> For Windows 10 / Windows 11 platforms other than Windows desktop, you do not need to explicitly set ``_WIN32_WINNT`` as it's already set appropriately.
 
 ## XAudio 2.8
 If you are using XAudio 2.8, then your application should be built to require Windows 8.0 or later. In *pch.h* modify the following section:
@@ -133,7 +133,7 @@ If you want to support Windows 7, be sure to verify ``_WIN32_WINT`` is set to ``
 <p>If you get runtime errors related to not being able to find <code>XAUDIO2_9REDIST.DLL</code>, then you likely don't have the <b>Microsoft.XAudio2.Redist</b> NuGet package set up for the project that generates the EXE, or you need to include that DLL from the NuGet package in your installer/deployment.</p></details>
 
 # Deployment
-If you are using XAudio 2.8, then your application has a dependency on Windows 8.0 or later. If using XAudio 2.9, your application will only run on Windows 10 devices.
+If you are using XAudio 2.8, then your application has a dependency on Windows 8.0 or later. If using XAudio 2.9, your application will only run on Windows 10 or Windows 11 devices.
 
 If you are using the XAudio2 Redistributable, then you will need to include the ``XAUDIO2_9REDIST.DLL`` from the NuGet package as part of your application.
 

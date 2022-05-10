@@ -173,7 +173,7 @@ Each instance of a SoundEffectInstance will allocate it's own source voice when 
 See [[AudioEngine]] for more information.
 
 # Platform support
-The standard ``DirectXTK.lib`` and all versions of ``DirectXTK12.lib`` include _DirectXTK for Audio_ implemented using XAudio 2.9 which is supported by Windows 10 and Xbox built into the operating system.
+The standard ``DirectXTK.lib`` and all versions of ``DirectXTK12.lib`` include _DirectXTK for Audio_ implemented using XAudio 2.9 which is supported by Windows 10, Windows 11, and Xbox built into the operating system.
 
 <table>
  <tr>
@@ -204,7 +204,7 @@ To add _DirectXTK for Audio_ support for a Win32 desktop application running on 
  </tr>
 </table>
 
-> The NuGet package [directxtk_desktop_2017](https://www.nuget.org/packages/directxtk_desktop_2017/) is designed for Windows 7 compatibility for the main library, and the _DirectX Tool Kit for Audio_ uses [XAudio2Redist](https://aka.ms/XAudio2Redist) to support Windows 7 or later.
+> The NuGet package [directxtk_desktop_2019](https://www.nuget.org/packages/directxtk_desktop_2019/) is designed for Windows 7 compatibility for the main library, and the _DirectX Tool Kit for Audio_ uses [XAudio2Redist](https://aka.ms/XAudio2Redist) to support Windows 7 or later.
 
 See the [[Adding the DirectX Tool Kit for Audio]] tutorial for a walk-through of configuring different [XAudio2 Versions](https://docs.microsoft.com/windows/win32/xaudio2/xaudio2-versions).
 
