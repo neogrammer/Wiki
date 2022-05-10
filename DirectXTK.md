@@ -98,7 +98,7 @@ In your application's solution, right-click on the Solution and use **Add \ Exis
  </tr>
 </table>
 
-> For VS 2019, use of the 16.7 update or later is required.
+> For VS 2019, use of the 16.9 update or later is required.
 
 <table>
  <tr>
@@ -126,16 +126,16 @@ Alternatively you can use [NuGet](https://docs.microsoft.com/nuget/what-is-nuget
 
 <table>
  <tr>
-  <td><a href="https://www.nuget.org/packages/directxtk_desktop_2017/">directxtk_desktop_2017</a></td>
-  <td>This NuGet is configured for Windows desktop C++ applications building with VS 2017, VS 2019, or VS 2022 Community/Professional or higher. <I>DirectXTK for Audio</I> in this package uses <a href="https://aka.ms/XAudio2Redist">XAudio2Redist</a> to support Windows 7 or later.</td>
+  <td><a href="https://www.nuget.org/packages/directxtk_desktop_2019/">directxtk_desktop_2019</a></td>
+  <td>This NuGet is configured for Windows desktop C++ applications building with VS 2019 or VS 2022 Community/Professional or higher. <I>DirectXTK for Audio</I> in this package uses <a href="https://aka.ms/XAudio2Redist">XAudio2Redist</a> to support Windows 7 or later.</td>
  </tr>
  <tr>
   <td><a href="https://www.nuget.org/packages/directxtk_desktop_win10/">directxtk_desktop_win10</a></td>
-  <td>This NuGet is configured for Windows desktop C++ applications building for Windows 10 with VS 2017, VS 2019, or VS 2022 Community/Professional or higher. <I>DirectXTK for Audio</I> in this package uses XAudio 2.9 in the Windows 10 SDK.</td>
+  <td>This NuGet is configured for Windows desktop C++ applications building for Windows 10 with VS 2019 or VS 2022 Community/Professional or higher. <I>DirectXTK for Audio</I> in this package uses XAudio 2.9 in the Windows 10 SDK.</td>
  </tr>
  <tr>
   <td><a href="https://www.nuget.org/packages/directxtk_uwp/">directxtk_uwp</a></td>
-  <td>This NuGet is configured for Universal Windows Platform apps for Windows 10 building with VS 2017, VS 2019, or VS 2022 Community/Professional or higher. <I>DirectXTK for Audio</I> in this package uses XAudio 2.9 in the Windows 10 SDK.</td>
+  <td>This NuGet is configured for Universal Windows Platform apps for Windows 10 building with VS 2019 or VS 2022 Community/Professional or higher. <I>DirectXTK for Audio</I> in this package uses XAudio 2.9 in the Windows 10 SDK.</td>
  </tr>
 </table>
 
@@ -144,6 +144,7 @@ You should use the NuGet interface to check for updates if you have an older ver
 ### Archived
 These NuGet packages are no longer supported.
 
+* [Windows desktop app using VS 2017](https://www.nuget.org/packages/directxtk_desktop_2017)
 * [Windows desktop app using VS 2015](https://www.nuget.org/packages/directxtk_desktop_2015)
 * [Windows desktop app using VS 2013](https://www.nuget.org/packages/directxtk_desktop_2013)
 * [Windows 8.1 Store](https://www.nuget.org/packages/directxtk_windowsstore_8_1)
