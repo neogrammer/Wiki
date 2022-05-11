@@ -42,6 +42,17 @@ A version of _DirectX Tool Kit for DirectX 12_ is available on [GitHub](https://
 
 > Note that advanced hardware features like Shader Model 6, DirectX Raytracing, Amplification & Mesh Shaders, and other "DirectX Ultimate" features do in fact require DirectX 12 as they are not exposed in DirectX 11. The statement above is still 100% true for the core graphics functionality used by *DirectX Tool Kit*.
 
+# NuGet
+
+DirectX Tool Kit is also found on the NuGet Gallery:
+- [Windows desktop app using VS 2019 or VS 2022](https://www.nuget.org/packages/directxtk_desktop_2019/)
+- [Windows desktop app using VS 2019 or VS 2022 for Windows 10](https://www.nuget.org/packages/directxtk_desktop_win10/)
+- [Universal Windows Platform apps using VS 2019 or VS 2022](https://www.nuget.org/packages/directxtk_uwp/)
+
+# vcpkg C++ Package Manager
+
+DirectX Tool Kit has a vcpkg installation [port](https://github.com/microsoft/vcpkg/tree/master/ports/directxtk) as well.
+
 # Porting from D3DX
 See [this post](https://aka.ms/Kfsdiu) for a complete listing of D3DX equivalents.
 
