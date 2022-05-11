@@ -204,6 +204,7 @@ The _DirectX Tool Kit_ library assumes your binary is linking with the following
 * ``dxgi.lib``: Provides the DXGI factory creation function ``CreateDXGIFactory1`` / ``CreateDXGIFactory2``
 * ``dxguid.lib``: Provides COM GUID values for ``IID_ID3D11Device``, ``WKPDID_D3DDebugObjectName``, etc.
 * ``windowscodecs.lib`` or ``uuid.lib``: Provides COM GUID values for WIC usage such as ``CLSID_WICImagingFactory``, ``CLSID_WICImagingFactory1``, ``CLSID_WICImagingFactory2``, etc.
+* For Win32 desktop applications, ``ole32.lib``: Provides ``CoCreateInstance``. For other platforms, this export is in the umbrella library (``WindowsApps.lib``, ``onecore.lib``, etc.).
 
 ### DirectX Tool Kit for Audio
 For "Windows 8.x" or "Windows 10" configurations of the AudioEngine class, you'll need to use ``xaudio2.lib``.
