@@ -67,6 +67,7 @@ In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources**:
 ```cpp
 m_states = std::make_unique<CommonStates>(device);
 m_effect = std::make_unique<PBREffect>(device);
+m_effect->EnableDefaultLighting();
 
 auto context = m_deviceResources->GetD3DDeviceContext();
 m_shape = GeometricPrimitive::CreateSphere(context);
