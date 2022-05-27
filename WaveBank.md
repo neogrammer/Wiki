@@ -3,6 +3,8 @@
 
 WaveBank is a container class for an XACT-style wave bank that contains individual waves packaged together for more efficient loading and memory management. Sounds in an in-memory wave bank can then be played back as one-shot sounds or via [[SoundEffectInstance]]. Streaming wave banks can be played with [[SoundStreamInstance]] using non-buffering asynchronous I/O.
 
+> The `WaveBank` objects always owns the audio data. It must be kept 'alive' until all playing or streaming sounds using it have been stopped.
+
 See [[XWBTool]] for more information on building ``.xwb`` files.
 
 > _DirectXTK for Audio_ uses XAudio2. It does not make use of the legacy XACT Engine, XACT Cue, or XACT SoundBank.
