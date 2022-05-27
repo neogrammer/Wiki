@@ -17,7 +17,7 @@ XAudio2 requires COM be initialized as a prerequisite using ``Windows::Foundatio
 
 ```cpp
 // This is only needed in Win32 desktop apps
-CoInitializeEx( nullptr, COINIT_MULTITHREADED );
+hr = CoInitializeEx( nullptr, COINIT_MULTITHREADED );
 ```
 
 All _DirectXTK for Audio_ components require an AudioEngine instance. For exception safety, it is recommended you make use of the C++ [RAII](http://wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr``.
