@@ -1,7 +1,7 @@
 |[[DirectXTK]]|[[Audio]]|
 |---|---|
 
-This class represents an XAudio2 audio graph, device, and mastering voice
+This class represents an XAudio2 audio graph, device, and mastering voice. It manages XAudio2 object creation, engine updates, the mastering voice, and all source voices.
 
 **Related tutorial:** [[Adding audio to your project]]
 
