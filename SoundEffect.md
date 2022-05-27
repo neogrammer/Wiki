@@ -3,6 +3,8 @@
 
 SoundEffect is a container class for wave sample data. This data can then be played back as a one-shot sound or via a [[SoundEffectInstance]].
 
+> The `SoundEffect` objects always owns the audio data. It must be kept 'alive' until all playing sound using it have been stopped.
+
 **Related tutorial:** [[Creating and playing sounds]]
 
 # Header
