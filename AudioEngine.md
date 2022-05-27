@@ -1,7 +1,7 @@
 |[[DirectXTK]]|[[Audio]]|
 |---|---|
 
-This class represents an XAudio2 audio graph, device, and mastering voice. It manages XAudio2 object creation, engine updates, the mastering voice, and all source voices.
+This class represents an XAudio2 audio graph, device, and mastering voice. It manages XAudio2 object creation, engine updates, the mastering voice, and all source voices. The class optionally supports applying a *mastering limiter* and/or *environmental reverb* xAPO effects typically used in conjunction with 3D positional audio.
 
 **Related tutorial:** [[Adding audio to your project]]
 
