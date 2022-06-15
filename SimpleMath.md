@@ -181,6 +181,11 @@ Since this is implemented using C++ conversion operators, you can at any point u
 
 You can therefore freely mix SimpleMath types with DirectXMath functions at any point.
 
+# C++20 Support
+With the May 2022 release of the *DirectX Tool Kit*, C++20 spaceship operator (`<=>`) is supported for ``Rectangle`` and ``Viewport``.
+
+The other types in the library inherit from DirectXMath types, so you need to be using DirectXMath 3.17b or later for C++20 spaceship operator support for ``Matrix``, ``Vector2``, etc. See [this blog post](https://walbourn.github.io/directxmath-3.17/).
+
 # Remarks
 
 If you are looking for an equivalent to the D3DXmath ``D3DXCreateMatrixStack`` / ``ID3DXMATRIXStack``, see [DirectXMatrixStack.h](https://github.com/microsoft/DirectXMath/blob/main/MatrixStack/DirectXMatrixStack.h).
