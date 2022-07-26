@@ -11,6 +11,7 @@ http://go.microsoft.com/fwlink/?LinkId=248929
 ![Azure DevOps GDK](https://img.shields.io/azure-devops/build/mscodehub/ab27a052-7f0e-4cba-9bec-d298c5942ab9/1993?label=BUILD%20%28GDK%29&style=for-the-badge)
 
 ![Azure DevOps CMake](https://img.shields.io/azure-devops/build/mscodehub/ab27a052-7f0e-4cba-9bec-d298c5942ab9/1664?label=BUILD%20%28CMake%29&style=for-the-badge)
+![Azure DevOps CMake Latest](https://img.shields.io/azure-devops/build/mscodehub/ab27a052-7f0e-4cba-9bec-d298c5942ab9/2058?label=BUILD%20%28CMake%20VS%202022%29&style=for-the-badge)
 ![Azure DevOps MinGW](https://img.shields.io/azure-devops/build/mscodehub/ab27a052-7f0e-4cba-9bec-d298c5942ab9/2015?label=BUILD%20%28MinGW%29&style=for-the-badge)
 
 ![Azure DevOps test suite build](https://img.shields.io/azure-devops/build/mscodehub/ab27a052-7f0e-4cba-9bec-d298c5942ab9/1155?label=BUILD%20%28TEST%20SUITE%29&style=for-the-badge)
