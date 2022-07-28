@@ -58,7 +58,7 @@ These versions provide explicit control over the created resource's usage, bindi
 
 * For auto-gen mipmaps, the default binding flags are ``D3D11_BIND_SHADER_RESOURCE`` | ``D3D11_BIND_RENDER_TARGET`` and miscellaneous flags is set to ``D3D11_RESOURCE_MISC_GENERATE_MIPS``.
 
-There is also a _forceSRGB_ option for working around gamma issues with content that is in the sRGB or similar color space but is not encoded explicitly as an SRGB format. This will force return format be one of the of ``DXGI_FORMAT_*_SRGB`` formats if it exist. Note that no pixel data conversion takes place.
+There is also a _loadFlags_ parameter. The flags are ``DDS_LOADER_DEFAULT``, ``DDS_LOADER_FORCE_SRGB``, and ``DDS_LOADER_IGNORE_SRGB``.
 
 Note that the _maxsize_ parameter is not at the end of the parameter list like it is in the non-Ex version.
 
@@ -67,7 +67,7 @@ HRESULT CreateDDSTextureFromMemoryEx(ID3D11Device* d3dDevice,
     const uint8_t* ddsData, size_t ddsDataSize,
     size_t maxsize, D3D11_USAGE usage, unsigned int bindFlags,
     unsigned int cpuAccessFlags, unsigned int miscFlags,
-    bool forceSRGB,
+    DDS_LOADER_FLAGS loadFlags,
     ID3D11Resource** texture, ID3D11ShaderResourceView** textureView,
     DDS_ALPHA_MODE* alphaMode = nullptr);
 
@@ -76,7 +76,7 @@ HRESULT CreateDDSTextureFromMemoryEx(ID3D11Device* d3dDevice,
     const uint8_t* ddsData, size_t ddsDataSize,
     size_t maxsize, D3D11_USAGE usage, unsigned int bindFlags,
     unsigned int cpuAccessFlags, unsigned int miscFlags,
-    bool forceSRGB,
+    DDS_LOADER_FLAGS loadFlags,
     ID3D11Resource** texture, ID3D11ShaderResourceView** textureView,
     DDS_ALPHA_MODE* alphaMode = nullptr);
 
@@ -84,7 +84,7 @@ HRESULT CreateDDSTextureFromFileEx(ID3D11Device* d3dDevice,
     const wchar_t* szFileName,
     size_t maxsize, D3D11_USAGE usage, unsigned int bindFlags,
     unsigned int cpuAccessFlags, unsigned int miscFlags,
-    bool forceSRGB,
+    DDS_LOADER_FLAGS loadFlags,
     ID3D11Resource** texture, ID3D11ShaderResourceView** textureView,
     DDS_ALPHA_MODE* alphaMode = nullptr);
 
@@ -93,10 +93,12 @@ HRESULT CreateDDSTextureFromFileEx(ID3D11Device* d3dDevice,
     const wchar_t* szFileName,
     size_t maxsize, D3D11_USAGE usage, unsigned int bindFlags,
     unsigned int cpuAccessFlags, unsigned int miscFlags,
-    bool forceSRGB,
+    DDS_LOADER_FLAGS loadFlags,
     ID3D11Resource** texture, ID3D11ShaderResourceView** textureView,
     DDS_ALPHA_MODE* alphaMode = nullptr);
 ```
+
+> The ``loadFlags`` parameter was previously ``bool forceSRGB``.
 
 # Parameters
 Either _texture_ or _textureView_ can be nullptr, but not both.
@@ -125,6 +127,8 @@ The last optional parameter _alphaMode_ is a pointer to return the _alpha mode_ 
 * ``DDS_ALPHA_MODE_CUSTOM`` (4) - This indicates the alpha channel if present does not contain transparency (neither straight or premultiplied alpha) and instead is encoding some other channel of information. Viewers should not use the alpha channel for blending, and should instead view it as a distinct image channel.
 
 For the ``Ex`` versions, the _usage_ is a [D3D11_USAGE](https://docs.microsoft.com/windows/win32/api/d3d11/ne-d3d11-d3d11_usage), typically ``D3D11_USAGE_DEFAULT``. The *bindFlags* parameter is one or more [D3D11_BIND_FLAG](https://docs.microsoft.com/windows/win32/api/d3d11/ne-d3d11-d3d11_bind_flag) values, typically ``D3D11_BIND_SHADER_RESOURCE`` for textures. The _cpuAccessFlags_ parameter is ``D3D11_CPU_ACCESS_FLAG`` typically 0 for default usage textures. The _miscFlags_ parameter is a [D3D11_RESOURCE_MISC_FLAG](https://docs.microsoft.com/windows/win32/api/d3d11/ne-d3d11-d3d11_resource_misc_flag) value, usually 0.
+
+The  ``DDS_LOADER_FORCE_SRGB`` flag provides an option for working around gamma issues with content that is in the sRGB or similar color space but is not encoded explicitly as an SRGB format. This will force return format be one of the of ``DXGI_FORMAT_*_SRGB`` formats if it exist. Note that no pixel data conversion takes place. The ``DDS_LOADER_IGNORE_SRGB`` flag does the opposite; it will force the return format to not have the ``_*_SRGB`` version.
 
 # Example
 
