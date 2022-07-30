@@ -128,7 +128,7 @@ The last optional parameter _alphaMode_ is a pointer to return the _alpha mode_ 
 
 For the ``Ex`` versions, the _usage_ is a [D3D11_USAGE](https://docs.microsoft.com/windows/win32/api/d3d11/ne-d3d11-d3d11_usage), typically ``D3D11_USAGE_DEFAULT``. The *bindFlags* parameter is one or more [D3D11_BIND_FLAG](https://docs.microsoft.com/windows/win32/api/d3d11/ne-d3d11-d3d11_bind_flag) values, typically ``D3D11_BIND_SHADER_RESOURCE`` for textures. The _cpuAccessFlags_ parameter is ``D3D11_CPU_ACCESS_FLAG`` typically 0 for default usage textures. The _miscFlags_ parameter is a [D3D11_RESOURCE_MISC_FLAG](https://docs.microsoft.com/windows/win32/api/d3d11/ne-d3d11-d3d11_resource_misc_flag) value, usually 0.
 
-The  ``DDS_LOADER_FORCE_SRGB`` flag provides an option for working around gamma issues with content that is in the sRGB or similar color space but is not encoded explicitly as an SRGB format. This will force return format be one of the of ``DXGI_FORMAT_*_SRGB`` formats if it exist. Note that no pixel data conversion takes place. The ``DDS_LOADER_IGNORE_SRGB`` flag does the opposite; it will force the return format to not have the ``_*_SRGB`` version.
+The  ``DDS_LOADER_FORCE_SRGB`` flag provides an option for working around gamma issues with content that is in the sRGB or similar color space but is not encoded explicitly as an SRGB format. This will force resource format be one of the of ``DXGI_FORMAT_*_SRGB`` formats if it exist. Note that no pixel data conversion takes place. The ``DDS_LOADER_IGNORE_SRGB`` flag does the opposite; it will force the resource format to not have the ``_*_SRGB`` version.
 
 # Example
 
