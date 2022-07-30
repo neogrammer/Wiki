@@ -77,7 +77,7 @@ This project may contain trademarks or logos for projects, products, or services
 
 # Credits
 
-The _DirectX Tool Kit_ is the work of Shawn Hargreaves and Chuck Walbourn, with contributions from Aaron Rodriguez Hernandez, and Dani Roman.
+The _DirectX Tool Kit_ is the work of Shawn Hargreaves and Chuck Walbourn, with contributions from Aaron Rodriguez Hernandez and Dani Roman.
 
 Thanks to Shanon Drone for the SDKMESH file format.
 
