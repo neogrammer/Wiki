@@ -9,6 +9,28 @@ Post-processing is a common technique applied to 3D rendering to achieve various
 
 **Related tutorial:** [[Using HDR rendering]]
 
+```mermaid
+classDiagram
+class IPostProcess{
+   <<Interface>>
+   +Process()
+}
+class BasicPostProcess{
+    +SetSourceTexture
+}
+IPostProcess <|-- BasicPostProcess
+class DualPostProcess{
+    +SetSourceTexture
+    +SetSourceTexture2
+}
+IPostProcess <|-- DualPostProcess
+class ToneMapPostProcess{
+    +SetOperator
+    +SetTransferFunction
+}
+IPostProcess <|-- ToneMapPostProcess
+```
+
 # Header
 ```cpp
 #include "PostProcess.h"
