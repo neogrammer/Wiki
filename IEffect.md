@@ -7,6 +7,34 @@ This is the abstract interfaced implemented by all effects in _DirectX Tool Kit_
 std::shared_ptr<IEffect> effect;
 ```
 
+```mermaid
+classDiagram
+class IEffect{
+    +Apply()
+    +GetVertexShaderBytecode()
+}
+class IEffectMatrices{
+    +SetWorld
+    +SetView
+    +SetProjection
+}
+class IEffectLights{
+    +EnableDefaultLighting()
+}
+class IEffectFog{
+    +SetFogEnabled
+    +SetFogColor
+}
+class IEffectSkinning{
+    +SetBoneTransforms
+    +ResetBoneTransforms
+}
+IEffect <|-- IEffectMatrices
+IEffect <|-- IEffectLights
+IEffect <|-- IEffectFog
+IEffect <|-- IEffectSkinning
+```
+
 # Drawing
 The **Apply** method is used to set up a device context for drawing with the effect. This includes setting up the appropriate vertex and pixel shaders (and potentially other shader stages as well), and updating and setting the required constant buffer(s) consumed by these shaders.
 
