@@ -61,6 +61,16 @@ class SkinnedEffect{
     +SetBoneTransforms()
 }
 IEffect <|-- SkinnedEffect
+class DebugEffect{
+    +SetHemisphericalAmbientColor
+    +SetMode()
+}
+IEffect <|-- DebugEffect
+```
+
+```mermaid
+classDiagram
+class IEffect
 class DGSLEffect
 IEffect <|-- DGSLEffect
 class SkinnedDGSLEffect{
@@ -88,11 +98,6 @@ class SkinnedPBREffect{
     +SetBoneTransforms()
 }
 PBREffect <|-- SkinnedPBREffect
-class DebugEffect{
-    +SetHemisphericalAmbientColor
-    +SetMode()
-}
-IEffect <|-- DebugEffect
 ```
 
 # Initialization
