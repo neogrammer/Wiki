@@ -15,6 +15,43 @@ See also [[EffectFactory]]
 
 **Related tutorials:** [[Rendering a model]], [[Animating using model bones]], [[Using skinned models]]
 
+```mermaid
+classDiagram
+direction LR
+class Model{
+    +name
+    +Copy*BoneTransforms*()
+    +Draw()
+    +DrawSkinned()
+    +UpdateEffects()
+}
+class ModelBone
+class ModelMesh{
+    +boundingSphere
+    +boundingBox
+    +boneIndex
+    +name
+    +PrepareForRendering()
+    +Draw()
+    +DrawSkinned()
+}
+class ModelMeshPart{
+    +primitiveType
+    +indexFormat
+    +vertexStride
+    +indexBuffer
+    +vertexBuffer
+    +effect
+    +Draw()
+    +DrawInstanced()
+    +CreateInputLayout()
+    +ModifyEffect()
+}
+Model --o ModelBone : bones
+Model --o ModelMesh : meshes
+ModelMesh --o ModelMeshPart : meshParts
+```
+
 # Header
 ```cpp
 #include <Model.h>
