@@ -27,6 +27,44 @@ See also [[EffectFactory]]
 #include <Effects.h>
 ```
 
+```mermaid
+classDiagram
+class IEffect{
+    +Apply()
+    +GetVertexShaderBytecode()
+}
+class BasicEffect{
+    +SetTexture
+    +EnableDefaultLighting()
+}
+IEffect <|-- BasicEffect
+class AlphaTestEffect{
+    +SetAlphaFunction
+    +SetReferenceAlpha
+    +SetTexture
+}
+IEffect <|-- AlphaTestEffect
+class DualTextureEffect{
+    +SetTexture
+    +SetTexture2
+}
+IEffect <|-- DualTextureEffect
+class EnvironmentMapEffect{
+    +SetMode
+    +SetEnvironmentMapAmount
+    +SetEnvironmentMapSpecular
+    +SetFresnelFactor
+    +SetTexture
+    +SetEnvironmentMap
+}
+IEffect <|-- EnvironmentMapEffect
+class SkinnedEffect{
+    +SetTexture
+    +SetBoneTransforms()
+}
+IEffect <|-- SkinnedEffect
+```
+
 # Initialization
 The built-in effect constructors requires a Direct3D 11 device.
 
