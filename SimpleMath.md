@@ -18,13 +18,25 @@
 
 ```mermaid
 classDiagram
-class XMFLOAT2
+class XMFLOAT2{
+    +x
+    +y
+}
 class Vector2
 XMFLOAT2 <|-- Vector2
-class XMFLOAT3
+class XMFLOAT3{
+    +x
+    +y
+    +z
+}
 class Vector3
 XMFLOAT3 <|-- Vector3
-class XMFLOAT4
+class XMFLOAT4{
+    +x
+    +y
+    +z
+    +w
+}
 class Vector4
 XMFLOAT4 <|-- Vector4
 class Plane
@@ -33,16 +45,33 @@ class Quaternion
 XMFLOAT4 <|-- Quaternion
 class Color
 XMFLOAT4 <|-- Color
-class XMFLOAT4X4
+class XMFLOAT4X4{
+    +m[4][4]
+}
 class Matrix
 XMFLOAT4X4 <|-- Matrix
 ```
 
 ```mermaid
 classDiagram
-class Rectangle
-class Viewport
-class Ray
+class Rectangle{
+    +x
+    +y
+    +width
+    +height
+}
+class Viewport{
+    +x
+    +y
+    +width
+    +height
+    +minDepth
+    +maxDepth
+}
+class Ray{
+    +position
+    +direction
+}
 ```
 
 # Header
