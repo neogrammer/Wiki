@@ -16,6 +16,35 @@
 
 **Related tutorials:** [[Using the SimpleMath library]], [[Basic game math]], [[Collision detection]], [[Mixing SimpleMath and DirectXMath]]
 
+```mermaid
+classDiagram
+class XMFLOAT2
+class Vector2
+XMFLOAT2 <|-- Vector2
+class XMFLOAT3
+class Vector3
+XMFLOAT3 <|-- Vector3
+class XMFLOAT4
+class Vector4
+XMFLOAT4 <|-- Vector4
+class Plane
+XMFLOAT4 <|-- Plane
+class Quaternion
+XMFLOAT4 <|-- Quaternion
+class Color
+XMFLOAT4 <|-- Color
+class XMFLOAT4X4
+class Matrix
+XMFLOAT4X4 <|-- Matrix
+```
+
+```mermaid
+classDiagram
+class Rectangle
+class Viewport
+class Ray
+```
+
 # Header
 
 ```cpp
