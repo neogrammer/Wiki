@@ -34,6 +34,7 @@ class IEffect{
     +GetVertexShaderBytecode()
 }
 class BasicEffect{
+    +SetTextureEnabled
     +SetTexture
     +EnableDefaultLighting()
 }
@@ -50,12 +51,9 @@ class DualTextureEffect{
 }
 IEffect <|-- DualTextureEffect
 class EnvironmentMapEffect{
-    +SetMode
-    +SetEnvironmentMapAmount
-    +SetEnvironmentMapSpecular
-    +SetFresnelFactor
     +SetTexture
     +SetEnvironmentMap
+    +SetMode()
 }
 IEffect <|-- EnvironmentMapEffect
 class SkinnedEffect{
@@ -63,6 +61,38 @@ class SkinnedEffect{
     +SetBoneTransforms()
 }
 IEffect <|-- SkinnedEffect
+class DGSLEffect
+IEffect <|-- DGSLEffect
+class SkinnedDGSLEffect{
+    +SetBoneTransforms()
+}
+DGSLEffect<|-- SkinnedDGSLEffect
+class NormalMapEffect{
+    +SetTexture
+    +SetNormalTexture
+    +SetSpecularTexture
+}
+IEffect <|-- NormalMapEffect
+class SkinnedNormalMapEffect{
+    +SetBoneTransforms()
+}
+NormalMapEffect <|-- SkinnedNormalMapEffect
+class PBREffect{
+    +SetAlbedoTexture
+    +SetNormalTexture
+    +SetRMATexture
+    +SetEmissiveTexture
+}
+IEffect <|-- PBREffect
+class SkinnedPBREffect{
+    +SetBoneTransforms()
+}
+PBREffect <|-- SkinnedPBREffect
+class DebugEffect{
+    +SetHemisphericalAmbientColor
+    +SetMode()
+}
+IEffect <|-- DebugEffect
 ```
 
 # Initialization
