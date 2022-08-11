@@ -15,6 +15,73 @@ The _DirectXTK for Audio_ components implement a low-level audio API similar to 
 
 **Related tutorials:** [[Adding the DirectX Tool Kit for Audio]], [[Adding audio to your project]], [[Creating and playing sounds]], [[Making use of wave banks]], [[Using positional audio]]
 
+```mermaid
+classDiagram
+class AudioEngine{
+   +Update
+   +Suspend
+   +Resume
+}
+class SoundEffect{
+   +Play
+   +CreateInstance
+}
+class WaveBank{
+   +Play
+   +CreateInstance
+   +CreateStreamInstance
+}
+class SoundEffectInstance{
+   +Play
+   +Stop
+   +Pause
+   +Resume
+   +SetVolume
+   +SetPitch
+   +SetPan
+   +Apply3D
+}
+class SoundStreamInstance{
+   +Play
+   +Stop
+   +Pause
+   +Resume
+   +SetVolume
+   +SetPitch
+   +SetPan
+   +Apply3D
+
+}
+class DynamicSoundEffectInstance{
+   +Play
+   +Stop
+   +Pause
+   +Resume
+   +SetVolume
+   +SetPitch
+   +SetPan
+   +Apply3D
+}
+AudioEngine -- SoundEffect
+AudioEngine -- WaveBank
+AudioEngine -- SoundEffectInstance
+AudioEngine -- SoundStreamInstance
+AudioEngine -- DynamicSoundEffectInstance
+SoundEffect --> SoundEffectInstance
+Wavebank --> SoundEffectInstance
+WaveBank --> SoundStreamInstance
+```
+
+```mermaid
+classDiagram
+class AudioListener
+class X3DAUDIO_LISTENER
+class AudioEmitter
+class X3DAUDIO_EMITTER
+X3DAUDIO_LISTENER <|-- AudioListener
+X3DAUDIO_EMITTER <|-- AudioEmitter
+```
+
 # Header
 
 ```cpp
