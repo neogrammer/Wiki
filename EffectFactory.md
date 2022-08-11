@@ -5,6 +5,17 @@
 
 It uses a simple case-sensitive string-based (wide-character) map for finding effect and texture instances that have already been created by the factory, which avoid duplication of texture and effect resources in complex models and scenes.
 
+```mermaid
+classDiagram
+class IEffectFactory
+class EffectFactory
+IEffectFactory <|-- EffectFactory
+class PBREffectFactory
+IEffectFactory <|-- PBREffectFactory
+class DGSLEffectFactory
+IEffectFactory <|-- DGSLEffectFactory
+```
+
 # Header
 ```cpp
 #include <Effects.h>
