@@ -74,9 +74,19 @@ WaveBank --> SoundStreamInstance
 
 ```mermaid
 classDiagram
-class AudioListener
+class AudioListener{
++SetPosition
++SetVelocity
++SetOrientation
++Update
+}
 class X3DAUDIO_LISTENER
-class AudioEmitter
+class AudioEmitter{
++SetPosition
++SetVelocity
++SetOrientation
++Update
+}
 class X3DAUDIO_EMITTER
 X3DAUDIO_LISTENER <|-- AudioListener
 X3DAUDIO_EMITTER <|-- AudioEmitter
