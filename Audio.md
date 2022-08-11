@@ -18,49 +18,48 @@ The _DirectXTK for Audio_ components implement a low-level audio API similar to 
 ```mermaid
 classDiagram
 class AudioEngine{
-   +Update
-   +Suspend
-   +Resume
+   +Update()
+   +Suspend()
+   +Resume()
 }
 class SoundEffect{
-   +Play
-   +CreateInstance
+   +Play()
+   +CreateInstance()
 }
 class WaveBank{
-   +Play
-   +CreateInstance
-   +CreateStreamInstance
+   +Play()
+   +CreateInstance()
+   +CreateStreamInstance()
 }
 class SoundEffectInstance{
-   +Play
-   +Stop
-   +Pause
-   +Resume
-   +SetVolume
-   +SetPitch
-   +SetPan
-   +Apply3D
+   +Play()
+   +Stop()
+   +Pause()
+   +Resume()
+   +SetVolume()
+   +SetPitch()
+   +SetPan()
+   +Apply3D()
 }
 class SoundStreamInstance{
-   +Play
-   +Stop
-   +Pause
-   +Resume
-   +SetVolume
-   +SetPitch
-   +SetPan
-   +Apply3D
-
+   +Play()
+   +Stop()
+   +Pause()
+   +Resume()
+   +SetVolume()
+   +SetPitch()
+   +SetPan()
+   +Apply3D()
 }
 class DynamicSoundEffectInstance{
-   +Play
-   +Stop
-   +Pause
-   +Resume
-   +SetVolume
-   +SetPitch
-   +SetPan
-   +Apply3D
+   +Play()
+   +Stop()
+   +Pause()
+   +Resume()
+   +SetVolume()
+   +SetPitch()
+   +SetPan()
+   +Apply3D()
 }
 AudioEngine -- SoundEffect
 AudioEngine -- WaveBank
@@ -75,17 +74,17 @@ WaveBank --> SoundStreamInstance
 ```mermaid
 classDiagram
 class AudioListener{
-+SetPosition
-+SetVelocity
-+SetOrientation
-+Update
+   +SetPosition()
+   +SetVelocity()
+   +SetOrientation()
+   +Update()
 }
 class X3DAUDIO_LISTENER
 class AudioEmitter{
-+SetPosition
-+SetVelocity
-+SetOrientation
-+Update
+   +SetPosition()
+   +SetVelocity()
+   +SetOrientation()
+   +Update()
 }
 class X3DAUDIO_EMITTER
 X3DAUDIO_LISTENER <|-- AudioListener
