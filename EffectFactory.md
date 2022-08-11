@@ -8,6 +8,7 @@ It uses a simple case-sensitive string-based (wide-character) map for finding ef
 ```mermaid
 classDiagram
 class IEffectFactory
+<<Interface>> IEffectFactory
 class EffectFactory
 IEffectFactory <|-- EffectFactory
 class PBREffectFactory
