@@ -30,6 +30,7 @@ See also [[EffectFactory]]
 ```mermaid
 classDiagram
 class IEffect{
+    <<Interface>> 
     +Apply()
     +GetVertexShaderBytecode()
 }
@@ -71,6 +72,7 @@ IEffect <|-- DebugEffect
 ```mermaid
 classDiagram
 class IEffect
+<<Interface>>  IEffect
 class DGSLEffect
 IEffect <|-- DGSLEffect
 class SkinnedDGSLEffect{
