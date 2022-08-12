@@ -7,6 +7,38 @@ There is therefore a "DR" variant of each of the Direct3D Game VS templates in t
 
 > The standard Universal Windows Platform app ``DirectXApp`` VS templates make use of a similar ``DeviceResources`` abstraction.
 
+```mermaid
+classDiagram
+direction LR
+class IDeviceNotify{
+   <<Interface>>
+   +OnDeviceLost()
+   +OnDeviceRestored()
+}
+class Game{
+   +Initialize()
+   +Tick()
+   -Update()
+   -Render()
+}
+IDeviceNotify <|-- Game
+class StepTimer{
+   +GetElapsedSeconds() double
+   +GetTotalSeconds() double
+   +GetFrameCount() uint32_t
+   +Tick()
+}
+Game --o StepTimer : m_timer
+class DeviceResources{
+    +GetD3DDevice() ID3D11Device
+    +GetD3DDeviceContext() ID3D11DeviceContext
+    +CreateDeviceResources()
+    +CreateWindowSizeDependentResources()
+    +Present()
+}
+Game --o DeviceResources : m_deviceResources
+```
+
 # Creating a new project
 
 ## Visual Studio 2019 / 2022
