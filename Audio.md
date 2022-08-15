@@ -76,7 +76,7 @@ AudioEngine -- SoundEffectInstance
 AudioEngine -- SoundStreamInstance
 AudioEngine -- DynamicSoundEffectInstance
 SoundEffect --> SoundEffectInstance
-Wavebank --> SoundEffectInstance
+WaveBank --> SoundEffectInstance
 WaveBank --> SoundStreamInstance
 ```
 
