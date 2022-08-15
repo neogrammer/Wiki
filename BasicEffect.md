@@ -7,6 +7,57 @@ This is a native Direct3D 11 implementation of the built-in BasicEffect from XNA
 
 **Related tutorials:** [[Simple rendering]], [[Line drawing and anti-aliasing]], [[3D shapes]]
 
+```mermaid
+classDiagram
+class IEffect{
+    <<Interface>>
+    +Apply()
+    +GetVertexShaderBytecode()
+}
+class IEffectMatrices{
+    <<Interface>>
+    +SetWorld()
+    +SetView()
+    +SetProjection()
+    +SetMatrices()
+}
+class IEffectLights{
+    <<Interface>>
+    +SetLightingEnabled()
+    +SetPerPixelLighting()
+    +SetAmbientLightColor()
+    +SetLightEnabled()
+    +SetLightDirection()
+    +SetLightDiffuseColor()
+    +SetLightSpecularColor()
+    +EnableDefaultLighting()
+}
+class IEffectFog{
+    <<Interface>>
+    +SetFogEnabled()
+    +SetFogStart()
+    +SetFogEnd()
+    +SetFogColor()
+}
+class BasicEffect{
+    +SetDiffuseColor()
+    +SetEmissiveColor()
+    +SetSpecularColor()
+    +SetSpecularPower()
+    +DisableSpecular()
+    +SetAlpha()
+    +SetColorAndAlpha()
+    +SetVertexColorEnabled()
+    +SetBiasedVertexNormals()
+    +SetTextureEnabled()
+    +SetTexture()
+}
+BasicEffect --|> IEffect
+BasicEffect --|> IEffectMatrices
+BasicEffect --|> IEffectLights
+BasicEffect --|> IEffectFog
+```
+
 # Header
 ```cpp
 #include <Effects.h>
