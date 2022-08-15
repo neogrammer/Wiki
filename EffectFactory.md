@@ -10,11 +10,11 @@ classDiagram
 class IEffectFactory
 <<Interface>> IEffectFactory
 class EffectFactory
-IEffectFactory <|-- EffectFactory
+EffectFactory --> IEffectFactory
 class PBREffectFactory
-IEffectFactory <|-- PBREffectFactory
+PBREffectFactory --> IEffectFactory
 class DGSLEffectFactory
-IEffectFactory <|-- DGSLEffectFactory
+DGSLEffectFactory --> IEffectFactory
 ```
 
 # Header
