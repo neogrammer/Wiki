@@ -106,6 +106,6 @@ This effect requires ``NORMAL``, ``TEXCOORD0``, ``BLENDINDICES`` and ``BLENDWEIG
 The ``BLENDINDICES`` and ``BLENDWEIGHT`` elements can hold up to 4 individual bone influences per vertex. Since each influence adds more computation to the shader, you can optimize this effect by setting the supported number of influences to 1, 2, or 4 via **SetWeightsPerVertex** and any additional influences will be ignored. This value defaults to 4.
 
 # Remarks
-The effect always performs either vertex or per-pixel lighting.
+The effect always performs either vertex or per-pixel lighting. Calling ``SetLightingEnabled(false);`` on an instance of **SkinnedEffect** will throw a C++ exception.
 
 This effect always performs texturing, so if 'untextured' rendering is desired you must provide texture coordinates, and a sampler in slot 0. The class will default to a 1x1 texture with white (1,1,1,1).
