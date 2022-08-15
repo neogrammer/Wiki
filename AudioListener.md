@@ -7,6 +7,19 @@ See [[AudioEmitter]].
 
 **Related tutorial:** [[Using positional audio]]
 
+```mermaid
+classDiagram
+direction LR
+class AudioListener{
+   +SetPosition
+   +SetVelocity
+   +SetOrientation
+   +Update()
+}
+class X3DAUDIO_LISTENER
+X3DAUDIO_LISTENER <|-- AudioListener
+```
+
 # Header
 ```cpp
 #include <Audio.h>
