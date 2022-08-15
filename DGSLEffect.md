@@ -9,6 +9,61 @@ See also [[DGSLEffectFactory|EffectFactory]]
 
 **Related tutorials:** [[Creating custom shaders with DGSL]]
 
+```mermaid
+classDiagram
+class IEffect{
+    <<Interface>>
+    +Apply()
+    +GetVertexShaderBytecode()
+}
+class IEffectMatrices{
+    <<Interface>>
+    +SetWorld()
+    +SetView()
+    +SetProjection()
+    +SetMatrices()
+}
+class IEffectLights{
+    <<Interface>>
+    +SetLightingEnabled()
+    +SetAmbientLightColor()
+    +SetLightEnabled()
+    +SetLightDirection()
+    +SetLightDiffuseColor()
+    +SetLightSpecularColor()
+    +EnableDefaultLighting()
+}
+class DGSLEffect{
+    +SetAmbientColor()
+    +SetDiffuseColor()
+    +SetEmissiveColor()
+    +SetSpecularColor()
+    +SetSpecularPower()
+    +DisableSpecular()
+    +SetAlpha()
+    +SetColorAndAlpha()
+    +SetUVTransform()
+    +SetViewport()
+    +SetTime()
+    +SetAlphaDiscardEnable()
+    +SetVertexColorEnabled()
+    +SetTextureEnabled()
+    +SetTexture()
+}
+DGSLEffect --|> IEffect
+DGSLEffect --|> IEffectMatrices
+DGSLEffect --|> IEffectLights
+class IEffectSkinning{
+    <<Interface>>
+    +SetWeightsPerVertex()
+    +SetBoneTransforms()
+    +ResetBoneTransforms()
+}
+class SkinnedDGSLEffect
+DGSLEffect <|-- SkinnedDGSLEffect 
+SkinnedDGSLEffect --|> IEffectSkinning
+```
+
 # Header
 ```cpp
 #include <Effects.h>
