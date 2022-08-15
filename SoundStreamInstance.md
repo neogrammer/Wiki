@@ -9,6 +9,29 @@ Note that the SoundStreamInstance refers to data 'owned' by the WaveBank. Theref
 
 **Related tutorial:** [[Making use of wave banks]]
 
+```mermaid
+classDiagram
+class WaveBank{
+   +GetFormat
+   +GetSampleDuration
+   +IsStreamingBank
+   +Play()
+   +CreateInstance()
+   +CreateStreamInstance()
+}
+class SoundStreamInstance{
+   +SetVolume
+   +SetPitch
+   +SetPan
+   +Play()
+   +Stop()
+   +Pause()
+   +Resume()
+   +Apply3D(AudioListener,AudioEmitter)
+}
+WaveBank --> SoundStreamInstance
+```
+
 # Header
 ```cpp
 #include <Audio.h>
