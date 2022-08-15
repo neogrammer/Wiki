@@ -9,6 +9,35 @@ Note that the SoundEffectInstance does not copy the wave data and instead refers
 
 **Related tutorials:** [[Creating and playing sounds]], [[Making use of wave banks]], [[Using positional audio]]
 
+```mermaid
+classDiagram
+class SoundEffect{
+   +GetFormat
+   +GetSampleDuration
+   +Play()
+   +CreateInstance()
+}
+class WaveBank{
+   +GetFormat
+   +GetSampleDuration
+   +Play()
+   +CreateInstance()
+   +CreateStreamInstance()
+}
+class SoundEffectInstance{
+   +SetVolume
+   +SetPitch
+   +SetPan
+   +Play()
+   +Stop()
+   +Pause()
+   +Resume()
+   +Apply3D(AudioListener,AudioEmitter)
+}
+SoundEffect --> SoundEffectInstance
+WaveBank --> SoundEffectInstance
+```
+
 # Header
 ```cpp
 #include <Audio.h>
