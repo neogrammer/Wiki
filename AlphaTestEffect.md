@@ -34,8 +34,8 @@ class AlphaTestEffect{
     +SetReferenceAlpha()
 }
 AlphaTestEffect --|> IEffect
-AlphaTestEffect--|> IEffectMatrices
-AlphaTestEffect--|> IEffectFog
+AlphaTestEffect --|> IEffectMatrices
+AlphaTestEffect --|> IEffectFog
 ```
 
 # Header
