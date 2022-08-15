@@ -7,6 +7,64 @@ This is a native Direct3D 11 implementation of the built-in EnvironmentMapEffect
 
 **Related tutorials:** [[Using advanced shaders]]
 
+```mermaid
+classDiagram
+class Mapping{
+    <<enumeration>>
+    Mapping_Cube
+    Mapping_Sphere
+    Mapping_DualParabola
+}
+class IEffect{
+    <<Interface>>
+    +Apply()
+    +GetVertexShaderBytecode()
+}
+class IEffectMatrices{
+    <<Interface>>
+    +SetWorld()
+    +SetView()
+    +SetProjection()
+    +SetMatrices()
+}
+class IEffectLights{
+    <<Interface>>
+    +SetLightingEnabled()
+    +SetPerPixelLighting()
+    +SetAmbientLightColor()
+    +SetLightEnabled()
+    +SetLightDirection()
+    +SetLightDiffuseColor()
+    +SetLightSpecularColor()
+    +EnableDefaultLighting()
+}
+class IEffectFog{
+    <<Interface>>
+    +SetFogEnabled()
+    +SetFogStart()
+    +SetFogEnd()
+    +SetFogColor()
+}
+class EnvironmentMapEffect{
+    +SetDiffuseColor()
+    +SetEmissiveColor()
+    +SetAlpha()
+    +SetColorAndAlpha()
+    +SetTexture()
+    +SetEnvironmentMap()
+    +SetMode()
+    +SetEnvironmentMapAmount()
+    +SetEnvironmentMapSpecular()
+    +SetFresnelFactor()
+    +SetBiasedVertexNormals()
+}
+EnvironmentMapEffect .. Mapping
+EnvironmentMapEffect --|> IEffect
+EnvironmentMapEffect --|> IEffectMatrices
+EnvironmentMapEffect --|> IEffectLights
+EnvironmentMapEffect --|> IEffectFog
+```
+
 # Header
 ```cpp
 #include <Effects.h>
