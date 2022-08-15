@@ -13,6 +13,7 @@ DirectX Tool Kit also includes the following built-in effects:
 * [[NormalMapEffect]] which extends ``BasicEffect`` to support normal maps and optional specular map and/or GPU instancing.
 * [[SkinnedNormalMapEffect|NormalMapEffect]] which extends ``SkinnedEffect`` to support normal maps and optional specular map.
 * [[PBREffect]] which implements a Disney-style (Roughness/Metalness workflow) Physically-Based Renderer effect using image-based lighting. This effect also supports GPU instancing.
+* [[SkinnedPBREffect|PBREffect]] which extends ``SkinnedEffect`` to support PBR.
 * [[DebugEffect]] which implements debugging shaders such as visualization of normals, tangents, and bi-tangents as well as supporting hemispherical ambient lighting. This effect also supports GPU instancing.
 * [[DGSLEffect]] and [[SkinnedDGSLEffect|DGSLEffect]] which support the [Visual Studio Shader Designer](https://docs.microsoft.com/visualstudio/designers/shader-designer) (DGSL) content pipeline with up to 8 textures.
 
