@@ -11,6 +11,57 @@ See also [[PBREffectFactory|EffectFactory]]
 
 ![PBR effect](https://github.com/Microsoft/DirectXTK/wiki/images/pbreffect.png)
 
+```mermaid
+classDiagram
+class IEffect{
+    <<Interface>>
+    +Apply()
+    +GetVertexShaderBytecode()
+}
+class IEffectMatrices{
+    <<Interface>>
+    +SetWorld()
+    +SetView()
+    +SetProjection()
+    +SetMatrices()
+}
+class IEffectLights{
+    <<Interface>>
+    +SetLightEnabled()
+    +SetLightDirection()
+    +SetLightDiffuseColor()
+    +EnableDefaultLighting()
+}
+class PBREffect{
+    +SetAlpha()
+    +SetConstantAlbedo()
+    +SetConstantMetallic()
+    +SetConstantRoughness()
+    +SetAlbedoTexture()
+    +SetNormalTexture()
+    +SetRMATexture()
+    +SetEmissiveTexture()
+    +SetSurfaceTextures()
+    +SetIBLTextures()
+    +SetBiasedVertexNormals()
+    +SetInstancingEnabled()
+    +SetVelocityGeneration()
+    +SetRenderTargetSizeInPixels()
+}
+PBREffect--|> IEffect
+PBREffect--|> IEffectMatrices
+PBREffect--|> IEffectLights
+class IEffectSkinning{
+    <<Interface>>
+    +SetWeightsPerVertex()
+    +SetBoneTransforms()
+    +ResetBoneTransforms()
+}
+class SkinnedPBREffect
+PBREffect <|-- SkinnedPBREffect
+SkinnedPBREffect --|> IEffectSkinning
+```
+
 # Header
 ```cpp
 #include <Effects.h>
