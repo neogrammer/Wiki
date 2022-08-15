@@ -7,6 +7,66 @@
 
 **Related tutorials:** [[Using advanced shaders]], [[Multistream rendering and instancing]]
 
+```mermaid
+classDiagram
+class IEffect{
+    <<Interface>>
+    +Apply()
+    +GetVertexShaderBytecode()
+}
+class IEffectMatrices{
+    <<Interface>>
+    +SetWorld()
+    +SetView()
+    +SetProjection()
+    +SetMatrices()
+}
+class IEffectLights{
+    <<Interface>>
+    +SetAmbientLightColor()
+    +SetLightEnabled()
+    +SetLightDirection()
+    +SetLightDiffuseColor()
+    +SetLightSpecularColor()
+    +EnableDefaultLighting()
+}
+class IEffectFog{
+    <<Interface>>
+    +SetFogEnabled()
+    +SetFogStart()
+    +SetFogEnd()
+    +SetFogColor()
+}
+class NormalMapEffect{
+    +SetDiffuseColor()
+    +SetEmissiveColor()
+    +SetSpecularColor()
+    +SetSpecularPower()
+    +DisableSpecular()
+    +SetAlpha()
+    +SetColorAndAlpha()
+    +SetVertexColorEnabled()
+    +SetBiasedVertexNormals()
+    +SetTexture()
+    +SetNormalTexture()
+    +SetSpecularTexture()
+    +SetInstancingEnabled()
+}
+NormalMapEffect --|> IEffect
+NormalMapEffect --|> IEffectMatrices
+NormalMapEffect --|> IEffectLights
+NormalMapEffect --|> IEffectFog
+class IEffectSkinning{
+    <<Interface>>
+    +SetWeightsPerVertex()
+    +SetBoneTransforms()
+    +ResetBoneTransforms()
+}
+class SkinnedNormalMapEffect
+NormalMapEffect <|-- SkinnedNormalMapEffect 
+SkinnedNormalMapEffect --|> IEffectSkinning
+```
+
 # Header
 ```cpp
 #include <Effects.h>
