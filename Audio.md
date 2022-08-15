@@ -35,6 +35,7 @@ class SoundEffect{
 class WaveBank{
    +GetFormat
    +GetSampleDuration
+   +IsStreamingBank
    +Play()
    +CreateInstance()
    +CreateStreamInstance()
