@@ -5,6 +5,40 @@ This is a native Direct3D 11 implementation of the built-in DualTextureEffect fr
 
 ![Dual texture map](https://github.com/Microsoft/DirectXTK/wiki/images/DualTextureEffect.png)
 
+```mermaid
+classDiagram
+class IEffect{
+    <<Interface>>
+    +Apply()
+    +GetVertexShaderBytecode()
+}
+class IEffectMatrices{
+    <<Interface>>
+    +SetWorld()
+    +SetView()
+    +SetProjection()
+    +SetMatrices()
+}
+class IEffectFog{
+    <<Interface>>
+    +SetFogEnabled()
+    +SetFogStart()
+    +SetFogEnd()
+    +SetFogColor()
+}
+class DualTextureEffect{
+    +SetDiffuseColor()
+    +SetAlpha()
+    +SetColorAndAlpha()
+    +SetTexture()
+    +SetTexture2()
+    +SetVertexColorEnabled()
+}
+DualTextureEffect --|> IEffect
+DualTextureEffect --|> IEffectMatrices
+DualTextureEffect --|> IEffectFog
+```
+
 # Header
 ```cpp
 #include <Effects.h>
