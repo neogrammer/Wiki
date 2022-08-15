@@ -10,29 +10,34 @@ std::shared_ptr<IEffect> effect;
 ```mermaid
 classDiagram
 class IEffect{
+    <<Interface>>
     +Apply()
     +GetVertexShaderBytecode()
 }
 class IEffectMatrices{
+    <<Interface>>
     +SetWorld
     +SetView
     +SetProjection
 }
 class IEffectLights{
+    <<Interface>>
     +EnableDefaultLighting()
 }
 class IEffectFog{
+    <<Interface>>
     +SetFogEnabled
     +SetFogColor
 }
 class IEffectSkinning{
+    <<Interface>>
     +SetBoneTransforms
     +ResetBoneTransforms
 }
-IEffect <|-- IEffectMatrices
-IEffect <|-- IEffectLights
-IEffect <|-- IEffectFog
-IEffect <|-- IEffectSkinning
+IEffect --> IEffectMatrices
+IEffect --> IEffectLights
+IEffect --> IEffectFog
+IEffect --> IEffectSkinning
 ```
 
 # Drawing
