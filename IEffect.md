@@ -16,23 +16,34 @@ class IEffect{
 }
 class IEffectMatrices{
     <<Interface>>
-    +SetWorld
-    +SetView
-    +SetProjection
+    +SetWorld()
+    +SetView()
+    +SetProjection()
+    +SetMatrices()
 }
 class IEffectLights{
     <<Interface>>
+    +SetLightingEnabled()
+    +SetPerPixelLighting()
+    +SetAmbientLightColor()
+    +SetLightEnabled()
+    +SetLightDirection()
+    +SetLightDiffuseColor()
+    +SetLightSpecularColor()
     +EnableDefaultLighting()
 }
 class IEffectFog{
     <<Interface>>
-    +SetFogEnabled
-    +SetFogColor
+    +SetFogEnabled()
+    +SetFogStart()
+    +SetFogEnd()
+    +SetFogColor()
 }
 class IEffectSkinning{
     <<Interface>>
-    +SetBoneTransforms
-    +ResetBoneTransforms
+    +SetWeightsPerVertex()
+    +SetBoneTransforms()
+    +ResetBoneTransforms()
 }
 IEffect --> IEffectMatrices
 IEffect --> IEffectLights
