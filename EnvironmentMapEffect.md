@@ -29,7 +29,6 @@ class IEffectMatrices{
 }
 class IEffectLights{
     <<Interface>>
-    +SetLightingEnabled()
     +SetPerPixelLighting()
     +SetAmbientLightColor()
     +SetLightEnabled()
@@ -124,7 +123,7 @@ This effect requires ``SV_Position``, ``NORMAL`` and ``TEXCOORD``.
 * **SetBiasedVertexNormals**: Enables support for compressed vertex normals which require ``*2 - 1`` biasing at runtime such as ``DXGI_FORMAT_R10G10B10A2_UNORM``.
 
 # Remarks
-EnvironmentMapEffect computes all specular effects using the cubemap and specular factor, and always performs vertex or per-pixel lighting.
+EnvironmentMapEffect computes all specular effects using the cubemap and specular factor, and always performs vertex or per-pixel lighting. Calling ``SetLightingEnabled(false);`` on an instance of **EnvironmentMapEffect** will throw a C++ exception.
 
 For the sphere and dual-parabolic mapping modes, per-pixel lighting is always in effect.
 
