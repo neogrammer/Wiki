@@ -39,42 +39,36 @@ class BasicEffect{
     +SetTexture
     +EnableDefaultLighting()
 }
-IEffect <|-- BasicEffect
+BasicEffect --|> IEffect
 class AlphaTestEffect{
     +SetAlphaFunction
     +SetReferenceAlpha
     +SetTexture
 }
-IEffect <|-- AlphaTestEffect
+AlphaTestEffect --|> IEffect
 class DualTextureEffect{
     +SetTexture
     +SetTexture2
 }
-IEffect <|-- DualTextureEffect
+DualTextureEffect --|> IEffect
 class EnvironmentMapEffect{
     +SetTexture
     +SetEnvironmentMap
     +SetMode()
 }
-IEffect <|-- EnvironmentMapEffect
+EnvironmentMapEffect --|> IEffect
 class SkinnedEffect{
     +SetTexture
     +SetBoneTransforms()
 }
-IEffect <|-- SkinnedEffect
+SkinnedEffect --|> IEffect
 class DebugEffect{
     +SetHemisphericalAmbientColor
     +SetMode()
 }
-IEffect <|-- DebugEffect
-```
-
-```mermaid
-classDiagram
-class IEffect
-<<Interface>>  IEffect
+DebugEffect --|> IEffect
 class DGSLEffect
-IEffect <|-- DGSLEffect
+DGSLEffect --|> IEffect
 class SkinnedDGSLEffect{
     +SetBoneTransforms()
 }
@@ -84,7 +78,7 @@ class NormalMapEffect{
     +SetNormalTexture
     +SetSpecularTexture
 }
-IEffect <|-- NormalMapEffect
+NormalMapEffect --|> IEffect
 class SkinnedNormalMapEffect{
     +SetBoneTransforms()
 }
@@ -95,7 +89,7 @@ class PBREffect{
     +SetRMATexture
     +SetEmissiveTexture
 }
-IEffect <|-- PBREffect
+PBREffect --|> IEffect
 class SkinnedPBREffect{
     +SetBoneTransforms()
 }
