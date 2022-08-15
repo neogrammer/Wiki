@@ -5,6 +5,40 @@ This effect provides a way to visualize normals, tangents, and binormals/bitange
 
 **Related tutorials:** [[Using advanced shaders]], [[Multistream rendering and instancing]]
 
+```mermaid
+classDiagram
+class Mode{
+    <<enumeration>>
+    Mode_Default
+    Mode_Normals
+    Mode_Tangents
+    Mode_BiTangents
+}
+class IEffect{
+    <<Interface>>
+    +Apply()
+    +GetVertexShaderBytecode()
+}
+class IEffectMatrices{
+    <<Interface>>
+    +SetWorld()
+    +SetView()
+    +SetProjection()
+    +SetMatrices()
+}
+class DebugEffect{
+    +SetMode()
+    +SetHemisphericalAmbientColor()
+    +SetAlpha()
+    +SetVertexColorEnabled()
+    +SetBiasedVertexNormals()
+    +SetInstancingEnabled()
+}
+DebugEffect  .. Mode
+DebugEffect --|> IEffect
+DebugEffect --|> IEffectMatrices
+```
+
 # Header
 ```cpp
 #include <Effects.h>
