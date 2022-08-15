@@ -3,6 +3,41 @@
 
 This is a native Direct3D 11 implementation of the built-in AlphaTestEffect from XNA Game Studio 4 (``Microsoft.Xna.Framework.Graphics.AlphaTestEffect``) which supports per-pixel alpha testing, vertex color, and fogging.
 
+```mermaid
+classDiagram
+class IEffect{
+    <<Interface>>
+    +Apply()
+    +GetVertexShaderBytecode()
+}
+class IEffectMatrices{
+    <<Interface>>
+    +SetWorld()
+    +SetView()
+    +SetProjection()
+    +SetMatrices()
+}
+class IEffectFog{
+    <<Interface>>
+    +SetFogEnabled()
+    +SetFogStart()
+    +SetFogEnd()
+    +SetFogColor()
+}
+class AlphaTestEffect{
+    +SetDiffuseColor()
+    +SetAlpha()
+    +SetColorAndAlpha()
+    +SetVertexColorEnabled()
+    +SetTexture()
+    +SetAlphaFunction()
+    +SetReferenceAlpha()
+}
+AlphaTestEffect --|> IEffect
+AlphaTestEffect--|> IEffectMatrices
+AlphaTestEffect--|> IEffectFog
+```
+
 # Header
 ```cpp
 #include <Effects.h>
