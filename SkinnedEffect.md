@@ -5,6 +5,61 @@ This is a native Direct3D 11 implementation of the built-in SkinnedEffect from X
 
 **Related tutorial:** [[Using skinned models]]
 
+```mermaid
+classDiagram
+class IEffect{
+    <<Interface>>
+    +Apply()
+    +GetVertexShaderBytecode()
+}
+class IEffectMatrices{
+    <<Interface>>
+    +SetWorld()
+    +SetView()
+    +SetProjection()
+    +SetMatrices()
+}
+class IEffectLights{
+    <<Interface>>
+    +SetPerPixelLighting()
+    +SetAmbientLightColor()
+    +SetLightEnabled()
+    +SetLightDirection()
+    +SetLightDiffuseColor()
+    +SetLightSpecularColor()
+    +EnableDefaultLighting()
+}
+class IEffectFog{
+    <<Interface>>
+    +SetFogEnabled()
+    +SetFogStart()
+    +SetFogEnd()
+    +SetFogColor()
+}
+class IEffectSkinning{
+    <<Interface>>
+    +SetWeightsPerVertex()
+    +SetBoneTransforms()
+    +ResetBoneTransforms()
+}
+class SkinnedEffect{
+    +SetDiffuseColor()
+    +SetEmissiveColor()
+    +SetSpecularColor()
+    +SetSpecularPower()
+    +DisableSpecular()
+    +SetAlpha()
+    +SetColorAndAlpha()
+    +SetTexture()
+    +SetBiasedVertexNormals()
+}
+SkinnedEffect --|> IEffect
+SkinnedEffect --|> IEffectMatrices
+SkinnedEffect --|> IEffectLights
+SkinnedEffect --|> IEffectFog
+SkinnedEffect --|> IEffectSkinning
+```
+
 # Header
 ```cpp
 #include <Effects.h>
