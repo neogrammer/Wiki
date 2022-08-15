@@ -23,11 +23,6 @@ See also [[EffectFactory]]
 
 **Related tutorials:** [[Simple rendering]], [[Using skinned models]], [[Using advanced shaders]], [[Creating custom shaders with DGSL]], [[Multistream rendering and instancing]], [[Authoring an Effect]]
 
-# Header
-```cpp
-#include <Effects.h>
-```
-
 ```mermaid
 classDiagram
 class IEffect{
@@ -95,6 +90,11 @@ class SkinnedPBREffect{
     +SetBoneTransforms()
 }
 PBREffect <|-- SkinnedPBREffect
+```
+
+# Header
+```cpp
+#include <Effects.h>
 ```
 
 # Initialization
