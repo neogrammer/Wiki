@@ -14,7 +14,6 @@ classDiagram
 class SoundEffect{
    +GetFormat
    +GetSampleDuration
-   +IsStreamingBank
    +Play()
    +CreateInstance()
 }
