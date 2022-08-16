@@ -73,8 +73,6 @@ class DynamicSoundEffectInstance{
 }
 AudioEngine -- SoundEffect
 AudioEngine -- WaveBank
-AudioEngine -- SoundEffectInstance
-AudioEngine -- SoundStreamInstance
 AudioEngine -- DynamicSoundEffectInstance
 SoundEffect --> SoundEffectInstance
 WaveBank --> SoundEffectInstance
