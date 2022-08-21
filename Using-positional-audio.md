@@ -315,6 +315,17 @@ Try setting the reverb to different presets and see how it impacts the sound. Th
 
 The *DirectX Tool Kit for Audio* implementation uses a submix-voice to apply the reverb, and directs only the 3D audio sources to this voice. One-shot voices and other instances are therefore not impacted by the reverb settings.
 
+```mermaid
+graph LR;
+   SourceVoice2D --> MasteringVoice;
+   SourceVoice3D --> MasteringVoice;
+   SourceVoice3D --> SubmixVoice;
+   SubmixVoice --> ReverbFX;
+   ReverbFX --> MasteringVoice;
+   MasteringVoice --> MasteringLimiter;
+   MasteringLimiter --> WASAPIAudioOutput;
+```
+
 # More to explore
 
 * The [[AudioEmitter]] defaults assume your source sound is mono/single-channel. If you are using a multi-channel sound (stereo, etc.) then you need to set ``ChannelCount`` (i.e. something like ``m_emitter.ChannelCount = m_effect->GetChannelCount();``). Also note that ``m_emitter.pCone`` is ignored for multi-channel emitters. See the *AudioEmitter* ``EnableDefaultMultiChannel`` helper method as well.
