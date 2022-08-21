@@ -284,9 +284,10 @@ graph TD;
    MSAA --> |Resolve| HRT[FP Render Target]
    HRT --> |PostProcess| HRT
    HRT --> |ToneMap| RT[SDR Render Target]
-   UI --> |Render| RT
-   RT --> |PostProcess| RT2[Pass Render Target]
-   RT2 --> |HDR10 Signal Prep| SC[SwapChain Render Target]
+   RT --> |PostProcess| RT
+   RT --> |PostProcess| FRT[Render Target]
+   UI --> |Render| FRT
+   FRT --> |HDR10 Signal Prep| SC[SwapChain Render Target]
 ```
 
 # More to explore
