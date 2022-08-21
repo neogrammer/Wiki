@@ -266,6 +266,29 @@ m_toneMap->Process(context);
 
 > If you have difficulty getting HDR10 output to work on your system, be sure to read [HDR and WCG color settings in Windows 10](https://support.microsoft.com/en-us/help/4040263/windows-10-hdr-advanced-color-settings)
 
+## Technical Note
+
+For this tutorial, we've created very simple presentation path:
+
+```mermaid
+graph LR;
+   S[Scene] --> |Render| HRT[FP Render Target]
+   HRT --> |ToneMap or HDR10 Signal Prep| SC[SwapChain Render Target]
+```
+
+More realistic scenarios involve additional postprocessing and anti-aliasing steps:
+
+```mermaid
+graph TD;
+   S[Scene] --> |Render| MSAA[MSAA Render Target]
+   MSAA --> |Resolve| HRT[FP Render Target]
+   HRT --> |PostProcess| HRT
+   HRT --> |ToneMap| RT[SDR Render Target]
+   UI --> |Render| RT
+   RT --> |PostProcess| RT2[Pass Render Target]
+   RT2 --> |HDR10 Signal Prep| SC[SwapChain Render Target]
+```
+
 # More to explore
 
 * The same technique used here for tone-mapping and HDR10 color conversion can be used for other post-processing effects. See [[PostProcess]], [[BasicPostProcess]] and [[DualPostProcess]].
