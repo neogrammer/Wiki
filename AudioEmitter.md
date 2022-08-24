@@ -47,7 +47,7 @@ In addition to setting the members of ``X3DAUDIO_EMITTER`` directly, these helpe
 
 * **Update** (XMVECTOR newPos, XMVECTOR upDir, float dt): Computes a direction and velocity for the emitter based on the current Position value, the new position, and the provided delta time (&#916;t). This updates the OrientFront/OrientTop to match, and then sets the Position to the new position. If dt is 0, the update is skipped.
 
-* **EnableDefaultCurves** sets default volume, LFE, LPF, and reverb curves.
+* **EnableDefaultCurves** sets default linear volume, LFE, LPF, and reverb curves.
 
 > You must use a distinct instance of ``AudioEmitter`` for each active 3D sound if using the **Update** method. Otherwise, if you reuse the emitter instance for multiple sounds you need to explicitly initialize both the position and velocity before each ``Apply3D`` call.
 
@@ -97,7 +97,7 @@ Be aware that ``pCone`` is ignored for multi-channel emitters.
 # Custom distance curves
 The AudioEmitter constructor sets pVolumeCurve, pLFECurve, pLPFDirectCurve, pLPFReverbCurve, and pReverbCurve to nullptr which uses XAudio2 default curves.  Any custom curve definitions must have a pointer to valid memory at the time Apply3D is called.
 
-Note that for X3DAudio, ``pVolumeCurve`` and ``pLFECurve`` must be non-null. Use the **EnableDefaultCurves** if you don't wish to make use of custom curves.
+If ``pVolumeCurve`` or ``pLFECurve`` is nullptr, X3DAudio uses an inverse square curve. The curve set by **EnableDefaultCurves** is a linear curve.
 
 # Example
 
