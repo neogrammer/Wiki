@@ -8,7 +8,7 @@ The _DirectXTK for Audio_ components implement a low-level audio API similar to 
 * [[SoundEffectInstance]] -  Provides a single playing, looped, paused, or stopped instance of a sound. These support 3D positional audio and optionally reverb effects.
 * [[SoundStreamInstance]] - *SoundEffectInstance* for playing waves from a streaming XACT-style ``.xwb`` wave bank.
 * [[DynamicSoundEffectInstance]] - *SoundEffectInstance* where the application provides the audio data on demand.
-* [[WaveBank]] - A container class for sound resources packaged into an XACT-style ``.xwb`` wave bank, with support for directly playing one-shots and creating *SoundEffectInstance*s that refer to entries in the wave bank.
+* [[WaveBank]] - A container class for sound resources packaged into an XACT-style ``.xwb`` wave bank, with support for directly playing one-shots and creating *SoundEffectInstance* / *SoundStreamInstance* objects that refer to entries in the wave bank.
 * [[AudioListener]],  [[AudioEmitter]] - Utility classes used with ``SoundEffectInstance::Apply3D``.
 
 > DirectXTK for Audio uses XAudio 2. It does not make use of the legacy XACT Engine, XACT Cue, or XACT SoundBank.
@@ -82,16 +82,19 @@ WaveBank --> SoundStreamInstance
 ```mermaid
 classDiagram
 class AudioListener{
-   +SetPosition
-   +SetVelocity
-   +SetOrientation
+   +ListenerCone
+   +SetPosition()
+   +SetVelocity()
+   +SetOrientation()
    +Update()
 }
 class X3DAUDIO_LISTENER
 class AudioEmitter{
-   +SetPosition
-   +SetVelocity
-   +SetOrientation
+   +EmitterCone
+   +EmitterAzimuths
+   +SetPosition()
+   +SetVelocity()
+   +SetOrientation()
    +Update()
 }
 class X3DAUDIO_EMITTER
