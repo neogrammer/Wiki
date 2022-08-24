@@ -11,9 +11,10 @@ See [[AudioEmitter]].
 classDiagram
 direction LR
 class AudioListener{
-   +SetPosition
-   +SetVelocity
-   +SetOrientation
+   +ListenerCone
+   +SetPosition()
+   +SetVelocity()
+   +SetOrientation()
    +Update()
 }
 class X3DAUDIO_LISTENER
@@ -27,7 +28,7 @@ X3DAUDIO_LISTENER <|-- AudioListener
 
 # Initialization
 
-The default constructor creates a listener located at 0,0,0 facing ``-z`` and an up vector of ``+y``.
+The default constructor creates an omnidirectional listener located at 0,0,0 facing ``-z`` and an up vector of ``+y``.
 
 > When using left-handed coordinates, be sure to set ``OrientFront``
 
@@ -43,6 +44,10 @@ In addition to setting the members of ``X3DAUDIO_LISTENER`` directly, these help
 * **SetOrientationFromQuaternion** (XMVECTOR): Sets the OrientFront/OrientTop of the listener.
 
 * **Update** (XMVECTOR newPos, XMVECTOR upDir, float dt): Computes a direction and velocity for the listener based on the current Position value, the new position, and the provided delta time (&#916;t). This updates the OrientFront/OrientTop to match, and then sets the Position to the new position. If dt is 0, the update is skipped.
+
+* **SetOmnidirectional** sets the ``pCone`` value to nullptr indicating an omnidirectional listener (the default).
+
+* **SetCone** (X3DAUDIO_CONE) sets the ``pCone`` value to point to ``ListenerCone`` and copies the passed in cone parameters.
 
 # Example
 
