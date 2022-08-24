@@ -90,7 +90,7 @@ emitter.EnableDefaultMultiChannel(effect->GetChannelCount(), 10.f);
 ```
 
 # Directional Emitters
-AudioEmitter defaults to an omnidirectional emitter. To create a sound-cone, set the **pCone** member to point to a ``X3DAUDIO_CONE`` structure. The pointer must point to valid memory at the time Apply3D is called.
+AudioEmitter defaults to an omnidirectional emitter. To create a sound-cone, set the **pCone** member to point to a ``X3DAUDIO_CONE`` structure. The pointer must point to valid memory at the time Apply3D is called. The **SetCone** helper uses the ``EmitterCone`` variable to store the cone settings.
 
 Be aware that ``pCone`` is ignored for multi-channel emitters.
 
