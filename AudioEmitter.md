@@ -11,9 +11,11 @@ See [[AudioListener]].
 classDiagram
 direction LR
 class AudioEmitter{
-   +SetPosition
-   +SetVelocity
-   +SetOrientation
+   +EmitterCone
+   +EmitterAzimuths
+   +SetPosition()
+   +SetVelocity()
+   +SetOrientation()
    +Update()
 }
 class X3DAUDIO_EMITTER
@@ -27,7 +29,7 @@ X3DAUDIO_EMITTER <|-- AudioEmitter
 
 # Initialization
 
-The default constructor creates a point omnidirectional emitter located at 0,0,0  facing ``-z`` and an up vector of ``+y`` for a mono source.
+The default constructor creates a point omnidirectional emitter located at 0,0,0 facing ``-z`` and an up vector of ``+y`` for a mono (single-channel) source.
 
 *CurveDistanceScaler* and *DopplerScaler* are set to 1 by default. *InnerRadius* is set to 0, and *InnerRadiusAngle* is set to ``X3DAUDIO_PI/4.0`` (45 degrees).
 
@@ -45,6 +47,12 @@ In addition to setting the members of ``X3DAUDIO_EMITTER`` directly, these helpe
 
 * **Update** (XMVECTOR newPos, XMVECTOR upDir, float dt): Computes a direction and velocity for the emitter based on the current Position value, the new position, and the provided delta time (&#916;t). This updates the OrientFront/OrientTop to match, and then sets the Position to the new position. If dt is 0, the update is skipped.
 
+* **SetOmnidirectional** sets the ``pCone`` value to nullptr indicating an omnidirectional emitter (the default).
+
+* **SetCone** (X3DAUDIO_CONE) sets the ``pCone`` value to point to ``EmitterCone`` and copies the passed in cone parameters.
+
+* **EnableDefaultCurves** sets default volume, LFE, LPF, and reverb curves. Note that for X3DAudio, ``pVolumeCurve`` and ``pLFECurve`` must be non-null.
+
 > You must use a distinct instance of ``AudioEmitter`` for each active 3D sound if using the **Update** method. Otherwise, if you reuse the emitter instance for multiple sounds you need to explicitly initialize both the position and velocity before each ``Apply3D`` call.
 
 # Multi-channel 3D Audio
@@ -53,6 +61,7 @@ X3DAudio supports multi-channel sound sources for 3D audio (i.e. stereo, quad, e
 ```cpp
 std::unique_ptr<SoundEffect> soundEffect;
 AudioEmitter emitter;
+emitter.EnableDefaultCurves();
 
 soundEffect = std::make_unique<SoundEffect>( audEngine.get(), L"sound.wav" );
 
