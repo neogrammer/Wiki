@@ -47,7 +47,7 @@ In addition to setting the members of ``X3DAUDIO_EMITTER`` directly, these helpe
 
 * **Update** (XMVECTOR newPos, XMVECTOR upDir, float dt): Computes a direction and velocity for the emitter based on the current Position value, the new position, and the provided delta time (&#916;t). This updates the OrientFront/OrientTop to match, and then sets the Position to the new position. If dt is 0, the update is skipped.
 
-* **EnableDefaultCurves** sets default linear volume, LFE, LPF, and reverb curves.
+* **EnableDefaultCurves** sets default linear volume, LFE, LPF, and reverb curves. These are consistent with the default curves used by the legacy XACT engine.
 
 > You must use a distinct instance of ``AudioEmitter`` for each active 3D sound if using the **Update** method. Otherwise, if you reuse the emitter instance for multiple sounds you need to explicitly initialize both the position and velocity before each ``Apply3D`` call.
 
