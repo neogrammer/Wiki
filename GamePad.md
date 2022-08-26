@@ -289,9 +289,14 @@ navigation.BackRequested([](const winrt::Windows::Foundation::IInspectable&, con
 });
 ```
 
+# Controller artwork
+
+[Xbox 360 Controller Images](https://github.com/SimonDarksideJ/XNAGameStudio/wiki/Xbox-360-Controller-Images)  
+[Xbox 360 Controller Buttons](https://github.com/SimonDarksideJ/XNAGameStudio/wiki/Xbox-360-Controller-Button-Images)
+
+See [[MakeSpriteFont]].
+
 # Further reading
 [DirectX Tool Kit: Now with GamePads](https://walbourn.github.io/directx-tool-kit-now-with-gamepads/)  
 [XInput and Windows 8](https://walbourn.github.io/xinput-and-windows-8/)  
 [XInput and XAudio2](https://walbourn.github.io/xinput-and-xaudio2/)  
-[Xbox 360 Controller Images](https://github.com/SimonDarksideJ/XNAGameStudio/wiki/Xbox-360-Controller-Images)  
-[Xbox 360 Controller Buttons](https://github.com/SimonDarksideJ/XNAGameStudio/wiki/Xbox-360-Controller-Button-Images)
