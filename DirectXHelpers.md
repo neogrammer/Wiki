@@ -155,4 +155,7 @@ The ``IID_PPV_ARGS`` macro works on any type that's derived from ``IUnknown``.
 
 For Xbox One XDK development, however, the Direct3D 11.X Runtime variant does not make use of the standard ``IUnknown`` interface (this is referred to as the 'monolithic' runtime vs. the Windows-style 'stock' runtime). This provides significant software optimizations for the fixed-hardware nature of the console, and generally is client-code compatible. The one exception is that this breaks ``IID_PPV_ARGS``. Therefore, the Direct3D 11.X headers include a ``IID_GRAPHICS_PPV_ARGS`` macro which works on the variant DirectX APIs in the same way.
 
-In order to simplify coding that is portable to both 'stock' PC and 'monolithic' Xbox, all usage of ``IID_PPV_ARGS`` within the library is replaced with ``IID_GRAPHICS_PPV_ARGS``. The ``DirectXHelpers.h`` provides an simple macro that maps ``IID_GRAPHICS_PPV_ARGS`` to ``IID_PPV_ARGS`` for non-Xbox platforms. This helper is available for client code as well.
+In order to simplify coding that is portable to both 'stock' PC and 'monolithic' Xbox, all usage of ``IID_PPV_ARGS`` within the library is replaced with ``IID_GRAPHICS_PPV_ARGS`` for graphics APIs. The ``DirectXHelpers.h`` provides an simple macro that maps ``IID_GRAPHICS_PPV_ARGS`` to ``IID_PPV_ARGS`` for non-Xbox platforms. This helper is available for client code as well.
+
+> Note that ``IID_PPV_ARGS`` is still used on Xbox for COM APIs like the Windows Imaging Component (WIC).
+
