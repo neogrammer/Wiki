@@ -36,7 +36,7 @@ The **Draw** method has many overloads with parameters controlling:
 * Optional source rectangle (in units of pixels) for drawing just part of a texture (i.e. a sprite sheet)
 * Tint color (defaults to 1,1,1,1 which means 'no tinting')
 * Rotation (in radians)
-* Origin point (in units of pixels if using the default transformation): position, scaling and rotation are relative to this. This defaults to (0,0) which is the upper-left of the sprite image. If you want to use the center of the sprite, for example, set the origin to ``(width / 2), (height / 2)``.
+* Origin point (in units of pixels if using the default transformation): position, scaling and rotation are relative to this point. This defaults to (0,0) which is the upper-left of the sprite image. If you want to use the center of the sprite, for example, set the origin to ``(width / 2), (height / 2)``.
 * Scale
 * SpriteEffects enum (for horizontal or vertical mirroring)
 * Layer depth (for sorting)
