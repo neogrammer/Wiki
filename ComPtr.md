@@ -14,7 +14,7 @@ In keeping with C++ best practice, you should use fully-qualified names in ``.h`
 Microsoft::WRL::ComPtr<T> variable;
 ```
 
-In ``.cpp`` source files, you can add the following to your module to make it less verbose to use ComPtr:
+In ``.cpp`` source files, after including all required headers you can add the following to your module to make it less verbose to use ComPtr:
 
 ```cpp
 using Microsoft::WRL::ComPtr;
