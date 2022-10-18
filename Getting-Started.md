@@ -48,7 +48,7 @@ A few features such as [[DebugEffect]], [[DGSLEffect]], [[NormalMapEffect]], [[P
 # Software setup
 For learning purposes, these instructions are going to focus on the following setup:
 
-* Visual Studio 2019 (16.9 or later) or VS 2022 Community, Professional, Premium, or Ultimate
+* Visual Studio 2019 (16.11) or VS 2022 Community, Professional, Premium, or Ultimate
 * Windows 10 SDK ([19041](https://walbourn.github.io/windows-10-may-2020-update-sdk/) is the minimum supported version)
 * Windows 7 Service Pack 1, Windows 8.1, Windows 10 (May 2020 Update a.k.a. Version 2004 or later is recommended), or Windows 11.
 
