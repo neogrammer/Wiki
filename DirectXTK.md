@@ -98,7 +98,7 @@ In your application's solution, right-click on the Solution and use **Add \ Exis
  </tr>
 </table>
 
-> For VS 2019, use of the 16.9 update or later is required.
+> For VS 2019, use of the [16.11](https://walbourn.github.io/vs-2019-update-11/) is required as all previous versions are no longer supported.
 
 <table>
  <tr>
