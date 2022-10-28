@@ -58,6 +58,6 @@ enum|Notes
 
 # Further reading
 
-Reinhard et al. "Photographic Tone Reproduction for Digital Images" [PDF](http://www.cs.utah.edu/~reinhard/cdrom/tonemap.pdf)  
+Reinhard et al., "Photographic tone reproduction for digital images", *ACM Transactions on Graphics*, Volume 21, Issue 3 (July 2002). [ACM DL](https://dl.acm.org/doi/10.1145/566654.566575)   
 [Tone mapping](https://wikipedia.org/wiki/Tone_mapping)  
 [High-dynamic-range video](https://wikipedia.org/wiki/High-dynamic-range_video)  
