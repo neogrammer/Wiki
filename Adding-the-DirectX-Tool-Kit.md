@@ -54,6 +54,8 @@ add_subdirectory(${CMAKE_SOURCE_DIR}/DirectXTK ${CMAKE_BINARY_DIR}/bin/CMake/Dir
 target_link_libraries(${PROJECT_NAME} PRIVATE DirectXTK)
 ```
 
+> If using MinGW/GNUC, you should make use of the vcpkg solution instead. MinGW does not provide a working version of DirectXMath headers, and vcpkg will provide them via the **directxmath** port. Alternatively, you can manually build/install a DirectXMath instance directly from [GitHub](https://github.com/microsoft/DirectXMath).
+
 ## vcpkg C++ Package Manager
 For a CMake project, the *DirectX Tool Kit* is available as a CMake package, which you reference from your ``CMakeLists.txt`` as:
 
