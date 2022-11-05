@@ -130,7 +130,7 @@ hr = SaveWICTextureToFile( immContext.Get(), backBuffer.Get(),
              varValues[1].vt = VT_UI1;
              varValues[1].bVal = WICTiffCompressionNone;
 
-             (void)props->Write( 2, options, varValues );
+             std::ignore = props->Write( 2, options, varValues );
           });
 ```
 
