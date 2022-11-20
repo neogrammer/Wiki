@@ -1,7 +1,7 @@
 ﻿# Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
-cmake_minimum_required (VERSION 3.13)
+cmake_minimum_required (VERSION 3.20)
 
 project (wikitest
   DESCRIPTION "DirectX Tool Kit for DirectX 11 Wiki Source Tester"
@@ -26,13 +26,6 @@ elseif(CMAKE_GENERATOR_PLATFORM MATCHES "^[Aa][Rr][Mm]$")
     set(DIRECTX_ARCH arm)
 elseif(CMAKE_GENERATOR_PLATFORM MATCHES "^[Aa][Rr][Mm]64$")
     set(DIRECTX_ARCH arm64)
-endif()
-
-if(MSVC)
-    # Use max Warning Level 
-    string(REPLACE "/W3 " "/Wall " CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
-    string(REPLACE "/W3 " "/Wall " CMAKE_CXX_FLAGS_DEBUG ${CMAKE_CXX_FLAGS_DEBUG})
-    string(REPLACE "/W3 " "/Wall " CMAKE_CXX_FLAGS_RELEASE ${CMAKE_CXX_FLAGS_RELEASE})
 endif()
 
 set(TEST_TARGETS ${PROJECT_NAME} spritefontdump wavdump xwbdump)
@@ -71,7 +64,7 @@ endif()
 
 if(MSVC)
     foreach(t IN LISTS TEST_TARGETS)
-      target_compile_options(${t} PRIVATE /fp:fast "$<$<NOT:$<CONFIG:DEBUG>>:/guard:cf>")
+      target_compile_options(${t} PRIVATE /Wall /GR- /fp:fast "$<$<NOT:$<CONFIG:DEBUG>>:/guard:cf>")
       target_link_options(${t} PRIVATE /DYNAMICBASE /NXCOMPAT)
     endforeach()
 
@@ -95,7 +88,7 @@ if(NOT ${DIRECTX_ARCH} MATCHES "^arm")
 endif()
 
 if ( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
-    set(WarningsEXE "-Wpedantic" "-Wextra" "-Wno-c++98-compat" "-Wno-c++98-compat-pedantic" "-Wno-gnu-anonymous-struct" "-Wno-language-extension-token" "-Wno-missing-prototypes" "-Wno-missing-variable-declarations" "-Wno-nested-anon-types")
+    set(WarningsEXE "-Wall" "-Wpedantic" "-Wextra" "-Wno-c++98-compat" "-Wno-c++98-compat-pedantic" "-Wno-gnu-anonymous-struct" "-Wno-language-extension-token" "-Wno-missing-prototypes" "-Wno-missing-variable-declarations" "-Wno-nested-anon-types")
     foreach(t IN LISTS TEST_TARGETS)
       target_compile_options(${t} PRIVATE ${WarningsEXE})
     endforeach()
@@ -131,6 +124,11 @@ if ( CMAKE_CXX_COMPILER_ID MATCHES "MSVC" )
     endif()
 
     set(WarningsEXE "/wd4061" "/wd4365" "/wd4514" "/wd4571" "/wd4668" "/wd4710" "/wd4820" "/wd5031" "/wd5032" "/wd5039" "/wd5045")
+
+    if (CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL 19.34)
+        list(APPEND WarningsEXE "/wd5262" "/wd5264")
+    endif()
+
     foreach(t IN LISTS TEST_TARGETS)
       target_compile_options(${t} PRIVATE ${WarningsEXE})
     endforeach()
