@@ -168,6 +168,15 @@ Vector3 eye, target, up;
 Matrix mView = XMMatrixLookAtLH( eye, target, up );
 ```
 
+|SimpleMath RH | DirectXMath LH|
+|---|---|
+|CreatePerspectiveFieldOfView|XMMatrixPerspectiveFovLH|
+|CreatePerspective|XMMatrixPerspectiveLH|
+|CreatePerspectiveOffCenter|XMMatrixPerspectiveOffCenterLH|
+|CreateOrthographic|XMMatrixOrthographicLH|
+|CreateOrthographicOffCenter|XMMatrixOrthographicOffCenterLH|
+|CreateLookAt|XMMatrixLookAtLH|
+
 With the methods ``Matrix::CreateBillboard`` and ``Matrix::CreateConstrainedBillboard`` the handedness is inherent in the default vectors for _cameraForward_, and _objectForward_ which are _right-handed_. You can make them behave _left-handed_ by providing appropriate vectors.
 
 ```cpp
