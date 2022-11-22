@@ -521,7 +521,15 @@ add_dependencies(${PROJECT_NAME} shaders)
 add_custom_command(
   TARGET ${PROJECT_NAME} POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
-    ${CMAKE_BINARY_DIR}/*.cso
+    ${CMAKE_BINARY_DIR}/BloomCombine.cso
+    $<TARGET_FILE_DIR:${PROJECT_NAME}>
+  TARGET ${PROJECT_NAME} POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy
+    ${CMAKE_BINARY_DIR}/BloomExtract.cso
+    $<TARGET_FILE_DIR:${PROJECT_NAME}>
+  TARGET ${PROJECT_NAME} POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy
+    ${CMAKE_BINARY_DIR}/SpriteVertexShader.cso
     $<TARGET_FILE_DIR:${PROJECT_NAME}>
     )
 ```
