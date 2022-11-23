@@ -12,6 +12,7 @@
 * Visual Studio 2019
 * clang/LLVM v12 - v15
 * GCC/MinGW 12.2
+* CMake 3.20
 
 # Related Projects
 
