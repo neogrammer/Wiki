@@ -506,6 +506,7 @@ set_source_files_properties(${HLSL_SHADER_FILES} PROPERTIES ShaderModel "4_0_lev
 
 foreach(FILE ${HLSL_SHADER_FILES})
   get_filename_component(FILE_WE ${FILE} NAME_WE)
+  list(APPEND CSO_SHADER_FILES ${CMAKE_BINARY_DIR}/${FILE_WE}.cso)
   get_source_file_property(shadertype ${FILE} ShaderType)
   get_source_file_property(shadermodel ${FILE} ShaderModel)
   add_custom_command(TARGET shaders
@@ -520,17 +521,8 @@ add_dependencies(${PROJECT_NAME} shaders)
 
 add_custom_command(
   TARGET ${PROJECT_NAME} POST_BUILD
-  COMMAND ${CMAKE_COMMAND} -E copy
-    ${CMAKE_BINARY_DIR}/BloomCombine.cso
-    $<TARGET_FILE_DIR:${PROJECT_NAME}>
-  TARGET ${PROJECT_NAME} POST_BUILD
-  COMMAND ${CMAKE_COMMAND} -E copy
-    ${CMAKE_BINARY_DIR}/BloomExtract.cso
-    $<TARGET_FILE_DIR:${PROJECT_NAME}>
-  TARGET ${PROJECT_NAME} POST_BUILD
-  COMMAND ${CMAKE_COMMAND} -E copy
-    ${CMAKE_BINARY_DIR}/SpriteVertexShader.cso
-    $<TARGET_FILE_DIR:${PROJECT_NAME}>
+  COMMAND ${CMAKE_COMMAND} -E copy ${CSO_SHADER_FILES} $<TARGET_FILE_DIR:${PROJECT_NAME}>
+    COMMAND_EXPAND_LISTS
     )
 ```
 
