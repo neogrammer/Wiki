@@ -519,11 +519,9 @@ endforeach(FILE)
 
 add_dependencies(${PROJECT_NAME} shaders)
 
-add_custom_command(
-  TARGET ${PROJECT_NAME} POST_BUILD
-  COMMAND ${CMAKE_COMMAND} -E copy ${CSO_SHADER_FILES} $<TARGET_FILE_DIR:${PROJECT_NAME}>
-    COMMAND_EXPAND_LISTS
-    )
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy ${CSO_SHADER_FILES} $<TARGET_FILE_DIR:${PROJECT_NAME}>
+                   COMMAND_EXPAND_LISTS)
 ```
 
 ## Technical notes
