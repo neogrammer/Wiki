@@ -37,6 +37,8 @@ See [Microsoft Docs](https://docs.microsoft.com/windows/win32/direct3d11/cd3d11-
 
 > There are some additional helpers related to DirectX 11 Video not covered here that are excluded by the preprocessor define ``D3D11_VIDEO_NO_HELPERS``.
 
+> The MinGW compiler Direct3D 11 headers are missing `CD3D11_VIEWPORT` and `CD3D11_DEPTH_STENCIL_VIEW_DESC` along with `D3D11_MIN_DEPTH` and `D3D11_MAX_DEPTH`.
+
 # Exception-safe Direct3D 11 resource locking
 Modern C++ development strongly encourages use of the [RAII](http://wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern for exception-safe resource management, ensuring that resources are properly cleaned up if C++ exceptions are thrown. Even without exception handling, it's generally cleaner code to use RAII and rely on the C++ scope variables rules to handle cleanup. Most of these cases are handled by the STL classes such as ``std::unique_ptr``, ``std::shared_ptr``, etc. and the recommended COM smart pointer [[``Microsoft::WRL::ComPtr``|ComPtr]] for Direct3D reference counted objects. One case that isn't so easily managed with existing classes is when you are mapping staging/dynamic Direct3D 11 resources. ``MapGuard`` solves this problem, and is modeled after ``std::lock_mutex``.
 
