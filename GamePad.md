@@ -213,7 +213,7 @@ For Microsoft GDK, this class is implemented using _GameInput_ interfaces rather
 
 GameInput is supported for Xbox One and Xbox Series X|S using the Microsoft GDK. GameInput is supported on Windows PC as of the June 2022 release of the Microsoft GDK.
 
-## Xbox One
+## Xbox One (Windows.Xbox.Input)
 On Xbox One using the legacy Xbox One XDK, this class is implemented using the _Windows.Xbox.Input_ interfaces rather than XInput. It is abstracted to return the same structures. Here are a few notes:
 
 * state.packet is a timestamp in "Universal time" format.
