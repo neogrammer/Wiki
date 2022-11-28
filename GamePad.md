@@ -178,16 +178,18 @@ The GamePad object and the underlying XInput APIs are polling based. Typically t
 
 # Platform notes
 
-## Windows
+## Windows (XInput)
 For the Windows platform, the GamePad class ensures that attempts to locate unconnected controllers do not happen too frequently to avoid a potential performance issue with XInput.
 
 When built for Windows 8.0 or 8.1, it makes use of XInput 1.4 (linking to ``xinput.lib``). When built for down-level support, it makes use of XInput 9.1.0 which avoids the need for any dependency on the legacy DirectSetup (linking to ``xinput9_1_0.lib``).
 
+> When building with the MinGW toolset, the GamePad uses XInput and you should explicitly link with ``xinput1_4.lib`` or ``xinput9_1_0.lib``.
+
+## Windows (Windows.Gaming.Input)
+
 When built for Windows 10, it makes use of ``Windows.Gaming.Input``. This class assumes that the client code has called ``Windows::Foundation::Initialize`` as needed.
 
 > For a Universal Windows Platform (UWP) app, the Windows Runtime (and COM generally) is initialized by the C/C++ Run-Time. For a classic Windows desktop application you have to do this explicitly:
-
-> When building with the MinGW toolset, you should explicitly link with ``xinput1_4.lib`` or ``xinput9_1_0.lib``.
 
 ```cpp
 Microsoft::WRL::Wrappers::RoInitializeWrapper initialize(RO_INIT_MULTITHREADED);
