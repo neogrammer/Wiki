@@ -211,10 +211,10 @@ For Microsoft GDK, this class is implemented using _GameInput_ interfaces rather
 * ``c_MergedInput`` is supported for ``GetState``
 * ``Capabilities::id`` is ``APP_LOCAL_DEVICE_ID``. The VID and PID are returned as reported by GameInput.
 
-> GameInput is supported on Windows PC as of the June 2022 release of the Microsoft GDK.
+GameInput is supported for Xbox One and Xbox Series X|S using the Microsoft GDK. GameInput is supported on Windows PC as of the June 2022 release of the Microsoft GDK.
 
 ## Xbox One
-On Xbox One using Xbox One XDK, this class is implemented using the _Windows.Xbox.Input_ interfaces rather than XInput. It is abstracted to return the same structures. Here are a few notes:
+On Xbox One using the legacy Xbox One XDK, this class is implemented using the _Windows.Xbox.Input_ interfaces rather than XInput. It is abstracted to return the same structures. Here are a few notes:
 
 * state.packet is a timestamp in "Universal time" format.
 * ``MAX_PLAYER_COUNT`` is 8 rather than 4
