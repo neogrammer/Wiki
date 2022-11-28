@@ -187,6 +187,8 @@ When built for Windows 10, it makes use of ``Windows.Gaming.Input``. This class 
 
 > For a Universal Windows Platform (UWP) app, the Windows Runtime (and COM generally) is initialized by the C/C++ Run-Time. For a classic Windows desktop application you have to do this explicitly:
 
+> When building with the MinGW toolset, you should explicitly link with ``xinput1_4.lib`` or ``xinput9_1_0.lib``.
+
 ```cpp
 Microsoft::WRL::Wrappers::RoInitializeWrapper initialize(RO_INIT_MULTITHREADED);
 if (FAILED(initialize))
@@ -200,12 +202,14 @@ XInput supports controllers compatible with the Xbox 360 Common Controller for W
 Vibration settings for the trigger impulse motors (``leftTrigger``, ``rightTrigger``) on the [Xbox One Controller](http://support.xbox.com/en-US/xbox-one/accessories/controller-pc-compatibility) are not supported by XInput--this is supported by ``Windows.Gaming.Input`` APIs. The "View" button is reported as the "Back" button, and the "Menu" button is reported as the "Start" button.
 
 ## GameInput
-For Microsoft GXDK, this class is implemented using _GameInput_ interfaces rather than XInput. It is abstracted to return the same structures. Here are a few notes:
+For Microsoft GDK, this class is implemented using _GameInput_ interfaces rather than XInput. It is abstracted to return the same structures. Here are a few notes:
 
 * state.packet is the _reading number_ from GameInput
 * ``MAX_PLAYER_COUNT`` is 8 rather than 4
 * ``c_MergedInput`` is supported for ``GetState``
 * ``Capabilities::id`` is ``APP_LOCAL_DEVICE_ID``. The VID and PID are returned as reported by GameInput.
+
+> GameInput is supported on Windows PC as of the June 2022 release of the Microsoft GDK.
 
 ## Xbox One
 On Xbox One using Xbox One XDK, this class is implemented using the _Windows.Xbox.Input_ interfaces rather than XInput. It is abstracted to return the same structures. Here are a few notes:
