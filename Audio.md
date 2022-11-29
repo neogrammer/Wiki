@@ -328,6 +328,8 @@ target_link_libraries(${PROJECT_NAME} PRIVATE xaudio2_9redist.lib)
 
 > Audio support is already included when building for any ``*-uwp`` triplet or when using the **directxtk12** port.
 
+> When building with the MinGW toolset, you will need to use XAudio2Redist and should explictly link to ``ksguid.lib`` as well.
+
 # Content Pipeline
 **Note:** When adding ``.xwb`` files to your Universal Windows Platform app or Xbox One XDK project, you need to manually set the file properties to "Content: Yes" for all configurations to have these files included in your AppX package. ``.wav`` files are automatically detected as a media file and are included as content by default.
 
