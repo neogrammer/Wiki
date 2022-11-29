@@ -52,7 +52,7 @@ if (pad.IsConnected())
 Build and run. The application does not display anything other than our cornflower blue screen, but you can use the *View* button on the Xbox One controller or *Back* on the Xbox 360 Controller to exit.
 
 <details><summary><i>Click here for troubleshooting advice</i></summary>
-<p>If using MinGW, you will likely get unresolved link errors for <code>XInputGetState</code>, etc. You should explicitly link to <code>xinput1_4.lib</code> or <code>xinput9_1_0.lib</code> to fix this.</p></details>
+<p>If using the MinGW toolset, you will likely get unresolved link errors for <code>XInputGetState</code>, etc. You should explicitly link to <code>xinput1_4.lib</code> or <code>xinput9_1_0.lib</code> to fix this.</p></details>
 
 # Adding a a simple scene
 Start by saving [roomtexture.dds](https://github.com/Microsoft/DirectXTK/wiki/media/roomtexture.dds) into your new project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "roomtexture.dds" and click "OK".
