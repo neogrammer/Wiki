@@ -6,7 +6,7 @@ This lesson covers the basics of adding the use of *DirectX Tool Kit for Audio*'
 # Setup
 First create a new project using the instructions from the earlier lessons: [[Using DeviceResources]], then [[Adding the DirectX Tool Kit]], and finally [[Adding the DirectX Tool Kit for Audio]] which we will use for this lesson.
 
-> If using *DirectX Tool Kit for DX12*, use [Using DeviceResources](https://github.com/microsoft/DirectXTK12/wiki/Using-DeviceResources), then [Adding the DirectX Tool Kit](https://github.com/microsoft/DirectXTK12/wiki/Adding-the-DirectX-Tool-Kit), and finally add ``#include <Audio.h>`` to **pch.h**.
+> If using *DirectX Tool Kit for DX12*, use [Using DeviceResources](https://github.com/microsoft/DirectXTK12/wiki/Using-DeviceResources), then [Adding the DirectX Tool Kit](https://github.com/microsoft/DirectXTK12/wiki/Adding-the-DirectX-Tool-Kit), and finally add ``#include <Audio.h>`` and ``#define _USE_MATH_DEFINES`` to **pch.h**.
 
 # The basic game loop with the audio engine
 
