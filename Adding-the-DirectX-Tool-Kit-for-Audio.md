@@ -83,7 +83,7 @@ See [Microsoft Docs](https://aka.ms/xaudio2redist).
 The *DirectX Tool Kit* CMake projects have a build option for different XAudio2 versions. The [vcpkg](https://vcpkg.io/) port for **directxtk** includes three different features: ``[xaudio2redist]``, ``[xaudio2-9]``, and ``[xaudio2-8]``. See [this page](https://github.com/microsoft/DirectXTK/wiki/Audio#using-the-vcpkg-c-library-manager) for details.
 
 # Adding the headers
-Now that we have the _DirectX Tool Kit for Audio_ usable in your project, the next step is to include the library header into your project.
+Now that we have the _DirectX Tool Kit for Audio_ usable in your project, the next step is to include the library header into your project. You should also make sure ``_USE_MATH_DEFINES`` is set before any header includes ``math.h`` or ``cmath`` since XAudio2 headers require values like ``_M_PI`` to be defined.
 
 ```cpp
 //
@@ -92,6 +92,9 @@ Now that we have the _DirectX Tool Kit for Audio_ usable in your project, the ne
 //
 
 #pragma once
+
+// Make sure math.h defines M_PI
+#define _USE_MATH_DEFINES
 
 ...
 
