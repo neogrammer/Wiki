@@ -6,7 +6,7 @@ This lesson covers the playing sounds with _DirectX Tool Kit for Audio_ using 3D
 # Setup
 First create a new project using the instructions from the earlier lessons: [[Using DeviceResources]], then [[Adding the DirectX Tool Kit]], [[Adding the DirectX Tool Kit for Audio]], and finally [[Adding audio to your project]] which we will use for this lesson.
 
-> If using *DirectX Tool Kit for DX12*, use [Using DeviceResources](https://github.com/microsoft/DirectXTK12/wiki/Using-DeviceResources), then [Adding the DirectX Tool Kit](https://github.com/microsoft/DirectXTK12/wiki/Adding-the-DirectX-Tool-Kit), add ``#include <Audio.h>`` to **pch.h**, and finally [[Adding audio to your project]]
+> If using *DirectX Tool Kit for DX12*, use [Using DeviceResources](https://github.com/microsoft/DirectXTK12/wiki/Using-DeviceResources), then [Adding the DirectX Tool Kit](https://github.com/microsoft/DirectXTK12/wiki/Adding-the-DirectX-Tool-Kit), add ``#include <Audio.h>`` and ``#define _USE_MATH_DEFINES`` to **pch.h**, and finally [[Adding audio to your project]]
 
 # Background
 Games provide an immersive visual and audio experience, and often use [3D audio effects](https://wikipedia.org/wiki/3D_audio_effect) to enhance the audio. The effect modifies the speaker position, pitch, and volume of a sound to provide audial cues to place it in the 3D environment. **XAudio2** itself provides the ability to specify a complex per-channel volume mapping, pitch modification, and other parameters to generate these 3D effects, but does not perform the computations. The X3DAudio library is used by *DirectX Tool Kit for Audio* to compute the virtual placement of the sound.
