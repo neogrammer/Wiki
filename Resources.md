@@ -68,13 +68,13 @@
 
 [DirectX 11.1 and Windows 7](https://walbourn.github.io/directx-11-1-and-windows-7/)
 
-[Dual-use Coding Techniques for Games](https://aka.ms/Fo3su4)
+[Dual-use Coding Techniques for Games](https://walbourn.github.io/dual-use-coding-techniques-for-games-part-1/)
 
 [Visual Studio 2012 and Windows 8.0 SDK RTM are now available](https://walbourn.github.io/visual-studio-2012-and-windows-8-0-sdk-rtm-are-now-available/)
 
-[Direct3D Feature Levels](https://aka.ms/Apsgrj)
+[Direct3D Feature Levels](https://walbourn.github.io/direct3d-feature-levels/)
 
-[HLSL, FXC, and D3DCompile](https://aka.ms/Tuoxjdx)
+[HLSL, FXC, and D3DCompile](https://walbourn.github.io/hlsl-fxc-and-d3dcompile/)
 
 [DirectXTK](https://walbourn.github.io/directxtk/)
 
