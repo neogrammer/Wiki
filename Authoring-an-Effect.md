@@ -461,3 +461,7 @@ VSOutput main(float4 position : SV_Position)
 * Usable versions of the **SkyboxEffect** class can be downloaded from here: [.cpp](https://raw.githubusercontent.com/wiki/microsoft/DirectXTK/SkyboxEffect.cpp) / [.h](https://raw.githubusercontent.com/wiki/microsoft/DirectXTK/SkyboxEffect.h), and you will need the three shader files above as well.
 
 **Next lessons:** [[Using HDR rendering]]
+
+# Further reading
+
+[HLSL, FXC, and D3DCompile](https://walbourn.github.io/hlsl-fxc-and-d3dcompile/)  
