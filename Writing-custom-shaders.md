@@ -609,7 +609,7 @@ One final note, because we are using a render target that is larger than our blu
 
 DirectX Tool Kit docs [[SpriteBatch]]
 
-[HLSL, FXC, and D3DCompile](https://aka.ms/Tuoxjdx)  
+[HLSL, FXC, and D3DCompile](https://walbourn.github.io/hlsl-fxc-and-d3dcompile/)  
 [What's up with D3DCompiler_xx.dll](https://walbourn.github.io/whats-up-with-d3dcompiler_xx-dll)  
 [Compiling Shaders](https://docs.microsoft.com/windows/win32/direct3dhlsl/dx-graphics-hlsl-part1)  
 
