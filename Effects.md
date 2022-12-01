@@ -263,6 +263,6 @@ The built-in effects make use of the following states:
 
 [Built-in effects, permutations, and performance](http://www.shawnhargreaves.com/blog/built-in-effects-permutations-and-performance.html)
 
-[HLSL, FXC, and D3DCompile](https://aka.ms/Tuoxjdx)
+[HLSL, FXC, and D3DCompile](https://walbourn.github.io/hlsl-fxc-and-d3dcompile/)
 
 [XNA Game Studio Stock Effects](https://github.com/SimonDarksideJ/XNAGameStudio/wiki/Stock-Effects)
