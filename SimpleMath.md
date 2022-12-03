@@ -257,6 +257,8 @@ The other types in the library inherit from DirectXMath types, so you need to be
 
 **SimpleMath** is included in the *DirectX Tool Kit* for DX11 / DX12, but the implementation is fully standalone requiring only [DirectXMath](https://github.com/microsoft/DirectXMath). You could use these source files directly in a project if you do not want to use the rest of the toolkit: [SimpleMath.h](https://github.com/microsoft/DirectXTK/blob/main/Inc/SimpleMath.h), [SimpleMath.inl](https://github.com/microsoft/DirectXTK/blob/main/Inc/SimpleMath.inl), and [SimpleMath.cpp](https://github.com/microsoft/DirectXTK/blob/main/Src/SimpleMath.cpp).
 
+> In addition to the compiler toolsets supported by the *DirectX Tool Kit*, SimpleMath is also supported on Windows Subsystem for Linux (WSL) using GCC 9.4, 11.3.
+
 If you are looking for an equivalent to the D3DXmath ``D3DXCreateMatrixStack`` / ``ID3DXMATRIXStack``, see [DirectXMatrixStack.h](https://github.com/microsoft/DirectXMath/blob/main/MatrixStack/DirectXMatrixStack.h).
 
 # Further Reading
