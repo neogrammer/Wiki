@@ -6,19 +6,19 @@ http://go.microsoft.com/fwlink/?LinkId=248929
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/Microsoft/DirectXTK?style=for-the-badge) ![Code size](https://img.shields.io/github/languages/code-size/Microsoft/DirectXTK?style=for-the-badge)
 
-![Azure DevOps VS 2019](https://img.shields.io/azure-devops/build/mscodehub/ab27a052-7f0e-4cba-9bec-d298c5942ab9/1144?label=BUILD%20%28VS%202019%29&style=for-the-badge)
-![Azure DevOps VS 2022](https://img.shields.io/azure-devops/build/mscodehub/ab27a052-7f0e-4cba-9bec-d298c5942ab9/1848?label=BUILD%20%28VS%202022%29&style=for-the-badge)
-![Azure DevOps GDK](https://img.shields.io/azure-devops/build/mscodehub/ab27a052-7f0e-4cba-9bec-d298c5942ab9/1993?label=BUILD%20%28GDK%29&style=for-the-badge)
+![Azure DevOps VS 2019](https://img.shields.io/azure-devops/build/mscodehub/ab27a052-7f0e-4cba-9bec-d298c5942ab9/2141?label=BUILD%20%28VS%202019%29&style=for-the-badge)
+![Azure DevOps VS 2022](https://img.shields.io/azure-devops/build/mscodehub/ab27a052-7f0e-4cba-9bec-d298c5942ab9/2142?label=BUILD%20%28VS%202022%29&style=for-the-badge)
+![Azure DevOps GDK](https://img.shields.io/azure-devops/build/mscodehub/ab27a052-7f0e-4cba-9bec-d298c5942ab9/2143?label=BUILD%20%28GDK%29&style=for-the-badge)
 
-![Azure DevOps CMake](https://img.shields.io/azure-devops/build/mscodehub/ab27a052-7f0e-4cba-9bec-d298c5942ab9/1664?label=BUILD%20%28CMake%29&style=for-the-badge)
-![Azure DevOps CMake Latest](https://img.shields.io/azure-devops/build/mscodehub/ab27a052-7f0e-4cba-9bec-d298c5942ab9/2058?label=BUILD%20%28CMake%20VS%202022%29&style=for-the-badge)
-![Azure DevOps MinGW](https://img.shields.io/azure-devops/build/mscodehub/ab27a052-7f0e-4cba-9bec-d298c5942ab9/2015?label=BUILD%20%28MinGW%29&style=for-the-badge)
+![Azure DevOps CMake](https://img.shields.io/azure-devops/build/mscodehub/ab27a052-7f0e-4cba-9bec-d298c5942ab9/2145?label=BUILD%20%28CMake%29&style=for-the-badge)
+![Azure DevOps CMake Latest](https://img.shields.io/azure-devops/build/mscodehub/ab27a052-7f0e-4cba-9bec-d298c5942ab9/2146?label=BUILD%20%28CMake%20VS%202022%29&style=for-the-badge)
+![Azure DevOps MinGW](https://img.shields.io/azure-devops/build/mscodehub/ab27a052-7f0e-4cba-9bec-d298c5942ab9/2147?label=BUILD%20%28MinGW%29&style=for-the-badge)
 
-![Azure DevOps test suite build](https://img.shields.io/azure-devops/build/mscodehub/ab27a052-7f0e-4cba-9bec-d298c5942ab9/1155?label=BUILD%20%28TEST%20SUITE%29&style=for-the-badge)
-![Azure DevOps test suite build VS 2019](https://img.shields.io/azure-devops/build/mscodehub/ab27a052-7f0e-4cba-9bec-d298c5942ab9/2011?label=BUILD%20%28TEST%20SUITE%20VS%202022%29&style=for-the-badge)
+![Azure DevOps test suite build](https://img.shields.io/azure-devops/build/mscodehub/ab27a052-7f0e-4cba-9bec-d298c5942ab9/2148?label=BUILD%20%28TEST%20SUITE%29&style=for-the-badge)
+![Azure DevOps test suite build VS 2022](https://img.shields.io/azure-devops/build/mscodehub/ab27a052-7f0e-4cba-9bec-d298c5942ab9/2149?label=BUILD%20%28TEST%20SUITE%20VS%202022%29&style=for-the-badge)
 
-![Azure DevOps SimpleMath only test suite build](https://img.shields.io/azure-devops/build/mscodehub/ab27a052-7f0e-4cba-9bec-d298c5942ab9/2139?label=BUILD%20%28SIMPLEMATH%20GCC%209%29&style=for-the-badge)
-![Azure DevOps SimpleMath only test suite build](https://img.shields.io/azure-devops/build/mscodehub/ab27a052-7f0e-4cba-9bec-d298c5942ab9/2140?label=BUILD%20%28SIMPLEMATH%20GCC%2011%29&style=for-the-badge)
+![Azure DevOps SimpleMath only test suite build WSL GCC 9](https://img.shields.io/azure-devops/build/mscodehub/ab27a052-7f0e-4cba-9bec-d298c5942ab9/2150?label=BUILD%20%28SIMPLEMATH%20GCC%209%29&style=for-the-badge)
+![Azure DevOps SimpleMath only test suite build WSL GCC 11](https://img.shields.io/azure-devops/build/mscodehub/ab27a052-7f0e-4cba-9bec-d298c5942ab9/2151?label=BUILD%20%28SIMPLEMATH%20GCC%2011%29&style=for-the-badge)
 
 ![DirectX Logo](https://github.com/Microsoft/DirectXTK/wiki/X_jpg.jpg)The **DirectX Tool Kit** (aka **DirectXTK**) is a collection of helper classes for writing **DirectX 11.x** code in C++.
 
