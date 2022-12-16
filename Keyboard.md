@@ -144,9 +144,17 @@ There is no specific virtual key for lower-case (i.e. ``a``) vs. upper-case (i.e
 
 Due to limitations of C identifiers, the keyboard's top-row digits <kbd>1</kbd> through <kbd>9</kbd> and <kbd>0</kbd> are ``D1`` through ``D9`` and ``D0``. The number keypad digits are ``NumPad0`` through ``NumPad9``.
 
-Most of the ``Oem*`` values vary based on country/region, but you can count on ``OemPlus`` (<kbd>+</kbd>), ``OemComma`` (<kbd>,</kbd>), ``OemMinus`` (<kbd>-</kbd>), and ``OemPeriod``  (<kbd>.</kbd>) being the same for all layouts.
+You can count on ``OemPlus`` (<kbd>+</kbd>), ``OemComma`` (<kbd>,</kbd>), ``OemMinus`` (<kbd>-</kbd>), and ``OemPeriod``  (<kbd>.</kbd>) being the same for all layouts. *XNA Game Studio* and the Keyboard enumeration both use US-layout names for some other Oem keys which will vary based on country/region.
 
-*XNA Game Studio* and the Keyboard enumeration both use the names ``OemSemicolon`` for ``VK_OEM_1``, ``OemQuestion`` for ``VK_OEM_2``, and ``OemTilde`` for ``VK_OEM_3`` as they map to the <kbd>: ;</kbd>, <kbd>? /</kbd>, and <kbd>~ `</kbd> keys on the US keyboard.
+|Keyboard State|VirtualKey|US Layout Key|
+|---|---|---|
+| OemSemicolon | VK_OEM_1 | <kbd>; :</kbd> |
+| OemQuestion | VK_OEM_2 | <kbd>/ ?</kbd> |
+| OemTilde | VK_OEM_3 | <kbd>` ~</kbd> |
+| OemOpenBrackets | VK_OEM_4 | <kbd>[ {</kbd> |
+| OemPipe | VK_OEM_5 | <kbd>\ \|</kbd> |
+| OemCloseBrackets | VK_OEM_6 | <kbd>] }</kbd> |
+| OemQuotes | VK_OEM_7 | <kbd>' "</kbd> |
 
 > The <kbd>Windows</kbd> logo key is visible in the Keyboard state, but you should avoid using it for your control scheme. <kbd>Windows</kbd> logo key is normally a system-wide hotkey for Windows per [Microsoft Docs](https://support.microsoft.com/en-us/windows/keyboard-shortcuts-in-windows-dcc61a57-8ff0-cffe-9796-cb9706c75eec). In particular on Windows 10 or later, <kbd>Windows</kbd>+<kbd>G</kbd> brings up the [Xbox Game Bar](https://developer.microsoft.com/en-us/games/products/game-bar/), <kbd>Windows</kbd>+<kbd>Alt</kbd>+<kbd>B</kbd> is used to toggle HDR mode, <kbd>Windows</kbd>+<kbd>Alt</kbd>+<kbd>PrtScn</kbd> is used to capture a screenshot, and <kbd>Windows</kbd>+<kbd>Alt</kbd>+<kbd>R</kbd> is used to record a video with *Xbox Game Bar*.
 
