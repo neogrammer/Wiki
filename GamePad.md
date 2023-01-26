@@ -66,6 +66,30 @@ The valid range for _player_ is 0 to ``GamePad::MAX_PLAYER_COUNT - 1``. Outside 
 
 > Since GamePad is a singleton, you can make use of the static method **Get** if desired: ``auto state = GamePad::Get().GetState()``
 
+## State structure
+
+| GamePad::State field | Description |
+|---|---|
+| bool connected | Set to true if a gamepad is present at that player index. |
+| uint64_t packet | A timestamp order value. |
+| **Buttons buttons** | |
+| bool buttons.a<br/>bool buttons.b<br/>bool buttons.x<br/>bool buttons.y | A/B/X/Y buttons. |
+| bool buttons.leftStick<br/>bool buttons.rightStick | Left-stick/right-stick push buttons. |
+| bool buttons.leftShoulder<br/>bool buttons.rightShoulder | Left/right-shoulder buttons. |
+| bool buttons.view | View button (also accessible as *buttons.back*). |
+| bool buttons.menu | Menu button (also accessible as *buttons.start*). |
+| **DPad dpad** | |
+| bool dpad.up | Directional-pad up. |
+| bool dpad.down | Directional-pad down. | 
+| bool dpad.right | Directional-pad right. |
+| bool dpad.left | Directional-pad left. | 
+| **ThumbSticks thumbSticks** | |
+| float thumbSticks.leftX<br/>float thumbSticks.leftY | Left thumb-stick X/Y in range -1..1. |
+| float thumbSticks.rightX<br/>float thumbSticks.rightY | Right thumb-stick X/Y in range -1..1. |
+| **Triggers triggers** | |
+| float triggers.left | Left trigger value in range 0..1. |
+| float triggers.right |  Right trigger value in range 0..1. |
+
 # Dead zones
 GamePad implements the same dead zone scheme as XNA.
 
