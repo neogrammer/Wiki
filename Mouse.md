@@ -185,6 +185,8 @@ XMFLOAT2 mousePosInPixels( float(m.x), float(m.y) );
 
 > Since Mouse is a singleton, you can make use of the static method **Get** if desired: ``auto state = Mouse::Get().GetState()``
 
+## State structure
+
 | Mouse::State field | Description |
 |---|---|
 | bool leftButton | Left mouse button depressed |
