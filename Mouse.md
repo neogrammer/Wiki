@@ -185,6 +185,17 @@ XMFLOAT2 mousePosInPixels( float(m.x), float(m.y) );
 
 > Since Mouse is a singleton, you can make use of the static method **Get** if desired: ``auto state = Mouse::Get().GetState()``
 
+| Mouse::State field | Description |
+|---|---|
+| bool leftButton | Left mouse button depressed |
+| bool middleButton | Middle mouse button depressed |
+| bool rightButton | Right mouse button depressed |
+| bool xButton1 | X1 mouse button (if present) depressed |
+| bool xButton2 | X2 mouse button (if present) depressed |
+| int x<br/>int y | For absolute mode, pixel location in x/y.<br/>For relative mode, delta x/y. |
+| int scrollWheelValue | Scroll-wheel value. |
+| Mode positionMode | Indicates `MODE_ABSOLUTE` or `MODE_RELATIVE`. |
+
 # Button state tracker
 
 A common pattern is to trigger an action when a mouse button is pressed or released, but you don't want to trigger the action every single frame if the button is held down for more than a single frame. This helper class simplifies this.
