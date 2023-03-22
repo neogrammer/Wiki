@@ -92,6 +92,21 @@ spriteBatch->Begin(SpriteSortMode_Deferred, nullptr, nullptr, nullptr, nullptr, 
 });
 ```
 
+# Pixel centers
+In Direct3D 11, the 'pixel center' is at the '.5, .5' coordinate rather than Direct3D 9's integer coordinates being considered the pixel center. If doing 'nearest-point' filtering (such as ``CommonStates::PointClamp`` or ``CommonStates::PointWrap``), then the sampled pixel is going to be the one that touces the pixel center based on the sprite location. This means that the position has to move from, say, "1.5" to "1.6" to get the pixel sample to change.
+
+If you want to achieve something more like Direct3D 9's integer coordinates are pixel centers, then you should use DirectMath (or [[SimpleMath]]) to adjust your positions provided to SpriteBatch accordingly.
+
+```
+XMVECTOR pos = XMLoadFloat2(&m_position);
+
+static const XMVECTORF32 s_half = { { { 0.5f, 0.5f, 0.f, 0.f } } };
+
+pos = XMVectorAdd(XMVectorTruncate(pos), s_half);
+
+m_spriteBatch->( ..., pos, ...)
+```
+
 # Custom pixel shaders
 To use SpriteBatch with a custom pixel shader (handy for 2D postprocessing effects such as bloom or blur), use the setCustomShaders parameter to specify a state setting callback function:
 
