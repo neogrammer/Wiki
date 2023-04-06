@@ -100,15 +100,6 @@ In your application's solution, right-click on the Solution and use **Add \ Exis
 
 > For VS 2019, use of the [16.11](https://walbourn.github.io/vs-2019-update-11/) is required as all previous versions are no longer supported.
 
-<table>
- <tr>
-  <td>DirectXTK_XboxOneXDK_2017</td>
-  <td>Xbox One games building with VS 2017 using the Xbox One XDK (<I>April 2018 XDK or later</I>).</td>
- </tr>
-</table>
-
-> For VS 2017, use of the [15.9 update](https://walbourn.github.io/vs-2017-15-9-update/) is required.
-
 In your application's project, right-click on the **Project** and use "References...", then "Add New Reference...", and then check the DirectXTK project name and click OK. For a Universal Windows Platform (UWP) app or Xbox One solution, you may need to set _Reference Assembly Output_ to false since DirectXTK is a static C++ library and not a WinRT component.
 
 ![Settings dialog](https://github.com/Microsoft/DirectXTK/wiki/images/settingsROA.PNG)
