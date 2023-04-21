@@ -208,6 +208,8 @@ Proper drawing of alpha-blended models can be a complicated procedure. Each Mode
 
 To indicate the use of 'straight' alpha vs. 'premultiplied' alpha blending modes, _ModelMesh::pmalpha_ is set by the various loaders functions controlled by a default parameter (which defaults false to indicate the texture files are using 'straight' alpha). If you make use of DirectXTex's [texconv](https://github.com/Microsoft/DirectXTex/wiki/Texconv) tool with the ``-pmalpha`` switch, you should use _pmalpha=true_ instead.
 
+See also [Depth sorting alpha blended objects](https://shawnhargreaves.com/blog/depth-sorting-alpha-blended-objects.html).
+
 # Custom render states
 All the various ``Draw`` method provide a _setCustomState_ callback which can be used to change the state just before the geometry is drawn.
 
