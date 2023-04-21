@@ -265,3 +265,5 @@ CD3D11_SAMPLER_DESC desc(D3D11_FILTER_ANISOTROPIC,
 [Premultiplied alpha](http://www.shawnhargreaves.com/blog/premultiplied-alpha.html)  
 [Premultiplied alpha and image composition](http://www.shawnhargreaves.com/blog/premultiplied-alpha-and-image-composition.html)  
 [Premultiplied alpha in XNA Game Studio 4.0](http://www.shawnhargreaves.com/blog/premultiplied-alpha-in-xna-game-studio-4-0.html)
+
+[Depth sorting alpha blended objects](https://shawnhargreaves.com/blog/depth-sorting-alpha-blended-objects.html)
