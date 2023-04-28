@@ -10,7 +10,7 @@
 # For Development
 * Visual Studio 2022
 * Visual Studio 2019
-* clang/LLVM v12 - v15
+* clang/LLVM v12 - v16
 * MinGW 12.2
 * CMake 3.20
 
