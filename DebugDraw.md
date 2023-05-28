@@ -406,7 +406,8 @@ EffectPipelineStateDescription pd(
     CommonStates::Opaque,
     CommonStates::DepthDefault,
     CommonStates::CullNone,
-    rtState);
+    rtState,
+    D3D12_PRIMITIVE_TOPOLOGY_TYPE_LINE);
 
 m_effect = std::make_unique<BasicEffect>(device, EffectFlags::VertexColor, pd);
 m_effect->SetView(...);
