@@ -15,10 +15,11 @@ See [[Audio]], [[WaveBank]]
 
 ``xwbtool.exe`` uses the following command syntax:
 
-    xwbtool [-r] [-s] [-o <filename>] [-h <filename>] [-l] [-y] [-c | -nc] [-f] [-af]
-    [-flist <filename>] <file-name(s)>
+    xwbtool [options] [-flist <filename>] <file-name(s)>
 
 The file-name parameter indicates the ``.wav`` file(s) to add to the wave bank.
+
+> The command-line parsing uses Windows-style `-` or `/` for options. It also has some POSIX-like behavior: it supports ``--version`` and ``--help`` command-line options, and the use of ``--`` disables further options parsing to support filenames that begin with `-` or `/` characters.
 
 # Optional Switches Description
 
