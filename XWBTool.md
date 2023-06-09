@@ -23,17 +23,24 @@ The file-name parameter indicates the ``.wav`` file(s) to add to the wave bank.
 
 # Optional Switches Description
 
+## File options
+
 **-r**: Input file names can contain wildcard characters (``?`` or ``*``). If this switch is used, subdirectories are also searched.
 
-**-s**: Creates as streaming wave bank, otherwise defaults to in-memory wave bank
+**-flist _filename_**: Uses the provided filename as a text file containing a list of input files (one per line). Ignores lines that begin with ``#`` (used for comments). Does not support providing additional command-line arguments or the use of filename wildcards.
 
 **-o _filename_**: Sets output filename for ``.xwb`` file. Otherwise, it defaults to the same base name as the first input ``.wav`` file
-
-**-h _filename_**: Generates a C/C++ header file with ``#define`` symbols for each of the sounds in the bank matched to their index
 
 **-l**: Forces the output path & filename to all lower-case. *Windows file system is case-insensitive by default, but some programs like git are case-sensitive*.
 
 **-y**: overwrite existing output file if any. By default, the tool will not overwrite a file if it exists.
+
+
+## Wavebank options
+
+**-s**: Creates as streaming wave bank, otherwise defaults to in-memory wave bank
+
+**-h _filename_**: Generates a C/C++ header file with ``#define`` symbols for each of the sounds in the bank matched to their index
 
 **-c / -nc**: Forces creation or prevents use of compact wave banks. By default, it will try to use a compact wave bank if possible.
 
@@ -41,7 +48,6 @@ The file-name parameter indicates the ``.wav`` file(s) to add to the wave bank.
 
 **-af**: Indicates that streaming wave banks should use 4K alignment rather than DVD (2K) alignment. This is needed to support Advanced Format (4K native) disks with non-buffered I/O reads if there is no support for "512e". See below for more information.
 
-**-flist _filename_**: Uses the provided filename as a text file containing a list of input files (one per line). Ignores lines that begin with ``#`` (used for comments). Does not support providing additional command-line arguments or the use of filename wildcards.
 
 # Example usage
 
