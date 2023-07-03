@@ -44,7 +44,7 @@ The file-name parameter indicates the ``.wav`` file(s) to add to the wave bank.
 
 **-c / -nc**: Forces creation or prevents use of compact wave banks. By default, it will try to use a compact wave bank if possible.
 
-**-f**: Includes entry friendly name strings in the wave bank for use with 'string' based versions of WaveBank::Play() and WaveBank::CreateInstance() rather than index-based versions.
+**-f**: Includes entry friendly name strings in the wave bank for use with 'string' based versions of WaveBank::Play() and WaveBank::CreateInstance() rather than index-based versions. The 'friendly name' itself is just the 'stem' of the input `.wav` filename.
 
 **-af**: Indicates that streaming wave banks should use 4K alignment rather than DVD (2K) alignment. This is needed to support Advanced Format (4K native) disks with non-buffered I/O reads if there is no support for "512e". See below for more information.
 
