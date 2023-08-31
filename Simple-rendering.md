@@ -105,7 +105,7 @@ Matrix proj = Matrix::CreateScale( 2.f/float(size.right),
 m_effect->SetProjection(proj);
 ```
 
-> The projection matrix can also be created with ``Matrix::CreateOrthographicOffCenter(0.f, float(backBufferWidth), float(backBufferHeight), 0.f, 0.f, 1.f);``
+> The projection matrix can also be created with ``Matrix::CreateOrthographicOffCenter(0.f, float(size.right), float(size.bottom), 0.f, 0.f, 1.f);``
 
 If you are not familiar with transformation matrices used in computer graphics, you may want to review [[Using the SimpleMath library]] now and return to this tutorial. In simple terms, all the code above does is create a matrix to: (1) shift the 0,0 origin to the upper-right corner, (2) flip the y-axis so 0 is the top instead of bottom of the screen, and (3) scale the size in pixels to take up the entire -1 to 1 range (i.e. 2) in each axis.
 
