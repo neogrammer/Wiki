@@ -47,11 +47,11 @@ In addition to setting the members of ``X3DAUDIO_EMITTER`` directly, these helpe
 
 * **Update** (XMVECTOR newPos, XMVECTOR upDir, float dt): Computes a direction and velocity for the emitter based on the current Position value, the new position, and the provided delta time (&#916;t). This updates the OrientFront/OrientTop to match, and then sets the Position to the new position. If dt is 0, the update is skipped.
 
-* **EnableDefaultCurves** sets to no distance attenuation for the volume, LFE, LPF, and reverb curves. These are consistent with the default curves used by the legacy XACT engine.
+* **EnableDefaultCurves** sets to no distance attenuation for the volume and LFE. LPF and reverb curves are set to *nullptr*. These are consistent with the default curves used by the legacy XACT engine.
 
-* **EnableLinearCurves** sets linear distance attenuation for the volume, LFE, LPF, and reverb curves. This is equivalent to using ``X3DAudioDefault_LinearCurve``.
+* **EnableLinearCurves** sets linear distance attenuation for the volume and LFE. LPF and reverb curves are set to *nullptr*. This is equivalent to using ``X3DAudioDefault_LinearCurve``.
 
-* **EnableInverseSquareCurves** sets the volume, LFE, LPF, and reverb curves to an inverse square fall-off with distance. This is the behavior for ``X3DAUDIO_EMITTER`` if you pass *nullptr* for these curves. Note: This is the state the default ctor already sets.
+* **EnableInverseSquareCurves** sets the volume and LFE to an inverse square fall-off with distance. LPF and reverb curves are set to *nullptr*. This is the behavior for ``X3DAUDIO_EMITTER`` if you pass *nullptr* for these curves. Note: This is the state the default ctor already sets.
  
 > You must use a distinct instance of ``AudioEmitter`` for each active 3D sound if using the **Update** method. Otherwise, if you reuse the emitter instance for multiple sounds you need to explicitly initialize both the position and velocity before each ``Apply3D`` call.
 
