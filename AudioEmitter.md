@@ -101,7 +101,6 @@ Be aware that ``pCone`` is ignored for multi-channel emitters.
 # Custom distance curves
 The AudioEmitter constructor sets pVolumeCurve, pLFECurve, pLPFDirectCurve, pLPFReverbCurve, and pReverbCurve to nullptr which uses X3DAudio default curves.  Any custom curve definitions must have a pointer to valid memory at the time Apply3D is called.
 
-If ``pVolumeCurve`` or ``pLFECurve`` is nullptr, X3DAudio uses a 'square of the distance' curve. The curve set by **EnableDefaultCurves** is a linear curve.
 
 # Example
 
