@@ -51,7 +51,7 @@ In addition to setting the members of ``X3DAUDIO_EMITTER`` directly, these helpe
 
 * **EnableLinearCurves** sets linear distance attenuation for the volume, LFE, LPF, and reverb curves. This is equivalent to using ``X3DAudioDefault_LinearCurve``.
 
-* **EnableInverseSquareCurves** sets the volume, LFE, LPF, and reverb curves to an inverse square fall-off with distance. This is the behavior for ``X3DAUDIO_EMITTER`` if you pass *nullptr** for these curves.
+* **EnableInverseSquareCurves** sets the volume, LFE, LPF, and reverb curves to an inverse square fall-off with distance. This is the behavior for ``X3DAUDIO_EMITTER`` if you pass *nullptr* for these curves.
  
 > You must use a distinct instance of ``AudioEmitter`` for each active 3D sound if using the **Update** method. Otherwise, if you reuse the emitter instance for multiple sounds you need to explicitly initialize both the position and velocity before each ``Apply3D`` call.
 
