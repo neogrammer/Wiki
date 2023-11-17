@@ -465,7 +465,7 @@ void Game::PostProcess()
             nullptr, nullptr, nullptr, nullptr,
             [=](){
                 context->PSSetShader(m_bloomCombinePS.Get(), nullptr, 0);
-                context->PSSetShaderResources(1, 1, m_rt1SRV.GetAddressOf());
+                context->PSSetShaderResources(1, 1, rt1SRV.GetAddressOf());
                 context->PSSetConstantBuffers(0, 1, m_bloomParams.GetAddressOf());
             });
         m_spriteBatch->Draw(rtSRV, m_fullscreenRect);
