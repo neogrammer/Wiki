@@ -440,6 +440,7 @@ void Game::PostProcess()
                 context->PSSetConstantBuffers(0, 1,
                     m_blurParamsWidth.GetAddressOf());
             });
+        auto rt1SRV = m_renderTarget1->GetShaderResourceView();
         m_spriteBatch->Draw(rt1SRV, m_bloomRect);
         m_spriteBatch->End();
 
