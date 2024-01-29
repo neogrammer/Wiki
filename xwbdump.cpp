@@ -13,6 +13,7 @@
 #include <cstdint>
 #include <cstdio>
 #include <cwchar>
+#include <iterator>
 #include <memory>
 
 //---------------------------------------------------------------------------------

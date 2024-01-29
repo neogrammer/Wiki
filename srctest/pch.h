@@ -29,9 +29,11 @@
 
 #include <d3d11_1.h>
 
-#include <exception>
 
-#include <stdio.h>
+#include <cstdio>
+#include <exception>
+#include <iterator>
+
 
 namespace DX
 {
