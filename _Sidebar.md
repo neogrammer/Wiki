@@ -11,7 +11,7 @@
 * Visual Studio 2022
 * Visual Studio 2019
 * clang/LLVM v12 - v16
-* MinGW 12.2
+* MinGW 12.2, 13.2
 * CMake 3.20
 
 # Related Projects
