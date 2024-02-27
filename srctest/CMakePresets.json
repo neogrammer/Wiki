@@ -11,6 +11,7 @@
       "cacheVariables":
       {
         "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}",
+        "BUILD_TOOLS": "OFF",
         "BUILD_TESTING": "OFF"
       }
     },
