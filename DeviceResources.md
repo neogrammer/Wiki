@@ -52,7 +52,7 @@ The DeviceResources constructor takes a number of defaulted parameters to contro
 
 If ``depthBufferFormat`` is set to ``DXGI_FORMAT_UNKNOWN``, then no depth/stencil buffer is created. It usually defaults to ``DXGI_FORMAT_D32_FORMAT``, but for UWP it defaults to ``D24_UNORM_S8_UINT`` to support 9.x Direct3D hardware feature levels.
 
-The ``backBufferCount`` defaults to 2, but in some cases you may want to override it to use 3. Larger numbers would be quite unusual and are not recommended.
+The ``backBufferCount`` defaults to 2, but in some cases you may want to override it to use 3. Larger numbers would be quite unusual and are not recommended or supported by this implementation.
 
 The ``minFeatureLevel`` defaults to 10 for PC and 9.3 for UWP. You can specify a higher [hardware level](https://docs.microsoft.com/windows/win32/direct3d11/overviews-direct3d-11-devices-downlevel-intro) if you want to take a hard dependency on additional capabilities.
 
@@ -64,7 +64,7 @@ The ``flags`` parameter is covered below in *Device Options*.
 
 * **CreateWindowSizeDependentResources**: Creates the resources that depend on the windows size. This function can be called more than once.
 
-* **SetWindow**: Sets the native window handle and initial width/height.
+* **SetWindow**: Sets the native window handle and initial width/height. *Must be called before creating the windows dependent resources*.
 
 * **WindowSizeChanged**: Sets a new width/height for the window which calls ``CreateWindowSizeDependentResources`` again if the size is different.
 
