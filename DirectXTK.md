@@ -89,10 +89,6 @@ In your application's solution, right-click on the Solution and use **Add \ Exis
   <td>Windows desktop applications for Windows 10 building with VS 2019 Community, Professional or higher with the latest installed Windows SDK. <I>Uses XAudio 2.9 and <code>Windows.Gaming.Input</code></I></td>
  </tr>
  <tr>
-  <td>DirectXTK_Windows10_2019</td>
-  <td>Universal Windows Platform (UWP) apps building with VS 2019 with the latest installed Windows SDK.</td>
- </tr>
- <tr>
   <td>DirectXTK_GDK_2019</td>
   <td>Windows 10 games building with VS 2019 using the <a href="http://aka.ms/gamedevdocs">Microsoft GDK</a>.</td>
  </tr>
