@@ -1,5 +1,5 @@
-|[[DirectXTK]]|[DirectXTK12](https://github.com/microsoft/DirectXTK12/wiki/DirectXTK)|[DirectXTex](https://github.com/microsoft/DirectXTex)|
-|---|---|---|
+|[[DirectXTK]]|[DirectXTK12](https://github.com/microsoft/DirectXTK12/wiki/DirectXTK)|[DirectXTex](https://github.com/microsoft/DirectXTex)|[DirectXMesh](https://github.com/microsoft/DirectXMesh)|
+|---|---|---|---|
 
 # Compiler conformance
 
