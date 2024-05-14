@@ -1,4 +1,6 @@
-http://go.microsoft.com/fwlink/?LinkId=248929
+1. http://go.microsoft.com/fwlink/?LinkId=248929
+
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/8939/badge)](https://www.bestpractices.dev/projects/8939)
 
 [![GitHub All Releases](https://img.shields.io/github/downloads/Microsoft/DirectXTK/total?style=for-the-badge) ![GitHub Release Date](https://img.shields.io/github/release-date/Microsoft/DirectXTK?style=for-the-badge)](https://github.com/microsoft/DirectXTK/releases/latest)
 
