@@ -75,6 +75,10 @@ This project welcomes contributions and suggestions. Most contributions require 
 
 When you submit a pull request, a CLA bot will automatically determine whether you need to provide a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions provided by the bot. You will only need to do this once across all repos using our CLA.
 
+Tests for new features should also be submitted as a PR to the [Test Suite](https://github.com/walbourn/directxtktest/wiki) repository.
+
+# Code of Conduct
+
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
 # Trademarks
@@ -94,3 +98,6 @@ Thanks to Garrett Serack for his help in creating the NuGet packages for DirectX
 Thanks to Roberto Sonnino for his help with the ``CMO``, DGSL rendering, and the VS Starter Kit animation.
 
 Thanks to Pete Lewis and Justin Saunders for the normal-mapped and PBR shaders implementation.
+
+Thanks to Andrew Farrier and Scott Matloff for their on-going help with code reviews.
+
