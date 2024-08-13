@@ -47,13 +47,15 @@ In addition to setting the members of ``X3DAUDIO_EMITTER`` directly, these helpe
 
 * **Update** (XMVECTOR newPos, XMVECTOR upDir, float dt): Computes a direction and velocity for the emitter based on the current Position value, the new position, and the provided delta time (&#916;t). This updates the OrientFront/OrientTop to match, and then sets the Position to the new position. If dt is 0, the update is skipped.
 
+> You must use a distinct instance of ``AudioEmitter`` for each active 3D sound if using the **Update** method. Otherwise, if you reuse the emitter instance for multiple sounds you need to explicitly initialize both the position and velocity before each ``Apply3D`` call.
+
 * **EnableDefaultCurves** sets to no distance attenuation for the volume and LFE. LPF and reverb curves are set to *nullptr*. These are consistent with the default curves used by the legacy XACT engine.
 
 * **EnableLinearCurves** sets linear distance attenuation for the volume and LFE. LPF and reverb curves are set to *nullptr*. This is equivalent to using ``X3DAudioDefault_LinearCurve``.
 
 * **EnableInverseSquareCurves** sets the volume and LFE to an inverse square fall-off with distance. LPF and reverb curves are set to *nullptr*. This is the behavior for ``X3DAUDIO_EMITTER`` if you pass *nullptr* for these curves. Note: This is the state the default ctor already sets.
  
-> You must use a distinct instance of ``AudioEmitter`` for each active 3D sound if using the **Update** method. Otherwise, if you reuse the emitter instance for multiple sounds you need to explicitly initialize both the position and velocity before each ``Apply3D`` call.
+* **IsValid**: Validates the member values to ensure they are in a proper range and that all floating-point values are in the 'real' range (i.e. not NAN or INF which are unsupported by X3DAudio). This is useful for debugging and asserts in 'checked' builds.
 
 # Multi-channel 3D Audio
 X3DAudio supports multi-channel sound sources for 3D audio (i.e. stereo, quad, etc.). The default constructor for AudioEmitter sets the source up for mono (i.e. single-channel), so to use multi-channel sources, you should set the **ChannelCount** member to match the number of channels in your source, and adjust **ChannelRadius** and the **EmitterAzimuths** array as desired.
