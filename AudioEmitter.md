@@ -17,6 +17,7 @@ class AudioEmitter{
    +SetVelocity()
    +SetOrientation()
    +Update()
+   +IsValid()
 }
 class X3DAUDIO_EMITTER
 X3DAUDIO_EMITTER <|-- AudioEmitter
