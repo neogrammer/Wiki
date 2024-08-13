@@ -45,6 +45,8 @@ In addition to setting the members of ``X3DAUDIO_LISTENER`` directly, these help
 
 * **Update** (XMVECTOR newPos, XMVECTOR upDir, float dt): Computes a direction and velocity for the listener based on the current Position value, the new position, and the provided delta time (&#916;t). This updates the OrientFront/OrientTop to match, and then sets the Position to the new position. If dt is 0, the update is skipped.
 
+* **IsValid**: Validates the member values to ensure they are in a proper range and that all floating-point values are in the 'real' range (i.e. not NAN or INF which are unsupported by X3DAudio). This is useful for debugging and asserts in 'checked' builds.
+
 # Directional Listener
 AudioListener defaults to an omnidirectional listener. To create a sound-cone, set the **pCone** member to point to a ``X3DAUDIO_CONE`` structure. The pointer must point to valid memory at the time Apply3D is called. 
 
