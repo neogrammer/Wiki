@@ -1,4 +1,4 @@
-1. http://go.microsoft.com/fwlink/?LinkId=248929
+http://go.microsoft.com/fwlink/?LinkId=248929
 
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/8939/badge)](https://www.bestpractices.dev/projects/8939)
 
