@@ -16,6 +16,7 @@ class AudioListener{
    +SetVelocity()
    +SetOrientation()
    +Update()
+   +IsValid()
 }
 class X3DAUDIO_LISTENER
 X3DAUDIO_LISTENER <|-- AudioListener
