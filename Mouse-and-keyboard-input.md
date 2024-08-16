@@ -574,7 +574,9 @@ move *= MOVEMENT_GAIN;
 
 m_phi -= move.y;
 m_theta -= move.x;
-m_radius += move.z;
+
+// Invert the Z to get same 'closer' / 'further' behavior as we had before.
+m_radius -= move.z; 
 
 // limit pitch to straight up or straight down
 constexpr float limit = XM_PIDIV2 - 0.01f;
