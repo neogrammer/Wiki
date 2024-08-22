@@ -127,6 +127,12 @@ The reason the scene is blank is that the model itself is shifted out of view. O
 In **Game.cpp**, add to the TODO of **CreateDeviceDependentResources** (after you have loaded the model and created the bone arrays):
 
 ```cpp
+m_drawBones = ModelBone::MakeArray(nbones);
+m_animBones = ModelBone::MakeArray(nbones);
+
+m_model->CopyBoneTransformsTo(nbones, m_animBones.get());
+...
+
 uint32_t index = 0;
 for (const auto& it : m_model->bones)
 {
