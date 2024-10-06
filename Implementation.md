@@ -146,7 +146,7 @@ Public methods in the library are explicitly marked ``__cdecl`` to ensure consis
 
 > This generally only matters for 32-bit (x86) platforms which have a potential mix of many calling conventions (``__stdcall``, ``__cdecl``, ``__fastcall``, or ``__vectorcall``). For X64, ARM, and ARM64 they all generally just use one calling convention (``__fastcall``). For 64-bit (x64 native), the ``__cdecl`` is interpreted by the compiler as an alias for ``__fastcall`` so it's the same as annotating them with the default calling convention. It's still important to annotate exported public functions for x64 because it's possible to build the client using ``/Gv`` which assumes ``__vectorcall`` if nothing is specified.
 
-> Note that annotation for the calling-convention only has to be on the function declaration/prototype as the definition will pick it up implicilty.
+> Note that annotation for the calling-convention only has to be on the function declaration/prototype as the definition will pick it up implicitly.
 
 The ``std::function`` is used for callbacks as a general pattern so that client code can provide function pointers, lambdas, functors, etc. To support building with a mix of calling conventions, we need to annotate the ``std::function`` correctly.
 
