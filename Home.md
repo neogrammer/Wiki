@@ -69,6 +69,14 @@ For questions, consider using [Stack Overflow](https://stackoverflow.com/questio
 
 For bug reports and feature requests, please use GitHub [issues](https://github.com/microsoft/DirectXTK/issues) for this project.
 
+# Security
+
+The DirectX Tool Kit library functions are invoked by client code. While effort is made to validate parameters and arguments in code, the client code is responsible for validating any relevant user-input. The primary security focus for DirectXTK is the image loading code and audio wave file loaders which process potentially untrusted content from disk/memory. When using Windows Imaging Component (WIC), that component has a strong security guarantee and validation story for security vulnerabilities. For the custom DDS, WAV, and XWB codecs, significant hardening and validation has been applied and the code is subject to file-fuzzing.
+
+This project is subject to Microsoft's Open Source [Security Policy](https://github.com/microsoft/DirectXTK/blob/main/SECURITY.md).
+
+For a list of known vulnerabilities, see [GitHub](https://github.com/microsoft/DirectXTK/security/advisories).
+
 # Contributing
 
 This project welcomes contributions and suggestions. Most contributions require you to agree to a Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
